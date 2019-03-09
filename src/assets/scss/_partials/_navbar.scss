@@ -1,0 +1,383 @@
+.header {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  padding: 20px;
+  nav {
+    clear: both;
+    position: relative;
+    margin: 0 30px;
+    .underline {
+      position: relative;
+      overflow: hidden;
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        right: 0;
+        width: 0;
+        bottom: 0;
+        background: $theme-white;
+        height: 1.3px;
+        transition-property: width;
+        transition: 0.3s ease-out;
+        &.active {
+          border-bottom: 2px solid $theme-white;
+        }
+      }
+      &:hover,
+      :focus,
+      :active {
+        &::after {
+          left: 0;
+          right: 0;
+          width: 100%;
+        }
+      }
+    }
+    .logo-brand {
+      margin: 10px 20px 0;
+      display: inline-block;
+      .logo-cont {
+        object-position: center;
+        background-repeat: no-repeat;
+        object-fit: contain;
+        width: auto;
+        height: 35px;
+      }
+      h3 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: $theme-white;
+        letter-spacing: 1px;
+      }
+    }
+    ul {
+      margin-right: 0;
+      padding-left: 0;
+      list-style: none;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+    }
+    li a {
+      float: left;
+      @include Nunito-Sans();
+      text-decoration: none;
+      font-size: 17px;
+      padding: 17px 20px;
+      margin-left: 2px;
+      letter-spacing: 1px;
+      position: relative;
+      color: $theme-white;
+      font-weight: lighter;
+    }
+    .login {
+      border-radius: 50px;
+      background: $theme-white;
+      padding: 17px 30px;
+      color: $theme-blue;
+      box-shadow: 2px 0px 4px rgba(0, 0, 0, .2);
+    }
+    .drop-down {
+      cursor: pointer;
+      display: block;
+      &:hover {
+        > .dropmenu, ul li {
+          display: block;
+          @include transition(ease, 0.5s);
+          animation: fadeIn 0.7s linear;
+        }
+      }
+    }
+    .dropmenu {
+      display: none;
+      position: absolute;
+      background: $theme-black;
+      width: auto;
+      right: 17%;
+      text-align: center;
+      //box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1200;
+      top: 68%;
+      ul {
+        list-style: none;
+        padding-left: 0;
+        color: $theme-white;
+        display: block;
+        margin-right: 0;
+        min-width: 120px;
+      }
+      li a {
+        color: $theme-white;
+        padding: 12px 16px;
+        text-align: center;
+        letter-spacing: 0 !important;
+        text-decoration: none;
+        display: block;
+        border-bottom: 1px solid rgba($theme-white, .2);
+        float: none;
+        &:hover {
+          background: $theme-black;
+        }
+      }
+    }
+    img {
+      width: 20px;
+      object-fit: contain;
+      height: 20px;
+      vertical-align: text-bottom;
+    }
+  }
+  &.scrolled {
+    position: fixed;
+    background: $theme-white;
+    @include transition(ease, 0.26s);
+    @include boxShadow($shadowBlack, 0, 0, 12px);
+    animation: fadeInDown linear .9s;
+    z-index: 9999;
+    top: 0;
+    nav {
+      clear: both;
+      position: relative;
+      margin: 0 30px;
+      .underline {
+        position: relative;
+        overflow: hidden;
+        &::after {
+          content: "";
+          position: absolute;
+          z-index: 1;
+          right: 0;
+          width: 0;
+          bottom: 0;
+          background: $theme-white;
+          height: 1.3px;
+          transition-property: width;
+          transition: 0.3s ease-out;
+          &.active {
+            border-bottom: 2px solid $theme-white;
+          }
+        }
+        &:hover,
+        :focus,
+        :active {
+          &::after {
+            left: 0;
+            right: 0;
+            width: 100%;
+          }
+        }
+      }
+      .logo-brand {
+        margin: 10px 20px 0;
+        display: inline-block;
+        .logo-cont {
+          object-position: center;
+          background-repeat: no-repeat;
+          object-fit: contain;
+          width: auto;
+          height: 35px;
+        }
+        h3, a {
+          font-size: 3rem;
+          font-weight: bold;
+          color: $theme-blue;
+          letter-spacing: 1px;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+      ul {
+        margin-right: 0;
+        padding-left: 0;
+        list-style: none;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-end;
+      }
+      li a {
+        float: left;
+        @include Nunito-Sans();
+        text-decoration: none;
+        font-size: 17px;
+        padding: 17px 20px;
+        margin-left: 2px;
+        letter-spacing: 1px;
+        position: relative;
+        color: $theme-blue;
+        font-weight: lighter;
+      }
+      .login {
+        border-radius: 50px;
+        background: $theme-blue;
+        padding: 17px 30px;
+        color: $theme-white;
+        box-shadow: 2px 0px 4px rgba(0, 0, 0, .2);
+      }
+      .drop-down {
+        cursor: pointer;
+        display: block;
+        &:hover {
+          > .dropmenu, ul li {
+            display: block;
+            @include transition(ease, 0.5s);
+            animation: fadeIn 0.7s linear;
+          }
+        }
+      }
+      .dropmenu {
+        display: none;
+        position: absolute;
+        background: $theme-black;
+        width: auto;
+        right: 17%;
+        text-align: center;
+        //box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1200;
+        top: 68%;
+        ul {
+          list-style: none;
+          padding-left: 0;
+          color: $theme-white;
+          display: block;
+          margin-right: 0;
+          min-width: 120px;
+        }
+        li a {
+          color: $theme-white;
+          padding: 12px 16px;
+          text-align: center;
+          letter-spacing: 0 !important;
+          text-decoration: none;
+          display: block;
+          border-bottom: 1px solid rgba($theme-white, .2);
+          float: none;
+          &:hover {
+            background: $theme-black;
+          }
+        }
+      }
+      img {
+        width: 20px;
+        object-fit: contain;
+        height: 20px;
+        vertical-align: text-bottom;
+      }
+    }
+  }
+}
+
+.tran {
+  background: transparent !important;
+}
+
+.footer {
+  height: auto;
+  clear: both;
+  width: 100%;
+  @media (min-width: 768px) {
+    .col-md-1 {
+      -ms-flex: 0 0 12.333333% !important;
+      flex: 0 0 12.333333% !important;
+      max-width: 12.333333% !important;
+    }
+  }
+  .inner-footer {
+    padding: 25px 0 5px 1px;
+    background: $theme-white;
+    margin: 0;
+    color: $theme-black;
+    //text-align: center;
+    h3 {
+      text-align: left;
+      padding-left: 5px;
+      font-size: 1em;
+      color: $theme-blue;
+      font-weight: bold;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+    }
+    li a {
+      float: none;
+      display: block;
+      color: #777777 !important;
+      text-align: left;
+      font-size: .9em;
+      padding: 6px;
+      font-weight: lighter;
+      &:hover {
+        color: $theme-black !important;
+      }
+    }
+    .subscribe {
+      small {
+        color: #333333;
+        font-weight: lighter;
+      }
+      .form-inline-sub {
+        display: -webkit-box;
+        .form-control {
+          background: $offwhite;
+          border-radius: 0;
+          //padding: 0.375rem 1.3rem;
+          width: 100% !important;
+          border-right: none;
+        }
+        .btn {
+          border-radius: 0;
+        }
+        .btn-sub-f {
+          overflow: hidden;
+          color: #555;
+          border: none;
+          &:hover {
+            color: $theme-black;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .social-actions {
+      padding: 10px 0;
+      li a {
+        float: left;
+        padding: 8px 15px;
+        color: #555 !important;
+        border: 1px solid #555;
+        margin: 0 10px 0 0;
+        &:hover {
+          @include borderLine(1px, $theme-blue);
+          color: $theme-blue;
+          border: none;
+          span {
+            opacity: 1;
+            font-weight: bold;
+            padding-left: 15px;
+            @include transition(ease, 0.5s);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+  .footer-last {
+    font-size: .8em;
+    padding: 15px 0 15px;
+    width: 100%;
+    background: $theme-white;
+    text-align: center;
+    color: $theme-black;
+    a {
+      color: $theme-black;
+      border-bottom: 1px solid rgba($theme-black, .8);
+    }
+  }
+}

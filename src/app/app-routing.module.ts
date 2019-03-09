@@ -1,10 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { SignInComponent } from './shared/components/sign-in/sign-in.component';
+import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+
+const appRoutes: Routes = [
+  { path: 'signin', component: SignInComponent },
+  { path: 'signup', component: SignUpComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes),
+  
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,0 +1,27 @@
+<header class="header scrolled">
+    <nav>
+        <div class="row m-0-30">
+            <div class="col-md-2">
+                <app-header-logo></app-header-logo>
+                <div class="mobile-nav">
+                    <input type="checkbox" id="menu-btn" class="menu-btn">
+                    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+                    <ul class="menu">
+                        <li><a routerLink="/crisis-center" routerLinkActive="active">Investment</a></li>
+                        <li><a href="">Services</a></li>
+                        <li><a routerLink="/heroes" routerLinkActive="active">About Us</a></li>
+                        <li><a href="">Career</a></li>
+                        <li><a href="views/login.html">Login</a></li>
+                        <li><a class="login" href="views/register.html">Sign Up</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 mx-auto">
+              <!-- <app-header-btn></app-header-btn> -->
+            </div>
+            <div class="col-md-7 ml-auto hide-sm" style="padding: 0;">
+                <app-header-text-nav></app-header-text-nav>
+            </div>
+        </div>
+    </nav>
+</header>
