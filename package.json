@@ -9,7 +9,6 @@
     "start": "node server.js",
     "test": "ng test",
     "postinstall": "ng build --prod"
-
   },
   "private": true,
   "dependencies": {
@@ -23,6 +22,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "angular-in-memory-web-api": "^0.8.0",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
     "rxjs": "~6.3.3",

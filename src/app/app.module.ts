@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import {HomeModule} from './modules/home/home.module';
 import {InvestmentModule} from './modules/investment/investment.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,8 +21,9 @@ import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { CareerComponent } from './modules/career/career.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
-
-
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
 
 
 
@@ -43,13 +44,18 @@ import { ForgotPasswordComponent } from './shared/components/forgot-password/for
     AboutUsComponent,
     CareerComponent,
     SideBarComponent,
-    ForgotPasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     InvestmentModule,
     HomeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // )
   ],
   providers: [],
   bootstrap: [AppComponent]

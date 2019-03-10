@@ -8,11 +8,11 @@
                     <form action="">
                         <div class="form-group">
                             <label for="useremail" class="sr-only">Email Address</label>
-                            <input type="email" placeholder="E-mail" class="form-control" id="useremail">
+                            <input type="email" [(ngModel)]="user.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" placeholder="Enter Password" class="form-control remBorder"
+                                <input type="password" [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
                                        id="userpass">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text tran">show</span>
@@ -21,7 +21,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="button" class="btn2 btn-login" value="Login" id="">
+                            <input type="button" class="btn2 btn-login" (click)="signIn()" value="Login" id="">
                         </div>
                     </form>
                     <div class="otherInfo">
