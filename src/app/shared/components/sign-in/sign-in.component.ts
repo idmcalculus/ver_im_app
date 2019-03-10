@@ -20,7 +20,6 @@ export class SignInComponent implements OnInit {
       .subscribe(UserDetails => {
         if(UserDetails){
           this.user = UserDetails;
-          console.log(JSON.stringify("i got: "+JSON.stringify(this.user)));
         }
       });
   }

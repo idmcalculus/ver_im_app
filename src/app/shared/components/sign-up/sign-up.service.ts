@@ -13,32 +13,35 @@ const httpOptions = {
 };
 
 @Injectable({ providedIn: 'root' })
-export class SignInService {
+export class SignUpService {
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ){ }
 
-  login (user: User): Observable<User> {
+  register (user: User): Observable<User> {
     let params = new HttpParams();
     params = params.append('email', user.email);
     params = params.append('password', user.password);
+    params = params.append('authentication_type', 'E');
+    params = params.append('first_name', user.password);
+    params = params.append('last_name', user.password);
+    params = params.append('user_category', 'Admin');
 
     httpOptions["params"]=params;
 
-    return this.http.post<User>(`${baseUrl}/login`,null, httpOptions).pipe(
+    return this.http.post<User>(`${baseUrl}/register`,null, httpOptions).pipe(
       tap((loggedInUser: any) => {
-        // console.log(JSON.stringify(loggedInUser));
         if(loggedInUser.success && loggedInUser.success.statusCode==200){
-          alert(`welcome ${loggedInUser.success.data.first_name}`)
+          alert(`Registeration Successful ${loggedInUser.success.data.first_name}`)
           return loggedInUser.data;
         }else{
           alert(loggedInUser.message)
           return null;
         }
       }),
-      catchError(this.handleError<User>('Login'))
+      catchError(this.handleError<User>('Registeration'))
     );
   }
 
@@ -51,9 +54,9 @@ export class SignInService {
     };
   }
 
-  /** Log a SignInService message with the MessageService */
+  /** Log a SignUpService message with the MessageService */
   private log(message: string) {
     alert(message)
-    // this.messageService.add(`SignInService: ${message}`);
+    // this.messageService.add(`SignUpService: ${message}`);
   }
 }
