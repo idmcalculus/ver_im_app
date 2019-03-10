@@ -8,7 +8,7 @@ import {User} from '../../models/user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  user:User={email:'paul_adebiyi@yahoo.com',password:'password'};
+  user:User={email:'owolabi.sunday08@gmail.com',password:'admin@123'};
   constructor(private signInService: SignInService) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
       .subscribe(UserDetails => {
         if(UserDetails){
           this.user = UserDetails;
-          console.log(JSON.stringify(this.user));
+          console.log(JSON.stringify("i got: "+JSON.stringify(this.user)));
         }
       });
   }

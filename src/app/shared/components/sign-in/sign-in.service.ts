@@ -1,29 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders,HttpParams } from '@angular/common/http';
 import {MessageService} from '../../services/message.service';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../../models/user';
 
-const baseUrl = "http://versabackend.adebiyipaul.com/api";
+const baseUrl = "https://versabackend.adebiyipaul.com/api";
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json','Accept': 'application/json'})
+  headers: new HttpHeaders(
+      { 'Content-Type': 'application/x-www-form-urlencoded','Accept': 'application/json'}
+    )
 };
 
 @Injectable({ providedIn: 'root' })
 export class SignInService {
 
-  private heroesUrl = 'api/heroes';  // URL to web api
-
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService
+  ){ }
 
-  /** POST: add a new hero to the server */
   login (user: User): Observable<User> {
-    return this.http.post<User>(`${baseUrl}/login?email=${user.email}&password=${user.password}`,{}, httpOptions).pipe(
-      tap((newHero: User) => alert(`added hero w/ id=${newHero.id}`)),
-      catchError(this.handleError<User>('addHero'))
+    let params = new HttpParams();
+    params = params.append('email', user.email);
+    params = params.append('password', user.password);
+
+    httpOptions["params"]=params;
+
+    return this.http.post<User>(`${baseUrl}/login`,null, httpOptions).pipe(
+      tap((loggedInUser: any) => {
+        if(loggedInUser.statusCode=='200'){
+          alert(`welcome ${loggedInUser.data.email}`)
+          return loggedInUser.data;
+        }else{
+          alert(loggedInUser.message)
+          return null;
+        }
+      }),
+      catchError(this.handleError<User>('login'))
     );
   }
 
