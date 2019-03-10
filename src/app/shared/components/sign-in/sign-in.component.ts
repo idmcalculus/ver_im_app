@@ -8,7 +8,7 @@ import {User} from '../../models/user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  user:User={email:'owolabi.sunday08@gmail.com',password:'admin@123'};
+  user:User={email:'paul_adebiyi@yahoo.com',password:'password'};
   constructor(private signInService: SignInService) { }
 
   ngOnInit() {

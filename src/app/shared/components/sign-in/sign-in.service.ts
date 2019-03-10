@@ -29,8 +29,9 @@ export class SignInService {
 
     return this.http.post<User>(`${baseUrl}/login`,null, httpOptions).pipe(
       tap((loggedInUser: any) => {
-        if(loggedInUser.statusCode=='200'){
-          alert(`welcome ${loggedInUser.data.email}`)
+        // console.log(JSON.stringify(loggedInUser));
+        if(loggedInUser.success && loggedInUser.success.statusCode==200){
+          alert(`welcome ${loggedInUser.success.data.email}`)
           return loggedInUser.data;
         }else{
           alert(loggedInUser.message)
@@ -43,14 +44,9 @@ export class SignInService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
+      if(error.statusText){
+        this.log(`${operation} failed: ${error.statusText}`);
+      }
       return of(result as T);
     };
   }
