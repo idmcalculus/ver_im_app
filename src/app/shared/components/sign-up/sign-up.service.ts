@@ -33,8 +33,8 @@ export class SignUpService {
 
     return this.http.post<User>(`${baseUrl}/register`,null, httpOptions).pipe(
       tap((loggedInUser: any) => {
-        if(loggedInUser.success && loggedInUser.success.statusCode==200){
-          alert(`Registeration Successful ${loggedInUser.success.data.first_name}`)
+        if(loggedInUser.success && loggedInUser.success.StatusCode==200){
+          alert(loggedInUser.success.Message)
           return loggedInUser.data;
         }else{
           alert(loggedInUser.message)

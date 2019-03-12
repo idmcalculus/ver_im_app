@@ -10,6 +10,8 @@ import {User} from '../../models/user';
 export class SignUpComponent implements OnInit {
   user:User={email:'',password:''};
   passwordConfim:string='';
+  isSubmitting;
+  signUpText:string="Register";
   constructor(private signUpService:SignUpService) { }
 
   ngOnInit() {
@@ -18,12 +20,17 @@ export class SignUpComponent implements OnInit {
 
   signUp(): void {
     if(this.passwordConfim==this.user.password){
-      this.signUpService.register(this.user)
-      .subscribe(UserDetails => {
-        if(UserDetails){
-          this.user = UserDetails;
-          console.log(JSON.stringify("i got: "+JSON.stringify(this.user)));
-        }
+      this.isSubmitting = new Promise((resolve, reject) => {
+        this.signUpText = "Submitting...";
+        this.signUpService.register(this.user)
+        .subscribe(UserDetails => {
+          if(UserDetails){
+            this.user = UserDetails;
+          }
+          this.passwordConfim = "";
+          this.signUpText = "Register";
+          resolve();
+        });
       });
     }else{
       alert('Passwords do not match');

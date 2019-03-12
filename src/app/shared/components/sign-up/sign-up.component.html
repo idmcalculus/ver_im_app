@@ -38,7 +38,9 @@
                             </div>
     
                             <div class="form-group">
-                                <input type="button" (click)="signUp()" class="btn2 btn-login" value="NEXT &#8594;" id="">
+                                    <button class="btn2 btn btn-raised btn-login" (click)="signUp()" [promiseBtn]="isSubmitting">{{signUpText}}</button>
+                                <!-- <input type="button" (click)="signUp()" class="btn2 btn-login" value="NEXT &#8594;" id=""> -->
+
                             </div>
                         </form>
                     </div>

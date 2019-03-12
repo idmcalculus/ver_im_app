@@ -22,8 +22,9 @@ import { CareerComponent } from './modules/career/career.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import { HttpClientModule }    from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 
 
@@ -53,6 +54,12 @@ import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
     HomeModule,
     AppRoutingModule,
     HttpClientModule,
+    Angular2PromiseButtonModule.forRoot({
+        spinnerTpl: '<span class="btn-spinner"></span>',
+        disableBtn: true,
+        btnLoadingClass: 'is-loading',
+        handleCurrentBtnOnly: false,
+      })
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )

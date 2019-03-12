@@ -29,7 +29,6 @@ export class SignInService {
 
     return this.http.post<User>(`${baseUrl}/login`,null, httpOptions).pipe(
       tap((loggedInUser: any) => {
-        // console.log(JSON.stringify(loggedInUser));
         if(loggedInUser.success && loggedInUser.success.statusCode==200){
           alert(`welcome ${loggedInUser.success.data.first_name}`)
           return loggedInUser.data;

@@ -9,6 +9,8 @@ import {User} from '../../models/user';
 })
 export class SignInComponent implements OnInit {
   user:User={email:'paul_adebiyi@yahoo.com',password:'password'};
+  isSubmitting;
+  loginText:string="Login";
   constructor(private signInService: SignInService) { }
 
   ngOnInit() {
@@ -16,11 +18,19 @@ export class SignInComponent implements OnInit {
   }
 
   signIn(): void {
-    this.signInService.login(this.user)
+    this.isSubmitting = new Promise((resolve, reject) => {
+      this.loginText = "Authenticating..."
+      this.signInService.login(this.user)
       .subscribe(UserDetails => {
         if(UserDetails){
           this.user = UserDetails;
+          this.loginText = "Login";
+          resolve(this.user)
+        }else{
+          this.loginText = "Login";
+          reject()
         }
-      });
+    });
+    });
   }
 }
