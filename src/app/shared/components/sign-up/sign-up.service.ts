@@ -25,8 +25,8 @@ export class SignUpService {
     params = params.append('email', user.email);
     params = params.append('password', user.password);
     params = params.append('authentication_type', 'E');
-    params = params.append('first_name', user.password);
-    params = params.append('last_name', user.password);
+    params = params.append('first_name', user.first_name);
+    params = params.append('last_name', user.last_name);
     params = params.append('user_category', 'Admin');
 
     httpOptions["params"]=params;
