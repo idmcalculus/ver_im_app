@@ -5,14 +5,14 @@
                 <div class="login-form">
                     <h3>Welcome back, </h3>
                     <p>Login below with your E-mail</p>
-                    <form action="">
+                    <form (ngSubmit)="signIn()" #signInForm="ngForm">
                         <div class="form-group">
                             <label for="useremail" class="sr-only">Email Address</label>
-                            <input type="email" [(ngModel)]="user.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
+                            <input type="email" required [(ngModel)]="user.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="password" [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
+                                <input type="password" required [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
                                        id="userpass">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text tran">show</span>
@@ -21,7 +21,8 @@
                         </div>
 
                         <div class="form-group">
-                            <button class="btn2 btn btn-raised btn-login" (click)="signIn()" [promiseBtn]="isSubmitting">{{loginText}}</button>
+                            <!-- <button class="btn2 btn btn-raised btn-login" (click)="signIn()" [promiseBtn]="isSubmitting">{{loginText}}</button> -->
+                            <button class="btn2 btn btn-raised btn-login" [disabled]="!signInForm.form.valid" [promiseBtn]="isSubmitting">{{loginText}}</button>
                             
                             <!-- <input type="button" class="btn2 btn-login" (click)="signIn()" [promiseBtn]="promiseSetBySomeAction" value="Login" id=""> -->
                         </div>

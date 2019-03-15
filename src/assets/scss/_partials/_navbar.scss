@@ -46,7 +46,7 @@
         width: auto;
         height: 35px;
       }
-      h3 {
+      h3, a{
         font-size: 3rem;
         font-weight: bold;
         color: $theme-white;
@@ -286,8 +286,7 @@
     }
   }
   .inner-footer {
-    padding: 25px 0 5px 1px;
-    background: $theme-white;
+    padding: 25px 50px;
     margin: 0;
     color: $theme-black;
     //text-align: center;
@@ -372,7 +371,7 @@
     font-size: .8em;
     padding: 15px 0 15px;
     width: 100%;
-    background: $theme-white;
+    background: #f6f7f9;
     text-align: center;
     color: $theme-black;
     a {

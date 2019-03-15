@@ -9,7 +9,8 @@
 @import "_partials/fonts";
 @import "_partials/navbar";
 @import "_partials/auth";
-
+@import "_partials/invest";
+@import "_partials/dashboard";
 @import "_partials/mobile";
 
 * {
@@ -40,6 +41,13 @@ section {
 @media (min-width: 992px) {
   .mobile-nav {
     display: none;
+  }
+  .header {
+    &.scrolled {
+      .mobile-nav {
+        display: none;
+      }
+    }
   }
 }
 

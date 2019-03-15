@@ -5,23 +5,23 @@
                     <div class="login-form">
                         <h3>Sign up for an account, </h3>
                         <p>You'll be done in a moment</p>
-                        <form action="">
+                        <form (ngSubmit)="signUp()" #signUpForm="ngForm" > 
                             <div class="form-group">
                                 <label for="firstname" class="sr-only">First Name</label>
-                                <input type="text" [(ngModel)]="user.first_name" placeholder="First Name" name="firstname" class="form-control" id="firstname">
+                                <input type="text" required [(ngModel)]="user.first_name" placeholder="First Name" name="firstname" class="form-control" id="firstname">
                             </div>
                             <div class="form-group">
                                 <label for="lastname" class="sr-only">Last Name</label>
-                                <input type="text" [(ngModel)]="user.last_name" placeholder="Last Name" name="lastname"  class="form-control" id="lastname">
+                                <input type="text" required [(ngModel)]="user.last_name" placeholder="Last Name" name="lastname"  class="form-control" id="lastname">
                             </div>
                             <div class="form-group">
                                 <label for="useremail" class="sr-only">Email Address</label>
-                                <input type="email" [(ngModel)]="user.email" placeholder="E-mail" name="useremail"  class="form-control" id="useremail">
+                                <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.email" placeholder="E-mail" name="useremail"  class="form-control" id="useremail">
                             </div>
                             <div class="form-group">
                                 <div class="input-group">
                                     <label for="userpass" class="sr-only">Password</label>
-                                    <input type="password" [(ngModel)]="user.password" placeholder="Enter Password" name="password"  class="form-control remBorder" id="userpass">
+                                    <input type="password" required [(ngModel)]="user.password" placeholder="Enter Password" name="password"  class="form-control remBorder" id="userpass">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text tran">show</span>
                                     </div>
@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <label for="confuserpass" class="sr-only">Confirm Password</label>
-                                    <input type="password" placeholder="Confirm Password" [(ngModel)]="passwordConfim" name="confirm-password" class="form-control remBorder" id="confuserpass">
+                                    <input type="password" required placeholder="Confirm Password" [(ngModel)]="passwordConfim" name="confirm-password" class="form-control remBorder" id="confuserpass">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text tran">show</span>
                                     </div>
@@ -38,9 +38,7 @@
                             </div>
     
                             <div class="form-group">
-                                    <button class="btn2 btn btn-raised btn-login" (click)="signUp()" [promiseBtn]="isSubmitting">{{signUpText}}</button>
-                                <!-- <input type="button" (click)="signUp()" class="btn2 btn-login" value="NEXT &#8594;" id=""> -->
-
+                                    <button type="submit" class="btn2 btn btn-raised btn-login"  [disabled]="!signUpForm.form.valid"   [promiseBtn]="isSubmitting">{{signUpText}}</button>
                             </div>
                         </form>
                     </div>

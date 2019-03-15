@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HomeModule} from './modules/home/home.module';
 import {InvestmentModule} from './modules/investment/investment.module';
+import {ProfileModule} from './modules/profile/profile.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -52,14 +53,15 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
     FormsModule,
     InvestmentModule,
     HomeModule,
+    ProfileModule,
     AppRoutingModule,
     HttpClientModule,
     Angular2PromiseButtonModule.forRoot({
-        spinnerTpl: '<span class="btn-spinner"></span>',
-        disableBtn: true,
-        btnLoadingClass: 'is-loading',
-        handleCurrentBtnOnly: false,
-      })
+      spinnerTpl: '<span class="btn-spinner"></span>',
+      disableBtn: true,
+      btnLoadingClass: 'is-loading',
+      handleCurrentBtnOnly: false,
+    })
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )

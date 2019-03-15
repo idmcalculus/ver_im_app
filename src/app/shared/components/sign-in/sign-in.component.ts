@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,29 +9,31 @@ import {User} from '../../models/user';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  user:User={email:'paul_adebiyi@yahoo.com',password:'password'};
+  user:User={email:'',password:''};
   isSubmitting;
   loginText:string="Login";
-  constructor(private signInService: SignInService) { }
+  constructor(private signInService: SignInService,private routes:Router) { }
 
   ngOnInit() {
 
   }
 
+
   signIn(): void {
-    this.isSubmitting = new Promise((resolve, reject) => {
-      this.loginText = "Authenticating..."
-      this.signInService.login(this.user)
-      .subscribe(UserDetails => {
-        if(UserDetails){
-          this.user = UserDetails;
+      this.isSubmitting = new Promise((resolve, reject) => {
+        this.loginText = "Authenticating...";
+        this.signInService.login(this.user)
+        .subscribe(UserDetails => {
+          console.log(UserDetails)
+          if(UserDetails){
+            this.user = UserDetails;
+            console.log("in here")
+            this.routes.navigate(['profile',this.user]);
+          }
           this.loginText = "Login";
-          resolve(this.user)
-        }else{
-          this.loginText = "Login";
-          reject()
-        }
-    });
-    });
+          resolve();
+        });
+      });
+    
   }
 }
