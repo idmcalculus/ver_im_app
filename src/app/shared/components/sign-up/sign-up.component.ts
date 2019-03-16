@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SignUpService} from './sign-up.service';
-import {User} from '../../models/User';
+import {User} from './../../models/User';
 let  userBackbone = {email:'',password:''}
 @Component({
   selector: 'app-sign-up',
