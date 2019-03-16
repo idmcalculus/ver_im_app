@@ -27,7 +27,8 @@ export class SignInComponent implements OnInit {
           console.log(UserDetails)
           if(UserDetails){
             this.user = UserDetails;
-            this.routes.navigate(['profile',this.user]);
+            alert(`Welcome ${UserDetails.success.data.first_name}`);
+            window.location.href = "profile";
           }
           this.loginText = "Login";
           resolve();

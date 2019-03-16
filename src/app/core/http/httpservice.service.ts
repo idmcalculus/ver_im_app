@@ -59,8 +59,15 @@ export class HttpService {
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-          alert(error.error.error.Message); // log using message service instead
+            console.log("issue is: "+JSON.stringify(error.error))
+            if(error.error.errors){
+                alert(error.error.errors.authentication_type[0])
+            }else if(error.error.error){
+                alert(error.error.error.Message)
+            }
+        //   alert(error.error.error.Message); // log using message service instead
           return of(result as T);
+
         };
     }
 

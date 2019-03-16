@@ -27,7 +27,7 @@ export class SignUpComponent implements OnInit {
         this.signUpService.register(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
-            alert("Registeration Succesfull, chec mail to verify");
+            alert("Registeration Succesfull, check mail to verify");
             this.user = userBackbone;
           }
           this.passwordConfim = "";
