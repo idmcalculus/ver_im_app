@@ -2,9 +2,11 @@ import { NgModule }            from '@angular/core';
 import { Routes,
          RouterModule }        from '@angular/router';
 import { InvestmentComponent }    from './investment.component';
+import {InvestmentDetailComponent} from './investment-detail/investment-detail.component';
 
 const investmentRoutes: Routes = [
-  { path: 'investment', component: InvestmentComponent }
+  { path: 'investments', component: InvestmentComponent },
+  { path: 'investments/:id', component: InvestmentDetailComponent }
 ];
 
 @NgModule({

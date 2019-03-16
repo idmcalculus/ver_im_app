@@ -1,23 +1,54 @@
-<section class="landing">
-    <div class="inner-landing">
-        <div class="row">
-            <div class="col-md-7">
-                <h2>
-                    Investment Page<br>
-                    for your Investment
-                </h2>
-                <span class="lower-content">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Cumque repellat commodi eveniet maximem blanda id sed?
-                    </span>
-                <div class="get-started">
-                    <a href="" class="btn btn-investment">Get Started</a>
-                </div>
+<section class="investment-plans">
+    <div class="inner-investment">
+        <div class="row mb-4">
+            <div class="col-md-9">
+                <h3 class="title-head-inv">Investments</h3>
             </div>
-            <div class="col-md-4 hide-sm">
-                <div class="circle">
-
-                </div>
+            <div class="col-md-3 float-md-right">
+                <label for="filterinvestment" class="sr-only">Filter Investment</label>
+                <select name="" id="filterinvestment" class="form-control">
+                    <option value="" hidden>Choose Category</option>
+                    <option value="">0</option>
+                    <option value="2">2</option>
+                </select>
             </div>
         </div>
+
+        <div [hidden]="!investments" class="row mb-5">
+            <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                <a routerLink="/investments/{{x}}" routerLinkActive="active">
+                    <div class="superb-container m-b20">
+                        <div class="img-holder">
+                            <img src="../assets/images/notcard.png" alt="image">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html">Uber Car Investment</a></h2>
+                            <h3>₦30,000</h3>
+                            <span class="span-profit">11 - 15% Profit <br> (Estimated)</span>
+                            <p>12 Months</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <section  *ngIf="investments.length == 0" class="workingSection">
+            <div class="inner-workingSection">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="working-content">
+                            <h3>Sorry No Invest available now</h3>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eum error doloribus non sed cum
+                                illum quos, dicta neque esse laborum sunt perferendis consectetur delectus voluptate obcaecati
+                                tempora id ullam.
+                            </p>
+                            <div class="btn-holder">
+                                <a href="" class="btn btn-work-green">Get Started</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </section>

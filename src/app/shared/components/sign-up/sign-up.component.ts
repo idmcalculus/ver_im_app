@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SignUpService} from './sign-up.service';
-import {User} from '../../models/user';
-const userBackbone = {email:'',password:''}
+import {User} from '../../models/User';
+let  userBackbone = {email:'',password:''}
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
         .subscribe(UserDetails => {
           if(UserDetails){
             alert("Registeration Succesfull, check mail to verify");
-            this.user = userBackbone;
+            this.user = {email:'',password:''};
           }
           this.passwordConfim = "";
           this.signUpText = "Register";

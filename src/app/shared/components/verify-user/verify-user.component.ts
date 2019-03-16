@@ -11,7 +11,7 @@ export class VerifyUserComponent implements OnInit {
     private activatedRoute:ActivatedRoute,private verifyUserService:VerifyUserService) { }
 
   ngOnInit() {
-        var token = this.activatedRoute.snapshot.params['data'];
+        var token = this.activatedRoute.snapshot.params['token'];
         this.verifyUserService.verify(token)
         .subscribe(verifyRespons => {
           console.log("issh is: "+JSON.stringify(verifyRespons))

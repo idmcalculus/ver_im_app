@@ -10,7 +10,7 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
 const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'verify_user/:data', component: VerifyUserComponent },
+  { path: 'verify_user/:token', component: VerifyUserComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
