@@ -5,8 +5,6 @@ import {HomeModule} from './modules/home/home.module';
 import {UserModule} from './modules/user/user.module';
 import {AdminModule} from './modules/admin/admin.module';
 import {InvestmentModule} from './modules/investment/investment.module';
-// import {AdminDashboardModule} from './modules/admin/admin-dashboard/admin-dashboard.module';
-import {InvestmentDetailModule} from './modules/investment/investment-detail/investment-detail.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -56,7 +54,6 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
     FormsModule,
     InvestmentModule,
     HomeModule,
-    InvestmentDetailModule,
     UserModule,
     AdminModule,
     AppRoutingModule,
