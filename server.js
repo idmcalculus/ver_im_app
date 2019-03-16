@@ -20,4 +20,3 @@ app.get('/*', function(req, res) {
 });
 
 app.listen(process.env.PORT || 8090);
-console.log("App now running on port", 8090);
