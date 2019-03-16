@@ -1,4 +1,4 @@
-import {User} from './User';
+import {User} from './user';
 export class UserSession extends User {
     isValid:boolean=false;
     sessionId?: string;
