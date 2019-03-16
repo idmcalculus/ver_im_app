@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router,ActivatedRoute} from '@angular/router';
+// import {Router,ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-investment-detail',
@@ -7,11 +7,11 @@ import {Router,ActivatedRoute} from '@angular/router';
 })
 export class InvestmentDetailComponent implements OnInit {
 
-  constructor(private router:Router,private activatedRoute:ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit() {
 
-    var investmentId = this.activatedRoute.snapshot.params['id'];
+    // var investmentId = this.activatedRoute.snapshot.params['id'];
     // alert(`investment id is: ${investmentId}`)
         // this.verifyUserService.verify(token)
         // .subscribe(verifyRespons => {

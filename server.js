@@ -11,7 +11,7 @@ const forceSSL = function() {
     next();
   }
 }
-app.use(forceSSL());
+// app.use(forceSSL());
 
 app.use(express.static(__dirname + `/dist/${appName}`));
 
