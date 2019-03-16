@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HomeModule} from './modules/home/home.module';
+import {UserModule} from './modules/user/user.module';
+import {AdminModule} from './modules/admin/admin.module';
 import {InvestmentModule} from './modules/investment/investment.module';
-import {ProfileModule} from './modules/profile/profile.module';
 // import {AdminDashboardModule} from './modules/admin/admin-dashboard/admin-dashboard.module';
 import {InvestmentDetailModule} from './modules/investment/investment-detail/investment-detail.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,8 +26,6 @@ import { CareerComponent } from './modules/career/career.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import { HttpClientModule }    from '@angular/common/http';
-// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
@@ -57,8 +56,9 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
     FormsModule,
     InvestmentModule,
     HomeModule,
-    ProfileModule,
     InvestmentDetailModule,
+    UserModule,
+    AdminModule,
     AppRoutingModule,
     HttpClientModule,
     Angular2PromiseButtonModule.forRoot({

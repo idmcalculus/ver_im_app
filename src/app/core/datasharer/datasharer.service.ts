@@ -26,7 +26,7 @@ export class DatasharerService {
   }
 
   getInProfileView(){
-    return this.inProfileView;
+    return this.profileViewIsActive;
   }
 
 

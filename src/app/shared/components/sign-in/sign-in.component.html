@@ -8,7 +8,7 @@
                     <form (ngSubmit)="signIn()" #signInForm="ngForm">
                         <div class="form-group">
                             <label for="useremail" class="sr-only">Email Address</label>
-                            <input type="email" required [(ngModel)]="user.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
+                            <input type="email" required [(ngModel)]="user.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="E-mail" class="form-control" id="useremail">
                         </div>
                         <div class="form-group">
                             <div class="input-group">
@@ -21,10 +21,7 @@
                         </div>
 
                         <div class="form-group">
-                            <!-- <button class="btn2 btn btn-raised btn-login" (click)="signIn()" [promiseBtn]="isSubmitting">{{loginText}}</button> -->
                             <button class="btn2 btn btn-raised btn-login" [disabled]="!signInForm.form.valid" [promiseBtn]="isSubmitting">{{loginText}}</button>
-                            
-                            <!-- <input type="button" class="btn2 btn-login" (click)="signIn()" [promiseBtn]="promiseSetBySomeAction" value="Login" id=""> -->
                         </div>
                     </form>
                     <div class="otherInfo">

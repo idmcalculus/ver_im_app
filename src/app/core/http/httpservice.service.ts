@@ -25,7 +25,7 @@ export class HttpService {
 
 
     getRequest(api:string) : Observable<any> {
-        return this.http.get<any>(api)
+        return this.http.get<any>(`${this.baseURL}/${api}`)
         .pipe(
             tap(resp=> this.log('fetched heroes'+resp)),
             catchError(
@@ -59,19 +59,17 @@ export class HttpService {
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            console.log("issue is: "+JSON.stringify(error.error))
             if(error.error.errors){
-                alert(error.error.errors.authentication_type[0])
+                alert(JSON.stringify(error.error.errors))
             }else if(error.error.error){
-                alert(error.error.error.Message)
+                alert(error.error.error.message)
             }
-        //   alert(error.error.error.Message); // log using message service instead
           return of(result as T);
 
         };
     }
 
     private log(message: string) {
-        console.log(`HeroService: ${message}`);
+        // console.log(`HeroService: ${message}`);
     }
 }

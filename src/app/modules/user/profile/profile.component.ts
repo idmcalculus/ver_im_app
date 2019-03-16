@@ -7,6 +7,7 @@ import {DatasharerService} from '../../../core/datasharer/datasharer.service';
 export class ProfileComponent {
 
   constructor(private dataSharer:DatasharerService) { 
+    
     this.dataSharer.setInProfileView(true);
   }
 
