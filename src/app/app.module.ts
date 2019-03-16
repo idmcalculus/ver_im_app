@@ -27,6 +27,10 @@ import { SideBarComponent } from './shared/components/side-bar/side-bar.componen
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
+import {DatasharerService} from './core/datasharer/datasharer.service';
+import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
+import {HttpService} from  './core/http/httpservice.service';
+
 
 
 
@@ -47,7 +51,8 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
     AboutUsComponent,
     CareerComponent,
     SideBarComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,11 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
   ],
-  providers: [],
+  providers: [
+    RouterGaurdService,
+    HttpService,
+    DatasharerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
