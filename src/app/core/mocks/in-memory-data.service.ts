@@ -8,9 +8,9 @@ import {User} from '../../shared/models/user';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const users = [
-      { id: 11, email: 'Mr. Nice',password:"" },
-      { id: 12, email: 'Narco',password:"" },
-      { id: 13, email: 'Bombasto',password:"" }
+      { id: 11, email: 'Ogbeni Owolabi',password:"" },
+      { id: 12, email: 'Ogbeni Narco',password:"" },
+      { id: 13, email: 'Ogbeni Bombasto',password:"" }
     ];
     return {users};
   }

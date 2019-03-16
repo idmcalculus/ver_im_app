@@ -7,10 +7,12 @@ import {AdminModule} from './modules/admin/admin.module';
 import {InvestmentModule} from './modules/investment/investment.module';
 import { AppRoutingModule } from './app-routing.module';
 
+import { HttpClientModule }    from '@angular/common/http';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
-
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { HeaderLogoComponent } from './shared/components/header/header-logo/header-logo.component';
 import { HeaderBtnComponent } from './shared/components/header/header-btn/header-btn.component';
@@ -23,8 +25,6 @@ import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { CareerComponent } from './modules/career/career.component';
 import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
-import { HttpClientModule }    from '@angular/common/http';
-import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
 
