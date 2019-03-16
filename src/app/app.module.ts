@@ -26,6 +26,7 @@ import { HttpClientModule }    from '@angular/common/http';
 // import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 // import { InMemoryDataService }  from './core/mocks/in-memory-data.service';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
+import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
 
 
@@ -42,6 +43,7 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
     HeaderTextNavComponent,
     SignInComponent,
     SignUpComponent,
+    VerifyUserComponent,
     ServicesComponent,
     AboutUsComponent,
     CareerComponent,
