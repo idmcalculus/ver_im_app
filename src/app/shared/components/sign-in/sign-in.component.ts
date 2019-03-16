@@ -27,7 +27,6 @@ export class SignInComponent implements OnInit {
           console.log(UserDetails)
           if(UserDetails){
             this.user = UserDetails;
-            console.log("in here")
             this.routes.navigate(['profile',this.user]);
           }
           this.loginText = "Login";

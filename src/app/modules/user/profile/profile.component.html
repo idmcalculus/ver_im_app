@@ -1,0 +1,276 @@
+<div id="pcoded" class="pcoded">
+    <div class="pcoded-container navbar-wrapper">
+
+        <nav class="navbar header-navbar pcoded-header">
+            <div class="navbar-wrapper">
+                <div class="navbar-logo bgWhite logoBrand">
+                    <a href="">LOGO
+                        <!--<img class="img-fluid" src="../assets/images/logo.png" alt="Theme-Logo"/>-->
+                    </a>
+                    <a class="mobile-menu" id="mobile-collapse" href="">
+                        <i class="feather icon-menu icon-toggle-right"></i>
+                    </a>
+                </div>
+                <div class="navbar-container container-fluid">
+                    <ul class="nav-right">
+                        <li class="header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="feather icon-bell"></i>
+                                    <span class="badge bg-c-red">5</span>
+                                </div>
+                                <ul class="show-notification notification-view dropdown-menu" data-dropdown-in="fadeIn"
+                                    data-dropdown-out="fadeOut">
+                                    <li>
+                                        <h6>Notifications</h6>
+                                        <label class="label label-danger">New</label>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img class="img-radius" src="../assets/images/avatar-4.jpg"
+                                                 alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">John Doe</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
+                                                    elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img class="img-radius" src="../assets/images/avatar-3.jpg"
+                                                 alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">Joseph William</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
+                                                    elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="media">
+                                            <img class="img-radius" src="../assets/images/avatar-4.jpg"
+                                                 alt="Generic placeholder image">
+                                            <div class="media-body">
+                                                <h5 class="notification-user">Sara Soudein</h5>
+                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
+                                                    elit.</p>
+                                                <span class="notification-time">30 minutes ago</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
+                                    <i class="feather icon-message-square"></i>
+                                    <span class="badge bg-c-green">3</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="user-profile header-notification">
+                            <div class="dropdown-primary dropdown">
+                                <div class="dropdown-toggle" data-toggle="dropdown">
+                                    <img src="../assets/images/avatar-4.jpg" class="img-radius"
+                                         alt="User-Profile-Image">
+                                    <span>John Doe</span>
+                                    <i class="feather icon-chevron-down"></i>
+                                </div>
+                                <ul class="show-notification profile-notification dropdown-menu"
+                                    data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                    <li>
+                                        <a href="#!">
+                                            <i class="feather icon-settings"></i> Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="feather icon-user"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a routerLink="/home" routerLinkActive="active">
+                                            <i class="feather icon-log-out"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="showChat_inner">
+            <div class="media chat-inner-header">
+                <a class="back_chatBox">
+                    <i class="feather icon-x"></i> Josephin Doe
+                </a>
+            </div>
+            <div class="main-friend-chat">
+                <div class="media chat-messages">
+                    <a class="media-left photo-table" href="#!">
+                        <img class="media-object img-radius img-radius m-t-5" src="../assets/images/avatar-2.jpg"
+                             alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body chat-menu-content">
+                        <div class="">
+                            <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
+                        </div>
+                        <p class="chat-time">8:20 a.m.</p>
+                    </div>
+                </div>
+                <div class="media chat-messages">
+                    <div class="media-body chat-menu-reply">
+                        <div class="">
+                            <p class="chat-cont">Ohh! very nice</p>
+                        </div>
+                        <p class="chat-time">8:22 a.m.</p>
+                    </div>
+                </div>
+                <div class="media chat-messages">
+                    <a class="media-left photo-table" href="#!">
+                        <img class="media-object img-radius img-radius m-t-5" src="../assets/images/avatar-2.jpg"
+                             alt="Generic placeholder image">
+                    </a>
+                    <div class="media-body chat-menu-content">
+                        <div class="">
+                            <p class="chat-cont">can you come with me?</p>
+                        </div>
+                        <p class="chat-time">8:20 a.m.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-reply-box">
+                <div class="right-icon-control">
+                    <div class="input-group input-group-button">
+                        <input type="text" class="form-control" placeholder="Write hear . . ">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary waves-effect waves-light" type="button"><i
+                                    class="feather icon-message-circle"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pcoded-main-container">
+            <div class="pcoded-wrapper">
+
+                <nav class="pcoded-navbar bgColor">
+                    <div class="nav-list navMenu">
+                        <div class="pcoded-inner-navbar main-menu">
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class=" active">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                                        <span class="pcoded-mtext">Dashboard</span>
+                                    </a>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                                        <span class="pcoded-mtext">Investments</span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li>
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-mtext">Requests</span>
+                                            </a>
+
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                                <span class="pcoded-mtext">Pools</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="">
+                                    <a href="profile.html" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon">
+                                        <i class="feather icon-user"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Profile</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a routerLink="/home" routerLinkActive="active" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon">
+                                        <i class="feather icon-log-out"></i>
+                                        </span>
+                                        <span class="pcoded-mtext">Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="pcoded-content">
+
+                    <div class="pcoded-inner-content">
+                        <div class="main-body">
+                            <div class="page-wrapper">
+                                <div class="page-body">
+                                    <div class="row mb-4">
+                                        <div class="col-xl-12 col-md-12 user-invest">
+                                            <h4 class="dash-title">Profile</h4>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-xl-12 col-md-12">
+                                            <div class="card latest-update-card">
+                                                <div class="card-block">
+                                                    <nav>
+                                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                            <a class="nav-item nav-link active" id="nav-home-tab"
+                                                               data-toggle="tab" href="#nav-home" role="tab"
+                                                               aria-controls="nav-home"
+                                                               aria-selected="true">Account</a>
+                                                            <a class="nav-item nav-link" id="nav-profile-tab"
+                                                               data-toggle="tab" href="#nav-profile" role="tab"
+                                                               aria-controls="nav-profile" aria-selected="false">Bank Details</a>
+                                                            <a class="nav-item nav-link" id="nav-contact-tab"
+                                                               data-toggle="tab" href="#nav-contact" role="tab"
+                                                               aria-controls="nav-contact" aria-selected="false">Settings</a>
+                                                        </div>
+                                                    </nav>
+
+                                                    <div class="tab-content" id="nav-tabContent">
+                                                        <div class="tab-pane fade show active" id="nav-home"
+                                                             role="tabpanel" aria-labelledby="nav-home-tab">
+
+                                                            <div class = "update-profile-form">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                                             aria-labelledby="nav-profile-tab">
+                                                            Bank Detail
+                                                        </div>
+                                                        <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                                             aria-labelledby="nav-contact-tab">
+                                                            settings
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

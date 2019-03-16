@@ -10,6 +10,6 @@ export class SignUpService {
   ) { }
   
   register(userCreds:User): Observable<any> {
-    return this.httpService.postRequest("register?email=owolabi.sunday@yahoo.com&authentication_type=E&password=password&first_name=Owolabi&last_name=Sunny&user_category=Admin",{});
+    return this.httpService.postRequest(`register?email=${userCreds.email}&authentication_type=${userCreds.authentication_type}&password=${userCreds.password}&first_name=${userCreds.first_name}&last_name=${userCreds.last_name}&user_category=${userCreds.user_category}`,{});
   }
 }

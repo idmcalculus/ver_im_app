@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import {User} from '../../models/user';
 import {HttpService} from '../../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class SignInService {
+export class VerifyUserService {
   constructor(
     private httpService:HttpService
   ) { }
   
-  login(userCreds:User): Observable<any> {
-    return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{});
+  verify(token:string): Observable<any> {
+    var urlParams = `verify_user/${token}`;
+    return this.httpService.getRequest(urlParams);
   }
 }
