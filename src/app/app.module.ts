@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import {HomeModule} from './modules/home/home.module';
 import {InvestmentModule} from './modules/investment/investment.module';
 import {ProfileModule} from './modules/profile/profile.module';
+// import {AdminDashboardModule} from './modules/admin/admin-dashboard/admin-dashboard.module';
+import {InvestmentDetailModule} from './modules/investment/investment-detail/investment-detail.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -56,6 +58,7 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
     InvestmentModule,
     HomeModule,
     ProfileModule,
+    InvestmentDetailModule,
     AppRoutingModule,
     HttpClientModule,
     Angular2PromiseButtonModule.forRoot({
