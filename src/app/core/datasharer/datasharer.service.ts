@@ -35,6 +35,12 @@ export class DatasharerService {
     }
   }
 
+  getAuthorizationToken() {
+    return this.cookieService.get('token');
+  }
+
+
+
   setInProfileView(profileViewIsActive:boolean){
     this.inProfileView.next(profileViewIsActive)
   }

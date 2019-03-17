@@ -19,9 +19,9 @@ export class UserComponent implements OnInit {
   ngOnInit(){
     this.userSession = this.dataSharer.getSession();
     if(!this.userSession){
-      alert('session expired or not valid')
+      console.log('session expired or not valid')
     }else{
-      alert('could not fetch session')
+      console.log('could not fetch session')
     }
 }
 }

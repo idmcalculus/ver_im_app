@@ -32,7 +32,7 @@ import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
 import {HttpService} from  './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
-
+import {httpInterceptorProviders} from './core/auth/index';
 
 
 
@@ -80,7 +80,8 @@ import { ResetPasswordComponent } from './shared/components/reset-password/reset
     RouterGaurdService,
     HttpService,
     DatasharerService,
-    CookieService
+    CookieService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
