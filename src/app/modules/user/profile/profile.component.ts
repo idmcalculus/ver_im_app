@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {DatasharerService} from '../../../core/datasharer/datasharer.service';
-import { UserSession } from 'src/app/shared/models/UserSession';
+import { User } from 'src/app/shared/models/User';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit{
 
-  userSession:UserSession;
+  user:User={email:'',password:''};
 
   constructor(
     private dataSharer:DatasharerService
     ) { 
-    // this.dataSharer.setInProfileView(true);
+    this.dataSharer.userProfile.subscribe(userProfile => {
+      this.user = userProfile;
+    })
   }
 
   ngOnInit(){
-      // this.userSession = this.dataSharer.getSession();
-      // if(!this.userSession){
-      //   alert('session expired or not valid')
 
-      // }
   }
 
 }

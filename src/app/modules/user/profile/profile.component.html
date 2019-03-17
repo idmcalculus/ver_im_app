@@ -22,7 +22,8 @@
                                                aria-selected="true">Account</a>
                                             <a class="nav-item nav-link" id="nav-profile-tab"
                                                data-toggle="tab" href="#nav-profile" role="tab"
-                                               aria-controls="nav-profile" aria-selected="false">Bank Details</a>
+                                               aria-controls="nav-profile" aria-selected="false">Bank
+                                                Details</a>
                                             <a class="nav-item nav-link" id="nav-contact-tab"
                                                data-toggle="tab" href="#nav-contact" role="tab"
                                                aria-controls="nav-contact" aria-selected="false">Settings</a>
@@ -33,26 +34,282 @@
                                         <div class="tab-pane fade show active" id="nav-home"
                                              role="tabpanel" aria-labelledby="nav-home-tab">
 
-                                            <div class = "update-profile-form">
+                                            <div class="update-profile-form">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="profile-image">
+                                                                <img src="../assets/images/avatar-2.jpg"
+                                                                     alt="ima">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="basic">
+                                                                <h3>Lopita Green</h3>
+                                                                <!--<input type="file" style="display: none;"-->
+                                                                       <!--id="update-profile-image"-->
+                                                                       <!--class="form-control">-->
+                                                                <!--<label for="update-profile-image">Edit-->
+                                                                    <!--picture</label>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Full Name</span>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <label for="firstname">First Name</label>
+                                                            <input value="{{user.first_name}}" type="text" class="form-control"
+                                                                   id="firstname">
+                                                        </div>
+                                                        <div class="col-md-4"><label for="lastname">Last
+                                                            Name</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="lastname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>E-mail</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="email">E-mail</label>
+                                                            <input type="email" class="form-control"
+                                                                   id="email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Phone</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="phone">Phone Number</label>
+                                                            <input type="tel" class="form-control"
+                                                                   id="phone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Address</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="address">Address</label>
+                                                            <input type="tel" class="form-control"
+                                                                   id="address">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Country</span></div>
+                                                        <div class="col-md-9">
+                                                            <label for="country">Country</label>
+                                                            <select class="form-control" name=""
+                                                                    id="country">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="Nigeria">Nigeria</option>
+                                                            </select>
+                                                        </div>
+                                                       <!-- <div class="col-md-4">
+                                                            <label for="state">State</label>
+                                                            <select class="form-control" name="" id="state">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="Nigeria">Nigeria</option>
+                                                            </select>
+                                                        </div>-->
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Gender</span></div>
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <div class="pretty p-icon p-square" style="margin-top: 2.2rem;">
+                                                                <input class="form-check-input" type="radio"
+                                                                       id="male" name="gender" value="male"
+                                                                       checked>
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="male" style="font-size: 15px;">Male</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2" style="margin-top: 2.2rem;">
+                                                            <div class="pretty p-icon p-square">
+                                                                <input class="form-check-input "
+                                                                       type="radio" name="gender" id="female"
+                                                                       value="female">
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="female" style="font-size: 15px;">Female</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="position: relative;">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Date of Birth</span>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="month">Month</label>
+                                                            <select name="month" id="month"
+                                                                    class="form-control">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="1">Jan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3"><label for="day">Day</label>
+                                                            <select name="day" id="day"
+                                                                    class="form-control">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="1">1</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="year">Year</label>
+                                                            <select name="year" id="year"
+                                                                    class="form-control">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="0">1990</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="bgline"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-7 mt-4">
+                                                            <input type="button" class="btn btn-update-profile" value="Update Profile">
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                              aria-labelledby="nav-profile-tab">
-                                            Bank Detail
+                                            <div class="update-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Bank Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="bankname">Bank Name</label>
+                                                            <select name="" id="bankname"
+                                                                    class="form-control">
+                                                                <option value="" hidden>Select</option>
+                                                                <option value="">Access Bank</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Account Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="accountname">Account Name</label>
+                                                            <input type="email" class="form-control"
+                                                                   id="accountname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Account Number</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="accontnumber">Account Number</label>
+                                                            <input type="number" class="form-control"
+                                                                   id="accontnumber">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-8 mt-4">
+                                                            <input type="button" class="btn btn-update-profile" value="Update Details">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                              aria-labelledby="nav-contact-tab">
-                                            settings
+
+                                            <div class="update-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <label class="pref">Receive updates on new Plans?</label>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input type="checkbox"/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <label class="pref">Send E-mail updates on investment</label>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input type="checkbox" checked/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-8 mt-4">
+                                                            <input type="button" class="btn btn-update-profile" value="Update Preference">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

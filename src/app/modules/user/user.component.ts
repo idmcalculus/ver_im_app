@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {DatasharerService} from '../../core/datasharer/datasharer.service';
-import { UserSession } from 'src/app/shared/models/UserSession';
+import {UserSession } from 'src/app/shared/models/UserSession';
+import {User} from './../../shared/models/User';
+import {UserService} from './user.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
 })
 export class UserComponent implements OnInit {
   userSession:UserSession;
+  userProfile:User;
   
   constructor(
-    private dataSharer:DatasharerService
+    private dataSharer:DatasharerService,
+    private userService:UserService
     ) { 
     this.dataSharer.setInProfileView(true);
   }
@@ -17,11 +21,13 @@ export class UserComponent implements OnInit {
 
 
   ngOnInit(){
-    this.userSession = this.dataSharer.getSession();
-    if(!this.userSession){
-      console.log('session expired or not valid')
-    }else{
-      console.log('could not fetch session')
-    }
-}
+    const email = this.dataSharer.getEmail();
+    this.userService.getProfileDetails(email)
+      .subscribe(resp=>{
+          if(resp.success){
+            this.userProfile = resp.success.Data[0];
+            this.dataSharer.setUserProfile(this.userProfile);
+          }
+      })
+  }
 }

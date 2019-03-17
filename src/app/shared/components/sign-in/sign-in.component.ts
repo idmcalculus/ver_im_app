@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
 import { Router} from '@angular/router';
+import {DatasharerService} from './../../../core/datasharer/datasharer.service';
 import { CookieService } from 'ngx-cookie-service';
+import { UserSession } from '../../models/UserSession';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +18,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private signInService: SignInService,
     private routes:Router,
-    private cookieService:CookieService) { }
+    private cookieService:CookieService,
+    private dataSharerService:DatasharerService) { }
 
   ngOnInit() {
 
@@ -34,6 +37,8 @@ export class SignInComponent implements OnInit {
             alert(`Welcome ${UserDetails.success.data.first_name}`);
             this.cookieService.set( 'token',UserDetails.success.token);
             this.cookieService.set( 'email',UserDetails.success.data.email);
+            var userSession:UserSession = this.user;
+            this.dataSharerService.setSession(userSession);
             window.location.href = "user";
           }
           this.loginText = "Login";

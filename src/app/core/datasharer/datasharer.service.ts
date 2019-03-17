@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {UserSession} from '../../shared/models/UserSession';
+import {User} from '../../shared/models/User';
 import { CookieService } from 'ngx-cookie-service';
 import {HttpService} from './../http/httpservice.service';
 
@@ -9,45 +10,43 @@ import {HttpService} from './../http/httpservice.service';
 })
 export class DatasharerService {
   private session = new BehaviorSubject<any>(new UserSession());
+  private user = new BehaviorSubject<any>(new User());
   private inProfileView = new BehaviorSubject<boolean>(false);
   userSession = this.session.asObservable();
+  userProfile = this.user.asObservable();
   profileViewIsActive = this.inProfileView.asObservable();
   constructor(
     private cookieService:CookieService,
     private httpService:HttpService
-    ) { }
+    ) {}
 
   
   setSession(userSession: UserSession) {
     this.session.next(userSession)
   }
 
-  getSession(){
-    // console.log('token is: '+this.cookieService.get('token'));
-    if(this.cookieService.get('token') && this.cookieService.get('email')){
-      this.httpService.postRequest(`fetch_profile?email=${this.cookieService.get('email')}`,null)
-      .subscribe(resp=>{
-          if(resp){
-            return resp.success.data;
-          }
-      })
-      return {isValid:true,email:'owow',password:'owo'};
-    }
+  setUserProfile(user: User) {
+    this.user.next(user)
   }
-
-  getAuthorizationToken() {
-    return this.cookieService.get('token');
-  }
-
-
 
   setInProfileView(profileViewIsActive:boolean){
     this.inProfileView.next(profileViewIsActive)
   }
 
-  getInProfileView(){
-    return this.profileViewIsActive;
+
+  getAuthorizationToken() {
+    return this.cookieService.get('token');
   }
+
+  getEmail(){
+    return this.cookieService.get('email');
+  }
+
+
+
+ 
+
+
 
 
 }
