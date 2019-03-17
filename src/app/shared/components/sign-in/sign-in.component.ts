@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
 import { Router} from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +13,10 @@ export class SignInComponent implements OnInit {
   user:User={email:'',password:''};
   isSubmitting;
   loginText:string="Login";
-  constructor(private signInService: SignInService,private routes:Router) { }
+  constructor(
+    private signInService: SignInService,
+    private routes:Router,
+    private cookieService:CookieService) { }
 
   ngOnInit() {
 
@@ -28,7 +32,9 @@ export class SignInComponent implements OnInit {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${UserDetails.success.data.first_name}`);
-            window.location.href = "profile";
+            this.cookieService.set( 'token',UserDetails.success.token);
+            this.cookieService.set( 'email',UserDetails.success.data.email);
+            window.location.href = "user";
           }
           this.loginText = "Login";
           resolve();

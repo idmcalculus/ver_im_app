@@ -1,18 +1,17 @@
 import { NgModule }            from '@angular/core';
 import { Routes,
          RouterModule }        from '@angular/router';
-import { UserComponent }    from './user.component';
-import {ProfileComponent} from './profile/profile.component';
-import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
-import {UserSettingsComponent} from './user-settings/user-settings.component';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
+import {AdminComponent} from './admin.component';
+import {ProfileComponent} from './../user/profile/profile.component';
+import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 
 
 
 const userRoutes: Routes = [
   {
-    path: 'user',
-    component: UserComponent,
+    path: 'admin',
+    component: AdminComponent,
     children: [
       {
         path: '',
@@ -20,7 +19,7 @@ const userRoutes: Routes = [
           { path: 'profile', component: ProfileComponent },
           { path: 'investments', component: ProfileComponent },
           { path: 'settings', component: RouterGaurdService },
-          { path: '', component: UserDashboardComponent }
+          { path: '', component: AdminDashboardComponent }
         ]
       }
     ]
@@ -31,4 +30,4 @@ const userRoutes: Routes = [
   imports: [RouterModule.forChild(userRoutes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule {}
+export class AdminRoutingModule {}

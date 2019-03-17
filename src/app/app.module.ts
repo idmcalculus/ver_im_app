@@ -30,6 +30,8 @@ import {VerifyUserComponent} from './shared/components/verify-user/verify-user.c
 import {DatasharerService} from './core/datasharer/datasharer.service';
 import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
 import {HttpService} from  './core/http/httpservice.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 
 
 
@@ -52,6 +54,7 @@ import {HttpService} from  './core/http/httpservice.service';
     CareerComponent,
     SideBarComponent,
     ForgotPasswordComponent,
+    ResetPasswordComponent,
 
   ],
   imports: [
@@ -76,7 +79,8 @@ import {HttpService} from  './core/http/httpservice.service';
   providers: [
     RouterGaurdService,
     HttpService,
-    DatasharerService
+    DatasharerService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
