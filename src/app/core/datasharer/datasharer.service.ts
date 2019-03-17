@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {UserSession} from '../../shared/models/UserSession';
-import {User} from '../../shared/models/User';
+import {User} from '../../shared/models/user';
 import { CookieService } from 'ngx-cookie-service';
 import {HttpService} from './../http/httpservice.service';
 
@@ -29,7 +29,7 @@ export class DatasharerService {
 
   destroySession(){
     this.cookieService.set('token','');
-    alert(this.cookieService.get('token'));
+    console.log(this.cookieService.get('token'));
     this.session.next(null);
   }
 
