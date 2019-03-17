@@ -23,7 +23,7 @@ export class DatasharerService {
   }
 
   getSession(){
-    alert('token is: '+this.cookieService.get('token'));
+    // console.log('token is: '+this.cookieService.get('token'));
     if(this.cookieService.get('token') && this.cookieService.get('email')){
       this.httpService.postRequest(`fetch_profile?email=${this.cookieService.get('email')}`,null)
       .subscribe(resp=>{

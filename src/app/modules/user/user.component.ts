@@ -20,7 +20,8 @@ export class UserComponent implements OnInit {
     this.userSession = this.dataSharer.getSession();
     if(!this.userSession){
       alert('session expired or not valid')
-      
+    }else{
+      alert('could not fetch session')
     }
 }
 }
