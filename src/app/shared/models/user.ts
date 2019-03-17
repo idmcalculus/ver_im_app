@@ -1,6 +1,6 @@
 import {BasicModel} from './BasicModel';
 export class User extends BasicModel{
-    password: string;
+    password?: string;
     token?: string;
     first_name?: string;
     last_name?: string;

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {User} from './../../shared/models/User';
 import {HttpService} from './../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
 

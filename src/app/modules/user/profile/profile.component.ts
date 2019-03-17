@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DatasharerService} from '../../../core/datasharer/datasharer.service';
-import { User } from 'src/app/shared/models/User';
+import { User } from 'src/app/shared/models/user';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'

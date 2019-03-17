@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {DatasharerService} from './../../../core/datasharer/datasharer.service';
 
 @Component({
   selector: 'app-user-side-bar',
@@ -7,14 +8,18 @@ import {Router} from '@angular/router';
 })
 export class UserSideBarComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(
+    private router:Router,
+    private dataSharerService:DatasharerService
+    ) { }
 
   ngOnInit() {
   }
 
   logout(){
     if(confirm('Are you sure you want to logout')){
-      this.router.navigate(['home',{}]);
+      this.dataSharerService.destroySession();
+      this.router.navigate(['signin',{}]);
     }
   }
 

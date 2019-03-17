@@ -22,7 +22,15 @@ export class DatasharerService {
 
   
   setSession(userSession: UserSession) {
+    this.cookieService.set( 'token',userSession.token);
+    this.cookieService.set( 'email',userSession.email);
     this.session.next(userSession)
+  }
+
+  destroySession(){
+    this.cookieService.set('token','');
+    alert(this.cookieService.get('token'));
+    this.session.next(null);
   }
 
   setUserProfile(user: User) {

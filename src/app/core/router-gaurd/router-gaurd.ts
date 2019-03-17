@@ -1,6 +1,9 @@
 import { Injectable }     from '@angular/core';
-import { CanActivate,Router,ActivatedRoute }    from '@angular/router';
-// import { CookieService } from 'ngx-cookie-service';
+import {
+  CanActivate, Router,
+  ActivatedRouteSnapshot,
+  NavigationExtras,
+  RouterStateSnapshot}                           from '@angular/router';
 import {DatasharerService} from './../datasharer/datasharer.service';
 import {UserSession} from '../../shared/models/UserSession';
 
@@ -8,27 +11,22 @@ import {UserSession} from '../../shared/models/UserSession';
 export class RouterGaurdService implements CanActivate {
 usrSession:UserSession;
   constructor(
-    // private cookieService: CookieService,
     private router: Router,
-    private actvRouter:ActivatedRoute,
     private dataSharer:DatasharerService
   ) {}
 
-  canActivate() {
-    // if(this.cookieService.check('sessionID')){
-        // if(this.cookieService.get('sessionID')==''){
-        //   this.dataSharer.userSession.next(null);
-        //   alert("Kindly login first");
-          
-        // }else{
-        //   this.usrSession = this.dataSharer.getSession();
-        //   this.dataSharer.setSession(this.usrSession);
-        // }
-    // }else{
-    // alert("Kindly login first")
-    //       this.router.navigate(['index']);
-    // }
-    // this.router.navigate(['home']);
-    return true;
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    let url: string = state.url;
+    return this.checkLogin(url);
   }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.canActivate(route, state);
+  }
+
+  checkLogin(url: string): boolean {
+    if (this.dataSharer.getAuthorizationToken) { return true; }
+    return false;
+  }
+
 }

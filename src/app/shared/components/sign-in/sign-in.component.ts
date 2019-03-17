@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
-import { Router} from '@angular/router';
 import {DatasharerService} from './../../../core/datasharer/datasharer.service';
-import { CookieService } from 'ngx-cookie-service';
 import { UserSession } from '../../models/UserSession';
 
 @Component({
@@ -17,8 +15,6 @@ export class SignInComponent implements OnInit {
   loginText:string="Login";
   constructor(
     private signInService: SignInService,
-    private routes:Router,
-    private cookieService:CookieService,
     private dataSharerService:DatasharerService) { }
 
   ngOnInit() {
@@ -35,9 +31,7 @@ export class SignInComponent implements OnInit {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${UserDetails.success.data.first_name}`);
-            this.cookieService.set( 'token',UserDetails.success.token);
-            this.cookieService.set( 'email',UserDetails.success.data.email);
-            var userSession:UserSession = this.user;
+            var userSession:UserSession = {token:UserDetails.success.token,email:UserDetails.success.data.email};
             this.dataSharerService.setSession(userSession);
             window.location.href = "user";
           }

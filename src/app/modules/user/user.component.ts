@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatasharerService} from '../../core/datasharer/datasharer.service';
 import {UserSession } from 'src/app/shared/models/UserSession';
-import {User} from './../../shared/models/User';
+import {User} from './../../shared/models/user';
 import {UserService} from './user.service';
 @Component({
   selector: 'app-user',

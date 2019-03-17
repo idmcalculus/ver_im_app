@@ -63,12 +63,12 @@
                                                         </div>
                                                         <div class="col-md-5">
                                                             <label for="firstname">First Name</label>
-                                                            <input value="{{user.first_name}}" type="text" class="form-control"
+                                                            <input [(ngModel)]="user.first_name" type="text" class="form-control"
                                                                    id="firstname">
                                                         </div>
                                                         <div class="col-md-4"><label for="lastname">Last
                                                             Name</label>
-                                                            <input type="text" class="form-control"
+                                                            <input [(ngModel)]="user.last_name" type="text" class="form-control"
                                                                    id="lastname">
                                                         </div>
                                                     </div>
@@ -81,7 +81,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="email">E-mail</label>
-                                                            <input type="email" class="form-control"
+                                                            <input [(ngModel)]="user.email" type="email" class="form-control"
                                                                    id="email">
                                                         </div>
                                                     </div>
@@ -94,7 +94,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="phone">Phone Number</label>
-                                                            <input type="tel" class="form-control"
+                                                            <input [(ngModel)]="user.phone_number" type="tel" class="form-control"
                                                                    id="phone">
                                                         </div>
                                                     </div>
@@ -107,7 +107,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="address">Address</label>
-                                                            <input type="tel" class="form-control"
+                                                            <input [(ngModel)]="user.home_address" type="tel" class="form-control"
                                                                    id="address">
                                                         </div>
                                                     </div>
@@ -139,7 +139,7 @@
                                                             <div class="pretty p-icon p-square" style="margin-top: 2.2rem;">
                                                                 <input class="form-check-input" type="radio"
                                                                        id="male" name="gender" value="male"
-                                                                       checked>
+                                                                       >
                                                                 <div class="state p-warning-o">
                                                                     <i class="icon fa fa-check"></i>
                                                                     <label for="male" style="font-size: 15px;">Male</label>
@@ -148,9 +148,9 @@
                                                         </div>
                                                         <div class="col-lg-2 col-md-2" style="margin-top: 2.2rem;">
                                                             <div class="pretty p-icon p-square">
-                                                                <input class="form-check-input "
-                                                                       type="radio" name="gender" id="female"
-                                                                       value="female">
+                                                                <input class="form-check-input " type="radio" 
+                                                                name="gender" id="female" value="female"
+                                                                >
                                                                 <div class="state p-warning-o">
                                                                     <i class="icon fa fa-check"></i>
                                                                     <label for="female" style="font-size: 15px;">Female</label>
@@ -227,7 +227,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="accountname">Account Name</label>
-                                                            <input type="email" class="form-control"
+                                                            <input [(ngModel)]="user.account_name" type="email" class="form-control"
                                                                    id="accountname">
                                                         </div>
                                                     </div>
@@ -240,7 +240,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="accontnumber">Account Number</label>
-                                                            <input type="number" class="form-control"
+                                                            <input [(ngModel)]="user.account_number" type="number" class="form-control"
                                                                    id="accontnumber">
                                                         </div>
                                                     </div>
@@ -268,7 +268,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input type="checkbox"/>
+                                                                <input [(ngModel)]="user.updates_on_new_plans" type="checkbox"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -284,7 +284,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input type="checkbox" checked/>
+                                                                <input [(ngModel)]="user.email_updates_on_investment_process"  type="checkbox" checked/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>

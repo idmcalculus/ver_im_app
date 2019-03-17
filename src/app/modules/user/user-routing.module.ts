@@ -12,10 +12,11 @@ import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 const userRoutes: Routes = [
   {
     path: 'user',
-    component: UserComponent,
+    component: UserComponent,canActivate:[RouterGaurdService],
     children: [
       {
         path: '',
+        canActivateChild: [RouterGaurdService],
         children: [
           { path: 'profile', component: ProfileComponent },
           { path: 'investments', component: ProfileComponent },

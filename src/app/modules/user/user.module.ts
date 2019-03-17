@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
@@ -22,7 +23,8 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    FormsModule
   ],
   exports:[
     UserHeaderComponent,
