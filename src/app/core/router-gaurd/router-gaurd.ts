@@ -17,6 +17,7 @@ usrSession:UserSession;
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    
         const currentUser = this.authService.currentUserValue;
         if (currentUser) {
             return true;

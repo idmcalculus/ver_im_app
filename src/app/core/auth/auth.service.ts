@@ -18,49 +18,45 @@ export class AuthService {
         this.profileViewIsActive = this.inProfileView.asObservable();
     }
 
-    // validateSession(): any {
-    //   return  new Promise<any>((resolve,reject)=>{
-    //     var userDetails = this.currentUserSubject.value;
-    //     var email = localStorage.getItem('email');
-    //     if(userDetails){
-    //       // console.log('Already existing')
-    //       resolve(userDetails)
-    //     }else{
-    //         if(!email){
-    //             console.log('emi ni')
-    //             resolve(null)
-    //         }else{
-    //             this.httpService.postRequest(`fetch_profile?email=${email}`,{})
-    //             .subscribe(response => {
-    //                 if (response && response.success) {
-    //                     userDetails = response.success.Data[0];
-    //                     this.currentUserSubject.next(userDetails);
-    //                     // console.log('Fetched again')
-    //                     resolve(userDetails);
-    //                 }else{
-    //                   resolve(userDetails);
-    //                 }
-    //             });
-    //         }
-    //     }
+    validateSession(): any {
+      return  new Promise<any>((resolve,reject)=>{
+        var userDetails = this.currentUserSubject.value;
+        if(userDetails){
+            resolve(userDetails);
+        }else{
+            var email = localStorage.getItem('email');
+            this.httpService.postRequest(`fetch_profile?email=${email}`,{})
+                    .subscribe(response => {
+                        if (response && response.success) {
+                            userDetails = response.success.Data[0];
+                            this.currentUserSubject.next(userDetails);
+                            console.log('Fetched again')
+                            resolve(userDetails);
+                        }else{
+                          resolve(userDetails);
+                        }
+                    });
+        }
         
-    //   })
-    // }
+        
+      })
+    }
 
     public get currentUserValue(): any {
-        // alert(localStorage.getItem('email'))
         if(!localStorage.getItem('email') || !localStorage.getItem('token')){
             return null
         }else{
-             
+            //  this.validateSession().then(resp=>{
+            //     return resp;
+            //  })
+            return true;
         }
-        return true;
     }
 
 
 
     login(userCreds:User) {
-      console.log("am sending: "+JSON.stringify(userCreds))
+    //   console.log("am sending: "+JSON.stringify(userCreds))
       return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{})
       .pipe(map(response => {
           var userDetails=null;
@@ -83,5 +79,9 @@ export class AuthService {
 
     setInProfileView(isLoggedIn:boolean){
         this.inProfileView.next(isLoggedIn);
+    }
+
+    setUser(userDetails:User){
+        this.currentUserSubject.next(userDetails);
     }
 }

@@ -27,22 +27,22 @@
                       </li>
                   </ul>
               </li>
-              <li class="">
+              <li [hidden]=" userInfo.user_category!='Admin' " class="">
                 <a routerLink="./manage-users" routerLinkActive="active" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                     <i class="feather icon-user"></i>
                     </span>
                     <span class="pcoded-mtext">Manage Users</span>
                 </a>
-            </li>
-            <li class="">
+              </li>
+              <li [hidden]=" userInfo.user_category!='Admin' " class="">
                 <a routerLink="./manage-users" routerLinkActive="active" class="waves-effect waves-dark">
                     <span class="pcoded-micon">
                     <i class="feather icon-user"></i>
                     </span>
                     <span class="pcoded-mtext">Career</span>
                 </a>
-            </li>
+              </li>
               <li class="">
                   <a routerLink="./profile" routerLinkActive="active"  class="waves-effect waves-dark">
                       <span class="pcoded-micon">
