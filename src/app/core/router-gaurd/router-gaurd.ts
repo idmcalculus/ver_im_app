@@ -6,6 +6,7 @@ import {
   RouterStateSnapshot}                           from '@angular/router';
 import {UserSession} from '../../shared/models/UserSession';
 import {AuthService} from './../auth/auth.service';
+import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class RouterGaurdService implements CanActivate {
@@ -16,12 +17,12 @@ usrSession:UserSession;
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(this.authService.currentUserValue){
-      return true;
-    }else{
-      this.router.navigate(['/signin']);
-      return false;//try and redirect to origin
-    }
+        const currentUser = this.authService.currentUserValue;
+        if (currentUser) {
+            return true;
+        }
+        this.router.navigate(['/signin'], {});
+        return false
     
   }
 

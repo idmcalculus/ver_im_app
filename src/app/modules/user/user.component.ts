@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 // import {DatasharerService} from '../../core/datasharer/datasharer.service';
 import {UserSession } from 'src/app/shared/models/UserSession';
 import {User} from './../../shared/models/user';
-import {UserService} from './user.service';
 import {AuthService} from './../../core/auth/auth.service';
 import { Subscription } from 'rxjs';
 @Component({
@@ -14,8 +13,7 @@ export class UserComponent implements OnInit {
   userProfile:User;
   currentUserSubscription:Subscription;
   constructor(
-    private authService:AuthService,
-    private userService:UserService
+    private authService:AuthService
     ){ 
       this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
           this.userProfile = user;
@@ -23,10 +21,10 @@ export class UserComponent implements OnInit {
     }
 
   ngOnInit(){
-
+     this.authService.setInProfileView(true);
   }
 
   ngOnDestroy() {
-    this.currentUserSubscription.unsubscribe();
+     this.currentUserSubscription.unsubscribe();
   }
 }

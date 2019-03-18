@@ -14,11 +14,10 @@ import {PoolDetailComponent} from './pool-detail/pool-detail.component';
 const userRoutes: Routes = [
   {
     path: 'user',
-    component: UserComponent,canLoad:[RouterGaurdService],
+    component: UserComponent,canActivate:[RouterGaurdService],
     children: [
       {
         path: '',
-        canActivateChild: [RouterGaurdService],
         children: [
           { path: 'profile', component: ProfileComponent },
           { path: 'investments', component: ProfileComponent },

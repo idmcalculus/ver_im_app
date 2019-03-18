@@ -18,29 +18,46 @@ export class AuthService {
         this.profileViewIsActive = this.inProfileView.asObservable();
     }
 
-    public get currentUserValue(): any {
-      return  new Promise<any>((resolve,reject)=>{
-        var userDetails = this.currentUserSubject.value;
-        var email = localStorage.getItem('email');
-        if(userDetails){
-          // console.log('Already existing')
-          resolve(userDetails)
-        }else{
-          this.httpService.postRequest(`fetch_profile?email=${email}`,{})
-          .subscribe(response => {
-              if (response && response.success) {
-                  userDetails = response.success.Data[0];
-                  this.currentUserSubject.next(userDetails);
-                  // console.log('Fetched again')
-                  resolve(userDetails);
-              }else{
-                resolve(userDetails);
-              }
-          });
-        }
+    // validateSession(): any {
+    //   return  new Promise<any>((resolve,reject)=>{
+    //     var userDetails = this.currentUserSubject.value;
+    //     var email = localStorage.getItem('email');
+    //     if(userDetails){
+    //       // console.log('Already existing')
+    //       resolve(userDetails)
+    //     }else{
+    //         if(!email){
+    //             console.log('emi ni')
+    //             resolve(null)
+    //         }else{
+    //             this.httpService.postRequest(`fetch_profile?email=${email}`,{})
+    //             .subscribe(response => {
+    //                 if (response && response.success) {
+    //                     userDetails = response.success.Data[0];
+    //                     this.currentUserSubject.next(userDetails);
+    //                     // console.log('Fetched again')
+    //                     resolve(userDetails);
+    //                 }else{
+    //                   resolve(userDetails);
+    //                 }
+    //             });
+    //         }
+    //     }
         
-      })
+    //   })
+    // }
+
+    public get currentUserValue(): any {
+        // alert(localStorage.getItem('email'))
+        if(!localStorage.getItem('email') || !localStorage.getItem('token')){
+            return null
+        }else{
+             
+        }
+        return true;
     }
+
+
 
     login(userCreds:User) {
       console.log("am sending: "+JSON.stringify(userCreds))
@@ -52,7 +69,6 @@ export class AuthService {
               localStorage.setItem('token', response.success.token);
               localStorage.setItem('email', userDetails.email);
               this.currentUserSubject.next(userDetails);
-              
           }
           return userDetails;
       }));
@@ -61,7 +77,11 @@ export class AuthService {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
-        console.log('i still have: '+localStorage.getItem('token'))
+        this.setInProfileView(false)
         this.currentUserSubject.next(null);
+    }
+
+    setInProfileView(isLoggedIn:boolean){
+        this.inProfileView.next(isLoggedIn);
     }
 }

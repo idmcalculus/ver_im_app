@@ -20,12 +20,10 @@ export class AppComponent {
   constructor(
     private authService:AuthService
     ){
-      this.inProfileSubcription = this.authService.currentUser.subscribe(userDetails =>{
-        if(userDetails){
-          this.showHeader = this.showFooter = false;
-        }else{
-          this.showHeader = this.showFooter = true
-        }
+      this.inProfileSubcription = this.authService.profileViewIsActive.subscribe(isLogedIn =>{
+          this.showHeader = !isLogedIn;
+          this.showFooter = !isLogedIn;
+        
       })
   }
 

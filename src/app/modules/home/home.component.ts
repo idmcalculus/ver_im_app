@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import {DatasharerService} from '../../core/datasharer/datasharer.service';
+import {AuthService} from './../../core/auth/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent {
 
   constructor(
-    // private dataSharer: DatasharerService
+    private authService: AuthService
     ) {
-    // this.dataSharer.setInProfileView(false);
+        this.authService.setInProfileView(false);
    }
 
 
