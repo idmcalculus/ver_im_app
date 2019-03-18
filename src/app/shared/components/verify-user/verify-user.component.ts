@@ -17,7 +17,7 @@ export class VerifyUserComponent implements OnInit {
           console.log("issh is: "+JSON.stringify(verifyRespons))
           if(verifyRespons.success.Data){
             alert(`Welcome ${verifyRespons.success.Data.first_name}`);
-            window.location.href = "profile";
+            window.location.href = "signin";
           }else{
             alert('Invalid Token')
             window.location.href = "home";
