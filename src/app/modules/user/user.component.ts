@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {DatasharerService} from '../../core/datasharer/datasharer.service';
+// import {DatasharerService} from '../../core/datasharer/datasharer.service';
 import {UserSession } from 'src/app/shared/models/UserSession';
 import {User} from './../../shared/models/user';
 import {UserService} from './user.service';
+import {AuthService} from './../../core/auth/auth.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
@@ -10,24 +12,21 @@ import {UserService} from './user.service';
 export class UserComponent implements OnInit {
   userSession:UserSession;
   userProfile:User;
-  
+  currentUserSubscription:Subscription;
   constructor(
-    private dataSharer:DatasharerService,
+    private authService:AuthService,
     private userService:UserService
-    ) { 
-    this.dataSharer.setInProfileView(true);
-  }
-
-
+    ){ 
+      this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+          this.userProfile = user;
+      });
+    }
 
   ngOnInit(){
-    const email = this.dataSharer.getEmail();
-    this.userService.getProfileDetails(email)
-      .subscribe(resp=>{
-          if(resp.success){
-            this.userProfile = resp.success.Data[0];
-            this.dataSharer.setUserProfile(this.userProfile);
-          }
-      })
+
+  }
+
+  ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
   }
 }

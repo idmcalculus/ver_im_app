@@ -159,6 +159,13 @@ $slide: (
       @include transition(ease, 0.5s);
     }
   }
+  .btn-update-profile {
+    background: rgb(100,200,140);
+    color: #fff;
+    width: 100%;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
   .btn-join {
     background: rgb(100,200,140);
     color: #fff;
@@ -172,6 +179,14 @@ $slide: (
       text-decoration: none;
       background: rgb(81,170,82);
     }
+  }
+  .add-invest {
+    font-size: 1.5rem;
+    background: rgb(100,200,140);
+    color: #fff;
+    padding: .6em 1em;
+    letter-spacing: 2px;
+    font-weight: bold;
   }
 }
 

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
@@ -10,6 +9,9 @@ import {UserRoutingModule} from './user-routing.module';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { UserSideBarComponent } from './user-side-bar/user-side-bar.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import {FormsModule} from '@angular/forms';
+import { PoolsComponent } from './pools/pools.component';
+import { PoolDetailComponent } from './pool-detail/pool-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     UserDashboardComponent,
     UserHeaderComponent,
     UserSideBarComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    PoolsComponent,
+    PoolDetailComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +33,10 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
   exports:[
     UserHeaderComponent,
     UserSideBarComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    ProfileComponent,
+    PoolsComponent,
+    PoolDetailComponent
   ]
 })
 export class UserModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DatasharerService} from '../../../core/datasharer/datasharer.service';
 import { User } from 'src/app/shared/models/user';
+import {AuthService} from './../../../core/auth/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'
@@ -10,11 +10,9 @@ export class ProfileComponent implements OnInit{
   user:User={email:'',password:''};
 
   constructor(
-    private dataSharer:DatasharerService
+    private authService:AuthService
     ) { 
-    this.dataSharer.userProfile.subscribe(userProfile => {
-      this.user = userProfile;
-    })
+      this.user = this.authService.currentUserValue
   }
 
   ngOnInit(){

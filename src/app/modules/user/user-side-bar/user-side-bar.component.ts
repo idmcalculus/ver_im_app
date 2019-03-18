@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {DatasharerService} from './../../../core/datasharer/datasharer.service';
+// import {DatasharerService} from './../../../core/datasharer/datasharer.service';
+import {AuthService} from './../../../core/auth/auth.service'
 
 @Component({
   selector: 'app-user-side-bar',
@@ -10,7 +11,7 @@ export class UserSideBarComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private dataSharerService:DatasharerService
+    private authService:AuthService
     ) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class UserSideBarComponent implements OnInit {
 
   logout(){
     if(confirm('Are you sure you want to logout')){
-      this.dataSharerService.destroySession();
+      this.authService.logout();
       this.router.navigate(['signin',{}]);
     }
   }

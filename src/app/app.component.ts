@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {DatasharerService} from './core/datasharer/datasharer.service';
+import {AuthService} from './core/auth/auth.service';
 import { UserSession } from './shared/models/UserSession';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -13,14 +14,26 @@ export class AppComponent {
 
   showHeader:boolean=true;  
   showFooter:boolean=true;
-
+  inProfileSubcription: Subscription;
   title = 'versaim-app';
   session: UserSession;
-  constructor(private dataSharer:DatasharerService){
-    this.dataSharer.userSession.subscribe(session => this.session = session)
-    this.dataSharer.profileViewIsActive.subscribe(inProfileView =>{
-      this.showHeader = !inProfileView
-      this.showFooter = !inProfileView
-    })
+  constructor(
+    private authService:AuthService
+    ){
+      this.inProfileSubcription = this.authService.currentUser.subscribe(userDetails =>{
+        if(userDetails){
+          this.showHeader = this.showFooter = false;
+        }else{
+          this.showHeader = this.showFooter = true
+        }
+      })
+  }
+
+  ngOnInit(){
+    
+  }
+
+  ngOnDestroy() {
+    this.inProfileSubcription.unsubscribe();
   }
 }

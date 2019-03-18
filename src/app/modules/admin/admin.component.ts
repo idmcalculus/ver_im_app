@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DatasharerService} from '../../core/datasharer/datasharer.service';
+// import {DatasharerService} from '../../core/datasharer/datasharer.service';
 import { UserSession } from 'src/app/shared/models/UserSession';
 
 @Component({
@@ -8,8 +8,10 @@ import { UserSession } from 'src/app/shared/models/UserSession';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private dataSharer:DatasharerService) { 
-    this.dataSharer.setInProfileView(true);
+  constructor(
+    // private dataSharer:DatasharerService
+    ) { 
+    // this.dataSharer.setInProfileView(true);
   }
 
   ngOnInit() {

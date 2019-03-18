@@ -59,13 +59,13 @@ export class HttpService {
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            console.log("error is::"+JSON.stringify(error))
             if(error.status==0){
                 alert('Could not connect to services')
             }else{
-                if(error.error.errors){
+                console.log("Error occurred is:: "+JSON.stringify(error))
+                if(error.error && error.error.errors){
                     alert(JSON.stringify(error.error.errors))
-                }else if(error.error.error){
+                }else if(error.error && error.error.error){
                     if(error.error.error.message){
                         alert(error.error.error.message)
                     }else{

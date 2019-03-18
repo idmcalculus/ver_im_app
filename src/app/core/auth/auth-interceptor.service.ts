@@ -3,23 +3,23 @@ import {
   HttpEvent, HttpInterceptor, HttpHandler, HttpRequest
 } from '@angular/common/http';
 
-import { DatasharerService } from './../datasharer/datasharer.service';
+// import { DatasharerService } from './../datasharer/datasharer.service';
+import {AuthService} from './auth.service'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private dataSharerService: DatasharerService) {}
+  constructor(
+    private authService: AuthService
+    ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    // console.log("am intercepting: fir")
-    const authToken = this.dataSharerService.getAuthorizationToken();
-    // console.log("am intercepting: "+authToken)
+    var token = localStorage.getItem('token');
+    const authToken = token ? token:'';
     const authReq = req.clone({
         headers: req.headers.set('Authorization',`Bearer ${authToken}`)
     });
 
-    // const authReq = req.clone({ setHeaders: { Authorization: `Basic ${authToken}` } });
-    // console.log("issh is: "+JSON.stringify(authReq))
     return next.handle(authReq);
   }
 }

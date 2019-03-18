@@ -27,12 +27,15 @@ import { SideBarComponent } from './shared/components/side-bar/side-bar.componen
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
-import {DatasharerService} from './core/datasharer/datasharer.service';
+// import {DatasharerService} from './core/datasharer/datasharer.service';
+import {AuthService} from './core/auth/auth.service';
 import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
 import {HttpService} from  './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import {httpInterceptorProviders} from './core/auth/index';
+import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
+import { HeaderMobileNavComponent } from './shared/components/header/header-mobile-nav/header-mobile-nav.component';
 
 
 
@@ -55,6 +58,8 @@ import {httpInterceptorProviders} from './core/auth/index';
     SideBarComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ManageUsersComponent,
+    HeaderMobileNavComponent,
 
   ],
   imports: [
@@ -79,7 +84,8 @@ import {httpInterceptorProviders} from './core/auth/index';
   providers: [
     RouterGaurdService,
     HttpService,
-    DatasharerService,
+    // DatasharerService,
+    AuthService,
     CookieService,
     httpInterceptorProviders
   ],

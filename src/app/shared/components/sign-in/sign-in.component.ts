@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
-import {DatasharerService} from './../../../core/datasharer/datasharer.service';
+import {AuthService} from './../../../core/auth/auth.service';
 import { UserSession } from '../../models/UserSession';
 
 @Component({
@@ -15,7 +15,8 @@ export class SignInComponent implements OnInit {
   loginText:string="Login";
   constructor(
     private signInService: SignInService,
-    private dataSharerService:DatasharerService) { }
+    private authService:AuthService
+    ) { }
 
   ngOnInit() {
 
@@ -25,15 +26,12 @@ export class SignInComponent implements OnInit {
   signIn(): void {
       this.isSubmitting = new Promise((resolve, reject) => {
         this.loginText = "Authenticating...";
-        this.signInService.login(this.user)
+        this.authService.login(this.user)
         .subscribe(UserDetails => {
-          console.log(UserDetails)
           if(UserDetails){
             this.user = UserDetails;
-            alert(`Welcome ${UserDetails.success.data.first_name}`);
-            var userSession:UserSession = {token:UserDetails.success.token,email:UserDetails.success.data.email};
-            this.dataSharerService.setSession(userSession);
-            window.location.href = "user";
+            alert(`Welcome ${this.user.first_name}`);
+            window.location.href='user';
           }
           this.loginText = "Login";
           resolve();

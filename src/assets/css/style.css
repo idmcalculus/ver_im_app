@@ -3625,7 +3625,7 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
     width: 100%;
     margin: 0 auto;
     border-radius: 0;
-    padding: 10px 0;
+    padding: 10px 36px;
     border-left: 3px solid transparent
 }
 
