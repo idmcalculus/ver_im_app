@@ -63,12 +63,12 @@
                                                         </div>
                                                         <div class="col-md-5">
                                                             <label for="firstname">First Name</label>
-                                                            <input [(ngModel)]="user.first_name" type="text" class="form-control"
+                                                            <input [(ngModel)]="user.first_name"  type="text" class="form-control"
                                                                    id="firstname">
                                                         </div>
                                                         <div class="col-md-4"><label for="lastname">Last
                                                             Name</label>
-                                                            <input [(ngModel)]="user.last_name" type="text" class="form-control"
+                                                            <input  type="text" class="form-control"
                                                                    id="lastname">
                                                         </div>
                                                     </div>
@@ -141,7 +141,7 @@
                                                                        id="male" name="gender" value="male"
                                                                        >
                                                                 <div class="state p-warning-o">
-                                                                    <i class="icon fa fa-check"></i>
+                                                                    <i class="icon "></i>
                                                                     <label for="male" style="font-size: 15px;">Male</label>
                                                                 </div>
                                                             </div>
@@ -152,7 +152,7 @@
                                                                 name="gender" id="female" value="female"
                                                                 >
                                                                 <div class="state p-warning-o">
-                                                                    <i class="icon fa fa-check"></i>
+                                                                    <i class="icon "></i>
                                                                     <label for="female" style="font-size: 15px;">Female</label>
                                                                 </div>
                                                             </div>
@@ -193,7 +193,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-7 mt-4">
-                                                            <input type="button" class="btn btn-update-profile" value="Update Profile">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-update-profile" value="Update Profile">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -227,7 +227,7 @@
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="accountname">Account Name</label>
-                                                            <input [(ngModel)]="user.account_name" type="email" class="form-control"
+                                                            <input  [(ngModel)]="user.account_name" type="email" class="form-control"
                                                                    id="accountname">
                                                         </div>
                                                     </div>
@@ -268,7 +268,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input [(ngModel)]="user.updates_on_new_plans" type="checkbox"/>
+                                                                <input  type="checkbox"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -284,7 +284,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input [(ngModel)]="user.email_updates_on_investment_process"  type="checkbox" checked/>
+                                                                <input   type="checkbox" checked/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>

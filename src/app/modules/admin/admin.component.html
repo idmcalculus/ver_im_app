@@ -1,11 +1,11 @@
 <div id="pcoded" class="pcoded">
-  <div class="pcoded-container navbar-wrapper">
-      <app-user-header></app-user-header>    
-      <div class="pcoded-main-container">
-          <div class="pcoded-wrapper">
-              <app-user-side-bar></app-user-side-bar>
-              <router-outlet></router-outlet>
-          </div>
+        <div class="pcoded-container navbar-wrapper">
+            <app-header-dashboard [isUser]=false ></app-header-dashboard>
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <app-side-bar [isUser]=false ></app-side-bar>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
       </div>
-  </div>
-</div>

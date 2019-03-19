@@ -11,23 +11,16 @@ import { HttpClientModule }    from '@angular/common/http';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { HeaderLogoComponent } from './shared/components/header/header-logo/header-logo.component';
-import { HeaderBtnComponent } from './shared/components/header/header-btn/header-btn.component';
-import { HeaderIconNavComponent } from './shared/components/header/header-icon-nav/header-icon-nav.component';
-import { HeaderTextNavComponent } from './shared/components/header/header-text-nav/header-text-nav.component';
 import { SignInComponent } from './shared/components/sign-in/sign-in.component';
 import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
 import { ServicesComponent } from './modules/services/services.component';
 import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { CareerComponent } from './modules/career/career.component';
-import { SideBarComponent } from './shared/components/side-bar/side-bar.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
-// import {DatasharerService} from './core/datasharer/datasharer.service';
 import {AuthService} from './core/auth/auth.service';
 import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
 import {HttpService} from  './core/http/httpservice.service';
@@ -35,31 +28,23 @@ import { CookieService } from 'ngx-cookie-service';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import {httpInterceptorProviders} from './core/auth/index';
 import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
-import { HeaderMobileNavComponent } from './shared/components/header/header-mobile-nav/header-mobile-nav.component';
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    HeaderLogoComponent,
-    HeaderBtnComponent,
-    HeaderIconNavComponent,
-    HeaderTextNavComponent,
     SignInComponent,
     SignUpComponent,
     VerifyUserComponent,
     ServicesComponent,
     AboutUsComponent,
     CareerComponent,
-    SideBarComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ManageUsersComponent,
-    HeaderMobileNavComponent,
+    
 
   ],
   imports: [
@@ -84,11 +69,11 @@ import { HeaderMobileNavComponent } from './shared/components/header/header-mobi
   providers: [
     RouterGaurdService,
     HttpService,
-    // DatasharerService,
     AuthService,
     CookieService,
     httpInterceptorProviders
   ],
+  exports:[],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

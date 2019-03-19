@@ -6,7 +6,7 @@ import {AdminComponent} from './admin.component';
 import {ProfileComponent} from './../user/profile/profile.component';
 import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
-import {UserSettingsComponent} from './../user/user-settings/user-settings.component';
+import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 

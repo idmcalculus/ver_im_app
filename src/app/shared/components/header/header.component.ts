@@ -1,15 +1,40 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  currentUserSubscription:Subscription;
+  userinfo:User;
+
+  constructor(
+    private authService:AuthService,
+    private router:Router) { 
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      this.userinfo = user;
+  });
+  }
+
+
+  logout(){
+    if(confirm('Are you sure you want to logout')){
+      this.authService.logout();
+      this.router.navigate(['signin',{}]);
+    }
+  }
 
   ngOnInit() {
+
+  }
+
+  ngOnDestroy(){
+    this.currentUserSubscription.unsubscribe();
   }
 
 }

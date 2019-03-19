@@ -16,6 +16,7 @@ import {UserModule} from './../user/user.module';
     UserModule
     
   ],providers: [
+  ],exports:[
   ]
 })
 export class AdminModule { }

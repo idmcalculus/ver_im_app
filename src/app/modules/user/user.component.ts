@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(){
      this.authService.validateSession().then(resp=>{
-       if(resp.email){
+       if(resp && resp.email){
         if(resp.user_category=='Admin'){
           // this.router.navigate(['/admin',{}]);
           window.location.href='/admin'

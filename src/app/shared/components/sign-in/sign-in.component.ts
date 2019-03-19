@@ -31,12 +31,16 @@ export class SignInComponent implements OnInit {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${this.user.first_name}`);
-            window.location.href='user';
+            var originUrl = window.location.pathname;
+            if(originUrl=='/signin'){
+              window.location.href='user';
+            }else if(originUrl=='/admin/signin'){
+              window.location.href='admin';
+            }
           }
           this.loginText = "Login";
           resolve();
         });
       });
-    
   }
 }

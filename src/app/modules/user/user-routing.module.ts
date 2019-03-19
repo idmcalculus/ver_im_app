@@ -4,7 +4,7 @@ import { Routes,
 import { UserComponent }    from './user.component';
 import {ProfileComponent} from './profile/profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
-import {UserSettingsComponent} from './user-settings/user-settings.component';
+import {UserSettingsComponent} from './settings/settings.component';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {PoolsComponent} from  './pools/pools.component';
 import {PoolDetailComponent} from './pool-detail/pool-detail.component';
