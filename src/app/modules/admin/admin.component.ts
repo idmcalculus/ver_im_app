@@ -29,21 +29,21 @@ export class AdminComponent implements OnInit {
       if(resp.email){
         this.user = resp;
         if(this.user.user_category=='User'){
-          // this.router.navigate(['/user',{}]);
           window.location.href='/user'
         }
-        
-      //  this.authService.setUser(resp)
+        this.investment = {description:'',expected_return_amount:'',duration:'',expected_return_period:''
+        ,investment_amount:'',max_num_of_slots:'',title:'Testing'};
       }
     })
   }
 
-  addInvestmnet(){
-    this.service.adInvestment(this.investment).subscribe(resp=>{
-       if(resp.success){
-         alert(resp.success.Message);
-       }
-    })
+  addInvestmnet(filledInvestment:Investment){
+    alert('called '+JSON.stringify(filledInvestment));
+    // this.service.adInvestment(this.investment).subscribe(resp=>{
+    //    if(resp.success){
+    //      alert(resp.success.Message);
+    //    }
+    // })
   }
 
   getInvestments(){

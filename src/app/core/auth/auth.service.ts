@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './../../shared/models/user';
 import {HttpService} from './../http/httpservice.service';
@@ -56,15 +56,14 @@ export class AuthService {
 
 
     login(userCreds:User) {
-    //   console.log("am sending: "+JSON.stringify(userCreds))
       return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{})
       .pipe(map(response => {
           var userDetails=null;
           if (response && response.success) {
-              userDetails = response.success.data;
-              localStorage.setItem('token', response.success.token);
-              localStorage.setItem('email', userDetails.email);
-              this.currentUserSubject.next(userDetails);
+            userDetails = response.success.data;
+            localStorage.setItem('token', response.success.token);
+            localStorage.setItem('email', userDetails.email);
+            this.currentUserSubject.next(userDetails);
           }
           return userDetails;
       }));

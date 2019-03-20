@@ -26,17 +26,14 @@ export class SignInComponent implements OnInit {
   signIn(): void {
       this.isSubmitting = new Promise((resolve, reject) => {
         this.loginText = "Authenticating...";
+        var originUrl = window.location.pathname;
+        
         this.authService.login(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${this.user.first_name}`);
-            var originUrl = window.location.pathname;
-            if(originUrl=='/signin'){
-              window.location.href='user';
-            }else if(originUrl=='/admin/signin'){
-              window.location.href='admin';
-            }
+            window.location.href=UserDetails.user_category.toLowerCase();
           }
           this.loginText = "Login";
           resolve();

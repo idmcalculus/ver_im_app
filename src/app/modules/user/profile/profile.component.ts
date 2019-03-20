@@ -21,10 +21,11 @@ export class ProfileComponent implements OnInit{
     private authService:AuthService,
     private userService:UserService
     ) { 
-        this.dateModel = new Date('2019,Jan 21');
+        this.dateModel = new Date('1994,08 23');
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         if(userInfo){
           this.user = userInfo;
+          // this.dateModel = new Date(`${this.user.year_of_birth},${this.user.month_of_birth} ${this.user.day_of_birth}`);
         }
       })
   }
@@ -40,11 +41,14 @@ export class ProfileComponent implements OnInit{
   updateProfile(){
     
       var obb:any = this.dateModel;
-
-      this.user.day_of_birth = obb.split("-")[2];
-      this.user.month_of_birth = obb.split("-")[1];
-      this.user.year_of_birth = obb.split("-")[0];
-      console.log("request is: "+JSON.stringify(this.user))
+      if(obb){
+        if(typeof(obb)!="string"){
+          obb = obb.toISOString().substring(0,10);
+        }
+        this.user.day_of_birth = obb.split("-")[2];
+        this.user.month_of_birth = obb.split("-")[1];
+        this.user.year_of_birth = obb.split("-")[0];
+      }
       this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
         if(resp.success){
           alert(resp.success.Message)

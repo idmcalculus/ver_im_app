@@ -2,23 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
+import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
 import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
-import {ModalComponent} from './../../shared/components/modal/modal.component';
+
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
-    ModalComponent
+    ManageInvestmentComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    UserModule
+    UserModule,
+    FormsModule
     
   ],providers: [
   ],exports:[
+    ManageInvestmentComponent
   ]
 })
 export class AdminModule { }
