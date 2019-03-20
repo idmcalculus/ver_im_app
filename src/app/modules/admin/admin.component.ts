@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import {Router} from '@angular/router';
+import { Investment } from 'src/app/shared/models/Investment';
+import { InvestmentService } from '../investment/investment.service';
+import { AdminService } from './admin.service';
 
 @Component({
   selector: 'app-admin',
@@ -10,9 +13,13 @@ import {Router} from '@angular/router';
 })
 export class AdminComponent implements OnInit {
  user:User={email:'',password:'',user_category:'User'};
+ investment:Investment;
+ investments:[Investment];
+
   constructor(
     private authService:AuthService,
-    private router:Router
+    private router:Router,
+    private service:AdminService
     ) { 
       this.authService.setInProfileView(true);
   }
@@ -29,6 +36,22 @@ export class AdminComponent implements OnInit {
       //  this.authService.setUser(resp)
       }
     })
+  }
+
+  addInvestmnet(){
+    this.service.adInvestment(this.investment).subscribe(resp=>{
+       if(resp.success){
+         alert(resp.success.Message);
+       }
+    })
+  }
+
+  getInvestments(){
+
+  }
+
+  getInvestment(id:number){
+
   }
 
 }

@@ -4,11 +4,13 @@ import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
+import {ModalComponent} from './../../shared/components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AdminComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,

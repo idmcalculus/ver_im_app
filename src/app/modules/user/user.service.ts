@@ -14,7 +14,14 @@ export class UserService {
   }
 
   updateProfile(user:User):Observable<any>{
-    return this.httpService.postRequest(`update_user?email=${user.email}&authentication_type=${user.authentication_type}&first_name=${user.first_name}&last_name=${user.last_name}
-    &phone_number=${user.phone_number}&gender=${user.gender}&user_category=${user.user_category}`,null);
+    return this.httpService.postRequest(`update_user?
+    email=${user.email}&authentication_type=${user.authentication_type}
+    &first_name=${user.first_name}&last_name=${user.last_name}
+    &phone_number=${user.phone_number}&gender=${user.gender}
+    &user_category=${user.user_category}&home_address=${user.home_address}
+    &month_of_birth=${user.month_of_birth}&year_of_birth=${user.year_of_birth}
+    &day_of_birth=${user.day_of_birth}&country=${user.country}
+    &account_name=${user.account_name}&bank_name=${user.bank_name}
+    &account_number=${user.account_number}&updates_on_new_plans=${user.updates_on_new_plans}`,null);
   }
 }

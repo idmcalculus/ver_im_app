@@ -9,15 +9,23 @@ import {Subscription} from 'rxjs';
 })
 export class ProfileComponent implements OnInit{
 
-  user:User={email:'',password:''};
+  user:User={email:'',password:'',country:'',first_name:'',last_name:'',bank_name:''};
   userSubscription:Subscription;
   isSubmitting;
+  countries:string[]=['Nigeria','Ghana']
+  bankList:string[]=['Gt Bank','First Bank','Fidelity','UBA','Diamond Bank','FCMB']
+  dateModel:Date;
+
+
   constructor(
     private authService:AuthService,
     private userService:UserService
     ) { 
-      this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
-        this.user = userInfo;
+        this.dateModel = new Date('2019,Jan 21');
+        this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+        if(userInfo){
+          this.user = userInfo;
+        }
       })
   }
 
@@ -30,15 +38,25 @@ export class ProfileComponent implements OnInit{
   }
 
   updateProfile(){
-      this.user.gender ='Male'
-      this.user.user_category ='User'
-      this.user.authentication_type ='E'
+    
+      var obb:any = this.dateModel;
 
+      this.user.day_of_birth = obb.split("-")[2];
+      this.user.month_of_birth = obb.split("-")[1];
+      this.user.year_of_birth = obb.split("-")[0];
+      console.log("request is: "+JSON.stringify(this.user))
       this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
         if(resp.success){
           alert(resp.success.Message)
         }
       });
+  }
+
+
+  setGender(genderSelected: string): void {
+    
+    this.user.gender = genderSelected;
+    console.log("changed to: "+this.user.gender)
   }
 
 }
