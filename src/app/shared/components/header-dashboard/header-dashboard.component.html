@@ -34,7 +34,7 @@
                                   <img class="img-radius" src="../assets/images/avatar-4.jpg"
                                        alt="Generic placeholder image">
                                   <div class="media-body">
-                                      <h5 class="notification-user">John Doe</h5>
+                                      <h5 class="notification-user">{{userDetails.first_name}} {{userDetails.last_name}}</h5>
                                       <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer
                                           elit.</p>
                                       <span class="notification-time">30 minutes ago</span>
@@ -81,7 +81,7 @@
                       <div class="dropdown-toggle" data-toggle="dropdown">
                           <img src="../assets/images/avatar-4.jpg" class="img-radius"
                                alt="User-Profile-Image">
-                          <span>John Doe</span>
+                          <span>{{userDetails.first_name}} {{userDetails.last_name}}</span>
                           <i class="feather icon-chevron-down"></i>
                       </div>
                       <ul class="show-notification profile-notification dropdown-menu"
@@ -117,7 +117,7 @@
 <div class="showChat_inner">
   <div class="media chat-inner-header">
       <a class="back_chatBox">
-          <i class="feather icon-x"></i> Josephin Doe
+          <i class="feather icon-x"></i> {{userDetails.first_name}} {{userDetails.last_name}}
       </a>
   </div>
   <div class="main-friend-chat">

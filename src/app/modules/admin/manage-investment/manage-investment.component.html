@@ -9,105 +9,108 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="title">Title</label></div>
-                            <div class="col-md-10">
-                              <input  [(ngModel)]="modalModel.title" type="text" class="form-control" id="title">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="category">Category</label></div>
-                            <div class="col-md-10">
-                                <select [(ngModel)]="modalModel.category_id"  name="category" id="category" class="form-control">
-                                  <option value="0" hidden>Select</option>
-                                  <option value="1">2</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="investors">Investors</label></div>
-                            <div class="col-md-10">
-                              <input  [(ngModel)]="modalModel.max_num_of_slots" type="text" class="form-control" id="investors" placeholder="Amount of Investors">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="timing">Timing</label></div>
-                            <div class="col-md-10">
-                                <label for="timing">DURATION</label>
-                                <select [(ngModel)]="modalModel.duration"  name="timing" id="timing" class="form-control">
-                                    <option value="0" hidden>select</option>
-                                    <option value="0">1</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-5">
-                                <label for="opening_date">OPENING DATE</label>
-                                <input  [(ngModel)]="modalModel.opening_date" type="date" class="form-control" id="opening_date">
-                            </div>
-                            <div class="col-md-5">
-                                <label for="closing_date">CLOSING DATE</label>
-                                <input  [(ngModel)]="modalModel.closing_date" type="date" class="form-control" id="closing_date">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="pricing">Pricing</label></div>
-                            <div class="col-md-6"><input  [(ngModel)]="modalModel.investment_amount" type="number" id="pricing" class="form-control"></div>
-                            <div class="col-md-4"><span class="info-span with-size">(Registration Amount)</span></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label>Returns</label></div>
-                            <div class="col-md-10">
-                                <label for="annual_profit">ANNUAL PROFIT <small class="info-span">(expected)</small></label>
-                                <input (ngModel)="modalModel.expected_return_amount"  type="text" class="form-control" id="annual_profit">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5">
-                                    <label for="expected_returns">EXPECTED RETURNS</label>
-                                    <input [(ngModel)]="modalModel.expected_return_amount" type="date" class="form-control" value="" id="expected_returns">
+                    <form  (ngSubmit)="modalSubmitted()" #addInvestmentForm="ngForm">
+                            <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="title">Title</label></div>
+                                        <div class="col-md-10">
+                                          <input  required [(ngModel)]="modalModel.title" type="text" class="form-control" name="title" id="title">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <label for="period">PERIOD <small class="info-span">(Weekly/monthly)</small></label>
-                                    <select name="period" id="period" class="form-control">
-                                        <option value="" hidden>Select</option>
-                                        <option value="1">1</option>
-                                    </select>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="category">Category</label></div>
+                                        <div class="col-md-10">
+                                            <select [(ngModel)]="modalModel.category_id"  name="category" id="category" class="form-control">
+                                              <option value="0" hidden>Select</option>
+                                              <option value="1">2</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-2"><label for="description">Description</label></div>
-                            <div class="col-md-10">
-                                <textarea name=""  [(ngModel)]="modalModel.description" id="description" cols="10" rows="5" class="form-control" placeholder="Enter the description of the investment"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-5 offset-7">
-                                <input  type="button" (click)="modalSubmitted()" class="btn2 add-invest" value="Create Plan">
-                            </div>
-                        </div>
-                    </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="investors">Investors</label></div>
+                                        <div class="col-md-10">
+                                          <input  [(ngModel)]="modalModel.max_num_of_slots" type="text" class="form-control" name="investors" id="investors" placeholder="Amount of Investors">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="timing">Timing</label></div>
+                                        <div class="col-md-10">
+                                            <!-- <label for="timing">DURATION</label>
+                                            <select [(ngModel)]="modalModel.duration"  name="timing" id="timing" class="form-control">
+                                                <option value="0" hidden>select</option>
+                                                <option value="0">1</option>
+                                            </select> -->
+                                            <input  [(ngModel)]="modalModel.duration" type="number" class="form-control" name="duration" id="duration" placeholder="DURATION">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-5">
+                                            <label for="opening_date">OPENING DATE</label>
+                                            <input  [(ngModel)]="modalModel.opening_date" type="date" class="form-control" name="opening_date" id="opening_date">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <label for="closing_date">CLOSING DATE</label>
+                                            <input  [(ngModel)]="modalModel.closing_date" type="date" class="form-control" name="closing_date" id="closing_date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="pricing">Pricing</label></div>
+                                        <div class="col-md-6"><input  [(ngModel)]="modalModel.investment_amount" type="number" name="pricing" id="pricing" class="form-control"></div>
+                                        <div class="col-md-4"><span class="info-span with-size">(Registration Amount)</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label>Returns</label></div>
+                                        <div class="col-md-10">
+                                            <label for="annual_profit">ANNUAL PROFIT <small class="info-span">(expected)</small></label>
+                                            <input  type="text" class="form-control" name="annual_profit" id="annual_profit">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-5">
+                                                <label for="expected_returns">EXPECTED RETURNS</label>
+                                                <input [(ngModel)]="modalModel.expected_return_amount" type="text" class="form-control" name="expected_returns" value="" id="expected_returns">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <label for="period">PERIOD <small class="info-span">(Weekly/monthly)</small></label>
+                                                <select [(ngModel)]="modalModel.expected_return_period" name="period" id="period" class="form-control">
+                                                    <option value="Weekly" >Weekly</option>
+                                                    <option value="monthly" >monthly</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label for="description">Description</label></div>
+                                        <div class="col-md-10">
+                                            <textarea name="description"  [(ngModel)]="modalModel.description" id="description" cols="10" rows="5" class="form-control" placeholder="Enter the description of the investment"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5 offset-7">
+                                            <input  type="button" [disabled]="!addInvestmentForm.form.valid" class="btn2 add-invest" value="Create Plan">
+                                        </div>
+                                    </div>
+                                </div>
+                    </form>
                 </div>
             </div>
         </div>

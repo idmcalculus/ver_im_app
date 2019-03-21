@@ -21,11 +21,15 @@ export class ProfileComponent implements OnInit{
     private authService:AuthService,
     private userService:UserService
     ) { 
-        this.dateModel = new Date('1994,08 23');
+        
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         if(userInfo){
           this.user = userInfo;
-          // this.dateModel = new Date(`${this.user.year_of_birth},${this.user.month_of_birth} ${this.user.day_of_birth}`);
+          if(this.user.year_of_birth){
+            this.dateModel = new Date(`${this.user.year_of_birth},${this.user.month_of_birth} ${this.user.day_of_birth}`);
+          }else{
+            this.dateModel = new Date('1994,08 23');
+          }
         }
       })
   }

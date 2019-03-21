@@ -12,9 +12,6 @@ export class AdminService {
 
   constructor(private httpService:HttpService) { }
 
-  // getProfileDetails(email:string): Observable<any> {
-  //   return this.httpService.postRequest(`fetch_profile?email=${email}`,null);
-  // }
 
   adInvestment(investment:Investment):Observable<any>{
     return this.httpService.postRequest(`investment/create?

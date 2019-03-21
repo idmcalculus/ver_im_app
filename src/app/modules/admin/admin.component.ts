@@ -28,22 +28,18 @@ export class AdminComponent implements OnInit {
     this.authService.validateSession().then(resp=>{
       if(resp.email){
         this.user = resp;
-        if(this.user.user_category=='User'){
-          window.location.href='/user'
-        }
-        this.investment = {description:'',expected_return_amount:'',duration:'',expected_return_period:''
-        ,investment_amount:'',max_num_of_slots:'',title:'Testing'};
+        
       }
     })
   }
 
   addInvestmnet(filledInvestment:Investment){
-    alert('called '+JSON.stringify(filledInvestment));
-    // this.service.adInvestment(this.investment).subscribe(resp=>{
-    //    if(resp.success){
-    //      alert(resp.success.Message);
-    //    }
-    // })
+    this.investment = filledInvestment;
+    this.service.adInvestment(this.investment).subscribe(resp=>{
+       if(resp.success){
+         alert(resp.success.Message);
+       }
+    })
   }
 
   getInvestments(){

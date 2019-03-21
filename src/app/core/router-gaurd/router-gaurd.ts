@@ -6,7 +6,6 @@ import {
   RouterStateSnapshot}                           from '@angular/router';
 import {UserSession} from '../../shared/models/UserSession';
 import {AuthService} from './../auth/auth.service';
-import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class RouterGaurdService implements CanActivate {

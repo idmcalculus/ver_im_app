@@ -8,11 +8,11 @@ import {InvestmentService} from './investment.service';
 })
 export class InvestmentComponent implements OnInit {
 
-  investments:any=[1,2,3,4];
+  investments:any=[];
   constructor(private routes:Router,private investmentService:InvestmentService) { }
 
   ngOnInit() {
-
+    this.getInvestments();
   }
 
   viewInvestment(id:string){
@@ -23,7 +23,7 @@ export class InvestmentComponent implements OnInit {
     this.investmentService.getInvestments().subscribe(investments=>{
       if(investments){
         this.investments = investments.success.Data
-        // console.log("Investment list is: "+JSON.stringify(this.investments))
+        console.log("Investment list is: "+JSON.stringify(this.investments))
       }
     })
   }

@@ -16,16 +16,16 @@
 
         <div [hidden]="!investments" class="row mb-5">
             <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                <a routerLink="/investments/{{x}}" routerLinkActive="active">
+                <a routerLink="/investments/{{x.id}}" routerLinkActive="active">
                     <div class="superb-container m-b20">
                         <div class="img-holder">
                             <img src="../assets/images/notcard.png" alt="image">
                         </div>
                         <div class="content-holder">
-                            <h2><a href="investment-details.html">Uber Car Investment</a></h2>
-                            <h3>₦30,000</h3>
+                            <h2><a href="investment-details.html">{{x.title}}</a></h2>
+                            <h3>₦{{x.investment_amount}}</h3>
                             <span class="span-profit">11 - 15% Profit <br> (Estimated)</span>
-                            <p>12 Months</p>
+                            <p>{{x.duration}}</p>
                         </div>
                     </div>
                 </a>

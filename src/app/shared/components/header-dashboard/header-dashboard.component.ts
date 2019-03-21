@@ -10,6 +10,9 @@ export class HeaderDashboardComponent implements OnInit {
   @Input()
   public isUser: boolean;
 
+  @Input()
+  public userDetails: User;
+
   constructor() {
     console.log('I recieved: '+this.isUser);
   }
