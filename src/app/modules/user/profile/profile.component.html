@@ -157,39 +157,39 @@
                                                     <div class="row">
                                                         <div class="col-md-2"><span>Date of Birth</span>
                                                         </div>
-                                                        <div class="col-md-9">
+                                                        <!-- <div class="col-md-9">
                                                             <label for="dob">Date of Birth</label>
                                                             <input [ngModel]="dateModel | date:'yyyy-MM-dd'"  
                                                             (ngModelChange)="dateModel = $event" type="date" class="form-control"
                                                                    id="dob">
-                                                        </div>
+                                                        </div> -->
                                                         <!-- <div class="col-md-10">
                                                             <input class="form-control" type="date">
                                                         </div> -->
-                                                        <!-- <div class="col-md-3">
+                                                        <div class="col-md-3">
                                                             <label for="month">Month</label>
-                                                            <select name="month" id="month"
+                                                            <select [(ngModel)]="user.month_of_birth" name="month" id="month"
                                                                     class="form-control">
-                                                                <option value="0" hidden>Select</option>
-                                                                <option value="1">Jan</option>
+                                                                <option *ngFor="let month of monthComponent" [ngValue]="month.count" >{{month.title}}</option>
+                                                                
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3"><label for="day">Day</label>
-                                                            <select name="day" id="day"
+                                                            <select [(ngModel)]="user.day_of_birth" name="day" id="day"
                                                                     class="form-control">
-                                                                <option value="0" hidden>Select</option>
-                                                                <option value="1">1</option>
+                                                                <option *ngFor="let day of dayComponent" [ngValue]="day">{{day}}</option>
+                                                             
                                                             </select>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <!-- <div class="col-md-3">
                                                             <label for="year">Year</label>
                                                             <select name="year" id="year"
                                                                     class="form-control">
                                                                 <option value="0" hidden>Select</option>
                                                                 <option value="0">1990</option>
                                                             </select>
-                                                        </div>
-                                                        <div class="bgline"></div> -->
+                                                        </div> -->
+                                                        <div class="bgline"></div>
                                                     </div>
                                                 </div>
 
@@ -253,7 +253,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-update-profile" value="Update Details">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -272,7 +272,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input  type="checkbox"/>
+                                                                <input [(ngModel)]="opt1selected" type="checkbox" [checked]="opt1selected"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -288,7 +288,7 @@
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input   type="checkbox" checked/>
+                                                                <input  [(ngModel)]="opt2selected" type="checkbox" [checked]="opt2selected"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -301,7 +301,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" class="btn btn-update-profile" value="Update Preference">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference">
                                                         </div>
                                                     </div>
                                                 </div>

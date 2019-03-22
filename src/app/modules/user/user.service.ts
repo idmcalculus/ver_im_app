@@ -24,4 +24,18 @@ export class UserService {
     &account_name=${user.account_name}&bank_name=${user.bank_name}
     &account_number=${user.account_number}&updates_on_new_plans=${user.updates_on_new_plans}`,null);
   }
+
+  updatePreference(user:User):Observable<any>{
+    return this.httpService.postRequest(`update_preference?
+    updates_on_new_plans=${user.updates_on_new_plans}
+    &email_updates_on_investment_process=${user.email_updates_on_investment_process}`,null);
+  }
+
+  updateBankDetails(user:User):Observable<any>{
+    return this.httpService.postRequest(`update_account_detail?
+    account_name=${user.account_name}&account_number=${user.account_number}
+    &bank_name=${user.bank_name}`,null);
+  }
+
+
 }
