@@ -23,7 +23,7 @@ const userRoutes: Routes = [
           { path: 'investments', component: ProfileComponent },
           { path: 'settings', component: UserSettingsComponent },
           { path: 'pools', component: PoolsComponent },
-          { path: 'pools/:id', component: PoolDetailComponent },
+          { path: 'pools/:pool_id', component: PoolDetailComponent },
           { path: '', component: UserDashboardComponent }
         ]
       }

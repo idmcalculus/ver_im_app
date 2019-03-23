@@ -3,7 +3,7 @@
       <div class="invest-banner">
           <div class="cover"></div>
           <div class="over-content">
-              <h3>Uber Car Investment</h3>
+              <h3>{{investment.title}}</h3>
           </div>
       </div>
       <div class="row mt-3">
@@ -20,10 +20,10 @@
                           <div class="col-md-7">
                               <div class="content-detail">
                                   <h3>₦300,000 per Investor</h3>
-                                  <div><span><img src="" alt=""> 3 slots left</span></div>
-                                  <div><span><img src="" alt=""> Investment period: </span> 12 Months</div>
+                                  <div><span><img src="" alt="">{{investment.max_num_of_slots - investment.num_of_pools_taken}} slots left</span></div>
+                                  <div><span><img src="" alt=""> Investment period: </span> {{investment.duration}} Year(s)</div>
                                   <div><span><img src="" alt=""> Return: </span>11 - 15% profit (Estimated)</div>
-                                  <div><span><img src="" alt=""> Monthly return: </span>₦30,000</div>
+                                  <div><span><img src="" alt=""> {{investment.expected_return_period}} return: </span>₦{{investment.expected_return_amount}}</div>
                                   <div>
                                       <a href="#" data-toggle="modal" data-target="#exampleModalCenter"
                                          class="btn2 btn-join">Invest Now</a>
@@ -37,52 +37,7 @@
                   <div class="card-body other-info">
                       <h5 class="card-title">Investment Description</h5>
                       <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, aut. Fugit neque error
-                          nihil
-                          quis temporibus veritatis velit consequuntur illum harum adipisci ducimus explicabo,
-                          voluptate
-                          nemo, aperiam cum, minima saepe.
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, cupiditate totam. Quod
-                          provident
-                          assumenda, quo error, veritatis modi laudantium numquam sint quas velit repellat labore
-                          fugiat
-                          doloremque eos minus ab.
-                      </p>
-                      <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, aut. Fugit neque error
-                          nihil
-                          quis temporibus veritatis velit consequuntur illum harum adipisci ducimus explicabo,
-                          voluptate
-                          nemo, aperiam cum, minima saepe.
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, cupiditate totam. Quod
-                          provident
-                          assumenda, quo error, veritatis modi laudantium numquam sint quas velit repellat labore
-                          fugiat
-                          doloremque eos minus ab.
-                      </p>
-                      <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, aut. Fugit neque error
-                          nihil
-                          quis temporibus veritatis velit consequuntur illum harum adipisci ducimus explicabo,
-                          voluptate
-                          nemo, aperiam cum, minima saepe.
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, cupiditate totam. Quod
-                          provident
-                          assumenda, quo error, veritatis modi laudantium numquam sint quas velit repellat labore
-                          fugiat
-                          doloremque eos minus ab.
-                      </p>
-                      <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, aut. Fugit neque error
-                          nihil
-                          quis temporibus veritatis velit consequuntur illum harum adipisci ducimus explicabo,
-                          voluptate
-                          nemo, aperiam cum, minima saepe.
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, cupiditate totam. Quod
-                          provident
-                          assumenda, quo error, veritatis modi laudantium numquam sint quas velit repellat labore
-                          fugiat
-                          doloremque eos minus ab.
+                          {{investment.description}}
                       </p>
                   </div>
               </div>

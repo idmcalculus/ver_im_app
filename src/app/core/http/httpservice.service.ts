@@ -69,7 +69,7 @@ export class HttpService {
                     if(error.error.error.message){
                         alert(error.error.error.message)
                     }else{
-                        alert(JSON.stringify(error.error.error))
+                        alert(JSON.stringify(error.error.error.Message))
                     } 
                 }
             }

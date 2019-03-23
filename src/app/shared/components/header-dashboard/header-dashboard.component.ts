@@ -14,11 +14,11 @@ export class HeaderDashboardComponent implements OnInit {
   public userDetails: User;
 
   constructor() {
-    console.log('I recieved: '+this.isUser);
+    console.log('I recieved: '+this.userDetails);
   }
 
   ngOnInit() {
-    console.log('I recieved: '+this.isUser);
+    console.log('I recieved: '+this.userDetails);
   }
 
 }

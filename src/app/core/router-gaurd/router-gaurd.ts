@@ -21,6 +21,7 @@ usrSession:UserSession;
         if (currentUser) {
             return true;
         }
+        alert('Kindly Login First')
         this.router.navigate(['/signin'], {});
         return false
     

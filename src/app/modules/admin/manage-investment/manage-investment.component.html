@@ -23,8 +23,8 @@
                                         <div class="col-md-2"><label for="category">Category</label></div>
                                         <div class="col-md-10">
                                             <select [(ngModel)]="modalModel.category_id"  name="category" id="category" class="form-control">
-                                              <option value="0" hidden>Select</option>
-                                              <option value="1">2</option>
+                                              <option value=0 hidden>Select</option>
+                                              <option *ngFor="let category of categories" value="{{category.id}}">{{category.category_name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -89,9 +89,20 @@
                                                 <label for="period">PERIOD <small class="info-span">(Weekly/monthly)</small></label>
                                                 <select [(ngModel)]="modalModel.expected_return_period" name="period" id="period" class="form-control">
                                                     <option value="Weekly" >Weekly</option>
-                                                    <option value="monthly" >monthly</option>
+                                                    <option value="Monthly" >Monthly</option>
                                                 </select>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label style="padding-top: 0 !important;">Upload Image</label></div>
+                                        <div class="col-md-10">
+                                            <label for="upload-image" class="planUploader">
+                                                <input type="file" id="upload-image" accept="image/*">
+                                                Click to upload Investment Image
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +117,7 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-5 offset-7">
-                                            <input  type="button" [disabled]="!addInvestmentForm.form.valid" class="btn2 add-invest" value="Create Plan">
+                                            <input  type="submit" [disabled]="!addInvestmentForm.form.valid"  class="btn2 add-invest" value="Create Plan">
                                         </div>
                                     </div>
                                 </div>

@@ -1,8 +1,10 @@
 /**
 * Stylesheet for the whole entry
-* Developed by Falua Temitope
+* Developed by Falua Temitope Oyewole
+* Emmathem Media Company
 * 4th March, 2019
 */
+
 @import "_partials/vars";
 @import "_partials/fonts";
 @import "_partials/mixins";
@@ -11,6 +13,7 @@
 @import "_partials/auth";
 @import "_partials/invest";
 @import "_partials/dashboard";
+@import "_partials/about";
 @import "_partials/mobile";
 
 * {
@@ -25,6 +28,8 @@ a {
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
   @include Nunito-Sans();
 }
@@ -36,8 +41,8 @@ html, body {
 section {
   width: 100%;
   position: relative;
-  //margin: 0 0 20px;
 }
+
 @media (min-width: 992px) {
   .mobile-nav {
     display: none;
@@ -139,7 +144,7 @@ section {
       height: 500px;
     }
     &:hover {
-      box-shadow: 0px 5px 14px $shadowBlack;
+      box-shadow: 0 5px 14px $shadowBlack;
       @include transition(ease, 0.7s);
     }
   }

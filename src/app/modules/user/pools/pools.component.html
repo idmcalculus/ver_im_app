@@ -1,106 +1,46 @@
 <div class="pcoded-content">
 
-  <div class="pcoded-inner-content">
-      <div class="main-body">
-          <div class="page-wrapper">
-              <div class="page-body pools">
-                  <div class="row mb-4">
-                      <div class="col-xl-4 col-md-6 offset-8">
-                          <a href="../views/investment-plans.html" class="btn2 btn-update-profile more">Join New
-                              Pool</a>
-                      </div>
-                  </div>
-                  <div class="row mb-3">
-                      <div class="col-xl-4">
-                          <a routerLink="./2" routerLinkActive="active">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Uber Fleet Investment</a></h2>
-                                      <p>110 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="col-xl-4">
-                          <a href="pool-details.html">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Okota Farms</a></h2>
-                                      <p>200 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="col-xl-4">
-                          <a href="pool-details.html">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Olorioko Fish Farm</a></h2>
-                                      <p>110 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                  </div>
-                  <div class="row">
-                      <div class="col-xl-4">
-                          <a href="pool-details.html">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Uber Fleet Investment</a></h2>
-                                      <p>110 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="col-xl-4">
-                          <a href="pool-details.html">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Okota Farms</a></h2>
-                                      <p>200 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                      <div class="col-xl-4">
-                          <a href="pool-details.html">
-                              <div class="superb-container m-b20">
-                                  <div class="img-holder">
-                                      <img src="../assets/images/notcard.png" alt="image">
-                                  </div>
-                                  <div class="content-holder">
-                                      <h2><a href="pool-details.html">Olorioko Fish Farm</a></h2>
-                                      <p>110 Pools</p>
-                                      <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
-                                  </div>
-                              </div>
-                          </a>
-                      </div>
-                  </div>
-              </div>
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body pools">
+                    <div class="row mb-4">
+                        <div class="col-xl-4 col-md-6 offset-8">
+                            <a href="../views/investment-plans.html" class="btn2 btn-update-profile more">Join New
+                                Pool</a>
+                        </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div *ngFor="let pool of pools" class="col-xl-4">
+                            <a [routerLink]="['./', pool.id]" routerLinkActive="active">
+                                <div class="superb-container m-b20">
+                                    <div class="img-holder">
+                                        <img src="../assets/images/notcard.png" alt="image">
+                                    </div>
+                                    <div class="content-holder">
+                                        <h2><a href="pool-details.html">{{pool.title}}</a></h2>
+                                        <p>110 Pools</p>
+                                        <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
 
-          </div>
-      </div>
-  </div>
+                    <section  style="border-radius: 30px;"  *ngIf="pools?.length == 0" class="workingSection">
+                            <div class="inner-workingSection">
+                                <div class="row">
+                                    <div  class="col-md-12">
+                                        <div class="working-content">
+                                            <h3>Sorry you are not in any investment pool yet</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

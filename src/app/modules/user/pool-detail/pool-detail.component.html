@@ -6,7 +6,7 @@
               <div class="page-body pool-details">
                   <div class="row mb-2">
                       <div class="col-xl-12 col-md-12">
-                          <h4 class="dash-title">Okota Farm</h4>
+                          <h4 class="dash-title"></h4>
                       </div>
                   </div>
                   <div class="row p-0">
@@ -23,7 +23,7 @@
                                               <h4>Status: <p class="active">Active</p></h4>
 
                                               <h4>Number of Investors: <br>
-                                                  <p class="count">500 (None Left)</p></h4>
+                                                  <p class="count">{{pool?.max_num_of_slots}} ({{pool?.max_num_of_slots - pool?.num_of_pools_taken}} left)</p></h4>
 
                                               <a href="pool-details.html"
                                                  class="btn2 btn-login view mt-2">Join Investment</a>
