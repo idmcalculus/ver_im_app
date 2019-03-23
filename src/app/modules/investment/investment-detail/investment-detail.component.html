@@ -82,7 +82,7 @@
               <div class="modal-body">
                   <div class="join-modal">
                       <h3>Join Investment</h3>
-                      <h4>Uber Car</h4>
+                      <h4>{{investment.title}}</h4>
 
                       <div class="form-group">
                           <div class="row">
@@ -90,7 +90,7 @@
                                   <label class="pt-1" for="slotNum">How many slots?</label>
                               </div>
                               <div class="col-md-7">
-                                  <select name="" id="slotNum" class="form-control">
+                                  <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
                                       <option value="" hidden>Select</option>
                                       <option value="1">1</option>
                                       <option value="2">2</option>
@@ -111,8 +111,8 @@
                   </div>
               </div>
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-success">Join</button>
+                  <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" (click)="joinInvestment()" class="btn btn-success">Join</button>
               </div>
           </div>
       </div>

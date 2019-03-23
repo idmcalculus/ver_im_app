@@ -6,7 +6,7 @@ export class Investment extends BasicModel{
   max_num_of_slots?: number;
   duration?: string;
   expected_return_period?: string;
-  investment_amount?: string;
+  investment_amount?: number;
   opening_date?: string;
   closing_date?: string;
   expected_return_amount?: string;

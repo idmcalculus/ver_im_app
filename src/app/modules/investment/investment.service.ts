@@ -30,6 +30,6 @@ export class InvestmentService {
   joinInvestment(transaction:Transaction){
     return this.httpService.postRequest(`investment_user/create?
     investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}
-    &amount_paid=${transaction.amount_paid}payment_reference=${transaction.payment_reference}`,{});
+    &amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{});
   }
 }
