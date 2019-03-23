@@ -13,13 +13,4 @@
 //   setIsLoggedIn(loggedIn:boolean){
 //     this.isLoggedIn.next(loggedIn);
 //   }
-
-
-
-
- 
-
-
-
-
 // }
