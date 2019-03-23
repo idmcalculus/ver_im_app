@@ -19,7 +19,7 @@ export class AdminService {
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}
     &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}&
     investment_amount=${investment.investment_amount}
-    &expected_return_amount=${investment.expected_return_amount}`,null);
+    &expected_return_amount=${investment.expected_return_amount}&investment_image=${investment.investment_image}`,null);
   }
 
 }

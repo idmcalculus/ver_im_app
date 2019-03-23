@@ -6,8 +6,10 @@
                 <div class="page-body pools">
                     <div class="row mb-4">
                         <div class="col-xl-4 col-md-6 offset-8">
-                            <a href="../views/investment-plans.html" class="btn2 btn-update-profile more">Join New
+                            <a [hidden]="userType=='admin'" href="#" class="btn2 btn-update-profile more">Join New
                                 Pool</a>
+                            <a [hidden]="userType=='user'" href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn2 btn-update-profile more">Create New
+                                Investment</a>
                         </div>
                     </div>
                     <div class="row mb-5">
@@ -19,7 +21,7 @@
                                     </div>
                                     <div class="content-holder">
                                         <h2><a href="pool-details.html">{{pool.title}}</a></h2>
-                                        <p>110 Pools</p>
+                                        <p>{{pool?.max_num_of_slots}} Pools</p>
                                         <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
                                     </div>
                                 </div>
@@ -27,7 +29,7 @@
                         </div>
                     </div>
 
-                    <section  style="border-radius: 30px;"  *ngIf="pools?.length == 0" class="workingSection">
+                    <!-- <section  style="border-radius: 30px;"  *ngIf="pools?.length == 0" class="workingSection">
                             <div class="inner-workingSection">
                                 <div class="row">
                                     <div  class="col-md-12">
@@ -37,7 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </section>
+                        </section> -->
                 </div>
 
             </div>

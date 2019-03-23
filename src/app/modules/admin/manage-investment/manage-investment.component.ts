@@ -24,7 +24,6 @@ export class ManageInvestmentComponent implements OnInit {
 
   modalSubmitted(){
     console.log("calling: ")
-    this.modalModel.investment_image="";
     this.submit.emit(this.modalModel);
   }
 }

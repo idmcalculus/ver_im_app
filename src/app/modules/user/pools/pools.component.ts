@@ -11,12 +11,15 @@ export class PoolsComponent implements OnInit {
 
   pools:Investment[]=[];
   pool:Investment;
+  userType:string;
 
   constructor(private investmentService:InvestmentService) { 
       let userpath = window.location.pathname;
       if(userpath.includes('user')){
+        this.userType = 'user';
         this.getUserPols();
       }else{
+        this.userType = 'admin';
         this.getPools();
       }
   }

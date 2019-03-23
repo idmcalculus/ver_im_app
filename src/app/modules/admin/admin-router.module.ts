@@ -21,7 +21,7 @@ const userRoutes: Routes = [
         path: '',
         children: [
           { path: 'profile', component: ProfileComponent },
-          { path: 'investments', component: ProfileComponent },
+          { path: 'investments', component: PoolsComponent },
           { path: 'settings', component: UserSettingsComponent },
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'pools', component: PoolsComponent },

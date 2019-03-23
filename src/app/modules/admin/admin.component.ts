@@ -41,7 +41,8 @@ export class AdminComponent implements OnInit {
     if(this.investment.title){
       this.service.adInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message);
+          alert(resp.success.Message);    
+          window.location.href = 'admin/pools';      
         }
       })
     }
