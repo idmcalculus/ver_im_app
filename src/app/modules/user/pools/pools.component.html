@@ -6,10 +6,14 @@
                 <div class="page-body pools">
                     <div class="row mb-4">
                         <div class="col-xl-4 col-md-6 offset-8">
-                            <a [hidden]="userType=='admin'" href="#" class="btn2 btn-update-profile more">Join New
-                                Pool</a>
-                            <a [hidden]="userType=='user'" href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn2 btn-update-profile more">Create New
-                                Investment</a>
+                            <a [hidden]="userType=='admin'" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
+                                Join New
+                                Pool
+                            </a>
+                            <a [hidden]="userType=='user'" href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn2 btn-update-profile more">
+                                Create New
+                                Investment
+                            </a>
                         </div>
                     </div>
                     <div class="row mb-5">

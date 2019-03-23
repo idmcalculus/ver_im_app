@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './../../shared/models/user';
 import {HttpService} from './../http/httpservice.service';
+import {Router} from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -11,7 +12,10 @@ export class AuthService {
     public currentUser: Observable<User>;
     public profileViewIsActive :Observable<boolean>;
 
-    constructor(private httpService: HttpService) {
+    constructor(
+        private httpService: HttpService,
+        private router:Router
+        ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         this.inProfileView = new BehaviorSubject<boolean>(false);
@@ -43,13 +47,22 @@ export class AuthService {
     }
 
     public get currentUserValue(): any {
-        if(!localStorage.getItem('email') || !localStorage.getItem('token')){
-            return null
+        let userUrl = window.location.pathname;
+        if(!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')){
+            alert('Kindly Login First')//unauthenticated
+            this.router.navigate(['/signin'], {});
+            return false
         }else{
-            //  this.validateSession().then(resp=>{
-            //     return resp;
-            //  })
-            return true;
+            var actualUser = localStorage.getItem('userType').toLowerCase();
+            console.log(userUrl+ "and "+actualUser)
+            if(!userUrl.includes(actualUser)){
+                alert('Sorry You are not authorized to view this page')//unauthorized
+                window.location.href = `${actualUser}`;
+                return false
+            }else{
+                return true;
+            }
+            
         }
     }
 
@@ -63,6 +76,7 @@ export class AuthService {
             userDetails = response.success.data;
             localStorage.setItem('token', response.success.token);
             localStorage.setItem('email', userDetails.email);
+            localStorage.setItem('userType', userDetails.user_category);
             this.currentUserSubject.next(userDetails);
           }
           return userDetails;

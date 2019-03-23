@@ -85,7 +85,7 @@ export class ProfileComponent implements OnInit{
   setOpt1(genderSelected: string): void {
     
     this.user.gender = genderSelected;
-    console.log("changed to: "+this.user.gender)
+    // console.log("changed to: "+this.user.gender)
   }
 
 }

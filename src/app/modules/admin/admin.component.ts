@@ -21,7 +21,6 @@ export class AdminComponent implements OnInit {
   constructor(
     private authService:AuthService,
     private router:Router,
-    private service:AdminService,
     private investmentService:InvestmentService
     ) { 
       this.authService.setInProfileView(true);
@@ -39,7 +38,7 @@ export class AdminComponent implements OnInit {
   addInvestmnet(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      this.service.adInvestment(this.investment).subscribe(resp=>{
+      this.investmentService.adInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message);    
           window.location.href = 'admin/pools';      

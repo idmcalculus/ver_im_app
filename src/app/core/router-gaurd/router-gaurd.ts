@@ -21,10 +21,11 @@ usrSession:UserSession;
         if (currentUser) {
             return true;
         }
-        alert('Kindly Login First')
-        this.router.navigate(['/signin'], {});
-        return false
-    
+        // else{
+        //   alert('Kindly Login First')
+        //   this.router.navigate(['/signin'], {});
+        //   return false
+        // }
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

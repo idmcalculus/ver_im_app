@@ -90,24 +90,25 @@
                                   <label class="pt-1" for="slotNum">How many slots?</label>
                               </div>
                               <div class="col-md-7">
-                                  <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                  <input type="number" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                  <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
                                       <option value="" hidden>Select</option>
                                       <option value="1">1</option>
                                       <option value="2">2</option>
-                                  </select>
+                                  </select> -->
                               </div>
                           </div>
                       </div>
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                           <label for="updates">
-                              <input type="checkbox" id="updates">Send me updates on investment
+                              <input type="text" id="updates">Send me updates on investment
                           </label>
                       </div>
                       <div class="form-group">
                           <label for="updatesP">
                               <input type="checkbox" id="updatesP">Updates on upcoming plans
                           </label>
-                      </div>
+                      </div> -->
                   </div>
               </div>
               <div class="modal-footer">
