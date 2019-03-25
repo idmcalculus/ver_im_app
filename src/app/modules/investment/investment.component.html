@@ -22,7 +22,7 @@
                         </div>
                         <div class="content-holder">
                             <h2><a href="investment-details.html">{{x.title}}</a></h2>
-                            <h3>₦{{x.investment_amount}}</h3>
+                            <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                             <span class="span-profit">11 - 15% Profit <br> (Estimated)</span>
                             <p>{{x.duration}} Month(s)</p>
                         </div>

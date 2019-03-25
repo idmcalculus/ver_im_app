@@ -3,7 +3,7 @@
       <div class="invest-banner">
           <div class="cover"></div>
           <div class="over-content">
-              <h3>{{investment.title}}</h3>
+              <h3>{{investment?.title}}</h3>
           </div>
       </div>
       <div class="row mt-3">
@@ -19,14 +19,16 @@
                           </div>
                           <div class="col-md-7">
                               <div class="content-detail">
-                                  <h3>₦{{investment?.investment_amount}} per pool</h3>
-                                  <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} slots left</span></div>
-                                  <div><span><img src="" alt=""> Investment period: </span> {{investment.duration}} Month(s)</div>
+                                  <h3>{{investment?.investment_amount | currency:'NGN':'symbol-narrow'}} per pool</h3>
+                                  <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
+                                  <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
                                   <div><span><img src="" alt=""> Return: </span>11 - 15% profit (Estimated)</div>
-                                  <div><span><img src="" alt=""> {{investment.expected_return_period}} return: </span>₦{{investment.expected_return_amount}}</div>
+                                  <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
                                   <div>
-                                      <a href="#" data-toggle="modal" data-target="#exampleModalCenter"
+                                      <a href="#" [hidden]="investment?.max_num_of_slots - investment?.num_of_pools_taken==0" data-toggle="modal" data-target="#exampleModalCenter"
                                          class="btn2 btn-join">Invest Now</a>
+                                      <a [hidden]="investment?.max_num_of_slots - investment?.num_of_pools_taken!=0" 
+                                         class="btn2 btn-join">Closed</a>
                                   </div>
                               </div>
                           </div>
@@ -37,7 +39,7 @@
                   <div class="card-body other-info">
                       <h5 class="card-title">Investment Description</h5>
                       <p>
-                          {{investment.description}}
+                          {{investment?.description}}
                       </p>
                   </div>
               </div>
@@ -82,7 +84,7 @@
               <div class="modal-body">
                   <div class="join-modal">
                       <h3>Join Investment</h3>
-                      <h4>{{investment.title}}</h4>
+                      <h4>{{investment?.title}}</h4>
 
                       <div class="form-group">
                           <div class="row">

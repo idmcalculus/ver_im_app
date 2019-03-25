@@ -29,8 +29,9 @@ export class InvestmentDetailComponent implements OnInit {
 
   getInvestment(id:string){
     this.investmentService.getInvestment(id).subscribe(investments=>{
+      console.log("my resp is:  "+JSON.stringify(investments))
       if(investments && investments.success){
-        this.investment = investments.success.Data[0]
+        this.investment = investments.success.Data.investment
       }
     })
   }

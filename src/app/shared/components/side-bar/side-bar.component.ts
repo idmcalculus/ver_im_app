@@ -20,9 +20,7 @@ export class SideBarComponent implements OnInit {
     ) { 
 
     this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
-      if(userInfo && userInfo.email){
         this.userInfo = userInfo;
-      }
     })
   }
 

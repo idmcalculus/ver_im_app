@@ -47,14 +47,14 @@
                     <li>
                       <a routerLink="/career" routerLinkActive="active">Career</a>
                     </li>
-                    <li>
+                    <li [hidden]="userinfo!=null">
                       <a routerLink="/signin" routerLinkActive="active">Login</a>
                     </li>
-                    <li>
+                    <li [hidden]="userinfo!=null">
                       <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
                     </li>
-                    <li>
-                      <a routerLink="/signup" routerLinkActive="active">Dashboard</a>
+                    <li [hidden]="userinfo==null" >
+                      <a routerLink="/{{userinfo?.user_category | lowercase}}" routerLinkActive="active">Dashboard</a>
                     </li>
                 </ul>
             </div>

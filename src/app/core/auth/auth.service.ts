@@ -54,9 +54,8 @@ export class AuthService {
             return false
         }else{
             var actualUser = localStorage.getItem('userType').toLowerCase();
-            console.log(userUrl+ "and "+actualUser)
             if(!userUrl.includes(actualUser)){
-                alert('Sorry You are not authorized to view this page')//unauthorized
+                // alert('Sorry You are not authorized to view this page')//unauthorized
                 window.location.href = `${actualUser}`;
                 return false
             }else{
@@ -86,6 +85,7 @@ export class AuthService {
     logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
+        localStorage.removeItem('userType');
         this.setInProfileView(false)
         this.currentUserSubject.next(null);
     }

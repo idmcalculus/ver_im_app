@@ -11,12 +11,13 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 export class HeaderComponent implements OnInit {
 
   currentUserSubscription:Subscription;
-  userinfo:User;
+  userinfo:User={user_category:'none',email:''};
 
   constructor(
     private authService:AuthService,
     private router:Router) { 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      console.log("change occured "+JSON.stringify(user))
       this.userinfo = user;
   });
   }
