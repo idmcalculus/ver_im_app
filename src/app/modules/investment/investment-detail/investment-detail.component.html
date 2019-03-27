@@ -115,8 +115,18 @@
               </div>
               <div class="modal-footer">
                   <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" (click)="joinInvestment()" class="btn btn-success">Join</button>
-              </div>
+                  <!-- <button type="button" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
+                  <button
+                    angular4-paystack
+                    [key]="'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxx'"
+                    [email]="'mailexample@mail.com'"
+                    [amount]="5000000"
+                    [ref]="'2637458697'"
+                    [class]="'btn btn-success'"
+                    (close)="paymentCancel()"
+                    (callback)="joinInvestment($event)"
+                    >Pay with Paystack</button>
+            </div>
           </div>
       </div>
   </div>

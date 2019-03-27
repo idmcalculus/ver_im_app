@@ -49,6 +49,10 @@ export class InvestmentDetailComponent implements OnInit {
       }
     })
   }
+
+  paymentCancel(){
+    console.log("payment modal closed")
+  }
   
 
 }
