@@ -26,7 +26,7 @@
     
   </head>
 <body>
-  <app-root></app-root>
+  <app-root><div id="fb-root"></div></app-root>
 
 <script src="./assets/js/jquery-3.2.1.min.js"></script>
 <script src="./assets/js/bootstrap.min.js"></script>
@@ -38,11 +38,12 @@
 <script>
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
+  // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  // console.log('Name: ' + profile.getName());
+  // console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 </script>
+<!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=547191089021412&autoLogAppEvents=1"></script> -->
 </body>
 </html>
