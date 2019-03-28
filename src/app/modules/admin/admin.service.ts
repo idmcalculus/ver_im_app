@@ -22,4 +22,13 @@ export class AdminService {
   //   &expected_return_amount=${investment.expected_return_amount}&investment_image=${investment.investment_image}`,null);
   // }
 
+  getDashBoardData(){
+    return this.httpService.postRequest(`report/adminDashboard`,null);
+  }
+
+  getUsers(){
+    return this.httpService.postRequest(`user/list`,null);
+  }
+  
+
 }
