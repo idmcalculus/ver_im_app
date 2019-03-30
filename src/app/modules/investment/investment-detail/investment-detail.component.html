@@ -120,15 +120,18 @@
                   <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <!-- <button type="button" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
                   <button
+                    type="button"
+                    class="btn btn-join-add"
+                    data-dismiss="modal"
                     angular4-paystack
                     [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
                     [email]="'itoyeeb63@gmail.com'"
                     [amount]="amountPaid"
-                    [ref]="'414145151'"
+                    [ref]="transactionRef"
                     [class]="'btn btn-success'"
                     (close)="paymentCancel()"
                     (callback)="joinInvestment()"
-                    >{{amountPaid}}</button>
+                    >Join</button>
             </div>
           </div>
       </div>

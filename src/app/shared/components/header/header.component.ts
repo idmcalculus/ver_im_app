@@ -17,9 +17,9 @@ export class HeaderComponent implements OnInit {
     private authService:AuthService,
     private router:Router) { 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-      // console.log("change occured "+JSON.stringify(user))
-      this.userinfo = user;
-  });
+        // console.log("change occured "+JSON.stringify(user))
+        this.userinfo = user;
+    });
   }
 
 
