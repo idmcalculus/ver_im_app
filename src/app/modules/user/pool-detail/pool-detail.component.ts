@@ -9,7 +9,7 @@ import {InvestmentService} from './../../investment/investment.service'
   styleUrls: ['./pool-detail.component.css']
 })
 export class PoolDetailComponent implements OnInit {
-pool:Investment
+pool:any
 
 
   constructor(private route:ActivatedRoute,
