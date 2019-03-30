@@ -13,7 +13,22 @@
             </div>
         </div>
 
-        <div [hidden]="!investments" class="row mb-5">
+        <div *ngIf="isLoading" class="lds-default">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+        </div>
+
+        <div *ngIf="!isLoading && investments.length > 0"  class="row mb-5">
             <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
                 <a [routerLink]="['./', x.id]"  routerLinkActive="active">
                     <div class="superb-container m-b20">
@@ -30,7 +45,7 @@
                 </a>
             </div>
         </div>
-        <!-- <section  style="border-radius: 30px;"  *ngIf="investments.length == 0" class="workingSection">
+        <section  *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;"  class="workingSection">
             <div class="inner-workingSection">
                 <div class="row">
                     <div  class="col-md-12">
@@ -40,6 +55,6 @@
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
     </div>
 </section>

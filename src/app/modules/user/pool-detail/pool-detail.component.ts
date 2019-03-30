@@ -27,7 +27,8 @@ pool:Investment
     this.investmentService.getInvestment(poolId).subscribe(poolDetails=>{
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
-          this.pool = poolDetails.success.Data[0];
+          this.pool = poolDetails.success.Data;
+          console.log("jssdjshld: "+JSON.stringify(this.pool))
         }else{
           this.router.navigate(['./', {}]);
         }

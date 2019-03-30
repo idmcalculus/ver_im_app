@@ -9,6 +9,7 @@ import { Transaction } from 'src/app/shared/models/Transaction';
 })
 export class InvestmentComponent implements OnInit {
 
+  isLoading:boolean=true;
   investments:any=[];
   categories:[];
   transaction:Transaction;
@@ -18,7 +19,6 @@ export class InvestmentComponent implements OnInit {
 
   ngOnInit() {
     this.getInvestments();
-    // this.getCategories();
   }
 
   viewInvestment(id:string){
@@ -29,8 +29,11 @@ export class InvestmentComponent implements OnInit {
     this.investmentService.getInvestments().subscribe(investments=>{
       if(investments){
         this.investments = investments.success.Data
+
         // console.log("Investment list is: "+JSON.stringify(this.investments))
       }
+      
+      this.isLoading = false;
     })
   }
 

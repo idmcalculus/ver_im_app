@@ -12,7 +12,7 @@
                                       <div class="col">
                                           <h6 class="m-b-25">Total Users</h6>
                                           <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_users}}</h3>
-                                          <p class="m-b-0">12 Months</p>
+                                          <p class="m-b-0">{{dashBoardData?.unverified_users}} pending user(s)</p>
                                       </div>
                                       <div class="col-auto">
                                           <i class="fas fa-user text-c-blue f-18"></i>
@@ -27,8 +27,8 @@
                                   <div class="row align-items-center">
                                       <div class="col">
                                           <h6 class="m-b-25">Active Investments</h6>
-                                          <h3 class="f-w-700 text-c-blue">250, 032</h3>
-                                          <p class="m-b-0">12 Months</p>
+                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_investment}}</h3>
+                                          <p class="m-b-0">{{dashBoardData?.pending_investment}} pending investment(s)</p>
                                       </div>
                                       <div class="col-auto">
                                           <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
@@ -42,9 +42,9 @@
                               <div class="card-body">
                                   <div class="row align-items-center">
                                       <div class="col">
-                                          <h6 class="m-b-25">Pending Investments</h6>
-                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.pending_investment}}</h3>
-                                          <p class="m-b-0">12 Months</p>
+                                          <h6 class="m-b-25">Total Requests</h6>
+                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_request}}</h3>
+                                          <p class="m-b-0">{{dashBoardData?.pending_request}} pending request(s)</p>
                                       </div>
                                       <div class="col-auto">
                                           <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
@@ -65,6 +65,11 @@
 
                                   </div>
                               </div>
+                              <div class="card-block">
+                                    <div class="latest-update-box">
+  
+                                    </div>
+                                </div>
                           </div>
                       </div>
 

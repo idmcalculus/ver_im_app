@@ -6,7 +6,7 @@
               <div class="page-body pool-details">
                   <div class="row mb-2">
                       <div class="col-xl-12 col-md-12">
-                          <h4 class="dash-title"></h4>
+                          <h4 class="dash-title">{{pool?.investment?.title}}</h4>
                       </div>
                   </div>
                   <div class="row p-0">
@@ -20,10 +20,14 @@
                                               <img src="../assets/images/notcard.png" alt="image">
                                           </div>
                                           <div class="content-holder pool-card-details">
-                                              <h4>Status: <p class="active">Active</p></h4>
+                                                
+                                              <h4>Status: 
+                                                  <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">Active</p> 
+                                                  <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">In-Active</p> 
+                                              </h4>
 
                                               <h4>Number of Investors: <br>
-                                                  <p class="count">{{pool?.max_num_of_slots}} ({{pool?.max_num_of_slots - pool?.num_of_pools_taken}} left)</p></h4>
+                                                  <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p></h4>
 
                                               <a href="pool-details.html"
                                                  class="btn2 btn-login view mt-2">Join Investment</a>
@@ -45,22 +49,7 @@
                                                   class="fa fa-plus"></i></span></a>
                                       </div>
                                   </div>
-                                  <div class="report-card">
-                                      <h4>Lorem Ipsum</h4>
-                                      <div>Lorem Ipsum is a content I have here</div>
-                                      <small class="date">22/07/2019 - 9:48PM</small>
-                                  </div>
-                                  <div class="report-card">
-                                      <h4>Lorem Ipsum</h4>
-                                      <div>Lorem Ipsum is a content I have here</div>
-                                      <small class="date">22/07/2019 - 9:48PM</small>
-                                  </div>
-                                  <div class="report-card">
-                                      <h4>Lorem Ipsum</h4>
-                                      <div>Lorem Ipsum is a content I have here</div>
-                                      <small class="date">22/07/2019 - 9:48PM</small>
-                                  </div>
-                                  <div class="report-card">
+                                  <div *ngFor="let report of pool?.report "c lass="report-card">
                                       <h4>Lorem Ipsum</h4>
                                       <div>Lorem Ipsum is a content I have here</div>
                                       <small class="date">22/07/2019 - 9:48PM</small>
@@ -86,28 +75,10 @@
                                           </tr>
                                           </thead>
                                           <tbody>
-                                          <tr>
-                                              <td>Adekoya Francis</td>
+                                          <tr *ngFor="let user of pool?.investment_user">
+                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>adekoya.francis@gmail.com</td>
-                                              <td>2</td>
-                                              <td>23/03/2019</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Adekoya Francis</td>
-                                              <td>adekoya.francis@gmail.com</td>
-                                              <td>2</td>
-                                              <td>23/03/2019</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Adekoya Francis</td>
-                                              <td>adekoya.francis@gmail.com</td>
-                                              <td>2</td>
-                                              <td>23/03/2019</td>
-                                          </tr>
-                                          <tr>
-                                              <td>Adekoya Francis</td>
-                                              <td>adekoya.francis@gmail.com</td>
-                                              <td>2</td>
+                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>23/03/2019</td>
                                           </tr>
                                           </tbody>

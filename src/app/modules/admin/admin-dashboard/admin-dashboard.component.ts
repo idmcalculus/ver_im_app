@@ -9,12 +9,16 @@ import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 export class AdminDashboardComponent implements OnInit {
 
   dashBoardData:AdminDashboard;
+  
+
+
   constructor(private adminService:AdminService) { }
 
   ngOnInit() {
       this.adminService.getDashBoardData().subscribe(resp=>{
         if(resp && resp.success){
           this.dashBoardData = resp.success.Data
+          console.log("dashboard data: "+JSON.stringify(this.dashBoardData))
         }
       });
   }

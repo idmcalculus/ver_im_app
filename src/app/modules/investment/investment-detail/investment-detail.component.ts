@@ -9,11 +9,12 @@ import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-investment-detail',
-  templateUrl: './investment-detail.component.html'
+  templateUrl: './investment-detail.component.html',
+  styleUrls: ['./investment-detail.component.css']
 })
 export class InvestmentDetailComponent implements OnInit {
 
-  investment:Investment={title:''};
+  investment:Investment;
   transaction:Transaction={investment_id:0,number_of_pools:0};
   userinfo:User;
   amountPaid:number=0;userEmail:string='';transactionRef:string='';
