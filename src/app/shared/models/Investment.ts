@@ -11,5 +11,6 @@ export class Investment extends BasicModel{
   closing_date?: string;
   expected_return_amount?: string;
   num_of_pools_taken?:number;
+  reference?:string;
   investment_image?:string;
 }

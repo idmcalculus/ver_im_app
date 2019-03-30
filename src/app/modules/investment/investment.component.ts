@@ -29,7 +29,7 @@ export class InvestmentComponent implements OnInit {
     this.investmentService.getInvestments().subscribe(investments=>{
       if(investments){
         this.investments = investments.success.Data
-        console.log("Investment list is: "+JSON.stringify(this.investments))
+        // console.log("Investment list is: "+JSON.stringify(this.investments))
       }
     })
   }

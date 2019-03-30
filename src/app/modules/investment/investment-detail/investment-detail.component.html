@@ -123,12 +123,12 @@
                     angular4-paystack
                     [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
                     [email]="'itoyeeb63@gmail.com'"
-                    [amount]="5000000"
-                    [ref]="'2637458697'"
+                    [amount]="amountPaid"
+                    [ref]="'414145151'"
                     [class]="'btn btn-success'"
                     (close)="paymentCancel()"
                     (callback)="joinInvestment()"
-                    >Pay with Paystack</button>
+                    >{{amountPaid}}</button>
             </div>
           </div>
       </div>
