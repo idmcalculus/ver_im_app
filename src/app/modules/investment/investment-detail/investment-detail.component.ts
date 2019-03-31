@@ -14,6 +14,7 @@ import { User } from 'src/app/shared/models/user';
 })
 export class InvestmentDetailComponent implements OnInit {
 
+  isLoading:boolean=true;
   investment:Investment;
   transaction:Transaction={investment_id:0,number_of_pools:0};
   userinfo:User;
@@ -47,6 +48,7 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
         console.log("Random string is: "+this.transactionRef)
       }
+      this.isLoading = false;
     })
 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
