@@ -8,7 +8,7 @@ import { Investment } from 'src/app/shared/models/Investment';
   styleUrls: ['./pools.component.css']
 })
 export class PoolsComponent implements OnInit {
-
+  isLoading:boolean=true;
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
@@ -33,6 +33,7 @@ export class PoolsComponent implements OnInit {
       if(investments){
         this.pools = investments.success.Data
       }
+      this.isLoading=false;
     })
   }
 
@@ -41,6 +42,7 @@ export class PoolsComponent implements OnInit {
       if(investments){
         this.pools = investments.success.Data
       }
+      this.isLoading=false;
     })
   }
 

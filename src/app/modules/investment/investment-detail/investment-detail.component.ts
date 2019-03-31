@@ -19,6 +19,7 @@ export class InvestmentDetailComponent implements OnInit {
   userinfo:User;
   amountPaid:number=0;userEmail:string='';transactionRef:string='';
   currentUserSubscription:Subscription;
+  reportData:any;
 
 
   constructor(
@@ -69,6 +70,8 @@ export class InvestmentDetailComponent implements OnInit {
   paymentCancel(){
     console.log("payment modal closed")
   }
+
+  
   
 
 }
