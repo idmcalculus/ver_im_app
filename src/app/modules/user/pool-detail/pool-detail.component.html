@@ -3,7 +3,22 @@
   <div class="pcoded-inner-content">
       <div class="main-body">
           <div class="page-wrapper">
-              <div class="page-body pool-details">
+                <div *ngIf=" pool==null " class="page-body pool-details lds-default">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                </div>
+
+              <div *ngIf=" pool!=null " class="page-body pool-details">
                   <div class="row mb-2">
                       <div class="col-xl-12 col-md-12">
                           <h4 class="dash-title">{{pool?.investment?.title}}</h4>

@@ -3,4 +3,15 @@
 @import 'assets/css/main.css'; */
 
 @import './spinner.scss';
-@import './skeleton.scss';
+/* @import './skeleton.scss';
+
+h3, h4, p {
+    margin: 0 0 5px;
+}
+
+.card-layout {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+} */
