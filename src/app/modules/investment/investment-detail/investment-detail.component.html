@@ -41,12 +41,11 @@
                                         <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
                                         <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
                                         <div>
-                                            <a href="#" *ngIf ="investment?.is_investment_started=='1' && investment?.max_num_of_slots - investment?.num_of_pools_taken==0" data-toggle="modal" data-target="#exampleModalCenter"
-                                                class="btn2 btn-join">Invest Now</a>
-                                            <a *ngIf="investment?.is_investment_started=='1' && investment?.max_num_of_slots - investment?.num_of_pools_taken!=0" 
+                                            <a href="#" *ngIf ="investment?.is_investment_started=='0' " (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
+                                                class="btn2 btn-join">Join</a>
+                                            <a *ngIf="investment?.is_investment_started=='1' " 
                                                 class="btn2 btn-join">Closed</a>
-                                            <a *ngIf = "investment?.is_investment_started=='0' " class="btn2 btn-join">Not Active</a>
-                                        </div>
+                                             </div>
                                     </div>
                                 </div>
                             </div>

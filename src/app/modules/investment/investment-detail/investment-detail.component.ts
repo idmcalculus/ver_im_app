@@ -44,7 +44,7 @@ export class InvestmentDetailComponent implements OnInit {
         // console.log("i got: "+JSON.stringify(this.investment))
         var tday = new Date().getTime;
         this.investment.reference = `${tday}`
-        this.amountPaid = (this.investment.investment_amount / this.investment.max_num_of_slots) * 100;
+        this.amountPaid = this.investment.investment_amount * 100;
         var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0,4)}` 
         this.transactionRef = randomString;
         console.log("Random string is: "+this.transactionRef)
@@ -59,7 +59,7 @@ export class InvestmentDetailComponent implements OnInit {
 
   joinInvestment(){
     this.transaction.investment_id = this.investment.id;
-    this.transaction.amount_paid = (this.investment.investment_amount / this.investment.max_num_of_slots) * this.transaction.number_of_pools* 100;
+    this.transaction.amount_paid = this.investment.investment_amount  * this.transaction.number_of_pools* 100;
     this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2))
     this.transaction.payment_reference=this.investment.reference;
     this.investmentService.joinInvestment(this.transaction).subscribe(resp=>{
@@ -71,6 +71,11 @@ export class InvestmentDetailComponent implements OnInit {
 
   paymentCancel(){
     console.log("payment modal closed")
+  }
+
+  refereshPaymentRef(){
+    var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0,4)}` 
+    this.transactionRef = randomString;
   }
 
   
