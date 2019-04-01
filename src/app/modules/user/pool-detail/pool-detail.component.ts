@@ -32,7 +32,7 @@ reportData:Report = {title:'',description:''}
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
-          // console.log("jssdjshld: "+JSON.stringify(this.pool))
+          console.log("jssdjshld: "+JSON.stringify(this.pool))
         }else{
           this.router.navigate(['./', {}]);
         }

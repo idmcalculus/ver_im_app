@@ -6,7 +6,7 @@
               <div class="page-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <div class="card">
+                          <div *ngIf="!isLoading" class="card">
                               <div class="card-header">
                                   <h5>Manage Users</h5>
                               </div>
@@ -18,9 +18,10 @@
                                           <tr>
                                               <th>Name</th>
                                               <th>Email</th>
-                                              <!-- <th>Office</th> -->
+                                              <th>Phone Number</th>
                                               <th>Created on</th>
-                                              <!-- <th>Salary</th> -->
+                                              <th>User Category</th>
+                                              <th>Authentication type</th>
                                               <th>Account Status</th>
                                           </tr>
                                           </thead>
@@ -28,14 +29,33 @@
                                             <tr *ngFor="let user of users" >
                                                 <td>{{user.first_name}} {{user.last_name}}</td>
                                                 <td>{{user.email}}</td>
+                                                <td>{{user.phone_number}}</td>
                                                 <td>{{user.created_at}}</td>
-                                                <td><button class="btn btn-success">Active</button></td>
+                                                <td>{{user.user_category}}</td>
+                                                <td>{{user.authentication_type}}</td>
+                                                <td *ngIf="user.email_is_verified =='1' "><button class="btn btn-success">Active</button></td>
+                                                <td *ngIf="user.email_is_verified =='0' "><button class="btn btn-success">In-Active</button></td>
                                             </tr>
                                           </tbody>
                                       </table>
                                   </div>
                               </div>
                           </div>
+
+                          <div *ngIf="isLoading" class="lds-default">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
                       </div>
                   </div>
               </div>

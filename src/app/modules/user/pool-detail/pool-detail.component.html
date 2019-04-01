@@ -37,15 +37,14 @@
                                           <div class="content-holder pool-card-details">
                                                 
                                               <h4>Status: 
-                                                  <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">Active</p> 
-                                                  <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">In-Active</p> 
+                                                  <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">Active</p> 
+                                                  <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">In-Active</p> 
                                               </h4>
 
                                               <h4>Number of Investors: <br>
                                                   <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p></h4>
 
-                                              <a href="pool-details.html"
-                                                 class="btn2 btn-login view mt-2">Join Investment</a>
+                                              <a href="pool-details.html" class="btn2 btn-login view mt-2">Pull out</a>
                                           </div>
                                       </div>
                                   </a>

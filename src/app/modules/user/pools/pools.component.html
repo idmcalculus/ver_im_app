@@ -32,8 +32,8 @@
                             <div></div>
                     </div>
 
-                    <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5">
-                        <div *ngFor="let pool of pools" class="col-xl-4">
+                    <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5 ">
+                        <div *ngFor="let pool of pools" class="col-xl-4 pb-2">
                             <a [routerLink]="['./', pool.id]" routerLinkActive="active">
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">

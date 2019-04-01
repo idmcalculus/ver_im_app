@@ -9,12 +9,15 @@ import { AdminService } from '../admin.service';
 export class ManageUsersComponent implements OnInit {
 
   users:[User]
+  isLoading:boolean=true;
   constructor(private adminService:AdminService) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp=>{
       if(resp && resp.success){
         this.users = resp.success.Data;
+        // console.log("user one is: "+JSON.stringify(this.users[0]))
+        this.isLoading =  false;
       }
     })
   }
