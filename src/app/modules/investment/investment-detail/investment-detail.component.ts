@@ -18,7 +18,8 @@ export class InvestmentDetailComponent implements OnInit {
   investment:Investment;
   transaction:Transaction={investment_id:0,number_of_pools:0};
   userinfo:User;
-  amountPaid:number=0;userEmail:string='';transactionRef:string='';
+  amountPerPool:number=0;userEmail:string='';transactionRef:string='';
+  numOfPoolsLeft:number=0;
   currentUserSubscription:Subscription;
   reportData:any;
 
@@ -41,13 +42,12 @@ export class InvestmentDetailComponent implements OnInit {
     this.investmentService.getInvestment(id).subscribe(investments=>{
       if(investments && investments.success){
         this.investment = investments.success.Data.investment
-        // console.log("i got: "+JSON.stringify(this.investment))
-        var tday = new Date().getTime;
-        this.investment.reference = `${tday}`
-        this.amountPaid = this.investment.investment_amount * 100;
+        console.log("i got: "+JSON.stringify(this.investment))
+        this.numOfPoolsLeft = this.investment.max_num_of_slots - this.investment.num_of_pools_taken;
+        this.amountPerPool = (this.investment.investment_amount/this.investment.max_num_of_slots);
         var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0,4)}` 
-        this.transactionRef = randomString;
-        console.log("Random string is: "+this.transactionRef)
+        this.transactionRef = this.investment.reference = randomString;
+        // console.log("Random string is: "+this.transactionRef)
       }
       this.isLoading = false;
     })
@@ -57,14 +57,16 @@ export class InvestmentDetailComponent implements OnInit {
     });
   }
 
+
   joinInvestment(){
     this.transaction.investment_id = this.investment.id;
-    this.transaction.amount_paid = this.investment.investment_amount  * this.transaction.number_of_pools* 100;
-    this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2))
-    this.transaction.payment_reference=this.investment.reference;
+    this.transaction.amount_paid = Number((this.amountPerPool  * this.transaction.number_of_pools).toFixed(2))
+    this.transaction.payment_reference=this.investment.reference=this.transactionRef ;
     this.investmentService.joinInvestment(this.transaction).subscribe(resp=>{
       if(resp && resp.success){
         alert(resp.success.Message);
+        // this.router.navigate(['/investments']);;
+        window.location.href="investments";
       }
     })
   }

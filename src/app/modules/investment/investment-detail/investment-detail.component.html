@@ -35,13 +35,16 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="content-detail">
-                                        <h3>{{investment?.investment_amount | currency:'NGN':'symbol-narrow'}} per pool</h3>
+                                        <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per pool</h3>
                                         <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
                                         <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
                                         <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
                                         <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
                                         <div>
-                                            <a href="#" *ngIf ="investment?.is_investment_started=='0' " (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
+
+                                            <a routerLink="/signin" routerLinkActive="active" *ngIf="userinfo==null && investment?.is_investment_started=='0'"
+                                                class="btn2 btn-join">Sign in to Join</a>
+                                            <a *ngIf="userinfo!=null && investment?.is_investment_started=='0'" href="#"  (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
                                                 class="btn2 btn-join">Join</a>
                                             <a *ngIf="investment?.is_investment_started=='1' " 
                                                 class="btn2 btn-join">Closed</a>
@@ -117,32 +120,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="updates">
-                                    <input type="text" id="updates">Send me updates on investment
-                                </label>
-                            </div>
-                            <div class="form-group">
-                                <label for="updatesP">
-                                    <input type="checkbox" id="updatesP">Updates on upcoming plans
-                                </label>
-                            </div> -->
                         </div>
                     </div>
-                    <!-- <form>
-                        <button type="button" onclick="payWithPaystack()"> Pay </button> 
-                    </form> -->
                     <div class="modal-footer">
                         <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <!-- <button type="button" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
+                        <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
                         <button
-                            type="button"
+                           [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )"                             type="button"
                             class="btn btn-join-add"
                             data-dismiss="modal"
                             angular4-paystack
                             [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
                             [email]="'itoyeeb63@gmail.com'"
-                            [amount]="amountPaid * transaction.number_of_pools"
+                            [amount]="amountPerPool * 100 * transaction.number_of_pools"
                             [ref]="transactionRef"
                             [class]="'btn btn-success'"
                             (close)="paymentCancel()"
