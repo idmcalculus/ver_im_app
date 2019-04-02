@@ -84,16 +84,18 @@
                                           <tr>
                                               <th>Name</th>
                                               <th>Email</th>
+                                              <th>Phone Number</th>
                                               <th>Slots Taken</th>
-                                              <th>Date</th>
+                                              <th>Date Created</th>
                                           </tr>
                                           </thead>
                                           <tbody>
                                           <tr *ngFor="let user of pool?.investment_user">
+                                              <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                              <td>{{user?.user_info[0].email}}</td>
+                                              <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>adekoya.francis@gmail.com</td>
-                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>23/03/2019</td>
+                                              <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                           </tbody>
                                       </table>
