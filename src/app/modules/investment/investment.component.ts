@@ -27,10 +27,16 @@ export class InvestmentComponent implements OnInit {
 
   getInvestments(){
     this.investmentService.getInvestments().subscribe(investments=>{
+      var investmentArray=[];
       if(investments){
-        this.investments = investments.success.Data
-
-        // console.log("Investment list is: "+JSON.stringify(this.investments))
+        investmentArray = investments.success.Data
+        var cnt = 0;
+        investmentArray.forEach(element => {
+          if(element.is_investment_started=='0'){
+            this.investments[cnt] = element;
+            cnt++;
+          }
+        });
       }
       
       this.isLoading = false;

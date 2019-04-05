@@ -48,14 +48,14 @@ export class InvestmentDetailComponent implements OnInit {
         this.amountPaid = this.investment.investment_amount;
         var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0,4)}` 
         this.transactionRef = randomString;
-        console.log("Random string is: "+this.transactionRef)
+        // console.log("Random string is: "+this.transactionRef)
       }
       this.isLoading = false;
     })
 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
         this.userinfo = user;
-        console.log("have got :: "+JSON.stringify(this.userinfo))
+        // console.log("have got :: "+JSON.stringify(this.userinfo))
     });
   }
 
