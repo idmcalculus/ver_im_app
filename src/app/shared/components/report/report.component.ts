@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from './report.service';
+import { Report } from '../../models/Report';
 
 @Component({
   selector: 'app-report',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
 
-  constructor() { }
+  reportData:Report;
+  constructor(private reportService:ReportService) { }
 
   ngOnInit() {
   }
 
+  addReport(){
+    this.reportService.createReport(this.reportData)
+  }
 }

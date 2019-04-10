@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "angular-in-memory-web-api": "^0.8.0",
+    "angular-rave": "^1.2.1",
     "angular2-promise-buttons": "^3.0.1",
     "angular4-paystack": "^2.3.3",
     "core-js": "^2.5.4",

@@ -20,11 +20,11 @@ export class HeaderDashboardComponent implements OnInit {
     private router:Router
     
     ) {
-    console.log('I recieved: '+this.userDetails);
+    // console.log('I recieved: '+this.userDetails);
   }
 
   ngOnInit() {
-    console.log('I recieved: '+this.userDetails);
+    // console.log('I recieved: '+this.userDetails);
   }
 
   logout(){

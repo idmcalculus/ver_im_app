@@ -3,6 +3,7 @@ import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from './../../investment/investment.service'
 import { Report } from 'src/app/shared/models/Report';
+import { ReportService } from 'src/app/shared/components/report/report.service';
 
 @Component({
   selector: 'app-pool-detail',
@@ -17,7 +18,7 @@ reportData:Report = {title:'',description:''}
   constructor(private route:ActivatedRoute,
     private router:Router,
     private investmentService:InvestmentService,
-    // private reportService:ReportService
+    private reportService:ReportService
     ) { 
   }
 
@@ -31,7 +32,7 @@ reportData:Report = {title:'',description:''}
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
-          console.log("jssdjshld: "+JSON.stringify(this.pool))
+          // console.log("jssdjshld: "+JSON.stringify(this.pool))
         }else{
           this.router.navigate(['./', {}]);
         }
@@ -47,11 +48,11 @@ reportData:Report = {title:'',description:''}
     // amnt = amnt.toFixed(2);
     this.reportData.returned_amount = Number(amnt);
     console.log("sending :: "+JSON.stringify(this.reportData))
-    // this.reportService.createReport(this.reportData).subscribe(resp=>{
-    //     if(resp && resp.success){
-    //       console.log("Result of add report :: "+JSON.stringify(resp))
-    //     }
-    // })
+    this.reportService.createReport(this.reportData).subscribe(resp=>{
+        if(resp && resp.success){
+          console.log("Result of add report :: "+JSON.stringify(resp))
+        }
+    })
   }
 
 }

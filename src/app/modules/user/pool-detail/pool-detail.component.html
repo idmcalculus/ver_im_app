@@ -1,5 +1,4 @@
 <div class="pcoded-content">
-
   <div class="pcoded-inner-content">
       <div class="main-body">
           <div class="page-wrapper">
@@ -58,7 +57,7 @@
                                       <div class="col-md-8"><h5>Report</h5></div>
                                       <div class="col-md-4">
                                           <a href="#" data-toggle="modal"
-                                             data-target="#exampleModalCenter"
+                                             data-target="#reportModal"
                                              class="btn btn-add plus-btn float-right"><span><i
                                                   class="fa fa-plus"></i></span></a>
                                       </div>
@@ -84,16 +83,18 @@
                                           <tr>
                                               <th>Name</th>
                                               <th>Email</th>
+                                              <th>Phone Number</th>
                                               <th>Slots Taken</th>
-                                              <th>Date</th>
+                                              <th>Date Created</th>
                                           </tr>
                                           </thead>
                                           <tbody>
                                           <tr *ngFor="let user of pool?.investment_user">
+                                              <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                              <td>{{user?.user_info[0].email}}</td>
+                                              <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>adekoya.francis@gmail.com</td>
-                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>23/03/2019</td>
+                                              <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                           </tbody>
                                       </table>
@@ -109,8 +110,8 @@
 </div>
 
 <div class="modal fade" data-backdrop="static" style="margin-top: 3em !important;"
-                     id="exampleModalCenter" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                     id="reportModal" tabindex="-1" role="dialog"
+                     aria-labelledby="reportModalTitle" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content create-investment create-report">
                             <div class="modal-header">
@@ -147,8 +148,8 @@
                                             <label for="pay-type" class="sr-only">Payment Type</label>
                                             <select [(ngModel)]="reportData.payment_type" name="p-type" id="pay-type" class="form-control">
                                                 <option value="" hidden>Select</option>
-                                                <option value="Card">Credit</option>
-                                                <option value="Card">Debit</option>
+                                                <option value="Credit">Credit</option>
+                                                <option value="Debit">Debit</option>
                                             </select>
                                         </div>
                                     </div>

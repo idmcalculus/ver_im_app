@@ -5,12 +5,14 @@ import { InvestmentRoutingModule } from './investment-router-module';
 import {InvestmentDetailComponent} from './investment-detail/investment-detail.component';
 import {FormsModule} from '@angular/forms';
 import { Angular4PaystackModule } from 'angular4-paystack';
+import { AngularRaveModule } from 'angular-rave';
 
 @NgModule({
   declarations: [InvestmentComponent,InvestmentDetailComponent],
   imports: [
     CommonModule,InvestmentRoutingModule,FormsModule,
-    Angular4PaystackModule
+    Angular4PaystackModule,
+    AngularRaveModule
   ]
 })
 export class InvestmentModule { }

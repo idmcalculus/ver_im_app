@@ -6,9 +6,9 @@
             </div>
             <div class="col-md-3 float-md-right">
                 <label for="filterinvestment" class="sr-only">Filter Investment</label>
-                <select  name="" id="filterinvestment" class="form-control">
-                    <option value="" hidden>Choose Category</option>
-                    <option *ngFor="let category of categories" ngValue="category.id">{{category.category_name}}</option>
+                <select  [(ngModel)]="selectedCategory" (change)="filterInvestments()" name="" id="filterinvestment" class="form-control">
+                    <option value="0">Choose Category</option>
+                    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.category_name}}</option>
                 </select>
             </div>
         </div>
@@ -28,9 +28,9 @@
                 <div></div>
         </div>
 
-        <div *ngIf="!isLoading && investments.length > 0"  class="row mb-5">
+        <div *ngIf="!isLoading && investments.length > 0 "  class="row mb-5">
             <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                <a [routerLink]="['./', x.id]"  routerLinkActive="active">
+                <a  [routerLink]="['./', x.id]"  routerLinkActive="active">
                     <div class="superb-container m-b20">
                         <div class="img-holder">
                             <img src="../assets/images/notcard.png" alt="image">
