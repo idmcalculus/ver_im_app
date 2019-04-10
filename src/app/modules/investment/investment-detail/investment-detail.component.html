@@ -131,7 +131,7 @@
                             angular4-paystack
                             [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
                             [email]="userinfo?.email"
-                            [amount]="amountPaid * 100 * transaction.number_of_pools"
+                            [amount]="amountPerPool * 100 * transaction.number_of_pools"
                             [ref]="transactionRef"
                             [class]="'btn btn-success'"
                             (close)="paymentCancel()"
@@ -145,7 +145,7 @@
                             [PBFPubKey] = "'FLWPUBK_TEST-5fa36b248fbdc5675474d16e6dfedc1d-X'"
                             [customer_email] = "userinfo?.email"
                             [customer_phone] = "userinfo?.phone_number"
-                            [amount]="amountPaid  * transaction.number_of_pools"
+                            [amount]="amountPerPool  * transaction.number_of_pools"
                             [currency]="'NGN'"
                             [custom_title]="'Investment Payment'"
                             [txref]="transactionRef"
