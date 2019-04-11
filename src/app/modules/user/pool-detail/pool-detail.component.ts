@@ -4,7 +4,7 @@ import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from './../../investment/investment.service'
 import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
-import { identifierModuleUrl } from '@angular/compiler';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-pool-detail',
@@ -15,18 +15,21 @@ export class PoolDetailComponent implements OnInit {
 pool:Investment
 poolId:number=0;
 reportData:Report = {title:'',description:''}
-
-modaltitle:string='';
+categories=[];
+modaltitle:string='Update Plan';
 modalButtonTitle:string='';
 modalData:Report={};
 callBack:any;
+isLoaded:boolean;
+
 
 @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
     private router:Router,
     private investmentService:InvestmentService,
-    private reportService:ReportService
+    private reportService:ReportService,
+    private authService:AuthService
     ) { 
       this.poolId = Number(this.route.snapshot.paramMap.get('id'));
   }
@@ -34,6 +37,7 @@ callBack:any;
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
     this.fetchPool(id);
+    this.isLoaded = true;
   }
 
   fetchPool(poolId:string){
@@ -113,6 +117,14 @@ callBack:any;
       this.callBack = this.updateReport;
     }
     
+  }
+
+  setPlanOperation(investment){
+    this.authService.setCurrentPlanOperation(investment);
+  }
+
+  addInvestmnet(){
+
   }
 
 }

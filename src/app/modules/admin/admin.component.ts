@@ -7,16 +7,22 @@ import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../investment/investment.service';
 import { AdminService } from './admin.service';
 import { Category } from 'src/app/shared/models/Category';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html'
 })
 export class AdminComponent implements OnInit {
- user:User={email:'',password:'',user_category:'Admin'};
- investment:Investment;
- investments:[Investment];
- categories:[];
+  user:User={email:'',password:'',user_category:'Admin'};
+  investment:Investment;
+  investments:[Investment];
+  categories:[];
+  modaltitle:string='Create Plan';
+  modalButtonTitle:string='';
+  modalData:Investment={};
+  callBack:any;
+  currentPlanOperation:Subscription
 
   constructor(
     private authService:AuthService,
@@ -24,6 +30,10 @@ export class AdminComponent implements OnInit {
     private investmentService:InvestmentService
     ) { 
       this.authService.setInProfileView(true);
+      this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal =>{
+        this.setPlanModal(modal);
+    })
+
   }
 
   ngOnInit() {
@@ -39,14 +49,28 @@ export class AdminComponent implements OnInit {
   addInvestmnet(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      console.log("investment to add is :: "+JSON.stringify(this.investment))
       this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
-      this.investmentService.addInvestment(this.investment).subscribe(resp=>{
-        if(resp && resp.success){
-          alert(resp.success.Message);    
-          window.location.href = 'admin/pools';      
-        }
-      })
+      // this.investmentService.addInvestment(this.investment).subscribe(resp=>{
+      //   if(resp && resp.success){
+      //     alert(resp.success.Message);    
+      //     window.location.href = 'admin/pools';      
+      //   }
+      // })
+    }
+    
+  }
+
+  updateInvestment(filledInvestment:Investment){
+    this.investment = filledInvestment;
+    if(this.investment.title){
+      this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
+      console.log("updaeting with :: "+JSON.stringify(this.investment))
+      // this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
+      //   if(resp && resp.success){
+      //     alert(resp.success.Message);    
+      //     window.location.href = 'admin/pools';      
+      //   }
+      // })
     }
     
   }
@@ -59,6 +83,8 @@ export class AdminComponent implements OnInit {
 
   }
 
+  
+
   getCategories(){
     this.investmentService.getCategories().subscribe(categories=>{
       // console.log("i hvae cat :: "+JSON.stringify(categories))
@@ -68,4 +94,17 @@ export class AdminComponent implements OnInit {
     })
   }
 
+  setPlanModal(modalData){
+    if(modalData){
+      this.modaltitle='Update Plan';
+      this.modalButtonTitle='Update';
+      this.modalData=modalData.investment;
+      this.callBack=this.updateInvestment;
+    }else{
+      this.modaltitle='Create Plan';
+      this.modalButtonTitle='Create';
+      this.modalData={};
+      this.callBack=this.addInvestmnet;
+    }
+  }
 }

@@ -4,13 +4,16 @@ import { map } from 'rxjs/operators';
 import { User } from './../../shared/models/user';
 import {HttpService} from './../http/httpservice.service';
 import {Router} from '@angular/router';
+import { Investment } from 'src/app/shared/models/Investment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private currentUserSubject: BehaviorSubject<User>;
     private inProfileView : BehaviorSubject<boolean>;
-    public currentUser: Observable<User>;
+    private managePlanOperation : BehaviorSubject<Investment>;
     public profileViewIsActive :Observable<boolean>;
+    public currentUser: Observable<User>;
+    public currentManagePlanOperation: Observable<Investment>;
 
     constructor(
         private httpService: HttpService,
@@ -18,8 +21,14 @@ export class AuthService {
         ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+
         this.inProfileView = new BehaviorSubject<boolean>(false);
         this.profileViewIsActive = this.inProfileView.asObservable();
+        
+        this.managePlanOperation = new BehaviorSubject<Investment>(null);
+        this.currentManagePlanOperation = this.managePlanOperation.asObservable();
+
+        
     }
 
     validateSession(): any {
@@ -92,6 +101,10 @@ export class AuthService {
 
     setInProfileView(isLoggedIn:boolean){
         this.inProfileView.next(isLoggedIn);
+    }
+
+    setCurrentPlanOperation(operation:Investment){
+        this.managePlanOperation.next(operation);
     }
 
     setUser(userDetails:User){

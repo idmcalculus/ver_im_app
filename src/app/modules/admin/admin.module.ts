@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
-import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
+// import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
 import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
 
@@ -12,7 +12,7 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
-    ManageInvestmentComponent,
+    // ManageInvestmentComponent,
   ],
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import {FormsModule} from '@angular/forms';
     
   ],providers: [
   ],exports:[
-    ManageInvestmentComponent
+    // ManageInvestmentComponent
   ]
 })
 export class AdminModule { }

@@ -9,7 +9,7 @@ import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 export class AdminDashboardComponent implements OnInit {
 
   dashBoardData:AdminDashboard;
-  
+  isLoading:boolean=true;
 
 
   constructor(private adminService:AdminService) { }
@@ -18,7 +18,7 @@ export class AdminDashboardComponent implements OnInit {
       this.adminService.getDashBoardData().subscribe(resp=>{
         if(resp && resp.success){
           this.dashBoardData = resp.success.Data
-          console.log("dashboard data: "+JSON.stringify(this.dashBoardData))
+          this.isLoading = false;
         }
       });
   }

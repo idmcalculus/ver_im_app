@@ -9,6 +9,4 @@
         </div>
     </div>
 </div>
-<app-manage-investment [categories]="categories" [modaltitle]="'Create Plan'"  (submit)="addInvestmnet($event)">
-
-</app-manage-investment>
+<app-manage-investment [modalData]="modalData" [categories]="categories" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle"  (submit)="callBack($event)"></app-manage-investment>

@@ -9,11 +9,12 @@ import { Category } from 'src/app/shared/models/Category';
 export class ManageInvestmentComponent implements OnInit {
 
   @Input() public modaltitle:string;
+  @Input() public modalButtonTitle:string;
+  @Input() public modalData:any;
   @Input() public categories:[Category];
   @Output() submit = new EventEmitter<Investment>();
 
-  @Input()
-  modalModel:Investment={category_id:0};
+  image:any;
   isSubmitting;
   
   constructor() { }
@@ -23,7 +24,21 @@ export class ManageInvestmentComponent implements OnInit {
   }
 
   modalSubmitted(){
-    console.log("calling: ")
-    this.submit.emit(this.modalModel);
+    this.submit.emit(this.modalData);
+  }
+
+  changeListener($event) : void {
+    this.readThis($event.target);
+  }
+  
+  readThis(inputValue: any): void {
+    var file:File = inputValue.files[0];
+    var myReader:FileReader = new FileReader();
+  
+    myReader.onloadend = (e) => {
+      this.image = myReader.result;
+      this.modalData.investment_image = this.image;
+    }
+    myReader.readAsDataURL(file);
   }
 }

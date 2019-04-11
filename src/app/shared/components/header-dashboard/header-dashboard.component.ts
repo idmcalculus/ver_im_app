@@ -34,4 +34,8 @@ export class HeaderDashboardComponent implements OnInit {
     }
   }
 
+  setPlanOperation(investment){
+    this.authService.setCurrentPlanOperation(investment);
+  }
+
 }
