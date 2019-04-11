@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../admin.service';
+import { UserService } from '../../user/user.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -11,7 +12,8 @@ export class ManageUsersComponent implements OnInit {
 
   users:[User]
   isLoading:boolean=true;
-  constructor(private adminService:AdminService) { }
+  constructor(private userService:UserService,
+     private adminService:AdminService) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp=>{
@@ -24,6 +26,23 @@ export class ManageUsersComponent implements OnInit {
   }
 
   viewUserDetail(user:User){
+    
+  }
+
+  updateUser(user,operation){
+    if(operation=='enable'){
+      this.userService.activateUser(user).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+        }
+      })
+    }else{
+      this.userService.deactivateUser(user).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+        }
+      })
+    }
     
   }
 

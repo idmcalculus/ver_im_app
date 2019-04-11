@@ -31,10 +31,11 @@
                                                 <td>{{user.email}}</td>
                                                 <td>{{user.phone_number}}</td>
                                                 <td>{{user.user_category}}</td>
-                                                <span *ngIf="user.email_is_verified =='1' " class="">Active</span>
-                                                <span *ngIf="user.email_is_verified =='0' " class="">In-active</span>                                                
-                                                <td *ngIf="user.email_is_verified =='1' "><button class="btn btn-success">Disable</button></td>
-                                                <td *ngIf="user.email_is_verified =='0' "><button class="btn btn-success">Enable</button></td>
+                                                <td *ngIf="user.email_is_verified =='1' ">Active</td>
+                                                <td *ngIf="user.email_is_verified =='1' "><button (click)="updateUser(user,'disable')" class="btn btn-success">Disable</button></td>
+                                                
+                                                <td *ngIf="user.email_is_verified =='0' ">In-active</td>                                                
+                                                <td *ngIf="user.email_is_verified =='0' "><button (click)="updateUser(user,'enable')" class="btn btn-success">Enable</button></td>
                                             </tr>
                                           </tbody>
                                       </table>

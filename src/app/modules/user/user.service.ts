@@ -37,5 +37,17 @@ export class UserService {
     &bank_name=${user.bank_name}`,null);
   }
 
+  activateUser(user:User):Observable<any>{
+    return this.httpService.postRequest(`activate_user?
+    email=${user.email}`,null);
+  }
+
+  deactivateUser(user:User):Observable<any>{
+    return this.httpService.postRequest(`deactivate_user?
+    email=${user.email}`,null);
+  }
+
+  
+
 
 }

@@ -27,7 +27,16 @@
                       <div class="col-xl-4">
                           <div class="card latest-update-card">
                               <div class="card-block">
-                                  <h5>Details</h5>
+                                    <div class="row p-0">
+                                        <div class="col-md-8"><h5>Details</h5></div>
+                                        <div class="col-md-4">
+                                            <a (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
+                                                data-target="#managePlanModal"
+                                                class="btn btn-add plus-btn float-right"><span><i
+                                                    class="fa fa-edit"></i></span></a>
+                                        </div>
+                                    </div>
+                                  <!-- <h5>Details</h5> -->
                                   <a  (click)="setPlanOperation(pool)" href="#" data-toggle="modal" data-target="#managePlanModal">
                                       <div class="superb-container no-effects m-b20">
                                           <div class="img-holder">
@@ -43,7 +52,7 @@
                                               <h4>Number of Investors: <br>
                                                   <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p></h4>
 
-                                              <a href="pool-details.html" class="btn2 btn-login view mt-2">Pull out</a>
+                                              <!-- <a href="pool-details.html" class="btn2 btn-login view mt-2">Pull out</a> -->
                                           </div>
                                       </div>
                                   </a>
