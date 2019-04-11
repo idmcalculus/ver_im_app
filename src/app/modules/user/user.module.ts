@@ -14,6 +14,7 @@ import { PoolDetailComponent } from './pool-detail/pool-detail.component';
 import {SideBarComponent} from './../../shared/components/side-bar/side-bar.component';
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {HeaderDashboardComponent} from './../../shared/components/header-dashboard/header-dashboard.component';
+import {ReportComponent} from './../../shared/components/report/report.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HeaderDashboardComponent} from './../../shared/components/header-dashboa
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
-    HeaderDashboardComponent
+    HeaderDashboardComponent,
+    ReportComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import {HeaderDashboardComponent} from './../../shared/components/header-dashboa
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
-    HeaderDashboardComponent
+    HeaderDashboardComponent,
+    ReportComponent
   ]
 })
 export class UserModule { }

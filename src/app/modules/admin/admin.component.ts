@@ -28,7 +28,8 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.authService.validateSession().then(resp=>{
-      if(resp.email){
+      // console.log("has in :: "+JSON.stringify(resp))
+      if(resp && resp.email){
         this.user = resp;
         this.getCategories();
       }
@@ -38,7 +39,9 @@ export class AdminComponent implements OnInit {
   addInvestmnet(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      this.investmentService.adInvestment(this.investment).subscribe(resp=>{
+      console.log("investment to add is :: "+JSON.stringify(this.investment))
+      this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
+      this.investmentService.addInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message);    
           window.location.href = 'admin/pools';      
@@ -58,6 +61,7 @@ export class AdminComponent implements OnInit {
 
   getCategories(){
     this.investmentService.getCategories().subscribe(categories=>{
+      // console.log("i hvae cat :: "+JSON.stringify(categories))
       if(categories && categories.success){
         this.categories = categories.success.Data;
       }

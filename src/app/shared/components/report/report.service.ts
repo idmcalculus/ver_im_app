@@ -14,4 +14,16 @@ export class ReportService {
     &description=${report.description}&returned_amount=${report.returned_amount}
     &investment_id=${report.investment_id}&payment_type=${report.payment_type}`,{});
   }
+
+  updateReport(report:Report): Observable<any> {
+    return this.httpService.postRequest(`report/update?title=${report.title}
+    &description=${report.description}&returned_amount=${report.returned_amount}
+    &investment_id=${report.investment_id}&payment_type=${report.payment_type}
+    &report_id=${report.id}`,{});
+  }
+
+  deleteReport(report:Report): Observable<any> {
+    return this.httpService.postRequest(`report/delete?report_id=${report.id}`,{});
+  }
+
 }

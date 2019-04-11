@@ -28,7 +28,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import {httpInterceptorProviders} from './core/auth/index';
 import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
-import {ReportComponent} from './shared/components/report/report.component';
 
 
 @NgModule({
@@ -44,9 +43,7 @@ import {ReportComponent} from './shared/components/report/report.component';
     CareerComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    ManageUsersComponent,
-    ReportComponent
-    // ManageInvestmentComponent
+    ManageUsersComponent
 
   ],
   imports: [

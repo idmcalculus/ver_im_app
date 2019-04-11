@@ -56,17 +56,31 @@
                                   <div class="row p-0">
                                       <div class="col-md-8"><h5>Report</h5></div>
                                       <div class="col-md-4">
-                                          <a href="#" data-toggle="modal"
+                                          <a (click)="manageReport('create',null)" href="#" data-toggle="modal"
                                              data-target="#reportModal"
                                              class="btn btn-add plus-btn float-right"><span><i
                                                   class="fa fa-plus"></i></span></a>
                                       </div>
                                   </div>
-                                  <div *ngFor="let report of pool?.report "c lass="report-card">
-                                      <h4>{{report?.title}}</h4>
-                                      <div>{{report?.description}}</div>
-                                      <small class="date">{{report?.updated_at}}</small>
-                                  </div>
+                                  
+                                      <div *ngFor="let report of pool?.report " class="report-card">
+                                        
+                                            <h4>{{report?.title}}</h4>
+                                            <div>{{report?.description}}</div>
+                                            <small class="date">{{report?.updated_at}}</small>
+                                            <a (click)="manageReport('update',report)" href="#" data-toggle="modal"
+                                                data-target="#reportModal">
+                                                <small class="">   Edit</small> 
+                                            </a>
+                                            <a (click)="deleteReport(report)" href="#" data-toggle="modal"
+                                                data-target="#none">
+                                                <small class="">   Delete</small> 
+                                            </a>
+                                            <!-- <small (click)="deleteReport(report.id)" class="">   Delete</small> -->
+                                       
+                                    </div>
+                                  
+                                  
                               </div>
                           </div>
                       </div>
@@ -108,57 +122,4 @@
       </div>
   </div>
 </div>
-
-<div class="modal fade" data-backdrop="static" style="margin-top: 3em !important;"
-                     id="reportModal" tabindex="-1" role="dialog"
-                     aria-labelledby="reportModalTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content create-investment create-report">
-                            <div class="modal-header">
-                                <h5>Create Report</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" [(ngModel)]="reportData.title" name="title" class="form-control" id="title">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea [(ngModel)]="reportData.description"  name="description" id="description" cols="10" rows="5" class="form-control"
-                                              placeholder="Enter the description of the investment"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-6 col-sm-6">
-                                            <label for="payment-report">Payment Report</label>
-                                            <input type="checkbox" id="payment-report" class="form-check-input" name="payment">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group" id="payment-field" style="display: block;">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="amount" class="sr-only">Amount</label>
-                                            <input [(ngModel)]="reportData.returned_amount" type="text" id="amount" placeholder="Amount" class="form-control">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="pay-type" class="sr-only">Payment Type</label>
-                                            <select [(ngModel)]="reportData.payment_type" name="p-type" id="pay-type" class="form-control">
-                                                <option value="" hidden>Select</option>
-                                                <option value="Credit">Credit</option>
-                                                <option value="Debit">Debit</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="button" (click)="addReport()" class="btn2 add-invest" value="Create Report">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-</div>
+<app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>

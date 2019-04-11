@@ -22,4 +22,8 @@ export class ManageUsersComponent implements OnInit {
     })
   }
 
+  viewUserDetail(user:User){
+    
+  }
+
 }

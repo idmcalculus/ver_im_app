@@ -19,20 +19,20 @@
                                               <th>Name</th>
                                               <th>Email</th>
                                               <th>Phone Number</th>
-                                              <th>Created on</th>
+                                              <!-- <th>Created on</th> -->
                                               <th>User Category</th>
-                                              <th>Authentication type</th>
+                                              <!-- <th>Authentication type</th> -->
                                               <th>Account Status</th>
                                           </tr>
                                           </thead>
                                           <tbody>
-                                            <tr *ngFor="let user of users" >
+                                            <tr (click)="viewUserDetail(user)" *ngFor="let user of users" >
                                                 <td>{{user.first_name}} {{user.last_name}}</td>
                                                 <td>{{user.email}}</td>
                                                 <td>{{user.phone_number}}</td>
-                                                <td>{{user.created_at}}</td>
+                                                <!-- <td>{{user.created_at}}</td> -->
                                                 <td>{{user.user_category}}</td>
-                                                <td>{{user.authentication_type}}</td>
+                                                <!-- <td>{{user.authentication_type}}</td> -->
                                                 <td *ngIf="user.email_is_verified =='1' "><button class="btn btn-success">Active</button></td>
                                                 <td *ngIf="user.email_is_verified =='0' "><button class="btn btn-success">In-Active</button></td>
                                             </tr>

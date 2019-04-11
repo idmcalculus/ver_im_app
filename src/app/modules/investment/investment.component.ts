@@ -46,6 +46,7 @@ export class InvestmentComponent implements OnInit {
         });
       }
       allInvestments = this.investments;
+      // console.log("all investments :: "+JSON.stringify(allInvestments))
       this.isLoading = false;
     })
   }

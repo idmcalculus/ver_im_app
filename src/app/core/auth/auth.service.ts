@@ -32,7 +32,7 @@ export class AuthService {
             this.httpService.postRequest(`fetch_profile?email=${email}`,{})
                     .subscribe(response => {
                         if (response && response.success) {
-                            userDetails = response.success.Data[0];
+                            userDetails = response.success.Data.user[0];
                             this.currentUserSubject.next(userDetails);
                             console.log('Fetched again')
                             resolve(userDetails);

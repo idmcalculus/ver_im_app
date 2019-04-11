@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { ReportService } from './report.service';
 import { Report } from '../../models/Report';
 
@@ -9,13 +9,25 @@ import { Report } from '../../models/Report';
 })
 export class ReportComponent implements OnInit {
 
-  reportData:Report;
-  constructor(private reportService:ReportService) { }
+  @Input() public modaltitle:string;
+  @Input() public modalButtonTitle:string;
+  @Input() public modalData:any;
+
+  @Output() submit = new EventEmitter<Report>();
+  constructor() { 
+    
+  }
 
   ngOnInit() {
+
   }
 
-  addReport(){
-    this.reportService.createReport(this.reportData)
+
+  modalSubmitted(){
+    this.submit.emit(this.modalData);
   }
+
+  
+
+
 }
