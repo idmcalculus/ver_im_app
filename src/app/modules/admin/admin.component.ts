@@ -48,12 +48,13 @@ export class AdminComponent implements OnInit {
   addInvestmnet(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      // this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
+      this.modalButtonTitle = 'submitting'
       this.investmentService.addInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message);    
           window.location.href = 'admin/pools';      
         }
+        this.modalButtonTitle = 'Create'
       })
     }
     
@@ -62,16 +63,16 @@ export class AdminComponent implements OnInit {
   updateInvestment(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
-      // console.log("updaeting with :: "+JSON.stringify(this.investment))
+      this.modalButtonTitle = 'submitting'
+      console.log("updating with :: "+JSON.stringify(this.investment))
       this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message);    
+          alert(resp.success.Message);
           window.location.href = 'admin/pools';      
         }
+        this.modalButtonTitle = 'Update'
       })
     }
-    
   }
 
   getInvestments(){
@@ -98,6 +99,7 @@ export class AdminComponent implements OnInit {
       this.modaltitle='Update Plan';
       this.modalButtonTitle='Update';
       this.modalData=modalData.investment;
+      console.log("value setting :: "+JSON.stringify(modalData))
       this.callBack=this.updateInvestment;
     }else{
       this.modaltitle='Create Plan';

@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-5 offset-7">
-                                    <button class="btn2 btn btn-raised add-invest" [disabled]="!addInvestmentForm.form.valid" >{{modalButtonTitle}}</button>
+                                    <button class="btn2 btn btn-raised add-invest" [disabled]="!addInvestmentForm.form.valid || modalButtonTitle=='submitting' " >{{modalButtonTitle}}</button>
                                 </div>
                     </form>
                 </div>
