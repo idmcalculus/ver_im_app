@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
     this.investment = filledInvestment;
     if(this.investment.title){
       this.modalButtonTitle = 'submitting'
-      console.log("updating with :: "+JSON.stringify(this.investment))
+      // console.log("updating with :: "+JSON.stringify(this.investment))
       this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message);
@@ -99,7 +99,7 @@ export class AdminComponent implements OnInit {
       this.modaltitle='Update Plan';
       this.modalButtonTitle='Update';
       this.modalData=modalData.investment;
-      console.log("value setting :: "+JSON.stringify(modalData))
+      // console.log("value setting :: "+JSON.stringify(modalData))
       this.callBack=this.updateInvestment;
     }else{
       this.modaltitle='Create Plan';

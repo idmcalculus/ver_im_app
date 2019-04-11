@@ -11,6 +11,7 @@ import { UserService } from '../../user/user.service';
 export class ManageUsersComponent implements OnInit {
 
   users:[User]
+  selectedUser:User
   isLoading:boolean=true;
   constructor(private userService:UserService,
      private adminService:AdminService) { }
@@ -25,21 +26,23 @@ export class ManageUsersComponent implements OnInit {
     })
   }
 
-  viewUserDetail(user:User){
-    
+  viewUserDetail(userIndex){
+    this.selectedUser = this.users[userIndex]
   }
 
-  updateUser(user,operation){
+  updateUser(userIndex,operation){
     if(operation=='enable'){
-      this.userService.activateUser(user).subscribe(resp=>{
+      this.userService.activateUser(this.users[userIndex]).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message)
+          this.users[userIndex].email_is_verified=1
         }
       })
     }else{
-      this.userService.deactivateUser(user).subscribe(resp=>{
+      this.userService.deactivateUser(this.users[userIndex]).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message)
+          this.users[userIndex].email_is_verified=0
         }
       })
     }
