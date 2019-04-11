@@ -38,7 +38,6 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.authService.validateSession().then(resp=>{
-      // console.log("has in :: "+JSON.stringify(resp))
       if(resp && resp.email){
         this.user = resp;
         this.getCategories();
@@ -49,13 +48,13 @@ export class AdminComponent implements OnInit {
   addInvestmnet(filledInvestment:Investment){
     this.investment = filledInvestment;
     if(this.investment.title){
-      this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
-      // this.investmentService.addInvestment(this.investment).subscribe(resp=>{
-      //   if(resp && resp.success){
-      //     alert(resp.success.Message);    
-      //     window.location.href = 'admin/pools';      
-      //   }
-      // })
+      // this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
+      this.investmentService.addInvestment(this.investment).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message);    
+          window.location.href = 'admin/pools';      
+        }
+      })
     }
     
   }
@@ -64,13 +63,13 @@ export class AdminComponent implements OnInit {
     this.investment = filledInvestment;
     if(this.investment.title){
       this.investment.expected_return_amount = (this.investment.investment_amount / this.investment.max_num_of_slots).toFixed(2)
-      console.log("updaeting with :: "+JSON.stringify(this.investment))
-      // this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
-      //   if(resp && resp.success){
-      //     alert(resp.success.Message);    
-      //     window.location.href = 'admin/pools';      
-      //   }
-      // })
+      // console.log("updaeting with :: "+JSON.stringify(this.investment))
+      this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message);    
+          window.location.href = 'admin/pools';      
+        }
+      })
     }
     
   }

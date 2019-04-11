@@ -91,9 +91,9 @@ isLoaded:boolean;
   }
 
   deleteReport(report){
-    var proceed = confirm("Confirm Deltion?")
+    var proceed = confirm("Confirm Deletion?")
     if(proceed){
-      alert('deleting record :: '+report.id)
+      // alert('deleting record :: '+report.id)
       this.reportService.deleteReport(report).subscribe(resp=>{
           if(resp && resp.success){
             alert(resp.success.Message)

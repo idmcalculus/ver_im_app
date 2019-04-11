@@ -12,6 +12,7 @@
                               </div>
                               <div class="card-block">
                                   <div class="dt-responsive table-responsive">
+                                        
                                       <table id="order-table"
                                              class="table table-striped table-bordered nowrap">
                                           <thead>
@@ -19,10 +20,9 @@
                                               <th>Name</th>
                                               <th>Email</th>
                                               <th>Phone Number</th>
-                                              <!-- <th>Created on</th> -->
                                               <th>User Category</th>
-                                              <!-- <th>Authentication type</th> -->
                                               <th>Account Status</th>
+                                              <th>Action</th>
                                           </tr>
                                           </thead>
                                           <tbody>
@@ -30,11 +30,11 @@
                                                 <td>{{user.first_name}} {{user.last_name}}</td>
                                                 <td>{{user.email}}</td>
                                                 <td>{{user.phone_number}}</td>
-                                                <!-- <td>{{user.created_at}}</td> -->
                                                 <td>{{user.user_category}}</td>
-                                                <!-- <td>{{user.authentication_type}}</td> -->
-                                                <td *ngIf="user.email_is_verified =='1' "><button class="btn btn-success">Active</button></td>
-                                                <td *ngIf="user.email_is_verified =='0' "><button class="btn btn-success">In-Active</button></td>
+                                                <span *ngIf="user.email_is_verified =='1' " class="">Active</span>
+                                                <span *ngIf="user.email_is_verified =='0' " class="">In-active</span>                                                
+                                                <td *ngIf="user.email_is_verified =='1' "><button class="btn btn-success">Disable</button></td>
+                                                <td *ngIf="user.email_is_verified =='0' "><button class="btn btn-success">Enable</button></td>
                                             </tr>
                                           </tbody>
                                       </table>

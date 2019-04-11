@@ -4,7 +4,8 @@ import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-manage-users',
-  templateUrl: './manage-users.component.html'
+  templateUrl: './manage-users.component.html',
+  styleUrls: ['./manage-users.component.css']
 })
 export class ManageUsersComponent implements OnInit {
 

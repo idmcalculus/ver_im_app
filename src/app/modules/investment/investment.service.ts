@@ -24,8 +24,9 @@ export class InvestmentService {
 
   updateInvestment(investment:Investment):Observable<any>{
     var imageBody ={"investment_image":investment.investment_image};
-    return this.httpService.postRequest(`investment/create?
+    return this.httpService.postRequest(`investment/update?
     title=${investment.title}&description=${investment.description}
+    &investment_id=${investment.id}
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}
     &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}&
     investment_amount=${investment.investment_amount}

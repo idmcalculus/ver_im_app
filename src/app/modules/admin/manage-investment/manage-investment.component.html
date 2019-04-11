@@ -57,7 +57,7 @@
                                         <div class="col-md-2"><label>Returns</label></div>
                                         <div class="col-md-10">
                                             <label for="annual_profit">ANNUAL PROFIT <small class="info-span">(expected)</small></label>
-                                            <input  required type="text" class="form-control" name="annual_profit" id="annual_profit">
+                                            <input  required type="text" [(ngModel)]="modalData.expected_return_amount" class="form-control" name="annual_profit" id="annual_profit">
                                         </div>
                                     </div>
                                     <div class="form-group">
