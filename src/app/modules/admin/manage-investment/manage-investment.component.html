@@ -55,35 +55,52 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-2"><label>Returns</label></div>
-                                        <div class="col-md-10">
+                                        <div class="col-md-5">
                                             <label for="annual_profit">ANNUAL PROFIT <small class="info-span">(expected)</small></label>
                                             <input  required type="text" [(ngModel)]="modalData.expected_return_amount" class="form-control" name="annual_profit" id="annual_profit">
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-2"></div>
-                                            <div class="col-md-5">
-                                                <label for="period">Expected Return Period <small class="info-span">(Weekly/monthly)</small></label>
-                                                <select required [(ngModel)]="modalData.expected_return_period" name="period" id="period" class="form-control">
-                                                    <option value="Weekly" >Weekly Return</option>
-                                                    <option value="Monthly" >Monthly Return</option>
-                                                </select>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <label for="period">Period <small class="info-span">(Weekly/monthly)</small></label>
+                                            <select required [(ngModel)]="modalData.expected_return_period" name="period" id="period" class="form-control">
+                                                <option value="Weekly" >Weekly Return</option>
+                                                <option value="Monthly" >Monthly Return</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>                                
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-2"><label style="padding-top: 0 !important;">Upload Image</label></div>
-                                        <div class="col-md-10">
+                                        <div class="col-md-5">
                                             <label for="upload-image" class="planUploader">
                                                 <input type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
                                                 Click to upload Investment Image
                                             </label>
                                         </div>
+                                        <div class="col-md-5">
+                                            <div class="image_preview">
+                                                <img *ngIf="modalData.investment_image" src="{{modalData.investment_image}}" alt="investment_image" id="invest-preview">
+                                                <img *ngIf="!modalData.investment_image || modalData.investment_image=='' " src="" alt="" id="invest-preview">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-2"><label style="padding-top: 0 !important;">Upload Image</label></div>
+                                        <div class="col-md-5">
+                                            <label for="upload-image" class="planUploader">
+                                                <input type="file" id="upload-image" onChange="readURL(this)" accept="image/*">
+                                                Click to upload Investment Image
+                                            </label>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="image_preview">
+                                                <img src="" alt="" id="invest-preview">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-2"><label for="description">Description</label></div>

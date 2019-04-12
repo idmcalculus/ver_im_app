@@ -51,8 +51,8 @@ export class UserService {
   //   ?investment_id=1&user_id=paul_adebiyi@yahoo.com`,null);
   // }
 
-  getusersInvestment(){
-    return this.httpService.postRequest(`investment_user/listInvestmentOfUser`,null);
+  getusersInvestment(email){
+    return this.httpService.postRequest(`investment_user/listInvestmentOfUser`, {"user_id":email});
   }
 
   

@@ -6,7 +6,7 @@
                 <div class="page-body pools">
                     <div class="row mb-4">
                         <div class="col-xl-4 col-md-6 offset-8">
-                            <a *ngIf="userType=='user'" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
+                            <a *ngIf="userType=='user'" (click)="setHeaderandFooter()" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
                                 Join New
                                 Pool
                             </a>

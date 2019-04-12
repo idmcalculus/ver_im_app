@@ -1,21 +1,21 @@
 <section class="investment-plans">
 
-        <div *ngIf=" investment==null " class="lds-default">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+        <div *ngIf=" investment==null || isLoading" class="lds-default">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
 
-        <div *ngIf=" investment!=null " class="inner-investment">
+        <div *ngIf=" investment!=null && !isLoading " class="inner-investment">
             <div class="invest-banner">
                 <div class="cover"></div>
                 <div class="over-content">
@@ -126,6 +126,7 @@
                         <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
                         <button
+                            data-dismiss="modal"
                             [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                             type="button"
                             class="btn btn-join-add"
@@ -139,6 +140,7 @@
                             (callback)="joinInvestment()"
                             >Paystack pay</button>
                         <button
+                            data-dismiss="modal"
                             type="button"
                             [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                             class="btn btn-join-add"

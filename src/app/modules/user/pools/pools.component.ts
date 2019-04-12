@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-pools',
@@ -16,15 +17,21 @@ export class PoolsComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
-    private investmentService:InvestmentService) { 
+    private investmentService:InvestmentService,
+    private userService:UserService) { 
       let userpath = window.location.pathname;
       if(userpath.includes('user')){
         this.userType = 'user';
-        this.getUserPols();
+        this.authService.currentUser.subscribe(resp=>{
+          if(resp){
+            this.getUserPols(resp.email);
+          }
+        })
       }else{
         this.userType = 'admin';
         this.getPools();
       }
+      
   }
 
   ngOnInit() {
@@ -40,8 +47,8 @@ export class PoolsComponent implements OnInit {
     })
   }
 
-  getUserPols(){
-    this.investmentService.getUserInvestments().subscribe(investments=>{
+  getUserPols(email){
+    this.investmentService.getUserInvestments(email).subscribe(investments=>{
       if(investments){
         this.pools = investments.success.Data
       }
@@ -51,6 +58,10 @@ export class PoolsComponent implements OnInit {
 
   setPlanOperation(investment){
     this.authService.setCurrentPlanOperation(investment);
+  }
+
+  setHeaderandFooter(){
+    this.authService.setInProfileView(false);
   }
 
   

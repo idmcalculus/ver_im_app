@@ -61,6 +61,7 @@ export class InvestmentDetailComponent implements OnInit {
 
 
   joinInvestment(){
+    this.isLoading = true;
     this.transaction.investment_id = this.investment.id;
     this.transaction.amount_paid = this.investment.investment_amount  * this.transaction.number_of_pools;
     this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2))
@@ -71,6 +72,7 @@ export class InvestmentDetailComponent implements OnInit {
         // this.router.navigate(['/investments']);;
         window.location.href="investments";
       }
+      this.isLoading = false;
     })
   }
 
