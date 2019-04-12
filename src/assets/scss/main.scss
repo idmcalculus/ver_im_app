@@ -13,6 +13,8 @@
 @import "_partials/auth";
 @import "_partials/invest";
 @import "_partials/dashboard";
+@import "_partials/users";
+@import "_partials/career";
 @import "_partials/about";
 @import "_partials/mobile";
 
@@ -28,8 +30,6 @@ a {
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
   overflow-x: hidden;
   @include Nunito-Sans();
 }

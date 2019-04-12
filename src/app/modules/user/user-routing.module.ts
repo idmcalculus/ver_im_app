@@ -2,7 +2,7 @@ import { NgModule }            from '@angular/core';
 import { Routes,
          RouterModule }        from '@angular/router';
 import { UserComponent }    from './user.component';
-import {ProfileComponent} from './profile/profile.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import {UserSettingsComponent} from './settings/settings.component';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
@@ -19,8 +19,8 @@ const userRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'profile', component: ProfileComponent },
-          { path: 'investments', component: ProfileComponent },
+          { path: 'profile', component: UserProfileComponent },
+          { path: 'investments', component: UserProfileComponent },
           { path: 'settings', component: UserSettingsComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:pool_id', component: PoolDetailComponent },

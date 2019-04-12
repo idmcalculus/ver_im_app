@@ -1,0 +1,184 @@
+.career {
+  background: $offwhite;
+  padding: 11em 0 2em;
+  .inner-career {
+    padding: 0 50px 3em;
+    .content {
+      h3 {
+        font-size: 2.4rem;
+        margin-bottom: .71rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #444;
+      }
+      p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.5;
+      }
+      .second {
+        margin-top: 3em;
+        h4 {
+          color: $theme-blue;
+          font-size: 1.5rem;
+          position: relative;
+          font-weight: bold;
+          margin-bottom: 1rem;
+          &:after {
+            content: "";
+            position: absolute;
+            border-bottom: 1px solid rgba($theme-black, .2);
+            bottom: -5px;
+            width: 50%;
+            height: 1px;
+            left: 0;
+          }
+        }
+        .par {
+          font-size: 1em;
+          color: #555;
+          font-weight: lighter;
+          margin-bottom: .9em;
+        }
+        strong a {
+          font-size: 1.2rem;
+          color: #555;
+        }
+      }
+      ul {
+        margin-top: 2em;
+        padding-left: 15px;
+        list-style: none;
+      }
+      li a {
+        display: block;
+        text-decoration: none;
+        position: relative;
+        h5 {
+          color: #444;
+          font-size: .9rem;
+        }
+        small {
+          color: #888;
+        }
+        &:hover {
+          @include transition(ease, 0.7s);
+          transform: translateY(-2%);
+          &:before {
+            content: '';
+            text-decoration: none;
+            border-left: 2px solid $theme-blue;
+            position: absolute;
+            width: 6px;
+            height: 100%;
+            right: 100%;
+            @include transition(ease, 0.7s);
+          }
+        }
+      }
+    }
+    .right-holder {
+      padding: 0 10px;
+      > div {
+        width: 100%;
+        height: 170px;
+        border: 1px solid rgba($theme-blue, .3);
+        background: #fff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.career-details {
+  padding: 8em 0 2em;
+  background: $offwhite;
+  .inner-card {
+    width: 80%;
+    margin: 10px auto;
+    background: $theme-white;
+    padding: 3rem;
+    .post-header {
+      padding: 0 0 4rem 0;
+      h3 {
+        color: #555555;
+        font-size: 1.5rem;
+      }
+      h4 {
+        font-size: 13px;
+        font-weight: lighter;
+      }
+    }
+    .post-body {
+      padding: 10px 0;
+      h3 {
+        color: $theme-blue;
+        font-size: 1.5rem;
+        font-weight: 400;
+        position: relative;
+        &:after {
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -7px;
+          border-bottom: 1px solid rgba($theme-black, .2);
+        }
+      }
+      h4 {
+        color: $theme-black;
+        font-size: 1rem;
+        font-weight: 400;
+        position: relative;
+        text-transform: uppercase;
+        margin-top: 4em;
+      }
+      p {
+        margin: 2em 0 2em;
+        color: #555;
+      }
+      ul {
+        list-style: none;
+        margin-top: 2em;
+      }
+      li {
+        display: block;
+        color: #555;
+        line-height: 2;
+        font-weight: lighter;
+        padding: 10px 0;
+      }
+    }
+    .post-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin: 5% 0 2%;
+      .btn {
+        padding: .8em 1em;
+        width: 15%;
+        border-radius: 0;
+        flex-direction: column;
+        margin-left: 20px;
+        border: 0;
+        text-transform: uppercase;
+        font-weight: lighter;
+        &:hover {
+          transform: translateY(-2%);
+          @include transition(ease, 0.5s);
+          @include boxShadow(0, 4px, 10px, $shadowBlack);
+        }
+      }
+      .btn-apply {
+        background: $theme-blue;
+        color: $theme-white;
+      }
+      .btn-cancel {
+        background: #ddd;
+        color: $theme-black;
+      }
+    }
+  }
+}

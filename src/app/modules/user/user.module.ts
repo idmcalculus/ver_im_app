@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
 import { VerifyUserComponent } from './verify-user/verify-user.component';
-import {ProfileComponent} from './profile/profile.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
@@ -15,14 +15,14 @@ import {SideBarComponent} from './../../shared/components/side-bar/side-bar.comp
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {HeaderDashboardComponent} from './../../shared/components/header-dashboard/header-dashboard.component';
 import {ReportComponent} from './../../shared/components/report/report.component'
-
+import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
 
 @NgModule({
   declarations: [
     UserComponent, 
     VerifyUserComponent,
-    ProfileComponent,
+    UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
     PoolsComponent,
@@ -31,7 +31,8 @@ import {ManageInvestmentComponent} from './../admin/manage-investment/manage-inv
     HeaderComponent,
     HeaderDashboardComponent,
     ReportComponent,
-    ManageInvestmentComponent
+    ManageInvestmentComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +49,9 @@ import {ManageInvestmentComponent} from './../admin/manage-investment/manage-inv
     HeaderComponent,
     HeaderDashboardComponent,
     ReportComponent,
-    ManageInvestmentComponent
+    ManageInvestmentComponent,
+    UserDashboardComponent,
+    ProfileComponent
   ]
 })
 export class UserModule { }

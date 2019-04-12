@@ -1,0 +1,419 @@
+.pcoded-main-container {
+  background: $offwhite !important
+}
+
+.nav-tabs {
+  padding: 10px 0 0;
+  .nav-link {
+    border: 0 !important;
+    &.active {
+      color: #3f51b5 !important;
+      border-bottom: 2px solid #3f51b5 !important;
+    }
+  }
+}
+
+.nav-link {
+  padding: .7rem 1.2rem !important;
+  font-size: 1.2rem;
+  &:first-child {
+    padding-left: 0 !important;
+  }
+}
+
+.bgColor {
+  background-color: $theme-blue !important;
+}
+
+.bgWhite {
+  background: $theme-white !important;
+}
+
+.logoBrand a {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #3f51b5 !important;
+  margin-left: 17px !important;
+}
+
+.navMenu {
+  padding-top: 2em;
+  li a {
+    padding: 15px 10px 15px 20px !important;
+    color: #fff !important;
+    font-size: 19px !important;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    &.active {
+      background: #2363c1 !important
+    }
+  }
+  .pcoded-mtext {
+    top: 17px !important;
+  }
+}
+
+.header-navbar {
+  padding: .71em 0 !important;
+  .navbar-wrapper {
+    .navbar-logo {
+      box-shadow: none !important;
+    }
+  }
+}
+
+.text-c-blue {
+  color: #3f51b5
+}
+
+.prod-p-card {
+  i {
+    border-radius: 3px !important;
+    background: #3f51b5 !important;
+    width: 45px !important;
+    height: 45px !important
+  }
+}
+
+.user-invest {
+  select.form-control {
+    height: calc(2.25rem + 13px) !important;
+    background: $theme-blue;
+    color: $theme-white;
+    font-size: 16px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    font-weight: lighter;
+  }
+  h4 {
+    color: $theme-blue;
+    font-weight: bold;
+    font-size: 1.62rem;
+    margin-bottom: 0;
+    letter-spacing: .51px;
+    position: relative;
+    &:after {
+      height: 1px;
+      width: 100%;
+      left: 0;
+      right: 0;
+      position: absolute;
+      border-bottom: 1px solid rgba(0, 0, 0, .2);
+      bottom: 0;
+      content: "";
+      top: 45px;
+    }
+  }
+}
+
+.btn-plan {
+  background: #28b77f;
+  border: none;
+}
+
+.createPlan {
+  margin: .41em 0 0 25px;
+  li a {
+    padding: .31em 1em !important;
+    color: #fff !important;
+    border-radius: 50px !important;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 1.5rem !important;
+  }
+}
+
+.create-investment {
+  padding: 2rem;
+  border-radius: 17px !important;
+  .modal-header {
+    border-bottom: none;
+    padding: 1rem;
+    h5 {
+      font-size: 2rem;
+      color: #555;
+      position: relative;
+      &:after {
+        content: "";
+        width: 100%;
+        position: absolute;
+        height: 1px;
+        border-bottom: 1px solid rgba(0, 0, 0, .2);
+        bottom: 10px;
+        left: 0;
+        top: 34px;
+      }
+    }
+  }
+  label {
+    font-weight: bold;
+    font-size: 1rem;
+    //padding-top: 1rem;
+    color: #444;
+  }
+  .form-control {
+    height: calc(3em + 5px);
+    border-radius: 4px !important;
+    color: #888;
+    font-weight: bold;
+    outline: none;
+    &:focus {
+      @include borderLine(1px, rgba($theme-blue, .2));
+      @include noBoxShadow(none);
+    }
+    &::placeholder {
+      color: #888;
+    }
+  }
+  .form-group {
+    margin-bottom: 1.2em !important;
+  }
+  .info-span {
+    color: $theme-blue;
+    font-weight: lighter;
+    &.with-size {
+      font-size: 14px;
+    }
+  }
+  select.form-control {
+    height: calc(3em + 5px) !important;
+    border-radius: 4px !important;
+    color: #888;
+    @include borderLine(1px, rgba($theme-black, .2));
+    @include noBoxShadow(none);
+    &:hover {
+      @include borderLine(1px, rgba($theme-black, .2));
+    }
+  }
+  textarea.form-control {
+    height: calc(10em + 5px) !important;
+    resize: none;
+    &::placeholder {
+      font-weight: lighter;
+    }
+  }
+  .modal-footer {
+    border: none;
+  }
+  .create-report {
+    padding: 1rem;
+    border-radius: 4px !important;
+    border: none !important;
+    h5 {
+      font-size: 1.5em !important;
+      width: 78%;
+    }
+  }
+  .planUploader {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: $theme-white;
+    cursor: pointer;
+    color: $theme-blue;
+    font-weight: lighter;
+    border-radius: 4px;
+    @include borderLine(1px, $theme-blue);
+    &:hover {
+      background: $theme-blue;
+      color: #fff !important;
+      border: none;
+    }
+    input[type=file] {
+      display: none;
+    }
+  }
+  @include fullButtons();
+}
+
+.create-vacancy {
+  padding: 3em 8rem;
+  h3 {
+    font-size: 2rem;
+    color: #777777;
+    position: relative;
+    margin-bottom: 3em;
+    &:after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -15px;
+      border-bottom: 1px solid rgba($theme-black, .3);
+    }
+  }
+  h4 {
+    margin: 0;
+    color: $theme-blue;
+    font-weight: 400;
+  }
+  .l-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #777777;
+    margin-bottom: 10px;
+  }
+  .form-control {
+    background: $offwhite;
+    outline: none;
+    height: calc(2.5em + 10px) !important;
+    border-radius: 4px;
+    &:focus {
+      @include noBoxShadow(none);
+      @include borderLine(1px, rgba($theme-blue, .2));
+    }
+  }
+  textarea.form-control {
+    height: calc(8em + 10px) !important;
+    resize: none;
+  }
+  select.form-control {
+    height: calc(2.5em + 10px) !important;
+    @include borderLine(1px, rgba($theme-blue, .2));
+  }
+  .btn-job {
+    display: flex;
+    justify-content: space-evenly;
+    background: $theme-blue;
+    font-size: 1rem;
+    padding: .7em .4em;
+    color: white;
+    font-weight: lighter;
+  }
+  .btn-join {
+    width: 100% !important;
+    padding: .51em .8em !important;
+    font-size: 1.4rem;
+    font-weight: bold !important;
+    letter-spacing: unset !important;
+  }
+  .remove_button {
+    padding: .7rem 1em;
+    color: $theme-white;
+    background: rgb(230, 80, 40);
+    display: flex;
+    border-radius: 4px;
+    margin-left: 5px;
+    align-items: center;
+  }
+  @include fullButtons();
+}
+
+.list-vacancy {
+  padding: 1px;
+  .title-list {
+    display: flex;
+    align-items: center;
+    h3 {
+      font-size: 1.2rem;
+      color: #777777;
+      position: relative;
+      &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -3px;
+        border-bottom: 1px solid rgba($theme-black, .3);
+      }
+    }
+  }
+  .holder {
+    padding: 10px;
+    background: $offwhite;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    .holder-content {
+      padding: 2px;
+      h4 {
+        font-weight: bold;
+        font-size: 1rem;
+      }
+    }
+    .indicator {
+      display: flex;
+      align-items: flex-end;
+      .red {
+        @include indicator($red, $stop, 1s, infinite);
+      }
+      .orange {
+        @include indicator($yellow, $ready, 4s, 10);
+      }
+      .green {
+        @include indicator($green, $go, 7s, infinite);
+      }
+    }
+    &:hover {
+      @include boxShadow(0, 2px, 20px, $shadowBlack);
+      @include transition(ease, 0.8s);
+      transform: translateY(1%);
+    }
+  }
+  @include fullButtons();
+}
+
+/*.trafficlight {
+  .red {
+    background: red;
+    background-image: radial-gradient(brown, transparent);
+    background-size: 5px 5px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 35px;
+    animation: 13s red infinite;
+    border: dotted 2px red;
+    box-shadow: 0 0 20px #111 inset,
+    0 0 10px red;
+  }
+
+  .yellow {
+    background: yellow;
+    background-image: radial-gradient(orange, transparent);
+    background-size: 5px 5px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: dotted 2px yellow;
+    position: absolute;
+    top: 145px;
+    left: 35px;
+    animation: 13s yellow infinite;
+    box-shadow: 0 0 20px #111 inset,
+    0 0 10px yellow;
+  }
+
+  .green {
+    background: green;
+    background-image: radial-gradient(lime, transparent);
+    background-size: 5px 5px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: dotted 2px lime;
+    position: absolute;
+    top: 270px;
+    left: 35px;
+    box-shadow: 0 0 20px #111 inset,
+    0 0 10px lime;
+    animation: 13s green infinite;
+  }
+}*/
+
+@media (min-width: 576px) {
+  .modal-dialog-investment {
+    max-width: 800px !important
+  }
+}
+
+@media (min-width: 992px) {
+  .planCreateNav {
+    display: none !important;
+    background: #64c864
+  }
+}

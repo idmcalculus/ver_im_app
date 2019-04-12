@@ -17,19 +17,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea [(ngModel)]="modalData.description"  name="description" id="description" cols="10" rows="5" class="form-control"
+                                        <textarea required [(ngModel)]="modalData.description"  name="description" id="description" cols="10" rows="5" class="form-control"
                                                 placeholder="Enter the description of the investment"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-6 col-lg-6 col-sm-6">
-                                                <label for="payment-report">Payment Report
-                                                  <input required type="checkbox" id="payment-report" class="form-check-input" name="payment">
-                                                </label>
+                                                <!-- <label class="col-md-6 col-lg-6 col-sm-6" for="payment-report">Payment Report</label> -->
+                                                <span class="m-r-25">Payment Report </span>  <input required type="checkbox" [(ngModel)]="isPaymentreport" id="payment-report" class="form-check-input" name="payment">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group" id="payment-field" style="display: block;">
+                                    <div *ngIf="isPaymentreport" class="form-group" id="payment-field" style="display: block;">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label for="amount" class="sr-only">Amount</label>

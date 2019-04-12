@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../admin.service';
 import { UserService } from '../../user/user.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -14,7 +15,7 @@ export class ManageUsersComponent implements OnInit {
   selectedUser:User
   isLoading:boolean=true;
   constructor(private userService:UserService,
-     private adminService:AdminService) { }
+     private adminService:AdminService,private authService:AuthService) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp=>{
@@ -22,6 +23,7 @@ export class ManageUsersComponent implements OnInit {
         this.users = resp.success.Data;
         // console.log("user one is: "+JSON.stringify(this.users[0]))
         this.isLoading =  false;
+        // this.authService.se
       }
     })
   }

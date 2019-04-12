@@ -17,12 +17,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700" rel="stylesheet">
-    
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/css/font-awesome-n.min.css">
     <link rel="stylesheet" href="./assets/css/widget.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/feather.css">
+
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+
     
   </head>
 <body>
@@ -36,6 +40,17 @@
 <script type="text/javascript" src="./assets/js/gmaps.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() >= 1)
+                $('.header').addClass('scrolled');
+            else
+                $('.header').removeClass('scrolled');
+        })
+    })
+</script>
+<script>
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.

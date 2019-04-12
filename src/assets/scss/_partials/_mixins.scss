@@ -275,4 +275,83 @@ $slide: (
     }
   }
 }
-  
+
+@mixin indicator($color, $anim, $delay, $duration) {
+  background: $color;
+  background-image: radial-gradient($color, transparent);
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: $delay $anim $duration;
+  border: dotted 1px $color;
+  box-shadow: 0 0 20px $theme-black inset, 0 0 10px $color;
+}
+
+@keyframes stop {
+  0% {
+    opacity: 1
+  }
+  20% {
+    opacity: 1
+  }
+  40% {
+    opacity: 1
+  }
+  60% {
+    opacity: .1
+  }
+  80% {
+    opacity: .1
+  }
+  100% {
+    opacity: .1
+  }
+}
+
+@keyframes ready {
+  0% {
+    opacity: .1
+  }
+  20% {
+    opacity: .1
+  }
+  40% {
+    opacity: 1
+  }
+  50% {
+    opacity: .1
+  }
+  60% {
+    opacity: .1
+  }
+  80% {
+    opacity: .1
+  }
+  86% {
+    opacity: 1
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes go {
+  0% {
+    opacity: .1
+  }
+  40% {
+    opacity: .1
+  }
+  60% {
+    opacity: 1
+  }
+  80% {
+    opacity: 1
+  }
+  83% {
+    opacity: .1
+  }
+  100% {
+    opacity: .1
+  }
+}

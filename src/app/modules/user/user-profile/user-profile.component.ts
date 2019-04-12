@@ -4,12 +4,12 @@ import {AuthService} from './../../../core/auth/auth.service';
 import {UserService} from './../user.service';
 import {Subscription} from 'rxjs';
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html'
 })
-export class ProfileComponent implements OnInit{
+export class UserProfileComponent implements OnInit{
 
-  user:User={email:'',password:'',country:'',first_name:'',last_name:'',bank_name:''};
+  user:User;
   userSubscription:Subscription;
   isSubmitting;
   countries:string[]=['Nigeria','Ghana']
@@ -83,9 +83,7 @@ export class ProfileComponent implements OnInit{
 
 
   setOpt1(genderSelected: string): void {
-    
     this.user.gender = genderSelected;
-    // console.log("changed to: "+this.user.gender)
   }
 
 }

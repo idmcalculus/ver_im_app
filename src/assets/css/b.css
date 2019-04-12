@@ -1,0 +1,557 @@
+@media (max-width: 768px) {
+    .m-0-30, .testimonials .inner-testimonial, .workingSection .inner-workingSection, .superbOffers .inner-superb, .ourServices .inner-ourServices, .landing .inner-landing {
+        margin: 0 !important
+    }
+
+    .mpl-0 {
+        padding-left: 0 !important
+    }
+
+    .hide-sm {
+        display: none
+    }
+
+    .header .brand-name {
+        padding: 10px 0 0 0
+    }
+
+    .header .brand-name .logo-brand {
+        float: left;
+        margin: 5px 0
+    }
+
+    .header .brand-name .hide-sm {
+        display: none
+    }
+
+    .header nav {
+        margin: 0 30px 0 0
+    }
+
+    .header nav .logo-brand {
+        float: left;
+        width: 150px
+    }
+
+    .header.scrolled nav {
+        margin: 0 30px 0 0
+    }
+
+    .header.scrolled nav .logo-brand {
+        float: left;
+        width: 150px
+    }
+
+    .header.scrolled .mobile-nav {
+        display: flex;
+        float: right;
+        margin-top: 0
+    }
+
+    .header.scrolled .mobile-nav .menu {
+        clear: both;
+        display: none;
+        min-height: 0;
+        transition: max-height .2s ease-out;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        top: 0;
+        background: #111;
+        padding: 5em 20px;
+        text-align: center
+    }
+
+    .header.scrolled .mobile-nav .menu ul {
+        list-style: none;
+        margin-left: 0
+    }
+
+    .header.scrolled .mobile-nav .menu li a {
+        color: #fff;
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        float: none;
+        padding: 1.5em 20px;
+        text-transform: uppercase
+    }
+
+    .header.scrolled .mobile-nav .menu .login {
+        width: 50%;
+        margin: 10px auto;
+        border-radius: 50px;
+        background: #fff;
+        padding: 17px 30px;
+        color: #3f51b5;
+        box-shadow: 2px 0 4px rgba(0, 0, 0, .2)
+    }
+
+    .header.scrolled .mobile-nav .menu-icon {
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        padding: 20px 20px 0;
+        user-select: none;
+        margin: 15px 0 0 -20px;
+        position: fixed
+    }
+
+    .header.scrolled .mobile-nav .menu-icon .navicon {
+        background: #3f51b5;
+        display: block;
+        height: 2px;
+        position: relative;
+        transition: background .2s ease-out;
+        width: 24px
+    }
+
+    .header.scrolled .mobile-nav .menu-icon .navicon::before, .header.scrolled .mobile-nav .menu-icon .navicon::after {
+        background: #3f51b5;
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+        top: 10px
+    }
+
+    .header.scrolled .mobile-nav .menu-icon .navicon::after {
+        top: -10px
+    }
+
+    .header.scrolled .mobile-nav .menu-btn {
+        display: none
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:hover {
+        background-color: #f4f3f4
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu {
+        min-height: 240px;
+        display: block;
+        min-width: 100%;
+        position: fixed;
+        margin-left: 0;
+        transition: ease all .5s;
+        animation: slideInRight .5s
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon {
+        z-index: 9999
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon .navicon {
+        background: transparent
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon .navicon::before {
+        transform: rotate(-45deg)
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon .navicon::after {
+        transform: rotate(45deg)
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::before, .header.scrolled .mobile-nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
+        top: 0
+    }
+
+    .header.scrolled .mobile-nav .menu-btn:not(:checked) ~ .menu {
+        animation: slideOutRight .5s
+    }
+
+    .top-nav {
+        display: none
+    }
+
+    .landing .inner-landing {
+        margin: 9em 25px !important
+    }
+
+    .landing .inner-landing h2 {
+        font-size: 2em !important
+    }
+
+    .ourServices h4 {
+        padding: 0 20px
+    }
+
+    .ourServices .inner-ourServices {
+        margin: 2em 15px !important
+    }
+
+    .ourServices .holder-container {
+        border: 1px solid rgba(0, 0, 0, .2);
+        margin-bottom: 10px
+    }
+
+    .ourServices .holder-container .img-height {
+        height: auto
+    }
+
+    .superbOffers .inner-superb {
+        margin: 0 !important;
+        padding: 1rem 30px !important
+    }
+
+    .superbOffers .inner-superb .superb-container {
+        margin-bottom: 20px
+    }
+
+    .workingSection .inner-workingSection {
+        margin: 1em 25px !important;
+        text-align: center
+    }
+
+    .workingSection .inner-workingSection .working-content {
+        padding: 2em 0 !important
+    }
+
+    .workingSection .inner-workingSection .working-content h3 {
+        font-size: 2.2em !important
+    }
+
+    .workingSection .inner-workingSection .working-content p {
+        padding: 2rem 0 0 0 !important;
+        font-size: 20px !important;
+        line-height: 30px !important
+    }
+
+    .workingSection .inner-workingSection .circle-section {
+        margin: auto;
+        width: 300px !important;
+        height: 300px !important
+    }
+
+    .investment-plans {
+        padding: 8em 0 2em
+    }
+
+    .investment-plans .inner-investment {
+        padding: 0 20px 3em
+    }
+
+    .investment-plans .invest-banner {
+        height: 200px
+    }
+
+    .investment-plans .m-b20 {
+        margin-bottom: 30px
+    }
+
+    .investment-plans .over-content {
+        padding-top: 5em
+    }
+
+    .investment-plans .over-content h3 {
+        font-size: 1.5rem
+    }
+
+    .investment-plans .plan-image {
+        height: 200px
+    }
+
+    .investment-plans .content-detail {
+        margin-top: 10px;
+        padding: 15px 5px;
+        border-top: 1px solid rgba(63, 81, 181, .2)
+    }
+
+    .investment-plans .content-detail h3 {
+        font-size: 1.5rem
+    }
+
+    .investment-plans .content-detail > div {
+        font-size: 1.09rem
+    }
+
+    .investment-plans .content-detail > div .btn-join {
+        width: 100%
+    }
+
+    .investment-plans .otherInfo {
+        font-size: 1.13rem
+    }
+
+    .career {
+        padding: 9em 0 2em
+    }
+
+    .career .inner-career {
+        padding: 0 30px 1rem
+    }
+
+    .career .inner-career .content h3 {
+        font-size: 1.6rem
+    }
+
+    .career .inner-career .right-holder {
+        display: none
+    }
+
+    .about-us .inner-content-story {
+        padding: 4em 2em 0 !important
+    }
+
+    .about-us .inner-content-story .part-content p {
+        padding: 0 !important
+    }
+
+    .about-us .our-team h5 {
+        margin: 1em 0 !important;
+        font-size: 2rem !important
+    }
+
+    .about-us .our-team h5:after, .about-us .our-team h5:before {
+        content: "";
+        width: 19% !important
+    }
+
+    .about-us .our-team .team-card-holder {
+        padding: 0 2em !important
+    }
+
+    .about-us .our-team .team-card-holder .team-card {
+        margin-bottom: 10px
+    }
+
+    .join-team-section .inner-team-section {
+        padding: 6em 0
+    }
+
+    .join-team-section .inner-team-section p {
+        padding: 12px 1em
+    }
+
+    .join-team-section .inner-team-section .action {
+        margin-top: 4em
+    }
+
+    .join-team-section .inner-team-section .action .btn {
+        width: 70% !important
+    }
+
+    .top-m-t {
+        margin-top: 3rem !important
+    }
+
+    .mobile-nav {
+        display: flex;
+        float: right;
+        margin-top: 0
+    }
+
+    .mobile-nav .menu {
+        clear: both;
+        display: none;
+        min-height: 0;
+        transition: max-height .2s ease-out;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        top: 0;
+        background: #111;
+        padding: 5em 20px;
+        text-align: center
+    }
+
+    .mobile-nav .menu ul {
+        list-style: none;
+        margin-left: 0
+    }
+
+    .mobile-nav .menu li a {
+        color: #fff;
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+        float: none;
+        padding: 1.5em 20px;
+        text-transform: uppercase
+    }
+
+    .mobile-nav .menu .login {
+        width: 50%;
+        margin: 10px auto;
+        border-radius: 50px;
+        background: #fff;
+        padding: 17px 30px;
+        color: #3f51b5;
+        box-shadow: 2px 0 4px rgba(0, 0, 0, .2)
+    }
+
+    .mobile-nav .menu-icon {
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        padding: 20px 20px 0;
+        user-select: none;
+        margin: 15px 0 0 -20px;
+        position: fixed
+    }
+
+    .mobile-nav .menu-icon .navicon {
+        background: #fff;
+        display: block;
+        height: 2px;
+        position: relative;
+        transition: background .2s ease-out;
+        width: 24px
+    }
+
+    .mobile-nav .menu-icon .navicon::before, .mobile-nav .menu-icon .navicon::after {
+        background: #fff;
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        transition: all .2s ease-out;
+        width: 100%;
+        top: 10px
+    }
+
+    .mobile-nav .menu-icon .navicon::after {
+        top: -10px
+    }
+
+    .mobile-nav .menu-btn {
+        display: none
+    }
+
+    .mobile-nav .menu-btn:hover {
+        background-color: #f4f3f4
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu {
+        min-height: 240px;
+        display: block;
+        min-width: 100%;
+        position: fixed;
+        margin-left: 0;
+        transition: ease all .5s;
+        animation: slideInRight .5s
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu-icon {
+        z-index: 9999
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu-icon .navicon {
+        background: transparent
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu-icon .navicon::before {
+        transform: rotate(-45deg)
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu-icon .navicon::after {
+        transform: rotate(45deg)
+    }
+
+    .mobile-nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::before, .mobile-nav .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
+        top: 0
+    }
+
+    .mobile-nav .menu-btn:not(:checked) ~ .menu {
+        animation: slideOutRight .5s
+    }
+
+    .login-section {
+        padding-top: 8em
+    }
+
+    .login-section .inner-login {
+        width: 90%
+    }
+
+    .login-section .inner-login .login-form {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .login-section .inner-login .divider {
+        background: #fff !important
+    }
+
+    .login-section .inner-login .d-text {
+        display: none
+    }
+
+    .login-section .hor-divider {
+        background: url("../../../assets/images/horizontal.svg") no-repeat center;
+        background-size: contain;
+        width: 100%;
+        height: 1px
+    }
+
+    .login-section .social-login {
+        padding: 2em 14px 2em
+    }
+
+    .offset-7, .offset-8 {
+        margin-left: 0 !important
+    }
+
+    .m-b20 {
+        margin-bottom: 30px
+    }
+
+    .update-profile-form {
+        padding: 3rem 0
+    }
+
+    .update-profile-form span {
+        display: none
+    }
+
+    .update-profile-form .pref {
+        padding-top: 0
+    }
+
+    .create-investment {
+        padding: 1rem
+    }
+
+    .create-investment .modal-header h5 {
+        font-size: 1rem
+    }
+
+    .create-investment .modal-body {
+        padding-top: 0
+    }
+
+    .nav-link {
+        font-size: .8rem !important
+    }
+
+    .header-navbar .navbar-wrapper .navbar-logo {
+        padding: 0 10px !important
+    }
+
+    .mobile-user-nav {
+        float: right;
+        width: 37%;
+        display: block
+    }
+
+    .mobile-user-nav ul {
+        overflow: hidden;
+        list-style: none
+    }
+
+    .mobile-user-nav li a {
+        float: left;
+        padding: 0 10px !important;
+        color: #000;
+        margin: 13px 5px !important
+    }
+
+    section {
+        padding: 0
+    }
+}

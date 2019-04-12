@@ -9,6 +9,7 @@ import { Report } from '../../models/Report';
 })
 export class ReportComponent implements OnInit {
 
+  isPaymentreport:boolean=false;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
   @Input() public modalData:any;

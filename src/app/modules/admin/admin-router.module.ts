@@ -3,7 +3,7 @@ import { Routes,
          RouterModule }        from '@angular/router';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {AdminComponent} from './admin.component';
-import {ProfileComponent} from './../user/profile/profile.component';
+import {UserProfileComponent} from './../user/user-profile/user-profile.component';
 import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
@@ -20,7 +20,7 @@ const userRoutes: Routes = [
       {
         path: '',
         children: [
-          { path: 'profile', component: ProfileComponent },
+          { path: 'profile', component: UserProfileComponent },
           { path: 'investments', component: PoolsComponent },
           { path: 'settings', component: UserSettingsComponent },
           { path: 'manage-users', component: ManageUsersComponent },
