@@ -20,10 +20,10 @@ modaltitle:string='Update Plan';
 modalButtonTitle:string='';
 modalData:Report={};
 callBack:any;
-isLoaded:boolean;
+isLoading:boolean=true;
 
 
-@ViewChild('closeBtn') closeBtn: ElementRef;
+// @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
     private router:Router,
@@ -32,12 +32,12 @@ isLoaded:boolean;
     private authService:AuthService
     ) { 
       this.poolId = Number(this.route.snapshot.paramMap.get('id'));
+      let id = this.route.snapshot.paramMap.get('id');
+      this.fetchPool(id);
   }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.fetchPool(id);
-    this.isLoaded = true;
+    
   }
 
   fetchPool(poolId:string){
@@ -45,6 +45,7 @@ isLoaded:boolean;
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
+          this.isLoading = false;
         }else{
           this.router.navigate(['./', {}]);
         }

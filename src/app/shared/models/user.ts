@@ -22,4 +22,6 @@ export class User extends BasicModel{
     bank_name?: string;
     updates_on_new_plans?: number;
     email_updates_on_investment_process?: number;
+    where_you_work?: string;
+    average_monthly_income?: string;
   }

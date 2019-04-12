@@ -21,8 +21,7 @@ export class UserService {
     &user_category=${user.user_category}&home_address=${user.home_address}
     &month_of_birth=${user.month_of_birth}
     &day_of_birth=${user.day_of_birth}&country=${user.country}
-    &account_name=${user.account_name}&bank_name=${user.bank_name}
-    &account_number=${user.account_number}&updates_on_new_plans=${user.updates_on_new_plans}`,null);
+    &where_you_work=${user.where_you_work}&average_monthly_income=${user.average_monthly_income}`,null);
   }
 
   updatePreference(user:User):Observable<any>{
@@ -45,6 +44,15 @@ export class UserService {
   deactivateUser(user:User):Observable<any>{
     return this.httpService.postRequest(`deactivate_user?
     email=${user.email}`,null);
+  }
+
+  // getDashBoardData(){
+  //   return this.httpService.postRequest(`report/userDashboard
+  //   ?investment_id=1&user_id=paul_adebiyi@yahoo.com`,null);
+  // }
+
+  getusersInvestment(){
+    return this.httpService.postRequest(`investment_user/listInvestmentOfUser`,null);
   }
 
   

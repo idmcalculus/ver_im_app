@@ -6,11 +6,11 @@
                 <div class="page-body pools">
                     <div class="row mb-4">
                         <div class="col-xl-4 col-md-6 offset-8">
-                            <a [hidden]="userType=='admin'" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
+                            <a *ngIf="userType=='user'" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
                                 Join New
                                 Pool
                             </a>
-                            <a [hidden]="userType=='user'" href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn2 btn-update-profile more">
+                            <a *ngIf="userType=='admin'" (click)="setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn2 btn-update-profile more">
                                 Create New
                                 Investment
                             </a>
@@ -37,7 +37,8 @@
                             <a [routerLink]="['./', pool.id]" routerLinkActive="active">
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">
-                                        <img src="../assets/images/notcard.png" alt="image">
+                                        <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
+                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
                                     </div>
                                     <div class="content-holder">
                                         <h2><a href="pool-details.html">{{pool.title}}</a></h2>

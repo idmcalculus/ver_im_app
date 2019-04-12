@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
+import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-pools',
@@ -13,7 +14,9 @@ export class PoolsComponent implements OnInit {
   pool:Investment;
   userType:string;
 
-  constructor(private investmentService:InvestmentService) { 
+  constructor(
+    private authService:AuthService,
+    private investmentService:InvestmentService) { 
       let userpath = window.location.pathname;
       if(userpath.includes('user')){
         this.userType = 'user';
@@ -44,6 +47,10 @@ export class PoolsComponent implements OnInit {
       }
       this.isLoading=false;
     })
+  }
+
+  setPlanOperation(investment){
+    this.authService.setCurrentPlanOperation(investment);
   }
 
   

@@ -1,8 +1,6 @@
 import { Component,Input,Output, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
-import {AuthService} from './../../../core/auth/auth.service';
-import {UserService} from './../../../modules/user/user.service';
-// import {Subscription} from 'rxjs';
+import { UserService } from 'src/app/modules/user/user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html'
@@ -11,9 +9,8 @@ export class ProfileComponent implements OnInit{
 
   @Input() public user:User={email:'',password:'',country:'',first_name:'',last_name:'',bank_name:''};
   @Input() public editable:boolean;
-  // ={email:'',password:'',country:'',first_name:'',last_name:'',bank_name:''};
-  // userSubscription:Subscription;
   isSubmitting;
+  isLoading:boolean=true;
   countries:string[]=['Nigeria','Ghana']
   bankList:string[]=['Gt Bank','First Bank','Fidelity','UBA','Diamond Bank','FCMB']
   dateModel:Date;
@@ -30,64 +27,37 @@ export class ProfileComponent implements OnInit{
   {count:'11',title:'Nov'},{count:'12',title:'Dec'}]
 
 
-  constructor(
-    // private authService:AuthService,
-    // private userService:UserService
-    ) { 
-        
-      //   this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
-      //   if(userInfo){
-      //     this.user = userInfo;
-      //     if(this.user.updates_on_new_plans){
-      //       this.opt1selected = this.user.updates_on_new_plans==0?false:true;
-      //       this.opt2selected = this.user.email_updates_on_investment_process==0?false:true;
-      //     }
-      //   }
-      // })
-  }
+  constructor(private userService:UserService) { }
 
   ngOnInit(){
-
+      this.isLoading = false;
   }
 
-  // ngOnDestroy(){
-  //     this.userSubscription.unsubscribe()
-  // }
+  updateProfile(){
+      console.log(JSON.stringify(this.user))
+      this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+        }
+      });
+  }
 
-  // updateProfile(){
-  //     console.log(JSON.stringify(this.user))
-  //     this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
-  //       if(resp && resp.success){
-  //         alert(resp.success.Message)
-  //       }
-  //     });
-  // }
+  updateAccountPreference(){
+    this.user.updates_on_new_plans = this.opt1selected?1:0;
+    this.user.email_updates_on_investment_process = this.opt2selected?1:0;
+    this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp=>{
+      if(resp && resp.success){
+        alert(resp.success.Message)
+      }
+    });
+  }
 
-  // updateAccountPreference(){
-  //   this.user.updates_on_new_plans = this.opt1selected?1:0;
-  //   this.user.email_updates_on_investment_process = this.opt2selected?1:0;
-  //   this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp=>{
-  //     if(resp && resp.success){
-  //       alert(resp.success.Message)
-  //     }
-  //   });
-  // }
-
-  // updateBankDetails(){
-  //   this.isSubmitting = this.userService.updateBankDetails(this.user).subscribe(resp=>{
-  //     if(resp && resp.success){
-  //       alert(resp.success.Message)
-  //     }
-  //   });
-  // }
-
-  
-
-
-  // setOpt1(genderSelected: string): void {
-    
-  //   this.user.gender = genderSelected;
-  //   // console.log("changed to: "+this.user.gender)
-  // }
+  updateBankDetails(){
+    this.isSubmitting = this.userService.updateBankDetails(this.user).subscribe(resp=>{
+      if(resp && resp.success){
+        alert(resp.success.Message)
+      }
+    });
+  }
 
 }

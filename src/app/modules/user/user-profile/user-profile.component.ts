@@ -29,8 +29,7 @@ export class UserProfileComponent implements OnInit{
 
 
   constructor(
-    private authService:AuthService,
-    private userService:UserService
+    private authService:AuthService
     ) { 
         
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
@@ -52,38 +51,8 @@ export class UserProfileComponent implements OnInit{
       this.userSubscription.unsubscribe()
   }
 
-  updateProfile(){
-      console.log(JSON.stringify(this.user))
-      this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
-        if(resp && resp.success){
-          alert(resp.success.Message)
-        }
-      });
-  }
-
-  updateAccountPreference(){
-    this.user.updates_on_new_plans = this.opt1selected?1:0;
-    this.user.email_updates_on_investment_process = this.opt2selected?1:0;
-    this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp=>{
-      if(resp && resp.success){
-        alert(resp.success.Message)
-      }
-    });
-  }
-
-  updateBankDetails(){
-    this.isSubmitting = this.userService.updateBankDetails(this.user).subscribe(resp=>{
-      if(resp && resp.success){
-        alert(resp.success.Message)
-      }
-    });
-  }
-
   
 
 
-  setOpt1(genderSelected: string): void {
-    this.user.gender = genderSelected;
-  }
 
 }

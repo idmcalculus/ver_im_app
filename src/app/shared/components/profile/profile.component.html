@@ -11,7 +11,22 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-xl-12 col-md-12">
+                        <div *ngIf="user==null" class="lds-default">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                        </div>
+
+                        <div *ngIf="user!=null" class="col-xl-12 col-md-12">
                             <div class="card latest-update-card">
                                 <div class="card-block">
                                     <nav>
@@ -156,15 +171,6 @@
                                                     <div class="row">
                                                         <div class="col-md-2"><span>Date of Birth</span>
                                                         </div>
-                                                        <!-- <div class="col-md-9">
-                                                            <label for="dob">Date of Birth</label>
-                                                            <input [ngModel]="dateModel | date:'yyyy-MM-dd'"  
-                                                            (ngModelChange)="dateModel = $event" type="date" class="form-control"
-                                                                   id="dob">
-                                                        </div> -->
-                                                        <!-- <div class="col-md-10">
-                                                            <input class="form-control" type="date">
-                                                        </div> -->
                                                         <div class="col-md-3">
                                                             <label for="month">Month</label>
                                                             <select [(ngModel)]="user.month_of_birth" name="month" id="month"
@@ -180,19 +186,37 @@
                                                              
                                                             </select>
                                                         </div>
-                                                        <!-- <div class="col-md-3">
-                                                            <label for="year">Year</label>
-                                                            <select name="year" id="year"
-                                                                    class="form-control">
-                                                                <option value="0" hidden>Select</option>
-                                                                <option value="0">1990</option>
-                                                            </select>
-                                                        </div> -->
                                                         <div class="bgline"></div>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Work Place</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="workplace">Work Place</label>
+                                                            <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
+                                                                    id="workplace">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <span>Average Monthly income</span>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <label for="avgmonthly">income</label>
+                                                                <input [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                        id="avgmonthly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                <div *ngIf="editable" class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-7 mt-4">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-update-profile" value="Update Profile">
@@ -249,7 +273,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div *ngIf="editable" class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
@@ -283,7 +307,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <label class="pref">Send E-mail updates on investment</label>
+                                                            <label class="pref">Send E-mail updates on investment {{opt2selected}}</label>
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
@@ -297,7 +321,7 @@
                                                 </div>
 
 
-                                                <div class="form-group">
+                                                <div *ngIf="editable" class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference">
