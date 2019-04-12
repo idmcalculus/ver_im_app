@@ -17,6 +17,7 @@ import {HeaderDashboardComponent} from './../../shared/components/header-dashboa
 import {ReportComponent} from './../../shared/components/report/report.component'
 import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
+import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component'
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {ManageInvestmentComponent} from './../admin/manage-investment/manage-inv
     HeaderDashboardComponent,
     ReportComponent,
     ManageInvestmentComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileSummaryComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,8 @@ import {ManageInvestmentComponent} from './../admin/manage-investment/manage-inv
     ReportComponent,
     ManageInvestmentComponent,
     UserDashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfileSummaryComponent
   ]
 })
 export class UserModule { }

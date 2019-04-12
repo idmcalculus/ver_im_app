@@ -5,6 +5,7 @@ import {InvestmentService} from './../../investment/investment.service'
 import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-pool-detail',
@@ -21,7 +22,7 @@ modalButtonTitle:string='';
 modalData:Report={};
 callBack:any;
 isLoading:boolean=true;
-
+selectedUser:User
 
 // @ViewChild('closeBtn') closeBtn: ElementRef;
 
@@ -126,6 +127,11 @@ isLoading:boolean=true;
 
   addInvestmnet(){
 
+  }
+
+  viewUserDetail(user){
+    // console.log("gat it :: "+JSON.stringify(user))
+    this.selectedUser = user;
   }
 
 }
