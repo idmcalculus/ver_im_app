@@ -29,6 +29,7 @@ import { ResetPasswordComponent } from './shared/components/reset-password/reset
 import {httpInterceptorProviders} from './core/auth/index';
 import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
+import {TableComponent} from './shared/components/table/table.component';
 // import { ManageCareerModule } from './modules/admin/manage-career/manage-career.module';
 // import { ProfileSummaryComponent } from './shared/components/profile-summary/profile-summary.component';
 // import { ProfileComponent } from './shared/components/profile/profile.component';
@@ -49,6 +50,7 @@ import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profi
     ResetPasswordComponent,
     ManageUsersComponent,
     AdminProfileComponent,
+    TableComponent
     // ProfileSummaryComponent,
     // ProfileComponent
 
