@@ -20,22 +20,17 @@
                                                 <th>Email</th>
                                                 <th>Phone Number</th>
                                                 <th>User Category</th>
-                                                <th>Action</th>
+                                                <!-- <th>Status</th> -->
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr *ngFor="let user of users;let i = index;">
-                                                <td data-href="#viewUserProfile" (click)="viewUserDetail(i)">
-                                                    {{user.first_name}} {{user.last_name}}
-                                                </td>
-                                                <td data-href="#viewUserProfile" (click)="viewUserDetail(i)">{{user.email}}</td>
-                                                <td data-href="#viewUserProfile" (click)="viewUserDetail(i)">{{user.phone_number}}</td>
-                                                <td data-href="#viewUserProfile" (click)="viewUserDetail(i)">{{user.user_category}}</td>
-                                                <!-- <td>2019/04/05</td> -->
-                                                <td *ngIf="user.email_is_verified =='1' "><button (click)="updateUser(i,'disable')" class="btn btn-success">Disable</button></td>
-                                                <td *ngIf="user.email_is_verified =='0' "><button (click)="updateUser(i,'enable')" class="btn btn-success">Enable</button></td>
-                                        
-                                                <!-- <td><a href ="view-users-details.html">view</a></td> -->
+                                            <tr data-href="#viewUserProfile" (click)="viewUserDetail(i)" *ngFor="let user of users;let i = index;">
+                                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                                <td >{{user.email}}</td>
+                                                <td >{{user.phone_number}}</td>
+                                                <td >{{user.user_category}}</td>
+                                                <!-- <td *ngIf="user.email_is_verified =='1' " >Active</td>
+                                                <td *ngIf="user.email_is_verified =='0' " >In-Active</td> -->
                                             </tr>
                                             </tbody>
                                         </table>
@@ -43,19 +38,19 @@
                                 </div>
 
                                 <div *ngIf="isLoading" class="lds-default">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
                             </div>
                         </div>
                     </div>

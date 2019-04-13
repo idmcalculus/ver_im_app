@@ -3,6 +3,7 @@ import {HttpService} from '../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
+import { Category } from 'src/app/shared/models/Category';
 
 
 @Injectable({
@@ -19,7 +20,6 @@ export class AdminService {
 
   getUsers(){
     return this.httpService.postRequest(`user/list`,null);
-  }
-  
+  }  
 
 }

@@ -10,6 +10,7 @@ import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
+import {ManageCategoryComponent} from './manage-category//manage-category.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {ListComponent} from './manage-career/list/list.component';
     AdminDashboardComponent,
     ApplicantsComponent,
     CreateComponent,
-    ListComponent
+    ListComponent,
+    ManageCategoryComponent
 
     // ManageCareerRoutingModule
     // ManageInvestmentComponent,

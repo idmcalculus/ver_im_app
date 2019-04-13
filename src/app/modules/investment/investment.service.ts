@@ -3,6 +3,7 @@ import {HttpService} from './../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import {Investment}  from './../../shared/models/Investment';
+import { Category } from 'src/app/shared/models/Category';
 
 @Injectable({ providedIn: 'root' })
 export class InvestmentService {
@@ -49,6 +50,16 @@ export class InvestmentService {
   getCategories(){
     return this.httpService.postRequest(`category/list`,{});
   }
+
+  addCategory(category:Category){
+    return this.httpService.postRequest(`category/create?category_name=${category.category_name}`,null);
+  }
+
+  updateCategory(category:Category){
+    return this.httpService.postRequest(`category/update?category_name=${category.category_name}&category_id=${category.id}`,null);
+  }
+
+
 
   joinInvestment(transaction:Transaction){
     return this.httpService.postRequest(`investment_user/create?

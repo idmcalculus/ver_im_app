@@ -50,7 +50,7 @@ import {TableComponent} from './shared/components/table/table.component';
     ResetPasswordComponent,
     ManageUsersComponent,
     AdminProfileComponent,
-    TableComponent
+    TableComponent,
     // ProfileSummaryComponent,
     // ProfileComponent
 

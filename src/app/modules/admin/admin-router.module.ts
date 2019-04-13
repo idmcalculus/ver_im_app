@@ -14,6 +14,7 @@ import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component'
+import {ManageCategoryComponent} from './manage-category/manage-category.component';
 
 
 
@@ -30,19 +31,17 @@ const userRoutes: Routes = [
           { path: 'settings', component: UserSettingsComponent },
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-career', 
-          children: [
+            children: [
             {path:'',
             children: [
               {path:'create',component:CreateComponent},
               {path:'applicants',component:ApplicantsComponent},
               {path:'list',component:ListComponent},
               {path:'',component:ListComponent}
-
-
-
             ]
             }
           ] },
+          { path: 'manage-category', component:ManageCategoryComponent},
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: '', component: AdminDashboardComponent }

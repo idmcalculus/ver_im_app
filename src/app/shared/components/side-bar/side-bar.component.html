@@ -79,6 +79,14 @@
                         </li>
                     </ul>
                 </li>
+                <li  [hidden]="isUser" class="">
+                    <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
+                        <span class="pcoded-micon">
+                        <i class="feather icon-user"></i>
+                        </span>
+                        <span class="pcoded-mtext">Categories</span>
+                    </a>
+                </li>
 
                 <li class="">
                     <a routerLink="./profile" routerLinkActive="active"  class="waves-effect waves-dark">
