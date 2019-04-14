@@ -31,6 +31,7 @@ import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
 import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
+import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loader.service'
 // import { ManageCareerModule } from './modules/admin/manage-career/manage-career.module';
 // import { ProfileSummaryComponent } from './shared/components/profile-summary/profile-summary.component';
 // import { ProfileComponent } from './shared/components/profile/profile.component';
@@ -83,7 +84,8 @@ import { CloudinaryService } from './shared/services/cloudinary.service';
     AuthService,
     CookieService,
     httpInterceptorProviders,
-    CloudinaryService
+    CloudinaryService,
+    DynamicScriptLoaderService
   ],
   exports:[],
   bootstrap: [AppComponent]

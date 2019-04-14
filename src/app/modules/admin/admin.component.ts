@@ -9,6 +9,7 @@ import { AdminService } from './admin.service';
 import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
+import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,7 +30,8 @@ export class AdminComponent implements OnInit {
     private authService:AuthService,
     private router:Router,
     private investmentService:InvestmentService,
-    private cloudinaryService:CloudinaryService
+    private cloudinaryService:CloudinaryService,
+    private dynamicScriptLoader:DynamicScriptLoaderService
     ) { 
       this.authService.setInProfileView(true);
       this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal =>{
@@ -39,6 +41,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadScripts();
     this.authService.validateSession().then(resp=>{
       if(resp && resp.email){
         this.user = resp;
@@ -113,4 +116,14 @@ export class AdminComponent implements OnInit {
       this.callBack=this.addInvestmnet;
     }
   }
+
+  private loadScripts() {
+    // You can load multiple scripts by just providing the key as argument into load method of the service
+    this.dynamicScriptLoader.load('chartjs',
+    'p-coded','v-layout','slimscroll','g-maps',
+    'dash','platform','data-table','flat-pickr').then(data => {
+      // Script Loaded Successfully
+    }).catch(error => console.log(error));
+  }
+
 }

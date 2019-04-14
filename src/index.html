@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome | Versa IMS</title>
-    <base href="/">
-    <meta name="description" content="This is a template of the description that will be here...">
-    <meta name="author" content="Investment Company">
-    <meta name="keywords" content="Investment, plans, money">
-    <meta name="google-signin-client_id" content="104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome | Versa IMS</title>
+  <base href="/">
+  <meta name="description" content="This is a template of the description that will be here...">
+  <meta name="author" content="Investment Company">
+  <meta name="keywords" content="Investment, plans, money">
+  <meta name="google-signin-client_id" content="104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com">
 
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/bootstrap-social.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/css/bootstrap-social.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700" rel="stylesheet">
 
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/font-awesome-n.min.css">
-    <link rel="stylesheet" href="./assets/css/widget.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/feather.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/font-awesome-n.min.css">
+  <link rel="stylesheet" href="./assets/css/widget.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/feather.css">
 
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-    
-
-    
-  </head>
+  <link rel="stylesheet" href="assets/css/animate.min.css">
+  <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+  <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+     
+</head>
 <body>
   <app-root></app-root>
-  <script src="./assets/js/jquery-3.2.1.min.js"></script>
+</body>
+ <script src="./assets/js/jquery-3.2.1.min.js"></script>
   <script src="./assets/js/bootstrap.min.js"></script>
-  <script src="./assets/js/pcoded.min.js"></script>
+  <!-- <script src="./assets/js/pcoded.min.js"></script>
   <script src="./assets/js/vertical-layout.min.js"></script>
   <script src="./assets/js/jquery.slimscroll.js"></script>
   <script src="./assets/js/gmaps.js"></script>
@@ -56,87 +55,14 @@
   
   function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    // console.log('Name: ' + profile.getName());
-    // console.log('Image URL: ' + profile.getImageUrl());
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   }
-  </script>
+  </script> -->
 
-
- 
-<!-- <script>
-  function payWithPaystack(){
-    var handler = PaystackPop.setup({
-      key: 'pk_test_86d32aa1nV4l1da7120ce530f0b221c3cb97cbcc',
-      email: 'customer@email.com',
-      amount: 10000,
-      currency: "NGN",
-      ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-      metadata: {
-         custom_fields: [
-            {
-                display_name: "Mobile Number",
-                variable_name: "mobile_number",
-                value: "+2348012345678"
-            }
-         ]
-      },
-      callback: function(response){
-          alert('success. transaction ref is ' + response.reference);
-      },
-      onClose: function(){
-          alert('window closed');
-      }
-    });
-    handler.openIframe();
-  }
-</script> -->
-
-<!-- <script src="https://js.paystack.co/v1/inline.js"></script> -->
 <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2&appId=547191089021412&autoLogAppEvents=1"></script> -->
-</body>
+
 
 </html>
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome | Versa IMS</title>
-    <meta name="description" content="This is a template of the description that will be here...">
-    <meta name="author" content="Investment Company">
-    <meta name="keywords" content="Investment, plans, money">
-
-    <link rel="stylesheet" href="mycss.css">
-    
-</head>
-<body>
-<p>Welcome</p>
-<section>
-<div class="background2">
-</div>
-<br>
-<article class="background">
-
-  <div class="a"></div>
-  <div class="b"></div>
-  <div class="c"></div>
-  <div class="d"></div>
-  <div class="e"></div>
-  <div class="f"></div>
-  <div class="g"></div>
-  <div class="h"></div>
-  <div class="i"></div>
-  <div class="j"></div>
-  <div class="k"></div>
-  <div class="l"></div>
-  </article>
-</section>
-
-</body>
-</html> -->
