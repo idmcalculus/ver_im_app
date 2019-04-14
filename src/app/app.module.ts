@@ -30,9 +30,12 @@ import {httpInterceptorProviders} from './core/auth/index';
 import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
 import {TableComponent} from './shared/components/table/table.component';
+import { CloudinaryService } from './shared/services/cloudinary.service';
 // import { ManageCareerModule } from './modules/admin/manage-career/manage-career.module';
 // import { ProfileSummaryComponent } from './shared/components/profile-summary/profile-summary.component';
 // import { ProfileComponent } from './shared/components/profile/profile.component';
+
+
 
 
 @NgModule({
@@ -79,7 +82,8 @@ import {TableComponent} from './shared/components/table/table.component';
     HttpService,
     AuthService,
     CookieService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    CloudinaryService
   ],
   exports:[],
   bootstrap: [AppComponent]

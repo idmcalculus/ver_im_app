@@ -8,6 +8,7 @@ import { InvestmentService } from '../investment/investment.service';
 import { AdminService } from './admin.service';
 import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 
 @Component({
   selector: 'app-admin',
@@ -27,7 +28,8 @@ export class AdminComponent implements OnInit {
   constructor(
     private authService:AuthService,
     private router:Router,
-    private investmentService:InvestmentService
+    private investmentService:InvestmentService,
+    private cloudinaryService:CloudinaryService
     ) { 
       this.authService.setInProfileView(true);
       this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal =>{
@@ -46,18 +48,21 @@ export class AdminComponent implements OnInit {
   }
 
   addInvestmnet(filledInvestment:Investment){
-    this.investment = filledInvestment;
-    if(this.investment.title){
+    if(filledInvestment.title){
       this.modalButtonTitle = 'submitting'
-      this.investmentService.addInvestment(this.investment).subscribe(resp=>{
-        if(resp && resp.success){
-          alert(resp.success.Message);    
-          window.location.href = 'admin/pools';      
+      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp=>{
+        if(resp){
+          filledInvestment.investment_image = resp;
+          this.investmentService.addInvestment(filledInvestment).subscribe(resp=>{
+            if(resp && resp.success){
+              alert(resp.success.Message);    
+              window.location.href = 'admin/pools';      
+            }
+            this.modalButtonTitle = 'Create'
+          })
         }
-        this.modalButtonTitle = 'Create'
       })
     }
-    
   }
 
   updateInvestment(filledInvestment:Investment){

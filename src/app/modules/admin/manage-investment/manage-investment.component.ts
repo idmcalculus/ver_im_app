@@ -20,7 +20,7 @@ export class ManageInvestmentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // console.log("val passed is: "+this.modaltitle+" and "+JSON.stringify(this.categories))
+    
   }
 
   modalSubmitted(){

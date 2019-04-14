@@ -10,17 +10,13 @@ import { Category } from 'src/app/shared/models/Category';
 export class ManageCategoryComponent implements OnInit {
 
   buttonText='Add Category'
+  updateButtonText='update'
   inEditMode=false;
   isLoading:boolean=true;
   category:Category={category_name:''};
   categories=[]
   constructor(private investmentService:InvestmentService) { 
-    this.investmentService.getCategories().subscribe(resp=>{
-      if(resp && resp.success){
-        this.categories = resp.success.Data;
-      }
-      this.isLoading=false;
-    })
+    this.getCategories()
   }
 
   ngOnInit() {
@@ -31,20 +27,43 @@ export class ManageCategoryComponent implements OnInit {
         this.buttonText = 'Submitting'
         this.investmentService.addCategory(this.category).subscribe(resp=>{
           if(resp && resp.success){
-            this.categories.push(this.category)
-            alert(resp.success.Message);
+            // alert(resp.success.Message);
+            this.getCategories()
           }
           this.buttonText = 'Add Category'
         })
     }    
   }
 
-  updateCategory(data:Category){
-    this.investmentService.updateCategory(data).subscribe(resp=>{
+  updateCategory(category:Category){
+    this.updateButtonText = 'updating';
+    this.investmentService.updateCategory(category).subscribe(resp=>{
       if(resp && resp.success){
-        data.inEditMode = !data.inEditMode;
-        alert(resp.success.Message);
+        category.inEditMode = !category.inEditMode;
+        // alert(resp.success.Message);
+        this.updateButtonText = 'update'
       }
+    })
+  }
+
+  deleteCategory(category){
+    if(confirm(`Confirm Deletion of categoory ${category.category_name}`)){
+      this.investmentService.deleteCategory(category).subscribe(resp=>{
+        if(resp && resp.success){
+          // alert(resp.success.Message);
+          this.getCategories()
+        }
+      })
+    }
+  }
+
+  getCategories(){
+    this.isLoading=true;
+    this.investmentService.getCategories().subscribe(resp=>{
+      if(resp && resp.success){
+        this.categories = resp.success.Data;
+      }
+      this.isLoading=false;
     })
   }
 

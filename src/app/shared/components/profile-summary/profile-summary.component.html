@@ -161,11 +161,12 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <!-- <div class="row">
+                                    <div class="row">
                                         <div class="col-md-12 text-center">
-                                            <a href="#" class="btn btn-danger">Deactivate User</a>
+                                            <a *ngIf="user.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
+                                            <a *ngIf="user.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

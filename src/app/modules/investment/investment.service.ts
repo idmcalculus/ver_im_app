@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import {Investment}  from './../../shared/models/Investment';
 import { Category } from 'src/app/shared/models/Category';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 
 @Injectable({ providedIn: 'root' })
 export class InvestmentService {
   
   constructor(
-    private httpService:HttpService
+    private httpService:HttpService,
+    private cloudinaryService:CloudinaryService
   ) { }
 
   
@@ -57,6 +59,10 @@ export class InvestmentService {
 
   updateCategory(category:Category){
     return this.httpService.postRequest(`category/update?category_name=${category.category_name}&category_id=${category.id}`,null);
+  }
+
+  deleteCategory(category:Category){
+    return this.httpService.postRequest(`category/delete`,{category_id:category.id});
   }
 
 

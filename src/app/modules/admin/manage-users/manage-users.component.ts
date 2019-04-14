@@ -32,19 +32,19 @@ export class ManageUsersComponent implements OnInit {
     this.selectedUser = this.users[userIndex]
   }
 
-  updateUser(userIndex,operation){
+  updateUser(user,operation){
     if(operation=='enable'){
-      this.userService.activateUser(this.users[userIndex]).subscribe(resp=>{
+      this.userService.activateUser(user).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message)
-          this.users[userIndex].email_is_verified=1
+          // alert(resp.success.Message)
+          // this.users[userIndex].email_is_verified=1
         }
       })
     }else{
-      this.userService.deactivateUser(this.users[userIndex]).subscribe(resp=>{
+      this.userService.deactivateUser(user).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message)
-          this.users[userIndex].email_is_verified=0
+          // alert(resp.success.Message)
+          // this.users[userIndex].email_is_verified=0
         }
       })
     }

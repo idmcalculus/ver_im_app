@@ -6,7 +6,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 const httpOptions = {
     headers: new HttpHeaders({ 
-        'Content-Type': 'application/x-www-form-urlencoded',
         'Accept':'application/json'
     })
 };
@@ -27,7 +26,7 @@ export class HttpService {
     getRequest(api:string) : Observable<any> {
         return this.http.get<any>(`${this.baseURL}/${api}`)
         .pipe(
-            tap(resp=> this.log('fetched heroes'+resp)),
+            tap(resp=> this.log('GET=> response :: '+resp)),
             catchError(
                 this.handleError<any>(api, [])
             )
@@ -37,7 +36,7 @@ export class HttpService {
     postRequest(api:string,data:any):Observable<any>  {
         return this.http.post<any>(`${this.baseURL}/${api}`,data,httpOptions)
         .pipe(
-            tap(resp=> this.log('fetched heroes'+resp)),
+            tap(resp=> this.log('POST=> response :: '+resp)),
             catchError(
                 this.handleError<any>(api,null)
             )
@@ -47,7 +46,7 @@ export class HttpService {
     putRequest(api:string,data:any) {
         return this.http.put<any>(`${this.baseURL}/${api}`,data,httpOptions)
         .pipe(
-            tap(resp => this.log('fetched heroes'+resp)),
+            tap(resp => this.log('PUT=> response :: '+resp)),
             catchError(
                 this.handleError<any>(api,{})
             )
@@ -55,6 +54,7 @@ export class HttpService {
     }
 
     deleterequest(){
+        
     }
 
     private handleError<T> (operation = 'operation', result?: T) {

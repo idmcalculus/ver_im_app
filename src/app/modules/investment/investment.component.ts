@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {InvestmentService} from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
+
+
+
 let category="0"
 let allInvestments=[]
 
@@ -13,6 +16,8 @@ let allInvestments=[]
 
 
 export class InvestmentComponent implements OnInit {
+
+
 
   isLoading:boolean=true;
   investments:any=[];
@@ -30,7 +35,9 @@ export class InvestmentComponent implements OnInit {
 
   // viewInvestment(id:string){
   //   // this.routes.navigate(['product_detail',{'data':productID}]);
-  // }
+  // }0072685283 diamond
+
+
 
   getInvestments(){
     this.investmentService.getInvestments().subscribe(investments=>{
