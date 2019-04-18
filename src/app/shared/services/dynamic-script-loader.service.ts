@@ -12,6 +12,8 @@ export const ScriptStore: Scripts[] = [
   { name: 'slimscroll', src: '../../.././assets/js/jquery.slimscroll.js' },
   { name: 'g-maps', src: '../../.././assets/js/gmaps.js' },
   { name: 'dash', src: '../../.././assets/js/dash.js' },
+  { name: 'jquery', src: '../../.././assets/js/jquery-3.2.1.min.js' },
+  { name: 'bootstrap', src: '../../.././assets/js/bootstrap.min.js' },
   { name: 'platform', src: 'https://apis.google.com/js/platform.js' },
   { name: 'data-table',src: 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js' },
   { name: 'flat-pickr', src: 'https://cdn.jsdelivr.net/npm/flatpickr' }
@@ -55,13 +57,13 @@ export class DynamicScriptLoaderService {
             script.onreadystatechange = () => {
                 if (script.readyState === "loaded" || script.readyState === "complete") {
                     script.onreadystatechange = null;
-                    this.scripts[name].loaded = true;
+                    // this.scripts[name].loaded = true;
                     resolve({script: name, loaded: true, status: 'Loaded'});
                 }
             };
         } else {  //Others
             script.onload = () => {
-                this.scripts[name].loaded = true;
+                // this.scripts[name].loaded = true;
                 resolve({script: name, loaded: true, status: 'Loaded'});
             };
         }

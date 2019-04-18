@@ -46,10 +46,10 @@ export class UserService {
     email=${user.email}`,null);
   }
 
-  // getDashBoardData(){
-  //   return this.httpService.postRequest(`report/userDashboard
-  //   ?investment_id=1&user_id=paul_adebiyi@yahoo.com`,null);
-  // }
+  getUserDashBoard(investmentId,email){
+    return this.httpService.postRequest(`report/userDashboard?
+    investment_id=${investmentId}&user_id=${email}`,null);
+  }
 
   getusersInvestment(email){
     return this.httpService.postRequest(`investment_user/listInvestmentOfUser`, {"user_id":email});

@@ -38,6 +38,9 @@ export class AuthService {
             resolve(userDetails);
         }else{
             var email = localStorage.getItem('email');
+            if(!email){
+                resolve(null);
+            }
             this.httpService.postRequest(`fetch_profile?email=${email}`,{})
                     .subscribe(response => {
                         if (response && response.success) {
@@ -62,14 +65,14 @@ export class AuthService {
             this.router.navigate(['/signin'], {});
             return false
         }else{
-            var actualUser = localStorage.getItem('userType').toLowerCase();
-            if(!userUrl.includes(actualUser)){
-                // alert('Sorry You are not authorized to view this page')//unauthorized
-                window.location.href = `${actualUser}`;
-                return false
-            }else{
+            // var actualUser = localStorage.getItem('userType').toLowerCase();
+            // if(!userUrl.includes(actualUser)){
+            //     alert('Sorry You are not authorized to view this page')//unauthorized
+            //     window.location.href = `${actualUser}`;
+            //     return false
+            // }else{
                 return true;
-            }
+            // }
             
         }
     }

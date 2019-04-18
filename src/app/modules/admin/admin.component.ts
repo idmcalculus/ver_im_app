@@ -118,12 +118,8 @@ export class AdminComponent implements OnInit {
   }
 
   private loadScripts() {
-    // You can load multiple scripts by just providing the key as argument into load method of the service
-    this.dynamicScriptLoader.load('chartjs',
-    'p-coded','v-layout','slimscroll','g-maps',
-    'dash','platform','data-table','flat-pickr').then(data => {
-      // Script Loaded Successfully
-    }).catch(error => console.log(error));
+      this.dynamicScriptLoader.load('p-coded','v-layout',
+      'slimscroll','dash','platform','data-table','flat-pickr');
   }
 
 }

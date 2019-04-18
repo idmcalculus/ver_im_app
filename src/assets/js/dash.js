@@ -44,7 +44,7 @@ $(document).ready(function () {
         //altFormat: "M j, Y h:iK",
     });
 
-    $('#applicants, #userTable').DataTable();
+    $('#applicants, #userTable, #categoryTable').DataTable();
 });
 
 function readURL(input) {

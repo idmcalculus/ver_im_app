@@ -41,4 +41,8 @@ export class AppComponent {
     this.inProfileSubcription.unsubscribe();
     this.hasSession.unsubscribe();
   }
+
+  // loadDynamicScripts(){
+
+  // }
 }

@@ -415,6 +415,38 @@
 
 }
 
+.category {
+  h3 {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  .input-group-addon {
+    padding: 0;
+    border-radius: 0;
+  }
+  label {
+    margin-bottom: .2rem;
+    font-size: 12px;
+  }
+  .form-control {
+    padding: .6rem 1.2rem;
+    &:focus {
+      @include borderLine(1px,rgba($theme-blue, .3));
+      @include noBoxShadow(none);
+    }
+  }
+}
+
+.card-icon {
+  width: 110% !important;
+  height: 102px !important;
+  display: flex;
+  justify-content: center;
+}
+.ic {
+  font-size: 5rem !important;
+  color: $theme-blue !important;
+}
 
 @media (min-width: 576px) {
   .modal-dialog-investment {

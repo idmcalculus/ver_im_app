@@ -1,77 +1,79 @@
 <div class="pcoded-content">
 
-  <div class="pcoded-inner-content">
-      <div class="main-body">
-          <div class="page-wrapper">
-              <div class="page-body">
-                  <div class="row">
-                      <div class="col-xl-12 col-md-12">
-                          <div class="card latest-update-card">
-                              <div class="card-block">
-                                  <div class="create-vacancy">
-                                      <h3>Create Vacancy</h3>
-                                      <form action="">
-                                          <div class="form-group mb-4">
-                                              <label for="title" class="l-title">Title</label>
-                                              <input type="text" class="form-control" id="title-career" placeholder="">
-                                          </div>
-                                          <div class="form-group">
-                                              <label for="role-summary" class="l-title">Role Summary</label>
-                                              <textarea class="form-control" id="role-summary"></textarea>
-                                          </div>
-                                          <div class="form-group">
-                                              <div class="row">
-                                                  <div class="col-md-4">
-                                                      <label for="jobtype" class="l-title">Job Type</label>
-                                                      <select name="jobtype" id="jobtype"
-                                                              class="form-control">
-                                                          <option value="0" hidden>Select</option>
-                                                          <option value="fulltime">Full Time</option>
-                                                          <option value="parttime">Part Time</option>
-                                                      </select>
-                                                  </div>
-                                                  <div class="col-md-4">
-                                                      <label for="noOfApplication" class="l-title">No of Application</label>
-                                                      <input type="number" class="form-control" id="noOfApplication">
-                                                  </div>
-                                                  <div class="col-md-4">
-                                                      <label for="deadline" class="l-title">Set Deadline</label>
-                                                      <input type="text" class="form-control calender" id="deadline">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="form-group mb-4">
-                                              <label for="responsibilities" class="l-title">Responsibilities</label>
-                                              <input type="text" name="responsibilities[]" class="form-control" id="responsibilities" placeholder="">
-                                          </div>
-                                          <div class="job-respon"></div>
-                                          <div class="row">
-                                              <div class="col-md-9">
-                                                  <h4>Job Responsibilities</h4>
-                                                  <small>(You can add multiple job responsibilities)</small>
-                                              </div>
-                                              <div class="col-md-3">
-                                                  <a href="#" class="btn-job" id="add-more"><span><i class="fa fa-plus"></i></span> Add</a>
-                                              </div>
-                                          </div>
-                                          <div class="form-group mt-5">
-                                              <div class="row">
-                                                  <div class="col-md-8">
-                                                  </div>
-                                                  <div class="col-md-4">
-                                                      <input type="button" class="btn btn-join" value="Create Job">
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </form>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <div class="pcoded-inner-content">
+            <div class="main-body">
+                <div class="page-wrapper">
+                    <div class="page-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card latest-update-card">
+                                    <div class="card-block">
+                                        <div class="create-vacancy">
+                                            <h3>Create Vacancy</h3>
+                                            <form (ngSubmit)="createCareer()" #careerForm="ngForm" >
+                                                <div class="form-group mb-4">
+                                                    <label for="title" class="l-title">Title</label>
+                                                    <input [(ngModel)]="career.career_title" required type="text" class="form-control" id="title-career" name="title">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="role-summary" class="l-title">Role Summary</label>
+                                                    <textarea [(ngModel)]="career.career_description" required class="form-control" id="role-summary" name="summary"></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="jobtype" class="l-title">Job Type</label>
+                                                            <select required [(ngModel)]="career.position_type" name="jobtype" id="jobtype" 
+                                                                    class="form-control">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option value="Full Time">Full Time</option>
+                                                                <option value="Part Time">Part Time</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label for="noOfApplication" class="l-title">No of Application</label>
+                                                            <input required [(ngModel)]="career.number_of_application"  type="number" class="form-control" id="noOfApplication" name="noOfApplication">
+                                                        </div>
+                                                        <!-- <div class="col-md-4">
+                                                            <label for="deadline" class="l-title">Set Deadline</label>
+                                                            <input type="text" class="form-control calender" id="deadline" name="deadline">
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <label for="responsibilities" class="l-title">Responsibilities</label>
+                                                    <input readonly *ngFor="let resp of respArray"  value="{{resp}}" type="text" name="responsibilities[]" class="form-control mb-2" id="responsibilities" placeholder="">
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <input [(ngModel)]="newResponsibility"  type="text" name="responsibilities[]" class="form-control" id="responsibilities" placeholder="">
+                                                </div>
+                                                <div class="job-respon"></div>
+                                                <div class="row">
+                                                    <div class="col-md-9">
+                                                        <h4>Job Responsibilities</h4>
+                                                        <small>(You can add multiple job responsibilities)</small>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="button" [disabled]="!newResponsibility" (click)="addResponsibility()" value="Add" class="btn-job btn2 btn">
+                                                        <!-- <a href="#"  (click)="addResponsibility()" class="btn-job" id="add-more"><span><i class="fa fa-plus"></i></span> Add</a> -->
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mt-5">
+                                                        <div class="col-md-8">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button class="btn2 btn btn-raised btn-login"  >Create Job</button>
+                                                        </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      </div>
-  </div>
-</div>
+            </div>
+        </div>
+    </div>

@@ -3,6 +3,7 @@ import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
 import {AuthService} from './../../../core/auth/auth.service';
 import { UserSession } from '../../models/UserSession';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   loginText:string="Login";
   constructor(
     private signInService: SignInService,
-    private authService:AuthService
+    private authService:AuthService,
+    private router:Router
     ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class SignInComponent implements OnInit {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${this.user.first_name}`);
-            window.location.href=UserDetails.user_category.toLowerCase();
+            this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
           }
           this.loginText = "Login";
           resolve();

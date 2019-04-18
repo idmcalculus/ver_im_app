@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import {InvestmentService} from './../investment/investment.service';
 import { Category } from 'src/app/shared/models/Category';
+import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
@@ -17,11 +18,14 @@ export class UserComponent implements OnInit {
   currentUserSubscription:Subscription;
   categories:[Category];
   isUser:boolean=true;
+  
   constructor(
     private authService:AuthService,
     private router:Router,
-    private investmentService:InvestmentService
+    private investmentService:InvestmentService,
+    private dynamicScriptLoader:DynamicScriptLoaderService
     ){ 
+      this.dynamicScriptLoader.load('p-coded','v-layout','slimscroll','dash','platform','data-table','flat-pickr');
       this.authService.setInProfileView(true);
     }
 

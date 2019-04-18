@@ -120,7 +120,7 @@
       border-radius: inherit
     }
   }
-  .content-detail {
+  .content-holder {
     padding: 10px;
     text-align: center;
     h2, a {
@@ -166,6 +166,12 @@
     @include transition(ease, 0.7s);
     transform: translateY(2%);
   }
+}
+
+.view {
+  color: $theme-white !important;
+  font-weight: lighter !important;
+  letter-spacing: 1px
 }
 
 .pools {

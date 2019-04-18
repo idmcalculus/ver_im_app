@@ -11,7 +11,7 @@ import { User } from 'src/app/shared/models/user';
 })
 export class UserDashboardComponent implements OnInit {
   @Input() public overiddenUser:User;
-  dashBoardData:UserDashboard;
+  dashBoardData:any={number_of_pools:0,investment_return:[],investment_report:[]};
   usersInvestments:[Investment]
   isLoading:boolean=true;
   selectedInvestment:number=-1;
@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     
     if(this.overiddenUser){
-      console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
+      // console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
       this.userService.getusersInvestment(this.overiddenUser.email).subscribe(resp=>{
         if(resp && resp.success){
           this.usersInvestments = resp.success.Data
@@ -31,8 +31,9 @@ export class UserDashboardComponent implements OnInit {
       })
     }else{
         this.authService.currentUser.subscribe(resp=>{
-          console.log("dashboard data 2 is :: "+JSON.stringify(resp))
+          // console.log("dashboard data 2 is :: "+JSON.stringify(resp))
           if(resp){
+            this.overiddenUser =resp;
             this.userService.getusersInvestment(resp.email).subscribe(resp=>{
               if(resp && resp.success){
                 this.usersInvestments = resp.success.Data
@@ -47,6 +48,18 @@ export class UserDashboardComponent implements OnInit {
 
   showDetails(){
     this.investmentInfo = this.usersInvestments[this.selectedInvestment];
+    this.getUserDashBoard();
+  }
+
+  getUserDashBoard(){
+    var userEmail = this.overiddenUser.email
+    var investmentId = this.investmentInfo.id;
+    this.userService.getUserDashBoard(investmentId,userEmail).subscribe(resp=>{
+      if(resp && resp.success){
+        // console.log('i agt it: '+JSON.stringify(resp))
+        this.dashBoardData = resp.success.Data
+      }
+    })
   }
 
 

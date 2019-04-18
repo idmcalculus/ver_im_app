@@ -26,4 +26,6 @@ export class ReportService {
     return this.httpService.postRequest(`report/delete?report_id=${report.id}`,{});
   }
 
+  
+
 }
