@@ -1,0 +1,38 @@
+<section class="career-details">
+  <div class="inner-card">
+      <div class="post-header">
+          <div class="row">
+              <div class="col-md-12">
+                  <h3>{{career?.career_title}}</h3>
+                  <h4>{{career?.position_type}}</h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <small>Posted {{career?.created_at}}</small>
+              </div>
+              <div class="col-md-4">
+                  <small class="text-danger">Deadline {{career?.deadline}}</small>
+              </div>
+          </div>
+      </div>
+      <div class="post-body">
+          <h3>Job Description</h3>
+          <h4>Role Summary</h4>
+
+          <p>{{career?.career_description}}</p>
+
+          <h4>Responsibilities</h4>
+          <ul>
+              <li *ngFor=" let resp of career?.career_responsibilities">
+                  {{resp}}
+              </li>
+              
+          </ul>
+      </div>
+      <div class="post-footer">
+          <a routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
+          <a href="career" class="btn btn-cancel">Cancel</a>
+      </div>
+  </div>
+</section>

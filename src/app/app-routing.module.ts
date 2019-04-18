@@ -8,13 +8,25 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 import {AboutUsComponent} from './modules/about-us/about-us.component'
 import {CareerComponent} from './modules/career/career.component'
+import { CareerDetailsComponent } from './modules/career/career-details/career-details.component';
+import { CareerApplicationComponent } from './modules/career/career-application/career-application.component';
 
 const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
   { path: 'admin/signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'contact', component: SignUpComponent },
-  { path: 'career', component: CareerComponent },
+  { path: 'career',
+  children:[
+    {path:'',
+    children:[
+      {path:'list',component:CareerComponent},
+      // {path:'detail/:careerId',component:CareerDetailsComponent},
+      {path:'apply/:careerId',component:CareerApplicationComponent},
+      {path:'',component:CareerComponent}
+    ]}    
+  ] 
+  },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'verify_user/:token', component: VerifyUserComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

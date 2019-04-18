@@ -16,6 +16,11 @@ export class CareerService {
     return this.httpService.postRequest(`career/list`,null);
   }  
 
+  getCareerById(id:string){
+    return this.httpService.postRequest(`career_application/show
+    ?career_application_id=${id}`,null);
+  }
+
   craeteCareer(careerData:Career){
     return this.httpService.postRequest(`career/create?career_title=${careerData.career_title}
     &career_description=${careerData.career_description}
