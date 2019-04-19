@@ -136,6 +136,12 @@ userSubscription:Subscription
   }
 
   setPlanOperation(investment){
+    // console.log("setting with :: "+JSON.stringify(investment))
+    if(investment && investment.investment){
+      if(!investment.investment.show_publicly || investment.investment.show_publicly=='0'){
+        investment.investment.show_publicly=false;
+      }
+    }
     this.authService.setCurrentPlanOperation(investment);
   }
 

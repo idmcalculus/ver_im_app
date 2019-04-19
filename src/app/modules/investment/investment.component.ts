@@ -46,14 +46,13 @@ export class InvestmentComponent implements OnInit {
         investmentArray = investments.success.Data
         var cnt = 0;
         investmentArray.forEach(element => {
-          if(element.is_investment_started=='0'){
+          if(element.is_investment_started=='0' && element.is_investment_ended=='0'){
             this.investments[cnt] = element;
             cnt++;
           }
         });
       }
       allInvestments = this.investments;
-      // console.log("all investments :: "+JSON.stringify(allInvestments))
       this.isLoading = false;
     })
   }

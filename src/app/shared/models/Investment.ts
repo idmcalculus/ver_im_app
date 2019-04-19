@@ -9,6 +9,7 @@ export class Investment extends BasicModel{
   investment_amount?: number;
   opening_date?: string;
   closing_date?: string;
+  show_publicly?: boolean=false;
   expected_return_amount?: string;
   num_of_pools_taken?:number;
   reference?:string;

@@ -33,7 +33,7 @@
                                                 <div class="row p-0">
                                                     <div class="col-md-8"><h5>Details</h5></div>
                                                     <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='0' " (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
                                                             data-target="#managePlanModal"
                                                             class="btn btn-add plus-btn float-right"><span><i
                                                                 class="fa fa-edit"></i></span></a>

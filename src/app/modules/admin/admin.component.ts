@@ -58,7 +58,7 @@ export class AdminComponent implements OnInit {
           filledInvestment.investment_image = resp;
           this.investmentService.addInvestment(filledInvestment).subscribe(resp=>{
             if(resp && resp.success){
-              alert(resp.success.Message);    
+              alert(resp.success.Message);  
               window.location.href = 'admin/pools';      
             }
             this.modalButtonTitle = 'Create'
@@ -72,11 +72,10 @@ export class AdminComponent implements OnInit {
     this.investment = filledInvestment;
     if(this.investment.title){
       this.modalButtonTitle = 'submitting'
-      // console.log("updating with :: "+JSON.stringify(this.investment))
       this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message);
-          window.location.href = 'admin/pools';      
+          this.modalData = filledInvestment;    
         }
         this.modalButtonTitle = 'Update'
       })

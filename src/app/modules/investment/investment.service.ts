@@ -20,19 +20,23 @@ export class InvestmentService {
     return this.httpService.postRequest(`investment/create?
     title=${investment.title}&description=${investment.description}
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}
-    &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}&
-    investment_amount=${investment.investment_amount}
+    &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
+    &investment_amount=${investment.investment_amount}
+    &show_publicly=${investment.show_publicly ? 1:0}
     &expected_return_amount=${investment.expected_return_amount}`,imageBody);
   }
 
   updateInvestment(investment:Investment):Observable<any>{
     var imageBody ={"investment_image":investment.investment_image};
-    return this.httpService.postRequest(`investment/update?
-    title=${investment.title}&description=${investment.description}
+    return this.httpService.postRequest(
+      `investment/update?
+    title=${investment.title}
+    &description=${investment.description}
     &investment_id=${investment.id}
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}
-    &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}&
-    investment_amount=${investment.investment_amount}
+    &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
+    &investment_amount=${investment.investment_amount}
+    &show_publicly=${investment.show_publicly ? 1:0}
     &expected_return_amount=${investment.expected_return_amount}`,imageBody);
   }
   
