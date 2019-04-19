@@ -16,17 +16,6 @@ const appRoutes: Routes = [
   { path: 'admin/signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'contact', component: SignUpComponent },
-  { path: 'career',
-  children:[
-    {path:'',
-    children:[
-      {path:'list',component:CareerComponent},
-      // {path:'detail/:careerId',component:CareerDetailsComponent},
-      {path:'apply/:careerId',component:CareerApplicationComponent},
-      {path:'',component:CareerComponent}
-    ]}    
-  ] 
-  },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'verify_user/:token', component: VerifyUserComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

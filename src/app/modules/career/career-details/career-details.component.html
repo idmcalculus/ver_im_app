@@ -25,14 +25,14 @@
           <h4>Responsibilities</h4>
           <ul>
               <li *ngFor=" let resp of career?.career_responsibilities">
-                  {{resp}}
+                  {{resp|json}}
               </li>
               
           </ul>
       </div>
       <div class="post-footer">
-          <a routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
-          <a href="career" class="btn btn-cancel">Cancel</a>
+          <a *ngIf="isUser" routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
+          <a (click)="backtoList()" class="btn btn-cancel">Cancel</a>
       </div>
   </div>
 </section>

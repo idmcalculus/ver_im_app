@@ -34,7 +34,7 @@
 
                     <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5 ">
                         <div *ngFor="let pool of pools" class="col-xl-4 pb-2">
-                            <a [routerLink]="['./', pool.id]" routerLinkActive="active">
+                            <a routerLink="./{{pool?.id}}" routerLinkActive="active">
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">
                                         <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">

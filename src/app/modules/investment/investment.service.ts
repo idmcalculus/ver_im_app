@@ -72,4 +72,13 @@ export class InvestmentService {
     investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}
     &amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{});
   }
+
+  endInvestment(investmentId:string){
+    return this.httpService.postRequest(`investment/endInvestment`,{investment_id:investmentId} );
+  }
+
+  pullOutFromInvestment(investmentId:string){
+    return this.httpService.postRequest(`investment_user/pullOutOfInvestment?
+    investment_id=${investmentId}`,{} );
+  }
 }

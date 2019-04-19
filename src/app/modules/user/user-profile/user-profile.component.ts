@@ -33,15 +33,15 @@ export class UserProfileComponent implements OnInit{
     ) { 
         
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
-        if(userInfo){
-          this.user = userInfo;
-          if(this.user.updates_on_new_plans){
-            this.opt1selected = this.user.updates_on_new_plans==0?false:true;
-            this.opt2selected = this.user.email_updates_on_investment_process==0?false:true;
+          if(userInfo){
+            this.user = userInfo;
+            if(this.user.updates_on_new_plans){
+              this.opt1selected = this.user.updates_on_new_plans==0?false:true;
+              this.opt2selected = this.user.email_updates_on_investment_process==0?false:true;
+            }
           }
-        }
-      })
-  }
+        })
+    }
 
   ngOnInit(){
 

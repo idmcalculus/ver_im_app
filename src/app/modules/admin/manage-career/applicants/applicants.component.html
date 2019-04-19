@@ -11,7 +11,7 @@
                                   <h5>Applicants List</h5>
                               </div>
                               <div class="card-block">
-                                  <div class="dt-responsive table-responsive">
+                                  <div *ngIf="!isLoading" class="dt-responsive table-responsive">
                                       <table id="applicants"
                                              class="table table-striped nowrap">
                                           <thead>
@@ -25,17 +25,34 @@
                                           </tr>
                                           </thead>
                                           <tbody>
-                                          <tr>
-                                              <td>Tiger</td>
-                                              <td>Nixion</td>
-                                              <td>tigernixion@lanscom.com</td>
-                                              <td>09030039933</td>
-                                              <td width="250">Lorem is an act of writing a template of content when the user has refused to provide content for the develope</td>
+                                          <tr *ngFor="let application of careerApplications">
+                                              <td>{{application?.first_name}}</td>
+                                              <td>{{application?.last_name}}</td>
+                                              <td>{{application?.email}}</td>
+                                              <td>{{application?.phone_number}}</td>
+                                              <td width="250">{{application.career_brief}}</td>
                                               <td>View CV</td>
                                           </tr>
                                           </tbody>
                                       </table>
                                   </div>
+
+                                  <div *ngIf="isLoading" class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+
+                                    
                               </div>
                           </div>
                       </div>

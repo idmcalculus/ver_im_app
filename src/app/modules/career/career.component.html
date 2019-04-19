@@ -61,20 +61,20 @@
             </div>
 
             <div *ngIf="isLoading" class="lds-default">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
     </div>
 </section>
-<app-career-details [career]="selectedCareer" *ngIf="selectedCareer" ></app-career-details>
+<app-career-details [isUser]="true" [career]="selectedCareer" *ngIf="selectedCareer" (submit)="callBack($event)" ></app-career-details>

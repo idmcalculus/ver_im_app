@@ -6,6 +6,7 @@ import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pool-detail',
@@ -13,7 +14,7 @@ import { User } from 'src/app/shared/models/user';
   styleUrls: ['./pool-detail.component.css']
 })
 export class PoolDetailComponent implements OnInit {
-pool:Investment
+pool:any
 poolId:number=0;
 reportData:Report = {title:'',description:''}
 categories=[];
@@ -22,8 +23,9 @@ modalButtonTitle:string='';
 modalData:Report={};
 callBack:any;
 isLoading:boolean=true;
-selectedUser:User
-
+selectedUser:User;
+loggedInUser:User;
+userSubscription:Subscription
 // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
@@ -32,9 +34,20 @@ selectedUser:User
     private reportService:ReportService,
     private authService:AuthService
     ) { 
-      this.poolId = Number(this.route.snapshot.paramMap.get('id'));
-      let id = this.route.snapshot.paramMap.get('id');
-      this.fetchPool(id);
+
+      this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+        if(userInfo){
+          this.loggedInUser = userInfo;
+        }
+      })
+
+      this.route.params.subscribe(resp=>{
+        this.poolId = resp.pool_id;
+        if(!this.poolId){
+          this.poolId = Number(this.route.snapshot.paramMap.get('id'));
+        }
+        this.fetchPool(String(this.poolId));
+      })
   }
 
   ngOnInit() {
@@ -42,6 +55,7 @@ selectedUser:User
   }
 
   fetchPool(poolId:string){
+    this.isLoading =true;
     this.investmentService.getInvestment(poolId).subscribe(poolDetails=>{
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
@@ -132,6 +146,30 @@ selectedUser:User
   viewUserDetail(user){
     // console.log("gat it :: "+JSON.stringify(user))
     this.selectedUser = user;
+  }
+
+  pullOut(){
+    var proceed = confirm('Do you really want to pull out from investment?');
+    if(proceed){
+      this.investmentService.pullOutFromInvestment(String(this.poolId)).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+          this.fetchPool(String(this.poolId))
+        }
+      })
+    }
+  }
+
+  endInvestment(){
+    var proceed = confirm('Do you really want to end this investment?');
+    if(proceed){
+      this.investmentService.endInvestment(String(this.poolId)).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+          this.fetchPool(String(this.poolId))
+        }
+      })
+    }
   }
 
 }

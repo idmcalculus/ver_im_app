@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpService} from '../../core/http/httpservice.service';
 import { Career } from 'src/app/shared/models/Career';
+import { CareerApplication } from 'src/app/shared/models/CareerApplication';
 // import { Observable } from 'rxjs';
 
 
@@ -16,6 +17,7 @@ export class CareerService {
     return this.httpService.postRequest(`career/list`,null);
   }  
 
+  //Admin
   getCareerById(id:string){
     return this.httpService.postRequest(`career_application/show
     ?career_application_id=${id}`,null);
@@ -28,6 +30,21 @@ export class CareerService {
     &position_type=${careerData.position_type}
     &number_of_application=${careerData.number_of_application}
     &career_responsibilities=${careerData.career_responsibilities}`,null);
+  }
+
+  applyForCareer(careerApplication:CareerApplication){
+    return this.httpService.postRequest(`career_application/create?
+    first_name=${careerApplication.first_name}
+    &last_name=${careerApplication.last_name}
+    &email=${careerApplication.email}
+    &career_id=${careerApplication.career_id}
+    &phone_number=${careerApplication.phone_number}
+    &career_brief=${careerApplication.career_brief}
+    &curriculum_vitae=${careerApplication.curriculum_vitae}`,null);
+  }
+
+  getCareerApplications(){
+    return this.httpService.postRequest(`career_application/list`,null);
   }
 
 }

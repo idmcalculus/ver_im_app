@@ -5,8 +5,7 @@ import { CareerDetailsComponent } from './career-details/career-details.componen
 
 @Component({
   selector: 'app-career',
-  templateUrl: './career.component.html',
-  styleUrls: ['./career.component.css']
+  templateUrl: './career.component.html'
 })
 export class CareerComponent implements OnInit {
   isLoading:boolean=true;
@@ -30,6 +29,9 @@ export class CareerComponent implements OnInit {
     this.selectedCareer = this.careerList[indexNumber]
   }
 
+  callBack(selectedCareer){
+    this.selectedCareer = null;
+  }
   
 
 }

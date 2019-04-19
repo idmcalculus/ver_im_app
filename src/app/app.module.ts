@@ -5,6 +5,7 @@ import {HomeModule} from './modules/home/home.module';
 import {UserModule} from './modules/user/user.module';
 import {AdminModule} from './modules/admin/admin.module';
 import {InvestmentModule} from './modules/investment/investment.module';
+import {CareerModule} from './modules/career/career.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule }    from '@angular/common/http';
@@ -17,7 +18,6 @@ import { SignInComponent } from './shared/components/sign-in/sign-in.component';
 import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
 import { ServicesComponent } from './modules/services/services.component';
 import { AboutUsComponent } from './modules/about-us/about-us.component';
-import { CareerComponent } from './modules/career/career.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
@@ -32,8 +32,8 @@ import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profi
 import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
 import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loader.service';
-import { CareerDetailsComponent } from './modules/career/career-details/career-details.component';
-import { CareerApplicationComponent } from './modules/career/career-application/career-application.component'
+// import { CareerDetailsComponent } from './modules/career/career-details/career-details.component';
+// import { CareerApplicationComponent } from './modules/career/career-application/career-application.component'
 // import { ManageCareerModule } from './modules/admin/manage-career/manage-career.module';
 // import { ProfileSummaryComponent } from './shared/components/profile-summary/profile-summary.component';
 // import { ProfileComponent } from './shared/components/profile/profile.component';
@@ -51,14 +51,13 @@ import { CareerApplicationComponent } from './modules/career/career-application/
     VerifyUserComponent,
     ServicesComponent,
     AboutUsComponent,
-    CareerComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ManageUsersComponent,
     AdminProfileComponent,
     TableComponent,
-    CareerDetailsComponent,
-    CareerApplicationComponent,
+    // CareerDetailsComponent,
+    // CareerApplicationComponent,
     // ProfileSummaryComponent,
     // ProfileComponent
 
@@ -70,6 +69,7 @@ import { CareerApplicationComponent } from './modules/career/career-application/
     HomeModule,
     UserModule,
     AdminModule,
+    CareerModule,
     AppRoutingModule,
     HttpClientModule,
     Angular2PromiseButtonModule.forRoot({
