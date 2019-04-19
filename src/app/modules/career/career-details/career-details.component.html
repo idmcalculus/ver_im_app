@@ -24,8 +24,8 @@
 
           <h4>Responsibilities</h4>
           <ul>
-              <li *ngFor=" let resp of career?.career_responsibilities">
-                  {{resp|json}}
+              <li *ngFor=" let resp of career?.career_responsibilities,let x=index">
+                  {{resp[x]}}
               </li>
               
           </ul>

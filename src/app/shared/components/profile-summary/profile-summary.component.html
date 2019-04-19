@@ -6,7 +6,7 @@
                 <div class="page-body list-vacancy">
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
-                            <h3>The Profile of {{user.first_name}} {{user.last_name}}</h3>
+                            <h3>The Profile of {{user?.first_name}} {{user?.last_name}}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -24,35 +24,35 @@
                                             </tr>
                                             <tr>
                                                 <td>Email:</td>
-                                                <td>{{user.email}}</td>
+                                                <td>{{user?.email}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Phone Number:</td>
-                                                <td>{{user.phone_number}}</td>
+                                                <td>{{user?.phone_number}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Date of Birth:</td>
-                                                <td>{{user.day_of_birth}} /  {{user.month_of_birth}}</td>
+                                                <td>{{user?.day_of_birth}} /  {{user?.month_of_birth}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Gender:</td>
-                                                <td>{{user.gender}}</td>
+                                                <td>{{user?.gender}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Address:</td>
-                                                <td>{{user.home_address}}</td>
+                                                <td>{{user?.home_address}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Country:</td>
-                                                <td>{{user.country}}</td>
+                                                <td>{{user?.country}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Place of Work:</td>
-                                                <td>{{user.where_you_work}}</td>
+                                                <td>{{user?.where_you_work}}</td>
                                             </tr>
                                             <tr>
                                                 <td>Average <br>Monthly Income:</td>
-                                                <td style="text-align: center;">{{user.average_monthly_income | currency:'NGN':'symbol-narrow'}}</td>
+                                                <td style="text-align: center;">{{user?.average_monthly_income | currency:'NGN':'symbol-narrow'}}</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -71,15 +71,15 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td>Account Name</td>
-                                                        <td>{{user.account_name}}</td>
+                                                        <td>{{user?.account_name}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Account Number</td>
-                                                        <td>{{user.account_number}}</td>
+                                                        <td>{{user?.account_number}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Bank</td>
-                                                        <td>{{user.bank_name}}</td>
+                                                        <td>{{user?.bank_name}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -97,18 +97,18 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td>Receive updates on new Plans?</td>
-                                                        <td *ngIf="user.updates_on_new_plans==1"><label class="label label-primary">Yes</label></td>
-                                                        <td *ngIf="user.updates_on_new_plans==0"><label class="label label-danger">No</label></td>
+                                                        <td *ngIf="user?.updates_on_new_plans==1"><label class="label label-primary">Yes</label></td>
+                                                        <td *ngIf="user?.updates_on_new_plans==0"><label class="label label-danger">No</label></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Send E-mail updates on investment</td>
-                                                        <td *ngIf="user.email_updates_on_investment_process==0"><label class="label label-danger">No</label></td>
-                                                        <td *ngIf="user.email_updates_on_investment_process==1"><label class="label label-primary">Yes</label></td>
+                                                        <td *ngIf="user?.email_updates_on_investment_process==0"><label class="label label-danger">No</label></td>
+                                                        <td *ngIf="user?.email_updates_on_investment_process==1"><label class="label label-primary">Yes</label></td>
                                                     </tr>
                                                     <tr>
                                                         <td>User's Status</td>
-                                                        <td *ngIf="user.email_is_verified==1"><label class="label label-success">User is Active</label></td>
-                                                        <td *ngIf="user.email_is_verified==0"><label class="label label-danger">User is not Active</label></td>
+                                                        <td *ngIf="user?.email_is_verified==1"><label class="label label-success">User is Active</label></td>
+                                                        <td *ngIf="user?.email_is_verified==0"><label class="label label-danger">User is not Active</label></td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -120,58 +120,24 @@
                         </div>
                     </div>
 
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-sm-12">
                             <div class="card">
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <h5>Other Information</h5>
-                                </div>
+                                </div> -->
                                 <div class="card-block businessInfo">
                                     <div class="row">
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="card comp-card prod-p-card card-blue">
-                                                <div class="card-body">
-                                                    <div class="row align-items-center">
-                                                        <div class="col">
-                                                            <h6 class="m-b-25 text-white">Total Account</h6>
-                                                            <h3 class="m-b-0 f-w-700 text-white">1</h3>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-user text-white f-18"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xl-4 col-md-6">
-                                            <div class="card comp-card prod-p-card card-white">
-                                                <div class="card-body">
-                                                    <div class="row align-items-center">
-                                                        <div class="col">
-                                                            <h6 class="m-b-25 text-c-blue">Total Investments</h6>
-                                                            <h3 class="m-b-0 f-w-700 text-c-blue">$10,000</h3>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <i class="fas fa-user text-white f-18"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
                                         <div class="col-md-12 text-center">
-                                            <a *ngIf="user.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
-                                            <a *ngIf="user.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
+                                            <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
+                                            <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div> -->
+                    </div>
 
 
                 </div>

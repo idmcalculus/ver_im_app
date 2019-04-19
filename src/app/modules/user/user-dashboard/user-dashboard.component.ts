@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     
     if(this.overiddenUser){
-      console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
+      // console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
       this.userService.getusersInvestment(this.overiddenUser.email).subscribe(resp=>{
         if(resp && resp.success){
           this.usersInvestments = resp.success.Data

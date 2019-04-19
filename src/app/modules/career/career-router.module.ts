@@ -6,7 +6,7 @@ import { CareerApplicationComponent } from './career-application/career-applicat
 
 const investmentRoutes: Routes = [
   { path: 'career', component: CareerComponent },
-  { path: 'apply/:careerId', component: CareerApplicationComponent }
+  { path: 'career/apply/:careerId', component: CareerApplicationComponent }
 //   { path: 'career',
 //   children:[
 //     {path:'',

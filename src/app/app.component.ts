@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AuthService} from './core/auth/auth.service';
 import {Subscription} from 'rxjs';
 import { User } from './shared/models/user';
+import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class AppComponent {
   inProfileSubcription: Subscription;
   hasSession: Subscription;
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private dynamicScriptLoader:DynamicScriptLoaderService
     ){
-      this.inProfileSubcription = this.authService.profileViewIsActive.subscribe(isLogedIn =>{
-          this.showHeader = !isLogedIn;
-          this.showFooter = !isLogedIn;
+      this.inProfileSubcription = this.authService.profileViewIsActive.subscribe(inDashboardView =>{
+          this.showHeader = !inDashboardView;
+          this.showFooter = !inDashboardView;
+          this.installScripts(inDashboardView)
       })
   }
 
@@ -42,7 +45,12 @@ export class AppComponent {
     this.hasSession.unsubscribe();
   }
 
-  // loadDynamicScripts(){
-
-  // }
+  installScripts(inDashBoard){
+    if(inDashBoard){
+      // alert('loaded them')
+      this.dynamicScriptLoader.load('chartjs','p-coded','v-layout',
+     'slimscroll','dash','platform','data-table','flat-pickr','g-maps','');
+    }
+    
+  }
 }

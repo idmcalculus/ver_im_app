@@ -25,7 +25,7 @@ export class UserComponent implements OnInit {
     private investmentService:InvestmentService,
     private dynamicScriptLoader:DynamicScriptLoaderService
     ){ 
-      this.dynamicScriptLoader.load('p-coded','v-layout','slimscroll','dash','platform','data-table','flat-pickr');
+      // this.dynamicScriptLoader.load('p-coded','v-layout','slimscroll','dash','platform','data-table','flat-pickr');
       this.authService.setInProfileView(true);
     }
 

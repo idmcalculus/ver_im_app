@@ -8,7 +8,7 @@
                         <div class="col-xl-4 col-md-6 user-invest">
                             <label for="myInvest" class="sr-only">My Investment</label>
                             <select [(ngModel)]="selectedInvestment" (change)="showDetails()" name="" id="myInvest" class="form-control">
-                                <option value="-1" >My Investment Plans</option>
+                                <option value="-1" >Investment Plans</option>
                                 <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
                             </select>
                         </div>
@@ -22,7 +22,8 @@
                                         <div class="row align-items-center">
                                             <div class="col">
                                                 <h6 class="m-b-25">Total Returns</h6>
-                                                <h3 class="f-w-700 text-c-blue">{{dashBoardData?.investment_return[0]?.investment_amount}}</h3>
+                                                <h3 *ngIf="dashBoardData?.investment_return[0]" class="f-w-700 text-c-blue">{{dashBoardData?.investment_return[0]?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                                <h3 *ngIf="!dashBoardData?.investment_return[0]"class="f-w-700 text-c-blue">0.00</h3>
                                                 <p *ngIf="dashBoardData.number_of_pools>0" class="m-b-0">{{investmentInfo?.duration}} Month(s)</p>
                                                 <p *ngIf="dashBoardData.number_of_pools==0" class="m-b-0">0 Month(s)</p>
                                             </div>
@@ -81,10 +82,28 @@
                                         <h5>Report</h5>
                                     </div>
                                     <div class="card-block">
-                                        <div *ngFor="let report of dashBoardData.investment_report " class="report-card">     
-                                            <h4>{{report?.title}}</h4>
-                                            <div>{{report?.description}}</div>
-                                            <small class="date">{{report?.updated_at}}</small>
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="userTable"
+                                                    class="table table-striped nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Report</th>
+                                                    <th>Date</th>
+                                                    <th>Type</th>
+                                                    <th>Yielded Amount</th>
+                                                    <th>Balance</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr  *ngFor="let report of dashBoardData.investment_report,let x=index " data-href="#viewUserProfile" (click)="viewUserDetail(i)">
+                                                    <td>{{report.title}}</td>
+                                                    <td >{{dashBoardData.investment_return[x].yielded_date.date}}</td>
+                                                    <td >{{dashBoardData.investment_return[x].yielded_type}}</td>
+                                                    <td >{{dashBoardData.investment_return[x].yielded_amount}}</td>
+                                                    <td >{{dashBoardData.investment_return[x].yielded_investment_amount}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

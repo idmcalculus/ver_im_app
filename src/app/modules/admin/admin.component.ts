@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadScripts();
+    // this.loadScripts();
     this.authService.validateSession().then(resp=>{
       if(resp && resp.email){
         this.user = resp;

@@ -48,7 +48,7 @@ export class DynamicScriptLoaderService {
 
   loadScript(name: string) {
     return new Promise((resolve, reject) => {
-      if (!this.scripts[name].loaded) {
+      if (this.scripts[name] && !this.scripts[name].loaded) {
         //load script
         let script = document.createElement('script');
         script.type = 'text/javascript';
