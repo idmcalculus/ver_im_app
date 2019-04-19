@@ -13,6 +13,7 @@ import {ApplicantsComponent} from './manage-career/applicants/applicants.compone
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
+import {ManageUsersComponent} from './manage-users/manage-users.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -24,9 +25,7 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
     CreateComponent,
     ListComponent,
     ManageCategoryComponent,
-
-    // ManageCareerRoutingModule
-    // ManageInvestmentComponent,
+    ManageUsersComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +41,7 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
     })
     
   ],providers: [
+    ManageUsersComponent
   ],exports:[
     // ManageInvestmentComponent
   ]

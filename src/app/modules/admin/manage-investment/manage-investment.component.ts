@@ -24,7 +24,7 @@ export class ManageInvestmentComponent implements OnInit {
   }
 
   modalSubmitted(){
-    console.log('submitting :: '+JSON.stringify(this.modalData))
+    // console.log('submitting :: '+JSON.stringify(this.modalData))
     this.submit.emit(this.modalData);
   }
 

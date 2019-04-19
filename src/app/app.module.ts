@@ -27,7 +27,7 @@ import {HttpService} from  './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import {httpInterceptorProviders} from './core/auth/index';
-import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
+// import { ManageUsersComponent } from './modules/admin/manage-users/manage-users.component';
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
 import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
@@ -53,7 +53,7 @@ import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loade
     AboutUsComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    ManageUsersComponent,
+    // ManageUsersComponent,
     AdminProfileComponent,
     TableComponent,
     // CareerDetailsComponent,

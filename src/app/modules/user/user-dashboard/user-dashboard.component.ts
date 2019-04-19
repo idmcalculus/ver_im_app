@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   ngOnInit() {
     
     if(this.overiddenUser){
-      // console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
+      console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
       this.userService.getusersInvestment(this.overiddenUser.email).subscribe(resp=>{
         if(resp && resp.success){
           this.usersInvestments = resp.success.Data
@@ -47,17 +47,24 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails(){
-    this.investmentInfo = this.usersInvestments[this.selectedInvestment];
-    this.getUserDashBoard();
+    if(this.selectedInvestment>=0){
+      this.investmentInfo = this.usersInvestments[this.selectedInvestment];
+      this.getUserDashBoard();
+    }else{
+      this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
+    }
+    
   }
 
   getUserDashBoard(){
     var userEmail = this.overiddenUser.email
     var investmentId = this.investmentInfo.id;
+    // console.log('i agt it: '+JSON.stringify(this.investmentInfo))
     this.userService.getUserDashBoard(investmentId,userEmail).subscribe(resp=>{
       if(resp && resp.success){
-        // console.log('i agt it: '+JSON.stringify(resp))
         this.dashBoardData = resp.success.Data
+      }else{
+        this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
       }
     })
   }

@@ -42,10 +42,25 @@
                                                 </div>
                                                 <div class="form-group mb-4">
                                                     <label for="responsibilities" class="l-title">Responsibilities</label>
-                                                    <input readonly *ngFor="let resp of respArray"  value="{{resp}}" type="text" name="responsibilities[]" class="form-control mb-2" id="responsibilities" placeholder="">
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <div *ngFor="let resp of respArray,let x=index" class="row mb-2">
+                                                        <div class="col-md-10">
+                                                            <input class="form-control" value="{{resp}}" type="text" name="responsibility"  id="responsibilities" placeholder="">
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <a href="#" class="" data-toggle="modal" data-target="#nullModal" (click)="popOutRecord(x)" ><i class="fa fa-trash"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                
+                                                
+
                                                 <div class="form-group mb-4">
-                                                    <input [(ngModel)]="newResponsibility"  type="text" name="responsibilities[]" class="form-control" id="responsibilities" placeholder="">
+                                                    <input [(ngModel)]="newResponsibility"  type="text" name="responsibilities[]" class="form-control" id="responsibilities" placeholder="Enter Responsibilty">
                                                 </div>
                                                 <div class="job-respon"></div>
                                                 <div class="row">

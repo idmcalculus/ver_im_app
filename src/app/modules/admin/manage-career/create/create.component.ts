@@ -40,4 +40,9 @@ export class CreateComponent implements OnInit {
     
   }
 
+  popOutRecord(index){
+    this.respArray.splice(index,1);
+    this.finalArray.splice(index,1)
+  }
+
 }

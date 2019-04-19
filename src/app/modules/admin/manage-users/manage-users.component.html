@@ -61,5 +61,5 @@
     </div>
 </div>
 
-<!-- <app-user-dashboard [overiddenUser]="selectedUser" *ngIf="selectedUser"></app-user-dashboard> -->
 <app-profile-summary *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<app-user-dashboard *ngIf="selectedUser" [overiddenUser]="selectedUser"></app-user-dashboard>

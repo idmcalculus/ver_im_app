@@ -91,7 +91,7 @@
                                                         </a>
                                                         <!-- <small (click)="deleteReport(report.id)" class="">   Delete</small> -->
                                                     
-                                                </div>
+                                                    </div>
                                                 
                                                 
                                             </div>
@@ -147,6 +147,6 @@
         </div>
     </div>
 </div>
-<app-user-dashboard *ngIf="selectedUser" ></app-user-dashboard>
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
