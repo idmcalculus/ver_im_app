@@ -73,7 +73,8 @@ export class SignUpComponent implements OnInit {
               if(UserDetails){
                 this.user = UserDetails;
                 alert(`Welcome ${this.user.first_name}`);
-                this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+                // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+                window.location.href=`${UserDetails.user_category.toLowerCase()}`
               }
               this.signUpText = "sgining in...";
             });

@@ -42,7 +42,8 @@ export class SignInComponent implements OnInit {
           if(UserDetails){
             this.user = UserDetails;
             alert(`Welcome ${this.user.first_name}`);
-            this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+            // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+            window.location.href=`${UserDetails.user_category.toLowerCase()}`
           }
           this.loginText = "Login";
           resolve();
@@ -50,27 +51,6 @@ export class SignInComponent implements OnInit {
       });
   }
 
-  // onSignIn(googleUser) {
-  //   var profile = googleUser.getBasicProfile();
-  //   var socialUser = {
-  //     last_name:profile.getName().split(' ')[1],
-  //     email:profile.getEmail(),
-  //     first_name:profile.getName().split(' ')[0],
-  //     user_category:'User',
-  //     authentication_type:'G',
-  //     // password:googleUser.getAuthResponse().id_token
-  //   };
-  //   console.log('signing in with :: '+JSON.stringify(socialUser))
-  //   // this.authService.login(socialUser)
-  //   //   .subscribe(UserDetails => {
-  //   //     if(UserDetails){
-  //   //       this.user = UserDetails;
-  //   //       alert(`Welcome ${this.user.first_name}`);
-  //   //       this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-  //   //     }
-  //   //     this.loginText = "Login";
-  //   //   });
-  // }
 
   public signOut() {
     gapi.load('auth2', () => {
@@ -116,7 +96,8 @@ export class SignInComponent implements OnInit {
             if(UserDetails){
               this.user = UserDetails;
               alert(`Welcome ${this.user.first_name}`);
-              this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+              // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+              window.location.href=`${UserDetails.user_category.toLowerCase()}`
             }
             this.loginText = "Login";
           });

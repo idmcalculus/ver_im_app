@@ -18,6 +18,8 @@ import {ReportComponent} from './../../shared/components/report/report.component
 import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
 import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component'
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import {ProfileSummaryComponent} from './../../shared/components/profile-summary
     CommonModule,
     UserRoutingModule,
     FormsModule,
-    Angular2PromiseButtonModule
+    Angular2PromiseButtonModule,
+    ChartsModule
   ],
   exports:[
     UserSettingsComponent,

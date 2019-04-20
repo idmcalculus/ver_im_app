@@ -43,7 +43,7 @@
                                             <div class="col">
                                                 <h6 class="m-b-25" style="color: #666; font-weight: bold">Total Number of Pools</h6>
                                                 <h3 class="f-w-700 text-c-blue">{{dashBoardData?.number_of_pools}}</h3>
-                                                <!-- <p class="m-b-0">12 Months</p> -->
+                                                <p class="m-b-0">0 active pool(s)</p>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-chart-area text-c-blue f-18"></i>
@@ -55,23 +55,40 @@
                         </div>
                         <div class="col-xl-4 p-0">
                             <div class="col-xl-12 col-md-12">
-                                <div class="card comp-card">
+                                <div class="card comp-card prod-p-card ">
                                     <div class="card-body">
                                         <div class="row align-items-center">
-                                            <div class="col card-icon">
-                                                <!--<h6 class="m-b-25">View Analytic</h6>
-                                                <h3 class="f-w-700 text-c-blue"></h3>
-                                                <p class="m-b-0">12 Months</p>-->
-                                                <i class="fas fa-chart-line text-c-blue f-18 ic"></i>
-                                            </div>
-                                            <div class="col-auto">
-                                                <!--<i class="fas fa-chart-line text-c-blue f-18"></i>-->
-                                            </div>
+                                            <canvas baseChart width="200" 
+                                                [datasets]="lineChartData"
+                                                [labels]="lineChartLabels"
+                                                [options]="lineChartOptions"
+                                                [colors]="lineChartColors"
+                                                [legend]="lineChartLegend"
+                                                [chartType]="lineChartType"
+                                                (chartHover)="chartHovered($event)"
+                                                (chartClick)="chartClicked($event)">
+                                            </canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- <div class="col-xl-4 p-0">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="card comp-card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col card-icon">
+                                                <i class="fas fa-chart-line text-c-blue f-18 ic"></i>
+                                            </div>
+                                            <div class="col-auto">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
                     </div>
                     <div class="row">
 
