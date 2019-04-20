@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user.component';
-import { VerifyUserComponent } from './verify-user/verify-user.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
@@ -13,7 +12,7 @@ import { PoolsComponent } from './pools/pools.component';
 import { PoolDetailComponent } from './pool-detail/pool-detail.component';
 import {SideBarComponent} from './../../shared/components/side-bar/side-bar.component';
 import {HeaderComponent} from './../../shared/components/header/header.component';
-import {HeaderDashboardComponent} from './../../shared/components/header-dashboard/header-dashboard.component';
+import {DashboardHeaderComponent} from './../../shared/components/dashboard-header/dashboard-header.component';
 import {ReportComponent} from './../../shared/components/report/report.component'
 import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
@@ -24,7 +23,6 @@ import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     UserComponent, 
-    VerifyUserComponent,
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
@@ -32,7 +30,7 @@ import { ChartsModule } from 'ng2-charts';
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
-    HeaderDashboardComponent,
+    DashboardHeaderComponent,
     ReportComponent,
     ManageInvestmentComponent,
     ProfileComponent,
@@ -52,7 +50,7 @@ import { ChartsModule } from 'ng2-charts';
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
-    HeaderDashboardComponent,
+    DashboardHeaderComponent,
     ReportComponent,
     ManageInvestmentComponent,
     UserDashboardComponent,

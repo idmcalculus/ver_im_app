@@ -4,10 +4,10 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import {Router} from '@angular/router'
 
 @Component({
-  selector: 'app-header-dashboard',
-  templateUrl: './header-dashboard.component.html'
+  selector: 'app-dashboard-header',
+  templateUrl: './dashboard-header.component.html'
 })
-export class HeaderDashboardComponent implements OnInit {
+export class DashboardHeaderComponent implements OnInit {
 
   @Input()
   public isUser: boolean;

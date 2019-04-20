@@ -39,8 +39,7 @@
                                                                 class="fa fa-edit"></i></span></a>
                                                     </div>
                                                 </div>
-                                                <!-- <a  (click)="setPlanOperation(pool)" href="#" data-toggle="modal" data-target="#managePlanModal"> -->
-                                                    <div class="superb-container no-effects m-b20">
+                                                   <div class="superb-container no-effects m-b20">
                                                         <div class="img-holder">
                                                             <img *ngIf="pool?.investment.investment_image==''" src="../assets/images/notcard.png" alt="image">
                                                             <img *ngIf="pool?.investment.investment_image!=''" src="{{pool?.investment?.investment_image}}" alt="image">
@@ -59,7 +58,6 @@
                                                             <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' " class="btn2 btn-login view mt-2">End Investment</button>
                                                         </div>
                                                     </div>
-                                                <!-- </a> -->
                                             </div>
                                         </div>
                                     </div>
