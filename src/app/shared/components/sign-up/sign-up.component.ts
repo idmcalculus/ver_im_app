@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,NgZone} from '@angular/core';
 import {SignUpService} from './sign-up.service';
 import {User} from './../../models/user';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { Router } from '@angular/router';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 let  userBackbone = {email:'',password:''}
 @Component({
   selector: 'app-sign-up',
@@ -13,9 +16,16 @@ export class SignUpComponent implements OnInit {
   isSubmitting;
   signUpText:string="Register";
 
-  constructor(private signUpService:SignUpService) { }
+  constructor(private signUpService:SignUpService,
+    private authService:AuthService,
+    private router:Router,
+    private dynamicScriptLoader:DynamicScriptLoaderService,
+    ngZone:NgZone) {
+    window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
+   }
 
   ngOnInit() {
+    this.installScript();
   }
 
 
@@ -39,6 +49,41 @@ export class SignUpComponent implements OnInit {
       alert('Passwords do not match');
     }
     
+  }
+
+  onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    var socialUser = {
+      last_name:profile.getName().split(' ')[1],
+      email:profile.getEmail(),
+      first_name:profile.getName().split(' ')[0],
+      user_category:'User',
+      authentication_type:'G',
+      // password:googleUser.getAuthResponse().id_token
+    };
+    console.log('signing up with :: '+JSON.stringify(socialUser))
+
+    this.signUpService.register(socialUser)
+        .subscribe(UserDetails => {
+          if(UserDetails){
+            // alert("Registeration Succesfull, check mail to verify");
+            this.user = {email:'',password:''};
+            this.authService.login(this.user)
+            .subscribe(UserDetails => {
+              if(UserDetails){
+                this.user = UserDetails;
+                alert(`Welcome ${this.user.first_name}`);
+                this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+              }
+              this.signUpText = "sgining in...";
+            });
+          }
+          this.passwordConfim = "";
+        });
+  }
+
+  installScript(){
+    this.dynamicScriptLoader.load('platform')
   }
 
 }

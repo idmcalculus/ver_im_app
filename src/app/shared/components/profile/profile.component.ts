@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit{
   }
 
   updateProfile(){
-      console.log(JSON.stringify(this.user))
+      // console.log(JSON.stringify(this.user))
       this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message)

@@ -40,18 +40,20 @@ export class AuthService {
             var email = localStorage.getItem('email');
             if(!email){
                 resolve(null);
+            }else{
+                this.httpService.postRequest(`fetch_profile?email=${email}`,{})
+                .subscribe(response => {
+                    if (response && response.success) {
+                        userDetails = response.success.Data.user[0];
+                        this.currentUserSubject.next(userDetails);
+                        console.log('Fetched again')
+                        resolve(userDetails);
+                    }else{
+                        resolve(userDetails);
+                    }
+                });
             }
-            this.httpService.postRequest(`fetch_profile?email=${email}`,{})
-                    .subscribe(response => {
-                        if (response && response.success) {
-                            userDetails = response.success.Data.user[0];
-                            this.currentUserSubject.next(userDetails);
-                            console.log('Fetched again')
-                            resolve(userDetails);
-                        }else{
-                          resolve(userDetails);
-                        }
-                    });
+            
         }
         
         
