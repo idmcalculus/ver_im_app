@@ -16,8 +16,8 @@ export class CareerApplicationComponent implements OnInit {
   user:User;
   userSubscription:Subscription;
   careerId:string;
-  careerApplication:CareerApplication
-  isLoading:boolean=true;
+  careerApplication:CareerApplication={email:''}
+  isLoading:boolean=false;
   isSubmitting:any;
 
   constructor(
@@ -29,7 +29,7 @@ export class CareerApplicationComponent implements OnInit {
         this.user = userInfo;
         this.careerApplication = userInfo;
       }//else take to login and redirect
-      this.isLoading = false;
+      // this.isLoading = false;
     })
   }
 

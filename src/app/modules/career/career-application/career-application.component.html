@@ -1,6 +1,6 @@
 <section class="career-apply">
   <div class="inner-apply">
-      <div *ngIf="careerApplication" class="row">
+      <div *ngIf="!isLoading" class="row">
           <div class="col-md-12">
               <div class="login-form">
                   <h3>Welcome </h3>
@@ -41,7 +41,7 @@
               </div>
           </div>
       </div>
-      <div *ngIf="!careerApplication" class="lds-default">
+      <div *ngIf="isLoading" class="lds-default">
             <div></div>
             <div></div>
             <div></div>

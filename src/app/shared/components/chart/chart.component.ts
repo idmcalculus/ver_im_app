@@ -13,7 +13,7 @@ export class ChartComponent implements OnInit {
   @Input()
   public lineChartData: ChartDataSets[] = []
   @Input()
-  public lineChartLabels: Label[] = ['January', 'January', 'March', 'April'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
     scales: {
