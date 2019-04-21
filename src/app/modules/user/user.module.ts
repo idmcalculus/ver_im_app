@@ -17,7 +17,9 @@ import {ReportComponent} from './../../shared/components/report/report.component
 import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
 import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component'
+
 import { ChartsModule } from 'ng2-charts';
+import { ChartComponent } from './../../shared/components/chart/chart.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { ChartsModule } from 'ng2-charts';
     ReportComponent,
     ManageInvestmentComponent,
     ProfileComponent,
-    ProfileSummaryComponent
+    ProfileSummaryComponent,
+    ChartComponent
   ],
   imports: [
     CommonModule,
