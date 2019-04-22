@@ -40,6 +40,7 @@ export class SignUpComponent implements OnInit {
     if(this.passwordConfim==this.user.password){
       this.isSubmitting = new Promise((resolve, reject) => {
         this.signUpText = "Submitting...";
+        this.user.authentication_type = 'G';
         this.signUpService.register(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
@@ -81,9 +82,6 @@ export class SignUpComponent implements OnInit {
           authentication_type:'G',
           // password:googleUser.getAuthResponse().id_token
         };
-        console.log('signing up with :: '+JSON.stringify(socialUser))
-        
-
         this.signUpService.register(socialUser)
         .subscribe(UserDetails => {
           if(UserDetails){

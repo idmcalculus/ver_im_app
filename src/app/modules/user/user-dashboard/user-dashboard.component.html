@@ -22,8 +22,8 @@
                                         <div class="row align-items-center">
                                             <div class="col">
                                                 <h6 class="m-b-25">Total Returns</h6>
-                                                <h3 *ngIf="dashBoardData?.investment_return[0]" class="f-w-700 text-c-blue">{{dashBoardData?.investment_return[0]?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                                <h3 *ngIf="!dashBoardData?.investment_return[0]"class="f-w-700 text-c-blue">0.00</h3>
+                                                <h3 *ngIf="dashBoardData?.investment_return[dashBoardData.number_of_pools-1]" class="f-w-700 text-c-blue">{{dashBoardData?.investment_return[0]?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                                <h3 *ngIf="!dashBoardData?.investment_return[dashBoardData.number_of_pools-1]"class="f-w-700 text-c-blue">0.00</h3>
                                                 <p *ngIf="dashBoardData.number_of_pools>0" class="m-b-0">{{investmentInfo?.duration}} Month(s)</p>
                                                 <p *ngIf="dashBoardData.number_of_pools==0" class="m-b-0">0 Month(s)</p>
                                             </div>
@@ -43,7 +43,7 @@
                                             <div class="col">
                                                 <h6 class="m-b-25" style="color: #666; font-weight: bold">Total Number of Pools</h6>
                                                 <h3 class="f-w-700 text-c-blue">{{dashBoardData?.number_of_pools}}</h3>
-                                                <p class="m-b-0">0 active pool(s) {{isGraphShown}}</p>
+                                                <p class="m-b-0">0 active pool(s)</p>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-chart-area text-c-blue f-18"></i>
