@@ -20,6 +20,7 @@ export class UserDashboardComponent implements OnInit {
   isGraphShown:boolean=false;
   lineChartData:any;
   lineChartLabels:any;
+  latest_return:number=0;
 
 
   constructor(private userService:UserService,
@@ -73,6 +74,7 @@ export class UserDashboardComponent implements OnInit {
         this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
         this.lineChartData=null;
       }
+      this.latest_return = this.dashBoardData.investment_return.length;
     })
   }
 
