@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
     if(this.passwordConfim==this.user.password){
       this.isSubmitting = new Promise((resolve, reject) => {
         this.signUpText = "Submitting...";
-        this.user.authentication_type = 'G';
+        this.user.authentication_type = 'E';
         this.signUpService.register(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
