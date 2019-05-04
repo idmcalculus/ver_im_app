@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 declare const gapi: any;
 
 
@@ -6,6 +7,8 @@ declare const gapi: any;
 export class SocialLoginService {
   public auth2: any;
   messages: string[] = [];
+
+  constructor(private authService:AppAuthService){}
 
   add(message: string) {
     this.messages.push(message);
@@ -40,16 +43,15 @@ export class SocialLoginService {
           // password:googleUser.getAuthResponse().id_token
         };
         console.log('signing in with :: '+JSON.stringify(socialUser))
-        // this.authService.login(socialUser)
-        //   .subscribe(UserDetails => {
-        //     if(UserDetails){
-        //       this.user = UserDetails;
-        //       alert(`Welcome ${this.user.first_name}`);
-        //       // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-        //       window.location.href=`${UserDetails.user_category.toLowerCase()}`
-        //     }
-        //     // this.loginText = "Login";
-        //   });
+        this.authService.login(socialUser)
+          .subscribe(UserDetails => {
+            if(UserDetails){
+              alert(`Welcome ${UserDetails.first_name}`);
+              // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+              window.location.href=`${UserDetails.user_category.toLowerCase()}`
+            }
+            // this.loginText = "Login";
+          });
 
 
       }, (error) => {
@@ -65,5 +67,13 @@ export class SocialLoginService {
       });
       //this.attachSignout(document.getElementById('googleBtn2'));
     });
+  }
+
+  public yahooLogin(){
+
+  }
+
+  public linkedinLogin(){
+    
   }
 }
