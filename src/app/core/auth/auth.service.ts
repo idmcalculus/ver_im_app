@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
+export class AppAuthService {
     private currentUserSubject: BehaviorSubject<User>;
     private inProfileView : BehaviorSubject<boolean>;
     private managePlanOperation : BehaviorSubject<Investment>;

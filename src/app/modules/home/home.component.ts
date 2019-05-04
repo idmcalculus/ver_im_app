@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from './../../core/auth/auth.service';
+import {AppAuthService} from './../../core/auth/auth.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html'
@@ -7,7 +7,7 @@ import {AuthService} from './../../core/auth/auth.service';
 export class HomeComponent {
 
   constructor(
-    private authService: AuthService
+    private authService: AppAuthService
     ) {
         this.authService.setInProfileView(false);
    }

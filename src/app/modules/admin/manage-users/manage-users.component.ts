@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../admin.service';
 import { UserService } from '../../user/user.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -15,7 +15,7 @@ export class ManageUsersComponent implements OnInit {
   selectedUser:User
   isLoading:boolean=true;
   constructor(private userService:UserService,
-     private adminService:AdminService,private authService:AuthService) { }
+     private adminService:AdminService,private authService:AppAuthService) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp=>{

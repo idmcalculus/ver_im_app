@@ -5,14 +5,14 @@ import {
   NavigationExtras,
   RouterStateSnapshot}                           from '@angular/router';
 import {UserSession} from '../../shared/models/UserSession';
-import {AuthService} from './../auth/auth.service';
+import {AppAuthService} from './../auth/auth.service';
 
 @Injectable()
 export class RouterGaurdService implements CanActivate {
 usrSession:UserSession;
   constructor(
     private router: Router,
-    private authService:AuthService
+    private authService:AppAuthService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

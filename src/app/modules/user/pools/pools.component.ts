@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class PoolsComponent implements OnInit {
   userType:string;
 
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private investmentService:InvestmentService,
     private userService:UserService) { 
       let userpath = window.location.pathname;
@@ -39,7 +39,7 @@ export class PoolsComponent implements OnInit {
 
 
   getPools(){
-    this.investmentService.getInvestments().subscribe(investments=>{
+    this.investmentService.getInvestments(false).subscribe(investments=>{
       if(investments){
         this.pools = investments.success.Data
       }

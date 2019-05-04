@@ -40,7 +40,8 @@ export class InvestmentComponent implements OnInit {
 
 
   getInvestments(){
-    this.investmentService.getInvestments().subscribe(investments=>{
+    
+    this.investmentService.getInvestments(true).subscribe(investments=>{
       var investmentArray=[];
       if(investments){
         investmentArray = investments.success.Data

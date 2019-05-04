@@ -1,6 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { User } from '../../models/user';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import {Router} from '@angular/router'
 
 @Component({
@@ -16,7 +16,7 @@ export class DashboardHeaderComponent implements OnInit {
   public userDetails: User;
 
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router
     
     ) {

@@ -4,13 +4,13 @@ import {
 } from '@angular/common/http';
 
 // import { DatasharerService } from './../datasharer/datasharer.service';
-import {AuthService} from './auth.service'
+import {AppAuthService} from './auth.service'
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService: AuthService
+    private authService: AppAuthService
     ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

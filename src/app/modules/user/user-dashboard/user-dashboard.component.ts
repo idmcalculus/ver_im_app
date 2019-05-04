@@ -2,7 +2,7 @@ import { Component, OnInit, Input,ViewChild } from '@angular/core';
 import { UserDashboard } from 'src/app/shared/models/UserDashboard';
 import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 
 @Component({
@@ -24,7 +24,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   constructor(private userService:UserService,
-    private authService:AuthService) { }
+    private authService:AppAuthService) { }
 
   ngOnInit() {
     if(this.overiddenUser){

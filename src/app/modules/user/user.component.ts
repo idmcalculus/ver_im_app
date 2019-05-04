@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 // import {DatasharerService} from '../../core/datasharer/datasharer.service';
 import {UserSession } from 'src/app/shared/models/UserSession';
 import {User} from './../../shared/models/user';
-import {AuthService} from './../../core/auth/auth.service';
+import {AppAuthService} from './../../core/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import {InvestmentService} from './../investment/investment.service';
@@ -20,7 +20,7 @@ export class UserComponent implements OnInit {
   isUser:boolean=true;
   
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router,
     private investmentService:InvestmentService,
     private dynamicScriptLoader:DynamicScriptLoaderService

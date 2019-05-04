@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
-import {AuthService} from './../../../core/auth/auth.service';
+import {AppAuthService} from './../../../core/auth/auth.service';
 import {UserService} from './../user.service';
 import {Subscription} from 'rxjs';
 @Component({
@@ -29,7 +29,7 @@ export class UserProfileComponent implements OnInit{
 
 
   constructor(
-    private authService:AuthService
+    private authService:AppAuthService
     ) { 
         
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{

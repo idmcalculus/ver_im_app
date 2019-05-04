@@ -29,19 +29,13 @@ export class InvestmentService {
   updateInvestment(investment:Investment):Observable<any>{
     var imageBody ={"investment_image":investment.investment_image};
     return this.httpService.postRequest(
-      `investment/update?
-    title=${investment.title}
-    &description=${investment.description}
-    &investment_id=${investment.id}
-    &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}
-    &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
-    &investment_amount=${investment.investment_amount}
-    &show_publicly=${investment.show_publicly ? 1:0}
-    &expected_return_amount=${investment.expected_return_amount}`,imageBody);
+      `investment/update?title=${investment.title}&description=${investment.description}&investment_id=${investment.id}
+    &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}&duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
+    &investment_amount=${investment.investment_amount}&show_publicly=${investment.show_publicly ? 1:0}&expected_return_amount=${investment.expected_return_amount}`,imageBody);
   }
   
-  getInvestments(): Observable<any> {
-    return this.httpService.postRequest('investment/list',{});
+  getInvestments(is_frontend:boolean): Observable<any> {
+    return this.httpService.postRequest(`investment/list?is_frontend=${is_frontend}`,{});
   }
 
   getUserInvestments(email): Observable<any> {
@@ -69,20 +63,19 @@ export class InvestmentService {
     return this.httpService.postRequest(`category/delete`,{category_id:category.id});
   }
 
-
-
   joinInvestment(transaction:Transaction){
-    return this.httpService.postRequest(`investment_user/create?
-    investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}
-    &amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{});
+    return this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}&amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{});
   }
 
   endInvestment(investmentId:string){
     return this.httpService.postRequest(`investment/endInvestment`,{investment_id:investmentId} );
   }
 
+  startInvestment(investmentId:string){
+    return this.httpService.postRequest(`investment/startinvestment`,{investment_id:investmentId} );
+  }
+
   pullOutFromInvestment(investmentId:string){
-    return this.httpService.postRequest(`investment_user/pullOutOfInvestment?
-    investment_id=${investmentId}`,{} );
+    return this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`,{} );
   }
 }

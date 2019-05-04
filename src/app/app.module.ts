@@ -7,6 +7,7 @@ import {AdminModule} from './modules/admin/admin.module';
 import {InvestmentModule} from './modules/investment/investment.module';
 import {CareerModule} from './modules/career/career.module';
 import { AppRoutingModule } from './app-routing.module';
+// import { Angular2SocialLoginModule } from "angular2-social-login";
 
 import { HttpClientModule }    from '@angular/common/http';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
@@ -21,7 +22,7 @@ import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 
-import {AuthService} from './core/auth/auth.service';
+import {AppAuthService} from './core/auth/auth.service';
 import {RouterGaurdService} from './core/router-gaurd/router-gaurd';
 import {HttpService} from  './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -31,9 +32,21 @@ import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profi
 import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
 import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loader.service';
+import { SocialLoginService } from './shared/services/social-login.service';
 
 
-
+// let social_providers = {
+//   "google": {
+//     "clientId": "104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com"
+//   },
+//   "linkedin": {
+//     "clientId": "77pv3mo63oyixv"
+//   },
+//   "facebook": {
+//     "clientId": "FACEBOOK_CLIENT_ID",
+//     "apiVersion": "<version>" //like v2.4
+//   }
+// };
 
 @NgModule({
   declarations: [
@@ -61,6 +74,7 @@ import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loade
     CareerModule,
     AppRoutingModule,
     HttpClientModule,
+    // Angular2SocialLoginModule,
     Angular2PromiseButtonModule.forRoot({
       spinnerTpl: '<span class="btn-spinner"></span>',
       disableBtn: true,
@@ -74,13 +88,18 @@ import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loade
   providers: [
     RouterGaurdService,
     HttpService,
-    AuthService,
+    AppAuthService,
     CookieService,
     httpInterceptorProviders,
     CloudinaryService,
-    DynamicScriptLoaderService
+    DynamicScriptLoaderService,
+    SocialLoginService
   ],
   exports:[],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }
+
+// Angular2SocialLoginModule.loadProvidersScripts(social_providers);

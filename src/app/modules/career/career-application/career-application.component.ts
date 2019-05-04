@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CareerApplication } from 'src/app/shared/models/CareerApplication';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { CareerService } from '../career.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class CareerApplicationComponent implements OnInit {
 
   constructor(
     private route:ActivatedRoute,
-    private authService:AuthService,
+    private authService:AppAuthService,
     private careerService:CareerService) { 
     this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
       if(userInfo){

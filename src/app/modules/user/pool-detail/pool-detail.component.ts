@@ -4,7 +4,7 @@ import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from './../../investment/investment.service'
 import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 
@@ -32,7 +32,7 @@ userSubscription:Subscription
     private router:Router,
     private investmentService:InvestmentService,
     private reportService:ReportService,
-    private authService:AuthService
+    private authService:AppAuthService
     ) { 
 
       this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
@@ -170,6 +170,18 @@ userSubscription:Subscription
     var proceed = confirm('Do you really want to end this investment?');
     if(proceed){
       this.investmentService.endInvestment(String(this.poolId)).subscribe(resp=>{
+        if(resp && resp.success){
+          alert(resp.success.Message)
+          this.fetchPool(String(this.poolId))
+        }
+      })
+    }
+  }
+
+  startInvestment(){
+    var proceed = confirm('Do you really want to start this investment?');
+    if(proceed){
+      this.investmentService.startInvestment(String(this.poolId)).subscribe(resp=>{
         if(resp && resp.success){
           alert(resp.success.Message)
           this.fetchPool(String(this.poolId))

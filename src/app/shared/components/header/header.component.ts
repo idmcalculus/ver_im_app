@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   userinfo:User={user_category:'none',email:''};
 
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router) { 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
         // console.log("change occured "+JSON.stringify(user))

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {SignInService} from './sign-in.service';
 import {User} from '../../models/user';
-import {AuthService} from './../../../core/auth/auth.service';
+import {AppAuthService} from './../../../core/auth/auth.service';
+// import { AuthService } from "angular2-social-login";
 // import { UserSession } from '../../models/UserSession';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-declare const gapi: any;
+import { SocialLoginService } from '../../services/social-login.service';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -13,15 +15,17 @@ declare const gapi: any;
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-  public auth2: any;
+  
   user:User={email:'',password:''};
   isSubmitting;
   loginText:string="Login";
   constructor(
     private signInService: SignInService,
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router,
     private dynamicScriptLoader:DynamicScriptLoaderService,
+    private socialLoginService:SocialLoginService
+
     // ngZone:NgZone
     ) { 
       // window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
@@ -51,61 +55,31 @@ export class SignInComponent implements OnInit {
       });
   }
 
-
-  public signOut() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.getAuthInstance();
-      this.auth2.signOut().then(function() {
-        console.log("User signed out");
-      });
-      //this.attachSignout(document.getElementById('googleBtn2'));
-    });
+  socialSignIn(){
+      this.socialLoginService.googleInit();
   }
+
+  socialSignOut(){
+    this.socialLoginService.signOut();
+  }
+
+  
+
+  // public socialLogin(provider){
+  //   alert(provider)
+  //   this.social_auth.login(provider).subscribe(
+  //     (data) => {
+  //                 console.log(data);
+  //                 //user data
+  //                 //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
+  //               }
+  //   )
+  // }
 
   installScript(){
     this.dynamicScriptLoader.load('platform')
   }
 
-  public googleInit() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.init({
-        client_id: '104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
-      });
-      this.attachSignin(document.getElementById('googleBtn'));
-    });
-  }
-
-  public attachSignin(element) {
-    this.auth2.attachClickHandler(element, {},
-      (googleUser) => {
-
-        let profile = googleUser.getBasicProfile();
-        var socialUser = {
-          last_name:profile.getName().split(' ')[1],
-          email:profile.getEmail(),
-          first_name:profile.getName().split(' ')[0],
-          user_category:'User',
-          authentication_type:'G',
-          // password:googleUser.getAuthResponse().id_token
-        };
-        console.log('signing in with :: '+JSON.stringify(socialUser))
-        this.authService.login(socialUser)
-          .subscribe(UserDetails => {
-            if(UserDetails){
-              this.user = UserDetails;
-              alert(`Welcome ${this.user.first_name}`);
-              // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-              window.location.href=`${UserDetails.user_category.toLowerCase()}`
-            }
-            this.loginText = "Login";
-          });
-
-
-      }, (error) => {
-        // alert(JSON.stringify(error, undefined, 2));
-      });
-  }
+  
 
 }

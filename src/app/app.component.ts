@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AuthService} from './core/auth/auth.service';
+import {AppAuthService} from './core/auth/auth.service';
 import {Subscription} from 'rxjs';
 import { User } from './shared/models/user';
 import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
@@ -21,7 +21,7 @@ export class AppComponent {
   inProfileSubcription: Subscription;
   hasSession: Subscription;
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private dynamicScriptLoader:DynamicScriptLoaderService
     ){
       this.inProfileSubcription = this.authService.profileViewIsActive.subscribe(inDashboardView =>{

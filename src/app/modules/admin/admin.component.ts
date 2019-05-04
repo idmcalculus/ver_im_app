@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 // import {DatasharerService} from '../../core/datasharer/datasharer.service';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import {Router} from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   currentPlanOperation:Subscription
 
   constructor(
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router,
     private investmentService:InvestmentService,
     private cloudinaryService:CloudinaryService,

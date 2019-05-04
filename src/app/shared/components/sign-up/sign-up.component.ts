@@ -1,7 +1,7 @@
 import { Component, OnInit ,NgZone} from '@angular/core';
 import {SignUpService} from './sign-up.service';
 import {User} from './../../models/user';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { VerifyUserService } from '../verify-user/verify-user.service';
@@ -21,7 +21,7 @@ export class SignUpComponent implements OnInit {
   signUpText:string="Register";
 
   constructor(private signUpService:SignUpService,
-    private authService:AuthService,
+    private authService:AppAuthService,
     private router:Router,
     private verifyService:VerifyUserService,
     private dynamicScriptLoader:DynamicScriptLoaderService,

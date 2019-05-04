@@ -4,7 +4,7 @@ import {InvestmentService} from './../investment.service'
 import { Investment } from 'src/app/shared/models/Investment';
 import { Transaction } from 'src/app/shared/models/Transaction';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/core/auth/auth.service';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
 
@@ -29,7 +29,7 @@ export class InvestmentDetailComponent implements OnInit {
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private investmentService:InvestmentService,
-    private authService:AuthService
+    private authService:AppAuthService
     ) {
       
      }
