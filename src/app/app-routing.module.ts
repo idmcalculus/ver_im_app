@@ -15,11 +15,11 @@ const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
   { path: 'admin/signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'contact', component: SignUpComponent },
+  // { path: 'contact', component: Contac },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'verify_user/:token', component: VerifyUserComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  // { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

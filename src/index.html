@@ -26,12 +26,19 @@
   <link rel="stylesheet" href="assets/css/animate.min.css">
   <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
   <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
-  <script type="text/javascript" src="//platform.linkedin.com/in.js">
-    api_key:   ["77pv3mo63oyixv"]
-    onLoad:    [ONLOAD]
-    authorize: [AUTHORIZE]
-    lang:      [LANG_LOCALE]
-</script>
+  <script>
+      var mywin
+
+      function openLonkedin(newWindowParams){
+        mywin = window.open(newWindowParams,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize')
+        
+      }
+  
+      window.socialAuth = function(){
+        mywin.close()
+        window.location.href = "/user";
+      }    
+    </script>
 </head>
 <body>
   <app-root>
@@ -41,21 +48,7 @@
   <script src="./assets/js/jquery-3.2.1.min.js"></script>
   <script src="./assets/js/bootstrap.min.js"></script>
   
-  <!-- <script>
-    function renderButton() {
-          gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-          });
-        }
-    
-  </script> -->
-  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
 
 
 </html>
