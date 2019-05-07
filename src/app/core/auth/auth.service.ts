@@ -44,9 +44,12 @@ export class AppAuthService {
                 this.httpService.postRequest(`fetch_profile?email=${email}`,{})
                 .subscribe(response => {
                     if (response && response.success) {
-                        userDetails = response.success.Data.user[0];
+                        var resp = response.success.Data.user[0];
+                        userDetails = resp;
+                        userDetails.updates_on_new_plans = resp.updates_on_new_plans=="1"?true:false;
+                        userDetails.email_updates_on_investment_process = resp.email_updates_on_investment_process=="1"?true:false;
+                        // console.log('Fetched again '+JSON.stringify(userDetails))
                         this.currentUserSubject.next(userDetails);
-                        console.log('Fetched again')
                         resolve(userDetails);
                     }else{
                         resolve(userDetails);

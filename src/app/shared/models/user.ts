@@ -20,8 +20,8 @@ export class User extends BasicModel{
     account_name?: string;
     account_number?: string;
     bank_name?: string;
-    updates_on_new_plans?: number;
-    email_updates_on_investment_process?: number;
+    updates_on_new_plans?: boolean;
+    email_updates_on_investment_process?: boolean;
     where_you_work?: string;
     average_monthly_income?: string;
   }

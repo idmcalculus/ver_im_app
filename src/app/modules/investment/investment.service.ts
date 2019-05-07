@@ -72,7 +72,7 @@ export class InvestmentService {
   }
 
   startInvestment(investmentId:string){
-    return this.httpService.postRequest(`investment/startinvestment`,{investment_id:investmentId} );
+    return this.httpService.postRequest(`investment/startInvestment`,{investment_id:investmentId} );
   }
 
   pullOutFromInvestment(investmentId:string){

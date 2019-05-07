@@ -26,8 +26,8 @@ export class UserService {
 
   updatePreference(user:User):Observable<any>{
     return this.httpService.postRequest(`update_preference?
-    updates_on_new_plans=${user.updates_on_new_plans}
-    &email_updates_on_investment_process=${user.email_updates_on_investment_process}`,null);
+    updates_on_new_plans=${user.updates_on_new_plans?1:0}
+    &email_updates_on_investment_process=${user.email_updates_on_investment_process?1:0}`,null);
   }
 
   updateBankDetails(user:User):Observable<any>{

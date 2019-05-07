@@ -46,6 +46,7 @@ export class SignUpComponent implements OnInit {
           if(UserDetails){
             alert("Registeration Succesfull, check mail to verify");
             this.user = {email:'',password:''};
+            this.router.navigateByUrl("signin");
           }
           this.passwordConfim = "";
           this.signUpText = "Register";

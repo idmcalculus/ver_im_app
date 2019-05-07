@@ -263,20 +263,24 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <span>Account Number</span>
+                                                            <span>Account Number</span> 
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="accontnumber">Account Number</label>
-                                                            <input [(ngModel)]="user.account_number" type="text" class="form-control"
-                                                                   id="accontnumber">
+                                                            <label *ngIf="acctNumber.invalid && (acctNumber.dirty)"  class="m-l-5 alert-danger">
+                                                                * Enter a valid account number
+                                                            </label>
+                                                            <input required minlength="10" pattern="^[0-9]+$" [(ngModel)]="user.account_number" type="text" class="form-control"
+                                                                   id="accontnumber" #acctNumber="ngModel">
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
 
                                                 <div *ngIf="editable" class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
+                                                            <input type="button" [disabled]="acctNumber.invalid" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -291,11 +295,11 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <label class="pref">Receive updates on new Plans?</label>
+                                                            <label class="pref">Receive updates on new Plans? </label>
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input [(ngModel)]="opt1selected" type="checkbox" [checked]="opt1selected"/>
+                                                                <input [(ngModel)]="user.updates_on_new_plans" type="checkbox" [checked]="user.updates_on_new_plans"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -307,11 +311,11 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <label class="pref">Send E-mail updates on investment {{opt2selected}}</label>
+                                                            <label class="pref">Send E-mail updates on investment {{emailUpdates}}</label>
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
-                                                                <input  [(ngModel)]="opt2selected" type="checkbox" [checked]="opt2selected"/>
+                                                                <input  [(ngModel)]="user.email_updates_on_investment_process" type="checkbox" [checked]="user.email_updates_on_investment_process"/>
                                                                 <div class="state">
                                                                     <label></label>
                                                                 </div>
@@ -324,7 +328,7 @@
                                                 <div *ngIf="editable" class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference ">
                                                         </div>
                                                     </div>
                                                 </div>

@@ -43,8 +43,7 @@ export class ProfileComponent implements OnInit{
   }
 
   updateAccountPreference(){
-    this.user.updates_on_new_plans = this.opt1selected?1:0;
-    this.user.email_updates_on_investment_process = this.opt2selected?1:0;
+    console.log(JSON.stringify(this.user))
     this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp=>{
       if(resp && resp.success){
         alert(resp.success.Message)
