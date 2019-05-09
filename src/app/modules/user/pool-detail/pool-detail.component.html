@@ -55,7 +55,8 @@
                                                                 <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p></h4>
             
                                                             <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn2 btn-login view mt-2">Pull out</button>
-                                                            <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' " class="btn2 btn-login view mt-2">End Investment</button>
+                                                            <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn2 btn-login view mt-2">Ended</button>
+                                                            <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1' " class="btn2 btn-login view mt-2">End Investment</button>
                                                             <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn2 btn-login view mt-2">Start Investment</button>
                                                         </div>
                                                     </div>
