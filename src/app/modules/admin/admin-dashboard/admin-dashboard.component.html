@@ -91,15 +91,32 @@
                                   <h5>Requests</h5>
                               </div>
                               <div class="card-block">
-                                  <div class="latest-update-box">
-
-                                  </div>
-                              </div>
-                              <div class="card-block">
-                                    <div class="latest-update-box">
-  
-                                    </div>
+                                  
+                              
+                                <div class="dt-responsive table-responsive">
+                                        <!-- <table id="userTable"
+                                                class="table table-striped nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>first name</th>
+                                                <th>last name</th>
+                                                <th>email</th>
+                                                <th>Phone number</th>
+                                                <th>curriculum_vitae</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
+                                                <td>{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table> -->
                                 </div>
+                               </div>
                           </div>
                       </div>
 
@@ -109,9 +126,29 @@
                                   <h5>Career</h5>
                               </div>
                               <div class="card-block">
-                                  <div class="latest-update-box">
-
-                                  </div>
+                                    <div class="dt-responsive table-responsive">
+                                            <table id="userTable"
+                                                    class="table table-striped nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>first name</th>
+                                                    <th>last name</th>
+                                                    <th>email</th>
+                                                    <th>Phone number</th>
+                                                    <th>curriculum_vitae</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let req of dashBoardData?.career_application,let x=index ">
+                                                    <td>{{req.first_name}}</td>
+                                                    <td >{{req.last_name}}</td>
+                                                    <td >{{req.email}}</td>
+                                                    <td >{{req.phone_number}}</td>
+                                                    <td >{{req.curriculum_vitae}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
                               </div>
                           </div>
                       </div>
