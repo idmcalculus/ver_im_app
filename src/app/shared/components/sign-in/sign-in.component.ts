@@ -5,6 +5,7 @@ import {AppAuthService} from './../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { SocialLoginService } from '../../services/social-login.service';
+import { ToastrService } from 'ngx-toastr';
 
 let linkedinUrl="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social";
 let yahooUrl="https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9Y0lNZ2pVNTRTSzhGJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWY2&redirect_uri=http://versa-ims.herokuapp.com&response_type=code&language=en-us";
@@ -25,7 +26,8 @@ export class SignInComponent implements OnInit {
     private authService:AppAuthService,
     private router:Router,
     private dynamicScriptLoader:DynamicScriptLoaderService,
-    private socialLoginService:SocialLoginService
+    private socialLoginService:SocialLoginService,
+    private toastr: ToastrService
 
     // ngZone:NgZone
     ) { 
@@ -46,7 +48,8 @@ export class SignInComponent implements OnInit {
         .subscribe(UserDetails => {
           if(UserDetails){
             this.user = UserDetails;
-            alert(`Welcome ${this.user.first_name}`);
+            this.toastr.success(`Welcome ${this.user.first_name}`)
+            // alert();
             // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
             window.location.href=`${UserDetails.user_category.toLowerCase()}`
           }

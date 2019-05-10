@@ -8,6 +8,9 @@ import {InvestmentModule} from './modules/investment/investment.module';
 import {CareerModule} from './modules/career/career.module';
 import { AppRoutingModule } from './app-routing.module';
 // import { Angular2SocialLoginModule } from "angular2-social-login";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule }    from '@angular/common/http';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
@@ -74,6 +77,12 @@ import { SocialLoginService } from './shared/services/social-login.service';
     CareerModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     // Angular2SocialLoginModule,
     Angular2PromiseButtonModule.forRoot({
       spinnerTpl: '<span class="btn-spinner"></span>',
