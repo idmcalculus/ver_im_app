@@ -27,7 +27,7 @@ export class SignInComponent implements OnInit {
     private router:Router,
     private dynamicScriptLoader:DynamicScriptLoaderService,
     private socialLoginService:SocialLoginService,
-    private toastr: ToastrService
+    private toastrService: ToastrService
 
     // ngZone:NgZone
     ) { 
@@ -48,7 +48,7 @@ export class SignInComponent implements OnInit {
         .subscribe(UserDetails => {
           if(UserDetails){
             this.user = UserDetails;
-            this.toastr.success(`Welcome ${this.user.first_name}`)
+            this.toastrService.success(`Welcome ${this.user.first_name}`)
             // alert();
             // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
             window.location.href=`${UserDetails.user_category.toLowerCase()}`

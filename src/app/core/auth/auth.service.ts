@@ -5,6 +5,7 @@ import { User } from './../../shared/models/user';
 import {HttpService} from './../http/httpservice.service';
 import {Router} from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
 export class AppAuthService {
@@ -17,7 +18,8 @@ export class AppAuthService {
 
     constructor(
         private httpService: HttpService,
-        private router:Router
+        private router:Router,
+        private toastrService:ToastrService
         ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -66,7 +68,8 @@ export class AppAuthService {
     public get currentUserValue(): any {
         let userUrl = window.location.pathname;
         if(!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')){
-            alert('Kindly Login First')//unauthenticated
+            // alert('Kindly Login First')//unauthenticated
+            this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
             return false
         }else{

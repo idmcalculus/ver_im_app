@@ -19,7 +19,8 @@ export class HomeComponent {
             localStorage.setItem('authCode', authCode);
             if(opener){
               
-              alert(localStorage.getItem('authCode'))
+              // alert(localStorage.getItem('authCode'))
+              //use authcode to get details and sign in
               opener.socialAuth();
             }
             

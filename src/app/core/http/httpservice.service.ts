@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {  HttpHeaders,HttpClient  } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 
 
 const httpOptions = {
@@ -19,7 +20,8 @@ export class HttpService {
   
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private toastrService:ToastrService
     ) { }
 
 
@@ -60,16 +62,20 @@ export class HttpService {
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             if(error.status==0){
-                alert('Could not connect to services')
+                // alert('Could not connect to services')
+                this.toastrService.error(`Kindly Login First`)
             }else{
                 console.log("Error occurred is:: "+JSON.stringify(error))
                 if(error.error && error.error.errors){
-                    alert(JSON.stringify(error.error.errors))
+                    // alert(JSON.stringify(error.error.errors))
+                    this.toastrService.error(JSON.stringify(error.error.errors))
                 }else if(error.error && error.error.error){
                     if(error.error.error.message){
-                        alert(error.error.error.message)
+                        // alert(error.error.error.message)
+                        this.toastrService.error(error.error.error.message)
                     }else{
-                        alert(JSON.stringify(error.error.error.Message))
+                        // alert(JSON.stringify(error.error.error.Message))
+                        this.toastrService.error(JSON.stringify(error.error.error.Message))
                     } 
                 }
             }

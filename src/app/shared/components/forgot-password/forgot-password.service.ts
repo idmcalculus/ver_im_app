@@ -4,12 +4,12 @@ import {HttpService} from '../../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class ResetPasswordService {
+export class ForgotPasswordService {
   constructor(
     private httpService:HttpService
   ) { }
   
-  reset(password:String): Observable<any> {
-    return this.httpService.postRequest(`change_password?password=${password}`,{});
+  recoverPassword(userEmail:String): Observable<any> {
+    return this.httpService.postRequest(`reset_password_request?email=${userEmail}`,{});
   }
 }

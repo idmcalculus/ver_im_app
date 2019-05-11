@@ -1,7 +1,7 @@
-<section class="login-section">
+    <section class="login-section">
         <div class="inner-login">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 divider">
                     <div class="login-form">
                         <h3>Sign up for an account, </h3>
                         <p>You'll be done in a moment</p>
@@ -41,29 +41,34 @@
                                     <button type="submit" class="btn2 btn btn-raised btn-login"  [disabled]="!signUpForm.form.valid"   [promiseBtn]="isSubmitting">{{signUpText}}</button>
                             </div>
                         </form>
+                        <div class="otherInfo">
+                            <p>Already have an account? Sign in <a routerLink="/signin" routerLinkActive="active">here</a></p>
+                        </div>
                     </div>
                 </div>
                 <div class="hor-divider"></div>
                 <div class="col-md-6">
                     <div class="social-login">
                         <div class="form-group">
-                            <a class="btn btn-block btn-lg btn-social btn-yahoo">
-                                <span class="fab fa-yahoo f-13"></span> Sign up with Yahoo!
+                            <a onclick='openLonkedin("http://localhost:4200/?code=14244")' class="btn btn-block btn-lg btn-social btn-yahoo">
+                                <span class="fab fa-yahoo f-13"></span> Sign in with Yahoo!
                             </a>
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-block btn-lg btn-social btn-linkedin">
-                                <span class="fab fa-linkedin f-13"></span> Sign up with LinkedIn
+                            <a onclick='openLonkedin("http://localhost:4200/?code=14244")' class="btn btn-block btn-lg btn-social btn-linkedin">
+                                <span class="fab fa-linkedin f-13"></span> Sign in with LinkedIn
                             </a>
                         </div>
-                        <div class="form-group">
-                            <a id="googleBtn" (click)="googleInit()" class="btn btn-block btn-lg btn-social btn-google">
-                                <span class="fab fa-google f-13"></span> Sign up with Google
+                        <div  class="form-group">
+                            <a id="googleBtn" (click)="socialSignIn()" class="btn btn-block btn-lg btn-social btn-google">
+                                <span class="fab fa-google f-13"></span> Sign in with Google
+                                <div data-onsuccess="onSignIn"></div>
                             </a>
                         </div>
-                        <!-- <div id="g-sign-in" class="g-signin2" data-onsuccess="onSignIn"></div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    
