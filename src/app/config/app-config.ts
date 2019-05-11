@@ -10,13 +10,19 @@ export const Config = {
         messagingSenderId: "YOUR MESSAGING SENDER ID"
         },
     "yahoo":{
-        clientid:"dj0yJmk9Y0lNZ2pVNTRTSzhGJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWY2",
-        secretkey:"",
+        base_url:"https://api.login.yahoo.com",
+        auth_code_path:"oauth2/request_auth",
+        redirect_uri:"http://versa-ims.herokuapp.com",
+        access_token_path:"oauth2/get_token",
+        scope:"profile",
+        clientid:"dj0yJmk9eHNIendLV2NJU2gwJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg5",
+        secretkey:"74822b31d3242615561b84a5ece6020b9ef5d9a3",
+        
     },
     "linkedin":{
         host:"https://www.linkedin.com",
-        auth_path:"oauth/v2/authorization",
-        access_path:"oauth/v2/accessToken",
+        auth_code_path:"oauth/v2/authorization",
+        access_token_path:"oauth/v2/accessToken",
         profile_email:"v2/me",
         response_type:"code",
         grant_type:"authorization_code",

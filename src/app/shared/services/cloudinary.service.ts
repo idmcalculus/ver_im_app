@@ -16,7 +16,7 @@ export class CloudinaryService {
           "file":base64SString,
           "upload_preset":"vprr7erl"
       }
-      this.httpService.postRequest('v1_1/crystalbit-technology/image/upload',data)
+      this.httpService.postRequest('v1_1/crystalbit-technology/image/upload',data,null)
       .subscribe(resp=>{
           if(resp){
               this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";

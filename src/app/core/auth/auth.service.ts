@@ -43,7 +43,7 @@ export class AppAuthService {
             if(!email){
                 resolve(null);
             }else{
-                this.httpService.postRequest(`fetch_profile?email=${email}`,{})
+                this.httpService.postRequest(`fetch_profile?email=${email}`,{},null)
                 .subscribe(response => {
                     if (response && response.success) {
                         var resp = response.success.Data.user[0];
@@ -88,7 +88,7 @@ export class AppAuthService {
 
 
     login(userCreds:User) {
-      return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{})
+      return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{},null)
       .pipe(map(response => {
           var userDetails=null;
           if (response && response.success) {

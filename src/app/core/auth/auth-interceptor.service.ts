@@ -19,13 +19,23 @@ export class AuthInterceptor implements HttpInterceptor {
     if(req.url.includes('api.cloudinary.com')){
       req.headers.delete
       return next.handle(req)
-    }else{
+    }else if(req.url.includes('versa')){
       const authReq = req.clone({
           headers: req.headers.
           set('Authorization',`Bearer ${authToken}`).
           set('Content-Type','application/x-www-form-urlencoded')          
       });
       return next.handle(authReq);
+    }else{
+      console.log('senedin :: '+JSON.stringify(req.body))
+      console.log('senedin :: '+JSON.stringify(req.urlWithParams))
+      console.log('senedin :: '+JSON.stringify(req.headers.get('Content-Type')))
+      // const authReq = req.clone({
+      //     headers: req.headers.
+      //     set('Content-Type','application/x-www-form-urlencoded')          
+      // });
+      // return next.handle(authReq);
+      return next.handle(req)
     }
   }
 }

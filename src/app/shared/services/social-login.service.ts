@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import {Config as appConfig} from './../../config/app-config';
 import { HttpService } from 'src/app/core/http/httpservice.service';
+
+import { HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SignUpService } from '../components/sign-up/sign-up.service';
 declare const gapi: any;
@@ -70,8 +72,39 @@ export class SocialLoginService {
     });
   }
 
-  public yahooLogin(){
+  public yahooLogin(auth_code:String){
+    // return new Observable<any>(observable=>{
+      this.httpService.baseURL = appConfig.yahoo.base_url;
+      const data = new HttpParams();
+        // .set('grant_type', 'authorization_code')
+        // .set('redirect_uri', appConfig.yahoo.redirect_uri)
+        // .set('code', `${auth_code}`) 
+        // .set('client_id', appConfig.yahoo.clientid) 
+        // .set('client_secret', appConfig.yahoo.secretkey) 
+      
 
+      // const data = new FormData();
+      // data.append('grant_type', 'authorization_code');
+      // data.append('redirect_uri', appConfig.yahoo.redirect_uri);
+      // data.append('code', `${auth_code}`);
+      // data.append('client_id',appConfig.yahoo.clientid );
+      // data.append('client_secret', appConfig.yahoo.secretkey);
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/x-www-form-urlencoded'
+        })
+      };
+
+      return this.httpService.postRequest(`${appConfig.yahoo.access_token_path}`,data,httpOptions)
+      .subscribe(resp=>{
+          if(resp){
+              console.log("resp is :: "+resp)
+              this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+              // observable.next(resp.secure_url);
+          }
+      })
+    // })
   }
 
   public linkedinLogin(){
@@ -81,7 +114,7 @@ export class SocialLoginService {
   public getSocialUrlLogin(socialplatform){
     if(socialplatform=='linkedin'){
       let config = appConfig.linkedin
-      let loginUrl = `${config.host}/${config.auth_path}
+      let loginUrl = `${config.host}/${config.auth_code_path}
       ?response_type=${config.response_type}&client_id=${config.clientid}
       &redirect_uri=${config.redirect_uri}&state=${config.state}&scope=${config.scope}`
       return loginUrl;
@@ -97,14 +130,14 @@ export class SocialLoginService {
 
   public getAccesstoken(authCode){
     let config = appConfig.linkedin;
-    let requestParam = `${config.access_path}
+    let requestParam = `${config.access_token_path}
     ?grant_type=${config.grant_type}&code=${authCode}&redirect_uri=${config.redirect_uri}
     &client_id=${config.clientid}&client_secret=${config.secretkey}`;
 
 
     return new Observable<any>(observable=>{
       this.httpService.baseURL = `${config.host}`;
-      this.httpService.postRequest(`${requestParam}`,{})
+      this.httpService.postRequest(`${requestParam}`,{},null)
       .subscribe(resp=>{
           if(resp){
               this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
@@ -121,7 +154,7 @@ export class SocialLoginService {
 
     return new Observable<any>(observable=>{
       this.httpService.baseURL = `${config.host}`;
-      this.httpService.postRequest(`${requestParam}`,{})
+      this.httpService.postRequest(`${requestParam}`,{},null)
       .subscribe(resp=>{
           if(resp){
               this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";

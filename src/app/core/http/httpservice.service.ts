@@ -35,8 +35,9 @@ export class HttpService {
         );    
     }
 
-    postRequest(api:string,data:any):Observable<any>  {
-        return this.http.post<any>(`${this.baseURL}/${api}`,data,httpOptions)
+    postRequest(api:string,data:any,httpHeaderOptions?:{headers:HttpHeaders}):Observable<any>  {
+        var opts = httpHeaderOptions?httpHeaderOptions:httpOptions
+        return this.http.post<any>(`${this.baseURL}/${api}`,data,opts)
         .pipe(
             tap(resp=> this.log('POST=> response :: '+resp)),
             catchError(
@@ -61,26 +62,23 @@ export class HttpService {
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
+            console.log(error)
             if(error.status==0){
                 // alert('Could not connect to services')
-                this.toastrService.error(`Kindly Login First`)
-            }else{
                 console.log("Error occurred is:: "+JSON.stringify(error))
+                this.toastrService.error(`Error occurred connecting to services`)
+            }else{
                 if(error.error && error.error.errors){
-                    // alert(JSON.stringify(error.error.errors))
                     this.toastrService.error(JSON.stringify(error.error.errors))
                 }else if(error.error && error.error.error){
                     if(error.error.error.message){
-                        // alert(error.error.error.message)
                         this.toastrService.error(error.error.error.message)
                     }else{
-                        // alert(JSON.stringify(error.error.error.Message))
                         this.toastrService.error(JSON.stringify(error.error.error.Message))
                     } 
                 }
             }
             return of(result as T);
-
         };
     }
 
