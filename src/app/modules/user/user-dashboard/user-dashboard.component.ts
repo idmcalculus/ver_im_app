@@ -21,6 +21,7 @@ export class UserDashboardComponent implements OnInit {
   lineChartData:any;
   lineChartLabels:any;
   latest_return:number=0;
+  totalYieldedAmount=0;
 
 
   constructor(private userService:UserService,
@@ -58,6 +59,7 @@ export class UserDashboardComponent implements OnInit {
       this.getUserDashBoard();
     }else{
       this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
+      this.totalYieldedAmount = 0;
     }
     
   }
@@ -73,6 +75,7 @@ export class UserDashboardComponent implements OnInit {
       }else{
         this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
         this.lineChartData=null;
+        this.totalYieldedAmount = 0;
       }
       this.latest_return = this.dashBoardData.investment_return.length;
     })
@@ -95,16 +98,21 @@ export class UserDashboardComponent implements OnInit {
     var cellData1 = {data: [], label: 'Invested Amount'};
     var cellData2 = {data: [], label: 'Balance'};
     var cellData3 = {data: [], label: 'Yielded AAmount'};
+    var totYieldAmount =0;
+    
     investment_return.forEach(x=>{
       cellData1.data.push(x.investment_amount)
       cellData2.data.push(x.yielded_investment_amount)
       cellData3.data.push(x.yielded_amount)
+      totYieldAmount+=x.yielded_amount
       this.lineChartLabels.push(this.formatDate(x.yielded_date.date))
       
     });
     this.lineChartData.push(cellData1)
     this.lineChartData.push(cellData2)
     this.lineChartData.push(cellData3)
+
+    this.totalYieldedAmount = totYieldAmount;
     // console.log('here i have :: '+JSON.stringify(this.lineChartData))
   }
 

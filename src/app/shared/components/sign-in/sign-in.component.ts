@@ -4,7 +4,7 @@ import {User} from '../../models/user';
 import {AppAuthService} from './../../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { SocialLoginService } from '../../services/social-login.service';
+import { SocialLogin } from '../../services/social-login-services';
 import { ToastrService } from 'ngx-toastr';
 
 let linkedinUrl="https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social";
@@ -26,13 +26,9 @@ export class SignInComponent implements OnInit {
     private authService:AppAuthService,
     private router:Router,
     private dynamicScriptLoader:DynamicScriptLoaderService,
-    private socialLoginService:SocialLoginService,
+    private socialLoginService:SocialLogin,
     private toastrService: ToastrService
-
-    // ngZone:NgZone
-    ) { 
-      // window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
-    }
+    ) {}
 
   ngOnInit() {
     this.installScript();

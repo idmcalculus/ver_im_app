@@ -5,6 +5,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { VerifyUserService } from '../verify-user/verify-user.service';
+import { ToastrService } from 'ngx-toastr';
 let  userBackbone = {email:'',password:''}
 declare const gapi: any;
 
@@ -25,6 +26,8 @@ export class SignUpComponent implements OnInit {
     private router:Router,
     private verifyService:VerifyUserService,
     private dynamicScriptLoader:DynamicScriptLoaderService,
+    private toastrService:ToastrService
+    
     // ngZone:NgZone
     ) {
     // window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
@@ -44,7 +47,8 @@ export class SignUpComponent implements OnInit {
         this.signUpService.register(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
-            alert("Registeration Succesfull, check mail to verify");
+            // alert("Registeration Succesfull, check mail to verify");
+            this.toastrService.success('Registeration Succesfull, check mail to verify')
             this.user = {email:'',password:''};
             this.router.navigateByUrl("signin");
           }
@@ -54,7 +58,8 @@ export class SignUpComponent implements OnInit {
         });
       });
     }else{
-      alert('Passwords do not match');
+      // alert('Passwords do not match');
+      this.toastrService.error('Passwords do not match')
     }
     
   }
@@ -90,7 +95,8 @@ export class SignUpComponent implements OnInit {
             .subscribe(UserDetails => {
               if(UserDetails){
                 this.user = UserDetails;
-                alert(`Welcome ${this.user.first_name}`);
+                // alert(`Welcome ${this.user.first_name}`);
+                this.toastrService.success(`Welcome ${this.user.first_name}`);
                 window.location.href=`${UserDetails.user_category.toLowerCase()}`
               }
             });

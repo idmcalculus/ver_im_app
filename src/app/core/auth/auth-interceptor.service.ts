@@ -27,15 +27,18 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       return next.handle(authReq);
     }else{
-      console.log('senedin :: '+JSON.stringify(req.body))
-      console.log('senedin :: '+JSON.stringify(req.urlWithParams))
-      console.log('senedin :: '+JSON.stringify(req.headers.get('Content-Type')))
-      // const authReq = req.clone({
-      //     headers: req.headers.
-      //     set('Content-Type','application/x-www-form-urlencoded')          
-      // });
-      // return next.handle(authReq);
+      // console.log('senedin :: '+JSON.stringify(req.body))
+      // console.log('senedin :: '+JSON.stringify(req.urlWithParams))
+      // console.log('senedin :: '+JSON.stringify(req.headers.get('Content-Type')))
+      // // const authReq = req.clone({
+      // //     headers: req.headers.
+      // //     set('Content-Type','application/x-www-form-urlencoded')          
+      // // });
+      // // return next.handle(authReq);
       return next.handle(req)
     }
+    
   }
+
+
 }

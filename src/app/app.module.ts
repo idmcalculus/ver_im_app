@@ -35,7 +35,7 @@ import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profi
 import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
 import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loader.service';
-import { SocialLoginService } from './shared/services/social-login.service';
+import { SocialLogin } from './shared/services/social-login-services';
 
 
 // let social_providers = {
@@ -102,7 +102,7 @@ import { SocialLoginService } from './shared/services/social-login.service';
     httpInterceptorProviders,
     CloudinaryService,
     DynamicScriptLoaderService,
-    SocialLoginService
+    SocialLogin
   ],
   exports:[],
   bootstrap: [AppComponent]

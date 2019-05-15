@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import {Config as appConfig} from './../../config/app-config';
+import {Config as appConfig} from '../../../config/app-config';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 
 import { HttpParams,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignUpService } from '../components/sign-up/sign-up.service';
+import { SignUpService } from '../../components/sign-up/sign-up.service';
 declare const gapi: any;
 
 
 
 @Injectable({ providedIn: 'root' })
-export class SocialLoginService {
+export class LinkedinLoginService {
   public auth2: any;
   messages: string[] = [];
 
@@ -75,20 +75,13 @@ export class SocialLoginService {
   public yahooLogin(auth_code:String){
     // return new Observable<any>(observable=>{
       this.httpService.baseURL = appConfig.yahoo.base_url;
-      const data = new HttpParams();
-        // .set('grant_type', 'authorization_code')
-        // .set('redirect_uri', appConfig.yahoo.redirect_uri)
-        // .set('code', `${auth_code}`) 
-        // .set('client_id', appConfig.yahoo.clientid) 
-        // .set('client_secret', appConfig.yahoo.secretkey) 
+      const data = new HttpParams()
+        .set('grant_type', 'authorization_code')
+        .set('redirect_uri', appConfig.yahoo.redirect_uri)
+        .set('code', `${auth_code}`) 
+        .set('client_id', appConfig.yahoo.clientid) 
+        .set('client_secret', appConfig.yahoo.secretkey) 
       
-
-      // const data = new FormData();
-      // data.append('grant_type', 'authorization_code');
-      // data.append('redirect_uri', appConfig.yahoo.redirect_uri);
-      // data.append('code', `${auth_code}`);
-      // data.append('client_id',appConfig.yahoo.clientid );
-      // data.append('client_secret', appConfig.yahoo.secretkey);
 
       const httpOptions = {
         headers: new HttpHeaders({
@@ -99,9 +92,14 @@ export class SocialLoginService {
       return this.httpService.postRequest(`${appConfig.yahoo.access_token_path}`,data,httpOptions)
       .subscribe(resp=>{
           if(resp){
-              console.log("resp is :: "+resp)
+              console.log("resp is :: "+JSON.stringify(resp))
+              if(resp && resp.access_token){
+                  //get profile info
+              }
+
               this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
               // observable.next(resp.secure_url);
+
           }
       })
     // })

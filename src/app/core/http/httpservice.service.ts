@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpHeaders,HttpClient  } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
@@ -39,9 +39,9 @@ export class HttpService {
         var opts = httpHeaderOptions?httpHeaderOptions:httpOptions
         return this.http.post<any>(`${this.baseURL}/${api}`,data,opts)
         .pipe(
-            tap(resp=> this.log('POST=> response :: '+resp)),
+            tap(resp => this.log('POST=> response :: '+resp)),
             catchError(
-                this.handleError<any>(api,null)
+                this.handleError<any>(api,{})
             )
         );  
     }
@@ -63,6 +63,8 @@ export class HttpService {
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             console.log(error)
+            console.log(operation)
+            console.log(result)
             if(error.status==0){
                 // alert('Could not connect to services')
                 console.log("Error occurred is:: "+JSON.stringify(error))
