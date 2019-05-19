@@ -47,7 +47,6 @@ export class AppComponent {
 
   installScripts(inDashBoard){
     if(inDashBoard){
-      // alert('loaded them')
       this.dynamicScriptLoader.load('chartjs','p-coded','v-layout',
      'slimscroll','dash','platform','data-table','flat-pickr','g-maps','');
     }

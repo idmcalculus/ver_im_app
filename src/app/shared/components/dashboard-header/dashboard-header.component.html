@@ -173,13 +173,20 @@
             </a>
         </div>
         <div class="navbar-container container-fluid">
-            <ul class="nav-left createPlan">
+            <!-- <ul class="nav-left createPlan">
                 <li>
                     <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success">
                         <i class="feather icon-plus"></i> Create Plan
                     </a>
                 </li>
-            </ul>
+            </ul> -->
+            <ul [hidden]="isUser" class="nav-left createPlan">
+                <li>
+                    <a (click) = "setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn btn-success">
+                        <i class="feather icon-plus"></i> Create Plan
+                    </a>
+                </li>
+            </ul> 
             <ul class="nav-right">
                 <li class="header-notification">
                     <div class="dropdown-primary dropdown">
@@ -245,28 +252,25 @@
                         <div class="dropdown-toggle" data-toggle="dropdown">
                             <img src="../assets/images/avatar-4.png" class="img-radius"
                                  alt="User-Profile-Image">
-                            <span>John Doe</span>
+                            <span>{{userDetails?.first_name}} {{userDetails?.last_name}}</span>
                             <i class="feather icon-chevron-down"></i>
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu"
                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            
+
                             <li>
-                                <a href="#!">
+                                <a routerLink="./profile" routerLinkActive="active">
                                     <i class="feather icon-settings"></i> Settings
                                 </a>
                             </li>
                             <li>
-                                <a href="profile.html">
+                                <a routerLink="./profile" routerLinkActive="active">
                                     <i class="feather icon-user"></i> Profile
                                 </a>
                             </li>
-                            <!--<li>
-                                <a href="">
-                                    <i class="feather icon-mail"></i> My Messages
-                                </a>
-                            </li>-->
-                            <li>
-                                <a href="">
+                            <li (click)="logout()">
+                                <a>
                                     <i class="feather icon-log-out"></i> Logout
                                 </a>
                             </li>
@@ -281,7 +285,7 @@
 <div class="showChat_inner">
     <div class="media chat-inner-header">
         <a class="back_chatBox">
-            <i class="feather icon-x"></i> Josephin Doe
+            <i class="feather icon-x"></i> {{userDetails.first_name}} {{userDetails.last_name}}
         </a>
     </div>
     <div class="main-friend-chat">
