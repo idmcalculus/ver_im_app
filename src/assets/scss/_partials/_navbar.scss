@@ -71,11 +71,20 @@
       font-weight: lighter;
     }
     .login {
-      border-radius: 50px;
-      background: $theme-white;
+      border-radius: 0;
+      background: transparent;
+      padding: 16.5px 30px;
+      margin-right: 20px;
+      color: $theme-white;
+      @include borderLine(1px, $theme-white);
+      box-shadow: 2px 0 4px rgba(0, 0, 0, .2);
+    }
+    .sign-up {
+      border-radius: 0;
+      background: $theme-blue;
       padding: 17px 30px;
-      color: $theme-blue;
-      box-shadow: 2px 0px 4px rgba(0, 0, 0, .2);
+      color: $theme-white;
+      @include borderLine(1px, $theme-blue);
     }
     .drop-down {
       cursor: pointer;
@@ -206,11 +215,20 @@
         font-weight: lighter;
       }
       .login {
-        border-radius: 50px;
+        border-radius: 0;
+        background: transparent;
+        padding: 16.5px 30px;
+        margin-right: 20px;
+        color: $theme-blue;
+        @include borderLine(1px, $theme-blue);
+        box-shadow: 2px 0 4px rgba(0, 0, 0, .2);
+      }
+      .sign-up {
+        border-radius: 0;
         background: $theme-blue;
         padding: 17px 30px;
         color: $theme-white;
-        box-shadow: 2px 0px 4px rgba(0, 0, 0, .2);
+        @include borderLine(1px, $theme-blue);
       }
       .drop-down {
         cursor: pointer;
@@ -273,6 +291,8 @@
   height: auto;
   clear: both;
   width: 100%;
+  background: #f3f3f3;
+  padding: 6em 3em 4em;
   @media (min-width: 768px) {
     .col-md-1 {
       -ms-flex: 0 0 12.333333% !important;
@@ -316,15 +336,43 @@
       }
       .form-inline-sub {
         display: -webkit-box;
+        margin-top: 15px;
         .form-control {
-          background: $offwhite;
+          background: transparent;
           border-radius: 0;
-          //padding: 0.375rem 1.3rem;
+          color: $theme-blue;
+          font-size: .91rem;
+          outline: none;
+          padding: .375rem .51rem;
           width: 100% !important;
-          border-right: none;
+          height: calc(2.5em + 10px);
+          border: 0;
+          border-bottom: 1px solid $theme-blue;
+          &::placeholder {
+            color: $theme-blue;
+            font-weight: lighter;
+          }
+          &:focus {
+            @include transition(linear, 0.5s);
+            background: $theme-white;
+            border-bottom: 1px solid $theme-blue;
+            color: $theme-blue;
+            font-size: 1rem;
+            @include noBoxShadow(none);
+            outline: 0;
+          }
         }
-        .btn {
+        .btn-send {
           border-radius: 0;
+          background: transparent;
+          border: 0;
+        }
+        .input-group-prepend {
+          background: transparent;
+        }
+        .input-group-text {
+          border: 0;
+          border-bottom: 1px solid $theme-blue;
         }
         .btn-sub-f {
           overflow: hidden;
@@ -343,8 +391,10 @@
         float: left;
         padding: 8px 15px;
         color: #555 !important;
-        border: 1px solid #555;
         margin: 0 10px 0 0;
+        &:first-child {
+          padding-left: 0;
+        }
         &:hover {
           @include borderLine(1px, $theme-blue);
           color: $theme-blue;
@@ -366,7 +416,6 @@
     font-size: .8em;
     padding: 15px 0 15px;
     width: 100%;
-    background: #f6f7f9;
     text-align: center;
     color: $theme-black;
     a {

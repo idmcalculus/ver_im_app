@@ -66,12 +66,9 @@ export class SignInComponent implements OnInit {
 
   yahooSignin(){
     
-    // var urll = "https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9Y0lNZ2pVNTRTSzhGJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWY2&redirect_uri=http://versa-ims.herokuapp.com&response_type=code&language=en-us";
-    // var urll = "file:///C:/Users/NATHAN/Desktop/shimmer.html";
-    // var mywin = window.open(urll,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=SomeSize,height=SomeSize')
-    // window.onabort = function() {
-    //   alert('Load aborted.');
-    // }
+    this.socialLoginService.yahooLogin("uhtzjq7").subscribe(resp=>{
+      console.log(JSON.stringify("issue is :: "+JSON.stringify(resp)))
+    })
   }
 
   linkedinSignin(){

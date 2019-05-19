@@ -1,74 +1,79 @@
-    <section class="login-section">
-        <div class="inner-login">
-            <div class="row">
-                <div class="col-md-6 divider">
-                    <div class="login-form">
-                        <h3>Sign up for an account, </h3>
-                        <p>You'll be done in a moment</p>
-                        <form (ngSubmit)="signUp()" #signUpForm="ngForm" > 
-                            <div class="form-group">
-                                <label for="firstname" class="sr-only">First Name</label>
-                                <input type="text" required [(ngModel)]="user.first_name" placeholder="First Name" name="firstname" class="form-control" id="firstname">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname" class="sr-only">Last Name</label>
-                                <input type="text" required [(ngModel)]="user.last_name" placeholder="Last Name" name="lastname"  class="form-control" id="lastname">
-                            </div>
-                            <div class="form-group">
-                                <label for="useremail" class="sr-only">Email Address</label>
-                                <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.email" placeholder="E-mail" name="useremail"  class="form-control" id="useremail">
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label for="userpass" class="sr-only">Password</label>
-                                    <input type="password" required [(ngModel)]="user.password" placeholder="Enter Password" name="password"  class="form-control remBorder" id="userpass">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text tran">show</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <label for="confuserpass" class="sr-only">Confirm Password</label>
-                                    <input type="password" required placeholder="Confirm Password" [(ngModel)]="passwordConfim" name="confirm-password" class="form-control remBorder" id="confuserpass">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text tran">show</span>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="form-group">
-                                    <button type="submit" class="btn2 btn btn-raised btn-login"  [disabled]="!signUpForm.form.valid"   [promiseBtn]="isSubmitting">{{signUpText}}</button>
-                            </div>
-                        </form>
-                        <div class="otherInfo">
-                            <p>Already have an account? Sign in <a routerLink="/signin" routerLinkActive="active">here</a></p>
+<section class="login-section">
+    <div class="inner-login">
+        <div class="row">
+            <div class="col-md-6 divider">
+                <div class="login-form">
+                    <h3>Sign up for an account, </h3>
+                    <p>You'll be done in a moment</p>
+                    <form (ngSubmit)="signUp()" #signUpForm="ngForm" > 
+                        <div class="form-group">
+                            <label for="firstname" class="sr-only">First Name</label>
+                            <input type="text" required [(ngModel)]="user.first_name" placeholder="First Name" name="firstname" class="form-control" id="firstname">
                         </div>
+                        <div class="form-group">
+                            <label for="lastname" class="sr-only">Last Name</label>
+                            <input type="text" required [(ngModel)]="user.last_name" placeholder="Last Name" name="lastname"  class="form-control" id="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="useremail" class="sr-only">Email Address</label>
+                            <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required [(ngModel)]="user.email" placeholder="E-mail" name="useremail"  class="form-control" id="useremail">
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label for="userpass" class="sr-only">Password</label>
+                                <input type="password" required [(ngModel)]="user.password" placeholder="Enter Password" name="password"  class="form-control remBorder" id="userpass">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text tran">show</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <label for="confuserpass" class="sr-only">Confirm Password</label>
+                                <input type="password" required placeholder="Confirm Password" [(ngModel)]="passwordConfim" name="confirm-password" class="form-control remBorder" id="confuserpass">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text tran">show</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                                <button type="submit" class="btn2 btn btn-raised btn-login"  [disabled]="!signUpForm.form.valid"   [promiseBtn]="isSubmitting">{{signUpText}}</button>
+                        </div>
+                    </form>
+                    <div class="otherInfo">
+                        <p>Already have an account? Sign in <a routerLink="/signin" routerLinkActive="active">here</a></p>
                     </div>
                 </div>
-                <div class="hor-divider"></div>
-                <div class="col-md-6">
-                    <div class="social-login">
-                        <div class="form-group">
-                            <a onclick='openLonkedin("http://localhost:4200/?code=14244")' class="btn btn-block btn-lg btn-social btn-yahoo">
-                                <span class="fab fa-yahoo f-13"></span> Sign in with Yahoo!
-                            </a>
-                        </div>
-                        <div class="form-group">
-                            <a onclick='openLonkedin("http://localhost:4200/?code=14244")' class="btn btn-block btn-lg btn-social btn-linkedin">
-                                <span class="fab fa-linkedin f-13"></span> Sign in with LinkedIn
-                            </a>
-                        </div>
-                        <div  class="form-group">
-                            <a id="googleBtn" (click)="googleInit()" class="btn btn-block btn-lg btn-social btn-google">
-                                <span class="fab fa-google f-13"></span> Sign in with Google
-                                <div data-onsuccess="onSignIn"></div>
-                            </a>
-                        </div>
+            </div>
+            <!-- <div class="hor-divider"></div> -->
+            <div class="d-text left">or</div>
+            <div class="hor-divider"></div>
+            <div class="col-md-6">
+                <div class="social-login">
+                    <div class="form-group">
+                        <a class="btn btn-block btn-lg btn-social btn-yahoo">
+                            <span class="fab fa-yahoo f-13"></span> Sign up with Yahoo!
+                        </a>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-block btn-lg btn-social btn-linkedin">
+                            <span class="fab fa-linkedin f-13"></span> Sign up with LinkedIn
+                        </a>
+                    </div>
+                    <!-- <div class="form-group">
+                        <a class="btn btn-block btn-lg btn-social btn-google">
+                            <span class="fab fa-google f-13"></span> Sign up with Google
+                        </a>
+                    </div> -->
+                    <div  class="form-group">
+                        <a id="googleBtn" (click)="googleInit()" class="btn btn-block btn-lg btn-social btn-google">
+                            <span class="fab fa-google f-13"></span> Sign up with Google
+                            <div data-onsuccess="onSignIn"></div>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    
+    </div>
+</section>

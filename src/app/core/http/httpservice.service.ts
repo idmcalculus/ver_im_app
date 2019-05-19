@@ -38,12 +38,12 @@ export class HttpService {
     postRequest(api:string,data:any,httpHeaderOptions?:{headers:HttpHeaders}):Observable<any>  {
         var opts = httpHeaderOptions?httpHeaderOptions:httpOptions
         return this.http.post<any>(`${this.baseURL}/${api}`,data,opts)
-        .pipe(
-            tap(resp => this.log('POST=> response :: '+resp)),
-            catchError(
-                this.handleError<any>(api,{})
-            )
-        );  
+        // .pipe(
+        //     tap(resp => this.log('POST=> response :: '+resp)),
+        //     catchError(
+        //         this.handleError<any>(api,{})
+        //     )
+        // );  
     }
 
     putRequest(api:string,data:any) {

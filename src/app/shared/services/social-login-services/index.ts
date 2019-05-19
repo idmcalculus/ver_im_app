@@ -76,7 +76,7 @@ export class SocialLogin {
   }
 
   public yahooLogin(auth_code:String){
-    // return new Observable<any>(observable=>{
+    return new Observable<any>(observable=>{
       this.httpService.baseURL = appConfig.yahoo.base_url;
       const data = new URLSearchParams();
       data.set('grant_type', 'authorization_code')
@@ -88,26 +88,27 @@ export class SocialLogin {
 
       const httpOptions = {
         headers: new HttpHeaders({
-          'Content-Type':  'application/x-www-form-urlencoded'
-        }),
-        responseType:'plain'
+          'Content-Type':  'application/x-www-form-urlencoded',
+          'Accept':"application/json"
+        })
       };
 
       return this.httpService.postRequest(`${appConfig.yahoo.access_token_path}`,data.toString(),httpOptions)
-      // .subscribe(resp=>{
-      //     if(resp){
-      //         console.log("resp is :: "+JSON.stringify(resp))
-      //         // observable.next(resp.secure_url);
-      //         // if(resp && resp.access_token){
-      //         //     //get profile info
-      //         // }
+      .subscribe(resp=>{
+        console.log("resp is :: "+JSON.stringify(resp))
+          if(resp){
+              
+              observable.next(resp);
+              // if(resp && resp.access_token){
+              //     //get profile info
+              // }
 
-      //         // this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-      //         // observable.next(resp.secure_url);
+              // this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+              // observable.next(resp.secure_url);
 
-      //     }
-      // })
-    // })
+          }
+      })
+    })
   }
 
   public linkedinLogin(){

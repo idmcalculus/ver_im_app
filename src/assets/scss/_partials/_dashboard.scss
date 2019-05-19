@@ -59,6 +59,11 @@
     .navbar-logo {
       box-shadow: none !important;
     }
+    .navbar-container {
+      .badge {
+        right: 16px !important;
+      }
+    }
   }
 }
 

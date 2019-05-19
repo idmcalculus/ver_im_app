@@ -4,7 +4,6 @@
 * Emmathem Media Company
 * 4th March, 2019
 */
-
 @import "_partials/vars";
 @import "_partials/fonts";
 @import "_partials/mixins";
@@ -25,6 +24,10 @@
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.wow {
+  visibility: hidden;
 }
 
 html, body {
@@ -56,27 +59,39 @@ section {
   }
 }
 
+.land-overlay {
+  position: absolute;
+  opacity: .3;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  right: 0;
+  content: "";
+  background: $theme-black;
+}
+
 .landing {
   @include landingGradient();
-  height: 98vh;
+  height: 100vh;
+  position: relative;
   .inner-landing {
-    @extend .m-0-30;
-    position: absolute;
-    margin-top: 9em;
-    left: 0;
-    right: 0;
+    padding: 10rem 3.5rem;
     h2 {
-      font-size: 3.4rem;
+      font-size: 4.4rem;
       color: $theme-white;
       font-weight: bold;
       line-height: 1.25;
     }
+    span {
+      color: $theme-blue;
+    }
     .lower-content {
       margin-top: 2em;
       color: $theme-white;
-      font-size: 1rem;
-      line-height: 30px;
+      font-size: 1.2rem;
+      line-height: 35px;
       word-break: break-all;
+      font-weight: lighter;
     }
     .get-started {
       margin-top: 4em;
@@ -103,21 +118,90 @@ section {
   font-size: 1em !important;
 }
 
+.versa-plan {
+  background: #f8f8f8;
+  height: auto;
+  padding-bottom: 1rem;
+  .inner-plan {
+    padding: 4rem 0 0 4rem;
+    .leftDisplay {
+      h3 {
+        font-size: 1.5rem;
+        line-height: 35px;
+        font-weight: bold;
+        color: #444;
+      }
+      .list-plan {
+        margin-top: 5rem;
+        h5 {
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+        .media-body {
+          font-size: 1.17rem;
+          color: #555;
+          font-weight: lighter;
+        }
+        span {
+          color: $theme-blue;
+        }
+      }
+    }
+  }
+  .side-display {
+    position: relative;
+    padding-top: 6em;
+    .dashboardShow {
+      //background: $theme-white;
+      background: url("../images/Sample.png") no-repeat;
+      background-size: contain;
+      border-radius: 5px;
+      height: 600%;
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      //@include boxShadow(3px, 10px, 26px, $shadowBlack);
+    }
+  }
+}
+
 .ourServices {
   background: $theme-white;
   height: 100%;
-  text-align: center;
-  h3 {
-    color: $theme-blue;
-  }
-  h4 {
-    color: #888;
-    font-size: 15px;
-    line-height: 25px;
-  }
   .inner-ourServices {
     @extend .m-0-30;
     margin: 2em 100px;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #555;
+      line-height: 30px;
+    }
+    h5 {
+      color: $theme-black;
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+    h4 {
+      color: #333;
+      font-size: 1.2rem;
+      line-height: 30px;
+      margin-top: 2em;
+      font-weight: bold;
+      word-break: break-word;
+      position: relative;
+      padding-left: 2rem;
+      &:before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 3px;
+        background: $theme-blue;
+        left: 0;
+        top: 0;
+        border-radius: 3px;
+      }
+    }
   }
   .holder-container {
     height: 400px;
@@ -153,22 +237,30 @@ section {
     text-align: center;
     line-height: 25px;
   }
+  .get-started {
+    margin-top: 4em;
+    @include roundButtons();
+  }
 }
 
 .superbOffers {
-  background: $theme-blue;
+  //background: $theme-blue;
+  background: #d6dbf7;
   height: auto;
   h3 {
-    color: $theme-white;
-    padding-top: 2rem;
+    //color: $theme-black;
+    margin: 2rem 0;
+    font-weight: bold;
+    color: #222c31;
   }
   .inner-superb {
     @extend .m-0-30;
     padding: 5rem 30px;
-    .superb-container {
+    .superb-container-home {
       height: auto;
       border-radius: 9px;
       background: $theme-white;
+      margin: 1em;
       .img-holder {
         height: 200px;
         width: 100%;
@@ -179,38 +271,44 @@ section {
       }
       .content-holder {
         padding: 15px;
-        text-align: center;
+        text-align: left !important;
         h2, a {
           color: #444;
-          font-weight: 400;
-          font-size: 1.5rem;
+          font-weight: bold;
+          font-size: 1.4rem;
           text-decoration: none;
           &:hover {
             text-decoration: none;
           }
         }
-        h3 {
+        h3 a {
           color: $theme-blue;
           font-weight: 700;
-          font-size: 1.7rem;
+          font-size: 1rem;
           padding: 3px 0 10px;
           position: relative;
-          &:after {
-            content: '';
-            border-bottom: 1px solid $theme-black;
-            width: 25%;
-            position: absolute;
-            margin: auto;
-            right: 35%;
-            top: 85%;
-            bottom: 0;
-            height: 1px;
+          &:hover {
+            img {
+              @include transition(ease, 0.5s);
+              transform: translateX(10%);
+            }
           }
         }
         .span-profit {
           padding: 12px 0;
           color: #555;
-          font-weight: bold;
+          font-weight: lighter;
+          position: relative;
+          &:after {
+            content: '';
+            border-bottom: 1px solid $theme-black;
+            width: 55%;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+          }
         }
         p {
           margin-top: .51rem;
@@ -244,27 +342,64 @@ section {
     }
   }
   @include roundButtons();
+  .view-more {
+    padding: 0 30px 0 0;
+    color: $theme-blue;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 80%;
+      margin: auto;
+      height: 1px;
+      border-bottom: 2px solid #3f51b5;
+      bottom: -10px;
+      left: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      img {
+        @include transition(ease, 0.5s);
+        transform: translateX(10%);
+      }
+    }
+  }
 }
 
 .workingSection {
-  background: $theme-white;
+  //background: $theme-white;
+  background: #3E4360;
   height: auto;
+  position: relative;
+  .back-plate {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    background: #A5ACD3;
+    opacity: .4;
+    bottom: 0;
+    top: 22%;
+    border-bottom-right-radius: 10px;
+  }
   .inner-workingSection {
-    @extend .m-0-30;
-    margin: 5em 50px;
+    //@extend .m-0-30;
+    margin: 0 5px;
+    padding: 6em 50px;
     .working-content {
       padding: 4rem 2em;
       h3 {
         font-size: 2.93rem;
         font-weight: bold;
-        color: $theme-blue;
+        color: $theme-white;
       }
       p {
-        color: #666;
-        line-height: 27px;
-        font-size: 17px;
+        color: #fff;
+        line-height: 1.7;
+        font-size: 1.3rem;
         font-weight: lighter;
-        padding: 3rem 10rem 0 0;
+        padding: 2rem 0 0 0;
       }
       .btn-holder {
         margin-top: 3em;
@@ -274,21 +409,113 @@ section {
     .circle-section {
       width: 350px;
       height: 350px;
-      border-radius: 50%;
-      background: rgba($theme-blue, .5);
+      //border-radius: 50%;
+      //background: rgba($theme-blue, .5);
     }
   }
 
 }
 
 .testimonials {
-  background: $theme-blue;
-  height: 500px;
-  h3 {
-    color: $theme-white;
+  background: #f7f8fb;
+  //background: url("../images/");
+  height: auto;
+  h4 {
+    color: #333333;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 2em 0 10px;
+    letter-spacing: .41px;
+  }
+  h5 {
+    font-size: .9rem;
+    text-align: center;
+    font-weight: lighter;
   }
   .inner-testimonial {
     @extend .m-0-30;
     @include borderLine(1px, rgba($theme-white, .2));
+    padding: 4em 0;
+    .superb-container-story {
+      height: auto;
+      border-radius: 9px;
+      background: $theme-white;
+      //border: 1px solid;
+      margin: 2em;
+      .img-holder {
+        height: 200px;
+        width: 100%;
+        overflow: hidden;
+        background: $offwhite;
+        margin: auto;
+        border-radius: inherit;
+      }
+      .content-holder {
+        //padding: 15px;
+        text-align: left !important;
+        background: $theme-white url("../images/Card.svg") no-repeat top center;
+        background-size: cover;
+        h2, a {
+          color: #444;
+          font-weight: bold;
+          font-size: 1.4rem;
+          text-decoration: none;
+          &:hover {
+            text-decoration: none;
+          }
+        }
+        h3 a {
+          color: $theme-blue;
+          font-weight: 700;
+          font-size: 1rem;
+          padding: 3px 0 10px;
+          position: relative;
+          &:hover {
+            img {
+              @include transition(ease, 0.5s);
+              transform: translateX(10%);
+            }
+          }
+        }
+        .span-profit {
+          padding: 12px 0;
+          color: #555;
+          font-weight: lighter;
+          position: relative;
+          &:after {
+            content: '';
+            border-bottom: 1px solid $theme-black;
+            width: 55%;
+            position: absolute;
+            margin: auto;
+            left: 0;
+            bottom: 0;
+            height: 1px;
+          }
+        }
+        p {
+          margin-top: .51rem;
+          font-style: italic;
+          color: #888;
+        }
+      }
+      &.effect {
+        box-shadow: 5px 14px $shadowBlack;
+        height: 500px;
+      }
+      &:hover {
+        box-shadow: 0 5px 14px $shadowBlack;
+        @include transition(ease, 0.7s);
+      }
+    }
   }
+  .signup-customer {
+    @extend .m-0-30;
+  }
+}
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
 }

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="470" height="570" viewBox="0 0 470 570">
+  <defs>
+    <filter id="Rectangle_325" x="0" y="0" width="470" height="570" filterUnits="userSpaceOnUse">
+      <feOffset dy="25" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feFlood flood-opacity="0.071"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Card" transform="translate(-21 -4607)">
+    <g transform="matrix(1, 0, 0, 1, 21, 4607)" filter="url(#Rectangle_325)">
+      <rect id="Rectangle_325-2" data-name="Rectangle 325" width="350" height="450" rx="10" transform="translate(60 35)" fill="#fff"/>
+    </g>
+    <path id="Path_1013" data-name="Path 1013" d="M-4554,5331.067c1.2-8-.1-28.267,73.1-35.467s92,34,142,34,58.157-48.915,93.6-44.8,45.186,44.857,38.4,55.2c-3.047,4.644-146.9,1.733-146.9,1.733h-194.066S-4555.2,5339.067-4554,5331.067Z" transform="translate(4635 -250)" fill="#457c9b" opacity="0.19"/>
+  </g>
+</svg>
