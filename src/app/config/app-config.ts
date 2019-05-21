@@ -17,20 +17,22 @@ export const Config = {
         scope:"profile",
         clientid:"dj0yJmk9eHNIendLV2NJU2gwJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg5",
         secretkey:"74822b31d3242615561b84a5ece6020b9ef5d9a3",
+        profil_base_url:"https://social.yahooapis.com"
+        
         
     },
     "linkedin":{
-        host:"https://www.linkedin.com",
+        base_url:"https://www.linkedin.com",
         auth_code_path:"oauth/v2/authorization",
+        redirect_uri:"http://127.0.0.1:4200",
         access_token_path:"oauth/v2/accessToken",
+        scope:"r_liteprofile%20r_emailaddress%20w_member_social",
+        clientid:"77pv3mo63oyixv",
         profile_email:"v2/me",
         response_type:"code",
         grant_type:"authorization_code",
-        redirect_uri:"http://127.0.0.1:4200",
         state:"fooobar",
-        scope:"r_liteprofile%20r_emailaddress%20w_member_social",
-        clientid:"77pv3mo63oyixv",
-        secretkey:"WXSct7I6waMjYI06"
+        profile_base_url:'https://api.linkedin.com'
     }
         
 }

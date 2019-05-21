@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import {Config as appConfig} from '../../../config/app-config';
 import { HttpService } from 'src/app/core/http/httpservice.service';
-
-import { HttpParams,HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { SignUpService } from '../../components/sign-up/sign-up.service';
 declare const gapi: any;
 
@@ -21,193 +18,71 @@ export class YahooLoginService {
     private httpService:HttpService
     ){}
 
-  add(message: string) {
-    this.messages.push(message);
-  }
-
-  clear() {
-    this.messages = [];
-  }
-
-  public googleInit() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.init({
-        client_id: '104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
-      });
-      this.attachSignin(document.getElementById('googleBtn'));
-    });
-  }
-
-  public attachSignin(element) {
-    this.auth2.attachClickHandler(element, {},
-      (googleUser) => {
-
-        let profile = googleUser.getBasicProfile();
-        var socialUser = {
-          last_name:profile.getName().split(' ')[1],
-          email:profile.getEmail(),
-          first_name:profile.getName().split(' ')[0],
-          user_category:'User',
-          authentication_type:'G',
-          // password:googleUser.getAuthResponse().id_token
-        };
-        console.log('signing in with :: '+JSON.stringify(socialUser))
-        this.doLogin(socialUser);
 
 
-      }, (error) => {
-        // alert(JSON.stringify(error, undefined, 2));
-      });
-  }
-
-  public signOut() {
-    gapi.load('auth2', () => {
-      this.auth2 = gapi.auth2.getAuthInstance();
-      this.auth2.signOut().then(function() {
-        console.log("User signed out");
-      });
-      //this.attachSignout(document.getElementById('googleBtn2'));
-    });
-  }
-
-  public yahooLogin(auth_code:String){
-    // return new Observable<any>(observable=>{
-      this.httpService.baseURL = appConfig.yahoo.base_url;
-      const data = new HttpParams()
-        .set('grant_type', 'authorization_code')
-        .set('redirect_uri', appConfig.yahoo.redirect_uri)
-        .set('code', `${auth_code}`) 
-        .set('client_id', appConfig.yahoo.clientid) 
-        .set('client_secret', appConfig.yahoo.secretkey) 
-      
-
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/x-www-form-urlencoded'
-        })
-      };
-
-      return this.httpService.postRequest(`${appConfig.yahoo.access_token_path}`,data,httpOptions)
-      .subscribe(resp=>{
-          if(resp){
-              console.log("resp is :: "+JSON.stringify(resp))
-              if(resp && resp.access_token){
-                  //get profile info
-              }
-
-              this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-              // observable.next(resp.secure_url);
-
-          }
-      })
-    // })
-  }
-
-  public linkedinLogin(){
-
-  }
-
-  public getSocialUrlLogin(socialplatform){
-    if(socialplatform=='linkedin'){
-      let config = appConfig.linkedin
-      let loginUrl = `${config.host}/${config.auth_code_path}
-      ?response_type=${config.response_type}&client_id=${config.clientid}
-      &redirect_uri=${config.redirect_uri}&state=${config.state}&scope=${config.scope}`
-      return loginUrl;
-    }else if(socialplatform=='yahoo'){
-      let config = appConfig.yahoo
-      // let loginUrl = `${config.clientid}/${config.path}
-      // ?response_type=${config.response_type}&client_id=${config.clientid}
-      // &redirect_uri=${config.redirect_uri}&state=${config.state}&scope=${config.scope}`
-      // return loginUrl;
-    }
-    
-  }
-
-  public getAccesstoken(authCode){
-    let config = appConfig.linkedin;
-    let requestParam = `${config.access_token_path}
-    ?grant_type=${config.grant_type}&code=${authCode}&redirect_uri=${config.redirect_uri}
-    &client_id=${config.clientid}&client_secret=${config.secretkey}`;
-
-
-    return new Observable<any>(observable=>{
-      this.httpService.baseURL = `${config.host}`;
-      this.httpService.postRequest(`${requestParam}`,{},null)
-      .subscribe(resp=>{
-          if(resp){
-              this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-              observable.next(resp);
-          }
-      })
-    })
-  }
-
-  public getProfileInfo(accessToken){
-    let config = appConfig.linkedin;
-    let requestParam = `${config.profile_email}`;
-
-
-    return new Observable<any>(observable=>{
-      this.httpService.baseURL = `${config.host}`;
-      this.httpService.postRequest(`${requestParam}`,{},null)
-      .subscribe(resp=>{
-          if(resp){
-              this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-              observable.next(resp);
-          }
-      })
-    })
-  }
-
-public socialLogin(socialPlatform){
-  if(socialPlatform=="linkedin"){
-    let authCode = localStorage.getItem("authCode")
-    this.getAccesstoken(authCode).subscribe(resp=>{
-        this.getProfileInfo(resp.accessToken).subscribe(resp1=>{
-          var socialUser = {
-            // last_name:profile.getName().split(' ')[1],
-            email:resp1.getEmail(),
-            // first_name:resp1.getName().split(' ')[0],
-            // user_category:'User',
-            authentication_type:'G',
-            // password:googleUser.getAuthResponse().id_token
-          };
-
-          this.doLogin(socialUser);
-        })
-    })
-  }
-}
-
-
-private doLogin(socialUser){
-  this.authService.login(socialUser)
-  .subscribe(UserDetails => {
-    if(UserDetails){
-      alert(`Welcome ${UserDetails.first_name}`);
-      // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-      window.location.href=`${UserDetails.user_category.toLowerCase()}`
-    }
-    // this.loginText = "Login";
-  });
-}
-
-private doSignUp(socialUser){
-  this.signUpService.register(socialUser)
-  .subscribe(UserDetails => {
-    if(UserDetails){
-      this.authService.login(socialUser)
-      .subscribe(UserDetails => {
-        if(UserDetails){
-          alert(`Welcome ${UserDetails.first_name}`);
-          window.location.href=`${UserDetails.user_category.toLowerCase()}`
+  public getAccesstoken(auth_code:String){
+    this.httpService.baseURL = "http://127.0.0.1:8090";
+      return this.httpService.getRequest(`yahoo/${auth_code}`).subscribe(resp=>{
+        if(resp.access_token){
+          console.log('response : ')
+          this.getProfile(resp.access_token,resp.xoauth_yahoo_guid)
+        }else if(resp.error){
+          console.log('issh : '+resp.error)
+        }else{
+          console.log('uknown error : '+JSON.stringify(resp))
         }
-      });
-    }
-  });
-}
+      })
+  }
+
+  public getAuthCodeURL(){
+    let config = appConfig.yahoo
+    let loginUrl = `${config.base_url}/${config.auth_code_path}?client_id=${config.clientid}&redirect_uri=${config.redirect_uri}&response_type=code&language=en-us`
+    return loginUrl;    
+  }
+
+  private getProfile(accessToken,userId){
+    let config = appConfig.yahoo;
+    let requestParam = `v1/user/${userId}/profile`;
+    
+    this.httpService.baseURL = `${config.profil_base_url}`;
+    return this.httpService.postRequest(`${requestParam}`,{},null)
+    .subscribe(resp=>{
+      console.log("response :: "+JSON.stringify(resp))
+        if(resp){
+            this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+        }
+    })
+  }
+
+  public login(socialUser){
+    this.authService.login(socialUser)
+    .subscribe(UserDetails => {
+      if(UserDetails){
+        alert(`Welcome ${UserDetails.first_name}`);
+        // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+        window.location.href=`${UserDetails.user_category.toLowerCase()}`
+      }
+      // this.loginText = "Login";
+    });
+  }
+
+  public signup(socialUser){
+    this.signUpService.register(socialUser)
+    .subscribe(UserDetails => {
+      if(UserDetails){
+        this.authService.login(socialUser)
+        .subscribe(UserDetails => {
+          if(UserDetails){
+            alert(`Welcome ${UserDetails.first_name}`);
+            window.location.href=`${UserDetails.user_category.toLowerCase()}`
+          }
+        });
+      }
+    });
+  }
+
+  public signOut(){
+
+  }
 
 }

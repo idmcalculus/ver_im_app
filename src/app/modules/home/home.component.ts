@@ -14,17 +14,15 @@ export class HomeComponent {
     private authService: AppAuthService,
     private socialAuth:SocialLogin
     ) {
-        // this.authService.setInProfileView(false);
         this.route.queryParams.subscribe(resp=>{
           var authCode = resp.code;
           if(authCode){
-            // localStorage.setItem('auth_Code', authCode);
-            // alert('using :: '+authCode)
-            // this.socialAuth.yahooLogin(authCode).subscribe(resp=>{
-            //   console.log(JSON.stringify(resp))
-            // })
+            if(authCode.length > 10){
+              this.socialAuth.extLogin('linkedin',authCode)
+            }else{
+              this.socialAuth.extLogin('yahoo',authCode)
+            }
           }
-          
         })
    }
 

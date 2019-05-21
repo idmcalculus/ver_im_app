@@ -114,7 +114,7 @@ export class GoogleLoginService {
   public getSocialUrlLogin(socialplatform){
     if(socialplatform=='linkedin'){
       let config = appConfig.linkedin
-      let loginUrl = `${config.host}/${config.auth_code_path}
+      let loginUrl = `${config.base_url}/${config.auth_code_path}
       ?response_type=${config.response_type}&client_id=${config.clientid}
       &redirect_uri=${config.redirect_uri}&state=${config.state}&scope=${config.scope}`
       return loginUrl;
@@ -132,11 +132,11 @@ export class GoogleLoginService {
     let config = appConfig.linkedin;
     let requestParam = `${config.access_token_path}
     ?grant_type=${config.grant_type}&code=${authCode}&redirect_uri=${config.redirect_uri}
-    &client_id=${config.clientid}&client_secret=${config.secretkey}`;
+    &client_id=${config.clientid}`;
 
 
     return new Observable<any>(observable=>{
-      this.httpService.baseURL = `${config.host}`;
+      this.httpService.baseURL = `${config.base_url}`;
       this.httpService.postRequest(`${requestParam}`,{},null)
       .subscribe(resp=>{
           if(resp){
@@ -153,7 +153,7 @@ export class GoogleLoginService {
 
 
     return new Observable<any>(observable=>{
-      this.httpService.baseURL = `${config.host}`;
+      this.httpService.baseURL = `${config.base_url}`;
       this.httpService.postRequest(`${requestParam}`,{},null)
       .subscribe(resp=>{
           if(resp){

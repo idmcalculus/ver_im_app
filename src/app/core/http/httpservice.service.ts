@@ -25,8 +25,9 @@ export class HttpService {
     ) { }
 
 
-    getRequest(api:string) : Observable<any> {
-        return this.http.get<any>(`${this.baseURL}/${api}`)
+    getRequest(api:string,httpHeaderOptions?:{headers:HttpHeaders}) : Observable<any> {
+        var opts = httpHeaderOptions?httpHeaderOptions:httpOptions
+        return this.http.get<any>(`${this.baseURL}/${api}`,opts)
         .pipe(
             tap(resp=> this.log('GET=> response :: '+resp)),
             catchError(
@@ -38,12 +39,12 @@ export class HttpService {
     postRequest(api:string,data:any,httpHeaderOptions?:{headers:HttpHeaders}):Observable<any>  {
         var opts = httpHeaderOptions?httpHeaderOptions:httpOptions
         return this.http.post<any>(`${this.baseURL}/${api}`,data,opts)
-        // .pipe(
-        //     tap(resp => this.log('POST=> response :: '+resp)),
-        //     catchError(
-        //         this.handleError<any>(api,{})
-        //     )
-        // );  
+        .pipe(
+            tap(resp => this.log('POST=> response :: '+resp)),
+            catchError(
+                this.handleError<any>(api,{})
+            )
+        );  
     }
 
     putRequest(api:string,data:any) {
@@ -62,9 +63,9 @@ export class HttpService {
 
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-            console.log(error)
-            console.log(operation)
-            console.log(result)
+            console.log("ishh 1 "+JSON.stringify(error))
+            console.log("ishh 2"+JSON.stringify(operation))
+            console.log("ishh 3 "+JSON.stringify(result))
             if(error.status==0){
                 // alert('Could not connect to services')
                 console.log("Error occurred is:: "+JSON.stringify(error))

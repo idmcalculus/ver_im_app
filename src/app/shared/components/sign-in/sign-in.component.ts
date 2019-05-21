@@ -65,20 +65,13 @@ export class SignInComponent implements OnInit {
 
 
   yahooSignin(){
-    
-    this.socialLoginService.yahooLogin("uhtzjq7").subscribe(resp=>{
-      console.log(JSON.stringify("issue is :: "+JSON.stringify(resp)))
-    })
+    var urll = this.socialLoginService.getSocialUrlLogin("yahoo");
+    window.location.href = urll;
   }
 
   linkedinSignin(){
-    // var urll = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social";
-    // var urll = "http://localhost:4200/?code=14244";
-    // var mywin = window.open(urll)
-    // // mywin.focus()
-    // mywin.onbeforeunload   = function() {
-    //   alert('Load aborted.');
-    // }
+    var url2 = this.socialLoginService.getSocialUrlLogin("linkedin");
+    window.location.href = url2;
     
   }
   
