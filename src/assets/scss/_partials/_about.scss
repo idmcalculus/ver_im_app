@@ -135,3 +135,108 @@
     }
   }
 }
+
+.faq-section {
+  background: #f8f8f8;
+  h3 {
+    font-size: 2.3em;
+    position: relative;
+    padding-top: 4em;
+    text-align: center;
+    color: $theme-blue;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 15%;
+      left: 0;
+      border-bottom: 3px solid $theme-blue;
+      bottom: -5px;
+      margin: auto;
+      right: 0;
+    }
+  }
+  .inner-faq {
+    padding: 2em 75px 3em;
+    .accordion {
+      a {
+        position: relative;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 3rem 1rem 0;
+        color: #7288a2;
+        font-size: 1.35rem;
+        font-weight: 500;
+        border-bottom: 1px solid #e5e5e5;
+        &:hover {
+          cursor: pointer;
+          color: #03b5d2;
+          &:after {
+            border: 1px solid #03b5d2;
+          }
+        }
+        &:hover {
+          &:after {
+            cursor: pointer;
+            color: #03b5d2;
+          }
+        }
+        &.active {
+          color: #03b5d2;
+          border-bottom: 1px solid #03b5d2;
+          &:after {
+            font-family: 'Ionicons';
+            content: '\f209';
+            color: #03b5d2;
+            border: 1px solid #03b5d2;
+          }
+        }
+        &:after {
+          font-family: 'Ionicons';
+          content: '\f218';
+          position: absolute;
+          float: right;
+          right: 1rem;
+          font-size: 1rem;
+          color: #7288a2;
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          border: 1px solid #7288a2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+      .content {
+        opacity: 0;
+        padding: 0 1rem;
+        max-height: 0;
+        border-bottom: 1px solid #e5e5e5;
+        overflow: hidden;
+        clear: both;
+        -webkit-transition: all 0.2s ease 0.15s;
+        -o-transition: all 0.2s ease 0.15s;
+        transition: all 0.2s ease 0.15s;
+        &.active {
+          opacity: 1;
+          padding: 1rem;
+          max-height: 100%;
+          -webkit-transition: all 0.35s ease 0.15s;
+          -o-transition: all 0.35s ease 0.15s;
+          transition: all 0.35s ease 0.15s;
+        }
+        p {
+          font-size: 1.2rem;
+          font-weight: 300;
+          line-height: 2;
+        }
+      }
+    }
+  }
+}

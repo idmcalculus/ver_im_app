@@ -28,6 +28,7 @@ export const Config = {
         access_token_path:"oauth/v2/accessToken",
         scope:"r_liteprofile%20r_emailaddress%20w_member_social",
         clientid:"77pv3mo63oyixv",
+        secretkey:'WXSct7I6waMjYI06',
         profile_email:"v2/me",
         response_type:"code",
         grant_type:"authorization_code",

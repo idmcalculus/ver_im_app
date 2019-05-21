@@ -156,7 +156,7 @@
 
   .landing {
     .inner-landing {
-      margin: 9em 25px !important;
+      padding: 9em 25px !important;
       h2 {
         font-size: 2em !important;
       }
@@ -192,6 +192,7 @@
   .workingSection {
     .inner-workingSection {
       margin: 1em 25px !important;
+      padding: 2em 4px;
       text-align: center;
       .working-content {
         padding: 2em 0 !important;
@@ -319,6 +320,85 @@
     }
   }
 
+  .howItWorks {
+    h2 {
+      font-size: 2.3rem;
+      position: relative;
+      &:after {
+        width: 19.6%;
+      }
+    }
+    h3 {
+      font-size: 1.6rem;
+    }
+    p {
+      font-size: .9rem;
+    }
+    padding-top: 8em;
+    .inner-holder {
+      padding: .2em 2em;
+    }
+    .first-section, .third-section {
+      background: $theme-white;
+      height: auto;
+      .img-how {
+        display: flex;
+        justify-content: center;
+        padding-top: 1em;
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+        .ani {
+          animation: bounce 6s ease 5s infinite;
+        }
+      }
+      .p-t {
+        padding-top: 4em;
+      }
+    }
+    .second-section {
+      background: rgba(62,67,96,.06);
+      height: auto;
+      .img-how-mobile {
+        padding-top: 2em;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .versa-plan {
+    .inner-plan {
+      h4 {
+        &:after {
+          width: 50% !important;
+        }
+      }
+      padding: 4rem 1.5rem !important;
+    }
+    .side-display {
+      padding-top: 1em !important;
+      height: 271px !important;
+      .dashboardShow {
+
+      }
+    }
+  }
+
+  .faq-section {
+    h3 {
+      font-size: 2em;
+      padding: 3em 17px 0;
+    }
+    .inner-faq {
+      padding: 2em 20px 3em !important;
+    }
+  }
+
   .top-m-t {
     margin-top: 3rem !important
   }
@@ -354,13 +434,22 @@
         text-transform: uppercase
       }
       .login {
-        width: 50%;
+        width: 100%;
         margin: 10px auto;
-        border-radius: 50px;
-        background: #fff;
+        border-radius: 0;
+        background: transparent;
         padding: 17px 30px;
         color: #3f51b5;
-        box-shadow: 2px 0 4px rgba(0, 0, 0, .2)
+        box-shadow: 2px 0 4px rgba(0, 0, 0, .2);
+        @include borderLine(1px, $theme-blue);
+
+        //border-radius: 0;
+        //background: transparent;
+        //padding: 16.5px 30px;
+        //margin-right: 20px;
+        //color: $theme-blue;
+        //@include borderLine(1px, $theme-blue);
+        //box-shadow: 2px 0 4px rgba(0, 0, 0, .2);
       }
     }
     .menu-icon {
@@ -496,6 +585,13 @@
       h5 {
         font-size: 1.4rem;
       }
+    }
+  }
+
+  .footer {
+    padding: 1em 1em 4em;
+    .inner-footer {
+      padding: 25px 0px;
     }
   }
 }

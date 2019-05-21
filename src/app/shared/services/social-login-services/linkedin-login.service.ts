@@ -27,7 +27,7 @@ export class LinkedinLoginService {
     // this.httpService.baseURL = "http://127.0.0.1:8990";
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
-          console.log('response : '+resp.access_token)
+          console.log('access token returned : '+resp.access_token)
           this.getProfile(resp.access_token)
         }else if(resp.error){
           console.log('issh : '+resp.error)
@@ -43,26 +43,15 @@ export class LinkedinLoginService {
     return loginUrl;    
   }
 
-  private getProfile(accessToken){
-    let config = appConfig.linkedin;
-    let requestParam = `/v2/me`;
-    
-    this.httpService.baseURL = `${config.profile_base_url}`;
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Authorization': `Bearer ${accessToken}`
+
+  public getProfile(auth_code:String){
+    // console.log("using auth code: "+auth_code)
+    // this.httpService.baseURL = window.location.host;
+    this.httpService.baseURL = "http://127.0.0.1:8990";
+      return this.httpService.getRequest(`linkedin/getprofile/${auth_code}`).subscribe(resp=>{
+        console.log('profile response : '+JSON.stringify(resp))
       })
-    };
-
-
-    return this.httpService.getRequest(`${requestParam}`,httpOptions)
-    .subscribe(resp=>{
-        console.log("final response :: "+JSON.stringify(resp))
-        if(resp){
-            this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-        }
-    })
   }
 
   public login(socialUser){

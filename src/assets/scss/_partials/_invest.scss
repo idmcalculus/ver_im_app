@@ -294,3 +294,56 @@
   opacity: .5;
   border-radius: inherit
 }
+
+.howItWorks {
+  h2 {
+    color: #909090;
+    font-size: 3rem;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: auto;
+      border-bottom: 2px solid #909090;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+    }
+  }
+  h3 {
+    color: #3B3B3B;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  p {
+    margin-top: 19px;
+    line-height: 2;
+    font-size: 1.1rem;
+    font-weight: lighter;
+  }
+  padding-top: 8em;
+  .inner-holder {
+    padding: 3em 4em;
+  }
+  .first-section, .third-section {
+    background: $theme-white;
+    height: auto;
+    .img-how {
+      display: flex;
+      justify-content: flex-end;
+      padding-top: 3em;
+      img {
+        width: 70%;
+        object-fit: contain;
+      }
+      .ani {
+        animation: bounce 6s ease 5s infinite;
+      }
+    }
+  }
+  .second-section {
+    background: rgba(62,67,96,.06);
+    height: auto;
+  }
+}

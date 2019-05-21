@@ -40,20 +40,47 @@ $(document).ready(function () {
     //
     // mySwiper.init();
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("icon-top").style.display = "block";
-        } else {
-            document.getElementById("icon-top").style.display = "none";
-        }
-    }
+    // Add smooth scrolling to all links
+    $('a').on('click', function(e) {
 
-    function topFunction() {
-        $('html, body').animate({
-            scrollTop: 0
-        });
-    }
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            e.preventDefault();
+
+            // Store hash
+            var hash = this.hash;
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 600, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                //window.location.hash = hash;
+
+            });
+        } // End if
+    });
+
 })
+window.onscroll = function () {
+    scrollFunction()
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("icon-top").style.display = "block";
+    } else {
+        document.getElementById("icon-top").style.display = "none";
+    }
+}
+
+function topFunction() {
+    $('html, body').animate({
+        scrollTop: 0
+    });
+}
 
 var swiper = new Swiper('.swiper-container', {
     slidesPerView: 3,
@@ -70,3 +97,12 @@ var swiper = new Swiper('.swiper-container', {
         prevEl: '.swiper-button-prev',
     },
 });
+
+const items = document.querySelectorAll('.accordion a');
+
+items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+function toggleAccordion() {
+    this.classList.toggle('active');
+    this.nextElementSibling.classList.toggle('active');
+}

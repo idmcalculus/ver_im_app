@@ -33,6 +33,15 @@ app.get('/yahoo/:code', function(req, res) {
   })  
 });
 
+app.get('/yahoo/getprofile/:auth/:code', function(req, res) {
+  var authCode = req.params.code;
+  yahooAccessoken(authCode).then(resp=>{
+    res.send(resp)
+  })  
+});
+
+
+
 app.get('/linkedin/:code', function(req, res) {
   var authCode = req.params.code;
   linkedinAccessoken(authCode).then(resp=>{
@@ -42,7 +51,15 @@ app.get('/linkedin/:code', function(req, res) {
 });
 
 
-app.get('/*', function(req, res) {
+app.get('/linkedin/getprofile/:auth', function(req, res) {
+  var auth = req.params.auth;
+  linkedinGetProfile(auth).then(resp=>{
+    res.send(resp)
+  })
+  
+});
+
+app.get('/*', function(_req, res) {
   res.sendFile(path.join(__dirname + `/dist/${appName}/index.html`));
 });
 
@@ -52,7 +69,7 @@ var listener = app.listen(process.env.PORT || 8990, function(){
 });
 
 function yahooAccessoken(codestring) {
-  return new Promise(function(resolve,reject){
+  return new Promise(function(resolve,_reject){
     request.post('https://api.login.yahoo.com/oauth2/get_token', {
       form: {
         grant_type: 'authorization_code',
@@ -75,7 +92,7 @@ function yahooAccessoken(codestring) {
 }
 
 function linkedinAccessoken(codestring) {
-  return new Promise(function(resolve,reject){
+  return new Promise(function(resolve,_reject){
     request.post('https://www.linkedin.com/oauth/v2/accessToken', {
       form: {
         grant_type: 'authorization_code',
@@ -98,14 +115,12 @@ function linkedinAccessoken(codestring) {
 }
 
 function linkedinGetProfile(auth_token) {
-  return new Promise(function(resolve,reject){
-    request.post('https://www.linkedin.com/oauth/v2/accessToken', {
-      form: {
-        grant_type: 'authorization_code',
-        redirect_uri: 'http://127.0.0.1:4200',
-        code: codestring,
-        client_id: '77pv3mo63oyixv',
-        client_secret: 'WXSct7I6waMjYI06'
+  return new Promise(function(resolve,_reject){
+    request.get(`https://api.linkedin.com/v2/me`, {
+      headers:{
+        'Authorization':`Bearer ${auth_token}`,
+        'X-Restli-Protocol-Version':'2.0.0',
+        'Cache-Control':'no-cache'
       }
     }, (error, res, body) => {
       if (error) {

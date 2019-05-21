@@ -124,6 +124,22 @@ section {
   padding-bottom: 1rem;
   .inner-plan {
     padding: 4rem 0 0 4rem;
+    h4 {
+      font-size: 2em;
+      font-weight: bold;
+      color: $theme-black;
+      margin-bottom: 1em;
+      position: relative;
+      &:after {
+        position: absolute;
+        content: "";
+        bottom: -3px;
+        border-bottom: 3px solid rgba(0,0,0,.7);
+        width: 15%;
+        height: 1px;
+        left: 0;
+      }
+    }
     .leftDisplay {
       h3 {
         font-size: 1.5rem;
