@@ -47,7 +47,9 @@ app.get('/*', function(req, res) {
 });
 
 
-app.listen(8990);
+var listener = app.listen(process.env.PORT || 8990, function(){
+  console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+});
 
 function yahooAccessoken(codestring) {
   return new Promise(function(resolve,reject){
@@ -73,6 +75,29 @@ function yahooAccessoken(codestring) {
 }
 
 function linkedinAccessoken(codestring) {
+  return new Promise(function(resolve,reject){
+    request.post('https://www.linkedin.com/oauth/v2/accessToken', {
+      form: {
+        grant_type: 'authorization_code',
+        redirect_uri: 'http://127.0.0.1:4200',
+        code: codestring,
+        client_id: '77pv3mo63oyixv',
+        client_secret: 'WXSct7I6waMjYI06'
+      }
+    }, (error, res, body) => {
+      if (error) {
+        console.error("error is: "+error)
+        resolve(error);
+      }else{
+        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(body)
+        resolve(body);
+      }
+    })
+  })    
+}
+
+function linkedinGetProfile(auth_token) {
   return new Promise(function(resolve,reject){
     request.post('https://www.linkedin.com/oauth/v2/accessToken', {
       form: {

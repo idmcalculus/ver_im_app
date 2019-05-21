@@ -21,7 +21,8 @@ export class YahooLoginService {
 
 
   public getAccesstoken(auth_code:String){
-    this.httpService.baseURL = "http://127.0.0.1:8990";
+    this.httpService.baseURL = window.location.host;
+    // this.httpService.baseURL = "http://127.0.0.1:8990";
       return this.httpService.getRequest(`yahoo/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
           console.log('response : ')
