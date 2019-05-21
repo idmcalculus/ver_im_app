@@ -3,7 +3,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import {Config as appConfig} from '../../../config/app-config';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { SignUpService } from '../../components/sign-up/sign-up.service';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, } from '@angular/common/http';
 declare const gapi: any;
 
 
@@ -22,7 +22,7 @@ export class LinkedinLoginService {
 
 
   public getAccesstoken(auth_code:String){
-    this.httpService.baseURL = "http://127.0.0.1:8090";
+    this.httpService.baseURL = "http://127.0.0.1:8990";
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
           console.log('response : '+resp.access_token)
@@ -52,6 +52,7 @@ export class LinkedinLoginService {
         'Authorization': `Bearer ${accessToken}`
       })
     };
+
 
     return this.httpService.getRequest(`${requestParam}`,httpOptions)
     .subscribe(resp=>{

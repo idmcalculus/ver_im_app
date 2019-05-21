@@ -103,6 +103,5 @@ export class SocialLogin {
       // this.loginText = "Login";
     });
   }
-
-
+  
 }

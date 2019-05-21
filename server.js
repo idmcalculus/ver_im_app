@@ -20,7 +20,8 @@ const forceSSL = function() {
     next();
   }
 }
-// app.use(forceSSL());
+
+app.use(forceSSL());
 
 app.use(express.static(__dirname + `/dist/${appName}`));
 
@@ -46,8 +47,7 @@ app.get('/*', function(req, res) {
 });
 
 
-
-app.listen(8090);
+app.listen(8990);
 
 function yahooAccessoken(codestring) {
   return new Promise(function(resolve,reject){

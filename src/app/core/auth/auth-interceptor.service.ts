@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }else{
       // console.log('senedin :: '+JSON.stringify(req.body))
       // console.log('senedin :: '+JSON.stringify(req.urlWithParams))
-      // console.log('senedin :: '+JSON.stringify(req.headers.get('Content-Type')))
+      console.log('senedin :: '+JSON.stringify(req.headers.get('Authorization')))
       // // const authReq = req.clone({
       // //     headers: req.headers.
       // //     set('Content-Type','application/x-www-form-urlencoded')          
