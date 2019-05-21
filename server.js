@@ -2,15 +2,15 @@ const path = require('path');
 const express = require('express');
 const app = express();
 const appName = 'versaim-app';
-var cors = require('cors');
+const Promise = require('promise');
+const request = require('request');
 
+var cors = require('cors');
 app.use(cors())
 
 
 
-var Promise = require('promise');
 
-const request = require('request')
 
 const forceSSL = function() {
   return function (req, res, next) {
