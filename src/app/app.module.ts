@@ -36,6 +36,8 @@ import {TableComponent} from './shared/components/table/table.component';
 import { CloudinaryService } from './shared/services/cloudinary.service';
 import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loader.service';
 import { SocialLogin } from './shared/services/social-login-services';
+import { HowitworksComponent } from './pages/howitworks/howitworks.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 
 // let social_providers = {
@@ -64,7 +66,9 @@ import { SocialLogin } from './shared/services/social-login-services';
     ForgotPasswordComponent,
     ResetPasswordComponent,
     AdminProfileComponent,
-    TableComponent
+    TableComponent,
+    HowitworksComponent,
+    FaqComponent
 
   ],
   imports: [

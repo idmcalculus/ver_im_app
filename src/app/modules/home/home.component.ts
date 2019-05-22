@@ -27,6 +27,12 @@ export class HomeComponent {
    }
 
 
+   ngOnInit(){
+    this.authService.setInHomeView(true);
+    }
 
+    ngOnDestroy(){
+      this.authService.setInHomeView(false);
+    }
 
 }

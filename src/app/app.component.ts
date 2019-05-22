@@ -16,9 +16,11 @@ export class AppComponent {
   title = 'versaim-app';
   showHeader:boolean=true;  
   showFooter:boolean=true;
+  homeViewIsActive:boolean=true;
   activeUser:User={user_category:'none',email:''};
 
   inProfileSubcription: Subscription;
+  // inHomeView: Subscription;
   hasSession: Subscription;
   constructor(
     private authService:AppAuthService,
@@ -29,6 +31,15 @@ export class AppComponent {
           this.showFooter = !inDashboardView;
           this.installScripts(inDashboardView)
       })
+
+      // this.inHomeView = this.authService.homeViewIsActive.subscribe(homeViewIsActive =>{
+      //   if(homeViewIsActive==null){
+      //     this.homeViewIsActive = false;
+      //   }else{
+      //     this.homeViewIsActive = homeViewIsActive;
+      //   }
+      //   console.log("now :: "+this.homeViewIsActive)
+      // })
   }
 
   ngOnInit(){
@@ -47,8 +58,8 @@ export class AppComponent {
 
   installScripts(inDashBoard){
     if(inDashBoard){
-      this.dynamicScriptLoader.load('chartjs','p-coded','v-layout',
-     'slimscroll','dash','platform','data-table','flat-pickr','g-maps','');
+      this.dynamicScriptLoader.load('bootstrap','chartjs','p-coded','v-layout',
+     'slimscroll','dash','platform','data-table','flat-pickr','g-maps');
     }
     
   }

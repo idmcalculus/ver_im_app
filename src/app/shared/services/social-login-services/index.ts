@@ -72,7 +72,9 @@ export class SocialLogin {
 
   public getSocialUrlLogin(socialplatform){
     if(socialplatform=='linkedin'){
-      return this.linkedinService.getAuthCodeURL()
+      var ert = this.linkedinService.getAuthCodeURL();
+      console.log("fin :: "+ert)
+      return ert
     }else if(socialplatform=='yahoo'){
       return this.yahooService.getAuthCodeURL();
     }
@@ -81,7 +83,16 @@ export class SocialLogin {
 
   public extLogin(socialPlatform,authCode){
     if(socialPlatform =='yahoo'){
-      this.yahooService.getAccesstoken(authCode)
+      this.yahooService.getAccesstoken(authCode).subscribe(resp=>{
+        var resp2:any = resp;
+        console.log("i gat it 1 :: "+resp)
+        if(resp2.accessToken){
+          this.yahooService.getProfile(resp2.accessToken,resp2.uid).subscribe(res=>{
+            console.log("i gat it :: "+res)
+          })
+        }
+      })
+      // console.log("cooler :: "+JSON.stringify(userDetails))
     }else if(socialPlatform =='linkedin'){
       this.linkedinService.getAccesstoken(authCode)
     }

@@ -1,69 +1,72 @@
 <section class="investment-plans">
 
-        <div *ngIf=" investment==null || isLoading" class="lds-default">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+    <div *ngIf=" investment==null || isLoading" class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
-        <div *ngIf=" investment!=null && !isLoading " class="inner-investment">
-            <div class="invest-banner">
-                <div class="cover"></div>
-                <div class="over-content">
-                    <h3>{{investment?.title}}</h3>
-                </div>
+
+    <div *ngIf=" investment!=null && !isLoading " class="inner-investment">
+        <div class="invest-banner">
+            <div class="cover"></div>
+            <div class="over-content">
+                <h3>{{investment?.title}}</h3>
             </div>
-            <div class="row mt-3">
-                <div class="col-md-9">
-                    <div class="card shadowEffect">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <div *ngIf="investment.investment_image==''" class="plan-image">
-                                    </div>
-                                    <img *ngIf="investment.investment_image!='' " class="plan-image" src="{{investment?.investment_image}}"  alt="image">
-                            
-                                    <!-- <h4>ENDS: 25-07-2019</h4> -->
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-9">
+                <div class="card shadowEffect">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div *ngIf="investment.investment_image==''" class="plan-image">
                                 </div>
-                                <div class="col-md-7">
-                                    <div class="content-detail">
-                                        <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per pool</h3>
-                                        <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
-                                        <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
-                                        <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
-                                        <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
-                                        <div>
-                                            <a routerLink="/signin" routerLinkActive="active" *ngIf="!userinfo && investment?.is_investment_started=='0' " 
-                                                class="btn2 btn-join">Sign in to join</a>
-                                            <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' " (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
-                                                class="btn2 btn-join">Join</a>
-                                            <a *ngIf="investment?.is_investment_started=='1' " 
-                                                class="btn2 btn-join">Closed</a>
-                                        </div>
+                                <img *ngIf="investment.investment_image!='' " class="plan-image" src="{{investment?.investment_image}}"  alt="image">
+                                
+                                <!-- <h4>ENDS: 25-07-2019</h4> -->
+                            </div>
+                            <div class="col-md-7">
+                                <div class="content-detail">
+                                    <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per pool</h3>
+                                    <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
+                                    <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
+                                    <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
+                                    <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
+                                    <div>
+                                        <a routerLink="/signin" routerLinkActive="active" *ngIf="!userinfo && investment?.is_investment_started=='0' " 
+                                            class="btn2 btn-join">Sign in to join</a>
+                                        <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' " (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
+                                            class="btn2 btn-join">Invest now</a>
+                                        <a *ngIf="investment?.is_investment_started=='1' " 
+                                            class="btn2 btn-join">Closed</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card shadowEffect mt-3">
-                        <div class="card-body other-info">
-                            <h5 class="card-title">Investment Description</h5>
-                            <p>
-                                {{investment?.description}}
-                            </p>
-                        </div>
+                    
+                </div>
+                
+                <div class="card shadowEffect mt-3">
+                    <div class="card-body other-info">
+                        <h5 class="card-title">Investment Description</h5>
+                        <p>
+                            {{investment?.description}}
+                        </p>
                     </div>
                 </div>
-                <div class="col-md-3 top-m-t">
+            </div>
+            <div class="col-md-3 top-m-t">
                     <div class="card bg-transparent">
                         <div class="card-body pt-0">
                             <h5 class="card-title" style="text-align: center; color: #333333da; font-size: 1.53rem"><strong>Top
@@ -85,78 +88,78 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal -->
-        <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <!--<div class="modal-header">
-                        &lt;!&ndash;<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;&gt;
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>-->
-                    <div class="modal-body">
-                        <div class="join-modal">
-                            <h3>Join Investment</h3>
-                            <h4>{{investment?.title}}</h4>
+    <!-- Modal -->
+    <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <!--<div class="modal-header">
+                    &lt;!&ndash;<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;&gt;
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>-->
+                <div class="modal-body">
+                    <div class="join-modal">
+                        <h3>Join Investment</h3>
+                        <h4>{{investment?.title}}</h4>
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <label class="pt-1" for="slotNum">How many slots?</label>
-                                    </div>
-                                    <div class="col-md-7">
-                                        <input type="number" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                            <option value="" hidden>Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                        </select> -->
-                                    </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label class="pt-1" for="slotNum">How many slots?</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="number" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                    <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                        <option value="" hidden>Select</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
-                        <button
-                            data-dismiss="modal"
-                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                            type="button"
-                            class="btn btn-join-add"
-                            angular4-paystack
-                            [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
-                            [email]="userinfo?.email"
-                            [amount]="amountPerPool * 100 * transaction.number_of_pools"
-                            [ref]="transactionRef"
-                            [class]="'btn btn-success'"
-                            (close)="paymentCancel()"
-                            (callback)="joinInvestment()"
-                            >Paystack pay</button>
-                        <button
-                            data-dismiss="modal"
-                            type="button"
-                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                            class="btn btn-join-add"
-                            angular-rave
-                            [PBFPubKey] = "'FLWPUBK_TEST-5fa36b248fbdc5675474d16e6dfedc1d-X'"
-                            [customer_email] = "userinfo?.email"
-                            [customer_phone] = "userinfo?.phone_number"
-                            [amount]="amountPerPool  * transaction.number_of_pools"
-                            [currency]="'NGN'"
-                            [custom_title]="'Investment Payment'"
-                            [txref]="transactionRef"
-                            (callback)="joinInvestment()"
-                            (close)="paymentCancel()"
-                          >Flutterwave</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
+                    <button
+                        data-dismiss="modal"
+                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                        type="button"
+                        class="btn btn-join-add"
+                        angular4-paystack
+                        [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
+                        [email]="userinfo?.email"
+                        [amount]="amountPerPool * 100 * transaction.number_of_pools"
+                        [ref]="transactionRef"
+                        [class]="'btn btn-success'"
+                        (close)="paymentCancel()"
+                        (callback)="joinInvestment()"
+                        >Paystack pay</button>
+                    <button
+                        data-dismiss="modal"
+                        type="button"
+                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                        class="btn btn-join-add"
+                        angular-rave
+                        [PBFPubKey] = "'FLWPUBK_TEST-5fa36b248fbdc5675474d16e6dfedc1d-X'"
+                        [customer_email] = "userinfo?.email"
+                        [customer_phone] = "userinfo?.phone_number"
+                        [amount]="amountPerPool  * transaction.number_of_pools"
+                        [currency]="'NGN'"
+                        [custom_title]="'Investment Payment'"
+                        [txref]="transactionRef"
+                        (callback)="joinInvestment()"
+                        (close)="paymentCancel()"
+                    >Flutterwave</button>
                 </div>
             </div>
         </div>
+    </div>
 </section>

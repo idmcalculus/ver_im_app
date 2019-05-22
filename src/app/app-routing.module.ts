@@ -8,12 +8,15 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 import {AboutUsComponent} from './modules/about-us/about-us.component'
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
+import { HowitworksComponent } from './pages/howitworks/howitworks.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 const appRoutes: Routes = [
   { path: 'signin', component: SignInComponent },
   { path: 'admin/signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
-  // { path: 'contact', component: Contac },
+  { path: 'howitworks', component: HowitworksComponent },
+  { path: 'faq', component: FaqComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'verify_user/:token', component: VerifyUserComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },

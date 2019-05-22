@@ -26,32 +26,34 @@ export class LinkedinLoginService {
     this.httpService.baseURL = window.location.host;
     // this.httpService.baseURL = "http://127.0.0.1:8990";
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
+        console.log('response res is :: '+JSON.stringify(resp))
         if(resp.access_token){
-          console.log('access token returned : '+resp.access_token)
+          // console.log('access token returned : '+resp.access_token)
           this.getProfile(resp.access_token)
         }else if(resp.error){
-          console.log('issh : '+resp.error)
+          // console.log('issh : '+resp.error)
         }else{
-          console.log('uknown error : '+JSON.stringify(resp))
+          // console.log('uknown error : '+JSON.stringify(resp))
         }
       })
   }
 
   public getAuthCodeURL(){
-    let config = appConfig.linkedin
-    let loginUrl = `${config.base_url}/${config.auth_code_path}?response_type=${config.response_type}&client_id=${config.clientid}&redirect_uri=${config.redirect_uri}&state=${config.state}$scope=${config.scope}`
-    return loginUrl;    
+    // let config = appConfig.linkedin
+    // let loginUrl = `${config.base_url}/${config.auth_code_path}?response_type=${config.response_type}&client_id=${config.clientid}&redirect_uri=${config.redirect_uri}&state=${config.state}$scope=${config.scope}`
+    // return loginUrl;    
+    return "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social";
   }
 
 
 
-  public getProfile(auth_code:String){
+  public getProfile(accessToken:String){
     // console.log("using auth code: "+auth_code)
     // this.httpService.baseURL = window.location.host;
     this.httpService.baseURL = "http://127.0.0.1:8990";
-      return this.httpService.getRequest(`linkedin/getprofile/${auth_code}`).subscribe(resp=>{
-        console.log('profile response : '+JSON.stringify(resp))
-      })
+    return this.httpService.getRequest(`linkedin/getprofile/${accessToken}`).subscribe(resp=>{
+      console.log('profile response : '+JSON.stringify(resp))
+    })
   }
 
   public login(socialUser){

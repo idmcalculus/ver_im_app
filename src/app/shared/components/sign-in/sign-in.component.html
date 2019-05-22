@@ -1,57 +1,57 @@
 <section class="login-section">
-    <div class="inner-login">
-        <div class="row">
-            <div class="col-md-6 divider">
-                <div class="login-form">
-                    <h3>Welcome back, </h3>
-                    <p>Login below with your E-mail</p>
-                    <form (ngSubmit)="signIn()" #signInForm="ngForm">
-                        <div class="form-group">
-                            <label for="useremail" class="sr-only">Email Address</label>
-                            <input type="email" required [(ngModel)]="user.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="E-mail" class="form-control" id="useremail">
-                        </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="password" required [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
-                                       id="userpass">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text tran">show</span>
+        <div class="inner-login">
+            <div class="row">
+                <div class="col-md-6 divider">
+                    <div class="login-form">
+                        <h3>Welcome back, </h3>
+                        <p>Login below with your E-mail</p>
+                        <form (ngSubmit)="signIn()" #signInForm="ngForm">
+                            <div class="form-group">
+                                <label for="useremail" class="sr-only">Email Address</label>
+                                <input type="email" required [(ngModel)]="user.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="E-mail" class="form-control" id="useremail">
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" required [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
+                                            id="userpass">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text tran">show</span>
+                                    </div>
                                 </div>
                             </div>
+    
+                            <div class="form-group">
+                                <button class="btn2 btn btn-raised btn-login" [disabled]="!signInForm.form.valid" [promiseBtn]="isSubmitting">{{loginText}}</button>
+                            </div>
+                        </form>
+                        <div class="otherInfo">
+                            <p>Forgot details, recover your password <a routerLink="/forgot-password" routerLinkActive="active">here</a></p>
+                            <p>Don't have an account? Sign up <a routerLink="/signup" routerLinkActive="active">here</a></p>
                         </div>
-
-                        <div class="form-group">
-                            <button class="btn2 btn btn-raised btn-login" [disabled]="!signInForm.form.valid" [promiseBtn]="isSubmitting">{{loginText}}</button>
-                        </div>
-                    </form>
-                    <div class="otherInfo">
-                        <p>Forgot details, recover your password <a routerLink="/forgot-password" routerLinkActive="active">here</a></p>
-                        <p>Don't have an account? Sign up <a routerLink="/signup" routerLinkActive="active">here</a></p>
                     </div>
                 </div>
-            </div>
-            <div class="d-text left">or</div>
-            <div class="hor-divider"></div>
-            <div class="col-md-6">
-                <div class="social-login">
-                    <div class="form-group">
-                        <a  (click)="yahooSignin()" class="btn btn-block btn-lg btn-social btn-yahoo">
-                            <span class="fab fa-yahoo f-13"></span> Sign in with Yahoo!
-                        </a>
-                    </div>
-                    <div class="form-group">
-                        <a (click)="linkedinSignin()" class="btn btn-block btn-lg btn-social btn-linkedin">
-                            <span class="fab fa-linkedin f-13"></span> Sign in with LinkedIn
-                        </a>
-                    </div>
-                    <div  class="form-group">
-                        <a id="googleBtn" (click)="socialSignIn()" class="btn btn-block btn-lg btn-social btn-google">
-                            <span class="fab fa-google f-13"></span> Sign in with Google
-                            <div data-onsuccess="onSignIn"></div>
-                        </a>
+                <div class="d-text left">or</div>
+                <!-- <div class="hor-divider"></div> -->
+                <div class="col-md-6">
+                    <div class="social-login">
+                        <div class="form-group">
+                            <a  (click)="yahooSignin()" class="btn btn-block btn-lg btn-social btn-yahoo">
+                                <span class="fab fa-yahoo f-13"></span> Sign in with Yahoo!
+                            </a>
+                        </div>
+                        <div class="form-group">
+                            <a (click)="linkedinSignin()" class="btn btn-block btn-lg btn-social btn-linkedin">
+                                <span class="fab fa-linkedin f-13"></span> Sign in with LinkedIn
+                            </a>
+                        </div>
+                        <div  class="form-group">
+                            <a id="googleBtn" (click)="socialSignIn()" class="btn btn-block btn-lg btn-social btn-google">
+                                <span class="fab fa-google f-13"></span> Sign in with Google
+                                <div data-onsuccess="onSignIn"></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>

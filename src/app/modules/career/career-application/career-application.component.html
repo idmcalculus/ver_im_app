@@ -1,59 +1,59 @@
 <section class="career-apply">
-  <div class="inner-apply">
-      <div *ngIf="!isLoading" class="row">
-          <div class="col-md-12">
-              <div class="login-form">
-                  <h3>Welcome </h3>
-                  <p>Fill the following to complete your application</p>
-                  <form (ngSubmit)="apply()" #careerApplicationForm="ngForm" class="mt-5">
-                      <div class="form-group">
-                          <label for="firstname">First Name</label>
-                          <input type="text" required [(ngModel)]="careerApplication.first_name" name="fname" placeholder="Enter your Firstname" class="form-control" id="firstname">
-                      </div>
-                      <div class="form-group">
-                          <label for="lastname">Last Name</label>
-                          <input type="email" [(ngModel)]="careerApplication.last_name" name="lname" placeholder="Enter your Lastname" class="form-control" id="lastname">
-                      </div>
-                      <div class="form-group">
-                          <label for="useremail">Email Address</label>
-                          <input type="email" [(ngModel)]="careerApplication.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
-                      </div>
-                      <div class="form-group">
-                          <label for="phone_no">Phone Number</label>
-                          <input type="email" [(ngModel)]="careerApplication.phone_number" name="phonenum" placeholder="Let us reach you faster through your phone number" class="form-control" id="phone_no">
-                      </div>
-
-                      <div class="form-group">
-                          <label for="career-brief">Career Brief</label>
-                          <textarea [(ngModel)]="careerApplication.career_brief" name="careerbrief" placeholder="Feel free to express yourself or tell us more about your career" class="form-control" id="career-brief"></textarea>
-                      </div>
-
-                      <div class="form-group">
-                          <label for="resume_upload">Upload Your Resume</label>
-                          <input type="file" [(ngModel)]="careerApplication.curriculum_vitae" name="cv" accept="application/pdf" class="form-control" id="resume_upload">
-                      </div>
-
-                      <div class="form-group">
-                          <button class="btn2 btn btn-raised btn-login" [promiseBtn]="isSubmitting" [disabled]="!careerApplicationForm.form.valid" >Submit Application</button>
-                      </div>
-                                                       
-                  </form>
-              </div>
-          </div>
-      </div>
-      <div *ngIf="isLoading" class="lds-default">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+    <div class="inner-apply">
+        <div *ngIf="!isLoading" class="row">
+            <div class="col-md-12">
+                <div class="login-form">
+                    <h3>Welcome </h3>
+                    <p>Fill the following to complete your application</p>
+                    <form (ngSubmit)="apply()" #careerApplicationForm="ngForm" class="mt-5">
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input type="text" required [(ngModel)]="careerApplication.first_name" name="fname" placeholder="Enter your Firstname" class="form-control" id="firstname">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input type="email" [(ngModel)]="careerApplication.last_name" name="lname" placeholder="Enter your Lastname" class="form-control" id="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="useremail">Email Address</label>
+                            <input type="email" [(ngModel)]="careerApplication.email" name="email" placeholder="E-mail" class="form-control" id="useremail">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_no">Phone Number</label>
+                            <input type="email" [(ngModel)]="careerApplication.phone_number" name="phonenum" placeholder="Let us reach you faster through your phone number" class="form-control" id="phone_no">
+                        </div>
+  
+                        <div class="form-group">
+                            <label for="career-brief">Career Brief</label>
+                            <textarea [(ngModel)]="careerApplication.career_brief" name="careerbrief" placeholder="Feel free to express yourself or tell us more about your career" class="form-control" id="career-brief"></textarea>
+                        </div>
+  
+                        <div class="form-group">
+                            <label for="resume_upload">Upload Your Resume</label>
+                            <input type="file" [(ngModel)]="careerApplication.curriculum_vitae" name="cv" accept="application/pdf" class="form-control" id="resume_upload">
+                        </div>
+  
+                        <div class="form-group">
+                            <button class="btn2 btn btn-raised btn-login" [promiseBtn]="isSubmitting" [disabled]="!careerApplicationForm.form.valid" >Submit Application</button>
+                        </div>
+                                                         
+                    </form>
+                </div>
+            </div>
         </div>
-  </div>
+        <div *ngIf="isLoading" class="lds-default">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+       </div>
+    </div>
 </section>

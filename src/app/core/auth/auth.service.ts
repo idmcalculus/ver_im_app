@@ -11,9 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 export class AppAuthService {
     private currentUserSubject: BehaviorSubject<User>;
     private inProfileView : BehaviorSubject<boolean>;
+    private inHomePage : BehaviorSubject<boolean>;
     private managePlanOperation : BehaviorSubject<Investment>;
-    public profileViewIsActive :Observable<boolean>;
+
     public currentUser: Observable<User>;
+    public profileViewIsActive :Observable<boolean>;
+    public homeViewIsActive :Observable<boolean>;
     public currentManagePlanOperation: Observable<Investment>;
 
     constructor(
@@ -23,6 +26,9 @@ export class AppAuthService {
         ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
+
+        this.inHomePage = new BehaviorSubject<boolean>(null);
+        this.homeViewIsActive = this.inHomePage.asObservable();
 
         this.inProfileView = new BehaviorSubject<boolean>(false);
         this.profileViewIsActive = this.inProfileView.asObservable();
@@ -112,6 +118,10 @@ export class AppAuthService {
 
     setInProfileView(isLoggedIn:boolean){
         this.inProfileView.next(isLoggedIn);
+    }
+
+    setInHomeView(homeViewIsActive:boolean){
+        this.inHomePage.next(homeViewIsActive);
     }
 
     setCurrentPlanOperation(operation:Investment){

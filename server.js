@@ -21,7 +21,7 @@ const forceSSL = function() {
   }
 }
 
-app.use(forceSSL());
+// app.use(forceSSL());
 
 app.use(express.static(__dirname + `/dist/${appName}`));
 
@@ -33,9 +33,10 @@ app.get('/yahoo/:code', function(req, res) {
   })  
 });
 
-app.get('/yahoo/getprofile/:auth/:code', function(req, res) {
-  var authCode = req.params.code;
-  yahooAccessoken(authCode).then(resp=>{
+app.get('/yahoo/getprofile/:auth/:userid', function(req, res) {
+  var auth = req.params.auth;
+  var userid = req.params.userid;
+  yahooGetProfile(auth,userid).then(resp=>{
     res.send(resp)
   })  
 });
@@ -96,8 +97,8 @@ function linkedinAccessoken(codestring) {
     request.post('https://www.linkedin.com/oauth/v2/accessToken', {
       form: {
         grant_type: 'authorization_code',
-        redirect_uri: 'http://127.0.0.1:4200',
         code: codestring,
+        redirect_uri: 'http://127.0.0.1:4200',
         client_id: '77pv3mo63oyixv',
         client_secret: 'WXSct7I6waMjYI06'
       }
@@ -118,9 +119,26 @@ function linkedinGetProfile(auth_token) {
   return new Promise(function(resolve,_reject){
     request.get(`https://api.linkedin.com/v2/me`, {
       headers:{
-        'Authorization':`Bearer ${auth_token}`,
-        'X-Restli-Protocol-Version':'2.0.0',
-        'Cache-Control':'no-cache'
+        'Authorization':`Bearer ${auth_token}`
+      }
+    }, (error, res, body) => {
+      if (error) {
+        console.error("error is: "+error)
+        resolve(error);
+      }else{
+        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(body)
+        resolve(body);
+      }
+    })
+  })    
+}
+
+function yahooGetProfile(auth_token,user_id) {
+  return new Promise(function(resolve,_reject){
+    request.get(`https://social.yahooapis.com/v1/user/${user_id}/profile?format=json`, {
+      headers:{
+        'Authorization':`Bearer ${auth_token}`
       }
     }, (error, res, body) => {
       if (error) {

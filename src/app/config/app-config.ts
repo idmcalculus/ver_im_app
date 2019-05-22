@@ -27,6 +27,7 @@ export const Config = {
         redirect_uri:"http://127.0.0.1:4200",
         access_token_path:"oauth/v2/accessToken",
         scope:"r_liteprofile%20r_emailaddress%20w_member_social",
+        // scope:"r_liteprofile",
         clientid:"77pv3mo63oyixv",
         secretkey:'WXSct7I6waMjYI06',
         profile_email:"v2/me",
