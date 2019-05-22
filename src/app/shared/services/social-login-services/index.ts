@@ -83,18 +83,28 @@ export class SocialLogin {
 
   public extLogin(socialPlatform,authCode){
     if(socialPlatform =='yahoo'){
-      this.yahooService.getAccesstoken(authCode).subscribe(resp=>{
+      this.yahooService.getAccesstoken(authCode).then(resp=>{
         var resp2:any = resp;
-        console.log("i gat it 1 :: "+resp)
         if(resp2.accessToken){
-          this.yahooService.getProfile(resp2.accessToken,resp2.uid).subscribe(res=>{
-            console.log("i gat it :: "+res)
+          this.yahooService.getProfile(resp2.accessToken,resp2.uid).then(res=>{
+            var resp:any = res;
+            this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+            if(resp.email){
+                this.doSignUp(resp)
+            }
           })
         }
       })
-      // console.log("cooler :: "+JSON.stringify(userDetails))
     }else if(socialPlatform =='linkedin'){
-      this.linkedinService.getAccesstoken(authCode)
+      this.linkedinService.getAccesstoken(authCode).then(res=>{
+        if(res){
+          // this.linkedinService.getProfile(res).then(resp=>{
+          //   if(resp){
+          //     this.doLogin(resp);
+          //   }
+          // })
+        }
+      })
     }
   }
   public extSignOut(){
@@ -112,6 +122,21 @@ export class SocialLogin {
         window.location.href=`${UserDetails.user_category.toLowerCase()}`
       }
       // this.loginText = "Login";
+    });
+  }
+
+  private doSignUp(socialUser){
+    this.signUpService.register(socialUser)
+    .subscribe(UserDetails => {
+      if(UserDetails){
+        this.authService.login(socialUser)
+        .subscribe(UserDetails => {
+          if(UserDetails){
+            alert(`Welcome ${UserDetails.first_name}`);
+            window.location.href=`${UserDetails.user_category.toLowerCase()}`
+          }
+        });
+      }
     });
   }
   

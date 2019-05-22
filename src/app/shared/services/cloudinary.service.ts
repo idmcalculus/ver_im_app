@@ -18,8 +18,8 @@ export class CloudinaryService {
       }
       this.httpService.postRequest('v1_1/crystalbit-technology/image/upload',data,null)
       .subscribe(resp=>{
+          this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
           if(resp){
-              this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
               observable.next(resp.secure_url);
           }
       })

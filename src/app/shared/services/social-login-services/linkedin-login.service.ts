@@ -22,20 +22,21 @@ export class LinkedinLoginService {
 
 
   public getAccesstoken(auth_code:String){
-    console.log("using auth code: "+auth_code)
-    this.httpService.baseURL = window.location.host;
-    // this.httpService.baseURL = "http://127.0.0.1:8990";
+    return new Promise((resolve,reject)=>{
+      this.httpService.baseURL = window.location.host;
+      // this.httpService.baseURL = "http://127.0.0.1:8990";
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
         console.log('response res is :: '+JSON.stringify(resp))
         if(resp.access_token){
-          // console.log('access token returned : '+resp.access_token)
-          this.getProfile(resp.access_token)
+          resolve(resp.access_token);
         }else if(resp.error){
-          // console.log('issh : '+resp.error)
+          resolve(resp.access_token);
         }else{
-          // console.log('uknown error : '+JSON.stringify(resp))
+          resolve(resp);
         }
       })
+    })
+    
   }
 
   public getAuthCodeURL(){

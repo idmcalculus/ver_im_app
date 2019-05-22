@@ -22,19 +22,15 @@ export class YahooLoginService {
 
 
   public getAccesstoken(auth_code:String){
-    // this.httpService.baseURL = window.location.host;
-    return new Observable((result:any)=>{
-      // this.httpService.baseURL = "http://127.0.0.1:8990";
-      this.httpService.baseURL = window.location.host;
-      return this.httpService.getRequest(`yahoo/${auth_code}`).subscribe(resp=>{
+    return new Promise((resolve,reject)=>{
+      this.httpService.baseURL = "http://127.0.0.1:8990";
+      // this.httpService.baseURL = window.location.host;
+      this.httpService.getRequest(`yahoo/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
-          console.log('response : '+resp.access_token)
-          return {'accessToken':resp.access_token,'uid':resp.xoauth_yahoo_guid}
+          resolve ({'accessToken':resp.access_token,'uid':resp.xoauth_yahoo_guid})
         }else if(resp.error){
-          console.log('issh : '+resp.error)
-          return resp.error
+          resolve(resp.error)
         }else{
-          console.log('uknown error : '+JSON.stringify(resp))
           return resp
         }
       })
@@ -50,10 +46,9 @@ export class YahooLoginService {
   }
 
   public getProfile(accessToken,userId){
-    return new Observable((result:any)=>{
+    return new Promise((resolve,reject)=>{
       this.httpService.baseURL = "http://127.0.0.1:8990";
       this.httpService.getRequest(`yahoo/getprofile/${accessToken}/${userId}`).subscribe(resp=>{
-        console.log('profile response : '+JSON.stringify(resp))
         if(resp.profile){
           var vll = resp.profile;
           var socialUser = {
@@ -63,7 +58,7 @@ export class YahooLoginService {
             user_category:'User',
             authentication_type:'G'
           };
-          return socialUser;
+          resolve(socialUser);
         }
       })
     })
