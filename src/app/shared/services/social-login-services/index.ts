@@ -83,26 +83,17 @@ export class SocialLogin {
 
   public extLogin(socialPlatform,authCode){
     if(socialPlatform =='yahoo'){
-      this.yahooService.getAccesstoken(authCode).then(resp=>{
-        var resp2:any = resp;
-        if(resp2.accessToken){
-          this.yahooService.getProfile(resp2.accessToken,resp2.uid).then(res=>{
-            var resp:any = res;
-            this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
-            if(resp.email){
-                this.doSignUp(resp)
-            }
-          })
+      this.yahooService.getProfile(authCode).then(resp=>{
+        this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+        if(resp){
+          this.doSignUp(resp)
         }
       })
     }else if(socialPlatform =='linkedin'){
-      this.linkedinService.getAccesstoken(authCode).then(res=>{
-        if(res){
-          // this.linkedinService.getProfile(res).then(resp=>{
-          //   if(resp){
-          //     this.doLogin(resp);
-          //   }
-          // })
+      this.linkedinService.getProfile(authCode).then(resp=>{
+        this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+        if(resp){
+          this.doSignUp(resp)
         }
       })
     }
@@ -128,7 +119,7 @@ export class SocialLogin {
   private doSignUp(socialUser){
     this.signUpService.register(socialUser)
     .subscribe(UserDetails => {
-      if(UserDetails){
+      if(UserDetails && UserDetails.success){
         this.authService.login(socialUser)
         .subscribe(UserDetails => {
           if(UserDetails){
