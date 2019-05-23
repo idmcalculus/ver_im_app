@@ -21,7 +21,7 @@ const forceSSL = function() {
   }
 }
 
-// app.use(forceSSL());
+app.use(forceSSL());
 
 app.use(express.static(__dirname + `/dist/${appName}`));
 
@@ -84,7 +84,7 @@ function yahooAccessoken(codestring) {
         console.error("error is: "+error)
         resolve(error);
       }else{
-        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(`statusCode: ${res.statusCode}`)
         console.log(body)
         resolve(body);
       }
@@ -107,7 +107,7 @@ function linkedinAccessoken(codestring) {
         console.error("error is: "+error)
         resolve(error);
       }else{
-        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(`statusCode: ${res.statusCode}`)
         console.log(body)
         resolve(body);
       }
@@ -126,13 +126,37 @@ function linkedinGetProfile(auth_token) {
         console.error("error is: "+error)
         resolve(error);
       }else{
-        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(`statusCode: ${res.statusCode}`)
+        linkedinGetEmail(auth_token).then(resp=>{
+          var fine = {profile:body,email:resp}
+            console.log("isshu re :: "+JSON.stringify(fine))
+            resolve(fine)
+        })
+      }
+    })
+  })    
+}
+
+function linkedinGetEmail(auth_token) {
+  return new Promise(function(resolve,_reject){
+    request.get(`https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))`, {
+      headers:{
+        'Authorization':`Bearer ${auth_token}`
+      }
+    }, (error, res, body) => {
+      if (error) {
+        console.error("error is: "+error)
+        resolve(error);
+      }else{
+        console.log(`statusCode: ${res.statusCode}`)
         console.log(body)
         resolve(body);
       }
     })
   })    
 }
+
+https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))
 
 function yahooGetProfile(auth_token,user_id) {
   return new Promise(function(resolve,_reject){
@@ -145,7 +169,7 @@ function yahooGetProfile(auth_token,user_id) {
         console.error("error is: "+error)
         resolve(error);
       }else{
-        console.log(`statusCode 2: ${res.statusCode}`)
+        console.log(`statusCode: ${res.statusCode}`)
         console.log(body)
         resolve(body);
       }
