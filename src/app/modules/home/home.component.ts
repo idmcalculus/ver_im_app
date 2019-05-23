@@ -35,4 +35,7 @@ export class HomeComponent {
       this.authService.setInHomeView(false);
     }
 
+
+    
+
 }
