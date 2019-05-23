@@ -1,7 +1,6 @@
-import {User} from '../models/user';
+import {User} from './user';
 export class UserSession extends User {
-    id?: number;
-    isValid:boolean=false;
+    isValid?:boolean=false;
     sessionId?: string;
     last_login_at?: Date;
     last_logged_out?: Date;

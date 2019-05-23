@@ -1,6 +1,6 @@
-export class User {
-    id?: number;
-    password: string;
+import {BasicModel} from './BasicModel';
+export class User extends BasicModel{
+    password?: string;
     token?: string;
     first_name?: string;
     last_name?: string;
@@ -20,8 +20,8 @@ export class User {
     account_name?: string;
     account_number?: string;
     bank_name?: string;
-    updates_on_new_plans?: number;
-    email_updates_on_investment_process?: number;
-    created_at?: Date;
-    updated_at?: Date;
+    updates_on_new_plans?: boolean;
+    email_updates_on_investment_process?: boolean;
+    where_you_work?: string;
+    average_monthly_income?: string;
   }

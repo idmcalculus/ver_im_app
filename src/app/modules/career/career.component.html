@@ -1,3 +1,63 @@
-<p>
-  career works!
-</p>
+<section *ngIf="!selectedCareer" class="career">
+    <div class="inner-career">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h3>Come join our team</h3>
+                    <p>We are looking for exceptional talents who already have a deep understanding of the investment
+                        tech market. We are looking to hire people who are willing to adapt and learn on the job.
+                    </p>
+                    <div class="second">
+                        <h4>Current Openings</h4>
+                        <p class="par">We are currently hiring for the following roles below.
+                    </div>
+
+
+                    <!-- <ul>
+                        <li>
+                            <a href="career-details.html">
+                                <h5>Driver (Business and Private)</h5>
+                                <small>Posted 22/03/2019</small>
+                            </a>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row page-body list-vacancy mt-10">
+            <div *ngIf="!isLoading" class="col-xl-12 col-md-12">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="row content">
+                            <ul *ngFor="let career of careerList;let cnt = index" class="col-md-3 pb-2">
+                                <li class="holder">
+                                    <a (click)="viewCareerDetails(cnt)">
+                                        <h5>{{career.career_title}}</h5>
+                                        <small>Posted {{career.created_at}}</small>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="isLoading" class="lds-default">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</section>
+<app-career-details [isUser]="true" [career]="selectedCareer" *ngIf="selectedCareer" (submit)="callBack($event)" ></app-career-details>

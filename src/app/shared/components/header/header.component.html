@@ -1,39 +1,60 @@
-<header class="header scrolled">
-    <nav>
-        <div class="row m-0-30">
-            <div class="col-md-2">
-                <app-header-logo></app-header-logo>
-                <div class="mobile-nav">
-                    <input type="checkbox" id="menu-btn" class="menu-btn">
-                    <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
-                    <ul class="menu">
-                        <li>
-                          <a href="/investment" >Investment</a>
-                        </li>
-                        <li>
-                          <a href="/services" >Services</a>
-                        </li>
-                        <li>
-                          <a href="/about-us" >About Us</a>
-                        </li>
-                        <li>
-                          <a href="/career" >Career</a>
-                        </li>
-                        <li>
-                          <a href="/signin" >Login</a>
-                        </li>
-                        <li>
-                          <a href="/signup" >Sign Up</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 mx-auto">
-              <!-- <app-header-btn></app-header-btn> -->
-            </div>
-            <div class="col-md-7 ml-auto hide-sm" style="padding: 0;">
-                <app-header-text-nav></app-header-text-nav>
-            </div>
-        </div>
-    </nav>
+<header class="header scrolled" >
+  <nav>
+      <div class="row m-0-30">
+          <div class="col-md-2 col-md-12 col-lg-2 mpl-0">
+              <a href="/">
+                  <div class="logo-brand ml-0"></div>
+              </a>
+          </div>
+          <div class="mobile-nav">
+              <input type="checkbox" id="menu-btn" class="menu-btn">
+              <label for="menu-btn" class="menu-icon"><span class="navicon"></span></label>
+              <ul class="menu">
+                <li>
+                  <a href="/investments" >Invest</a>
+                </li>
+                <li>
+                  <a href="/howitworks" >How it works</a>
+                </li>
+                <li>
+                  <a href="/career" >Work With Us</a>
+                </li>
+                <li [hidden]="userinfo!=null" >
+                  <a href="/signin" >Login</a>
+                </li>
+                <li [hidden]="userinfo!=null" >
+                  <a href="/signup" >Sign Up</a>
+                </li>
+                <li [hidden]="userinfo==null" >
+                  <a href="/{{userinfo?.user_category | lowercase}}" routerLinkActive="active">Dashboard</a>
+                </li>
+            </ul>
+          </div>
+          <div class="col-md-3 mx-auto">
+
+          </div>
+          <div class="col-md-7 ml-auto hide-sm" style="padding: 0;">
+            <ul class="ml-auto">
+              <li>
+                <a routerLink="/investments" routerLinkActive="active">Invest</a>
+              </li>
+              <li>
+                <a routerLink="/howitworks" routerLinkActive="active" >How it works</a>
+              </li>
+              <li>
+                <a routerLink="/career" routerLinkActive="active" >Work With Us</a>
+              </li>
+              <li [hidden]="userinfo!=null">
+                <a class="login" routerLink="/signin" routerLinkActive="active">Login</a>
+              </li>
+              <li [hidden]="userinfo!=null">
+                <a class="sign-up" routerLink="/signup" routerLinkActive="active">Sign Up</a>
+              </li>
+              <li [hidden]="userinfo==null" >
+                <a href="/{{userinfo?.user_category | lowercase}}" routerLinkActive="active">Dashboard</a>
+              </li>
+          </ul>
+          </div>
+      </div>
+  </nav>
 </header>

@@ -7,9 +7,9 @@
 }
 
 @mixin landingGradient() {
-  // background-image: linear-gradient(156deg, $theme-blue, #5060B5);
-  background: url("../../../assets/images/landing_bg.svg") no-repeat center;
-  background-size: cover;
+   //background-image: linear-gradient(156deg, $theme-blue, #5060B5);
+  background: url("../../../assets/images/banner2.png") no-repeat center;
+  //background-size: cover;
   width: 100%;
 }
 
@@ -108,14 +108,28 @@ $slide: (
     @include boxShadow(0, 2px, 3px, $shadowBlack);
     //transition-property: bottom, box-shadow;
     &:hover {
-      @include transition(ease, 0.5s);
-      @include noBoxShadow(none);
+      //@include noBoxShadow(none);
+      transform: translateY(-5%);
+      box-shadow: 0 5px 14px $shadowBlack;
+      @include transition(ease, 0.7s);
     }
   }
+  .btn-invest {
+    border-radius: 0 !important;
+    padding: .51em 2.3em;
+    width: 40%;
+    background: transparent;
+    color: $theme-white;
+    @include borderLine(2px, $theme-white);
+    font-size: 23px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
   .btn-investment {
+    border-radius: 5px !important;
     padding: .61em 1.4em;
-    background: $theme-white;
-    color: $theme-blue;
+    background: $theme-blue;
+    color: $theme-white;
     font-size: 23px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -159,6 +173,13 @@ $slide: (
       @include transition(ease, 0.5s);
     }
   }
+  .btn-update-profile {
+    background: rgb(100,200,140);
+    color: #fff;
+    width: 100%;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+  }
   .btn-join {
     background: rgb(100,200,140);
     color: #fff;
@@ -172,6 +193,14 @@ $slide: (
       text-decoration: none;
       background: rgb(81,170,82);
     }
+  }
+  .add-invest {
+    font-size: 1.5rem;
+    background: rgb(100,200,140);
+    color: #fff;
+    padding: .6em 1em;
+    letter-spacing: 2px;
+    font-weight: bold;
   }
 }
 
@@ -260,4 +289,83 @@ $slide: (
     }
   }
 }
-  
+
+@mixin indicator($color, $anim, $delay, $duration) {
+  background: $color;
+  background-image: radial-gradient($color, transparent);
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: $delay $anim $duration;
+  border: dotted 1px $color;
+  box-shadow: 0 0 20px $theme-black inset, 0 0 10px $color;
+}
+
+@keyframes stop {
+  0% {
+    opacity: 1
+  }
+  20% {
+    opacity: 1
+  }
+  40% {
+    opacity: 1
+  }
+  60% {
+    opacity: .1
+  }
+  80% {
+    opacity: .1
+  }
+  100% {
+    opacity: .1
+  }
+}
+
+@keyframes ready {
+  0% {
+    opacity: .1
+  }
+  20% {
+    opacity: .1
+  }
+  40% {
+    opacity: 1
+  }
+  50% {
+    opacity: .1
+  }
+  60% {
+    opacity: .1
+  }
+  80% {
+    opacity: .1
+  }
+  86% {
+    opacity: 1
+  }
+  100% {
+    opacity: 1
+  }
+}
+
+@keyframes go {
+  0% {
+    opacity: .1
+  }
+  40% {
+    opacity: .1
+  }
+  60% {
+    opacity: 1
+  }
+  80% {
+    opacity: 1
+  }
+  83% {
+    opacity: .1
+  }
+  100% {
+    opacity: .1
+  }
+}

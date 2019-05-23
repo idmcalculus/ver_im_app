@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import {DatasharerService} from './core/datasharer/datasharer.service';
-import { UserSession } from './shared/models/UserSession';
+import {AppAuthService} from './core/auth/auth.service';
+import {Subscription} from 'rxjs';
+import { User } from './shared/models/user';
+import { DynamicScriptLoaderService } from './shared/services/dynamic-script-loader.service';
 
 
 @Component({
@@ -11,16 +13,54 @@ import { UserSession } from './shared/models/UserSession';
 
 export class AppComponent {
 
+  title = 'versaim-app';
   showHeader:boolean=true;  
   showFooter:boolean=true;
+  homeViewIsActive:boolean=true;
+  activeUser:User={user_category:'none',email:''};
 
-  title = 'versaim-app';
-  session: UserSession;
-  constructor(private dataSharer:DatasharerService){
-    this.dataSharer.userSession.subscribe(session => this.session = session)
-    this.dataSharer.profileViewIsActive.subscribe(inProfileView =>{
-      this.showHeader = !inProfileView
-      this.showFooter = !inProfileView
+  inProfileSubcription: Subscription;
+  // inHomeView: Subscription;
+  hasSession: Subscription;
+  constructor(
+    private authService:AppAuthService,
+    private dynamicScriptLoader:DynamicScriptLoaderService
+    ){
+      this.inProfileSubcription = this.authService.profileViewIsActive.subscribe(inDashboardView =>{
+          this.showHeader = !inDashboardView;
+          this.showFooter = !inDashboardView;
+          this.installScripts(inDashboardView)
+      })
+
+      // this.inHomeView = this.authService.homeViewIsActive.subscribe(homeViewIsActive =>{
+      //   if(homeViewIsActive==null){
+      //     this.homeViewIsActive = false;
+      //   }else{
+      //     this.homeViewIsActive = homeViewIsActive;
+      //   }
+      //   console.log("now :: "+this.homeViewIsActive)
+      // })
+  }
+
+  ngOnInit(){
+    this.authService.validateSession().then(resp=>{
+      if(resp && resp.email){
+        this.activeUser = resp;
+        this.authService.setUser(this.activeUser);
+      }
     })
+  }
+
+  ngOnDestroy() {
+    this.inProfileSubcription.unsubscribe();
+    this.hasSession.unsubscribe();
+  }
+
+  installScripts(inDashBoard){
+    if(inDashBoard){
+      this.dynamicScriptLoader.load('bootstrap','chartjs','p-coded','v-layout',
+     'slimscroll','dash','platform','data-table','flat-pickr','g-maps');
+    }
+    
   }
 }

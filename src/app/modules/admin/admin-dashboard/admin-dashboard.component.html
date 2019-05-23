@@ -1,3 +1,161 @@
-<p>
-  admin-dashboard works!
-</p>
+<div class="pcoded-content">
+
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body">
+                    <div *ngIf="isLoading" class="row lds-default">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                    </div>
+                  <div *ngIf="!isLoading" class="row">
+                      <div class="col-xl-4 col-md-6">
+                          <div class="card comp-card prod-p-card ">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col">
+                                          <h6 class="m-b-25">Total Users</h6>
+                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_users}}</h3>
+                                          <p class="m-b-0">{{dashBoardData?.unverified_users}} inactive user(s)</p>
+                                      </div>
+                                      <div class="col-auto">
+                                          <i class="fas fa-user text-c-blue f-18"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                          <div class="card comp-card prod-p-card card-yellow">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col">
+                                          <h6 class="m-b-25">Total Investments</h6>
+                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_investment}}</h3>
+                                          <p class="m-b-0">{{dashBoardData?.pending_investment}} pending investment(s)</p>
+                                      </div>
+                                      <div class="col-auto">
+                                          <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                          <div class="card comp-card prod-p-card ">
+                              <div class="card-body">
+                                  <div class="row align-items-center">
+                                      <div class="col">
+                                          <h6 class="m-b-25">Total Requests</h6>
+                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_request}}</h3>
+                                          <p class="m-b-0">{{dashBoardData?.pending_request}} pending request(s)</p>
+                                      </div>
+                                      <div class="col-auto">
+                                          <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- <div class="col-xl-4 col-md-6">
+                        <div class="card comp-card prod-p-card card-blue">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-b-25 text-white">Total Plan Created</h6>
+                                        <h3 class="f-w-700 text-white">{{dashBoardData?.all_investment}}</h3>
+                                        <p class="m-b-0"></p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-sort-numeric-up text-c-blue f-18"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                  </div>
+                  <div *ngIf="!isLoading" class="row">
+                      <div class="col-xl-8 col-md-12">
+                          <div class="card latest-update-card">
+                              <div class="card-header">
+                                  <h5>Requests</h5>
+                              </div>
+                              <div class="card-block">
+                                  
+                              
+                                <div class="dt-responsive table-responsive">
+                                        <!-- <table id="userTable"
+                                                class="table table-striped nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>first name</th>
+                                                <th>last name</th>
+                                                <th>email</th>
+                                                <th>Phone number</th>
+                                                <th>curriculum_vitae</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
+                                                <td>{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                                <td >{{req.first_name}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table> -->
+                                </div>
+                               </div>
+                          </div>
+                      </div>
+
+                      <div class="col-xl-4 col-md-12">
+                          <div class="card latest-update-card">
+                              <div class="card-header">
+                                  <h5>Career</h5>
+                              </div>
+                              <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                            <table id="userTable"
+                                                    class="table table-striped nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>first name</th>
+                                                    <th>last name</th>
+                                                    <th>email</th>
+                                                    <th>Phone number</th>
+                                                    <th>curriculum_vitae</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let req of dashBoardData?.career_application,let x=index ">
+                                                    <td>{{req.first_name}}</td>
+                                                    <td >{{req.last_name}}</td>
+                                                    <td >{{req.email}}</td>
+                                                    <td >{{req.phone_number}}</td>
+                                                    <td >{{req.curriculum_vitae}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>

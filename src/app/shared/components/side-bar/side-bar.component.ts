@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { User } from '../../models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -6,10 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./side-bar.component.css']
 })
 export class SideBarComponent implements OnInit {
+  userSubscription:Subscription
+  userInfo:User;
+  @Input()
+  public isUser:boolean;
+  constructor(
+    private router:Router,
+    private authService:AppAuthService
+    ) { 
 
-  constructor() { }
+    this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+        this.userInfo = userInfo;
+    })
+  }
 
   ngOnInit() {
+  }
+
+  logout(){
+    if(confirm('Are you sure you want to logout')){
+      this.authService.logout();
+      this.router.navigate(['signin',{}]);
+    }
   }
 
 }
