@@ -1,0 +1,66 @@
+<div *ngIf="!selectedUser" class="pcoded-content">
+
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Applicants List</h5>
+                              </div>
+                              <div class="card-block">
+                                  <div *ngIf="!isLoading" class="dt-responsive table-responsive">
+                                      <table id="applicants"
+                                             class="table table-striped nowrap">
+                                          <thead>
+                                          <tr>
+                                              <th>First Name</th>
+                                              <th>Last Name</th>
+                                              <th>Email</th>
+                                              <th>Phone Number</th>
+                                              <th>Career Brief</th>
+                                              <th>Resume</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr *ngFor="let application of careerApplications; let x= index">
+                                              <td>{{application?.first_name}}</td>
+                                              <td>{{application?.last_name}}</td>
+                                              <td>{{application?.email}}</td>
+                                              <td>{{application?.phone_number}}</td>
+                                              <td width="250">{{application.career_brief}}</td>
+                                              <td (click)="viewUserInfo(x)">View CV</td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                                  <div *ngIf="isLoading" class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                   </div>
+
+                                    
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<app-profile-summary *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>

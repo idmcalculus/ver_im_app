@@ -1,0 +1,61 @@
+<div  class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div *ngIf="!selectedCareer" class="page-body list-vacancy">
+                    <div class="row mb-4">
+                        <div class="col-xl-9 col-md-6 title-list">
+                            <h3>List of available career/job post</h3>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <a routerLink="./create" routerLinkActive="active"  class="btn btn-update-profile more">Create
+                                Vacancy</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div *ngIf="!isLoading" class="col-xl-12 col-md-12">
+                            <div class="card">
+                                <div class="card-block">
+                                    <div class="row mb-3">
+                                            <!-- class="col-sm-12 col-md-6 col-lg-3 pb-2" -->
+                                        <div *ngFor="let career of careerList;let cnt = index" class="col-md-4 pb-3">
+                                            <a (click)="viewCareerDetails(cnt)">
+                                                <div class="holder">
+                                                    <div class="holder-content">
+                                                        <h4>{{career?.career_title}}</h4>
+                                                        <p><i>{{career?.career_description}}</i></p>
+                                                        <small class="text-danger">{{career?.deadline}}</small>
+                                                    </div>
+                                                    <div class="indicator">
+                                                        <div class="red"></div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div *ngIf="isLoading" class="lds-default">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                    </div>
+                </div>
+                
+                <app-career-details [isUser]="false" [career]="selectedCareer" *ngIf="selectedCareer" (submit)="callBack($event)" ></app-career-details>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body category">
+                  <div class="row">
+                      <div class="col-sm-4">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Add New Category</h5>
+                              </div>
+                              <div class="card-block">
+                                 <!-- <div class="alert alert-warning">
+                                      <span>Error while adding category</span>
+                                  </div>-->
+                                  <form (ngSubmit)="addCategory()" #addCategoryForm="ngForm" class="">
+                                      <div class="form-group">
+                                          <label for="CategoryName">Category Name</label>
+                                          <input [(ngModel)] ="category.category_name" required type="text" name='categoryName'
+                                                 class="form-control" id="CategoryName"
+                                                 placeholder="Enter name of Category">
+                                      </div>
+                                      <div class="form-group">
+                                          <input  type="submit" [disabled]="!addCategoryForm.form.valid" id="actionBtn " value="{{buttonText}}" class="btn btn-success addCategory">
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-sm-8">
+                          <div class="card">
+                              <div class="card-block">
+                                  <div class="dt-responsive table-responsive">
+                                      <table id="categoryTable"
+                                             class="table table-striped category-table">
+                                          <thead>
+                                          <tr>
+                                              <th scope="col">S/N</th>
+                                              <th scope="col">Category Name</th>
+                                              <th scope="col">Action</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody *ngIf="isLoading" >
+                                            <td></td>
+                                            <td>
+                                                <div  class="lds-default">
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                          </tbody>
+                                          
+                                          <tbody *ngIf="!isLoading">
+                                          <tr *ngFor="let category of categories;let i=index">
+                                              <td>{{i+1}}</td>
+                                              <td >
+                                                  <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name"><button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
+                                                  <a *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
+                                              </td>
+                                              <td>
+                                                <a *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-check"></i></a>  
+                                                <a *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-pencil-alt"></i></a> | 
+          
+                                                <a (click)="deleteCategory(category)" id="delCat"><i class="fa fa-trash"></i></a>
+                                              </td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+
+      <div id="styleSelector">
+      </div>
+  </div>
+</div>

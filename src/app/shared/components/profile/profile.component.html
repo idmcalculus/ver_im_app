@@ -1,0 +1,347 @@
+<div class="pcoded-content">
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="row mb-4">
+                        <div class="col-xl-12 col-md-12 user-invest">
+                            <h4 class="dash-title">Profile</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div *ngIf="user==null" class="lds-default">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                        </div>
+
+                        <div *ngIf="user!=null" class="col-xl-12 col-md-12">
+                            <div class="card latest-update-card">
+                                <div class="card-block">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-home-tab"
+                                               data-toggle="tab" href="#nav-home" role="tab"
+                                               aria-controls="nav-home"
+                                               aria-selected="true">Account</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab"
+                                               data-toggle="tab" href="#nav-profile" role="tab"
+                                               aria-controls="nav-profile" aria-selected="false">Bank
+                                                Details</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab"
+                                               data-toggle="tab" href="#nav-contact" role="tab"
+                                               aria-controls="nav-contact" aria-selected="false">Settings</a>
+                                        </div>
+                                    </nav>
+
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-home"
+                                             role="tabpanel" aria-labelledby="nav-home-tab">
+
+                                            <div class="update-profile-form">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <div class="profile-image">
+                                                                <img src="../assets/images/avatar-4.png"
+                                                                     alt="ima">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="basic">
+                                                                <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Full Name</span>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <label for="firstname">First Name</label>
+                                                            <input [(ngModel)]="user.first_name"  type="text" class="form-control"
+                                                                   id="firstname">
+                                                        </div>
+                                                        <div class="col-md-4"><label for="lastname">Last
+                                                            Name</label>
+                                                            <input  [(ngModel)]="user.last_name" type="text" class="form-control"
+                                                                   id="lastname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>E-mail</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="email">E-mail</label>
+                                                            <input [(ngModel)]="user.email" type="email" class="form-control"
+                                                                   id="email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Phone</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="phone">Phone Number</label>
+                                                            <input [(ngModel)]="user.phone_number" type="tel" class="form-control"
+                                                                   id="phone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Address</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="address">Address</label>
+                                                            <input [(ngModel)]="user.home_address" type="tel" class="form-control"
+                                                                   id="address">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Country</span></div>
+                                                        <div class="col-md-9">
+                                                            <label for="country">Country</label>
+                                                            <select [(ngModel)]="user.country" class="form-control" name="country"
+                                                                    id="country">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option *ngFor="let country of countries" [ngValue]="country">
+                                                                        {{country}}
+                                                             </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Gender</span></div>
+                                                        
+
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <div class="pretty p-icon p-square" style="margin-top: 2.2rem;">
+                                                                <input (click)="user.gender='Male' " class="form-check-input" 
+                                                                        type="radio" id="male" name="gender" 
+                                                                        value="male" [checked]="user.gender === 'Male'">
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="male" style="font-size: 15px;">Male</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2" style="margin-top: 2.2rem;">
+                                                            <div class="pretty p-icon p-square">
+                                                                <input (click)="user.gender='Female' " class="form-check-input "
+                                                                        type="radio" name="gender" id="female"
+                                                                        value="female" [checked]="user.gender === 'Female' ">
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="female" style="font-size: 15px;">Female</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="position: relative;">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Date of Birth</span>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <label for="month">Month</label>
+                                                            <select [(ngModel)]="user.month_of_birth" name="month" id="month"
+                                                                    class="form-control">
+                                                                <option *ngFor="let month of monthComponent" [ngValue]="month.count" >{{month.title}}</option>
+                                                                
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-3"><label for="day">Day</label>
+                                                            <select [(ngModel)]="user.day_of_birth" name="day" id="day"
+                                                                    class="form-control">
+                                                                <option *ngFor="let day of dayComponent" [ngValue]="day">{{day}}</option>
+                                                             
+                                                            </select>
+                                                        </div>
+                                                        <div class="bgline"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Work Place</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="workplace">Work Place</label>
+                                                            <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
+                                                                    id="workplace">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <span>Average Monthly income</span>
+                                                            </div>
+                                                            <div class="col-md-9">
+                                                                <label for="avgmonthly">income</label>
+                                                                <input [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                        id="avgmonthly">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                <div *ngIf="editable" class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-7 mt-4">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-update-profile" value="Update Profile">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                             aria-labelledby="nav-profile-tab">
+                                            <div class="update-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Bank Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="bankname">Bank Name</label>
+                                                            <select [(ngModel)]="user.bank_name" name="" id="bankname"
+                                                                    class="form-control">
+                                                            <option value="0" hidden>Select</option>
+                                                            <option *ngFor="let bank of bankList" [ngValue]="bank">
+                                                                    {{bank}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Account Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="accountname">Account Name</label>
+                                                            <input  [(ngModel)]="user.account_name" type="text" class="form-control"
+                                                                   id="accountname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span>Account Number</span> 
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="accontnumber">Account Number</label>
+                                                            <label *ngIf="acctNumber.invalid && (acctNumber.dirty)"  class="m-l-5 alert-danger">
+                                                                * Enter a valid account number
+                                                            </label>
+                                                            <input required minlength="10" pattern="^[0-9]+$" [(ngModel)]="user.account_number" type="text" class="form-control"
+                                                                   id="accontnumber" #acctNumber="ngModel">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+
+                                                <div *ngIf="editable" class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-8 mt-4">
+                                                            <input type="button" [disabled]="acctNumber.invalid" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                             aria-labelledby="nav-contact-tab">
+
+                                            <div class="update-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <label class="pref">Receive updates on new Plans? </label>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input [(ngModel)]="user.updates_on_new_plans" type="checkbox" [checked]="user.updates_on_new_plans"/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <label class="pref">Send E-mail updates on investment {{emailUpdates}}</label>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input  [(ngModel)]="user.email_updates_on_investment_process" type="checkbox" [checked]="user.email_updates_on_investment_process"/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div *ngIf="editable" class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-4 offset-8 mt-4">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference ">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

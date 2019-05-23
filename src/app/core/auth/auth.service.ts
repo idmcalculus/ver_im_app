@@ -1,0 +1,134 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from './../../shared/models/user';
+import {HttpService} from './../http/httpservice.service';
+import {Router} from '@angular/router';
+import { Investment } from 'src/app/shared/models/Investment';
+import { ToastrService } from 'ngx-toastr';
+
+@Injectable({ providedIn: 'root' })
+export class AppAuthService {
+    private currentUserSubject: BehaviorSubject<User>;
+    private inProfileView : BehaviorSubject<boolean>;
+    private inHomePage : BehaviorSubject<boolean>;
+    private managePlanOperation : BehaviorSubject<Investment>;
+
+    public currentUser: Observable<User>;
+    public profileViewIsActive :Observable<boolean>;
+    public homeViewIsActive :Observable<boolean>;
+    public currentManagePlanOperation: Observable<Investment>;
+
+    constructor(
+        private httpService: HttpService,
+        private router:Router,
+        private toastrService:ToastrService
+        ) {
+        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+
+        this.inHomePage = new BehaviorSubject<boolean>(null);
+        this.homeViewIsActive = this.inHomePage.asObservable();
+
+        this.inProfileView = new BehaviorSubject<boolean>(false);
+        this.profileViewIsActive = this.inProfileView.asObservable();
+        
+        this.managePlanOperation = new BehaviorSubject<Investment>(null);
+        this.currentManagePlanOperation = this.managePlanOperation.asObservable();
+
+        
+    }
+
+    validateSession(): any {
+      return  new Promise<any>((resolve,reject)=>{
+        var userDetails = this.currentUserSubject.value;
+        if(userDetails){
+            resolve(userDetails);
+        }else{
+            var email = localStorage.getItem('email');
+            if(!email){
+                resolve(null);
+            }else{
+                this.httpService.postRequest(`fetch_profile?email=${email}`,{},null)
+                .subscribe(response => {
+                    if (response && response.success) {
+                        var resp = response.success.Data.user[0];
+                        userDetails = resp;
+                        userDetails.updates_on_new_plans = resp.updates_on_new_plans=="1"?true:false;
+                        userDetails.email_updates_on_investment_process = resp.email_updates_on_investment_process=="1"?true:false;
+                        // console.log('Fetched again '+JSON.stringify(userDetails))
+                        this.currentUserSubject.next(userDetails);
+                        resolve(userDetails);
+                    }else{
+                        resolve(userDetails);
+                    }
+                });
+            }
+            
+        }
+        
+        
+      })
+    }
+
+    public get currentUserValue(): any {
+        let userUrl = window.location.pathname;
+        if(!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')){
+            // alert('Kindly Login First')//unauthenticated
+            this.toastrService.error(`Kindly Login First`)
+            this.router.navigate(['/signin'], {});
+            return false
+        }else{
+            // var actualUser = localStorage.getItem('userType').toLowerCase();
+            // if(!userUrl.includes(actualUser)){
+            //     alert('Sorry You are not authorized to view this page')//unauthorized
+            //     window.location.href = `${actualUser}`;
+            //     return false
+            // }else{
+                return true;
+            // }
+            
+        }
+    }
+
+
+
+    login(userCreds:User) {
+      return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{},null)
+      .pipe(map(response => {
+          var userDetails=null;
+          if (response && response.success) {
+            userDetails = response.success.data;
+            localStorage.setItem('token', response.success.token);
+            localStorage.setItem('email', userDetails.email);
+            localStorage.setItem('userType', userDetails.user_category);
+            this.currentUserSubject.next(userDetails);
+          }
+          return userDetails;
+      }));
+    }
+
+    logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('userType');
+        this.setInProfileView(false)
+        this.currentUserSubject.next(null);
+    }
+
+    setInProfileView(isLoggedIn:boolean){
+        this.inProfileView.next(isLoggedIn);
+    }
+
+    setInHomeView(homeViewIsActive:boolean){
+        this.inHomePage.next(homeViewIsActive);
+    }
+
+    setCurrentPlanOperation(operation:Investment){
+        this.managePlanOperation.next(operation);
+    }
+
+    setUser(userDetails:User){
+        this.currentUserSubject.next(userDetails);
+    }
+}

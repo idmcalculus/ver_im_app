@@ -1,0 +1,69 @@
+<div class="pcoded-content">
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body pools">
+                    <div class="row mb-4">
+                        <div class="col-xl-4 col-md-6 offset-8">
+                            <a *ngIf="userType=='user'" (click)="setHeaderandFooter()" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
+                                Join New
+                                Pool
+                            </a>
+                            <a *ngIf="userType=='admin'" (click)="setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn2 btn-update-profile more">
+                                Create New
+                                Investment
+                            </a>
+                        </div>
+                    </div>
+
+                    <div *ngIf="isLoading" class="lds-default">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                    </div>
+
+                    <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5 ">
+                        <div *ngFor="let pool of pools" class="col-xl-4 pb-2">
+                            <a routerLink="./{{pool?.id}}" routerLinkActive="active">
+                                <div class="superb-container m-b20">
+                                    <div class="img-holder">
+                                        <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
+                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
+                                    </div>
+                                    <div class="content-holder">
+                                        <h2><a href="pool-details.html">{{pool.title}}</a></h2>
+                                        <p>{{pool?.max_num_of_slots}} Pools</p>
+                                        <a href="pool-details.html" class="btn2 btn-login view">View Pool</a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <section *ngIf="!isLoading && pools?.length == 0 " style="border-radius: 30px;"  class="workingSection">
+                        <div class="inner-workingSection">
+                            <div class="row">
+                                <div  class="col-md-12">
+                                    <div class="working-content">
+                                        <h3>Sorry no investment pool found</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
