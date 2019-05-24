@@ -1,9 +1,16 @@
 $(document).ready(function () {
+    var pageURL = window.location.pathname;
+    if(pageURL === "/") {
+        console.log('home');
+        $('.header').removeClass('scrolled');
+    } else {
+        $('.header').addClass('scrolled');
+    }
     $(window).scroll(function () {
         if ($(this).scrollTop() >= 1)
             $('.header').addClass('scrolled');
         else
-            $('.header').removeClass('scrolled');
+            $('.header').addClass('scrolled');
     })
 
     /**
@@ -98,11 +105,11 @@ var swiper = new Swiper('.swiper-container', {
     },
 });
 
-const items = document.querySelectorAll('.accordion a');
+// const items = document.querySelectorAll('.accordion a');
 
-items.forEach(item => item.addEventListener('click', toggleAccordion));
+// items.forEach(item => item.addEventListener('click', toggleAccordion));
 
-function toggleAccordion() {
-    this.classList.toggle('active');
-    this.nextElementSibling.classList.toggle('active');
-}
+// function toggleAccordion() {
+//     this.classList.toggle('active');
+//     this.nextElementSibling.classList.toggle('active');
+// }
