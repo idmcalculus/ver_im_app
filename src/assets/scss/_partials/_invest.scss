@@ -108,7 +108,9 @@
   .invest-banner {
     width: 100%;
     height: 300px;
-    background: gray;
+    //background: gray;
+    background: url("../images/invest-detail.jpeg") no-repeat center;
+    background-size: cover;
     border-radius: 5px;
     position: relative;
   }
