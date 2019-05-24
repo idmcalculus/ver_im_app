@@ -1,11 +1,11 @@
 $(document).ready(function () {
     var pageURL = window.location.pathname;
     if(pageURL === "/") {
-        console.log('home');
         $('.header').removeClass('scrolled');
     } else {
         $('.header').addClass('scrolled');
     }
+    
     $(window).scroll(function () {
         if ($(this).scrollTop() >= 1)
             $('.header').addClass('scrolled');
