@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
@@ -31,8 +31,26 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    let c = pageXOffset;
+    if(c === 0) {
+      let element = document.getElementById('header');
+      element.classList.add('scrolled');
+    } else {
+      let element = document.getElementById('header');
+      element.classList.remove('scrolled')
+    }
+  }
+
+  // router.events.subscribe((event: Event) => {
+  //   console.log(event);
+  //   if (event instanceof NavigationEnd ) {
+  //     this.currentUrl = event.url;
+  //   }
+  // });
 
   ngOnDestroy(){
     this.currentUserSubscription.unsubscribe();

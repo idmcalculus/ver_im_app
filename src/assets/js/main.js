@@ -1,18 +1,33 @@
+// let c = pageXOffset;
+// let pageURL = window.location.pathname;
+// console.log(pageURL);
+// console.log(c);
+// if(c === 0) {
+//     let element = document.getElementById('header');
+//     element.classList.add('scrolled')
+// } else if(c === 0 && pageURL === '/') {
+//     let element = document.getElementById('header');
+//     element.classList.remove('scrolled')
+// }
+
 $(document).ready(function () {
-    var pageURL = window.location.pathname;
-    if(pageURL === "/") {
-        console.log(pageURL);
-        $('.header').removeClass('scrolled');
-    } else {
-        $('.header').addClass('scrolled');
-    }
+    // var pageURL = window.location.pathname;
+    // console.log(pageURL);
+    // if(pageURL !== "/") {
+    //     $('.header').addClass('scrolled');
+    // } else {
+    //     $('.header').removeClass('scrolled');
+    // }
+
     
-    $(window).scroll(function () {
-        if ($(this).scrollTop() >= 1)
-            $('.header').addClass('scrolled');
-        else
-            $('.header').addClass('scrolled');
-    })
+    
+    
+    // $(window).scroll(function () {
+    //     if ($(this).scrollTop() >= 1)
+    //         $('.header').addClass('scrolled');
+    //     else
+    //         $('.header').addClass('scrolled');
+    // })
 
     /**
      * Initialize wow js
