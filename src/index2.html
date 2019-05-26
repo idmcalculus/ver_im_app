@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
   <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
   <link rel="stylesheet" type="text/css" href="./assets/css/feather.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
 
     <!-- <link rel="stylesheet" href="../assets/css/font-awesome-n.min.css">
     <link rel="stylesheet" href="../assets/css/widget.css">
@@ -42,37 +42,30 @@
 
   </app-root>
 </body>
+<!-- <script src="./assets/js/jquery-3.2.1.min.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+  <script src="./assets/js/wow.min.js"></script> -->
 
-  <!-- <script src="assets/js/jquery-3.2.1.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script> -->
+  <script src="./assets/js/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+  <script src="./assets/js/wow.min.js"></script>
+  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/bootstrap.min.js"></script>
+  <script>
+      const items = document.querySelectorAll('.accordion a');
 
-  
+      items.forEach(item => item.addEventListener('click', toggleAccordion));
+
+      function toggleAccordion() {
+          this.classList.toggle('active');
+          this.nextElementSibling.classList.toggle('active');
+      }
+  </script>
 
 <script src="./assets/js/jquery-3.2.1.min.js"></script>
-<!-- <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script> -->
-<script src="./assets/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="./assets//js/wow.min.js"></script>
-<script src="./assets/js/pcoded.min.js"></script>
-<script src="./assets/js/vertical-layout.min.js"></script>
-<script type="text/javascript" src="./assets/js/jquery.slimscroll.js"></script>
-<script type="text/javascript" src="./assets/js/gmaps.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="./assets/js/dash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<script src="/assets/js/wow.min.js"></script>
 <script src="./assets/js/main.js"></script>
-<script>
-  const items = document.querySelectorAll('.accordion a');
 
-  items.forEach(item => item.addEventListener('click', toggleAccordion));
 
-  function toggleAccordion() {
-      this.classList.toggle('active');
-      this.nextElementSibling.classList.toggle('active');
-  }
-</script>
 </html>
