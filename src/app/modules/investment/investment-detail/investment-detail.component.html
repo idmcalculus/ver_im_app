@@ -37,8 +37,8 @@
                             </div>
                             <div class="col-md-7">
                                 <div class="content-detail">
-                                    <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per pool</h3>
-                                    <div><span><img src="" alt="">{{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
+                                    <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per slot</h3>
+                                    <div><span><img src="" alt=""> {{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
                                     <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
                                     <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
                                     <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
@@ -134,7 +134,7 @@
                         type="button"
                         class="btn btn-join-add"
                         angular4-paystack
-                        [key]="'pk_test_bf4aa060a760d81fca4c666e0c73812b23e7c023'"
+                        [key]="'pk_live_c65aca453404fade40e00fca41e19b0df29b21f4'"
                         [email]="userinfo?.email"
                         [amount]="amountPerPool * 100 * transaction.number_of_pools"
                         [ref]="transactionRef"
@@ -148,7 +148,7 @@
                         [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                         class="btn btn-join-add"
                         angular-rave
-                        [PBFPubKey] = "'FLWPUBK_TEST-5fa36b248fbdc5675474d16e6dfedc1d-X'"
+                        [PBFPubKey] = "'FLWPUBK-af2c323a9692b4f6a8b599f68d8564a'"
                         [customer_email] = "userinfo?.email"
                         [customer_phone] = "userinfo?.phone_number"
                         [amount]="amountPerPool  * transaction.number_of_pools"

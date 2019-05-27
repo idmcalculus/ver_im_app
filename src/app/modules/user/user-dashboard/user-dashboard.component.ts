@@ -97,7 +97,7 @@ export class UserDashboardComponent implements OnInit {
     this.lineChartLabels = [];
     var cellData1 = {data: [], label: 'Invested Amount'};
     var cellData2 = {data: [], label: 'Balance'};
-    var cellData3 = {data: [], label: 'Yielded AAmount'};
+    var cellData3 = {data: [], label: 'Yielded Amount'};
     var totYieldAmount =0;
     
     investment_return.forEach(x=>{
