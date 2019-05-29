@@ -43,7 +43,6 @@ export class InvestmentDetailComponent implements OnInit {
     this.investmentService.getInvestment(id).subscribe(investments=>{
       if(investments && investments.success){
         this.investment = investments.success.Data.investment
-        // console.log("i got: "+JSON.stringify(this.investment))
         var tday = new Date().getTime;
         this.investment.reference = `${tday}`
         this.amountPerPool = this.investment.investment_amount;
@@ -55,7 +54,6 @@ export class InvestmentDetailComponent implements OnInit {
 
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
         this.userinfo = user;
-        // console.log("have got :: "+JSON.stringify(this.userinfo))
     });
   }
 
@@ -68,8 +66,7 @@ export class InvestmentDetailComponent implements OnInit {
     this.transaction.payment_reference=this.investment.reference;
     this.investmentService.joinInvestment(this.transaction).subscribe(resp=>{
       if(resp && resp.success){
-        alert(resp.success.Message);
-        // this.router.navigate(['/investments']);;
+        alert(resp.success.Message)
         window.location.href="investments";
       }
       this.isLoading = false;

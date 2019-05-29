@@ -13,7 +13,27 @@ export class UserProfileComponent implements OnInit{
   userSubscription:Subscription;
   isSubmitting;
   countries:string[]=['Nigeria','Ghana']
-  bankList:string[]=['Gt Bank','First Bank','Fidelity','UBA','Diamond Bank','FCMB']
+  bankList:any=[{
+        "id": 12,
+        "bank_name": "Guaranty Trust Bank",
+        "bank_code": "058",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 11,
+        "bank_name": "First City Monument Bank",
+        "bank_code": "214",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 10,
+        "bank_name": "First Bank of Nigeria",
+        "bank_code": "011",
+        "created_at": null,
+        "updated_at": null
+    }]
   dateModel:Date;
   opt1selected:boolean=false;
   opt2selected:boolean=false;
@@ -29,7 +49,8 @@ export class UserProfileComponent implements OnInit{
 
 
   constructor(
-    private authService:AppAuthService
+    private authService:AppAuthService,
+    private userService:UserService
     ) { 
         
         this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
@@ -39,12 +60,16 @@ export class UserProfileComponent implements OnInit{
               this.opt1selected = this.user.updates_on_new_plans;
               this.opt2selected = this.user.email_updates_on_investment_process;
             }
+            
           }
         })
     }
 
   ngOnInit(){
-
+    // this.userService.getBankList().subscribe(resp=>{
+    //   console.log("resil is :: "+JSON.stringify(resp.success.Data))
+    //   this.bankList = resp.success.Data;
+    // })
   }
 
   ngOnDestroy(){

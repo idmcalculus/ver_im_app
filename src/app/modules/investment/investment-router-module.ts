@@ -6,6 +6,7 @@ import {InvestmentDetailComponent} from './investment-detail/investment-detail.c
 
 const investmentRoutes: Routes = [
   { path: 'investments', component: InvestmentComponent },
+  { path: 'investments/:category/list', component: InvestmentComponent },
   { path: 'investments/:id', component: InvestmentDetailComponent }
 ];
 

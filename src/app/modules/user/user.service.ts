@@ -21,6 +21,7 @@ export class UserService {
     &user_category=${user.user_category}&home_address=${user.home_address}
     &month_of_birth=${user.month_of_birth}
     &day_of_birth=${user.day_of_birth}&country=${user.country}
+    &profile_picture=${user.profile_picture}
     &where_you_work=${user.where_you_work}&average_monthly_income=${user.average_monthly_income}`,null);
   }
 
@@ -49,6 +50,10 @@ export class UserService {
   getUserDashBoard(investmentId,email){
     return this.httpService.postRequest(`report/userDashboard?
     investment_id=${investmentId}&user_id=${email}`,null);
+  }
+
+  getBankList(){
+    return this.httpService.postRequest(`bank/list`,null);
   }
 
   getusersInvestment(email){
