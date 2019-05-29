@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 import {InvestmentService} from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
 
@@ -21,22 +21,22 @@ export class InvestmentComponent implements OnInit {
 
   isLoading:boolean=true;
   investments:any=[];
-  categories:[];
+  categories:any=[];
   selectedCategory:string='0';
 
   transaction:Transaction;
-  constructor(private routes:Router,private investmentService:InvestmentService) {
+  constructor(
+    private routes:Router,
+    private investmentService:InvestmentService,
+    private activatedRoute:ActivatedRoute) {
     this.getCategories();
    }
 
   ngOnInit() {
     this.getInvestments();
+    
+    
   }
-
-  // viewInvestment(id:string){
-  //   // this.routes.navigate(['product_detail',{'data':productID}]);
-  // }0072685283 diamond
-
 
 
   getInvestments(){
@@ -55,8 +55,20 @@ export class InvestmentComponent implements OnInit {
       }
       allInvestments = this.investments;
       this.isLoading = false;
+      
+      var categoryName = this.activatedRoute.snapshot.params['category'];
+      if(categoryName){
+        var category = this.categories.filter(a1=>{
+          return a1.category_name.trim() == categoryName.trim();
+        })
+        if(category && category.length > 0){
+          this.selectedCategory = category[0].id
+          this.filterInvestments();
+        }
+      }
     })
   }
+
 
   getCategories(){
     this.investmentService.getCategories().subscribe(categories=>{
@@ -76,4 +88,12 @@ export class InvestmentComponent implements OnInit {
       })
     }
   }
+
+  filterInvestmentsByName(categoryName){
+    this.investments = allInvestments.filter(a1=>{
+      return a1.category_name == categoryName;
+    })
+  }
+
+
 }
