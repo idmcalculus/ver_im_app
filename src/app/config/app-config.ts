@@ -1,6 +1,6 @@
 
 export const Config = {
-    "app-live-url":"http://live.adebiyipaul.com/api",//"http://versabackend.adebiyipaul.com/api",
+    "app-live-url":"http://versabackend.adebiyipaul.com/api",//"http://live.adebiyipaul.com/api"
     "cloudinary": {
         url:"https://api.cloudinary.com",
         uploadUrl:"v1_1/crystalbit-technology/image/upload",
