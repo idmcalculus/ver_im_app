@@ -30,7 +30,7 @@
 
         <div *ngIf="!isLoading && investments.length > 0 "  class="row mb-5">
             <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                <a  [routerLink]="['./', x.id]"  routerLinkActive="active">
+                <a  [routerLink]="['/investments', x.id]"  routerLinkActive="active">
                     <div class="superb-container m-b20">
                         <div class="img-holder">
                             <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
