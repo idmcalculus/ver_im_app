@@ -4,3 +4,7 @@ button.is-loading .btn-spinner {
     margin-left: 5px;
     opacity: 1;
 }
+
+.otp-form {
+    padding-top: 8rem !important;
+}
