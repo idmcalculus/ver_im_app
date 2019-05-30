@@ -5,6 +5,7 @@ import { SignUpService } from '../../components/sign-up/sign-up.service';
 import { ToastrService } from 'ngx-toastr';
 import { YahooLoginService } from './yahoo-login.service';
 import { LinkedinLoginService } from './linkedin-login.service';
+import {Config as appConfig} from '../../../config/app-config'
 
 declare const gapi: any;
 
@@ -28,9 +29,9 @@ export class SocialLogin {
   public googleInit() {
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.init({
-        client_id: '104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        scope: 'profile email'
+        client_id: appConfig.google.clientid,
+        cookiepolicy: appConfig.google.cookiepolicy,
+        scope: appConfig.google.scope
       });
       this.attachSignin(document.getElementById('googleBtn'));
     });
@@ -84,14 +85,14 @@ export class SocialLogin {
   public extLogin(socialPlatform,authCode){
     if(socialPlatform =='yahoo'){
       this.yahooService.getProfile(authCode).then(resp=>{
-        this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+        this.httpService.baseURL = appConfig["app-live-url"];
         if(resp){
           this.doSignUp(resp)
         }
       })
     }else if(socialPlatform =='linkedin'){
       this.linkedinService.getProfile(authCode).then(resp=>{
-        this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+        this.httpService.baseURL = appConfig["app-live-url"];
         if(resp){
           this.doSignUp(resp)
         }

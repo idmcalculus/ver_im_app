@@ -1,14 +1,21 @@
 
 export const Config = {
-    "app-live-url":"http://versabackend.adebiyipaul.com/api",
+    "app-live-url":"http://live.adebiyipaul.com/api",//"http://versabackend.adebiyipaul.com/api",
     "cloudinary": {
+        url:"https://api.cloudinary.com",
+        uploadUrl:"v1_1/crystalbit-technology/image/upload",
+        upload_preset: "vprr7erl",
         apiKey: "YOUR API KEY",
-        upload_preset: "YOUR AUTH DOMAIN",
         databaseURL: "YOUR DATABASE URL",
         projectId: "YOUR PROJECT ID",
         storageBucket: "YOUR STORAGE BUCKET",
         messagingSenderId: "YOUR MESSAGING SENDER ID"
         },
+    "google":{
+        scope:"profile email",
+        clientid:"104742513131-r6pnjt53en8akmt4pqt9d3i5ia5iln8a.apps.googleusercontent.com",
+        cookiepolicy: 'single_host_origin'
+    },
     "yahoo":{
         base_url:"https://api.login.yahoo.com",
         auth_code_path:"oauth2/request_auth",
@@ -27,7 +34,6 @@ export const Config = {
         redirect_uri:"http://127.0.0.1:4200",
         access_token_path:"oauth/v2/accessToken",
         scope:"r_liteprofile%20r_emailaddress%20w_member_social",
-        // scope:"r_liteprofile",
         clientid:"77pv3mo63oyixv",
         secretkey:'WXSct7I6waMjYI06',
         profile_email:"v2/me",

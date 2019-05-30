@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { Observable } from 'rxjs';
+import {Config as appConfig} from '../../config/app-config'
 
 @Injectable({ providedIn: 'root' })
 export class CloudinaryService {
@@ -11,14 +12,14 @@ export class CloudinaryService {
 
   upload(base64SString: string) {
     return new Observable<any>(observable=>{
-      this.httpService.baseURL = "https://api.cloudinary.com";
+      this.httpService.baseURL = appConfig.cloudinary.url
       var data = {
           "file":base64SString,
-          "upload_preset":"vprr7erl"
+          "upload_preset": appConfig.cloudinary.upload_preset
       }
-      this.httpService.postRequest('v1_1/crystalbit-technology/image/upload',data,null)
+      this.httpService.postRequest(appConfig.cloudinary.uploadUrl,data,null)
       .subscribe(resp=>{
-          this.httpService.baseURL = "https://versabackend.adebiyipaul.com/api";
+          this.httpService.baseURL = appConfig["app-live-url"];
           if(resp){
               observable.next(resp.secure_url);
           }
