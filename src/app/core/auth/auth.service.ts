@@ -73,8 +73,8 @@ export class AppAuthService {
     public get currentUserValue(): any {
         const userUrl = window.location.pathname;
         if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
-            // alert('Kindly Login First')//unauthenticated
-            this.toastrService.error(`Kindly Login First`)
+            
+            this.toastrService.error(`Kindlyd Login First`)
             this.router.navigate(['/signin'], {});
             return false;
         } else {
@@ -134,6 +134,8 @@ export class AppAuthService {
                     userDetails = response.success.data;
                     this.userDetail = response.success;
                     localStorage.setItem('token', response.success.token);
+                    localStorage.setItem('email', userDetails.email);
+                    localStorage.setItem('userType', userDetails.user_category);
                 }
                 return userDetails;
             }));
