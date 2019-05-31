@@ -74,7 +74,7 @@ export class AppAuthService {
         const userUrl = window.location.pathname;
         if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
             
-            this.toastrService.error(`Kindlyd Login First`)
+            this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
             return false;
         } else {
