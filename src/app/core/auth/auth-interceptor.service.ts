@@ -19,10 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if(req.url.includes('api.cloudinary.com')){
       req.headers.delete
       return next.handle(req)
-    }else if(req.url.includes('versa')){
-      return next.handle(req)
     }else{
-      // return next.handle(req)
       const authReq = req.clone({
           headers: req.headers.
           set('Authorization',`Bearer ${authToken}`).
