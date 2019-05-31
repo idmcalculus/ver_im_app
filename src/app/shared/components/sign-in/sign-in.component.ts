@@ -60,11 +60,10 @@ export class SignInComponent implements OnInit {
             this.authService.validateOTP(this.otp, this.user)
                 .subscribe(UserDetails => {
                     if (UserDetails) {
+                        console.log("got here")
                         this.showOTPForm = true;
                         this.user = UserDetails;
                         this.toastrService.success(`Welcome ${this.user.first_name}`);
-                        console.log(UserDetails);
-                        alert();
                         // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
                         window.location.href = `${UserDetails.user_category.toLowerCase()}`;
                     }
