@@ -53,14 +53,20 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-2">
+                                                            <input style="display:none;" type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
                                                             <div class="profile-image">
-                                                                <img src="../assets/images/avatar-4.png"
-                                                                     alt="ima">
+                                                                <img  *ngIf="user.profile_picture && user.profile_picture!='' " onclick="document.getElementById('upload-image').click()" src="{{user.profile_picture}}"
+                                                                     alt="profile_image">
+                                                                <img *ngIf="!user.profile_picture || user.profile_picture=='' " onclick="document.getElementById('upload-image').click()" src="../assets/images/avatar-4.png"
+                                                                alt="profile_image">
+                                                                     
                                                             </div>
                                                         </div>
                                                         <div class="col-md-10">
                                                             <div class="basic">
                                                                 <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
+                                                              <label>Edit picture
+                                                                <input style="display:none;" type="file" id="upload-image2" accept="image/*" (change)="changeListener($event)"></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -240,8 +246,8 @@
                                                             <select [(ngModel)]="user.bank_name" name="" id="bankname"
                                                                     class="form-control">
                                                             <option value="0" hidden>Select</option>
-                                                            <option *ngFor="let bank of bankList" [ngValue]="bank">
-                                                                    {{bank}}
+                                                            <option *ngFor="let bank of bankList" [ngValue]="bank.bank_code">
+                                                                    {{bank.bank_name}}
                                                             </select>
                                                         </div>
                                                     </div>

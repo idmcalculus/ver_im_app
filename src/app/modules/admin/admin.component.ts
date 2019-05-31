@@ -72,13 +72,19 @@ export class AdminComponent implements OnInit {
     this.investment = filledInvestment;
     if(this.investment.title){
       this.modalButtonTitle = 'submitting'
-      this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
-        if(resp && resp.success){
-          alert(resp.success.Message);
-          this.modalData = filledInvestment;    
+      this.cloudinaryService.upload(this.investment.investment_image).subscribe(resp=>{
+        if(resp){
+          this.investment.investment_image = resp;
+          this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
+            if(resp && resp.success){
+              alert(resp.success.Message);
+              this.modalData = this.investment;    
+            }
+            this.modalButtonTitle = 'Update'
+          })
         }
-        this.modalButtonTitle = 'Update'
       })
+      
     }
   }
 
@@ -94,7 +100,6 @@ export class AdminComponent implements OnInit {
 
   getCategories(){
     this.investmentService.getCategories().subscribe(categories=>{
-      // console.log("i hvae cat :: "+JSON.stringify(categories))
       if(categories && categories.success){
         this.categories = categories.success.Data;
       }
@@ -106,7 +111,6 @@ export class AdminComponent implements OnInit {
       this.modaltitle='Update Plan';
       this.modalButtonTitle='Update';
       this.modalData=modalData.investment;
-      // console.log("value setting :: "+JSON.stringify(modalData))
       this.callBack=this.updateInvestment;
     }else{
       this.modaltitle='Create Plan';
