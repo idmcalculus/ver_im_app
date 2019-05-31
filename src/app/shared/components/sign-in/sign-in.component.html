@@ -30,6 +30,8 @@
                         </div>
                     </div>
                     <div class="login-form otp-form" *ngIf="showOTPForm">
+                        <h3>Validate OTP, </h3>
+                        <p>Enter your OTP below</p>
                         <form (ngSubmit)="validateOTP()" #otpForm="ngForm">
                             <div class="form-group">
                                 <label for="otp" class="sr-only">Enter your One Time Password</label>
