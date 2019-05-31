@@ -6,6 +6,7 @@ import { HttpService } from './../http/httpservice.service';
 import { Router } from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ToastrService } from 'ngx-toastr';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AppAuthService {
@@ -18,6 +19,7 @@ export class AppAuthService {
     public profileViewIsActive: Observable<boolean>;
     public homeViewIsActive: Observable<boolean>;
     public currentManagePlanOperation: Observable<Investment>;
+    userDetail: any;
 
     constructor(
         private httpService: HttpService,
@@ -104,10 +106,19 @@ export class AppAuthService {
                 }));
         };
 
-        return this.httpService.postRequest(`user/validate_otp`, {otp: userOTP}, null)
+        console.log(this.userDetail.token);
+
+        const headers = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.userDetail.token}`,
+            })
+        };
+
+        return this.httpService.postRequest(`user/validate_otp?otp=${userOTP}`, {}, headers)
             .pipe(map(response => {
                 let userDetails = null;
-                // console.log(response);
+                console.log(response);
                 if (response && response.success) {
                     userDetails = relogin();
                 }
@@ -121,6 +132,7 @@ export class AppAuthService {
                 let userDetails = null;
                 if (response && response.success) {
                     userDetails = response.success.data;
+                    this.userDetail = response.success;
                 }
                 return userDetails;
             }));
