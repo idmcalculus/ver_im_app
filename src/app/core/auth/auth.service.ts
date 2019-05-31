@@ -2,28 +2,30 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from './../../shared/models/user';
-import {HttpService} from './../http/httpservice.service';
-import {Router} from '@angular/router';
+import { HttpService } from './../http/httpservice.service';
+import { Router } from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ToastrService } from 'ngx-toastr';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({ providedIn: 'root' })
 export class AppAuthService {
     private currentUserSubject: BehaviorSubject<User>;
-    private inProfileView : BehaviorSubject<boolean>;
-    private inHomePage : BehaviorSubject<boolean>;
-    private managePlanOperation : BehaviorSubject<Investment>;
+    private inProfileView: BehaviorSubject<boolean>;
+    private inHomePage: BehaviorSubject<boolean>;
+    private managePlanOperation: BehaviorSubject<Investment>;
 
     public currentUser: Observable<User>;
-    public profileViewIsActive :Observable<boolean>;
-    public homeViewIsActive :Observable<boolean>;
+    public profileViewIsActive: Observable<boolean>;
+    public homeViewIsActive: Observable<boolean>;
     public currentManagePlanOperation: Observable<Investment>;
+    userDetail: any;
 
     constructor(
         private httpService: HttpService,
-        private router:Router,
-        private toastrService:ToastrService
-        ) {
+        private router: Router,
+        private toastrService: ToastrService
+    ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
 
@@ -32,80 +34,111 @@ export class AppAuthService {
 
         this.inProfileView = new BehaviorSubject<boolean>(false);
         this.profileViewIsActive = this.inProfileView.asObservable();
-        
+
         this.managePlanOperation = new BehaviorSubject<Investment>(null);
         this.currentManagePlanOperation = this.managePlanOperation.asObservable();
 
-        
+
     }
 
     validateSession(): any {
-      return  new Promise<any>((resolve,reject)=>{
-        var userDetails = this.currentUserSubject.value;
-        if(userDetails){
-            resolve(userDetails);
-        }else{
-            var email = localStorage.getItem('email');
-            if(!email){
-                resolve(null);
-            }else{
-                this.httpService.postRequest(`fetch_profile?email=${email}`,{},null)
-                .subscribe(response => {
-                    if (response && response.success) {
-                        var resp = response.success.Data.user[0];
-                        userDetails = resp;
-                        userDetails.updates_on_new_plans = resp.updates_on_new_plans=="1"?true:false;
-                        userDetails.email_updates_on_investment_process = resp.email_updates_on_investment_process=="1"?true:false;
-                        // console.log('Fetched again '+JSON.stringify(userDetails))
-                        this.currentUserSubject.next(userDetails);
-                        resolve(userDetails);
-                    }else{
-                        resolve(userDetails);
-                    }
-                });
+        return new Promise<any>((resolve, reject) => {
+            let userDetails = this.currentUserSubject.value;
+            if (userDetails) {
+                resolve(userDetails);
+            } else {
+                const email = localStorage.getItem('email');
+                if (!email) {
+                    resolve(null);
+                } else {
+                    this.httpService.postRequest(`fetch_profile?email=${email}`, {}, null)
+                        .subscribe(response => {
+                            if (response && response.success) {
+                                const resp = response.success.Data.user[0];
+                                userDetails = resp;
+                                userDetails.updates_on_new_plans = resp.updates_on_new_plans === '1' ? true : false;
+                                userDetails.email_updates_on_investment_process = resp.email_updates_on_investment_process == '1' ? true : false;
+                                // console.log('Fetched again '+JSON.stringify(userDetails))
+                                this.currentUserSubject.next(userDetails);
+                                resolve(userDetails);
+                            } else {
+                                resolve(userDetails);
+                            }
+                        });
+                }
             }
-            
-        }
-        
-        
-      })
+        });
     }
 
     public get currentUserValue(): any {
-        let userUrl = window.location.pathname;
-        if(!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')){
-            // alert('Kindly Login First')//unauthenticated
+        const userUrl = window.location.pathname;
+        if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
+            
             this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
-            return false
-        }else{
+            return false;
+        } else {
             // var actualUser = localStorage.getItem('userType').toLowerCase();
             // if(!userUrl.includes(actualUser)){
             //     alert('Sorry You are not authorized to view this page')//unauthorized
             //     window.location.href = `${actualUser}`;
             //     return false
             // }else{
-                return true;
+            return true;
             // }
-            
+
         }
     }
 
+    validateOTP(userOTP: string, userCreds: User) {
+        // const relogin = () => {
+        //     return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
+        //         .pipe(map(response => {
+        //             let userDetails = null;
+        //             console.log("gat it :: "+JSON.stringify(response))
+        //             if (response && response.success) {
+        //                 userDetails = response.success.data;
+        //                 localStorage.setItem('email', userDetails.email);
+        //                 localStorage.setItem('userType', userDetails.user_category);
+        //                 this.currentUserSubject.next(userDetails);
+        //             }
+        //             return userDetails;
+        //         }));
+        // };
 
+        // // console.log(this.userDetail.token);
 
-    login(userCreds:User) {
-      return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`,{},null)
-      .pipe(map(response => {
-          var userDetails=null;
-          if (response && response.success) {
-            userDetails = response.success.data;
-            localStorage.setItem('token', response.success.token);
-            localStorage.setItem('email', userDetails.email);
-            localStorage.setItem('userType', userDetails.user_category);
-            this.currentUserSubject.next(userDetails);
-          }
-          return userDetails;
-      }));
+        // const headers = {
+        //     headers: new HttpHeaders({
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${this.userDetail.token}`,
+        //     })
+        // };
+
+        return this.httpService.postRequest(`user/validate_otp?otp=${userOTP}`, {})
+            .pipe(map(response => {
+                let userDetails = null;
+                if (response && response.success) {
+                    // userDetails = relogin();
+                    userDetails = response.success.data
+                }
+                return userDetails;
+            }));
+    }
+
+    login(userCreds: User) {
+        return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
+            .pipe(map(response => {
+                let userDetails = null;
+                if (response && response.success) {
+                    userDetails = response.success.data;
+                    this.userDetail = response.success;
+                    localStorage.setItem('token', response.success.token);
+                    localStorage.setItem('email', userDetails.email);
+                    localStorage.setItem('userType', userDetails.user_category);
+                }
+                return userDetails;
+            }));
     }
 
     logout() {
@@ -116,19 +149,19 @@ export class AppAuthService {
         this.currentUserSubject.next(null);
     }
 
-    setInProfileView(isLoggedIn:boolean){
+    setInProfileView(isLoggedIn: boolean) {
         this.inProfileView.next(isLoggedIn);
     }
 
-    setInHomeView(homeViewIsActive:boolean){
+    setInHomeView(homeViewIsActive: boolean) {
         this.inHomePage.next(homeViewIsActive);
     }
 
-    setCurrentPlanOperation(operation:Investment){
+    setCurrentPlanOperation(operation: Investment) {
         this.managePlanOperation.next(operation);
     }
 
-    setUser(userDetails:User){
+    setUser(userDetails: User) {
         this.currentUserSubject.next(userDetails);
     }
 }
