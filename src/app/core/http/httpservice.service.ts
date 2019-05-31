@@ -15,17 +15,10 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class HttpService {
   headers: any;
-<<<<<<< HEAD
   requestOption:any;
   response:{};
   baseURL:string =appConfig["app-live-url"]
   
-=======
-  requestOption: any;
-  response: {};
-  baseURL = 'https://versabackend.adebiyipaul.com/api';
-
->>>>>>> emmanuel/2FA
 
     constructor(
         private http: HttpClient,
@@ -71,7 +64,6 @@ export class HttpService {
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-<<<<<<< HEAD
             if(error.status==0){
                 console.log("Error occurred is:: "+JSON.stringify(error))
                 this.toastrService.error(`Error occurred connecting to services`)
@@ -84,24 +76,6 @@ export class HttpService {
                     }else{
                         this.toastrService.error(JSON.stringify(error.error.error.Message))
                     } 
-=======
-            console.log('ishh 1 ' + JSON.stringify(error));
-            console.log('ishh 2' + JSON.stringify(operation));
-            console.log('ishh 3 ' + JSON.stringify(result));
-            if (error.status === 0) {
-                // alert('Could not connect to services')
-                console.log('Error occurred is:: ' + JSON.stringify(error));
-                this.toastrService.error(`Error occurred connecting to services`);
-            } else {
-                if (error.error && error.error.errors) {
-                    this.toastrService.error(JSON.stringify(error.error.errors));
-                } else if (error.error && error.error.error) {
-                    if (error.error.error.message) {
-                        this.toastrService.error(error.error.error.message);
-                    } else {
-                        this.toastrService.error(JSON.stringify(error.error.error.Message));
-                    }
->>>>>>> emmanuel/2FA
                 }
             }
             return of(result as T);
