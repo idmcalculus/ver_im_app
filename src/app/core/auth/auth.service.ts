@@ -91,36 +91,36 @@ export class AppAuthService {
     }
 
     validateOTP(userOTP: string, userCreds: User) {
-        const relogin = () => {
-            return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
-                .pipe(map(response => {
-                    let userDetails = null;
-                    if (response && response.success) {
-                        userDetails = response.success.data;
-                        localStorage.setItem('token', response.success.token);
-                        localStorage.setItem('email', userDetails.email);
-                        localStorage.setItem('userType', userDetails.user_category);
-                        this.currentUserSubject.next(userDetails);
-                    }
-                    return userDetails;
-                }));
-        };
+        // const relogin = () => {
+        //     return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
+        //         .pipe(map(response => {
+        //             let userDetails = null;
+        //             console.log("gat it :: "+JSON.stringify(response))
+        //             if (response && response.success) {
+        //                 userDetails = response.success.data;
+        //                 localStorage.setItem('email', userDetails.email);
+        //                 localStorage.setItem('userType', userDetails.user_category);
+        //                 this.currentUserSubject.next(userDetails);
+        //             }
+        //             return userDetails;
+        //         }));
+        // };
 
-        console.log(this.userDetail.token);
+        // // console.log(this.userDetail.token);
 
-        const headers = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.userDetail.token}`,
-            })
-        };
+        // const headers = {
+        //     headers: new HttpHeaders({
+        //         'Content-Type': 'application/json',
+        //         'Authorization': `Bearer ${this.userDetail.token}`,
+        //     })
+        // };
 
-        return this.httpService.postRequest(`user/validate_otp?otp=${userOTP}`, {}, headers)
+        return this.httpService.postRequest(`user/validate_otp?otp=${userOTP}`, {})
             .pipe(map(response => {
                 let userDetails = null;
-                console.log(response);
                 if (response && response.success) {
-                    userDetails = relogin();
+                    // userDetails = relogin();
+                    userDetails = response.success.data
                 }
                 return userDetails;
             }));
@@ -133,6 +133,7 @@ export class AppAuthService {
                 if (response && response.success) {
                     userDetails = response.success.data;
                     this.userDetail = response.success;
+                    localStorage.setItem('token', response.success.token);
                 }
                 return userDetails;
             }));
