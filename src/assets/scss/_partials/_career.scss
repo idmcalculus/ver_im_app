@@ -64,6 +64,7 @@
         &:hover {
           @include transition(ease, 0.7s);
           transform: translateY(-2%);
+          cursor: pointer;
           &:before {
             content: '';
             text-decoration: none;
