@@ -31,7 +31,7 @@
                                               <td>{{application?.email}}</td>
                                               <td>{{application?.phone_number}}</td>
                                               <td width="250">{{application.career_brief}}</td>
-                                              <td (click)="viewUserInfo(x)">View CV</td>
+                                              <td (click)="viewUserInfo(application)">View CV</td>
                                           </tr>
                                           </tbody>
                                       </table>
@@ -63,4 +63,5 @@
       </div>
   </div>
 </div>
-<app-profile-summary *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<!-- <app-profile-summary *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary> -->
+<app-applicant-details *ngIf="selectedUser" [applicant]="selectedUser" (submit)="callBack($event)"></app-applicant-details>

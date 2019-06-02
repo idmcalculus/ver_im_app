@@ -6,12 +6,14 @@ import {CareerApplicationComponent} from './career-application/career-applicatio
 import {CareerDetailsComponent} from './career-details/career-details.component';
 import {CareerComponent} from './career.component';
 import { CareerRoutingModule } from './career-router.module';
+import { ApplicantDetailsComponent } from './applicant-details/applicant-details.component';
 
 @NgModule({
   declarations: [
     CareerApplicationComponent,
     CareerDetailsComponent,
-    CareerComponent
+    CareerComponent,
+    ApplicantDetailsComponent
     ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { CareerRoutingModule } from './career-router.module';
       })
   ],
   exports:[
-    CareerDetailsComponent
+    CareerDetailsComponent,
+    ApplicantDetailsComponent
   ]
 })
 export class CareerModule { }

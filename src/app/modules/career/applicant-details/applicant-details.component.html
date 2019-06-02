@@ -1,0 +1,74 @@
+<div class="pcoded-content">
+
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5>Applicants Details for the role of Uber Driver</h5>
+                              </div>
+                              <div class="card-block application-detail">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="basic-detail">
+                                              <div>
+                                                  <h4>Job Role</h4>
+                                                  <p><strong>Uber Driver</strong></p>
+                                              </div>
+                                              <div>
+                                                  <h4>First Name</h4>
+                                                  <p>{{applicant.first_name}}</p>
+                                              </div>
+                                              <div>
+                                                  <h4>Last Name</h4>
+                                                  <p>{{applicant.last_name}}</p>
+                                              </div>
+                                              <div>
+                                                  <h4>Email Address</h4>
+                                                  <p>{{applicant.email}}</p>
+                                              </div>
+                                              <div>
+                                                  <h4>Phone Number</h4>
+                                                  <p>{{applicant.phone_number}}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6 mob-top">
+                                          <div>
+                                              <h4>Career Brief</h4>
+                                              <p>
+                                                  {{applicant.career_brief}}
+                                              </p>
+                                          </div>
+                                          <div>
+                                              <a href="" class="btn btn-success">View CV</a>
+                                          </div>
+
+                                          <div style="margin-top: 2em;">
+                                              <h4>Date Applied</h4>
+                                              <p>{{applicant.created_at | date}}</p>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                                  <div class="row mt-3" style="display: flex; justify-content: center;">
+                                      <div class="col-md-3">
+                                          <button class="btn btn-approve"><i class="fa fa-check-circle"></i></button>
+                                      </div>
+                                      <div class="col-md-3">
+                                          <button (click)="backtoList()" class="btn btn-decline"><i class="fa fa-times-circle"></i></button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
