@@ -30,9 +30,9 @@
                 <div class="card">
                     <div class="card-block">
                         <div class="row content">
-                            <ul *ngFor="let career of careerList;let cnt = index" class="col-md-3 pb-2">
+                            <ul (click)="viewCareerDetails(cnt)" *ngFor="let career of careerList;let cnt = index" class="col-md-3 pb-2">
                                 <li class="holder">
-                                    <a (click)="viewCareerDetails(cnt)">
+                                    <a>
                                         <h5>{{career.career_title}}</h5>
                                         <small>Posted {{career.created_at}}</small>
                                     </a>

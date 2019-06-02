@@ -46,63 +46,64 @@ $(document).ready(function () {
     });
     wow.init();
 
-  $('.userpwd, .userpwdReg').on('click', function () {
-    $(this).toggleClass("fa-eye fa-eye-slash");
-    let field = $($(this).attr("toggle"));
-    if (field.attr("type") === "password") {
-      field.attr("type", "text");
-    } else {
-      field.attr("type", "password");
-    }
-  });
+    $('.userpwd, .userpwdReg').on('click', function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        let field = $($(this).attr("toggle"));
+        if (field.attr("type") === "password") {
+            field.attr("type", "text");
+        } else {
+            field.attr("type", "password");
+        }
+    });
 
-  // let mySwiper = new Swiper ('.swiper-container',{
-  //     direction:'horizontal',
-  //     loop: true
-  // })
-  //
-  // mySwiper.init();
+    // let mySwiper = new Swiper ('.swiper-container',{
+    //     direction:'horizontal',
+    //     loop: true
+    // })
+    //
+    // mySwiper.init();
 
-  // Add smooth scrolling to all links
-  $('a').on('click', function (e) {
+    // Add smooth scrolling to all links
+    $('a').on('click', function(e) {
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      e.preventDefault();
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+            // Prevent default anchor click behavior
+            e.preventDefault();
 
-      // Store hash
-      var hash = this.hash;
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 600, function () {
+            // Store hash
+            var hash = this.hash;
+            console.log(hash);
+            // Using jQuery's animate() method to add smooth page scroll
+            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 600, function(){
 
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        //window.location.hash = hash;
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                //window.location.hash = hash;
 
-      });
-    } // End if
-  });
+            });
+        } // End if
+    });
 
 })
 window.onscroll = function () {
-  scrollFunction()
+    scrollFunction()
 };
 
 function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    document.getElementById("icon-top").style.display = "block";
-  } else {
-    document.getElementById("icon-top").style.display = "none";
-  }
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("icon-top").style.display = "block";
+    } else {
+        document.getElementById("icon-top").style.display = "none";
+    }
 }
 
 function topFunction() {
-  $('html, body').animate({
-    scrollTop: 0
-  });
+    $('html, body').animate({
+        scrollTop: 0
+    });
 }
 
 // var swiper = new Swiper('.swiper-container', {
