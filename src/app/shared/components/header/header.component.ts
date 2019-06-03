@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
+       
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -45,6 +45,13 @@ export class HeaderComponent implements OnInit {
       element.classList.remove('scrolled')
     }
   }
+
+  // router.events.subscribe((event: Event) => {
+  //   console.log(event);
+  //   if (event instanceof NavigationEnd ) {
+  //     this.currentUrl = event.url;
+  //   }
+  // });
 
   ngOnDestroy(){
     this.currentUserSubscription.unsubscribe();

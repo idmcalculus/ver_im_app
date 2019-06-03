@@ -38,6 +38,7 @@ import {DynamicScriptLoaderService} from './shared/services/dynamic-script-loade
 import { SocialLogin } from './shared/services/social-login-services';
 import { HowitworksComponent } from './pages/howitworks/howitworks.component';
 import { FaqComponent } from './pages/faq/faq.component';
+// import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 
 
 // let social_providers = {
@@ -68,7 +69,8 @@ import { FaqComponent } from './pages/faq/faq.component';
     AdminProfileComponent,
     TableComponent,
     HowitworksComponent,
-    FaqComponent
+    FaqComponent,
+    // ApplicantDetailsComponent
 
   ],
   imports: [
