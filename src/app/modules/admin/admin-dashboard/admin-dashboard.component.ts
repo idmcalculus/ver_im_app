@@ -22,7 +22,7 @@ export class AdminDashboardComponent implements OnInit {
       this.adminService.getDashBoardData().subscribe(resp=>{
         if(resp && resp.success){
           this.dashBoardData = resp.success.Data
-          // console.log("final resp :: "+JSON.stringify(this.dashBoardData))
+          console.log("final resp :: "+JSON.stringify(this.dashBoardData))
           this.isLoading = false;
         }
       });
@@ -32,7 +32,6 @@ export class AdminDashboardComponent implements OnInit {
 
   getCareers(){
       this.careerService.getCareers().subscribe(resp=>{
-        
         if(resp && resp.success){
           this.careers = resp.success.Data;
         }
