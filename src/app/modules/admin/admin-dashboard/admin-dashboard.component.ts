@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AdminService} from '../admin.service'
 import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
+import { CareerService } from '../../career/career.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -9,10 +10,13 @@ import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 export class AdminDashboardComponent implements OnInit {
 
   dashBoardData:AdminDashboard;
+  careers:[];
   isLoading:boolean=true;
 
 
-  constructor(private adminService:AdminService) { }
+  constructor(
+    private adminService:AdminService,
+    private careerService:CareerService) { }
 
   ngOnInit() {
       this.adminService.getDashBoardData().subscribe(resp=>{
@@ -22,6 +26,17 @@ export class AdminDashboardComponent implements OnInit {
           this.isLoading = false;
         }
       });
+      this.getCareers();
+  }
+
+
+  getCareers(){
+      this.careerService.getCareers().subscribe(resp=>{
+        
+        if(resp && resp.success){
+          this.careers = resp.success.Data;
+        }
+      })
   }
 
 

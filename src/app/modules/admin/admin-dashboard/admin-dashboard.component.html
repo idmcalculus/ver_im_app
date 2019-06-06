@@ -131,20 +131,20 @@
                                                     class="table table-striped nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>first name</th>
-                                                    <th>last name</th>
-                                                    <th>email</th>
-                                                    <th>Phone number</th>
-                                                    <th>curriculum_vitae</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th>Position Type</th>
+                                                    <th>No. of Applicants</th>
+                                                    <th>Deadline</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr *ngFor="let req of dashBoardData?.career_application,let x=index ">
-                                                    <td>{{req.first_name}}</td>
-                                                    <td >{{req.last_name}}</td>
-                                                    <td >{{req.email}}</td>
-                                                    <td >{{req.phone_number}}</td>
-                                                    <td >{{req.curriculum_vitae}}</td>
+                                                <tr *ngFor="let career of careers,let x=index ">
+                                                    <td>{{career.career_title}}</td>
+                                                    <td >{{career.career_description}}</td>
+                                                    <td >{{career.position_type}}</td>
+                                                    <td >{{career.number_of_application}}</td>
+                                                    <td >{{career.deadline}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
