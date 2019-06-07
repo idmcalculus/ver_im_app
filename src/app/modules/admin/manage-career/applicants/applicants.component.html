@@ -25,13 +25,13 @@
                                           </tr>
                                           </thead>
                                           <tbody>
-                                          <tr *ngFor="let application of careerApplications; let x= index">
+                                          <tr data-href="#viewUserProfile" (click)="viewUserInfo(application)" *ngFor="let application of careerApplications; let x= index">
                                               <td>{{application?.first_name}}</td>
                                               <td>{{application?.last_name}}</td>
                                               <td>{{application?.email}}</td>
                                               <td>{{application?.phone_number}}</td>
                                               <td width="250">{{application.career_brief}}</td>
-                                              <td (click)="viewUserInfo(application)">View CV</td>
+                                              <td>View CV</td>
                                           </tr>
                                           </tbody>
                                       </table>

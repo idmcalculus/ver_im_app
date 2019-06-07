@@ -156,8 +156,6 @@ function linkedinGetEmail(auth_token) {
   })    
 }
 
-https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))
-
 function yahooGetProfile(auth_token,user_id) {
   return new Promise(function(resolve,_reject){
     request.get(`https://social.yahooapis.com/v1/user/${user_id}/profile?format=json`, {
