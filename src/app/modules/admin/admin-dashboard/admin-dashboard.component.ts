@@ -26,17 +26,10 @@ export class AdminDashboardComponent implements OnInit {
           this.isLoading = false;
         }
       });
-      this.getCareers();
   }
 
 
-  getCareers(){
-      this.careerService.getCareers().subscribe(resp=>{
-        if(resp && resp.success){
-          this.careers = resp.success.Data;
-        }
-      })
-  }
+  
 
 
 
