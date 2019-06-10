@@ -26,7 +26,7 @@ export class ApplicantsComponent implements OnInit {
     this.careerService.getCareerApplications().subscribe(resp=>{
       if(resp && resp.success){
         this.careerApplications = resp.success.Data;
-        console.log("i recieved :: "+JSON.stringify(this.careerApplications))
+        // console.log("i recieved :: "+JSON.stringify(this.careerApplications))
       }
       this.isLoading= false;
     })

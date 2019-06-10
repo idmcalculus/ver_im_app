@@ -57,7 +57,6 @@ import { ChartComponent } from './../../shared/components/chart/chart.component'
     ReportComponent,
     ManageInvestmentComponent,
     UserDashboardComponent,
-    ProfileComponent,
     ProfileSummaryComponent
   ]
 })
