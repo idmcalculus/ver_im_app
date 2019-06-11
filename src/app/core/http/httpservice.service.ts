@@ -69,12 +69,16 @@ export class HttpService {
                 this.toastrService.error(`Error occurred connecting to services`)
             }else{
                 if(error.error && error.error.errors){
-                    this.toastrService.error(JSON.stringify(error.error.errors))
+                    var obj = error.error.errors;
+                    obj = Object.values(obj);
+                    for(var i=0;i<obj.length;i++){
+                        this.toastrService.error(obj[i])
+                    }
                 }else if(error.error && error.error.error){
                     if(error.error.error.message){
                         this.toastrService.error(error.error.error.message)
-                    }else{
-                        this.toastrService.error(JSON.stringify(error.error.error.Message))
+                    }else if(error.error.error.Message){
+                        this.toastrService.error(error.error.error.Message)
                     } 
                 }
             }
