@@ -40,3 +40,33 @@ h3, h4, p {
     -webkit-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+@media only screen and (max-width: 992px) {
+    .header-navbar .navbar-wrapper .navbar-logo a img {
+        display: block;
+        width: 185px !important;
+        margin-top: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        padding: .7rem 1.1rem !important;
+        font-size: .7rem;
+    }
+    .update-profile-form {
+        padding: 1rem 0;
+    }
+    .update-profile-form .basic {
+        padding: 20px 10px 5px;
+    }
+    .update-profile-form .basic h3 {
+        font-size: .9rem
+    }
+    .ph-4 {
+        margin-top: 1rem;
+    }
+    .update-profile-form .profile-image {
+        width: 85px;
+        height: 85px;
+    }
+}
