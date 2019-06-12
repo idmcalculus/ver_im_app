@@ -40,6 +40,7 @@ export class ApplicantsComponent implements OnInit {
     //   }
     //   this.isLoading= false;
     // })
+    console.log("i gat :: "+JSON.stringify(selectedIndex))
     this.selectedUser = selectedIndex;
   }
 

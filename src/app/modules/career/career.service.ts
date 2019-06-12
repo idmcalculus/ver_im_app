@@ -40,7 +40,7 @@ export class CareerService {
     &career_id=${careerApplication.career_id}
     &phone_number=${careerApplication.phone_number}
     &career_brief=${careerApplication.career_brief}
-    &curriculum_vitae=${careerApplication.curriculum_vitae}`,null);
+    &curriculum_vitae=${careerApplication.cv_base64}`,null);
   }
 
   getCareerApplications(){

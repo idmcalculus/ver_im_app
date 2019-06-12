@@ -30,7 +30,7 @@
   
                         <div class="form-group">
                             <label for="resume_upload">Upload Your Resume</label>
-                            <input type="file" [(ngModel)]="careerApplication.curriculum_vitae" name="cv" accept="application/pdf" class="form-control" id="resume_upload">
+                            <input (change)="changeListener($event)" type="file" [(ngModel)]="careerApplication.curriculum_vitae" name="cv" accept="application/pdf" class="form-control" id="resume_upload">
                         </div>
   
                         <div class="form-group">

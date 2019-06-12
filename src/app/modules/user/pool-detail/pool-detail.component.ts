@@ -60,7 +60,7 @@ userSubscription:Subscription
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
-          console.log("i have gat :: "+JSON.stringify(this.pool))
+          // console.log("i have gat :: "+JSON.stringify(this.pool))
           this.isLoading = false;
         }else{
           this.router.navigate(['./', {}]);

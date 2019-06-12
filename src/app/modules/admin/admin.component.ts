@@ -70,15 +70,15 @@ export class AdminComponent implements OnInit {
 
   updateInvestment(filledInvestment:Investment){
     this.investment = filledInvestment;
-    if(this.investment.title){
+    if(filledInvestment.title){
       this.modalButtonTitle = 'submitting'
-      this.cloudinaryService.upload(this.investment.investment_image).subscribe(resp=>{
+      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp=>{
         if(resp){
-          this.investment.investment_image = resp;
-          this.investmentService.updateInvestment(this.investment).subscribe(resp=>{
+          filledInvestment.investment_image = resp;
+          this.investmentService.updateInvestment(filledInvestment).subscribe(resp=>{
             if(resp && resp.success){
               alert(resp.success.Message);
-              this.modalData = this.investment;    
+              this.modalData = this.investment = filledInvestment;    
             }
             this.modalButtonTitle = 'Update'
           })

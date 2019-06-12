@@ -44,7 +44,8 @@
                                               </p>
                                           </div>
                                           <div>
-                                              <a href="" class="btn btn-success">View CV</a>
+                                              <a *ngIf="applicant.curriculum_vitae && !applicant.curriculum_vitae.includes('fakepath')" href="{{applicant.curriculum_vitae}}" target="_blank" class="btn btn-success">View CV</a>
+                                              <a *ngIf="!applicant.curriculum_vitae || applicant.curriculum_vitae.includes('fakepath')" href="{{applicant.curriculum_vitae}}"  class="btn btn-success">No CV</a>
                                           </div>
 
                                           <div style="margin-top: 2em;">
