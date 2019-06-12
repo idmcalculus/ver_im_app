@@ -70,3 +70,11 @@ h3, h4, p {
         height: 85px;
     }
 }
+.header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img {
+    object-fit: contain;
+    object-position: top center
+}
+.update-profile-form .profile-image img {
+    object-fit: contain;
+    object-position: top center
+}
