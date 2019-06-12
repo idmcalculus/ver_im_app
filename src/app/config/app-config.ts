@@ -1,7 +1,7 @@
 
 export const Config = {
     "app-live-url":"https://versabackend.adebiyipaul.com/api",//"https://live.adebiyipaul.com/api"
-    "server_services_base":"http://versa-ims.herokuapp.com",
+    "server_services_base":"https://versa-ims.herokuapp.com",
     // "server_services_base":"http://127.0.0.1:8990",
     "cloudinary": {
         url:"https://api.cloudinary.com",
