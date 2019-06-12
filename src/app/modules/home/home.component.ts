@@ -16,11 +16,12 @@ export class HomeComponent {
     ) {
         this.route.queryParams.subscribe(resp=>{
           var authCode = resp.code;
+          var operation = localStorage.getItem('social_auth_opr');
           if(authCode){
             if(authCode.length > 10){
-              this.socialAuth.extLogin('linkedin',authCode)
+              this.socialAuth.socialAuth('linkedin',authCode,operation)
             }else{
-              this.socialAuth.extLogin('yahoo',authCode)
+              this.socialAuth.socialAuth('yahoo',authCode,operation)
             }
           }
         })

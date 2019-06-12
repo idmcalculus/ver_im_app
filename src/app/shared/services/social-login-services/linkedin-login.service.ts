@@ -4,6 +4,7 @@ import {Config as appConfig} from '../../../config/app-config';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { SignUpService } from '../../components/sign-up/sign-up.service';
 import { HttpHeaders, } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 declare const gapi: any;
 
 
@@ -16,7 +17,8 @@ export class LinkedinLoginService {
   constructor(
     private authService:AppAuthService,
     private signUpService:SignUpService,
-    private httpService:HttpService
+    private httpService:HttpService,
+    private toastService:ToastrService
     ){}
 
 
@@ -26,11 +28,11 @@ export class LinkedinLoginService {
       this.httpService.baseURL = appConfig.server_services_base;
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
-          resolve(resp.access_token);
+          resolve ({'accessToken':resp.access_token})
         }else if(resp.error){
-          resolve(null);
+          resolve(resp.error);
         }else{
-          resolve(null);
+          resolve(resp);
         }
       })
     })
@@ -50,11 +52,11 @@ export class LinkedinLoginService {
   public getProfile(auth_code){
     return new Promise((resolve,reject)=>{
       this.httpService.baseURL = appConfig.server_services_base;
-      this.getAccesstoken(auth_code).then(token=>{
-        if(token){
-          this.httpService.getRequest(`linkedin/getprofile/${token}`).subscribe(resp=>{
-            
-            if(resp.profile){
+      this.getAccesstoken(auth_code).then(resp=>{
+        var token :any=resp;
+        if(token && typeof(token)=='object' && !token.error){
+          this.httpService.getRequest(`linkedin/getprofile/${token.accessToken}`).subscribe(resp=>{
+            if(resp.profile && resp.email){
               var profileObj = JSON.parse(resp.profile)
               var emailObj = JSON.parse(resp.email)
               var socialUser = {
@@ -62,11 +64,13 @@ export class LinkedinLoginService {
                 email:emailObj.elements[0]['handle~'].emailAddress,
                 first_name:profileObj.firstName.localized.en_US,
                 user_category:'User',
-                authentication_type:'G'
+                authentication_type:'L'
               };
               resolve(socialUser);
             }
           })
+        }else{
+          this.toastService.error(token);
         }
       })
     })

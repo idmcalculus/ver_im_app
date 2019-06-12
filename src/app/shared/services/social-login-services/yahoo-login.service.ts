@@ -51,7 +51,7 @@ export class YahooLoginService {
       this.httpService.baseURL = appConfig.server_services_base;
       this.getAccesstoken(auth_code).then(res=>{
         var resp:any = res;
-        if(resp && typeof(resp)=='object'){
+        if(resp && typeof(resp)=='object' ){
           this.httpService.getRequest(`yahoo/getprofile/${resp.accessToken}/${resp.uid}`).subscribe(resp=>{
             if(resp.profile){
               var vll = resp.profile;
@@ -60,7 +60,7 @@ export class YahooLoginService {
                 email:vll.emails[0].handle,
                 first_name:vll.familyName,
                 user_category:'User',
-                authentication_type:'G'
+                authentication_type:'Y'
               };
               
               // console.log("final json :: "+JSON.stringify(socialUser))
