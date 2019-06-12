@@ -46,6 +46,24 @@
                         <span class="pcoded-mtext">Manage Users</span>
                     </a>
                 </li>
+
+                <li  [hidden]="isUser" class="">
+                    <a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">
+                      <span class="pcoded-micon">
+                      <i class="feather icon-user"></i>
+                      </span>
+                        <span class="pcoded-mtext">Manage Careers</span>
+                    </a>
+                </li>
+
+                <li  [hidden]="isUser" class="">
+                    <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark">
+                      <span class="pcoded-micon">
+                      <i class="feather icon-user"></i>
+                      </span>
+                        <span class="pcoded-mtext">Career Applicants</span>
+                    </a>
+                </li>
                 <!-- <li [hidden]="isUser" class="">
                   <a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">
                       <span class="pcoded-micon">
@@ -55,35 +73,35 @@
                   </a>
                 </li> -->
 
-                <li [hidden]="isUser" class="pcoded-hasmenu">
-                    <a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Career</span>
-                    </a>
-                    <ul class="pcoded-submenu">
-                        <!-- <li>
-                            <a routerLink="./manage-career/list" routerLinkActive="active"  class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">View List</span>
-                            </a>
-                        </li> -->
-                        <li>
-                            <a routerLink="./manage-career/applicants" routerLinkActive="active"  class="waves-effect waves-dark">
-                            <span class="pcoded-micon">
-                            <i class="feather icon-user"></i>
-                            </span>
-                                <span class="pcoded-mtext">Applicants</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="./manage-career/create" routerLinkActive="active"  class="waves-effect waves-dark">
-                            <span class="pcoded-micon">
-                            <i class="feather icon-user"></i>
-                            </span>
-                                <span class="pcoded-mtext">Create</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                <!--<li [hidden]="isUser" class="pcoded-hasmenu">-->
+                    <!--<a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">-->
+                        <!--<span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>-->
+                        <!--<span class="pcoded-mtext">Career</span>-->
+                    <!--</a>-->
+                    <!--<ul class="pcoded-submenu">-->
+                        <!--&lt;!&ndash; <li>-->
+                            <!--<a routerLink="./manage-career/list" routerLinkActive="active"  class="waves-effect waves-dark">-->
+                                <!--<span class="pcoded-mtext">View List</span>-->
+                            <!--</a>-->
+                        <!--</li> &ndash;&gt;-->
+                        <!--<li>-->
+                            <!--<a routerLink="./manage-career/applicants" routerLinkActive="active"  class="waves-effect waves-dark">-->
+                            <!--<span class="pcoded-micon">-->
+                            <!--<i class="feather icon-user"></i>-->
+                            <!--</span>-->
+                                <!--<span class="pcoded-mtext">Applicants</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<a routerLink="./manage-career/create" routerLinkActive="active"  class="waves-effect waves-dark">-->
+                            <!--<span class="pcoded-micon">-->
+                            <!--<i class="feather icon-user"></i>-->
+                            <!--</span>-->
+                                <!--<span class="pcoded-mtext">Create</span>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</li>-->
                 <li  [hidden]="isUser" class="">
                     <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
