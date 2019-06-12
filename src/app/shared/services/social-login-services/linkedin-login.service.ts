@@ -23,7 +23,7 @@ export class LinkedinLoginService {
 
   public getAccesstoken(auth_code:String){
     return new Promise((resolve,reject)=>{
-      this.httpService.baseURL = window.location.host;
+      this.httpService.baseURL = appConfig.server_services_base;
       return this.httpService.getRequest(`linkedin/${auth_code}`).subscribe(resp=>{
         if(resp.access_token){
           resolve(resp.access_token);
@@ -40,7 +40,7 @@ export class LinkedinLoginService {
     
 
   public getAuthCodeURL(){   
-    return "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social";
+    return `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=${appConfig.linkedin.redirect_uri}&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social`;
   }
 
 
@@ -49,7 +49,7 @@ export class LinkedinLoginService {
 
   public getProfile(auth_code){
     return new Promise((resolve,reject)=>{
-      this.httpService.baseURL = window.location.host;
+      this.httpService.baseURL = appConfig.server_services_base;
       this.getAccesstoken(auth_code).then(token=>{
         if(token){
           this.httpService.getRequest(`linkedin/getprofile/${token}`).subscribe(resp=>{
