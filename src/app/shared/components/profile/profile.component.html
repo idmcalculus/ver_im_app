@@ -12,18 +12,18 @@
                     <div class="row">
 
                         <div *ngIf="user==null" class="lds-default">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
                         </div>
 
                         <div *ngIf="user!=null" class="col-xl-12 col-md-12">
@@ -52,21 +52,21 @@
                                             <div class="update-profile-form">
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-2 col-6 col-md-2">
                                                             <input style="display:none;" type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
                                                             <div class="profile-image">
                                                                 <img  *ngIf="user.profile_picture && user.profile_picture!='' " onclick="document.getElementById('upload-image').click()" src="{{user.profile_picture}}"
-                                                                     alt="profile_image">
+                                                                      alt="profile_image">
                                                                 <img *ngIf="!user.profile_picture || user.profile_picture=='' " onclick="document.getElementById('upload-image').click()" src="../assets/images/avatar-4.png"
-                                                                alt="profile_image">
-                                                                     
+                                                                     alt="profile_image">
+
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-2 col-6 col-md-4">
                                                             <div class="basic">
                                                                 <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
-                                                              <label>Edit picture
-                                                                <input style="display:none;" type="file" id="upload-image2" accept="image/*" (change)="changeListener($event)"></label>
+                                                                <label>Edit picture
+                                                                    <input style="display:none;" type="file" id="upload-image2" accept="image/*" (change)="changeListener($event)"></label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -82,10 +82,10 @@
                                                             <input [(ngModel)]="user.first_name"  type="text" class="form-control"
                                                                    id="firstname">
                                                         </div>
-                                                        <div class="col-md-4"><label for="lastname">Last
+                                                        <div class="col-md-4 ph-4"><label for="lastname">Last
                                                             Name</label>
                                                             <input  [(ngModel)]="user.last_name" type="text" class="form-control"
-                                                                   id="lastname">
+                                                                    id="lastname">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -137,8 +137,8 @@
                                                                     id="country">
                                                                 <option value="0" hidden>Select</option>
                                                                 <option *ngFor="let country of countries" [ngValue]="country">
-                                                                        {{country}}
-                                                             </option>
+                                                                    {{country}}
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -146,13 +146,13 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-2"><span>Gender</span></div>
-                                                        
+
 
                                                         <div class="col-lg-2 col-md-2">
                                                             <div class="pretty p-icon p-square" style="margin-top: 2.2rem;">
-                                                                <input (click)="user.gender='Male' " class="form-check-input" 
-                                                                        type="radio" id="male" name="gender" 
-                                                                        value="male" [checked]="user.gender === 'Male'">
+                                                                <input (click)="user.gender='Male' " class="form-check-input"
+                                                                       type="radio" id="male" name="gender"
+                                                                       value="male" [checked]="user.gender === 'Male'">
                                                                 <div class="state p-warning-o">
                                                                     <i class="icon fa fa-check"></i>
                                                                     <label for="male" style="font-size: 15px;">Male</label>
@@ -162,15 +162,15 @@
                                                         <div class="col-lg-2 col-md-2" style="margin-top: 2.2rem;">
                                                             <div class="pretty p-icon p-square">
                                                                 <input (click)="user.gender='Female' " class="form-check-input "
-                                                                        type="radio" name="gender" id="female"
-                                                                        value="female" [checked]="user.gender === 'Female' ">
+                                                                       type="radio" name="gender" id="female"
+                                                                       value="female" [checked]="user.gender === 'Female' ">
                                                                 <div class="state p-warning-o">
                                                                     <i class="icon fa fa-check"></i>
                                                                     <label for="female" style="font-size: 15px;">Female</label>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group" style="position: relative;">
@@ -182,14 +182,14 @@
                                                             <select [(ngModel)]="user.month_of_birth" name="month" id="month"
                                                                     class="form-control">
                                                                 <option *ngFor="let month of monthComponent" [ngValue]="month.count" >{{month.title}}</option>
-                                                                
+
                                                             </select>
                                                         </div>
                                                         <div class="col-md-3"><label for="day">Day</label>
                                                             <select [(ngModel)]="user.day_of_birth" name="day" id="day"
                                                                     class="form-control">
                                                                 <option *ngFor="let day of dayComponent" [ngValue]="day">{{day}}</option>
-                                                             
+
                                                             </select>
                                                         </div>
                                                         <div class="bgline"></div>
@@ -204,23 +204,23 @@
                                                         <div class="col-md-9">
                                                             <label for="workplace">Work Place</label>
                                                             <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
-                                                                    id="workplace">
+                                                                   id="workplace">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                        <div class="row">
-                                                            <div class="col-md-2">
-                                                                <span>Average Monthly income</span>
-                                                            </div>
-                                                            <div class="col-md-9">
-                                                                <label for="avgmonthly">income</label>
-                                                                <input [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
-                                                                        id="avgmonthly">
-                                                            </div>
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Average Monthly income</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label for="avgmonthly">income</label>
+                                                            <input [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                   id="avgmonthly">
                                                         </div>
                                                     </div>
+                                                </div>
 
                                                 <div *ngIf="editable" class="form-group">
                                                     <div class="row">
@@ -245,8 +245,8 @@
                                                             <label for="bankname">Bank Name</label>
                                                             <select [(ngModel)]="user.bank_name" name="" id="bankname"
                                                                     class="form-control">
-                                                            <option value="0" hidden>Select</option>
-                                                            <option *ngFor="let bank of bankList" [ngValue]="bank.bank_code">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option *ngFor="let bank of bankList" [ngValue]="bank.bank_code">
                                                                     {{bank.bank_name}}
                                                             </select>
                                                         </div>
@@ -261,7 +261,7 @@
                                                         <div class="col-md-9">
                                                             <label for="accountname">Account Name</label>
                                                             <input  [(ngModel)]="user.account_name" type="text" class="form-control"
-                                                                   id="accountname">
+                                                                    id="accountname">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -269,7 +269,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            <span>Account Number</span> 
+                                                            <span>Account Number</span>
                                                         </div>
                                                         <div class="col-md-9">
                                                             <label for="accontnumber">Account Number</label>
@@ -280,7 +280,7 @@
                                                                    id="accontnumber" #acctNumber="ngModel">
                                                         </div>
                                                     </div>
-                                                    
+
                                                 </div>
 
                                                 <div *ngIf="editable" class="form-group">
