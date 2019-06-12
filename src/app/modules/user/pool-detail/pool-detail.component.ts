@@ -80,7 +80,7 @@ userSubscription:Subscription
       }
       this.reportService.createReport(this.reportData).subscribe(resp=>{
           if(resp && resp.success){
-            alert(resp.success.Message)
+            // alert(resp.success.Message)
             window.location.href = 'admin/pools/'+this.poolId;    
             // this.closeBtn.nativeElement.click();
           }
@@ -99,7 +99,7 @@ userSubscription:Subscription
         }
         this.reportService.updateReport(this.reportData).subscribe(resp=>{
             if(resp && resp.success){
-              alert(resp.success.Message)
+              // alert(resp.success.Message)
               window.location.href = 'admin/pools/'+this.poolId;    
               // this.closeBtn.nativeElement.click();
             }
@@ -113,7 +113,7 @@ userSubscription:Subscription
       // alert('deleting record :: '+report.id)
       this.reportService.deleteReport(report).subscribe(resp=>{
           if(resp && resp.success){
-            alert(resp.success.Message)
+            // alert(resp.success.Message)
             window.location.href = 'admin/pools/'+this.poolId;    
             // this.closeBtn.nativeElement.click();
           }
@@ -160,7 +160,7 @@ userSubscription:Subscription
     if(proceed){
       this.investmentService.pullOutFromInvestment(String(this.poolId)).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message)
+          // alert(resp.success.Message)
           this.fetchPool(String(this.poolId))
         }
       })
@@ -172,7 +172,7 @@ userSubscription:Subscription
     if(proceed){
       this.investmentService.endInvestment(String(this.poolId)).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message)
+          // alert(resp.success.Message)
           this.fetchPool(String(this.poolId))
         }
       })
@@ -184,7 +184,7 @@ userSubscription:Subscription
     if(proceed){
       this.investmentService.startInvestment(String(this.poolId)).subscribe(resp=>{
         if(resp && resp.success){
-          alert(resp.success.Message)
+          // alert(resp.success.Message)
           this.fetchPool(String(this.poolId))
         }
       })

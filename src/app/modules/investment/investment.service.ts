@@ -23,7 +23,7 @@ export class InvestmentService {
     &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
     &investment_amount=${investment.investment_amount}
     &show_publicly=${investment.show_publicly ? 1:0}
-    &expected_return_amount=${investment.expected_return_amount}`,imageBody);
+    &expected_return_amount=${investment.expected_return_amount}`,imageBody,true);
   }
 
   updateInvestment(investment:Investment):Observable<any>{
@@ -31,7 +31,7 @@ export class InvestmentService {
     return this.httpService.postRequest(
       `investment/update?title=${investment.title}&description=${investment.description}&investment_id=${investment.id}
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}&duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
-    &investment_amount=${investment.investment_amount}&show_publicly=${investment.show_publicly ? 1:0}&expected_return_amount=${investment.expected_return_amount}`,imageBody);
+    &investment_amount=${investment.investment_amount}&show_publicly=${investment.show_publicly ? 1:0}&expected_return_amount=${investment.expected_return_amount}`,imageBody,true);
   }
   
   getInvestments(is_frontend:boolean): Observable<any> {
@@ -52,30 +52,30 @@ export class InvestmentService {
   }
 
   addCategory(category:Category){
-    return this.httpService.postRequest(`category/create?category_name=${category.category_name}`,null);
+    return this.httpService.postRequest(`category/create?category_name=${category.category_name}`,{},true,null);
   }
 
   updateCategory(category:Category){
-    return this.httpService.postRequest(`category/update?category_name=${category.category_name}&category_id=${category.id}`,null);
+    return this.httpService.postRequest(`category/update?category_name=${category.category_name}&category_id=${category.id}`,{},true,null);
   }
 
   deleteCategory(category:Category){
-    return this.httpService.postRequest(`category/delete`,{category_id:category.id});
+    return this.httpService.postRequest(`category/delete`,{category_id:category.id},true);
   }
 
   joinInvestment(transaction:Transaction){
-    return this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}&amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{});
+    return this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}&amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`,{},true);
   }
 
   endInvestment(investmentId:string){
-    return this.httpService.postRequest(`investment/endInvestment`,{investment_id:investmentId} );
+    return this.httpService.postRequest(`investment/endInvestment`,{investment_id:investmentId},true );
   }
 
   startInvestment(investmentId:string){
-    return this.httpService.postRequest(`investment/startInvestment`,{investment_id:investmentId} );
+    return this.httpService.postRequest(`investment/startInvestment`,{investment_id:investmentId},true );
   }
 
   pullOutFromInvestment(investmentId:string){
-    return this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`,{} );
+    return this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`,{},true );
   }
 }

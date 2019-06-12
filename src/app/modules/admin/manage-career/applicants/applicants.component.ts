@@ -33,14 +33,6 @@ export class ApplicantsComponent implements OnInit {
   }
 
   viewUserInfo(selectedIndex){
-    // this.isLoading= true;
-    // this.userService.getProfileDetails(this.careerApplications[selectedIndex].email).subscribe(resp=>{
-    //   if(resp && resp.success){
-    //     this.selectedUser = resp.success.Data.user[0];
-    //   }
-    //   this.isLoading= false;
-    // })
-    console.log("i gat :: "+JSON.stringify(selectedIndex))
     this.selectedUser = selectedIndex;
   }
 

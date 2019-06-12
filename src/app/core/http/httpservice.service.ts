@@ -30,18 +30,18 @@ export class HttpService {
         const opts = httpHeaderOptions ? httpHeaderOptions : httpOptions;
         return this.http.get<any>(`${this.baseURL}/${api}`, opts)
         .pipe(
-            tap(resp => this.log('GET=> response :: ' + resp)),
+            tap(resp => this.log(resp)),
             catchError(
                 this.handleError<any>(api, [])
             )
         );
     }
 
-    postRequest(api: string, data: any, httpHeaderOptions?: {headers: HttpHeaders}): Observable<any>  {
+    postRequest(api: string, data: any,showMessages?:boolean, httpHeaderOptions?: {headers: HttpHeaders}): Observable<any>  {
         const opts = httpHeaderOptions ? httpHeaderOptions : httpOptions;
         return this.http.post<any>(`${this.baseURL}/${api}`, data, opts)
         .pipe(
-            tap(resp => this.log('POST=> response :: ' + resp)),
+            tap(resp => this.log(resp,showMessages)),
             catchError(
                 this.handleError<any>(api, {})
             )
@@ -51,7 +51,7 @@ export class HttpService {
     putRequest(api: string, data: any) {
         return this.http.put<any>(`${this.baseURL}/${api}`, data, httpOptions)
         .pipe(
-            tap(resp => this.log('PUT=> response :: ' + resp)),
+            tap(resp => this.log(resp)),
             catchError(
                 this.handleError<any>(api, {})
             )
@@ -86,6 +86,15 @@ export class HttpService {
         };
     }
 
-    private log(message: string) {
+    private log(message: any,alertMessage?:boolean) {
+        if(alertMessage){
+            if(message.success.Message){
+                this.toastrService.success(message.success.Message);
+            }else if(message.success.message){
+                this.toastrService.success(message.success.message);
+            }
+            
+        }
+        
     }
 }
