@@ -73,8 +73,15 @@ export class SignInComponent implements OnInit {
         });
     }
 
-    socialSignIn() {
-        this.socialLoginService.googleInit();
+    googleSignIn() {
+        // this.socialLoginService.googleInit();
+        this.signInService.sininWithGoogle()
+            .then((authData) => {
+                console.log(authData);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     socialSignOut() {
