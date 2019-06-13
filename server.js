@@ -5,6 +5,7 @@ const appName = 'versaim-app';
 const Promise = require('promise');
 const request = require('request');
 
+
 var cors = require('cors');
 app.use(cors())
 
@@ -98,7 +99,7 @@ function linkedinAccessoken(codestring) {
       form: {
         grant_type: 'authorization_code',
         code: codestring,
-        redirect_uri: 'http://127.0.0.1:4200',
+        redirect_uri: "http://versa-ims.herokuapp.com",
         client_id: '77pv3mo63oyixv',
         client_secret: 'WXSct7I6waMjYI06'
       }

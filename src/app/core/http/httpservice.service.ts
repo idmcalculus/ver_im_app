@@ -30,18 +30,18 @@ export class HttpService {
         const opts = httpHeaderOptions ? httpHeaderOptions : httpOptions;
         return this.http.get<any>(`${this.baseURL}/${api}`, opts)
         .pipe(
-            tap(resp => this.log('GET=> response :: ' + resp)),
+            tap(resp => this.log(resp)),
             catchError(
                 this.handleError<any>(api, [])
             )
         );
     }
 
-    postRequest(api: string, data: any, httpHeaderOptions?: {headers: HttpHeaders}): Observable<any>  {
+    postRequest(api: string, data: any,showMessages?:boolean, httpHeaderOptions?: {headers: HttpHeaders}): Observable<any>  {
         const opts = httpHeaderOptions ? httpHeaderOptions : httpOptions;
         return this.http.post<any>(`${this.baseURL}/${api}`, data, opts)
         .pipe(
-            tap(resp => this.log('POST=> response :: ' + resp)),
+            tap(resp => this.log(resp,showMessages)),
             catchError(
                 this.handleError<any>(api, {})
             )
@@ -51,7 +51,7 @@ export class HttpService {
     putRequest(api: string, data: any) {
         return this.http.put<any>(`${this.baseURL}/${api}`, data, httpOptions)
         .pipe(
-            tap(resp => this.log('PUT=> response :: ' + resp)),
+            tap(resp => this.log(resp)),
             catchError(
                 this.handleError<any>(api, {})
             )
@@ -64,6 +64,7 @@ export class HttpService {
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
+            JSON.stringify(error)
             if(error.status==0){
                 console.log("Error occurred is:: "+JSON.stringify(error))
                 this.toastrService.error(`Error occurred connecting to services`)
@@ -80,12 +81,23 @@ export class HttpService {
                     }else if(error.error.error.Message){
                         this.toastrService.error(error.error.error.Message)
                     } 
+                }else{
+                    
                 }
             }
             return of(result as T);
         };
     }
 
-    private log(message: string) {
+    private log(message: any,alertMessage?:boolean) {
+        if(alertMessage){
+            if(message.success.Message){
+                this.toastrService.success(message.success.Message);
+            }else if(message.success.message){
+                this.toastrService.success(message.success.message);
+            }
+            
+        }
+        
     }
 }

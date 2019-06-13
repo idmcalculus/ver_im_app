@@ -7,9 +7,6 @@ import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader
 import { SocialLogin } from '../../services/social-login-services';
 import { ToastrService } from 'ngx-toastr';
 
-let linkedinUrl = 'https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=http://127.0.0.1:4200&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social';
-let yahooUrl = 'https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9Y0lNZ2pVNTRTSzhGJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWY2&redirect_uri=http://versa-ims.herokuapp.com&response_type=code&language=en-us';
-
 
 @Component({
     selector: 'app-sign-in',
@@ -74,7 +71,6 @@ export class SignInComponent implements OnInit {
     }
 
     googleSignIn() {
-        // this.socialLoginService.googleInit();
         this.signInService.sininWithGoogle()
             .then((authData) => {
                 console.log(authData);
@@ -91,26 +87,17 @@ export class SignInComponent implements OnInit {
 
     yahooSignin() {
         const urll = this.socialLoginService.getSocialUrlLogin('yahoo');
+        localStorage.setItem('social_auth_opr', 'login');
         window.location.href = urll;
     }
 
     linkedinSignin() {
         const url2 = this.socialLoginService.getSocialUrlLogin('linkedin');
+        localStorage.setItem('social_auth_opr', 'login');
         window.location.href = url2;
 
     }
 
-
-    // public socialLogin(provider){
-    //   alert(provider)
-    //   this.social_auth.login(provider).subscribe(
-    //     (data) => {
-    //                 console.log(data);
-    //                 //user data
-    //                 //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google)
-    //               }
-    //   )
-    // }
 
     installScript() {
         this.dynamicScriptLoader.load('platform')

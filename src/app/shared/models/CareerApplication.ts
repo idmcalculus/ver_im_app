@@ -3,4 +3,5 @@ export class CareerApplication extends User{
     career_id?:string;
     career_brief?:string;
     curriculum_vitae?:string;
+    cv_base64?:string;
 }

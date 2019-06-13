@@ -29,7 +29,7 @@ export class CareerService {
     &deadline=${careerData.deadline}
     &position_type=${careerData.position_type}
     &number_of_application=${careerData.number_of_application}
-    &career_responsibilities=${careerData.career_responsibilities}`,null);
+    &career_responsibilities=${careerData.career_responsibilities}`,true,null);
   }
 
   applyForCareer(careerApplication:CareerApplication){
@@ -40,7 +40,7 @@ export class CareerService {
     &career_id=${careerApplication.career_id}
     &phone_number=${careerApplication.phone_number}
     &career_brief=${careerApplication.career_brief}
-    &curriculum_vitae=${careerApplication.curriculum_vitae}`,null);
+    &curriculum_vitae=${careerApplication.cv_base64}`,true,null);
   }
 
   getCareerApplications(){

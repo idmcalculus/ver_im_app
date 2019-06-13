@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { VerifyUserService } from '../verify-user/verify-user.service';
 import { ToastrService } from 'ngx-toastr';
+import { SocialLogin } from '../../services/social-login-services';
 let  userBackbone = {email:'',password:''}
 declare const gapi: any;
 
@@ -26,7 +27,8 @@ export class SignUpComponent implements OnInit {
     private router:Router,
     private verifyService:VerifyUserService,
     private dynamicScriptLoader:DynamicScriptLoaderService,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
+    private socialLoginService:SocialLogin
     
     // ngZone:NgZone
     ) {
@@ -85,8 +87,7 @@ export class SignUpComponent implements OnInit {
           email:profile.getEmail(),
           first_name:profile.getName().split(' ')[0],
           user_category:'User',
-          authentication_type:'G',
-          // password:googleUser.getAuthResponse().id_token
+          authentication_type:'G'
         };
         this.signUpService.register(socialUser)
         .subscribe(UserDetails => {
@@ -95,7 +96,6 @@ export class SignUpComponent implements OnInit {
             .subscribe(UserDetails => {
               if(UserDetails){
                 this.user = UserDetails;
-                // alert(`Welcome ${this.user.first_name}`);
                 this.toastrService.success(`Welcome ${this.user.first_name}`);
                 window.location.href=`${UserDetails.user_category.toLowerCase()}`
               }
@@ -107,6 +107,19 @@ export class SignUpComponent implements OnInit {
 
       }, (error) => {
       });
+  }
+
+  yahooSignUp() {
+      const urll = this.socialLoginService.getSocialUrlLogin('yahoo');
+      localStorage.setItem('social_auth_opr', 'signup');
+      window.location.href = urll;
+  }
+
+  linkedinSignUp() {
+      const url2 = this.socialLoginService.getSocialUrlLogin('linkedin');
+      localStorage.setItem('social_auth_opr', 'signup');
+      window.location.href = url2;
+
   }
 
   installScript(){

@@ -1,6 +1,8 @@
 
 export const Config = {
     "app-live-url":"https://versabackend.adebiyipaul.com/api",//"https://live.adebiyipaul.com/api"
+    "server_services_base":"https://versa-ims.herokuapp.com",
+    // "server_services_base":"http://127.0.0.1:8990",
     "cloudinary": {
         url:"https://api.cloudinary.com",
         uploadUrl:"v1_1/crystalbit-technology/image/upload",
@@ -31,7 +33,7 @@ export const Config = {
     "linkedin":{
         base_url:"https://www.linkedin.com",
         auth_code_path:"oauth/v2/authorization",
-        redirect_uri:"http://127.0.0.1:4200",
+        redirect_uri:"http://versa-ims.herokuapp.com",
         access_token_path:"oauth/v2/accessToken",
         scope:"r_liteprofile%20r_emailaddress%20w_member_social",
         clientid:"77pv3mo63oyixv",
