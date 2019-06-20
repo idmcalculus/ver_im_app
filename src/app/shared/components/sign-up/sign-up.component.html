@@ -2,7 +2,7 @@
         <div class="inner-login">
             <div class="row">
                 <div class="col-md-6 divider">
-                    <div class="login-form" *ngIf="~showOTPForm">
+                    <div class="login-form" *ngIf="showOTPForm">
                         <h3>Sign up for an account, </h3>
                         <p>You'll be done in a moment</p>
                         <form (ngSubmit)="signUp()" #signUpForm="ngForm" > 
