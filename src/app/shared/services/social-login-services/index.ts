@@ -134,10 +134,10 @@ export class SocialLogin {
       this.authService.socialLogin(socialUser)
       .subscribe(UserDetails => {
         if(UserDetails){
-          alert(`Welcome ${UserDetails.first_name}`);
-          this.toastrService.success(`Welcome ${UserDetails.first_name}`)
+          // alert(`Welcome ${UserDetails.first_name}`);
+          // this.toastrService.success(`Welcome ${UserDetails.first_name}`)
           // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-          window.location.href=`${UserDetails.user_category.toLowerCase()}`
+          // window.location.href=`${UserDetails.user_category.toLowerCase()}`
           resolve(UserDetails)
           
         }

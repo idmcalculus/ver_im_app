@@ -37,14 +37,14 @@ export class SignInComponent implements OnInit {
                     this.socialAuth.socialAuth('linkedin',authCode,'login').then(userProfile=>{
                         console.log(JSON.stringify(userProfile))
                         if (userProfile && userProfile.email) {
-                            // this.showOTPForm = true;
+                            this.showOTPForm = true;
                         }
                     })
                 }else{
                     this.socialAuth.socialAuth('yahoo',authCode,'login').then(userProfile=>{
                         console.log(JSON.stringify(userProfile))
                         if (userProfile && userProfile.email) {
-                            // this.showOTPForm = true;
+                            this.showOTPForm = true;
                         }
                     })
                 }

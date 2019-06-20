@@ -20,6 +20,8 @@ export class SignUpComponent implements OnInit {
   passwordConfim:string='';
   isSubmitting;
   signUpText:string="Register";
+  showOTPForm:boolean=false;
+  otp:any;
 
   constructor(private signUpService:SignUpService,
     private authService:AppAuthService,
@@ -37,14 +39,14 @@ export class SignUpComponent implements OnInit {
               this.socialLoginService.socialAuth('linkedin',authCode,'login').then(userProfile=>{
                   console.log(JSON.stringify(userProfile))
                   if (userProfile && userProfile.email) {
-                      // this.showOTPForm = true;
+                      this.showOTPForm = true;
                   }
               })
           }else{
               this.socialLoginService.socialAuth('yahoo',authCode,'login').then(userProfile=>{
                   console.log(JSON.stringify(userProfile))
                   if (userProfile && userProfile.email) {
-                      // this.showOTPForm = true;
+                      this.showOTPForm = true;
                   }
               })
           }
@@ -124,6 +126,26 @@ export class SignUpComponent implements OnInit {
       }, (error) => {
       });
   }
+
+  validateOTP() {
+    this.isSubmitting = new Promise((resolve, reject) => {
+        this.signUpText = 'Authenticating...';
+
+        this.authService.validateOTP(this.otp, this.user)
+            .subscribe(UserDetails => {
+                if (UserDetails) {
+                    // console.log("got here")
+                    this.showOTPForm = true;
+                    this.user = UserDetails;
+                    this.toastrService.success(`Welcome ${this.user.first_name}`);
+                    // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+                    window.location.href = `${UserDetails.user_category.toLowerCase()}`;
+                }
+                this.signUpText = 'Register';
+                resolve();
+            });
+    });
+}
 
   yahooSignUp() {
       const urll = this.socialLoginService.getSocialUrlLogin('yahoo');
