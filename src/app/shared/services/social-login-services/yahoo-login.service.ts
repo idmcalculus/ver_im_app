@@ -40,9 +40,6 @@ export class YahooLoginService {
   }
 
   public getAuthCodeURL(){
-    // let config = appConfig.yahoo
-    // let loginUrl = `${config.base_url}/${config.auth_code_path}?client_id=${config.clientid}&redirect_uri=${config.redirect_uri}&response_type=code&language=en-us`
-    // return loginUrl;  
     return `https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9eHNIendLV2NJU2gwJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg5&redirect_uri=${appConfig.yahoo.redirect_uri}&response_type=code&language=en-us`;  
   }
 
@@ -51,7 +48,7 @@ export class YahooLoginService {
       this.httpService.baseURL = appConfig.server_services_base;
       this.getAccesstoken(auth_code).then(res=>{
         var resp:any = res;
-        if(resp && typeof(resp)=='object' ){
+        if(resp && typeof(resp)=='object' && resp.accessToken ){
           this.httpService.getRequest(`yahoo/getprofile/${resp.accessToken}/${resp.uid}`).subscribe(resp=>{
             if(resp.profile){
               var vll = resp.profile;
@@ -63,12 +60,11 @@ export class YahooLoginService {
                 authentication_type:'Y'
               };
               
-              // console.log("final json :: "+JSON.stringify(socialUser))
               resolve(socialUser);
             }
           })
         }else{
-          this.toastService.error(resp);
+          this.toastService.error(JSON.stringify(resp));
         }
       })
     })

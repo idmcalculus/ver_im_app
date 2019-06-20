@@ -54,7 +54,7 @@ export class LinkedinLoginService {
       this.httpService.baseURL = appConfig.server_services_base;
       this.getAccesstoken(auth_code).then(resp=>{
         var token :any=resp;
-        if(token && typeof(token)=='object' && !token.error){
+        if(token && typeof(token)=='object' && !token.error && token.accessToken){
           this.httpService.getRequest(`linkedin/getprofile/${token.accessToken}`).subscribe(resp=>{
             if(resp.profile && resp.email){
               var profileObj = JSON.parse(resp.profile)
@@ -70,7 +70,7 @@ export class LinkedinLoginService {
             }
           })
         }else{
-          this.toastService.error(token);
+          this.toastService.error(JSON.stringify(token));
         }
       })
     })

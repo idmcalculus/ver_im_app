@@ -100,6 +100,7 @@ function linkedinAccessoken(codestring) {
         grant_type: 'authorization_code',
         code: codestring,
         redirect_uri: "http://versa-ims.herokuapp.com",
+        // redirect_uri: "http://localhost:4200",        
         client_id: '77pv3mo63oyixv',
         client_secret: 'WXSct7I6waMjYI06'
       }

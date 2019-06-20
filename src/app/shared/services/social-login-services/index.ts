@@ -82,29 +82,45 @@ export class SocialLogin {
   }
 
   public socialAuth(socialPlatform,authCode,operation){
-    if(socialPlatform =='yahoo'){
-      this.yahooService.getProfile(authCode).then(resp=>{
-        this.httpService.baseURL = appConfig["app-live-url"];
-        if(resp){
-          if(operation=="login"){
-            this.doLogin(resp)
+    return new Promise<any>((resolve,reject)=>{
+      if(socialPlatform =='yahoo'){
+        this.yahooService.getProfile(authCode).then(resp=>{
+          this.httpService.baseURL = appConfig["app-live-url"];
+          if(resp){
+            if(operation=="login"){
+              this.doLogin(resp).then(userInfo=>{
+                resolve(userInfo);
+              })
+            }else{
+              this.doSignUp(resp).then(userInfo=>{
+                resolve(userInfo);
+              })
+            }
+            
           }else{
-            this.doSignUp(resp)
+            resolve(null);
           }
-        }
-      })
-    }else if(socialPlatform =='linkedin'){
-      this.linkedinService.getProfile(authCode).then(resp=>{
-        this.httpService.baseURL = appConfig["app-live-url"];
-        if(resp){
-          if(operation=="login"){
-            this.doLogin(resp);
+        })
+      }else if(socialPlatform =='linkedin'){
+        this.linkedinService.getProfile(authCode).then(resp=>{
+          this.httpService.baseURL = appConfig["app-live-url"];
+          if(resp){
+            if(operation=="login"){
+              this.doLogin(resp).then(userInfo=>{
+                resolve(userInfo);
+              })
+            }else{
+              this.doSignUp(resp).then(userInfo=>{
+                resolve(userInfo);
+              })
+            }
           }else{
-            this.doSignUp(resp)
+            resolve(null);
           }
-        }
-      })
-    }
+        })
+      }
+    })
+    
   }
 
 
@@ -114,31 +130,39 @@ export class SocialLogin {
 
 
   private doLogin(socialUser){
-    this.authService.socialLogin(socialUser)
-    .subscribe(UserDetails => {
-      if(UserDetails){
-        alert(`Welcome ${UserDetails.first_name}`);
-        this.toastrService.success(`Welcome ${UserDetails.first_name}`)
-        // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
-        window.location.href=`${UserDetails.user_category.toLowerCase()}`
-      }
-    });
+    return new Promise<any>((resolve,reject)=>{
+      this.authService.socialLogin(socialUser)
+      .subscribe(UserDetails => {
+        if(UserDetails){
+          alert(`Welcome ${UserDetails.first_name}`);
+          this.toastrService.success(`Welcome ${UserDetails.first_name}`)
+          // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+          window.location.href=`${UserDetails.user_category.toLowerCase()}`
+          resolve(UserDetails)
+          
+        }
+      });
+    })
   }
 
   private doSignUp(socialUser){
     // console.log("Social signup recieved :: "+JSON.stringify(socialUser))
-    this.signUpService.register(socialUser)
-    .subscribe(UserDetails => {
-      if(UserDetails && UserDetails.success){
-        this.authService.socialLogin(socialUser)
-        .subscribe(UserDetails => {
-          if(UserDetails){
-            alert(`Welcome ${UserDetails.first_name}`);
-            window.location.href=`${UserDetails.user_category.toLowerCase()}`
-          }
-        });
-      }
-    });
+    return new Promise<any>((resolve,reject)=>{
+      this.signUpService.register(socialUser)
+      .subscribe(UserDetails => {
+        if(UserDetails && UserDetails.success){
+          this.authService.socialLogin(socialUser)
+          .subscribe(UserDetails => {
+            if(UserDetails){
+              resolve(UserDetails);
+              // alert(`Welcome ${UserDetails.first_name}`);
+              // window.location.href=`${UserDetails.user_category.toLowerCase()}`
+            }
+          });
+        }
+      });
+    })
+    
   }
   
 }

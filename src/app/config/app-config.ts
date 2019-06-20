@@ -34,6 +34,7 @@ export const Config = {
         base_url:"https://www.linkedin.com",
         auth_code_path:"oauth/v2/authorization",
         redirect_uri:"http://versa-ims.herokuapp.com",
+        // redirect_uri:"http://localhost:4200",
         access_token_path:"oauth/v2/accessToken",
         scope:"r_liteprofile%20r_emailaddress%20w_member_social",
         clientid:"77pv3mo63oyixv",
