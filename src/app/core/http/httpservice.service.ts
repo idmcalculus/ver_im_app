@@ -64,6 +64,7 @@ export class HttpService {
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
+            JSON.stringify(error)
             if(error.status==0){
                 console.log("Error occurred is:: "+JSON.stringify(error))
                 this.toastrService.error(`Error occurred connecting to services`)
@@ -80,6 +81,8 @@ export class HttpService {
                     }else if(error.error.error.Message){
                         this.toastrService.error(error.error.error.Message)
                     } 
+                }else{
+                    
                 }
             }
             return of(result as T);

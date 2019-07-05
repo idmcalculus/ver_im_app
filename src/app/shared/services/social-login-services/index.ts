@@ -50,7 +50,7 @@ export class SocialLogin {
           authentication_type:'G',
           // password:googleUser.getAuthResponse().id_token
         };
-        console.log('signing in with :: '+JSON.stringify(socialUser))
+        // console.log('signing in with :: '+JSON.stringify(socialUser))
         this.doLogin(socialUser);
 
 
@@ -74,7 +74,6 @@ export class SocialLogin {
   public getSocialUrlLogin(socialplatform){
     if(socialplatform=='linkedin'){
       var ert = this.linkedinService.getAuthCodeURL();
-      console.log("fin :: "+ert)
       return ert
     }else if(socialplatform=='yahoo'){
       return this.yahooService.getAuthCodeURL();
@@ -82,30 +81,40 @@ export class SocialLogin {
     
   }
 
-  public extLogin(socialPlatform,authCode){
+  public socialAuth(socialPlatform,authCode,operation){
     if(socialPlatform =='yahoo'){
       this.yahooService.getProfile(authCode).then(resp=>{
         this.httpService.baseURL = appConfig["app-live-url"];
         if(resp){
-          this.doSignUp(resp)
+          if(operation=="login"){
+            this.doLogin(resp)
+          }else{
+            this.doSignUp(resp)
+          }
         }
       })
     }else if(socialPlatform =='linkedin'){
       this.linkedinService.getProfile(authCode).then(resp=>{
         this.httpService.baseURL = appConfig["app-live-url"];
         if(resp){
-          this.doSignUp(resp)
+          if(operation=="login"){
+            this.doLogin(resp);
+          }else{
+            this.doSignUp(resp)
+          }
         }
       })
     }
   }
+
+
   public extSignOut(){
     
   }
 
 
   private doLogin(socialUser){
-    this.authService.login(socialUser)
+    this.authService.socialLogin(socialUser)
     .subscribe(UserDetails => {
       if(UserDetails){
         alert(`Welcome ${UserDetails.first_name}`);
@@ -113,15 +122,15 @@ export class SocialLogin {
         // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
         window.location.href=`${UserDetails.user_category.toLowerCase()}`
       }
-      // this.loginText = "Login";
     });
   }
 
   private doSignUp(socialUser){
+    // console.log("Social signup recieved :: "+JSON.stringify(socialUser))
     this.signUpService.register(socialUser)
     .subscribe(UserDetails => {
       if(UserDetails && UserDetails.success){
-        this.authService.login(socialUser)
+        this.authService.socialLogin(socialUser)
         .subscribe(UserDetails => {
           if(UserDetails){
             alert(`Welcome ${UserDetails.first_name}`);
