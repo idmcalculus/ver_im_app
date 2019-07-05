@@ -1,0 +1,27 @@
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details {
+    padding: 3em 0 10px;
+}
+.team-detail p {
+    padding: 15px;
+    line-height: 25px;
+    font-size: 1.1em;
+}
+.team-detail {
+    height: 200px;
+    overflow: scroll;
+}
+
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details h4 {
+    font-size: 1.2em;
+}
+
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details h5 {
+    font-size: .9em;
+    font-weight: bold;
+    margin: 5px 0 0;
+    color: #0a568c;
+}
+
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details h4:after {
+    margin: 2px auto;
+}

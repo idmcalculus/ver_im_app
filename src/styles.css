@@ -15,6 +15,12 @@ h3, h4, p {
     margin-bottom: 10px;
     border-radius: 4px;
 } */
+.landing {
+    background-size: cover;
+}
+.investment-plans {
+    padding: 7em 0 2em;
+}
 .prod-p-card i {
     background: #3f51b5 !important;
     width: 45px !important;
