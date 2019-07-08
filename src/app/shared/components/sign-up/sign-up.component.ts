@@ -2,9 +2,8 @@ import { Component, OnInit ,NgZone} from '@angular/core';
 import {SignUpService} from './sign-up.service';
 import {User} from './../../models/user';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
-import { VerifyUserService } from '../verify-user/verify-user.service';
 import { ToastrService } from 'ngx-toastr';
 import { SocialLogin } from '../../services/social-login-services';
 let  userBackbone = {email:'',password:''}
@@ -21,18 +20,38 @@ export class SignUpComponent implements OnInit {
   passwordConfim:string='';
   isSubmitting;
   signUpText:string="Register";
+  showOTPForm:boolean=false;
+  otp:any;
 
   constructor(private signUpService:SignUpService,
     private authService:AppAuthService,
     private router:Router,
-    private verifyService:VerifyUserService,
+    private activatedRoute:ActivatedRoute,
     private dynamicScriptLoader:DynamicScriptLoaderService,
     private toastrService:ToastrService,
     private socialLoginService:SocialLogin
     
-    // ngZone:NgZone
     ) {
-    // window['onSignIn'] = (user) => ngZone.run(() => this.onSignIn(user));
+    this.activatedRoute.queryParams.subscribe(resp=>{
+      var authCode = resp.code;
+      if(authCode){
+          if(authCode.length > 10){
+              this.socialLoginService.socialAuth('linkedin',authCode,'login').then(userProfile=>{
+                  console.log(JSON.stringify(userProfile))
+                  if (userProfile && userProfile.email) {
+                      this.showOTPForm = true;
+                  }
+              })
+          }else{
+              this.socialLoginService.socialAuth('yahoo',authCode,'login').then(userProfile=>{
+                  console.log(JSON.stringify(userProfile))
+                  if (userProfile && userProfile.email) {
+                      this.showOTPForm = true;
+                  }
+              })
+          }
+      }
+  })
    }
 
   ngOnInit() {
@@ -49,7 +68,6 @@ export class SignUpComponent implements OnInit {
         this.signUpService.register(this.user)
         .subscribe(UserDetails => {
           if(UserDetails){
-            // alert("Registeration Succesfull, check mail to verify");
             this.toastrService.success('Registeration Succesfull, check mail to verify')
             this.user = {email:'',password:''};
             this.router.navigateByUrl("signin");
@@ -109,18 +127,51 @@ export class SignUpComponent implements OnInit {
       });
   }
 
+  validateOTP() {
+    this.isSubmitting = new Promise((resolve, reject) => {
+        this.signUpText = 'Authenticating...';
+
+        this.authService.validateOTP(this.otp, this.user)
+            .subscribe(UserDetails => {
+                if (UserDetails) {
+                    // console.log("got here")
+                    this.showOTPForm = true;
+                    this.user = UserDetails;
+                    this.toastrService.success(`Welcome ${this.user.first_name}`);
+
+                    localStorage.setItem('token', localStorage.getItem('temp_token'));
+                    localStorage.setItem('email', localStorage.getItem('temp_email'));
+                    localStorage.setItem('userType', localStorage.getItem('temp_userType'));
+
+                    // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+                    window.location.href = `${UserDetails.user_category.toLowerCase()}`;
+                }
+                this.signUpText = 'Register';
+                resolve();
+            });
+    });
+}
+
   yahooSignUp() {
       const urll = this.socialLoginService.getSocialUrlLogin('yahoo');
-      localStorage.setItem('social_auth_opr', 'signup');
-      window.location.href = urll;
+      this.openSocialWindow(urll);
   }
 
   linkedinSignUp() {
       const url2 = this.socialLoginService.getSocialUrlLogin('linkedin');
-      localStorage.setItem('social_auth_opr', 'signup');
-      window.location.href = url2;
+      this.openSocialWindow(url2);
 
   }
+
+  openSocialWindow(url){
+    
+      localStorage.setItem('socialAuthOpr','signup');
+      var newwindow=window.open(url,"windowName",'height=700,width=600');
+      if (window.focus) {newwindow.focus()}
+  }
+
+
+
 
   installScript(){
     this.dynamicScriptLoader.load('platform')

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { Observable } from 'rxjs';
-import {Config as appConfig} from '../../config/app-config';
+import {environment as appConfig} from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class BankService {

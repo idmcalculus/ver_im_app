@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import {Config as appConfig} from '../../../config/app-config';
+import {environment as appConfig} from '../../../../environments/environment';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { SignUpService } from '../../components/sign-up/sign-up.service';
 import { HttpHeaders, } from '@angular/common/http';
@@ -42,7 +42,7 @@ export class LinkedinLoginService {
     
 
   public getAuthCodeURL(){   
-    return `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77pv3mo63oyixv&redirect_uri=${appConfig.linkedin.redirect_uri}&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social`;
+    return `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${appConfig.linkedin.clientid}&redirect_uri=${appConfig.linkedin.redirect_uri}&state=fooobar&scope=r_liteprofile%20r_emailaddress%20w_member_social`;
   }
 
 
@@ -54,7 +54,7 @@ export class LinkedinLoginService {
       this.httpService.baseURL = appConfig.server_services_base;
       this.getAccesstoken(auth_code).then(resp=>{
         var token :any=resp;
-        if(token && typeof(token)=='object' && !token.error){
+        if(token && typeof(token)=='object' && !token.error && token.accessToken){
           this.httpService.getRequest(`linkedin/getprofile/${token.accessToken}`).subscribe(resp=>{
             if(resp.profile && resp.email){
               var profileObj = JSON.parse(resp.profile)
@@ -70,7 +70,8 @@ export class LinkedinLoginService {
             }
           })
         }else{
-          this.toastService.error(token);
+          this.toastService.error(JSON.stringify(token));
+          reject(JSON.stringify(token))
         }
       })
     })
