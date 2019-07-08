@@ -5,7 +5,7 @@ import { SignUpService } from '../../components/sign-up/sign-up.service';
 import { ToastrService } from 'ngx-toastr';
 import { YahooLoginService } from './yahoo-login.service';
 import { LinkedinLoginService } from './linkedin-login.service';
-import {Config as appConfig} from '../../../config/app-config'
+import {environment as appConfig} from '../../../../environments/environment';
 
 declare const gapi: any;
 

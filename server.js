@@ -75,8 +75,11 @@ function yahooAccessoken(codestring) {
     request.post('https://api.login.yahoo.com/oauth2/get_token', {
       form: {
         grant_type: 'authorization_code',
-        redirect_uri: 'http://versa-ims.herokuapp.com',
         code: codestring,
+        // redirect_uri: 'https://versa.ng',
+        // client_id: 'dj0yJmk9Q01TdTRFbHZNVjJjJmQ9WVdrOVdVdFRORE5oTkdzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx',
+        // client_secret: '60cd5ca9a18f67c3bf418f98218a6fc177d4ac6c'
+        redirect_uri: 'http://versa-ims.herokuapp.com',
         client_id: 'dj0yJmk9eHNIendLV2NJU2gwJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg5',
         client_secret: '74822b31d3242615561b84a5ece6020b9ef5d9a3'
       }
@@ -99,8 +102,10 @@ function linkedinAccessoken(codestring) {
       form: {
         grant_type: 'authorization_code',
         code: codestring,
+        // redirect_uri: "https://versa.ng",
+        // client_id: '8604gpqc8lasyf',
+        // client_secret: 'BhWw3I9ufi6KLr0k'
         redirect_uri: "http://versa-ims.herokuapp.com",
-        // redirect_uri: "http://localhost:4200",        
         client_id: '77pv3mo63oyixv',
         client_secret: 'WXSct7I6waMjYI06'
       }

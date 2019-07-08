@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import {Config as appConfig} from '../../../config/app-config';
+import {environment as appConfig} from '../../../../environments/environment';
 import { HttpService } from 'src/app/core/http/httpservice.service';
 import { SignUpService } from '../../components/sign-up/sign-up.service';
 import { Observable } from 'rxjs';
@@ -40,7 +40,7 @@ export class YahooLoginService {
   }
 
   public getAuthCodeURL(){
-    return `https://api.login.yahoo.com/oauth2/request_auth?client_id=dj0yJmk9eHNIendLV2NJU2gwJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTg5&redirect_uri=${appConfig.yahoo.redirect_uri}&response_type=code&language=en-us`;  
+    return `https://api.login.yahoo.com/oauth2/request_auth?client_id=${appConfig.yahoo.clientid}&redirect_uri=${appConfig.yahoo.redirect_uri}&response_type=code&language=en-us`;  
   }
 
   public getProfile(auth_code){
