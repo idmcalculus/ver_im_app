@@ -7,8 +7,12 @@
     font-size: 1.1em;
 }
 .team-detail {
-    height: 200px;
-    overflow: scroll;
+    height: auto;
+    /*overflow: scroll;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
 }
 
 .about-us .inner-about .our-team .team-card-holder .team-card .card-details h4 {
@@ -24,4 +28,33 @@
 
 .about-us .inner-about .our-team .team-card-holder .team-card .card-details h4:after {
     margin: 2px auto;
+}
+
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details .team-image img {
+    filter: grayscale(100%);
+}
+
+@media (min-width: 500px) {
+    .modal-dialog {
+        min-width: 800px !important;
+    }
+}
+
+.modal-about .team-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-about .team-image img {
+    width: 200px;
+    height: inherit;
+    border-radius: 50pc;
+}
+.modal-about p {
+    line-height: 30px;
+    font-size: 1.1em;
+}
+.modal-content {
+    border: none;
+    border-radius: 0;
 }
