@@ -1,5 +1,5 @@
 <section class="login-section">
-        <div class="inner-login">
+        <div *ngIf="!isLoading" class="inner-login">
             <div class="row">
                 <div class="col-md-6 divider">
                     <div class="login-form" *ngIf="!showOTPForm">
@@ -65,6 +65,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
+
+        <div *ngIf="isLoading" class="lds-default">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
     </section>

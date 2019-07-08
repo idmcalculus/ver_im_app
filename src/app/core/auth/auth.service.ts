@@ -125,9 +125,9 @@ export class AppAuthService {
                 if (response && response.success) {
                     userDetails = response.success.data;
                     this.userDetail = response.success;
-                    localStorage.setItem('token', response.success.token);
-                    localStorage.setItem('email', userDetails.email);
-                    localStorage.setItem('userType', userDetails.user_category);
+                    // localStorage.setItem('token', response.success.token);
+                    // localStorage.setItem('email', userDetails.email);
+                    // localStorage.setItem('userType', userDetails.user_category);
                 }
                 return userDetails;
             }));

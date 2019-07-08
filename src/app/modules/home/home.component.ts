@@ -14,8 +14,12 @@ export class HomeComponent {
     ) {
         this.activatedRoute.queryParams.subscribe(resp=>{
           var authCode = resp.code;
+          var error = resp.error;
           if(authCode){
-            opener.document.location = "/signin?code="+authCode;
+            var oprType = localStorage.getItem('socialAuthOpr');
+            opener.document.location = "/"+oprType+"?code="+authCode;
+            window.close();
+          }else if(error){
             window.close();
           }
         })

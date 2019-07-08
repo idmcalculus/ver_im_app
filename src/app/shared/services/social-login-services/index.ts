@@ -100,6 +100,8 @@ export class SocialLogin {
           }else{
             resolve(null);
           }
+        }).catch(err=>{
+          reject(err)
         })
       }else if(socialPlatform =='linkedin'){
         this.linkedinService.getProfile(authCode).then(resp=>{
@@ -117,6 +119,8 @@ export class SocialLogin {
           }else{
             resolve(null);
           }
+        }).catch(err=>{          
+          reject(err)
         })
       }
     })

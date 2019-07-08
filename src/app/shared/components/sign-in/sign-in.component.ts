@@ -19,6 +19,7 @@ export class SignInComponent implements OnInit {
     loginText = 'Login';
     showOTPForm = false;
     otp: string;
+    isLoading:boolean=false;
     
 
     constructor(
@@ -33,19 +34,28 @@ export class SignInComponent implements OnInit {
         this.activatedRoute.queryParams.subscribe(resp=>{
             var authCode = resp.code;
             if(authCode){
+                this.isLoading = true;
                 if(authCode.length > 10){
                     this.socialAuth.socialAuth('linkedin',authCode,'login').then(userProfile=>{
                         console.log(JSON.stringify(userProfile))
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
+                            this.isLoading = false;
                         }
+                    }).catch(err=>{
+                        console.log("isshs :: "+err)
+                        this.isLoading = false;    
                     })
                 }else{
                     this.socialAuth.socialAuth('yahoo',authCode,'login').then(userProfile=>{
                         console.log(JSON.stringify(userProfile))
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
+                            this.isLoading = false;
                         }
+                    }).catch(err=>{
+                        console.log("isshs :: "+err)
+                        this.isLoading = false;
                     })
                 }
             }
@@ -122,12 +132,9 @@ export class SignInComponent implements OnInit {
     }
 
     openSocialWindow(url){
-        // if(localStorage.getItem('authCode')){
-        //     window.location.href = "/signin?code="+localStorage.getItem('authCode');
-        // }else{
-            var newwindow=window.open(url,"windowName",'height=700,width=600');
-            if (window.focus) {newwindow.focus()}
-        // }
+        localStorage.setItem('socialAuthOpr','signin');
+        var newwindow=window.open(url,"windowName",'height=700,width=600');
+        if (window.focus) {newwindow.focus()}
     }
 
 

@@ -71,6 +71,7 @@ export class LinkedinLoginService {
           })
         }else{
           this.toastService.error(JSON.stringify(token));
+          reject(JSON.stringify(token))
         }
       })
     })

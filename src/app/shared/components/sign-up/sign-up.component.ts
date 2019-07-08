@@ -159,6 +159,8 @@ export class SignUpComponent implements OnInit {
   }
 
   openSocialWindow(url){
+    
+      localStorage.setItem('socialAuthOpr','signup');
       var newwindow=window.open(url,"windowName",'height=700,width=600');
       if (window.focus) {newwindow.focus()}
   }

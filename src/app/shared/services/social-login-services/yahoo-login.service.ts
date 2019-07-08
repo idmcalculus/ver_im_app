@@ -65,6 +65,7 @@ export class YahooLoginService {
           })
         }else{
           this.toastService.error(JSON.stringify(resp));
+          reject(JSON.stringify(resp))
         }
       })
     })
