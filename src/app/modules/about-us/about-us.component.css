@@ -25,3 +25,7 @@
 .about-us .inner-about .our-team .team-card-holder .team-card .card-details h4:after {
     margin: 2px auto;
 }
+
+.about-us .inner-about .our-team .team-card-holder .team-card .card-details .team-image img {
+    filter: grayscale(100%);
+}
