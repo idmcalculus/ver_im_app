@@ -138,6 +138,11 @@ export class SignUpComponent implements OnInit {
                     this.showOTPForm = true;
                     this.user = UserDetails;
                     this.toastrService.success(`Welcome ${this.user.first_name}`);
+
+                    localStorage.setItem('token', localStorage.getItem('temp_token'));
+                    localStorage.setItem('email', localStorage.getItem('temp_email'));
+                    localStorage.setItem('userType', localStorage.getItem('temp_userType'));
+
                     // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
                     window.location.href = `${UserDetails.user_category.toLowerCase()}`;
                 }

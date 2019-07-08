@@ -92,6 +92,11 @@ export class SignInComponent implements OnInit {
                         console.log("got here")
                         this.showOTPForm = true;
                         this.user = UserDetails;
+                        
+                        localStorage.setItem('token', localStorage.getItem('temp_token'));
+                        localStorage.setItem('email', localStorage.getItem('temp_email'));
+                        localStorage.setItem('userType', localStorage.getItem('temp_userType'));
+
                         this.toastrService.success(`Welcome ${this.user.first_name}`);
                         // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
                         window.location.href = `${UserDetails.user_category.toLowerCase()}`;
