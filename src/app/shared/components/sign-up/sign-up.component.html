@@ -2,7 +2,7 @@
         <div class="inner-login">
             <div class="row">
                 <div class="col-md-6 divider">
-                    <div class="login-form">
+                    <div class="login-form" *ngIf="!showOTPForm">
                         <h3>Sign up for an account, </h3>
                         <p>You'll be done in a moment</p>
                         <form (ngSubmit)="signUp()" #signUpForm="ngForm" > 
@@ -42,6 +42,19 @@
                             </div>
                         </form>
                     </div>
+                    <div class="login-form otp-form" *ngIf="showOTPForm">
+                            <h3>Validate OTP, </h3>
+                            <p>Enter your OTP below</p>
+                            <form (ngSubmit)="validateOTP()" #otpForm="ngForm">
+                                <div class="form-group">
+                                    <label for="otp" class="sr-only">Enter your One Time Password</label>
+                                    <input type="number" required [(ngModel)]="otp" name="otp" placeholder="OTP" class="form-control" id="otp">
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn2 btn-login" [disabled]="!otpForm.form.valid" [promiseBtn]="isSubmitting" [value]="loginText">
+                                </div>
+                            </form>
+                        </div>
                 </div>
                 <div class="d-text">or</div>
                 <div class="hor-divider"></div>

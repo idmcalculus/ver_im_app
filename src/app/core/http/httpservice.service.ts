@@ -3,7 +3,7 @@ import {  HttpHeaders, HttpClient  } from '@angular/common/http';
 import { Observable, of, observable, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
-import {Config as appConfig} from '../../config/app-config'
+import {environment as appConfig} from '../../../environments/environment'
 
 
 const httpOptions = {
