@@ -11,23 +11,23 @@ app.use(cors())
 
 
 
-app.use(function(req, res, next) {
-    if(!req.secure) {
-        return res.redirect(['https://', req.get('Host'), req.url].join(''));
-    }
-    next();
-});
-
-// const forceSSL = function() {
-//   return function (req, res, next) {
-//     if (req.headers['x-forwarded-proto'] !== 'https') {
-//       return res.redirect(['https://', req.get('Host'), req.url].join(''));
+// app.use(function(req, res, next) {
+//     if(!req.secure) {
+//         return res.redirect(['https://', req.get('Host'), req.url].join(''));
 //     }
 //     next();
-//   }
-// }
+// });
 
-// app.use(forceSSL());
+const forceSSL = function() {
+  return function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    next();
+  }
+}
+
+app.use(forceSSL());
 
 app.use(express.static(__dirname + `/dist/${appName}`));
 
