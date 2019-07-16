@@ -35,8 +35,8 @@ export const environment = {
       clientid:"dj0yJmk9Q01TdTRFbHZNVjJjJmQ9WVdrOVdVdFRORE5oTkdzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx",
       secretkey:"60cd5ca9a18f67c3bf418f98218a6fc177d4ac6c",
       profil_base_url:"https://social.yahooapis.com"
-      
-      
+
+
   },
   "linkedin":{
       base_url:"https://www.linkedin.com",
