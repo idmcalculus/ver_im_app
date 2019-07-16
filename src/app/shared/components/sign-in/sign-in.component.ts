@@ -89,16 +89,17 @@ export class SignInComponent implements OnInit {
             this.authService.validateOTP(this.otp, this.user)
                 .subscribe(UserDetails => {
                     if (UserDetails) {
-                        console.log("got here")
+
                         this.showOTPForm = true;
                         this.user = UserDetails;
                         
-                        localStorage.setItem('token', localStorage.getItem('temp_token'));
-                        localStorage.setItem('email', localStorage.getItem('temp_email'));
-                        localStorage.setItem('userType', localStorage.getItem('temp_userType'));
+                        localStorage.setItem('email', UserDetails.email);
+                        localStorage.setItem('userType', UserDetails.user_category);
+
 
                         this.toastrService.success(`Welcome ${this.user.first_name}`);
                         // this.router.navigateByUrl(UserDetails.user_category.toLowerCase());
+
                         window.location.href = `${UserDetails.user_category.toLowerCase()}`;
                     }
                     this.loginText = 'Login';
@@ -107,22 +108,23 @@ export class SignInComponent implements OnInit {
         });
     }
 
-    googleSignIn() {
-        this.signInService.sininWithGoogle()
-            .then((authData) => {
-                console.log(authData);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    
 
     socialSignOut() {
         this.socialLoginService.signOut();
     }
    
     
-    
+    googleSignIn() {
+        this.signInService.sininWithGoogle()
+            .then((authData) => {
+                console.log("i gat :: "+authData);
+                this.showOTPForm = true;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
 
     yahooSignin() {
