@@ -105,15 +105,17 @@ export class AppAuthService {
     login(userCreds: User) {
         return this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
             .pipe(map(response => {
-                let userDetails = null;
+                this.userDetail = null;
                 if (response && response.success) {
-                    userDetails = response.success.data;
                     this.userDetail = response.success;
                     localStorage.setItem('token', response.success.token);
-                    localStorage.setItem('email', userDetails.email);
-                    localStorage.setItem('userType', userDetails.user_category);
+                    /**
+                     * Below keys not sent again, OTP is sent to mail instead
+                     */
+                    // localStorage.setItem('email', userDetails.email);
+                    // localStorage.setItem('userType', userDetails.user_category);
                 }
-                return userDetails;
+                return this.userDetail;
             }));
     }
 
