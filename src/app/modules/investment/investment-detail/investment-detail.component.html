@@ -41,6 +41,7 @@
                                     <div><span><img src="" alt=""> {{investment?.max_num_of_slots - investment?.num_of_pools_taken}} out of {{investment?.max_num_of_slots}} slots left</span></div>
                                     <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}} Month(s)</div>
                                     <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>{{investment?.estimated_percentage_profit}} profit (Estimated)</div>
+                                    <!--<div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>25% profit (Estimated)</div>-->
                                     <div><span><img src="" alt=""> {{investment?.expected_return_period}} return: </span>{{investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</div>
                                     <div>
                                         <a routerLink="/signin" routerLinkActive="active" *ngIf="!userinfo && investment?.is_investment_started=='0' " 

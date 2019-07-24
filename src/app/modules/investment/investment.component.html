@@ -40,6 +40,7 @@
                             <h2><a href="investment-details.html">{{x.title}}</a></h2>
                             <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                             <span *ngIf="x?.estimated_percentage_profit" class="span-profit">{{x?.estimated_percentage_profit}} Profit <br> (Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
                             <p>{{x.duration}} Month(s)</p>
                         </div>
                     </div>
