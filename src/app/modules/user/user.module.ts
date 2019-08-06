@@ -20,6 +20,7 @@ import {ProfileSummaryComponent} from './../../shared/components/profile-summary
 
 import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
+import { ChatComponent } from '../chat/chat.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ChartComponent } from './../../shared/components/chart/chart.component'
     ManageInvestmentComponent,
     ProfileComponent,
     ProfileSummaryComponent,
-    ChartComponent
+    ChartComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +59,8 @@ import { ChartComponent } from './../../shared/components/chart/chart.component'
     ReportComponent,
     ManageInvestmentComponent,
     UserDashboardComponent,
-    ProfileSummaryComponent
+    ProfileSummaryComponent,
+    ChatComponent
   ]
 })
 export class UserModule { }

@@ -15,6 +15,7 @@ import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component'
 import {ManageCategoryComponent} from './manage-category/manage-category.component';
+import { ChatComponent } from '../chat/chat.component';
 
 
 
@@ -42,6 +43,7 @@ const userRoutes: Routes = [
             }
           ] },
           { path: 'manage-category', component:ManageCategoryComponent},
+          { path: 'chat', component:ChatComponent},
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: '', component: AdminDashboardComponent }
