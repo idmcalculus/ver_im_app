@@ -121,8 +121,12 @@
                                       <h4>Enter message</h4>
                                       <form action="" style="margin-top: 1.62em;">
                                           <div class="form-group">
-                                              <label for="subject" class="m-label">Subject</label>
-                                              <input type="text" class="form-control" id="subject">
+                                              <label for="subject" class="m-label">Recipient</label>
+                                              <!-- <input type="text" class="form-control" id="subject"> -->
+                                              <select class="form-control" id="recipient">
+                                                  <!-- <option value="0">--Select--</option> -->
+                                                  <option *ngFor="let admin of admins" [ngValue]="admin?.email">{{admin?.first_name}}</option>    
+                                              </select>
                                           </div>
                                           <button class="submit-button" type="button">
                                               Send Message

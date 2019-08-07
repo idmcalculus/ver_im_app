@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/shared/models/user';
+import { ChatService } from './chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatComponent implements OnInit {
 
-  constructor() { }
+  
+  admins:[User];
+  constructor(private chatService:ChatService) { }
 
   ngOnInit() {
+      this.chatService.getChatAdmins().subscribe(admins=>{
+        if(admins.success.Data){
+          this.admins = admins.success.Data;
+        }
+        
+      })
   }
+
+
+
 
 }

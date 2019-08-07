@@ -6,13 +6,15 @@ import { Transaction } from 'src/app/shared/models/Transaction';
 import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
-import { JSDocTagName } from '@angular/compiler/src/output/output_ast';
+import { ToastrService } from 'ngx-toastr';
+declare var xpressPay: any;
 
 @Component({
   selector: 'app-investment-detail',
   templateUrl: './investment-detail.component.html',
   styleUrls: ['./investment-detail.component.css']
 })
+
 export class InvestmentDetailComponent implements OnInit {
 
   isLoading:boolean=true;
@@ -23,15 +25,24 @@ export class InvestmentDetailComponent implements OnInit {
   numOfPoolsLeft:number=0;
   currentUserSubscription:Subscription;
   reportData:any;
+  
 
 
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private investmentService:InvestmentService,
-    private authService:AppAuthService
+    private authService:AppAuthService,
+    private acivatedRoute:ActivatedRoute,
+    private toastrService:ToastrService
     ) {
-      
+      this.activatedRoute.queryParams.subscribe(resp=>{
+        var authCode = resp.message;
+        if(authCode){
+          toastrService.show(authCode);
+        }
+      });
+
      }
 
   ngOnInit() {
@@ -82,7 +93,10 @@ export class InvestmentDetailComponent implements OnInit {
     this.transactionRef = randomString;
   }
 
-  
-  
+
+  xpressPay(email,amnt,firstName,lastName,mobile,tranRef){
+    this.isLoading = true;
+    xpressPay('owolabi.sunday08@gmail.com',2300,'owo','labi','08169141091','transactionRef');
+  }
 
 }
