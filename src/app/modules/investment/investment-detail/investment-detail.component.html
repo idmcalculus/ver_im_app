@@ -143,6 +143,15 @@
                         (close)="paymentCancel()"
                         (callback)="joinInvestment()"
                         >Paystack pay</button>
+
+                        <button
+
+                        onclick="xpressPay('owolabi.sunday08@gmail.com',2300,'owo','labi','08169141091','txn131313')"
+                        data-dismiss="modal"
+                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                        type="button"
+                        class="btn btn-join-add"
+                        >Xpress pay</button>
                     <!-- <button
                         data-dismiss="modal"
                         type="button"

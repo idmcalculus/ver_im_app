@@ -52,6 +52,9 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async
         src="https://www.googletagmanager.com/gtag/js?id=UA-139704996-1"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+<script src="https://xpresspayonlinepluginssandbox.xpresspayments.com/js/plugin.js"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -87,23 +90,61 @@
   }
 </script>
 <script>
-//   var newwindow;
-//   function popitup(url,windowName) {
-//     newwindow=window.open(url,windowName,'height=500,width=450');
-//     if (window.focus) {newwindow.focus()}
-//     newwindow.onbeforeunload = closeme;
-//     return false;
-//   }
 
+function xpressPay(email,amnt,firstName,lastName,mobile,tranRef) {
 
-// function closeme() {
-//   alert("child was closed")
-  
-//   // Run your code, the popup window is unloading
-//   // Beware though, this will also fire if the user navigates to a different
-//   // page within thepopup. If you need to support that, you will have to play around
-//   // with pop.closed and setTimeouts
-// }
+        var currentUrl = window.location.href
+        alert(currentUrl)
+        if (email === "") {
+            alert("email cannot be empty");
+            return;
+        }
+        const hashbody2 = {
+            "transactionId": tranRef,
+            "amount": amnt,
+            "currency": "NGN",
+            "country": "NG",
+            "email": email,
+            "phoneNumber": mobile,
+            "firstName": firstName,
+            "lastName": lastName,
+            "callbackUrl": currentUrl
+        };
+        let hashedPayload = '';
+        const keys = Object.keys(hashbody2).sort();
+        // tslint:disable-next-line:forin
+        for (const index in keys) {
+            let key = '';
+            key = keys[index];
+            hashedPayload += hashbody2[key];
+        }
+        //my key below
+        // const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X" + hashedPayload; // LIVE
+        const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X" + hashedPayload; // TEST
+        // console.log(hashString);
+        const hash = sha256.create();
+        // console.log(hash);
+        hash.update(hashString);
+        const finanlHash = hash.hex();
+        // console.log(finanlHash);
+        const body = {
+            // "publicKey": "XPPUBK-01445c39c4095df9b08f566a82586d7c-X", // LIVE
+            "publicKey": "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X", // TEST
+            "transactionId": tranRef,
+            "amount": amnt,
+            "currency": "NGN",
+            "country": "NG",
+            "email": email,
+            "phoneNumber": mobile,
+            "firstName": firstName,
+            "lastName": lastName,
+            "hash": finanlHash,
+            "logoURL": "https://api.elasticemail.com/userfile/5d028e25-bd86-4559-b7c2-31e5870bbbf9/accessnew.jpg",
+            "callbackUrl": currentUrl
+        };
+        console.log(body);
+        xpressPayonlineSetup(body);
+    }
 
 </script>
 </html>
