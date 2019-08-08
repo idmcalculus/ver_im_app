@@ -12,23 +12,23 @@ export class ChatService {
   }
 
 
-  fetchMessages(){
-
-
+  fetchChats(){
+    this.httpService.postRequest
+    return this.httpService.postRequest(`message/fetch_last_message`,{},false);
   }
 
-  sendMessage(){
-
-
+  sendMessage(recieverId,message){
+    this.httpService.postRequest
+    return this.httpService.postRequest(`message/send?receiver_id=${recieverId}&message_body=${message}`,{},false);
   }
 
-  fetchLastMessage(){
-
-
+  fetchMessages(senderId){
+    this.httpService.postRequest
+    return this.httpService.postRequest(`message/list_all_messages?sender_id=${senderId}`,{},false);
   }
 
   getChatAdmins(){
     this.httpService.postRequest
-    return this.httpService.postRequest(`message/list_admin`,{},true);
+    return this.httpService.postRequest(`message/list_admin`,{},false);
   }
 }

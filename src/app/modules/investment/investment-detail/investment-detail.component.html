@@ -145,7 +145,7 @@
                         >Paystack pay</button> -->
 
                         <button
-                        (click)="xpressPay(userinfo?.email,amountPerPool * 100 * transaction.number_of_pools,userinfo?.first_name,userinfo?.last_name,userinfo?.phone_number,transactionRef)"
+                        (click)="xpressPay(userinfo?.email,amountPerPool * transaction.number_of_pools,userinfo?.first_name,userinfo?.last_name,userinfo?.phone_number,transactionRef)"
                         data-dismiss="modal"
                         [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                         type="button"

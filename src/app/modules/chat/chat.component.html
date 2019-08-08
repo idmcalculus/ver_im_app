@@ -12,7 +12,7 @@
                                      <h4>Messages</h4>
 
                                       <div class="message-body">
-                                          <div class="row single">
+                                          <div href="#" (click)="setActiveRecipient(chat)" *ngFor="let chat of chats" class="row single">
                                               <div class="col-md-2 pl-0">
                                                   <div class="avatar-holder">
                                                       <img src="../assets/images/avatar-3.jpg" alt="">
@@ -20,89 +20,14 @@
                                               </div>
                                               <div class="col-md-7">
                                                   <div class="m-body">
-                                                      <h3>Lorem Ipsum</h3>
-                                                      <p>They way is long and narrow</p>
+                                                      <h3 *ngIf="loggedInUser?.email != chat.receiver_id">{{chat.receiver_id}}</h3>
+                                                      <h3 *ngIf="loggedInUser?.email != chat.sender_id">{{chat.sender_id}}</h3>
+                                                      <p>{{chat.message_body}}</p>
                                                   </div>
                                               </div>
                                               <div class="col-md-3 pr-0">
                                                   <div class="m-date">
-                                                      <div style="color: #BEBEBE; font-size: 12px">02 Mar</div>
-                                                      <div><span class="badge badge-danger">3</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row single">
-                                              <div class="col-md-2 pl-0">
-                                                  <div class="avatar-holder">
-                                                      <img src="../assets/images/avatar-3.jpg" alt="">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-7">
-                                                  <div class="m-body">
-                                                      <h3>Lorem Ipsum</h3>
-                                                      <p>They way is long and narrow</p>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-3 pr-0">
-                                                  <div class="m-date">
-                                                      <div style="color: #BEBEBE; font-size: 12px">02 Mar</div>
-                                                      <div><span class="badge badge-danger">3</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row single">
-                                              <div class="col-md-2 pl-0">
-                                                  <div class="avatar-holder">
-                                                      <img src="../assets/images/avatar-3.jpg" alt="">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-7">
-                                                  <div class="m-body">
-                                                      <h3>Lorem Ipsum</h3>
-                                                      <p>They way is long and narrow</p>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-3 pr-0">
-                                                  <div class="m-date">
-                                                      <div style="color: #BEBEBE; font-size: 12px">02 Mar</div>
-                                                      <div><span class="badge badge-danger">3</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row single">
-                                              <div class="col-md-2 pl-0">
-                                                  <div class="avatar-holder">
-                                                      <img src="../assets/images/avatar-3.jpg" alt="">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-7">
-                                                  <div class="m-body">
-                                                      <h3>Lorem Ipsum</h3>
-                                                      <p>They way is long and narrow</p>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-3 pr-0">
-                                                  <div class="m-date">
-                                                      <div style="color: #BEBEBE; font-size: 12px">02 Mar</div>
-                                                      <div><span class="badge badge-danger">3</span></div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="row single">
-                                              <div class="col-md-2 pl-0">
-                                                  <div class="avatar-holder">
-                                                      <img src="../assets/images/avatar-3.jpg" alt="">
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-7">
-                                                  <div class="m-body">
-                                                      <h3>Lorem Ipsum</h3>
-                                                      <p>They way is long and narrow</p>
-                                                  </div>
-                                              </div>
-                                              <div class="col-md-3 pr-0">
-                                                  <div class="m-date">
-                                                      <div style="color: #BEBEBE; font-size: 12px">02 Mar</div>
+                                                      <div style="color: #BEBEBE; font-size: 12px">{{chat.updated_at | date:'H:m MMM d'}}</div>
                                                       <div><span class="badge badge-danger">3</span></div>
                                                   </div>
                                               </div>
@@ -123,8 +48,9 @@
                                           <div class="form-group">
                                               <label for="subject" class="m-label">Recipient</label>
                                               <!-- <input type="text" class="form-control" id="subject"> -->
-                                              <select class="form-control" id="recipient">
-                                                  <!-- <option value="0">--Select--</option> -->
+                                              <select  class="form-control" id="recipient">
+                                                 
+                                                  <option value="null">--Select--</option>    
                                                   <option *ngFor="let admin of admins" [ngValue]="admin?.email">{{admin?.first_name}}</option>    
                                               </select>
                                           </div>
