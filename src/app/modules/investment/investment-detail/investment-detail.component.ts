@@ -36,18 +36,14 @@ export class InvestmentDetailComponent implements OnInit {
     private acivatedRoute:ActivatedRoute,
     private toastrService:ToastrService
     ) {
-      this.activatedRoute.queryParams.subscribe(resp=>{
-        var authCode = resp.message;
-        if(authCode){
-          toastrService.show(authCode);
-        }
-      });
+      
 
      }
 
   ngOnInit() {
     var investmentId = this.activatedRoute.snapshot.params['id'];
     this.getInvestment(investmentId);
+    
   }
 
   getInvestment(id:string){
@@ -59,6 +55,25 @@ export class InvestmentDetailComponent implements OnInit {
         this.amountPerPool = this.investment.investment_amount;
         var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0,4)}` 
         this.transactionRef = randomString;
+        
+        this.activatedRoute.queryParams.subscribe(resp=>{
+          var statusCode = resp["status-code"];
+          var message = resp["status-message"];
+          if(statusCode=="08" || statusCode=="00"){
+            var qty = localStorage.getItem(resp['transaction-id']);
+            if(qty){
+              this.investment.id = Number(id);
+              this.transaction.number_of_pools = Number(qty);
+              this.investment.reference  = resp['transaction-id']
+              localStorage.removeItem(resp['transaction-id']);
+              this.isLoading = true;
+              this.joinInvestment();
+              
+            }        
+          }else if(message){
+            console.log(message);
+          }
+        });
       }
       this.isLoading = false;
     })
@@ -77,7 +92,8 @@ export class InvestmentDetailComponent implements OnInit {
     this.transaction.payment_reference=this.investment.reference;
     this.investmentService.joinInvestment(this.transaction).subscribe(resp=>{
       if(resp && resp.success){
-        alert(resp.success.Message)
+        // alert(resp.success.Message)
+        this.toastrService.success(resp.success.Message);
         window.location.href="investments";
       }
       this.isLoading = false;
@@ -96,7 +112,8 @@ export class InvestmentDetailComponent implements OnInit {
 
   xpressPay(email,amnt,firstName,lastName,mobile,tranRef){
     this.isLoading = true;
-    xpressPay('owolabi.sunday08@gmail.com',2300,'owo','labi','08169141091','transactionRef');
+    localStorage.setItem(tranRef,String(this.transaction.number_of_pools));
+    xpressPay(email,amnt,firstName,lastName,mobile,tranRef);
   }
 
 }
