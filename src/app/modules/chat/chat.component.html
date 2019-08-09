@@ -53,7 +53,7 @@
                                               </select>
                                           </div>
 
-                                          <div class="row page-body list-vacancy mt-10">
+                                          <div class="row page-body list-vacancy mt-10" style="overflow-y: scroll; height:180px; overflow-x: hidden;">
                                                 <div *ngFor="let msg of messages" [ngClass]="(msg.receiver_id==selectedRecipient)?'recieved_msg_body':'sent_msg_body'">
                                                     <div [ngClass]="(msg.receiver_id==selectedRecipient)?'recieved_msg':'sent_msg'" >
                                                         <div class="">
