@@ -20,6 +20,8 @@ export class ChatComponent implements OnInit {
   activeRecipient:User;
   loggedInUser:User;
   currentUserSubscription:Subscription;
+  selectedRecipient:any;
+  message:string='';
   constructor(
     private chatService:ChatService,
     private authService:AppAuthService) { 
@@ -27,16 +29,29 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('  i gat :: '+JSON.stringify(this.activeRecipient))
       this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
           this.loggedInUser = user;
       });
       this.fetchChats();
       this.fetchAdmins();
+
   }
 
 
   sendMessage(){
-
+    console.log('sending ',this.message)
+    if(this.message){
+      this.chatService.sendMessage(this.selectedRecipient,this.message).subscribe(resp=>{
+        
+        if(resp.success){
+          console.log(JSON.stringify(resp.success))
+          this.messages.push({message_body:this.message,sender_id:this.loggedInUser.email,receiver_id:this.selectedRecipient,created_at:new Date()});
+          this.chats[0].message_body = this.message;
+          this.message = '';
+        }
+      })
+    }    
   }
 
   fetchChats(){
@@ -60,24 +75,31 @@ export class ChatComponent implements OnInit {
   fetchChatMessages(recipientId:string){
     this.chatService.fetchMessages(recipientId).subscribe(messages=>{
       
-      console.log("i gat it :: "+JSON.stringify(messages))
-      // if(messages.success.Data){
-      //   this.messages = messages.success.Data;
-      // }
+      
+      if(messages.success.Data){
+        this.messages = messages.success.Data;
+      }
       
     })
   }
 
   setActiveRecipient(chat){
+    this.messages = null;
     var recipientEmail = this.loggedInUser.email==chat.sender_id?chat.receiver_id:chat.sender_id;
     this.admins.forEach(element => {
       if(element.email==recipientEmail){
         this.activeRecipient = element;
+        this.selectedRecipient = element.email
         this.fetchChatMessages(this.activeRecipient.email);
         return;
       }
     });
     
+  }
+
+  filterInvestments(){
+    this.messages = null;
+    this.fetchChatMessages(this.selectedRecipient);
   }
 
 
