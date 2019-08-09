@@ -40,7 +40,6 @@ export class ChatComponent implements OnInit {
 
 
   sendMessage(){
-    console.log('sending ',this.message)
     if(this.message){
       this.chatService.sendMessage(this.selectedRecipient,this.message).subscribe(resp=>{
         
