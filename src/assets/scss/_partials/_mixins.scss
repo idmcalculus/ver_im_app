@@ -8,7 +8,8 @@
 
 @mixin landingGradient() {
    //background-image: linear-gradient(156deg, $theme-blue, #5060B5);
-  background: url("../../../assets/images/banner2.png") no-repeat center;
+  //background: url("../../../assets/images/banner2.png") no-repeat center;
+  background: $theme-white;
   //background-size: cover;
   width: 100%;
 }
@@ -126,14 +127,13 @@ $slide: (
     letter-spacing: 1px;
   }
   .btn-investment {
-    border-radius: 5px !important;
-    padding: .61em 1.4em;
+    border-radius: 50px !important;
+    padding: .61em 1em;
     background: $theme-blue;
     color: $theme-white;
     font-size: 23px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-transform: uppercase;
   }
   .btn-work-green {
     @extend .btn-investment;
