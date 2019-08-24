@@ -26,15 +26,16 @@ a {
     text-decoration: none;
 }
 
-.wow {
-    visibility: hidden;
-}
 
 html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     @include Nunito-Sans();
+}
+
+.wow {
+    visibility: hidden;
 }
 
 .m-0-30 {
@@ -77,12 +78,14 @@ section {
 
     .inner-landing {
         padding: 7rem 3.5rem;
+
         h2 {
             font-size: 3.7rem;
             color: $theme-blue;
             font-weight: bold;
             line-height: 1.25;
         }
+
         span {
             color: $textColor;
         }
@@ -108,11 +111,17 @@ section {
         height: 100%;
         background: url("../../assets/images/home-image.png") no-repeat center;
         background-size: contain;
+
         &:hover {
             transform: translateY(-5px);
             @include transition(ease, 0.5s);
         }
     }
+}
+
+.section-container {
+    padding: 10px 20px;
+    background: rgba(5, 3, 51, .3);
 }
 
 .title-head {
@@ -128,56 +137,60 @@ section {
 }
 
 .versa-plan {
-    background: #f8f8f8;
+    background: $theme-white url("../../assets/images/partner-row1-2.png") no-repeat right top;
     height: auto;
     padding-bottom: 1rem;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 
     .inner-plan {
-        padding: 4rem 0 0 4rem;
+        padding: 2rem 3rem;
 
         h4 {
             font-size: 2em;
-            font-weight: bold;
-            color: $theme-black;
+            font-weight: 500;
+            color: $theme-blue;
             margin-bottom: 1em;
             position: relative;
-
-            &:after {
-                position: absolute;
-                content: "";
-                bottom: -3px;
-                border-bottom: 3px solid rgba(0, 0, 0, .7);
-                width: 15%;
-                height: 1px;
-                left: 0;
-            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .leftDisplay {
             h3 {
-                font-size: 1.5rem;
+                font-size: 1rem;
                 line-height: 35px;
-                font-weight: bold;
-                color: #444;
+                color: $textColor;
+                font-weight: lighter;
+                text-align: center;
+            }
+        }
+
+        ._3_steps {
+            text-align: center;
+
+            .card {
+                box-shadow: none !important;
+                &:hover {
+                    /*&:nth-child(2) {
+
+                    }*/
+                    @include transition(ease, 0.26s);
+                    transform: translateY(-5px);
+                    box-shadow: 0 0 5px 0 rgba(43, 43, 43, .1), 0 11px 6px -7px rgba(43, 43, 43, .1) !important;
+                }
             }
 
-            .list-plan {
-                margin-top: 5rem;
+            .card-title {
+                color: $theme-blue;
+                font-size: 1rem;
+            }
 
-                h5 {
-                    font-weight: bold;
-                    font-size: 1.2rem;
-                }
-
-                .media-body {
-                    font-size: 1.17rem;
-                    color: #555;
-                    font-weight: lighter;
-                }
-
-                span {
-                    color: $theme-blue;
-                }
+            .card-img-top {
+                width: 90px;
+                display: flex;
+                margin: 15px auto;
             }
         }
     }
@@ -200,6 +213,40 @@ section {
     }
 }
 
+.step-investment {
+    background: $theme-blue;
+    padding: 3rem 4rem;
+    .step-image {
+        img {
+            width: 100%;
+            object-position: center;
+            object-fit: contain;
+        }
+    }
+    .list-plan {
+        color: $theme-white;
+        h3 {
+            color: $theme-white;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+        margin-top: 5rem;
+        h5 {
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        .media-body {
+            font-size: .9rem;
+            font-weight: lighter;
+        }
+
+        span {
+            color: $theme-blue;
+        }
+    }
+}
 .ourServices {
     background: $theme-white;
     height: 100%;
@@ -293,20 +340,21 @@ section {
 }
 
 .superbOffers {
-    //background: $theme-blue;
-    background: #d6dbf7;
+    background: url("../../assets/images/investment-strategy.svg") no-repeat center;
+    background-size: contain;
     height: auto;
 
     h3 {
-        //color: $theme-black;
         margin: 2rem 0;
         font-weight: bold;
-        color: #222c31;
+        color: $theme-blue;
+        padding: 0;
+        text-align: center;
     }
 
     .inner-superb {
         @extend .m-0-30;
-        padding: 5rem 30px;
+        //padding: 5rem 30px;
 
         .superb-container-home {
             height: auto;
