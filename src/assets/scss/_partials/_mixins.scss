@@ -1,371 +1,385 @@
 @mixin transition($type, $speed) {
-  -webkit-transition: $type all $speed;
-  -moz-transition: $type all $speed;
-  -ms-transition: $type all $speed;
-  -o-transition: $type all $speed;
-  transition: $type all $speed;
+    -webkit-transition: $type all $speed;
+    -moz-transition: $type all $speed;
+    -ms-transition: $type all $speed;
+    -o-transition: $type all $speed;
+    transition: $type all $speed;
 }
 
 @mixin landingGradient() {
-   //background-image: linear-gradient(156deg, $theme-blue, #5060B5);
-  //background: url("../../../assets/images/banner2.png") no-repeat center;
-  background: $theme-white;
-  //background-size: cover;
-  width: 100%;
+    //background-image: linear-gradient(156deg, $theme-blue, #5060B5);
+    //background: url("../../../assets/images/banner2.png") no-repeat center;
+    background: $theme-white;
+    //background-size: cover;
+    width: 100%;
 }
 
 @mixin borderLine($thickness, $color) {
-  border: $thickness solid $color;
+    border: $thickness solid $color;
 }
 
 @mixin boxShadow($a, $b, $blur, $color) {
-  -webkit-box-shadow: $a $b $blur $color;
-  -moz-box-shadow: $a $b $blur $color;
-  -o-box-shadow: $a $b $blur $color;
-  box-shadow: $a $b $blur $color;
+    -webkit-box-shadow: $a $b $blur $color;
+    -moz-box-shadow: $a $b $blur $color;
+    -o-box-shadow: $a $b $blur $color;
+    box-shadow: $a $b $blur $color;
 }
 
 @mixin boxFullShadow($s, $d, $blur, $spread, $color) {
-  -webkit-box-shadow: $s $d $blur $spread $color;
-  -moz-box-shadow: $s $d $blur $spread $color;
-  -o-box-shadow: $s $d $blur $spread $color;
-  box-shadow: $s $d $blur $spread $color;
+    -webkit-box-shadow: $s $d $blur $spread $color;
+    -moz-box-shadow: $s $d $blur $spread $color;
+    -o-box-shadow: $s $d $blur $spread $color;
+    box-shadow: $s $d $blur $spread $color;
 }
 
 @mixin noBoxShadow($val) {
-  -webkit-box-shadow: $val;
-  -moz-box-shadow: $val;
-  -o-box-shadow: $val;
-  box-shadow: $val;
+    -webkit-box-shadow: $val;
+    -moz-box-shadow: $val;
+    -o-box-shadow: $val;
+    box-shadow: $val;
 }
 
 @mixin animationSlide($name, $delay) {
-  -webkit-animation: $name $delay;
-  -o-animation: $name $delay;
-  animation: $name $delay;
+    -webkit-animation: $name $delay;
+    -o-animation: $name $delay;
+    animation: $name $delay;
 }
 
 @mixin clientSlide() {
-  //@for $i
+    //@for $i
 }
 
 @mixin perspective($val) {
-  -webkit-perspective: $val;
-  -moz-perspective: $val;
-  -o-perspective: $val;
-  perspective: $val;
+    -webkit-perspective: $val;
+    -moz-perspective: $val;
+    -o-perspective: $val;
+    perspective: $val;
 }
 
 @mixin transformStyle() {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -o-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
 
 @mixin transformX() {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 @mixin backface() {
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 @mixin transformNew() {
-  -webkit-transition: -webkit-transform 0.4s;
-  -moz-transition: -moz-transform 0.4s;
-  -o-transition: -o-transform 0.4s;
-  transition: transform 0.4s;
+    -webkit-transition: -webkit-transform 0.4s;
+    -moz-transition: -moz-transform 0.4s;
+    -o-transition: -o-transform 0.4s;
+    transition: transform 0.4s;
 }
 
 //Define the images as variable
 $slide: (
-        url('../../../../public/img/img13.jpg'),
-        url('../../../../public/img/img04.gif'),
-        url('../../../../public/img/img05.jpg'),
-        url('../../../../public/img/img06.jpg'),
-        url('../../../../public/img/buyerafrica.jpeg')
+    url('../../../../public/img/img13.jpg'),
+    url('../../../../public/img/img04.gif'),
+    url('../../../../public/img/img05.jpg'),
+    url('../../../../public/img/img06.jpg'),
+    url('../../../../public/img/buyerafrica.jpeg')
 );
 
 @mixin addImagesToSlide($divName, $image) {
-  @for $i from 1 through length($image) {
-    .#{$divName}#{$i} {
-      background: nth($image, $i) no-repeat center;
+    @for $i from 1 through length($image) {
+        .#{$divName}#{$i} {
+            background: nth($image, $i) no-repeat center;
+        }
     }
-  }
 }
 
 @mixin roundButtons {
-  .btn {
-    border-radius: 50px;
-    outline: 0;
-    border: none;
-    @include boxShadow(0, 2px, 3px, $shadowBlack);
-    //transition-property: bottom, box-shadow;
-    &:hover {
-      //@include noBoxShadow(none);
-      transform: translateY(-5%);
-      box-shadow: 0 5px 14px $shadowBlack;
-      @include transition(ease, 0.7s);
+    .btn {
+        border-radius: 50px;
+        outline: 0;
+        border: none;
+        @include boxShadow(0, 2px, 3px, $shadowBlack);
+        //transition-property: bottom, box-shadow;
+        &:hover {
+            //@include noBoxShadow(none);
+            transform: translateY(-5%);
+            box-shadow: 0 5px 14px $shadowBlack;
+            @include transition(ease, 0.7s);
+        }
     }
-  }
-  .btn-invest {
-    border-radius: 0 !important;
-    padding: .51em 2.3em;
-    width: 40%;
-    background: transparent;
-    color: $theme-white;
-    @include borderLine(2px, $theme-white);
-    font-size: 23px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .btn-investment {
-    border-radius: 50px !important;
-    padding: .41em 1em;
-    background: $theme-blue;
-    color: $theme-white;
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
-  .btn-work-green {
-    @extend .btn-investment;
-    background: rgb(38, 232, 173);
-    color: $theme-white;
-  }
-  .btn-superb {
-    padding: .61em 2em;
-    background: $theme-white;
-    color: $theme-blue;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
-  }
+    .btn-invest {
+        padding: .61em 2.3em;
+        width: 30%;
+        height: 45px;
+        background: $theme-blue;
+        color: $theme-white;
+        //@include borderLine(2px, $theme-white);
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+    }
+    .btn-invest2 {
+        padding: .61em 1em !important;
+        height: 45px;
+        background: #4f5fbe;
+        color: #fff !important;
+        font-size: 1rem !important;
+        font-weight: lighter !important;
+    }
+    .btn-investment {
+        border-radius: 50px !important;
+        padding: .41em 1em;
+        background: $theme-blue;
+        color: $theme-white;
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    .btn-work-green {
+        @extend .btn-investment;
+        background: rgb(38, 232, 173);
+        color: $theme-white;
+    }
+    .btn-superb {
+        padding: .61em 2em;
+        background: $theme-white;
+        color: $theme-blue;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
 
-  .btn-sub-f {
-    background: $theme-black;
-    color: $theme-white;
-  }
+    .btn-sub-f {
+        background: $theme-black;
+        color: $theme-white;
+    }
 }
 
 @mixin fullButtons() {
-  .btn2 {
-    padding: .9em 1em;
-    width: 100%;
-    display: block;
-    outline: none;
-    border-radius: 3px;
-    margin-right: 20px;
-    font-weight: 200;
-    border: none;
-  }
-  .btn-login {
-    color: $theme-white;
-    background: $theme-blue;
-    &:hover {
-      @include transition(ease, 0.5s);
+    .btn2 {
+        padding: .9em 1em;
+        width: 100%;
+        display: block;
+        outline: none;
+        border-radius: 3px;
+        margin-right: 20px;
+        font-weight: 200;
+        border: none;
     }
-  }
-  .btn-update-profile {
-    background: rgb(100,200,140);
-    color: #fff;
-    width: 100%;
-    font-size: 1.5em;
-    letter-spacing: 1px;
-  }
-  .btn-join {
-    background: rgb(100,200,140);
-    color: #fff;
-    width: 60%;
-    text-align: center;
-    padding: .5em 1em;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-top: 20px;
-    &:hover {
-      text-decoration: none;
-      background: rgb(81,170,82);
+    .btn-login {
+        color: $theme-white;
+        background: $theme-blue;
+
+        &:hover {
+            @include transition(ease, 0.5s);
+        }
     }
-  }
-  .add-invest {
-    font-size: 1.5rem;
-    background: rgb(100,200,140);
-    color: #fff;
-    padding: .6em 1em;
-    letter-spacing: 2px;
-    font-weight: bold;
-  }
+    .btn-update-profile {
+        background: rgb(100, 200, 140);
+        color: #fff;
+        width: 100%;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+    }
+    .btn-join {
+        background: rgb(100, 200, 140);
+        color: #fff;
+        width: 60%;
+        text-align: center;
+        padding: .5em 1em;
+        font-weight: 500;
+        letter-spacing: 2px;
+        margin-top: 20px;
+
+        &:hover {
+            text-decoration: none;
+            background: rgb(81, 170, 82);
+        }
+    }
+    .add-invest {
+        font-size: 1.5rem;
+        background: rgb(100, 200, 140);
+        color: #fff;
+        padding: .6em 1em;
+        letter-spacing: 2px;
+        font-weight: bold;
+    }
 }
 
 @mixin socialButtons() {
-  .input-group-text {
-    font-size: 17px;
-  }
-  .btn2 {
-    padding: .5em 1em;
-    display: block;
-    border-width: 0;
-    outline: none;
-    border-radius: 2px;
-    margin-right: 20px;
-    font-size: 17px;
-  }
-  .btn-yahoo {
-    color: $theme-white;
-    font-weight: lighter;
-    letter-spacing: 1px;
-  }
-  .btn-google {
-    color: $theme-white;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    @include borderLine(1px, rgba($theme-black, .2));
-  }
-  .btn-linkedin {
-    background: $linkedln;
-    font-weight: lighter;
-    letter-spacing: 1px;
-    color: $theme-white !important;
-  }
-  &:hover {
-    .btn-yahoo, .btn-linkedin, .btn-google {
-      color: $theme-white !important;
+    .input-group-text {
+        font-size: 17px;
     }
-  }
+    .btn2 {
+        padding: .5em 1em;
+        display: block;
+        border-width: 0;
+        outline: none;
+        border-radius: 2px;
+        margin-right: 20px;
+        font-size: 17px;
+    }
+    .btn-yahoo {
+        color: $theme-white;
+        font-weight: lighter;
+        letter-spacing: 1px;
+    }
+    .btn-google {
+        color: $theme-white;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        @include borderLine(1px, rgba($theme-black, .2));
+    }
+    .btn-linkedin {
+        background: $linkedln;
+        font-weight: lighter;
+        letter-spacing: 1px;
+        color: $theme-white !important;
+    }
+    &:hover {
+        .btn-yahoo, .btn-linkedin, .btn-google {
+            color: $theme-white !important;
+        }
+    }
 }
 
 @mixin hashTags() {
-  ul {
-    overflow: hidden;
-    list-style: none;
-  }
-  li a {
-    float: left;
-    background: linear-gradient(230deg, #999, #111);
-    padding: .5em .91em;
-    margin: 0 10px 10px 0;
-    font-size: 14px;
-    color: $theme-white;
-    border-radius: 4px;
-    &:nth-child(even) {
-      background: linear-gradient(30deg, #111, #999);
+    ul {
+        overflow: hidden;
+        list-style: none;
     }
-    &:hover {
-      background: lighten($theme-black, 5%);
-      @include transition(ease, 0.5s);
+    li a {
+        float: left;
+        background: linear-gradient(230deg, #999, #111);
+        padding: .5em .91em;
+        margin: 0 10px 10px 0;
+        font-size: 14px;
+        color: $theme-white;
+        border-radius: 4px;
+
+        &:nth-child(even) {
+            background: linear-gradient(30deg, #111, #999);
+        }
+
+        &:hover {
+            background: lighten($theme-black, 5%);
+            @include transition(ease, 0.5s);
+        }
     }
-  }
 }
 
 @mixin hashTagSide() {
-  ul {
-    overflow: hidden;
-    list-style: none;
-    padding-left: 10px;
-  }
-  li a {
-    float: left;
-    background: $theme-white;
-    @include boxShadow($shadowBlack, 2px, 1px, 3px);
-    padding: .4em .81em;
-    margin: 0 10px 10px 0;
-    font-size: 14px;
-    border-radius: 4px;
-    &:nth-child(even) {
-      background: linear-gradient(30deg, #111, #999);
+    ul {
+        overflow: hidden;
+        list-style: none;
+        padding-left: 10px;
     }
-    &:hover {
-      @include noBoxShadow(none);
-      background: none;
-      @include borderLine(1px, rgba($theme-black, .4));
-      @include transition(ease, 0.5s);
+    li a {
+        float: left;
+        background: $theme-white;
+        @include boxShadow($shadowBlack, 2px, 1px, 3px);
+        padding: .4em .81em;
+        margin: 0 10px 10px 0;
+        font-size: 14px;
+        border-radius: 4px;
+
+        &:nth-child(even) {
+            background: linear-gradient(30deg, #111, #999);
+        }
+
+        &:hover {
+            @include noBoxShadow(none);
+            background: none;
+            @include borderLine(1px, rgba($theme-black, .4));
+            @include transition(ease, 0.5s);
+        }
     }
-  }
 }
 
 @mixin indicator($color, $anim, $delay, $duration) {
-  background: $color;
-  background-image: radial-gradient($color, transparent);
-  width:20px;
-  height: 20px;
-  border-radius: 50%;
-  animation: $delay $anim $duration;
-  border: dotted 1px $color;
-  box-shadow: 0 0 20px $theme-black inset, 0 0 10px $color;
+    background: $color;
+    background-image: radial-gradient($color, transparent);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    animation: $delay $anim $duration;
+    border: dotted 1px $color;
+    box-shadow: 0 0 20px $theme-black inset, 0 0 10px $color;
 }
 
 @keyframes stop {
-  0% {
-    opacity: 1
-  }
-  20% {
-    opacity: 1
-  }
-  40% {
-    opacity: 1
-  }
-  60% {
-    opacity: .1
-  }
-  80% {
-    opacity: .1
-  }
-  100% {
-    opacity: .1
-  }
+    0% {
+        opacity: 1
+    }
+    20% {
+        opacity: 1
+    }
+    40% {
+        opacity: 1
+    }
+    60% {
+        opacity: .1
+    }
+    80% {
+        opacity: .1
+    }
+    100% {
+        opacity: .1
+    }
 }
 
 @keyframes ready {
-  0% {
-    opacity: .1
-  }
-  20% {
-    opacity: .1
-  }
-  40% {
-    opacity: 1
-  }
-  50% {
-    opacity: .1
-  }
-  60% {
-    opacity: .1
-  }
-  80% {
-    opacity: .1
-  }
-  86% {
-    opacity: 1
-  }
-  100% {
-    opacity: 1
-  }
+    0% {
+        opacity: .1
+    }
+    20% {
+        opacity: .1
+    }
+    40% {
+        opacity: 1
+    }
+    50% {
+        opacity: .1
+    }
+    60% {
+        opacity: .1
+    }
+    80% {
+        opacity: .1
+    }
+    86% {
+        opacity: 1
+    }
+    100% {
+        opacity: 1
+    }
 }
 
 @keyframes go {
-  0% {
-    opacity: .1
-  }
-  40% {
-    opacity: .1
-  }
-  60% {
-    opacity: 1
-  }
-  80% {
-    opacity: 1
-  }
-  83% {
-    opacity: .1
-  }
-  100% {
-    opacity: .1
-  }
+    0% {
+        opacity: .1
+    }
+    40% {
+        opacity: .1
+    }
+    60% {
+        opacity: 1
+    }
+    80% {
+        opacity: 1
+    }
+    83% {
+        opacity: .1
+    }
+    100% {
+        opacity: .1
+    }
 }

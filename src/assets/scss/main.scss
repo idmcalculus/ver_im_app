@@ -120,7 +120,7 @@ section {
 }
 
 .section-container {
-    padding: 10px 20px;
+    padding: 10px 20px 0;
     background: rgba(5, 3, 51, .3);
 }
 
@@ -341,21 +341,19 @@ section {
 
 .superbOffers {
     background: url("../../assets/images/investment-strategy.svg") no-repeat center;
-    background-size: contain;
-    height: auto;
+    background-size: cover;
 
     h3 {
-        margin: 2rem 0;
+        padding: 1rem 0;
         font-weight: bold;
         color: $theme-blue;
-        padding: 0;
+        font-size: 2.1rem;
         text-align: center;
     }
 
     .inner-superb {
         @extend .m-0-30;
         //padding: 5rem 30px;
-
         .superb-container-home {
             height: auto;
             border-radius: 9px;
@@ -363,22 +361,30 @@ section {
             margin: 1em;
 
             .img-holder {
-                height: 200px;
+                height: 230px;
                 width: 100%;
-                overflow: hidden;
-                background: $offwhite;
+                /* background: #f7f7f7; */
                 margin: auto;
-                border-radius: inherit;
+                padding: 16px;
+                img {
+                    object-fit: cover;
+                    width: inherit;
+                    height: 100%;
+                    margin-top: -3em;
+                    border-radius: 10px;
+                    @include boxShadow(0px, 5px, 12px, rgba($theme-blue, .3));
+                }
             }
 
             .content-holder {
-                padding: 15px;
+                padding: 0 15px;
                 text-align: left !important;
+                margin-top: -40px;
 
                 h2, a {
-                    color: #444;
+                    color: $theme-blue;
                     font-weight: bold;
-                    font-size: 1.4rem;
+                    font-size: 1.2rem;
                     text-decoration: none;
 
                     &:hover {
@@ -406,17 +412,6 @@ section {
                     color: #555;
                     font-weight: lighter;
                     position: relative;
-
-                    &:after {
-                        content: '';
-                        border-bottom: 1px solid $theme-black;
-                        width: 55%;
-                        position: absolute;
-                        margin: auto;
-                        left: 0;
-                        bottom: 0;
-                        height: 1px;
-                    }
                 }
 
                 p {
@@ -488,26 +483,12 @@ section {
 }
 
 .workingSection {
-    //background: $theme-white;
-    background: #3E4360;
+    background: $theme-white;
     height: auto;
     position: relative;
-
-    .back-plate {
-        width: 500px;
-        height: 500px;
-        position: absolute;
-        background: #A5ACD3;
-        opacity: .4;
-        bottom: 0;
-        top: 22%;
-        border-bottom-right-radius: 10px;
-    }
-
     .inner-workingSection {
-        //@extend .m-0-30;
         margin: 0 5px;
-        padding: 6em 50px;
+        padding: 2em 50px 0;
 
         .working-content {
             padding: 4rem 2em;
@@ -515,13 +496,13 @@ section {
             h3 {
                 font-size: 2.93rem;
                 font-weight: bold;
-                color: $theme-white;
+                color: #1D1D20;
             }
 
-            p {
-                color: #fff;
+            article {
+                color: #1D1D20;
                 line-height: 1.7;
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 font-weight: lighter;
                 padding: 2rem 0 0 0;
             }
@@ -534,130 +515,10 @@ section {
 
         .circle-section {
             width: 350px;
-            height: 350px;
-            //border-radius: 50%;
-            //background: rgba($theme-blue, .5);
+            animation: bounce 5s linear 10s infinite !important;
         }
     }
-
-}
-
-.testimonials {
-    background: #f7f8fb;
-    //background: url("../images/");
-    height: auto;
-
-    h4 {
-        color: #333333;
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        padding: 2em 0 10px;
-        letter-spacing: .41px;
+    .hidingImage {
+        background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 500%;
     }
-
-    h5 {
-        font-size: .9rem;
-        text-align: center;
-        font-weight: lighter;
-    }
-
-    .inner-testimonial {
-        @extend .m-0-30;
-        @include borderLine(1px, rgba($theme-white, .2));
-        padding: 4em 0;
-
-        .superb-container-story {
-            height: auto;
-            border-radius: 9px;
-            background: $theme-white;
-            //border: 1px solid;
-            margin: 2em;
-
-            .img-holder {
-                height: 200px;
-                width: 100%;
-                overflow: hidden;
-                background: $offwhite;
-                margin: auto;
-                border-radius: inherit;
-            }
-
-            .content-holder {
-                //padding: 15px;
-                text-align: left !important;
-                background: $theme-white url("../images/Card.svg") no-repeat top center;
-                background-size: cover;
-
-                h2, a {
-                    color: #444;
-                    font-weight: bold;
-                    font-size: 1.4rem;
-                    text-decoration: none;
-
-                    &:hover {
-                        text-decoration: none;
-                    }
-                }
-
-                h3 a {
-                    color: $theme-blue;
-                    font-weight: 700;
-                    font-size: 1rem;
-                    padding: 3px 0 10px;
-                    position: relative;
-
-                    &:hover {
-                        img {
-                            @include transition(ease, 0.5s);
-                            transform: translateX(10%);
-                        }
-                    }
-                }
-
-                .span-profit {
-                    padding: 12px 0;
-                    color: #555;
-                    font-weight: lighter;
-                    position: relative;
-
-                    &:after {
-                        content: '';
-                        border-bottom: 1px solid $theme-black;
-                        width: 55%;
-                        position: absolute;
-                        margin: auto;
-                        left: 0;
-                        bottom: 0;
-                        height: 1px;
-                    }
-                }
-
-                p {
-                    margin-top: .51rem;
-                    font-style: italic;
-                    color: #888;
-                }
-            }
-
-            &.effect {
-                box-shadow: 5px 14px $shadowBlack;
-                height: 500px;
-            }
-
-            &:hover {
-                box-shadow: 0 5px 14px $shadowBlack;
-                @include transition(ease, 0.7s);
-            }
-        }
-    }
-
-    .signup-customer {
-        @extend .m-0-30;
-    }
-}
-
-.swiper-container {
-    width: 100%;
-    height: 100%;
 }

@@ -179,11 +179,29 @@
 
     .landing {
         .inner-landing {
-            padding: 9em 25px !important;
+            padding: 7em 25px !important;
 
             h2 {
                 font-size: 2em !important;
             }
+            .lower-content {
+                padding: 0 !important;
+            }
+        }
+    }
+
+    .versa-plan {
+        .inner-plan {
+            h3 {
+                font-weight: 400 !important;
+            }
+        }
+    }
+    .step-investment {
+        padding: 0 1rem !important;
+        .step-image {
+            margin-top: 40px;
+            animation: fadeInLeft 1.2s ease;
         }
     }
 
@@ -207,6 +225,9 @@
     }
 
     .superbOffers {
+        .mpt-4 {
+            margin-top: 3em !important;
+        }
         .inner-superb {
             padding: 1rem 30px !important;
 
@@ -252,12 +273,13 @@
                 margin: auto;
                 width: 100% !important;
                 height: unset !important;
-                position: absolute;
-
                 p {
                     padding: 2rem 0 0 0 !important;
                     font-size: 20px !important;
                     line-height: 30px !important;
+                }
+                img {
+                    width: 100% !important;
                 }
             }
         }
@@ -278,6 +300,10 @@
             top: 0;
             left: 0;
             right: 0;
+            display: none;
+        }
+        .hidingImage {
+            background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 650% !important;
         }
     }
 
@@ -773,7 +799,44 @@
         padding: 1em 1em 4em;
 
         .inner-footer {
-            padding: 25px 0px;
+            padding: 25px 0;
+            h3 {
+                &:after {
+                    width: 45% !important;
+                    content: '';
+                }
+            }
+            h6 {
+                &:after {
+                    width: 50% !important;
+                    content: '';
+                }
+            }
+            h5 {
+                position: relative;
+                &:after {
+                    width: 30% !important;
+                    content: '';
+                    position: absolute;
+                    background: $theme-white;
+                    height: 1px;
+                    left: 0;
+                    bottom: -1px;
+                }
+            }
+            .social-actions {
+                text-align: center !important;
+            }
+
+        }
+        .footer-last {
+            .mobile-center {
+                text-align: center !important;
+            }
+            .mobile-foot {
+                text-align: center !important;
+                padding-top: 2em !important;
+            }
         }
     }
 }
