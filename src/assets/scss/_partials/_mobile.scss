@@ -184,6 +184,7 @@
             h2 {
                 font-size: 2em !important;
             }
+
             .lower-content {
                 padding: 0 !important;
             }
@@ -199,6 +200,7 @@
     }
     .step-investment {
         padding: 0 1rem !important;
+
         .step-image {
             margin-top: 40px;
             animation: fadeInLeft 1.2s ease;
@@ -228,6 +230,7 @@
         .mpt-4 {
             margin-top: 3em !important;
         }
+
         .inner-superb {
             padding: 1rem 30px !important;
 
@@ -273,11 +276,13 @@
                 margin: auto;
                 width: 100% !important;
                 height: unset !important;
+
                 p {
                     padding: 2rem 0 0 0 !important;
                     font-size: 20px !important;
                     line-height: 30px !important;
                 }
+
                 img {
                     width: 100% !important;
                 }
@@ -302,6 +307,7 @@
             right: 0;
             display: none;
         }
+
         .hidingImage {
             background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 650% !important;
         }
@@ -408,6 +414,7 @@
                     content: "";
                     width: 19% !important;
                 }
+
                 &:before {
                     content: "";
                     width: 19% !important;
@@ -711,18 +718,14 @@
     }
 
     .login-section {
-        padding-top: 8em;
+        padding-top: 1em;
 
         .inner-login {
-            width: 90%;
+            width: 95%;
+            padding: 1em;
 
-            .login-form {
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .divider {
-                background: $theme-white !important;
+            .login-form,.otp-form {
+               padding: 0;
             }
 
             .d-text {
@@ -800,20 +803,24 @@
 
         .inner-footer {
             padding: 25px 0;
+
             h3 {
                 &:after {
                     width: 45% !important;
                     content: '';
                 }
             }
+
             h6 {
                 &:after {
                     width: 50% !important;
                     content: '';
                 }
             }
+
             h5 {
                 position: relative;
+
                 &:after {
                     width: 30% !important;
                     content: '';
@@ -824,15 +831,18 @@
                     bottom: -1px;
                 }
             }
+
             .social-actions {
                 text-align: center !important;
             }
 
         }
+
         .footer-last {
             .mobile-center {
                 text-align: center !important;
             }
+
             .mobile-foot {
                 text-align: center !important;
                 padding-top: 2em !important;

@@ -182,6 +182,17 @@ $slide: (
             @include transition(ease, 0.5s);
         }
     }
+    .btn-signup {
+        color: $theme-blue;
+        background: $theme-white;
+        @include borderLine(1px, $theme-blue);
+        &:hover {
+            @include transition(ease, 0.5s);
+        }
+        a {
+            color: $theme-blue !important;
+        }
+    }
     .btn-update-profile {
         background: rgb(100, 200, 140);
         color: #fff;

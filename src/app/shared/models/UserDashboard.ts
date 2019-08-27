@@ -6,5 +6,5 @@ export class UserDashboard {
     all_request: string;
     pending_request: string;
     career_application: [];
-    request_application: []
+    request_application: [];
 }
