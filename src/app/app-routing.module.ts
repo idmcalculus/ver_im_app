@@ -12,6 +12,7 @@ import {HowitworksComponent} from './pages/howitworks/howitworks.component';
 import {FaqComponent} from './pages/faq/faq.component';
 import {CareerComponent} from './modules/career/career.component';
 import {InvestmentComponent} from './modules/investment/investment.component';
+// import {ChatComponent} from './modules/chat/chat.component';
 
 const appRoutes: Routes = [
     {path: 'signin', component: SignInComponent},
@@ -24,8 +25,9 @@ const appRoutes: Routes = [
     {path: 'verify_user/:token', component: VerifyUserComponent},
     {path: 'forgot-password', component: ForgotPasswordComponent},
     {path: 'reset_password_request/:token', component: ResetPasswordComponent},
+    {path: 'career', component: CareerComponent},
     {path: '**', component: PageNotFoundComponent},
-    {path: 'career', component: CareerComponent}
+
 ];
 
 @NgModule({

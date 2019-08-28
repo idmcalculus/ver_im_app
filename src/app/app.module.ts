@@ -42,6 +42,7 @@ import { FaqComponent } from './pages/faq/faq.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { ChatComponent } from './modules/chat/chat.component';
 // import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 
 
@@ -74,6 +75,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         TableComponent,
         HowitworksComponent,
         FaqComponent,
+        // ChatComponent,
         // ApplicantDetailsComponent
 
     ],
