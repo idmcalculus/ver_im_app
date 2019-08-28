@@ -2,9 +2,9 @@
 <button  onclick="topFunction()" id="icon-top" title="Top">
     <i class="fa fa-fw fa-chevron-up"></i>
 </button>
-<app-header [hidden]="!showHeader"></app-header>
+<app-header [hidden]="!showHeader" *ngIf="isValid()"></app-header>
 <router-outlet></router-outlet>
-<app-footer [hidden]="!showFooter"></app-footer>
+<app-footer [hidden]="!showFooter" *ngIf="isValid()"></app-footer>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script src="assets/js/wow.min.js"></script>

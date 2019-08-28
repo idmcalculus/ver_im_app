@@ -73,7 +73,7 @@ export class AppAuthService {
     public get currentUserValue(): any {
         const userUrl = window.location.pathname;
         if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
-            
+
             this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
             return false;
@@ -96,7 +96,7 @@ export class AppAuthService {
                 let userDetails = null;
                 if (response && response.success) {
                     // userDetails = relogin();
-                    userDetails = response.success.data
+                    userDetails = response.success.data;
                 }
                 return userDetails;
             }));
