@@ -129,7 +129,7 @@
                 <div class="modal-footer">
                     <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
-                    <button
+                    <!-- <button
                         data-dismiss="modal"
                         [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                         type="button"
@@ -142,7 +142,15 @@
                         [class]="'btn btn-success'"
                         (close)="paymentCancel()"
                         (callback)="joinInvestment()"
-                        >Paystack pay</button>
+                        >Paystack pay</button> -->
+
+                        <button
+                        (click)="xpressPay(userinfo?.email,amountPerPool * transaction.number_of_pools,userinfo?.first_name,userinfo?.last_name,userinfo?.phone_number,transactionRef)"
+                        data-dismiss="modal"
+                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                        type="button"
+                        class="btn btn-join-add"
+                        >Xpress pay</button>
                     <!-- <button
                         data-dismiss="modal"
                         type="button"

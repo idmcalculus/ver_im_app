@@ -1,0 +1,91 @@
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body">
+                  <div class="row">
+
+                      <div class="col-xl-5 p-0">
+                          <div class="col-xl-12 col-md-12">
+                              <div class="card comp-card prod-p-card ">
+                                  <div class="card-body">
+                                     <h4>Messages</h4>
+
+                                      <div class="message-body">
+                                          <div (click)="setActiveRecipient(chat)" *ngFor="let chat of chats" class="row single">
+                                              <div class="col-md-2 pl-0">
+                                                  <div class="avatar-holder">
+                                                      <img src="../assets/images/avatar-3.jpg" alt="">
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-7">
+                                                  <div class="m-body">
+                                                      <h3 *ngIf="loggedInUser?.email != chat.receiver_id && loggedInUser?.email">{{chat.receiver_id}}</h3>
+                                                      <h3 *ngIf="loggedInUser?.email != chat.sender_id && loggedInUser?.email">{{chat.sender_id}}</h3>
+                                                      <p>{{chat.message_body}}</p>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-3 pr-0">
+                                                  <div class="m-date">
+                                                      <div style="color: #BEBEBE; font-size: 12px">{{chat.updated_at | date:'H:m MMM d'}}</div>
+                                                      <div><span class="badge badge-danger">1</span></div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      <div class="col-xl-7 p-0">
+                          <div class="col-xl-12 col-md-12">
+                              <div class="card latest-update-card">
+                                  <div class="card-block message-form">
+                                          <h4>Enter message</h4>
+                                          <div class="form-group">
+                                              <label for="subject" class="m-label">Recipient</label>
+                                              <select [(ngModel)]="selectedRecipient" (change)="filterInvestments()" class="form-control" id="recipient">
+                                                 
+                                                  <option value="null">--Select--</option>    
+                                                  <option *ngFor="let admin of admins" [ngValue]="admin?.email">{{admin?.first_name}}</option>    
+                                              </select>
+                                          </div>
+
+                                          <div class="row page-body list-vacancy mt-10" style="overflow-y: scroll; height:180px; overflow-x: hidden;">
+                                                <div *ngFor="let msg of messages" [ngClass]="(msg.receiver_id==selectedRecipient)?'recieved_msg_body':'sent_msg_body'">
+                                                    <div [ngClass]="(msg.receiver_id==selectedRecipient)?'recieved_msg':'sent_msg'" >
+                                                        <div class="">
+                                                            <p>{{msg.message_body}}</p>
+                                                            <span class="time_date"> {{msg.created_at | date:'H:m MMM d'}}</span>
+                                                        </div>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                          <div class="form-group">
+                                              <label for="messageForm" class="m-label">message</label>
+                                              <textarea [(ngModel)]="message" style="height: 40px"  name="messageForm" id="messageForm" class="form-control"></textarea>
+                                          </div>
+                                  </div>
+
+                                    <div class="card-block message-form">
+                                        <div class="form-group">
+                                            <button (click)="sendMessage()" class=" btn btn-primary" type="button">
+                                            Send Message
+                                            </button>
+                                        </div>
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
