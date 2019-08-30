@@ -1,12 +1,16 @@
 //The fonts for the website
 @mixin Nunito-Sans {
-  font-family: 'Nunito Sans', sans-serif !important;
-  }
-  
-  @mixin robotoFont() {
+    font-family: 'Nunito Sans', sans-serif !important;
+}
+
+@mixin robotoFont() {
     font-family: 'Roboto', sans-serif;
-  }
-  
-  @mixin latoFont() {
+}
+
+@mixin latoFont() {
     font-family: 'Lato', sans-serif;
-  }
+}
+
+@mixin openSans() {
+    font-family: 'Open Sans', sans-serif;
+}

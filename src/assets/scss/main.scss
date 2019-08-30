@@ -32,6 +32,8 @@ html, body {
     padding: 0;
     overflow-x: hidden;
     @include Nunito-Sans();
+    //@include openSans();
+    -webkit-font-smoothing: antialiased;
 }
 
 .wow {
@@ -346,7 +348,7 @@ section {
     h3 {
         padding: 1rem 0;
         font-weight: bold;
-        color: $theme-blue;
+        color: $theme-white;
         font-size: 2.1rem;
         text-align: center;
     }
@@ -519,6 +521,6 @@ section {
         }
     }
     .hidingImage {
-        background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 500%;
+        background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 522%;
     }
 }

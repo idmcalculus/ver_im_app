@@ -6,7 +6,7 @@
     padding: 10px;
     height: auto;
     @include transition(ease, 0.26s);
-    @include boxShadow($shadowBlack, 0, 0, 12px);
+    @include boxShadow($shadowBlack, 0, 0, 5px);
     animation: fadeInDown linear .9s;
     nav {
         clear: both;
