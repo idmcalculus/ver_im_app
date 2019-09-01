@@ -11,7 +11,6 @@ export class HomeComponent {
     constructor(
         private activatedRoute: ActivatedRoute,
         private authService: AppAuthService,
-        private router: Router,
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
             let authCode = resp.code;

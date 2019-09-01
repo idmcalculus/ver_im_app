@@ -316,8 +316,7 @@ $slide: (
 }
 
 @mixin indicator($color, $anim, $delay, $duration) {
-    background: $color;
-    background-image: radial-gradient($color, transparent);
+    background: radial-gradient($color, transparent);
     width: 20px;
     height: 20px;
     border-radius: 50%;
