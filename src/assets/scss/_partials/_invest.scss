@@ -5,11 +5,37 @@
     margin-top: 5em;
 }
 
+.work-header {
+    background-image: linear-gradient(104deg, #4F5FBE -8%, #b4b3c2 51%, #454688 105%);
+    height: 300px;
+    padding: 4px;
+    margin-top: 5em;
+
+    .inner-work {
+        display: flex;
+        justify-content: center;
+
+        h3 {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            font-size: 4em;
+            font-weight: bold;
+            color: $theme-blue;
+            margin: 0;
+            text-shadow: 0 1px 0 rgba(0, 0, 0, .9);
+        }
+    }
+}
+
 .investment-plans {
     padding: 2em 0 2em;
     //background: $offwhite;
     .invest-outer-header {
         padding: 0 0 3em;
+
         h3 {
             text-align: center;
             font-size: 1.5rem;
@@ -17,12 +43,14 @@
             font-weight: 600;
             color: $theme-blue;
         }
+
         ul {
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 10px 0;
         }
+
         li {
             padding: 5px 10px;
             position: relative;
@@ -30,17 +58,20 @@
             font-weight: 400;
             color: $theme-blue;
             cursor: pointer;
+
             &:after {
                 content: "|";
                 position: absolute;
                 margin-left: 9px;
                 color: $theme-blue;
             }
+
             &.active {
                 font-weight: bold;
             }
         }
     }
+
     .m-b2 {
         margin-bottom: 30px;
     }
@@ -164,9 +195,9 @@
 
     .invest-banner {
         width: 100%;
-        height: 300px;
+        //height: 300px;
         //background: gray;
-        background: url("../images/invest-detail.jpeg") no-repeat center;
+        //background: url("../images/invest-detail.jpeg") no-repeat center;
         background-size: cover;
         border-radius: 5px;
         position: relative;
@@ -380,25 +411,31 @@
 }
 
 .howItWorks {
+    padding: 0;
+    border-radius: 8px;
+    background: $theme-white;
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
     h2 {
-        color: #909090;
-        font-size: 3rem;
+        color: $theme-blue;
+        font-size: 2rem;
         position: relative;
-
+        text-align: center;
+        letter-spacing: 5px;
+        font-weight: bold;
         &:after {
             content: "";
             position: absolute;
             width: auto;
-            border-bottom: 2px solid #909090;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            border-bottom: 2px solid $theme-blue;
+            bottom: 2px;
+            left: 10px;
+            right: 14px;
             height: 2px;
         }
     }
 
     h3 {
-        color: #3B3B3B;
+        color: $theme-blue;
         font-size: 2rem;
         font-weight: bold;
     }
@@ -410,14 +447,12 @@
         font-weight: lighter;
     }
 
-    padding-top: 8em;
-
     .inner-holder {
         padding: 3em 4em;
     }
 
     .first-section, .third-section {
-        background: $theme-white;
+        position: relative;
         height: auto;
 
         .img-how {
@@ -434,11 +469,39 @@
                 animation: bounce 6s ease 5s infinite;
             }
         }
+
+        &:after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 90%;
+            margin: auto;
+            left: 0;
+            right: 0;
+            background: #ddd;
+        }
+    }
+
+    .third-section {
+        &:after {
+            content: none;
+        }
     }
 
     .second-section {
-        background: rgba(62, 67, 96, .06);
+        position: relative;
         height: auto;
+
+        &:after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 90%;
+            margin: auto;
+            left: 0;
+            right: 0;
+            background: #ddd;
+        }
     }
 }
 
