@@ -117,7 +117,7 @@ $slide: (
     }
     .btn-invest {
         padding: .61em 2.3em;
-        width: 30%;
+        width: 26%;
         height: 45px;
         background: $theme-blue;
         color: $theme-white;
@@ -316,8 +316,7 @@ $slide: (
 }
 
 @mixin indicator($color, $anim, $delay, $duration) {
-    background: $color;
-    background-image: radial-gradient($color, transparent);
+    background: radial-gradient($color, transparent);
     width: 20px;
     height: 20px;
     border-radius: 50%;
