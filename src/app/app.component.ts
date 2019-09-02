@@ -68,7 +68,7 @@ export class AppComponent {
     }
 
     isValid = (): boolean => {
-        console.log(this.router);
+        // console.log(this.router);
         if ((this.router.url !== '/signin') && (this.router.url !== '/signup')) {
             return true;
         }

@@ -3,6 +3,7 @@ import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../admin.service';
 import { UserService } from '../../user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 
 @Component({
   selector: 'app-manage-users',
@@ -14,16 +15,20 @@ export class ManageUsersComponent implements OnInit {
   users:[User]
   selectedUser:User
   isLoading:boolean=true;
-  constructor(private userService:UserService,
-     private adminService:AdminService,private authService:AppAuthService) { }
+  constructor(
+     private userService:UserService,
+     private adminService:AdminService,
+     private authService:AppAuthService,
+     private dynamicScrLoader:DynamicScriptLoaderService
+     ) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp=>{
       if(resp && resp.success){
         this.users = resp.success.Data;
-        // console.log("user one is: "+JSON.stringify(this.users[0]))
         this.isLoading =  false;
-        // this.authService.se
+        this.dynamicScrLoader.loadSingle('data-table');   
+        this.dynamicScrLoader.loadSingle('trigger-data-table');    
       }
     })
   }

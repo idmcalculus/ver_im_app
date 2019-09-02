@@ -16,7 +16,9 @@ export const ScriptStore: Scripts[] = [
   { name: 'bootstrap', src: '../../.././assets/js/bootstrap.min.js' },
   { name: 'platform', src: 'https://apis.google.com/js/platform.js' },
   { name: 'data-table',src: 'https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js' },
-  { name: 'flat-pickr', src: 'https://cdn.jsdelivr.net/npm/flatpickr' }
+  { name: 'flat-pickr', src: 'https://cdn.jsdelivr.net/npm/flatpickr' },
+  { name: 'trigger-data-table', src: '../../.././assets/js/trigger-data-table.js' }
+
 
   
 
@@ -45,6 +47,11 @@ export class DynamicScriptLoaderService {
     scripts.forEach((script) => promises.push(this.loadScript(script)));
     return Promise.all(promises);
   }
+
+  loadSingle(script: string) {
+    return this.loadScript(script);
+  }
+
 
   loadScript(name: string) {
     return new Promise((resolve, reject) => {
