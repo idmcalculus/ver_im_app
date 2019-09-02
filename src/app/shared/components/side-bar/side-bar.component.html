@@ -43,7 +43,7 @@
                       <span class="pcoded-micon">
                       <i class="feather icon-user"></i>
                       </span>
-                        <span class="pcoded-mtext">Manage Users</span>
+                        <span class="pcoded-mtext">Manage Customers</span>
                     </a>
                 </li>
 
@@ -64,44 +64,6 @@
                         <span class="pcoded-mtext">Career Applicants</span>
                     </a>
                 </li>
-                <!-- <li [hidden]="isUser" class="">
-                  <a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">
-                      <span class="pcoded-micon">
-                      <i class="feather icon-user"></i>
-                      </span>
-                      <span class="pcoded-mtext">Career</span>
-                  </a>
-                </li> -->
-
-                <!--<li [hidden]="isUser" class="pcoded-hasmenu">-->
-                    <!--<a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">-->
-                        <!--<span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>-->
-                        <!--<span class="pcoded-mtext">Career</span>-->
-                    <!--</a>-->
-                    <!--<ul class="pcoded-submenu">-->
-                        <!--&lt;!&ndash; <li>-->
-                            <!--<a routerLink="./manage-career/list" routerLinkActive="active"  class="waves-effect waves-dark">-->
-                                <!--<span class="pcoded-mtext">View List</span>-->
-                            <!--</a>-->
-                        <!--</li> &ndash;&gt;-->
-                        <!--<li>-->
-                            <!--<a routerLink="./manage-career/applicants" routerLinkActive="active"  class="waves-effect waves-dark">-->
-                            <!--<span class="pcoded-micon">-->
-                            <!--<i class="feather icon-user"></i>-->
-                            <!--</span>-->
-                                <!--<span class="pcoded-mtext">Applicants</span>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a routerLink="./manage-career/create" routerLinkActive="active"  class="waves-effect waves-dark">-->
-                            <!--<span class="pcoded-micon">-->
-                            <!--<i class="feather icon-user"></i>-->
-                            <!--</span>-->
-                                <!--<span class="pcoded-mtext">Create</span>-->
-                            <!--</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</li>-->
                 <li  [hidden]="isUser" class="">
                     <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
                         <span class="pcoded-micon">
@@ -109,6 +71,25 @@
                         </span>
                         <span class="pcoded-mtext">Categories</span>
                     </a>
+                </li>
+
+                <li [hidden]="isUser" class="pcoded-hasmenu">
+                    <a class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Users</span>
+                    </a>
+                    <ul class="pcoded-submenu">
+                        <li>
+                            <a routerLink="./manage-admins" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Admins</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./manage-admins" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Super Admins</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="">

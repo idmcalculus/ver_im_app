@@ -14,6 +14,7 @@ import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageUsersComponent} from './manage-users/manage-users.component';
+import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -25,7 +26,8 @@ import {ManageUsersComponent} from './manage-users/manage-users.component';
     CreateComponent,
     ListComponent,
     ManageCategoryComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    ManageAdminComponent
   ],
   imports: [
     CommonModule,
