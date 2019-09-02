@@ -73,13 +73,13 @@ export class SignInComponent implements OnInit {
             this.loginText = 'Authenticating...';
 
             this.authService.login(this.user)
-                .subscribe(UserDetails => {
-                    if (UserDetails) {
-                        this.showOTPForm = true;
-                    }
-                    this.loginText = 'Login';
-                    resolve();
-                });
+            .subscribe(UserDetails => {
+                if (UserDetails) {
+                    this.showOTPForm = true;
+                }
+                this.loginText = 'Login';
+                resolve();
+            });
         });
     }
 

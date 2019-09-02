@@ -17,13 +17,16 @@ export class CareerDetailsComponent implements OnInit {
   
   @Output() submit = new EventEmitter<Career>();
 
-  constructor() { 
+  constructor(private careerAppService:CareerService) { 
     
   }
 
   ngOnInit() {
     // console.log("icoming is :: "+JSON.stringify(this.career))
     if(typeof(this.career.career_responsibilities)=='string'){
+      
+      
+      console.log("got id :: "+JSON.stringify(this.career))
       this.career.career_responsibilities = JSON.parse(this.career.career_responsibilities)
     }
     
@@ -32,5 +35,7 @@ export class CareerDetailsComponent implements OnInit {
   backtoList(){
     this.submit.emit(null)
   }
+
+  
 
 }

@@ -31,6 +31,7 @@
         </div>
         <div class="post-footer">
             <a *ngIf="isUser" routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
+            
             <a (click)="backtoList()" class="btn btn-cancel">Cancel</a>
         </div>
     </div>

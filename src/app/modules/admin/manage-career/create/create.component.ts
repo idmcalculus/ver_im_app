@@ -12,6 +12,7 @@ export class CreateComponent implements OnInit {
   respArray:any[]=[];
   finalArray:any[]=[];
   newResponsibility:string='';
+  isSubmitting;
   constructor(private careerService:CareerService) { }
 
   ngOnInit() {
@@ -21,12 +22,20 @@ export class CreateComponent implements OnInit {
     this.career.career_responsibilities = JSON.stringify(this.respArray);
     this.career.deadline = new Date().toISOString();
     console.log(JSON.stringify(this.career))
-    this.careerService.craeteCareer(this.career).subscribe
-    (resp=>{
-      if(resp && resp.success){
-        this.career = null;
-      }
-    })
+    this.isSubmitting = new Promise((resolve, reject) => {
+          this.careerService.createCareer(this.career)
+          .subscribe(resp=>{
+            if(resp && resp.success){
+              this.career = {career_title:'',career_responsibilities:[]};
+            }
+            resolve();
+          })
+    });
+    
+  }
+
+  RemoveCareer(){
+    
   }
 
   addResponsibility(){

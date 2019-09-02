@@ -59,10 +59,18 @@
                                       <!-- <div class="col-md-3">
                                           <button class="btn btn-approve"><i class="fa fa-check-circle"></i></button>
                                       </div> -->
-                                      <div class="col-md-3">
-                                          <button (click)="backtoList()" class="btn btn-decline"><i class="fa fa-times-circle"></i></button>
-                                      </div>
+                                      <!-- <div class="col-md-3"> -->
+                                          
+                                          
+                                          <!-- <button class="btn2 btn btn-raised btn-signup"><a routerLink="/signup" routerLinkActive="active">Sign up</a></button> -->
+                                      <!-- </div> -->
                                   </div>
+                                    <button *ngIf="applicant?.shortlist==0" (click)="shortList(true)" class="btn m-3 col-md-4 btn-success">ShortList</button>
+                                    <button *ngIf="applicant?.shortlist==1"  (click)="shortList(false)" class="btn m-3 col-md-4 btn-success">Delist</button>
+                                    <button (click)="deleteApplication(applicant?.id)" class="btn m-3 col-md-4 btn-decline">Delete</button>
+                                    <button class="btn m-3 col-md-4 btn-default">
+                                        <a href="/admin/manage-career/applicants" >Back</a>
+                                    </button>
                               </div>
                           </div>
                       </div>

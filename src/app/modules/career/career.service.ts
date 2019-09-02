@@ -23,13 +23,23 @@ export class CareerService {
     ?career_application_id=${id}`,null);
   }
 
-  craeteCareer(careerData:Career){
-    return this.httpService.postRequest(`career/create?career_title=${careerData.career_title}
-    &career_description=${careerData.career_description}
-    &deadline=${careerData.deadline}
-    &position_type=${careerData.position_type}
-    &number_of_application=${careerData.number_of_application}
-    &career_responsibilities=${careerData.career_responsibilities}`,true,null);
+  //Admin
+  deleteCareerById(id:string){
+    var reqBody = {"career_application_id": Number(id)};
+    console.log("value is :: "+JSON.stringify(reqBody))
+    return this.httpService.postRequest(`career_application/delete`,reqBody,true);
+  }
+
+  //Admin
+  shortListCareerById(id:Number,shortlist:boolean){
+    var reqBody = {"career_application_id": id,"shortlist":shortlist};
+    return this.httpService.postRequest(`career_application/shortlist`,reqBody,true);
+  }
+
+  createCareer(careerData:Career){
+    return this.httpService.postRequest(`career/create?career_title=${careerData.career_title}&career_description=${careerData.career_description}
+    &deadline=${careerData.deadline}&position_type=${careerData.position_type}&number_of_application=${careerData.number_of_application}
+    &career_responsibilities=${careerData.career_responsibilities}`,null,true);
   }
 
   applyForCareer(careerApplication:CareerApplication){

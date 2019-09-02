@@ -77,7 +77,9 @@
                                                         <div class="col-md-8">
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <button class="btn2 btn btn-raised btn-login" [disabled]="!careerForm.form.valid" >Create Job</button>
+                                                            <!-- <button class="btn2 btn btn-raised btn-login"  [promiseBtn]="isSubmitting" [disabled]="!careerForm.form.valid" >Create Job</button> -->
+                                                            <input type="submit" class="btn2 btn btn-raised btn-login" [disabled]="!careerForm.form.valid" [promiseBtn]="isSubmitting" value="Create Job" />
+                                
                                                         </div>
                                                 </div>
                                             </form>

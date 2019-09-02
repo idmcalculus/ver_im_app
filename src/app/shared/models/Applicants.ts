@@ -7,4 +7,5 @@ export class Applicant extends BasicModel{
     phone_number?:string;
     career_brief?:string;
     curriculum_vitae ?:any;
+    shortlist:any;
 }
