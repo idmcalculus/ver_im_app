@@ -395,37 +395,41 @@
     }
 
     .about-us {
+        .inner-about {
+            .our-team {
+                .member {
+                    padding: 15px !important;
+                    .card-details {
+                        h5 {
+                            position: relative;
+                            margin-bottom: 15px;
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                background: #9c9c9c;
+                                height: 1px;
+                                left: 0;
+                                right: 0;
+                                bottom: -10px;
+                                margin: auto;
+                                width: 98%;
+                            }
+                        }
+                    }
+                    .contact-buttons {
+                        > div {
+                            width: 50%;
+                        }
+                    }
+                }
+            }
+        }
         .inner-content-story {
             padding: 4em 2em 0 !important;
 
             .part-content {
                 p {
                     padding: 0 !important
-                }
-            }
-        }
-
-        .our-team {
-            h5 {
-                margin: 1em 0 !important;
-                font-size: 2rem !important;
-
-                &:after, :before {
-                    content: "";
-                    width: 19% !important;
-                }
-
-                &:before {
-                    content: "";
-                    width: 19% !important;
-                }
-            }
-
-            .team-card-holder {
-                padding: 0 2em !important;
-
-                .team-card {
-                    margin-bottom: 10px;
                 }
             }
         }
@@ -475,34 +479,43 @@
         }
     }
 
+    .work-header {
+        height: 200px;
+        .inner-work {
+            h3 {
+                font-size: 2em;
+            }
+        }
+    }
     .howItWorks {
         h2 {
-            font-size: 2.3rem;
+            font-size: 1.5rem;
             position: relative;
-
+            padding-top: 25px;
+            letter-spacing: 2px;
             &:after {
-                width: 19.6%;
+                width: 100%;
+                left: 0;
+                right: 0;
+                bottom: 0;
             }
         }
 
         h3 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
+            padding-top: 25px;
         }
 
         p {
-            font-size: .9rem;
+            font-size: 1rem;
+            font-weight: normal;
         }
 
-        padding-top: 8em;
-
         .inner-holder {
-            padding: .2em 2em;
+            padding: .2em .8em;
         }
 
         .first-section, .third-section {
-            background: $theme-white;
-            height: auto;
-
             .img-how {
                 display: flex;
                 justify-content: center;
@@ -524,9 +537,6 @@
         }
 
         .second-section {
-            background: rgba(62, 67, 96, .06);
-            height: auto;
-
             .img-how-mobile {
                 padding-top: 2em;
                 display: flex;
