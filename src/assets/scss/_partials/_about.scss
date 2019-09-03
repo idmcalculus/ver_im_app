@@ -1,8 +1,10 @@
 .about-header {
-    background-image: linear-gradient(132deg, #4fa4be 16%, #51a5be 69%, #27b7e4 105%);
-    height: 300px;
+    //background-image: linear-gradient(132deg, #4fa4be 16%, #51a5be 69%, #27b7e4 105%);
+    height: 400px;
     padding: 4px;
     margin-top: 5em;
+    background: url("../../../assets/images/banner-ourteam.png") no-repeat center;
+    background-size: cover;
 }
 
 .team-title {
