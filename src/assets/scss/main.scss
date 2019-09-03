@@ -79,7 +79,7 @@ section {
     position: relative;
 
     .inner-landing {
-        padding: 10rem 3.5rem 2em;
+        padding: 6rem 3.5rem 2em;
 
         h2 {
             font-size: 3.7rem;
@@ -161,10 +161,10 @@ section {
 
         .leftDisplay {
             h3 {
-                font-size: 1rem;
+                font-size: 1.4rem;
                 line-height: 35px;
                 color: $textColor;
-                font-weight: lighter;
+                font-weight: normal;
                 text-align: center;
             }
         }
@@ -174,6 +174,7 @@ section {
 
             .card {
                 box-shadow: none !important;
+
                 &:hover {
                     /*&:nth-child(2) {
 
@@ -186,7 +187,11 @@ section {
 
             .card-title {
                 color: $theme-blue;
-                font-size: 1rem;
+                font-size: 1.3rem;
+            }
+
+            .card-text {
+                font-size: 16px !important;
             }
 
             .card-img-top {
@@ -217,30 +222,39 @@ section {
 
 .step-investment {
     background: $theme-blue;
-    padding: 3rem 4rem;
+    padding: 0 4rem 3em;
+
     .step-image {
+        background: url("../../assets/images/presentation.png") no-repeat 8px 110%;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
         img {
             width: 100%;
             object-position: center;
             object-fit: contain;
         }
     }
+
     .list-plan {
         color: $theme-white;
+
         h3 {
             color: $theme-white;
             font-size: 1.3rem;
             margin-bottom: 2rem;
             font-weight: bold;
         }
+
         margin-top: 5rem;
+
         h5 {
             font-weight: 400;
             font-size: 1.2rem;
         }
 
         .media-body {
-            font-size: .9rem;
+            font-size: 1.2rem;
             font-weight: lighter;
         }
 
@@ -249,6 +263,7 @@ section {
         }
     }
 }
+
 .ourServices {
     background: $theme-white;
     height: 100%;
@@ -368,6 +383,7 @@ section {
                 /* background: #f7f7f7; */
                 margin: auto;
                 padding: 16px;
+
                 img {
                     object-fit: cover;
                     width: inherit;
@@ -489,6 +505,7 @@ section {
     background: $theme-white;
     height: auto;
     position: relative;
+
     .inner-workingSection {
         margin: 0 5px;
         padding: 2em 50px 0;
@@ -521,6 +538,7 @@ section {
             animation: bounce 5s linear 10s infinite !important;
         }
     }
+
     .hidingImage {
         background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 522%;
     }

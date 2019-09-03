@@ -313,15 +313,27 @@
         }
     }
 
+    .invest-header {
+        height: 100%;
+        padding: 2em 24px;
+        .invest-header-thumb {
+            display: none;
+        }
+    }
     .investment-plans {
-        padding: 8em 0 2em;
+        padding: 0;
 
+        .actionBtn {
+            .btn-join {
+                width: 60% !important;
+            }
+        }
         .inner-investment {
-            padding: 0 20px 3em;
+            padding: 0 2px 3em;
         }
 
         .invest-banner {
-            height: 200px;
+            //height: 200px;
         }
 
         .m-b20 {
@@ -329,7 +341,7 @@
         }
 
         .over-content {
-            padding-top: 5em;
+            //padding-top: 5em;
 
             h3 {
                 font-size: 1.5rem
@@ -350,7 +362,8 @@
             }
 
             > div {
-                font-size: 1.09rem;
+                font-size: 1rem;
+                padding-left: 20px;
 
                 .btn-join {
                     width: 100%;
@@ -360,6 +373,18 @@
 
         .otherInfo {
             font-size: 1.13rem;
+
+        }
+        .other-info {
+            h5 {
+                font-size: 1rem !important;
+            }
+        }
+        .relatedInvestType {
+            padding: 0 3px 3em;
+            .card {
+                width: 100% !important;
+            }
         }
     }
 
