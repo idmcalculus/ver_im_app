@@ -1,90 +1,101 @@
 <section class="login-section">
-        <div *ngIf="!isLoading" class="inner-login">
-            <div class="row">
-                <div class="col-md-5 login-side hide-sm">
-                    <img src="assets/images/financiero.png" alt="">
-                </div>
-                <div class="col-md-7">
-                    <div class="outerContainer animated wow fadeIn" data-wow-delay=".5s" data-wow-duration="3s">
-                        <div class="login-form" *ngIf="!showOTPForm">
+    <div *ngIf="!isLoading" class="inner-login">
+        <div class="row">
+            <div class="col-md-5 login-side hide-sm">
+                <img src="assets/images/financiero.png" alt="">
+            </div>
+            <div class="col-md-7">
+                <div class="outerContainer animated wow fadeIn" data-wow-delay=".5s" data-wow-duration="3s">
+                    <div class="login-form" *ngIf="!showOTPForm">
+                        <a routerLink="/" routerLinkActive="active">
                             <img src="../../../../assets/images/logblack-edit.png" style="width: 140px" alt="">
-                            <h3>Welcome! Please login to your account. </h3>
-                            <!--<p>Login below with your E-mail</p>-->
-                            <form (ngSubmit)="signIn()" #signInForm="ngForm">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input type="email" required [(ngModel)]="user.email" name="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="E-mail" class="form-control" id="useremail">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text tran"><i class="fa fa-user"></i></span>
-                                        </div>
+                        </a>
+                        <h3>Welcome! Please login to your account. </h3>
+                        <!--<p>Login below with your E-mail</p>-->
+                        <form (ngSubmit)="signIn()" #signInForm="ngForm">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="email" required [(ngModel)]="user.email" name="email"
+                                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="E-mail"
+                                        class="form-control" id="useremail">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text tran"><i class="fa fa-user"></i></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <input type="password" required [(ngModel)]="user.password" name="password" placeholder="Enter Password" class="form-control remBorder"
-                                               id="userpass">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text tran"><i class="fa fa-eye"></i></span>
-                                        </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="password" required [(ngModel)]="user.password" name="password"
+                                        placeholder="Enter Password" class="form-control remBorder" id="userpass">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text tran"><i class="fa fa-eye"></i></span>
                                     </div>
                                 </div>
+                            </div>
 
-                                <div class="row" style="justify-content: space-between">
-                                    <div class="col-md-5 col-6">
-                                        <div class="form-group">
-                                            <div class="pretty p-svg p-curve">
-                                                <input type="checkbox" />
-                                                <div class="state p-primary">
-                                                    <!-- svg path -->
-                                                    <svg class="svg svg-icon" viewBox="0 0 20 20">
-                                                        <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
-                                                    </svg>
-                                                    <label>Remember Me</label>
-                                                </div>
+                            <div class="row" style="margin-top: 3rem;
+                                justify-content: space-between;
+                                color: #8492e6;
+                                font-weight: 900;">
+                                <div class="col-md-5 col-6">
+                                    <div class="form-group">
+                                        <div class="pretty p-svg p-curve">
+                                            <input type="checkbox" />
+                                            <div class="state p-primary">
+                                                <!-- svg path -->
+                                                <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                                    <path
+                                                        d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z"
+                                                        style="stroke: white;fill:white;"></path>
+                                                </svg>
+                                                <label style="font-weight: 700">Remember Me</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5 col-6 pr-0">
-                                        <div class="form-group">
-                                            <p><a routerLink="/forgot-password" routerLinkActive="active">Forgot Password</a></p>
-                                        </div>
+                                </div>
+                                <div class="col-md-5 col-6 pr-0">
+                                    <div class="form-group">
+                                        <p ><a routerLink="/forgot-password" routerLinkActive="active" style="color: #8492e6">Forgot
+                                                Password</a></p>
                                     </div>
                                 </div>
-
-                                <div class="row mt-5" style="justify-content: space-between">
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <button class="btn2 btn btn-raised btn-login" [promiseBtn]="isSubmitting">{{loginText}}</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <button class="btn2 btn btn-raised btn-signup"><a routerLink="/signup" routerLinkActive="active">Sign up</a></button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </form>
-                            <div class="otherInfo">
-                                <p><i class="fa fa-arrow-alt-circle-left"></i> &nbsp;<a routerLink="/" routerLinkActive="active">Back Home</a></p>
                             </div>
-                        </div>
-                        <div class="login-form otp-form" *ngIf="showOTPForm">
-                            <img src="../../../../assets/images/logblack-edit.png" style="width: 140px" alt="">
-                            <!--<h3>Validate OTP, </h3>-->
-                            <p>Enter your OTP below</p>
-                            <form (ngSubmit)="validateOTP()" #otpForm="ngForm">
-                                <div class="form-group">
-                                    <label for="otp" class="sr-only">Enter your One Time Password</label>
-                                    <input type="number" required [(ngModel)]="otp" name="otp" placeholder="OTP" class="form-control" id="otp">
+
+                            <div class="row mt-5" style="justify-content: space-between">
+                                <div class="col-md-5" style="min-width: 50%">
+                                    <div class="form-group">
+                                        <button class="btn2 btn btn-raised btn-login"
+                                            [promiseBtn]="isSubmitting" style="margin: 0">{{loginText}}</button>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn2 btn-login" [disabled]="!otpForm.form.valid" [promiseBtn]="isSubmitting" [value]="loginText">
+                                <div class="col-md-5"  style="min-width: 50%">
+                                    <div class="form-group">
+                                        <button class="btn2 btn btn-raised btn-signup"><a routerLink="/signup"
+                                                routerLinkActive="active">Sign up</a></button>
+                                    </div>
                                 </div>
-                            </form>
-                        </div>
+                            </div>
+
+                        </form>
                     </div>
-                    <!--<div class="social-login">
+                    <div class="login-form otp-form" *ngIf="showOTPForm">
+                        <img src="../../../../assets/images/logblack-edit.png" style="width: 140px" alt="">
+                        <!--<h3>Validate OTP, </h3>-->
+                        <p>Enter your OTP below</p>
+                        <form (ngSubmit)="validateOTP()" #otpForm="ngForm">
+                            <div class="form-group">
+                                <label for="otp" class="sr-only">Enter your One Time Password</label>
+                                <input type="number" required [(ngModel)]="otp" name="otp" placeholder="OTP"
+                                    class="form-control" id="otp">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn2 btn-login" [disabled]="!otpForm.form.valid"
+                                    [promiseBtn]="isSubmitting" [value]="loginText">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--<div class="social-login">
                         <div class="form-group">
                             <a  (click)="yahooSignin()" class="btn btn-block btn-lg btn-social btn-yahoo">
                                 <span class="fab fa-yahoo f-13"></span> Sign in with Yahoo!
@@ -102,23 +113,23 @@
                             </a>
                         </div>
                     </div>-->
-                </div>
-            </div>            
+            </div>
         </div>
+    </div>
 
-        <div *ngIf="isLoading" class="lds-default">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+    <div *ngIf="isLoading" class="lds-default">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 
-    </section>
+</section>

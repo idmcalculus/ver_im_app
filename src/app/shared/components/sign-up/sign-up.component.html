@@ -9,26 +9,42 @@
             <div class="col-md-7">
                 <div class="outerContainer animated wow fadeIn" data-wow-delay=".5s" data-wow-duration="3s">
                     <div class="login-form" *ngIf="!showOTPForm">
-                        <img src="../../../../assets/images/logblack-edit.png" style="width: 140px" alt="">
-                        <h3>Sign up for an account, </h3>
-                        <p>You'll be done in a moment</p>
+                        <a routerLink="/" routerLinkActive="active">
+                            <img src="../../../../assets/images/logblack-edit.png" style="width: 140px" alt="">
+                        </a>
+                        <h3>Sign up to create an account, </h3>
                         <form (ngSubmit)="signUp()" #signUpForm="ngForm">
                             <div class="form-group">
-                                <label for="firstname" class="sr-only">First Name</label>
-                                <input type="text" required [(ngModel)]="user.first_name" placeholder="First Name"
-                                       name="firstname" class="form-control" id="firstname">
+                                <div class="input-group">
+                                    <label for="firstname" class="sr-only" style="color: #8492e6">First Name</label>
+                                    <input type="text" required [(ngModel)]="user.first_name" placeholder="First Name"
+                                        name="firstname" class="form-control" id="firstname">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text tran"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="lastname" class="sr-only">Last Name</label>
-                                <input type="text" required [(ngModel)]="user.last_name" placeholder="Last Name"
-                                       name="lastname" class="form-control" id="lastname">
+                                <div class="input-group">
+                                    <label for="lastname" class="sr-only" style="color: #8492e6">Last Name</label>
+                                    <input type="text" required [(ngModel)]="user.last_name" placeholder="Last Name"
+                                        name="lastname" class="form-control" id="lastname">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text tran"><i class="fa fa-user"></i></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="useremail" class="sr-only">Email Address</label>
+                                <div class="input-group">
+                                <label for="useremail" class="sr-only" style="color: #8492e6">Email Address</label>
                                 <input type="email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required
                                        [(ngModel)]="user.email" placeholder="E-mail" name="useremail"
                                        class="form-control"
                                        id="useremail">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text tran">@</span>
+                                </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="input-group">

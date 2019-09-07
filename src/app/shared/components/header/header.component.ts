@@ -10,39 +10,39 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  currentUserSubscription:Subscription;
-  userinfo:User={user_category:'none',email:''};
+  currentUserSubscription: Subscription;
+  userinfo: User = { user_category: 'none', email: '' };
 
   constructor(
-    private authService:AppAuthService,
-    private router:Router) { 
+    private authService: AppAuthService,
+    private router: Router) {
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-        // console.log("change occured "+JSON.stringify(user))
-        this.userinfo = user;
+      // console.log("change occured "+JSON.stringify(user))
+      this.userinfo = user;
     });
   }
 
 
-  logout(){
-    if(confirm('Are you sure you want to logout')){
+  logout() {
+    if (confirm('Are you sure you want to logout')) {
       this.authService.logout();
-      this.router.navigate(['signin',{}]);
+      this.router.navigate(['signin', {}]);
     }
   }
 
   ngOnInit() {
-       
+
   }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     let c = pageXOffset;
-    if(c === 0) {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       let element = document.getElementById('header');
       element.classList.add('scrolled');
     } else {
       let element = document.getElementById('header');
-      element.classList.remove('scrolled')
+      element.classList.remove('scrolled');
     }
   }
 
@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
   //   }
   // });
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();
   }
 
