@@ -34,12 +34,12 @@
             background: $theme-blue;
             //height: 100vh;
             img {
-                width: 115%;
+                width: 68%;
                 object-fit: contain;
                 object-position: bottom;
                 position: absolute;
                 bottom: 37px;
-                left: 3px;
+                right: -8px;
                 overflow: hidden;
                 animation: bounce 16s linear infinite 2s;
             }

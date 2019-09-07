@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import 'assets/css/bootstrap.min.css';
 @import 'assets/css/main.css'; */
-
+@import "./assets/scss/_partials/mixins";
+@import "./assets/scss/_partials/vars";
 @import './spinner.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
 /* @import './skeleton.scss';
 
 h3, h4, p {
@@ -17,7 +20,345 @@ h3, h4, p {
 } */
 .landing {
     background-size: cover;
+    height: 80%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+        
+    .lower-content{
+        line-height: 60px !important;
+        letter-spacing: 1px;
+    }
+
+    .col-md-6{
+        padding-left: 3% !important;
+    }
+
+    .col-md-5{
+        display: flex;
+        min-width: 50%;
+        margin-left: -5%;
+
+        .circle {
+            width: 55%;
+            height: 100%;
+            background: url("./assets/images/rename.svg") no-repeat right;
+            background-size: contain;
+            margin-top: 20%
+        }
+
+        .circle2 {     
+            width: 55%;
+            height: 65%;
+            background: url("./assets/images/mobile.svg") no-repeat right;
+            background-size: contain;
+            margin: -10%;
+            margin-top: 5%;
+        }
+    }
+
+   
 }
+
+.step-investment {
+    padding: 2rem 0 4rem 0;
+    background: url("./assets/images/partner-row1-2.png") no-repeat top right;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+    background-color: #3f51b5;
+    .row{
+        width: 85%;
+        margin: auto;
+         -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+
+    .step-image {
+    background-size: contain;
+    width: 100%;
+    height: 30rem;
+    }
+
+    .list-plan {
+    color: #fff;
+    margin-top: 0rem;
+
+        h3{
+            font-size: 1.8em;
+        }
+
+        h5 {
+        font-weight: 600;
+        font-size: 1.2rem;
+        }
+
+       .media-body {
+            font-size: 1.2rem;
+            font-weight: lighter;
+            margin: 0.5rem;
+            margin-left: 2rem;
+        }
+    }
+}
+
+
+.login-section {
+
+    .inner-login {
+
+        .login-form {
+            max-width: 500px;
+            width: 55%;
+            padding: 40px 30px;
+            background: #fff;
+            position: relative;
+            border-radius: 4px;
+
+            .sr-only{
+                 color: #4f5fbe;
+            }
+             .otherInfo {
+                padding: 0em 0px 1.5rem 0px;
+                text-align: center;
+
+                p {
+                    color: #4f5fbe;
+                }
+
+                 a {
+                    color: #4f5fbe;
+                    font-weight: 700
+                }
+            }
+
+            .form-control{
+                height: 3.5em;
+                font-weight: 700;
+                padding: 1.9em 5px;
+                background: #fff;
+                border: 0;
+                border-radius: 0;
+                border-bottom: 1px solid #4f5fbe;
+                /* color: #354388; */
+            }
+
+            h3{
+                font-size: 1rem;
+                color: #9190bb;
+                font-weight: 500;
+                margin: 1.3em 0 4em;
+                opacity: 0.7;
+            }
+        }
+
+        .btn-login {
+            margin-top: 3rem;
+            color: #fff;
+            background: #4f5fbe;
+            opacity: 1;
+        }
+
+        .login-side {
+            img {
+                width: 80%;
+                object-fit: contain;
+                object-position: bottom;
+                position: absolute;
+                bottom: 10%;
+                left:auto;
+                right: -9.5%;
+                overflow: hidden;
+                animation: bounce 16s linear infinite 2s;
+            }
+        }
+    }
+}
+
+.workingSection {
+    position: relative;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    .inner-workingSection {
+        padding: 50px 50px 6rem;
+         -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+        box-shadow: 0 2px 5px 4px rgba(5, 3, 51, 0.1);
+
+        .working-content{
+            width: 40rem
+        }
+
+        img {
+            vertical-align: middle;
+            border-style: none;
+            width: 35rem;
+        }
+
+        .working-content {
+            article {
+                color: #1d1d20;
+                line-height: 2.2;
+                font-size: 1.1rem;
+                font-weight: lighter;
+                padding: 2rem 0 0 0;
+                font-family: roboto;
+                width: 30rem;
+            }
+        }
+    }
+    background: url("./assets/images/partner-row1-2.png") no-repeat top right;
+    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+}
+
+
+.superbOffers {
+    padding: 0 0 40px 0;
+
+    h3 {
+    font-size: 1.6rem;
+    padding: 10px 0;
+    color: #4f5fbe;
+    }
+
+    .inner-superb {
+       .superb-container-home {
+            .img-holder {
+                height: 280px;
+                width: 100%;
+                margin: auto;
+                padding: 16px;
+            }
+
+            .content-holder {
+                h2{
+                    padding: "0 15px"
+                }
+                line-height: 2.5rem;
+                font-family: roboto;
+
+                .btn-invest2 {
+                    padding: .61em 2em !important;
+                }
+            }
+        }
+    }
+}
+
+.section-container {
+    padding: 10px 65px 5rem;
+    background: rgba(5,3,51,0.03);
+    box-shadow: rgba(5,3,51,.3);
+}
+
+.versa-plan {
+    box-shadow: 0 -1px 5px 1px rgba(5, 3, 51, 0.1);
+    .inner-plan {
+        padding: 3rem 0 6rem 0;
+
+        h4{
+            font-family: roboto;
+        }
+
+        h5 {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .leftDisplay {
+            h3 {
+                font-size: 1.2rem;
+                font-family: roboto;
+            }
+
+        }
+    }
+}
+
+.card-text {
+    /* font-family: roboto; */
+    font-size: 18px !important;
+    /* line-height: 45px; */
+    /* letter-spacing: 0.1rem; */
+    line-height: 33px;
+    color: #707070;
+    font-weight: normal;
+    text-align: center;
+    word-spacing: 5px;
+    text-align: center;
+    text-justify: initial;
+}
+
+.card-title {
+   font-family: roboto;
+}
+
+.header{
+    box-shadow: none;
+    &.scrolled{
+        @include boxShadow($shadowBlack, 0, 0, 5px);
+    }
+
+    nav {
+        .login{
+            box-shadow: none;
+             &:hover {
+                box-shadow: none
+            }
+        }
+    }
+}
+
+
+.footer {
+
+    .reg{
+        word-spacing: 0.2rem;
+        font-weight: 800;
+        line-height: 1.5rem;
+        padding-top: 4%;
+        margin-left: 0.05rem;
+        width: 70%;
+        padding-bottom: 1%;
+    }
+
+    .footer-last{
+        width: 92%;
+        margin: 2em 43px 0;
+       .last-child{
+            :after {
+                position: absolute;
+                content: "";
+                padding-left: 14px;
+            }
+        }
+    }
+
+    .inner-footer {
+        padding: 20px 110px;
+        li{
+            a{
+                font-weight: 900
+            }
+        }
+        h3 {
+            &:after {
+                width: 20%;
+            }
+        }
+        h6 {
+            &:after {
+                width: 24%;
+            }
+        }
+        h5 {
+            &:after {
+                width: 39.5%;
+
+            }
+        }
+    }
+}
+
 /*.investment-plans {
     padding: 7em 0 2em;
 }*/
