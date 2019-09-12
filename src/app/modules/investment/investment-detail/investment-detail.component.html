@@ -2,16 +2,12 @@
     <div class="row">
         <div class="col-md-3">
             <div class="invest-header-thumb">
-                <img src="../../../../assets/images/hiace_bus.jpg">
+                <img src="../../../../assets/images/transportation.jpg">
             </div>
         </div>
         <div class="col-md-9">
             <div class="invest-header-text">
-                <article>
-                    At VERSA, we have to come to recognize that middle income earners find it hard
-                    to invest their minimal savings, we provide opportunities, that can grow their funds
-                    exponentially.
-                </article>
+                <div class="navigation-values">Homepage<span>></span>Invest</div>
             </div>
         </div>
     </div>
@@ -19,19 +15,17 @@
 <section class="section-container">
     <section class="investment-plans">
 
-        <div *ngIf=" investment==null || isLoading" class="lds-default">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+        <div *ngIf=" investment==null || isLoading" class="display: flex">
+            <div class="row">
+                <div style='width:100%'>
+                    <div class="superb-container m-b20">
+                        <div style="display:'flex-inline'">
+                            <ngx-skeleton-loader count="1" appearance="circle"></ngx-skeleton-loader>
+                            <ngx-skeleton-loader count="10" appearance="line"></ngx-skeleton-loader>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div *ngIf=" investment!=null && !isLoading" class="inner-investment">
@@ -45,20 +39,19 @@
                     <div class="col-md-5 side-details">
                         <div class="invest-thumbnail">
                             <div *ngIf="investment.investment_image==''" class="plan-image"></div>
-                            <img *ngIf="investment.investment_image!=''"
-                                 src="{{investment?.investment_image}}" alt="image">
+                            <img *ngIf="investment.investment_image!=''" src="{{investment?.investment_image}}"
+                                alt="image">
                         </div>
                         <div class="content-detail">
                             <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per slot</h3>
-                            <div><span><img src=""
-                                            alt=""> {{investment?.max_num_of_slots - investment?.num_of_pools_taken}}
-                                out of {{investment?.max_num_of_slots}} slots left</span></div>
-                            <div><span><img src=""
-                                            alt=""> Investment period: </span> {{investment?.duration}}
+                            <div><span><img src="" alt="">
+                                    {{investment?.max_num_of_slots - investment?.num_of_pools_taken}}
+                                    out of {{investment?.max_num_of_slots}} slots left</span></div>
+                            <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}}
                                 Month(s)
                             </div>
-                            <div *ngIf="investment?.estimated_percentage_profit"><span><img src=""
-                                                                                            alt=""> Return: </span>{{investment?.estimated_percentage_profit}}
+                            <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return:
+                                </span>{{investment?.estimated_percentage_profit}}
                                 profit (Estimated)
                             </div>
                             <!--<div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>25% profit (Estimated)</div>-->
@@ -66,15 +59,12 @@
                         </div>
                         <div class="actionBtn">
                             <a routerLink="/signin" routerLinkActive="active"
-                               *ngIf="!userinfo && investment?.is_investment_started=='0' "
-                               class="btn2 btn-join">Sign in to join</a>
-                            <a href="#"
-                               *ngIf="userinfo?.email && investment?.is_investment_started=='0' "
-                               (click)="refereshPaymentRef()" data-toggle="modal"
-                               data-target="#exampleModalCenter"
-                               class="btn2 btn-join">Invest now</a>
-                            <a *ngIf="investment?.is_investment_started=='1' "
-                               class="btn2 btn-join">Closed</a>
+                                *ngIf="!userinfo && investment?.is_investment_started=='0' " class="btn2 btn-join">Sign
+                                in to join</a>
+                            <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' "
+                                (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
+                                class="btn2 btn-join">Invest now</a>
+                            <a *ngIf="investment?.is_investment_started=='1' " class="btn2 btn-join">Closed</a>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -92,24 +82,35 @@
         <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType">
             <h3>Related Investments</h3>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img class="card-img-top" src="assets/images/Car.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Transaction Portfolio <br>(Saloon Car)</h5>
-                            <div class="card-text">
-                                <h4>N 40,000.00</h4>
-                                <h5>25% Profit (Estimated)</h5>
-                                <small>12 months(s)</small>
+                <div *ngFor="let x of investments" class="col-md-4">
+                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                        <div class="card">
+                            <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                                alt="Card image cap">
+                            <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="font-size: 20px;"
+                                        href="investment-details.html">{{x.title}}</a></h5>
+                                <div class="card-text" style="text-align: center">
+                                    <h3 style="text-align: center">
+                                        {{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                    <span *ngIf="x?.estimated_percentage_profit"
+                                        class="span-profit">{{x?.estimated_percentage_profit}}
+                                        Profit (Estimated)</span>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                                    <p>{{x.duration}} Month(s)</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
+
         </div>
         <!-- Modal -->
         <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <!--<div class="modal-header">
@@ -126,11 +127,11 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-5">
-                                        <label class="pt-1" for="slotNum">How many slots?</label>
+                                        <label class="pt-1" for="slotNum">Number of Slots?</label>
                                     </div>
                                     <div class="col-md-7">
                                         <input type="number" [(ngModel)]="transaction.number_of_pools" name=""
-                                               id="slotNum" class="form-control">
+                                            id="slotNum" class="form-control">
                                         <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
                                             <option value="" hidden>Select</option>
                                             <option value="1">1</option>
@@ -163,9 +164,7 @@
                             (click)="xpressPay(userinfo?.email,amountPerPool * transaction.number_of_pools,userinfo?.first_name,userinfo?.last_name,userinfo?.phone_number,transactionRef)"
                             data-dismiss="modal"
                             [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                            type="button"
-                            class="btn btn-join-add"
-                        >Xpress pay
+                            type="button" class="btn btn-join-add">Make Payment
                         </button>
                         <!-- <button
                             data-dismiss="modal"
@@ -189,4 +188,3 @@
         </div>
     </section>
 </section>
-

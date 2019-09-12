@@ -9,7 +9,7 @@ import { CareerModule } from './modules/career/career.module';
 import { AppRoutingModule } from './app-routing.module';
 // import { Angular2SocialLoginModule } from "angular2-social-login";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -91,6 +91,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         CareerModule,
         AppRoutingModule,
         HttpClientModule,
+        NgxSkeletonLoaderModule,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot({
             timeOut: 5000,

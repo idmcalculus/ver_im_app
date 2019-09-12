@@ -1,0 +1,191 @@
+
+.invest-header-thumb {
+        opacity: 0.9;
+
+        img{
+           border-radius: 0;
+           opacity: 0.9;
+        }
+    
+}
+ .main-invest-card{
+    text-align: left;
+ }
+
+.invest-header{
+ padding-top: 2rem;
+}
+
+.modal-dialog{
+   text-align: center;
+
+   .modal-content{
+      border-radius:2rem;
+
+      .modal-footer{
+         .btn{
+            &.btn-secondary{
+               border-radius: 45px;
+               box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
+            }
+
+            &.btn-join-add{
+               border-radius: 45px;
+               box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
+               background-color: #3f51b5;
+            }
+         }
+      }
+   }
+
+   
+}
+
+ .investment-plans{
+   
+         .join-modal{
+            h3{
+               text-align:center;
+               color:#3f51b5;
+               font-size:1.3rem;
+               font-weight:600;
+               margin-bottom:15px;
+               position:relative;
+            }
+
+            h4{
+               text-align:center;
+               margin-bottom:1.5em;
+               font-size:1.4em;
+               font-weight:550;
+
+               &::after{
+                  content: none;
+               }
+            }
+
+           
+
+            .modal-content {
+               border-radius:2rem;
+            }
+            
+         }
+
+        .over-content{
+
+            position:relative;
+            vertical-align:middle;
+            display:flex;
+            justify-content:center;
+            margin-top: 1rem;
+            margin-bottom: 23px;
+
+            h3{
+                color:#4f5fbe;
+                font-size:25px;
+                text-align:center;
+                font-weight:bold;
+            }
+        }
+
+        .inner-investment {
+           
+
+            .main-invest-card{
+                text-align: left;
+               padding-top: 1rem;
+               .col-md-7{
+                  padding-left: 0
+               }
+                .side-details{
+                   padding-right: 0;
+                   padding-left: 0;
+
+                    .invest-thumbnail {
+                        height: 250px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        img{
+                           width: 100%;
+                        }
+                     }
+
+                     .content-detail{
+
+                        > div{
+                           padding-left: 0;
+                           text-align: center;
+
+                           span{
+                              font-size: 1.1rem;
+                              color: #777;
+                           }
+                        }
+
+                         h3 {
+                           font-size: 1.7rem;
+                           letter-spacing: 0.05rem;
+                         }
+
+                         img{
+                            border:0;
+                            padding: 0;
+                            
+                         }
+                     }
+               }
+
+                .row{
+                    .col-md-7 {
+                        margin: 0;
+                        padding: 0;
+    
+                    }
+
+                   .other-info{
+                      padding-left: 0;
+                     text-align: left;
+                     color: #888;
+                     font-size: 1rem;
+                     font-weight: normal;
+
+                     h5{
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        color: #333333d4;
+                        position: relative;
+                        margin-bottom: 1rem;
+                        letter-spacing: 0.1rem;
+                     }
+
+                     h5::after{
+                        content: none;
+                     }
+
+                     article{
+                        font-size:15px;
+                        font-family:sans-serif;
+                        line-height:2.5rem;
+
+                     }
+
+                  }
+                }
+            }
+        }
+
+
+   }
+
+.card-img-top{
+   height: 280px;
+   width: 100%;
+   margin: auto;
+}
+
+.span-profit{
+   font-weight: 600;
+}

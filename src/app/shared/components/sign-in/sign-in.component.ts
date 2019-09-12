@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Directive, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SignInService } from './sign-in.service';
 import { User } from '../../models/user';
 import { AppAuthService } from './../../../core/auth/auth.service';
@@ -167,16 +167,5 @@ export class SignInComponent implements OnInit {
 
     installScript() {
         this.dynamicScriptLoader.load('platform');
-    }
-}
-
-
-@Directive({
-    selector: '[appPassText]'
-})
-export class HighlightDirective {
-    constructor(el: ElementRef) {
-        el.nativeElement.style.backgroundColor = 'yellow';
-        console.log('helo');
     }
 }

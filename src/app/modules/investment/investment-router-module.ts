@@ -1,8 +1,10 @@
-import { NgModule }            from '@angular/core';
-import { Routes,
-         RouterModule }        from '@angular/router';
-import { InvestmentComponent }    from './investment.component';
-import {InvestmentDetailComponent} from './investment-detail/investment-detail.component';
+import { NgModule } from '@angular/core';
+import {
+  Routes,
+  RouterModule
+} from '@angular/router';
+import { InvestmentComponent } from './investment.component';
+import { InvestmentDetailComponent } from './investment-detail/investment-detail.component';
 
 const investmentRoutes: Routes = [
   { path: 'investments', component: InvestmentComponent },
@@ -14,4 +16,4 @@ const investmentRoutes: Routes = [
   imports: [RouterModule.forChild(investmentRoutes)],
   exports: [RouterModule]
 })
-export class InvestmentRoutingModule {}
+export class InvestmentRoutingModule { }

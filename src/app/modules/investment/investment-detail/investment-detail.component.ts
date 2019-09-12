@@ -1,26 +1,27 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {InvestmentService} from './../investment.service';
-import {Investment} from 'src/app/shared/models/Investment';
-import {Transaction} from 'src/app/shared/models/Transaction';
-import {Subscription} from 'rxjs';
-import {AppAuthService} from 'src/app/core/auth/auth.service';
-import {User} from 'src/app/shared/models/user';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { InvestmentService } from './../investment.service';
+import { Investment } from 'src/app/shared/models/Investment';
+import { Transaction } from 'src/app/shared/models/Transaction';
+import { Subscription } from 'rxjs';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { User } from 'src/app/shared/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 declare var xpressPay: any;
-
+let category = '0';
+let allInvestments = [];
 @Component({
     selector: 'app-investment-detail',
     templateUrl: './investment-detail.component.html',
-    styleUrls: ['./investment-detail.component.css']
+    styleUrls: ['./investment-detail.component.scss']
 })
 
 export class InvestmentDetailComponent implements OnInit {
 
     isLoading: boolean = true;
     investment: Investment;
-    transaction: Transaction = {investment_id: 0, number_of_pools: 0};
+    transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
     userinfo: User;
     amountPerPool: number = 0;
     userEmail: string = '';
@@ -28,6 +29,9 @@ export class InvestmentDetailComponent implements OnInit {
     numOfPoolsLeft: number = 0;
     currentUserSubscription: Subscription;
     reportData: any;
+    investments: any = [];
+    categories: any = [];
+    selectedCategory: string = '0';
 
 
     constructor(
@@ -43,8 +47,14 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        var investmentId = this.activatedRoute.snapshot.params['id'];
-        this.getInvestment(investmentId);
+
+        this.activatedRoute.params.subscribe((params) => {
+            this.investments = [];
+            this.isLoading = true;
+            var investmentId = params['id'];
+            this.getInvestment(investmentId);
+            this.getInvestments();
+        });
 
     }
 
@@ -85,6 +95,46 @@ export class InvestmentDetailComponent implements OnInit {
         });
     }
 
+    getInvestments() {
+
+        this.investmentService.getInvestments(true).subscribe(investments => {
+            var investmentArray = [];
+            if (investments) {
+                investmentArray = investments.success.Data;
+                var cnt = 0;
+                investmentArray.forEach(element => {
+                    if (element.is_investment_started === '0' && element.is_investment_ended === '0') {
+                        this.investments[cnt] = element;
+                        cnt++;
+                    }
+                });
+            }
+            allInvestments = this.investments;
+            this.isLoading = false;
+
+            var categoryName = this.activatedRoute.snapshot.params['category'];
+            if (categoryName) {
+                var category = this.categories.filter(a1 => {
+                    return a1.category_name.trim() == categoryName.trim();
+                });
+                if (category && category.length > 0) {
+                    this.selectedCategory = category[0].id;
+                    this.filterInvestments();
+                }
+            }
+        });
+    }
+
+    filterInvestments() {
+        category = this.selectedCategory;
+        if (category === '0') {
+            this.investments = allInvestments;
+        } else {
+            this.investments = allInvestments.filter(a1 => {
+                return a1.category_id === category;
+            });
+        }
+    }
 
     joinInvestment() {
         this.isLoading = true;
