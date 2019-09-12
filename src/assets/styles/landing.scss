@@ -4,6 +4,7 @@
     background-size: cover;
     height: 80%;
     margin-top: 5%;
+<<<<<<< HEAD
 	margin-bottom: 10%;
 	
 	.inner-landing{
@@ -22,6 +23,17 @@
     .col-md-6{
 		padding-left: 3% !important;
 		max-width: 45%;
+=======
+    margin-bottom: 10%;
+        
+    .lower-content{
+        line-height: 60px !important;
+        letter-spacing: 1px;
+    }
+
+    .col-md-6{
+        padding-left: 3% !important;
+>>>>>>> signin/signup page revamp
     }
 
     .col-md-5{
@@ -30,7 +42,11 @@
         margin-left: -5%;
 
         .circle {
+<<<<<<< HEAD
             width: 60%;
+=======
+            width: 55%;
+>>>>>>> signin/signup page revamp
             height: 100%;
             background: url("../../assets/images/rename.svg") no-repeat right;
             background-size: contain;
@@ -38,8 +54,13 @@
         }
 
         .circle2 {     
+<<<<<<< HEAD
             width: 60%;
             height: 70%;
+=======
+            width: 55%;
+            height: 65%;
+>>>>>>> signin/signup page revamp
             background: url("../../assets/images/mobile.svg") no-repeat right;
             background-size: contain;
             margin: -10%;

@@ -100,15 +100,22 @@ export class InvestmentComponent implements OnInit {
         } else {
             const sel = String(categoryId.id);
             this.investments = allInvestments.filter(a1 => {
+<<<<<<< HEAD
+=======
+                console.log(typeof a1.category_id, typeof sel)
+>>>>>>> signin/signup page revamp
                 return a1.category_id === sel;
             });
         }
     }
 
+<<<<<<< HEAD
     calculateEstimate(returns, inv) {
         const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
 
+=======
+>>>>>>> signin/signup page revamp
 
 }

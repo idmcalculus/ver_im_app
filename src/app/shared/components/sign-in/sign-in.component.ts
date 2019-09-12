@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Directive, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { SignInService } from './sign-in.service';
 import { User } from '../../models/user';
 import { AppAuthService } from './../../../core/auth/auth.service';
@@ -169,6 +169,7 @@ export class SignInComponent implements OnInit {
         this.dynamicScriptLoader.load('platform');
     }
 }
+<<<<<<< HEAD
 
 
 @Directive({
@@ -180,3 +181,5 @@ export class HighlightDirective {
         console.log('helo');
     }
 }
+=======
+>>>>>>> signin/signup page revamp

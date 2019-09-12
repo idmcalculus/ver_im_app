@@ -12,6 +12,7 @@
     text-align: left;
  }
 
+<<<<<<< HEAD
  .section-container{
    background: url("../../../../assets/images/partner-row2-3.png") no-repeat right top, 
    url("../../../../assets/images/partner-row1-2.png") no-repeat left top,
@@ -29,6 +30,10 @@
      width: 15rem;
    }
 }
+=======
+.invest-header{
+ padding-top: 2rem;
+>>>>>>> signin/signup page revamp
 }
 
 .modal-dialog{
@@ -111,8 +116,12 @@
                 text-align: left;
                padding-top: 1rem;
                .col-md-7{
+<<<<<<< HEAD
                   padding-left: 0;
                   max-width: 50.333333%;
+=======
+                  padding-left: 0
+>>>>>>> signin/signup page revamp
                }
                 .side-details{
                    padding-right: 0;
@@ -125,7 +134,11 @@
                         justify-content: center;
 
                         img{
+<<<<<<< HEAD
                            width: 80%;
+=======
+                           width: 100%;
+>>>>>>> signin/signup page revamp
                         }
                      }
 
@@ -143,7 +156,11 @@
 
                          h3 {
                            font-size: 1.7rem;
+<<<<<<< HEAD
                            letter-spacing: 0.1rem;
+=======
+                           letter-spacing: 0.05rem;
+>>>>>>> signin/signup page revamp
                          }
 
                          img{
@@ -182,12 +199,19 @@
                      }
 
                      article{
+<<<<<<< HEAD
                         font-size: 15px;
                         line-height: 2.5rem;
                         letter-spacing: 0.01rem;
                         text-align: justify;
                         font-family: roboto;
                         font-weight: 500;
+=======
+                        font-size:15px;
+                        font-family:sans-serif;
+                        line-height:2.5rem;
+
+>>>>>>> signin/signup page revamp
                      }
 
                   }
@@ -195,6 +219,7 @@
             }
         }
 
+<<<<<<< HEAD
         .relatedInvestType{
          :nth-child(2){
             justify-content: flex-start;
@@ -266,6 +291,14 @@
 .card-img-top{
    height: 10rem;
     width: 80%;
+=======
+
+   }
+
+.card-img-top{
+   height: 280px;
+   width: 100%;
+>>>>>>> signin/signup page revamp
    margin: auto;
 }
 

@@ -1,5 +1,12 @@
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
 import { Routes, RouterModule } from '@angular/router';
+=======
+import {
+  Routes,
+  RouterModule
+} from '@angular/router';
+>>>>>>> signin/signup page revamp
 import { InvestmentComponent } from './investment.component';
 import { InvestmentDetailComponent } from './investment-detail/investment-detail.component';
 
