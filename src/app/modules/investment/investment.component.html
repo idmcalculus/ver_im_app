@@ -2,63 +2,81 @@
     <div class="row">
         <div class="col-md-3">
             <div class="invest-header-thumb">
-                <img src="../../../../assets/images/hiace_bus.jpg">
+                <img src="../../../../assets/images/volkswagen_volks.png">
             </div>
         </div>
         <div class="col-md-9">
             <div class="invest-header-text">
-                <article>
-                    At VERSA, we have to come to recognize that middle income earners find it hard
-                    to invest their minimal savings, we provide opportunities, that can grow their funds
-                    exponentially.
-                </article>
+                <div class="navigation-values">Homepage<span>></span>Invest</div>
             </div>
         </div>
+    </div>
+    <div class="row cover">
     </div>
 </section>
 <section class="section-container">
     <section class="investment-plans">
         <div class="inner-investment">
-            <div class="row mb-4">
-                <div class="col-md-9">
-                    <h3 class="title-head-inv">Investments</h3>
+            <div class="row">
+                <div class="column">
+                    <h3 class="title-head-inv">INVESTMENTS</h3>
+                    <hr style="margin-top: 0.5px; width: 80%;"/>
                 </div>
-                <div class="col-md-3 float-md-right">
-                    <label for="filterinvestment" class="sr-only">Filter Investment</label>
-                    <select  [(ngModel)]="selectedCategory" (change)="filterInvestments()" name="" id="filterinvestment" class="form-control">
-                        <option value="0">Choose Category</option>
-                        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.category_name}}</option>
-                    </select>
+            </div>
+            <div class="row">
+                <div class="column2">
+                    <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
+                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)">|<span>{{category.category_name}}</span></h5>
                 </div>
             </div>
 
-            <div *ngIf="isLoading" class="lds-default">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div *ngIf="isLoading" class="display: flex">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                            <div class="superb-container m-b20">
+                                <div class="img-holder">
+            
+                                </div>
+                               <div> <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader></div>
+                            </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                        <div class="superb-container m-b20">
+                            <div class="img-holder">
+                    
+                            </div>
+                            <div>
+                                <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                        <div class="superb-container m-b20">
+                            <div class="img-holder">
+                    
+                            </div>
+                            <div>
+                                <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div *ngIf="!isLoading && investments.length > 0 "  class="row mb-5">
+            <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
                 <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                    <a  [routerLink]="['/investments', x.id]"  routerLinkActive="active">
+                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
                         <div class="superb-container m-b20">
                             <div class="img-holder">
                                 <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                                <img *ngIf="x.investment_image!=''"  src="{{x.investment_image}}" alt="image">
+                                <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
                                 <h2><a href="investment-details.html">{{x.title}}</a></h2>
                                 <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                <span *ngIf="x?.estimated_percentage_profit" class="span-profit">{{x?.estimated_percentage_profit}} Profit <br> (Estimated)</span>
+                                <span *ngIf="x?.estimated_percentage_profit"
+                                    class="span-profit">{{x?.estimated_percentage_profit}} Profit <br>
+                                    (Estimated)</span>
                                 <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
                                 <p>{{x.duration}} Month(s)</p>
                             </div>
@@ -66,12 +84,12 @@
                     </a>
                 </div>
             </div>
-            <section  *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;"  class="workingSection">
+            <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
                 <div class="inner-workingSection">
                     <div class="row">
-                        <div  class="col-md-12">
-                            <div class="working-content">
-                                <h3>Sorry no investments available now</h3>
+                        <div class="col-md-12">
+                            <div class="working-content" style="text-align: center; width: 100%">
+                                <h3>Sorry there are no investments available now in this category</h3>
                             </div>
                         </div>
                     </div>

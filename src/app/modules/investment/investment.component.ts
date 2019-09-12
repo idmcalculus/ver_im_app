@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import {InvestmentService} from './investment.service';
-import {Transaction} from 'src/app/shared/models/Transaction';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { InvestmentService } from './investment.service';
+import { Transaction } from 'src/app/shared/models/Transaction';
 
 
 let category = '0';
@@ -89,6 +89,18 @@ export class InvestmentComponent implements OnInit {
         this.investments = allInvestments.filter(a1 => {
             return a1.category_name === categoryName;
         });
+    }
+
+    filterInvestmentsById(categoryId) {
+        if (categoryId === 0) {
+            this.investments = allInvestments;
+        } else {
+            const sel = String(categoryId.id);
+            this.investments = allInvestments.filter(a1 => {
+                console.log(typeof a1.category_id, typeof sel)
+                return a1.category_id === sel;
+            });
+        }
     }
 
 

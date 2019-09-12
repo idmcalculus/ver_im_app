@@ -24,6 +24,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/assets/styles/landing.scss",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
