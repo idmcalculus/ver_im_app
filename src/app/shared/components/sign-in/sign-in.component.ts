@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {SignInService} from './sign-in.service';
-import {User} from '../../models/user';
-import {AppAuthService} from './../../../core/auth/auth.service';
-import {Router, ActivatedRoute} from '@angular/router';
-import {DynamicScriptLoaderService} from '../../services/dynamic-script-loader.service';
-import {SocialLogin} from '../../services/social-login-services';
-import {ToastrService} from 'ngx-toastr';
+import { Component, OnInit, ElementRef, Directive, ViewChild } from '@angular/core';
+import { SignInService } from './sign-in.service';
+import { User } from '../../models/user';
+import { AppAuthService } from './../../../core/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
+import { SocialLogin } from '../../services/social-login-services';
+import { ToastrService } from 'ngx-toastr';
 import actions from '@angular/fire/schematics/deploy/actions';
 
 
@@ -15,13 +15,14 @@ import actions from '@angular/fire/schematics/deploy/actions';
     styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-    user: User = {email: '', password: ''};
+    @ViewChild('passText') input;
+    user: User = { email: '', password: '' };
     isSubmitting;
     loginText = 'Login';
     showOTPForm = false;
     otp: string;
     isLoading: boolean = false;
-
+    private _shown = false;
 
     constructor(
         private signInService: SignInService,
@@ -32,6 +33,7 @@ export class SignInComponent implements OnInit {
         private toastrService: ToastrService,
         private socialAuth: SocialLogin,
         private router: Router,
+        private el: ElementRef
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
             var authCode = resp.code;
@@ -73,13 +75,13 @@ export class SignInComponent implements OnInit {
             this.loginText = 'Authenticating...';
 
             this.authService.login(this.user)
-            .subscribe(UserDetails => {
-                if (UserDetails) {
-                    this.showOTPForm = true;
-                }
-                this.loginText = 'Login';
-                resolve();
-            });
+                .subscribe(UserDetails => {
+                    if (UserDetails) {
+                        this.showOTPForm = true;
+                    }
+                    this.loginText = 'Login';
+                    resolve();
+                });
         });
     }
 
@@ -130,6 +132,19 @@ export class SignInComponent implements OnInit {
             });
     }
 
+    toggle(span: HTMLElement) {
+        this._shown = !this._shown;
+        console.log(this._shown);
+        if (this._shown) {
+            this.input.nativeElement.setAttribute('type', 'text');
+        } else {
+            this.input.nativeElement.setAttribute('type', 'password');
+        }
+    }
+
+    view() {
+        this.toggle(this.input.nativeElement);
+    }
 
     yahooSignin() {
         const urll = this.socialLoginService.getSocialUrlLogin('yahoo');
@@ -152,5 +167,16 @@ export class SignInComponent implements OnInit {
 
     installScript() {
         this.dynamicScriptLoader.load('platform');
+    }
+}
+
+
+@Directive({
+    selector: '[appPassText]'
+})
+export class HighlightDirective {
+    constructor(el: ElementRef) {
+        el.nativeElement.style.backgroundColor = 'yellow';
+        console.log('helo');
     }
 }

@@ -137,8 +137,12 @@ h3, h4, p {
                 background: #fff;
                 border: 0;
                 border-radius: 0;
-                border-bottom: 1px solid #4f5fbe;
+                border-bottom: 1.8px solid #e7e8ec;
                 /* color: #354388; */
+            }
+
+            span.input-group-text.tran{
+                 border-bottom: 1.8px solid #e7e8ec;
             }
 
             h3{
