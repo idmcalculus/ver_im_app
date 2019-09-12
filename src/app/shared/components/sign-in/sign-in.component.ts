@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, Directive, ViewChild } from '@angular/core';
 import { SignInService } from './sign-in.service';
 import { User } from '../../models/user';
 import { AppAuthService } from './../../../core/auth/auth.service';
@@ -6,6 +6,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { SocialLogin } from '../../services/social-login-services';
 import { ToastrService } from 'ngx-toastr';
+import actions from '@angular/fire/schematics/deploy/actions';
+
 
 @Component({
     selector: 'app-sign-in',
@@ -78,19 +80,6 @@ export class SignInComponent implements OnInit {
                         this.showOTPForm = true;
                     }
                     this.loginText = 'Login';
-                    resolve();
-                });
-        });
-    }
-
-    resendOTP(): void {
-        this.isSubmitting = new Promise((resolve, reject) => {
-            this.loginText = 'Resending...';
-
-            this.authService.login(this.user)
-                .subscribe(UserDetails => {
-                    this.loginText = 'Login';
-                    this.toastrService.success(`OTP as been resent to your mail`);
                     resolve();
                 });
         });
@@ -178,5 +167,16 @@ export class SignInComponent implements OnInit {
 
     installScript() {
         this.dynamicScriptLoader.load('platform');
+    }
+}
+
+
+@Directive({
+    selector: '[appPassText]'
+})
+export class HighlightDirective {
+    constructor(el: ElementRef) {
+        el.nativeElement.style.backgroundColor = 'yellow';
+        console.log('helo');
     }
 }
