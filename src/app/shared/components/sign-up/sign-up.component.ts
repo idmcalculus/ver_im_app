@@ -1,13 +1,13 @@
-import {Component, OnInit, NgZone} from '@angular/core';
-import {SignUpService} from './sign-up.service';
-import {User} from './../../models/user';
-import {AppAuthService} from 'src/app/core/auth/auth.service';
-import {Router, ActivatedRoute} from '@angular/router';
-import {DynamicScriptLoaderService} from '../../services/dynamic-script-loader.service';
-import {ToastrService} from 'ngx-toastr';
-import {SocialLogin} from '../../services/social-login-services';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { SignUpService } from './sign-up.service';
+import { User } from './../../models/user';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
+import { ToastrService } from 'ngx-toastr';
+import { SocialLogin } from '../../services/social-login-services';
 
-let userBackbone = {email: '', password: ''};
+let userBackbone = { email: '', password: '' };
 declare const gapi: any;
 
 @Component({
@@ -16,6 +16,8 @@ declare const gapi: any;
     styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
+    @ViewChild('passText') input;
+    @ViewChild('confirmPassText') input2;
     public auth2: any;
     user: User = userBackbone;
     passwordConfim: string = '';
@@ -23,14 +25,15 @@ export class SignUpComponent implements OnInit {
     signUpText: string = 'Sign up';
     showOTPForm: boolean = false;
     otp: any;
+    private _shown = false;
 
     constructor(private signUpService: SignUpService,
-                private authService: AppAuthService,
-                private router: Router,
-                private activatedRoute: ActivatedRoute,
-                private dynamicScriptLoader: DynamicScriptLoaderService,
-                private toastrService: ToastrService,
-                private socialLoginService: SocialLogin
+        private authService: AppAuthService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private dynamicScriptLoader: DynamicScriptLoaderService,
+        private toastrService: ToastrService,
+        private socialLoginService: SocialLogin
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
             var authCode = resp.code;
@@ -68,7 +71,7 @@ export class SignUpComponent implements OnInit {
                     .subscribe(UserDetails => {
                         if (UserDetails) {
                             this.toastrService.success('Registeration Succesfull, check mail to verify');
-                            this.user = {email: '', password: ''};
+                            this.user = { email: '', password: '' };
                             this.router.navigateByUrl('signin');
                         }
                         this.passwordConfim = '';
@@ -149,6 +152,19 @@ export class SignUpComponent implements OnInit {
                     resolve();
                 });
         });
+    }
+
+    toggle(span) {
+        this._shown = !this._shown;
+        if (this._shown) {
+            this[span].nativeElement.setAttribute('type', 'text');
+        } else {
+            this[span].nativeElement.setAttribute('type', 'password');
+        }
+    }
+
+    view(input) {
+        this.toggle(input);
     }
 
     yahooSignUp() {
