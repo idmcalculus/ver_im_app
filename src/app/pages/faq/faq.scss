@@ -1,0 +1,128 @@
+.work-header {
+    height: 300px;
+    padding: 4px;
+    margin-top: 5em;
+    background: url('../../../assets/images/faq-banner.png') no-repeat center;
+		background-size: cover;
+		
+		.inner-work {
+			h3 {
+				display: flex;
+				align-items: center;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				font-size: 4em;
+				font-weight: bold;
+				color: #ffffff;
+				margin: 0;
+				text-shadow: 0 1px 0 rgba(0,0,0,.9);
+			}
+
+			.col-md-9{
+				text-align: end;
+				min-width: 90%;
+				height: 100%;
+				position: absolute;
+				align-items: flex-end;
+				justify-content: flex-end;
+				display: flex;
+				bottom: rem;
+
+				.invest-header-text{
+					height: 100%;
+					width: 13%;
+					display: flex;
+					align-items: flex-end;
+					/* display: flow-root; */
+					margin-bottom: 2.5rem;
+				}
+			}
+
+			.navigation-values{
+					width: 100%;
+					background-color: #8390DB;
+					text-align: center;
+					color: white;
+					font-weight: 800;
+					letter-spacing: 0.3px;
+					padding: 10px 25px 10px 15px;
+					border-radius: 45px;
+					box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
+						span{
+								padding-right: 6%;
+								padding-left: 1%;
+						}
+				}
+	}
+
+}
+
+.inner-faq {
+    padding: 5rem;
+    border-radius: 8px;
+    background: #fff;
+		box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
+		
+		h1 {
+			font-size: 20px;
+			font-weight: 600;
+			color: #707070;
+			margin-bottom: 1rem;
+		}
+}
+
+.faq-section{
+	background: 
+	url("../../../assets/images/partner-row1-2.png") no-repeat left top, 
+	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
+	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+}
+
+.accordion{
+	 a {
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 3rem 1rem 1rem;
+    color: #707070;
+    font-size: 1.05rem;
+    font-weight: 700;
+		border: 1px solid #e5e5e5;
+		background-color: #F5F5F5;
+
+		.active {
+    color:black;
+		border-bottom: 1px solid #8390db;
+		}
+
+			
+		&:hover{
+			color:black;
+		}
+	}
+
+}
+
+.accordion {
+	.content.active {
+		border-width: 0.1px;
+    border-style: solid;
+    border-color: #00000042;
+    opacity: 1;
+    padding: 1rem;
+    max-height: 100%;
+    -webkit-transition: all .35s ease .15s;
+    -o-transition: all .35s ease .15s;
+		transition: all .35s ease .15s;
+
+		p {
+					font-size: 1rem;
+					font-weight: 300;
+					line-height: 2;
+			 	}
+	}
+}
