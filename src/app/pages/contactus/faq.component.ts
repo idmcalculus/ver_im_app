@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.scss']
+  styleUrls: ['./contact.scss']
 })
-export class FaqComponent implements OnInit {
+export class ContactusComponent implements OnInit {
 
   constructor() { }
 

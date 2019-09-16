@@ -96,7 +96,8 @@
                 text-align: left;
                padding-top: 1rem;
                .col-md-7{
-                  padding-left: 0
+                  padding-left: 0;
+                  max-width: 50.333333%;
                }
                 .side-details{
                    padding-right: 0;
@@ -127,7 +128,7 @@
 
                          h3 {
                            font-size: 1.7rem;
-                           letter-spacing: 0.05rem;
+                           letter-spacing: 0.1rem;
                          }
 
                          img{
