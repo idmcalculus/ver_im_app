@@ -4,7 +4,7 @@
     margin-top: 5em;
     background: url('../../../assets/images/faq-banner.png') no-repeat center;
 		background-size: cover;
-		
+
 		.inner-work {
 			h3 {
 				display: flex;
@@ -40,16 +40,15 @@
 			}
 
 			.navigation-values{
-				width: 100%;
-				background-color: #8390DB;
-				text-align: center;
-				color: white;
-				font-size: 0.7rem;
-				letter-spacing: 0.3px;
-				padding: 10px 0px 10px 0px;
-				font-weight: 800;
-				border-radius: 45px;
-				box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
+					width: 100%;
+					background-color: #8390DB;
+					text-align: center;
+					color: white;
+					font-weight: 800;
+					letter-spacing: 0.3px;
+					padding: 10px 25px 10px 15px;
+					border-radius: 45px;
+					box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
 						span{
 								padding-right: 6%;
 								padding-left: 1%;
@@ -64,7 +63,7 @@
     border-radius: 8px;
     background: #fff;
 		box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
-		
+
 		h1 {
 			font-size: 20px;
 			font-weight: 600;
@@ -74,8 +73,8 @@
 }
 
 .faq-section{
-	background: 
-	url("../../../assets/images/partner-row1-2.png") no-repeat left top, 
+	background:
+	url("../../../assets/images/partner-row1-2.png") no-repeat left top,
 	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
 }
@@ -100,7 +99,7 @@
 		border-bottom: 1px solid #8390db;
 		}
 
-			
+
 		&:hover{
 			color:black;
 		}

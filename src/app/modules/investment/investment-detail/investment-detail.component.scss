@@ -6,34 +6,14 @@
            border-radius: 0;
            opacity: 0.9;
         }
-    
+
 }
  .main-invest-card{
     text-align: left;
  }
 
-<<<<<<< HEAD
- .section-container{
-   background: url("../../../../assets/images/partner-row2-3.png") no-repeat right top, 
-   url("../../../../assets/images/partner-row1-2.png") no-repeat left top,
-   url("../../../../assets/images/partner-rw.png") no-repeat left bottom;
- }
-
 .invest-header{
  padding-top: 2rem;
- .col-md-9{
-   display: flex;
-   justify-content: flex-end;
-
-   .invest-header-text {
-     padding: 1px 20px;
-     width: 15rem;
-   }
-}
-=======
-.invest-header{
- padding-top: 2rem;
->>>>>>> signin/signup page revamp
 }
 
 .modal-dialog{
@@ -58,11 +38,11 @@
       }
    }
 
-   
+
 }
 
  .investment-plans{
-   
+
          .join-modal{
             h3{
                text-align:center;
@@ -84,12 +64,12 @@
                }
             }
 
-           
+
 
             .modal-content {
                border-radius:2rem;
             }
-            
+
          }
 
         .over-content{
@@ -110,18 +90,17 @@
         }
 
         .inner-investment {
-           
+
 
             .main-invest-card{
                 text-align: left;
                padding-top: 1rem;
                .col-md-7{
-<<<<<<< HEAD
                   padding-left: 0;
                   max-width: 50.333333%;
-=======
                   padding-left: 0
->>>>>>> signin/signup page revamp
+                  padding-left: 0;
+                  max-width: 50.333333%;
                }
                 .side-details{
                    padding-right: 0;
@@ -134,11 +113,7 @@
                         justify-content: center;
 
                         img{
-<<<<<<< HEAD
-                           width: 80%;
-=======
                            width: 100%;
->>>>>>> signin/signup page revamp
                         }
                      }
 
@@ -156,17 +131,13 @@
 
                          h3 {
                            font-size: 1.7rem;
-<<<<<<< HEAD
                            letter-spacing: 0.1rem;
-=======
-                           letter-spacing: 0.05rem;
->>>>>>> signin/signup page revamp
                          }
 
                          img{
                             border:0;
                             padding: 0;
-                            
+
                          }
                      }
                }
@@ -175,7 +146,7 @@
                     .col-md-7 {
                         margin: 0;
                         padding: 0;
-    
+
                     }
 
                    .other-info{
@@ -199,19 +170,10 @@
                      }
 
                      article{
-<<<<<<< HEAD
-                        font-size: 15px;
-                        line-height: 2.5rem;
-                        letter-spacing: 0.01rem;
-                        text-align: justify;
-                        font-family: roboto;
-                        font-weight: 500;
-=======
                         font-size:15px;
                         font-family:sans-serif;
                         line-height:2.5rem;
 
->>>>>>> signin/signup page revamp
                      }
 
                   }
@@ -219,86 +181,12 @@
             }
         }
 
-<<<<<<< HEAD
-        .relatedInvestType{
-         :nth-child(2){
-            justify-content: flex-start;
-          }
-
-          .col-md-4{
-          max-width: 33.333%;
-
-            .card{
-               width: auto;
-               height: auto
-            }
-
-            a {
-              color: #444;
-              font-weight: 400;
-              font-size: 1.1rem;
-              font-weight: 600;
-              text-decoration: none;
-              line-height: 25px;
-              font-family: roboto;
-              padding-top: 0;
-              font-size: 1.2rem;
-              letter-spacing: 1.5px;
-            }
-        
-            h3 {
-              color: #4f5fbe;
-              font-weight: 700;
-              font-size: 1.3rem;
-              padding: auto;
-              position: relative;
-              font-family: roboto;
-              letter-spacing: .2rem;
-        
-              &:after {
-                content: none;
-              }
-            }
-        
-            .span-profit {
-              padding: 12px 0;
-              color: #555;
-              font-weight: bold;
-              font-family: roboto;
-              letter-spacing: .1rem;
-            }
-        
-            p {
-              font-family: roboto;
-            }
-          }
-        
-          .img-holder {
-            height: 190px;
-            width: 90%;
-            overflow: hidden;
-            background: transparent;
-            margin: auto;
-            border-radius: inherit;
-        
-            img{
-              object-fit: contain;
-            }
-          }
-        }
-   }
-
-.card-img-top{
-   height: 10rem;
-    width: 80%;
-=======
 
    }
 
 .card-img-top{
    height: 280px;
    width: 100%;
->>>>>>> signin/signup page revamp
    margin: auto;
 }
 
