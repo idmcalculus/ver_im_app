@@ -80,10 +80,10 @@ section {
     position: relative;
 
     .inner-landing {
-        padding: 6rem 3.5rem 2em;
+        padding: 4.5rem 3.5rem 2em;
 
         h2 {
-            font-size: 3.7rem;
+            font-size: 3.2rem;
             color: $theme-blue;
             font-weight: bold;
             line-height: 1.25;
@@ -96,7 +96,7 @@ section {
         .lower-content {
             margin-top: 2em;
             color: $textColor;
-            font-size: 1.2rem;
+            font-size: 1rem;
             line-height: 35px;
             word-break: break-all;
             font-weight: lighter;
@@ -557,3 +557,4 @@ section {
         background: url("../../assets/images/partner-row1-1.svg") no-repeat -100% 522%;
     }
 }
+

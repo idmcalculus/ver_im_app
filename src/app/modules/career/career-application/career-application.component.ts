@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { CareerService } from '../career.service';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-career-application',
@@ -21,11 +22,14 @@ export class CareerApplicationComponent implements OnInit {
   isLoading:boolean=false;
   isSubmitting:any;
   base64:any;
+  submitText = 'Submit Application';
+
 
   constructor(
     private route:ActivatedRoute,
     private authService:AppAuthService,
     private cloudinaryService:CloudinaryService,
+    private toastrService: ToastrService,
     private careerService:CareerService) { 
     this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
       if(userInfo){
@@ -44,6 +48,7 @@ export class CareerApplicationComponent implements OnInit {
 
 
   apply(){
+    this.submitText='Submitting';
     this.careerApplication.career_id = this.careerId;
     this.isSubmitting = new Promise((resolve, reject) => {
       this.careerApplication.cv_base64 = this.base64;
@@ -52,8 +57,11 @@ export class CareerApplicationComponent implements OnInit {
         // console.log(JSON.stringify("am sending : "+ JSON.stringify(this.careerApplication)) )
         this.careerService.applyForCareer(this.careerApplication).subscribe(resp=>{
           if(resp && resp.success){
-            alert(resp.success.Message)
+            this.toastrService.success(resp.success.Message);
+            this.careerApplication = {email:''};
+            this.submitText='Submit Application';
           }
+          this.submitText='Submit Application';
           resolve()
         })
       })

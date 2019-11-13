@@ -1,0 +1,19 @@
+@media (max-width: 1068px) {
+    .col-md-3{
+        ul{
+            li{
+                justify-content: center;
+                display: flex;
+            }
+        }
+    }
+
+    .col-md-6{
+        ul{
+            li{
+                justify-content: center;
+                display: block;
+            }
+        }
+    }
+}

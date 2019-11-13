@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-9">
             <div class="invest-header-text">
-                <div class="navigation-values">Homepage<span>></span>Invest</div>
+                <div class="navigation-values">Homepage<span> ></span>Invest</div>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
                                 Month(s)
                             </div>
                             <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return:
-                                </span>{{investment?.estimated_percentage_profit}}
+                                </span>{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}% 
                                 profit (Estimated)
                             </div>
                             <!--<div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>25% profit (Estimated)</div>-->
@@ -82,7 +82,7 @@
         <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType">
             <h3>Related Investments</h3>
             <div class="row">
-                <div *ngFor="let x of investments" class="col-md-4">
+                <div *ngFor="let x of allinv" class="col-md-4">
                     <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
                         <div class="card">
                             <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
@@ -96,7 +96,7 @@
                                     <h3 style="text-align: center">
                                         {{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                     <span *ngIf="x?.estimated_percentage_profit"
-                                        class="span-profit">{{x?.estimated_percentage_profit}}
+                                        class="span-profit">{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}% 
                                         Profit (Estimated)</span>
                                     <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
                                     <p>{{x.duration}} Month(s)</p>

@@ -32,6 +32,7 @@ export class InvestmentDetailComponent implements OnInit {
     investments: any = [];
     categories: any = [];
     selectedCategory: string = '0';
+    allinv:any = [];
 
 
     constructor(
@@ -103,13 +104,13 @@ export class InvestmentDetailComponent implements OnInit {
                 investmentArray = investments.success.Data;
                 var cnt = 0;
                 investmentArray.forEach(element => {
-                    if (element.is_investment_started === '0' && element.is_investment_ended === '0') {
+                    if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
                         this.investments[cnt] = element;
                         cnt++;
                     }
                 });
             }
-            allInvestments = this.investments;
+            this.allinv = [this.investments[0],this.investments[cnt-1],this.investments[(cnt-3)]];
             this.isLoading = false;
 
             var categoryName = this.activatedRoute.snapshot.params['category'];
@@ -130,9 +131,7 @@ export class InvestmentDetailComponent implements OnInit {
         if (category === '0') {
             this.investments = allInvestments;
         } else {
-            this.investments = allInvestments.filter(a1 => {
-                return a1.category_id === category;
-            });
+            this.investments = allInvestments;
         }
     }
 
@@ -159,6 +158,11 @@ export class InvestmentDetailComponent implements OnInit {
     refereshPaymentRef() {
         var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0, 4)}`;
         this.transactionRef = randomString;
+    }
+
+    calculateEstimate(returns,inv){
+        const estimate = (((returns*12) - inv)/inv) * 100;
+        return Math.ceil(estimate);
     }
 
 

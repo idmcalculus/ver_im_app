@@ -9,7 +9,8 @@ let allInvestments = [];
 
 @Component({
     selector: 'app-investment',
-    templateUrl: './investment.component.html'
+    templateUrl: './investment.component.html',
+    styleUrls: ['./investment.component.scss']
 })
 
 
@@ -39,11 +40,12 @@ export class InvestmentComponent implements OnInit {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
             var investmentArray = [];
+            
             if (investments) {
                 investmentArray = investments.success.Data;
                 var cnt = 0;
                 investmentArray.forEach(element => {
-                    if (element.is_investment_started === '0' && element.is_investment_ended === '0') {
+                    if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
                         this.investments[cnt] = element;
                         cnt++;
                     }
@@ -51,7 +53,7 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-
+            console.log(investments,investmentArray,this.investments,allInvestments);
             var categoryName = this.activatedRoute.snapshot.params['category'];
             if (categoryName) {
                 var category = this.categories.filter(a1 => {
@@ -80,7 +82,8 @@ export class InvestmentComponent implements OnInit {
             this.investments = allInvestments;
         } else {
             this.investments = allInvestments.filter(a1 => {
-                return a1.category_id === category;
+                const sel = String(category);
+                return a1.category_id === sel;
             });
         }
     }
@@ -97,10 +100,14 @@ export class InvestmentComponent implements OnInit {
         } else {
             const sel = String(categoryId.id);
             this.investments = allInvestments.filter(a1 => {
-                console.log(typeof a1.category_id, typeof sel)
                 return a1.category_id === sel;
             });
         }
+    }
+
+    calculateEstimate(returns,inv){
+        const estimate = (((returns*12) - inv)/inv) * 100;
+        return Math.ceil(estimate);
     }
 
 

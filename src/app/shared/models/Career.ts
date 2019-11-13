@@ -6,4 +6,5 @@ export class Career extends BasicModel{
     position_type?:string;
     number_of_application?:string;
     career_responsibilities?:any;
+    career_requirements?:any;
 }

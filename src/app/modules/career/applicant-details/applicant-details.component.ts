@@ -9,11 +9,13 @@ import { CareerService } from '../career.service';
 })
 export class ApplicantDetailsComponent implements OnInit {
   @Input() public applicant:Applicant;
-  @Output() submit = new EventEmitter<Applicant>();
+  @Output() submit = new EventEmitter<Applicant>(); 
 
   constructor(
     private careerAppService:CareerService
-  ) { }
+  ) {
+   
+   }
 
   ngOnInit() {
 

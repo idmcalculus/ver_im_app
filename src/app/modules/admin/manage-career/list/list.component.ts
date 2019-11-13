@@ -28,7 +28,12 @@ export class ListComponent implements OnInit {
   }
 
   callBack(career){
-    this.selectedCareer = null;
+    if(career){
+      this.selectedCareer = null;
+      this.careerList = career
+    }else{
+      this.selectedCareer = null;
+    }
   }
 
 }

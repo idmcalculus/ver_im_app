@@ -103,7 +103,15 @@
                                     <div class="col-xl-12">
                                         <div class="card latest-update-card">
                                             <div class="card-block">
-                                                <h5>Profile</h5>
+                                                <div class="row p-0">
+                                                    <div class="col-md-8"><h5>Profile</h5></div>
+                                                    <div class="col-md-4">
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="addUser('create',null)" href="#" data-toggle="modal"
+                                                        data-target="#addUserModal"
+                                                        class="btn btn-add plus-btn float-right"><span><i
+                                                                class="fa fa-plus"></i></span></a>
+                                                    </div>
+                                                </div>
                                                 <div class="dt-responsive table-responsive">
                                                     <table id="order-table"
                                                         class="table table-striped table-bordered nowrap">
@@ -150,3 +158,4 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
+<app-pool-addUser [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>

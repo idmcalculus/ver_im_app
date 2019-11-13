@@ -1,0 +1,72 @@
+.summary{
+    textarea {
+        overflow: auto;
+        resize: vertical;
+        width: 100%;
+        border: hidden;
+        line-height: 2rem;
+        resize: none;
+        background-color: #8080801f;
+    }
+
+    textarea:disabled {
+        background-color: transparent;
+        resize: none;
+    }
+}
+
+input:disabled {
+    background-color: transparent;
+    border: none;
+    width: 50%
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    background-color: #8080801f;
+    width: 50%;
+}
+
+.career-details {    
+    .inner-card{
+        .post-body{
+
+            p{
+                margin: 2em 0em;
+                margin-bottom: 0em;
+            }
+
+            .res{
+                margin-top: 1rem;
+            }
+
+            li {
+                padding: 0;
+                
+            textarea {
+                overflow: hidden;
+                resize: vertical;
+                width: 100%;
+                border: hidden;
+                line-height: 2rem;
+                resize: none;
+                background-color: #8080801f;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                height: 42px;
+            }
+            
+            textarea:disabled {
+                background-color: transparent;
+                resize: none;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                height: 42px;
+            
+            }
+            }
+
+        }
+    }
+}
