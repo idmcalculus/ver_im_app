@@ -68,7 +68,6 @@ export class AppComponent {
     }
 
     isValid = (): boolean => {
-        console.log(this.router.url)
         if (this.router.url === '/forgot-password') {
             this.showHeader = false;
             this.showFooter = false;

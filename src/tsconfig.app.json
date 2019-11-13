@@ -13,7 +13,6 @@
   ],
   "exclude": [
       "test.ts",
-      "**/*.spec.ts",
-      "./src/app/modules/admin/admin-dashboard/admin-dashboard.component.ts"
+      "**/*.spec.ts"
   ]
 }

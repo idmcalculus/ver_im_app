@@ -6,8 +6,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { SocialLogin } from '../../services/social-login-services';
 import { ToastrService } from 'ngx-toastr';
-import actions from '@angular/fire/schematics/deploy/actions';
-
 
 @Component({
     selector: 'app-sign-in',

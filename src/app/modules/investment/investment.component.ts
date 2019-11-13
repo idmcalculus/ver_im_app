@@ -39,7 +39,7 @@ export class InvestmentComponent implements OnInit {
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
-            let investmentArray = [];
+            var investmentArray = [];
 
             if (investments) {
                 investmentArray = investments.success.Data;
@@ -53,8 +53,8 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-            console.log(investments, investmentArray, this.investments, allInvestments);
-            let categoryName = this.activatedRoute.snapshot.params.category;
+            console.log(investments,investmentArray,this.investments,allInvestments);
+            var categoryName = this.activatedRoute.snapshot.params['category'];
             if (categoryName) {
                 let category = this.categories.filter(a1 => {
                     return a1.category_name.trim() == categoryName.trim();
@@ -100,22 +100,16 @@ export class InvestmentComponent implements OnInit {
         } else {
             const sel = String(categoryId.id);
             this.investments = allInvestments.filter(a1 => {
-<<<<<<< HEAD
-=======
                 console.log(typeof a1.category_id, typeof sel)
->>>>>>> signin/signup page revamp
                 return a1.category_id === sel;
             });
         }
     }
 
-<<<<<<< HEAD
-    calculateEstimate(returns, inv) {
-        const estimate = (((returns * 12) - inv) / inv) * 100;
+
+    calculateEstimate(returns,inv){
+        const estimate = (((returns*12) - inv)/inv) * 100;
         return Math.ceil(estimate);
     }
-
-=======
->>>>>>> signin/signup page revamp
 
 }

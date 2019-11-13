@@ -5,6 +5,7 @@
 @import "./assets/scss/_partials/vars";
 @import './spinner.scss';
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+@import "./assets/scss/_partials/fonts";
 /* @import './skeleton.scss';
 
 h3, h4, p {
@@ -17,76 +18,6 @@ h3, h4, p {
     margin-bottom: 10px;
     border-radius: 4px;
 } */
-<<<<<<< HEAD
-.landing {
-    background-size: cover;
-    height: 80%;
-    margin-top: 5%;
-    margin-bottom: 10%;
-
-    .lower-content{
-        line-height: 60px !important;
-        letter-spacing: 1px;
-    }
-
-    .col-md-6{
-        padding-left: 3% !important;
-    }
-
-    .col-md-5{
-        display: flex;
-        min-width: 50%;
-        margin-left: -5%;
-
-        .circle {
-            width: 55%;
-            height: 100%;
-            background: url("./assets/images/rename.svg") no-repeat right;
-            background-size: contain;
-            margin-top: 20%
-        }
-
-        .circle2 {
-            width: 55%;
-            height: 65%;
-            background: url("./assets/images/mobile.svg") no-repeat right;
-            background-size: contain;
-            margin: -10%;
-            margin-top: 5%;
-        }
-    }
-
-
-}
-
-.step-investment {
-    padding: 2rem 0 4rem 0;
-    background: url("./assets/images/partner-row1-2.png") no-repeat top right;
-    -webkit-transform: rotate(-180deg);
-    transform: rotate(-180deg);
-    background-color: #3f51b5;
-    .row{
-        width: 85%;
-        margin: auto;
-         -webkit-transform: rotate(-180deg);
-        transform: rotate(-180deg);
-    }
-
-    .step-image {
-    background-size: contain;
-    width: 100%;
-    height: 30rem;
-    }
-
-    .list-plan {
-    color: #fff;
-    margin-top: 0rem;
-
-        h3{
-            font-size: 1.8em;
-        }
-=======
->>>>>>> signin/signup page revamp
 
 
 
@@ -135,7 +66,7 @@ h3, h4, p {
                  border-bottom: 1.8px solid #e7e8ec;
             }
 
-            
+
             h3{
                 font-size: 1rem;
                 color: #9190bb;
@@ -192,7 +123,7 @@ h3, h4, p {
             article {
                 color: #1d1d20;
                 line-height: 2.2;
-                font-size: 1.1rem;
+                font-size: 1rem;
                 font-weight: lighter;
                 padding: 2rem 0 0 0;
                 font-family: roboto;
@@ -222,44 +153,58 @@ h3, h4, p {
         }
 
         .inner-superb {
-        .superb-container-home {
-                height: 100%;
 
-                .img-holder {
-                    height: 280px;
-                    width: 100%;
-                    margin: auto;
-                    padding: 16px;
-                }
+        margin: 0 20px;
+                .col-md-4{
+                    padding-left: 5px;
+                    padding-right: 5px;
 
-                .content-holder {
-                    height: 90%;
-                    h2{
-                        padding: "0 15px"
-                    }
-                    line-height: 2.5rem;
-                    font-family: roboto;
+                    .superb-container-home {
+                        height: 100%;
+                        margin: 1em 0.3em;
 
-                    .btn-invest2 {
-                        padding: .61em 2em !important;
-                        bottom: 2%;
-                    }
+                        .img-holder {
+                            height: 280px;
+                            width: 100%;
+                            margin: auto;
+                            padding: 16px;
+                        }
 
-                    .span-profit {
-                        height: 23em;
-                        font-weight: 500;
+                        .content-holder {
+                            height: 90%;
+                            h2{
+                                padding: "0 15px";
+                                margin-top: .5em;
+                            }
+
+
+                            line-height: 2.5rem;
+                            font-family: roboto;
+
+                            .btn-invest2 {
+                                padding: .61em 2em !important;
+                                bottom: 2%;
+                            }
+
+                            .span-profit {
+                                height: auto;
+                                font-weight: 500;
+                            }
+                        }
                     }
                 }
             }
-        }
+
     }
 
     .investment-plans{
         .inner-investment {
         .col-sm-12.col-md-6.col-lg-3.pb-2{
-            min-width: 33%
+            min-width: 33.333333333333333333%;
+            margin-bottom: 1rem;
         }
         .superb-container{
+            margin: 0 20px;
             .content-holder {
                 padding-top: 25px;
 
@@ -272,14 +217,21 @@ h3, h4, p {
                     line-height: 25px;
                 }
 
+                h3{
+                    &:after{
+                        width: 35% !important;
+                        right: 32% !important;
+                    }
+                }
+
                 p{
                     font-weight: 700;
                 }
             }
         }
-        
-            
-                 
+
+
+
 
             .row{
                 text-align: center;
@@ -288,33 +240,36 @@ h3, h4, p {
 
                 .column{
                     margin: 1rem 1rem 0.2rem 1rem;
-                    
+
 
                     h3{
                         font-weight: bolder;
                         color: #4F5FBE;
                         font-size: 1.7rem;
-                        letter-spacing: 0.05rem;
+                        font-family: roboto;
+                        letter-spacing: 0.15rem;
                     }
                 }
 
                 .column2{
+                    justify-content: center;
                     display: flex;
-                    justify-content: space-between;
+                    /* justify-content: space-between; */
                     width: 50%;
                     color: #4F5FBE;
-                    margin: 2rem;
-                    margin-top: 1rem;
+                    margin: 0rem 0rem 3rem 0rem;
 
                     h5{
-                    font-size: 1rem;
+                    font-size: 1.1rem;
+                    letter-spacing: .19rem;
+                    font-family: roboto;
                     font-weight: 900;
                     cursor: pointer;
                     text-align: center;
                     justify-content: center;
                     display: contents;
                             span{
-                                padding: 2px;
+                                padding: 0 8px;
                                 &:hover {
 
                                 @include boxShadow($shadowBlack, 0, 0, 5px);
@@ -326,7 +281,7 @@ h3, h4, p {
                 }
             }
         }
-    } 
+    }
 }
 
 .versa-plan {
@@ -405,7 +360,7 @@ h3, h4, p {
 
     .footer-last{
         width: 92%;
-        margin: 2em 43px 0;
+        margin: 0em 43px 0;
        .last-child{
             :after {
                 position: absolute;
@@ -416,7 +371,7 @@ h3, h4, p {
     }
 
     .inner-footer {
-        padding: 20px 110px;
+        padding: 0px 110px;
         li{
             a{
                 font-weight: 900
@@ -472,13 +427,14 @@ h3, h4, p {
             justify-content: flex-end;
             z-index: 2;
 
+
             .navigation-values{
                 background-color: #8390DB;
                 text-align: center;
                 color: white;
                 font-weight: 800;
                 letter-spacing: 0.3px;
-               padding: 5px 25px 5px 15px;
+               padding: 10px 25px 10px 15px;
                 /* box-shadow: 0.1px 1.5px #050333; */
                 border-radius: 45px;
                 box-shadow: 0px 8px 15px rgba(0, 0, 0,0.45);
@@ -522,7 +478,7 @@ h3, h4, p {
                     font-size: 2.3rem;
                     letter-spacing: 0.1rem;
                 }
-                
+
                 .card-text{
                     text-align:center;
 
@@ -1645,18 +1601,3 @@ h3, h4, p {
         }
     }
 }
-
-body, html {
-    height: 100%;
-}
-.app-loading {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -5,6 +5,7 @@
     background: url('../../../assets/images/contact-us-banner.png') no-repeat center;
 		background-size: cover;
 
+
 		.inner-work{
 			height: 100%;
 			text-align: end;
@@ -15,25 +16,33 @@
 			padding-right: 5rem;
 
 			.col-md-9{
-				max-width: 17%;
-			}
+				display: flex;
+				align-items: flex-end;
+				text-align: end;
+				justify-content: flex-end;
+				z-index: 2;
 
-			 .navigation-values{
-					width: 100%;
+				.invest-header-text{
+					width: 15rem;
+				}
+
+				.navigation-values{
 					background-color: #8390DB;
 					text-align: center;
 					color: white;
-					font-size: 0.7rem;
-					letter-spacing: 0.3px;
-					padding: 10px 0px 10px 0px;
 					font-weight: 800;
+					letter-spacing: 0.3px;
+				   padding: 10px 25px 10px 15px;
+					/* box-shadow: 0.1px 1.5px #050333; */
 					border-radius: 45px;
-					box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.45);
-						span{
-								padding-right: 6%;
-								padding-left: 1%;
-						}
+					box-shadow: 0px 8px 15px rgba(0, 0, 0,0.45);
+
+					span{
+						padding-right: 6%;
+						padding-left: 1%;
+					}
 				}
+			}
 		}
 }
 
@@ -189,4 +198,24 @@
 	url("../../../assets/images/partner-row1-2.png") no-repeat left top,
 	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+}
+
+@media (max-width: 1000px) {
+	.howItWork{
+		display: block !important;
+		margin-top: 1rem;
+		&::after{
+			content: none;
+		}
+	}
+
+	.first-section{
+		width: 80% !important;
+		margin-left: 3rem !important;
+	}
+
+	.second-section{
+		width: 90% !important;
+		margin-left: 2rem;
+	}
 }
