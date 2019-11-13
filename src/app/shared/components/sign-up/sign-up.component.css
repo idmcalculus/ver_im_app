@@ -4,3 +4,7 @@ button.is-loading .btn-spinner {
     margin-left: 5px;
     opacity: 1;
 }
+
+.sign_up{
+    margin: 1.3em 0 1em !important;
+}

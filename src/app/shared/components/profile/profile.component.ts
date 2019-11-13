@@ -1,20 +1,29 @@
-import { Component,Input,Output, OnInit } from '@angular/core';
+import { Component,Input,Output, OnInit,ViewChild } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/modules/user/user.service';
 import { CloudinaryService } from '../../services/cloudinary.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-profile',
-  templateUrl: './profile.component.html'
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
 
   @Input() public user:User={email:'',password:'',country:'',first_name:'',last_name:'',bank_name:''};
   @Input() public editable:boolean;
+  @ViewChild('pass') input;
+  @ViewChild('confirmPass') input2;
+  @ViewChild('error') error;
+
   isSubmitting;
   isLoading:boolean=true;
   countries:string[]=['Nigeria','Ghana']
   bankList:any=[]
   dateModel:Date;
+  passText: string = '';
+  confirmPassText: string = '';
   opt1selected:boolean=false;
   opt2selected:boolean=false;
   image;
@@ -30,9 +39,12 @@ export class ProfileComponent implements OnInit{
 
 
   constructor(private userService:UserService,
-    private cloudinaryService:CloudinaryService) { 
+    private cloudinaryService:CloudinaryService,
+    private toastrService: ToastrService
+    ) { 
      this.getBankList();
     }
+   
 
   ngOnInit(){
       this.isLoading = false;
@@ -78,6 +90,41 @@ export class ProfileComponent implements OnInit{
         alert(resp.success.Message)
       }
     });
+  }
+
+  
+  validate(){
+    this.input.nativeElement.style.borderColor = '#ccc';
+    this.input2.nativeElement.style.borderColor = '#ccc';
+    this.error.nativeElement.style.display = 'none';
+  }
+
+  changePassword(): void {    
+    if(this.passText === ''){
+     this.input.nativeElement.style.borderColor = 'red';
+     this.error.nativeElement.style.display = 'block';
+    }
+    if(this.confirmPassText === ''){
+      this.input2.nativeElement.style.borderColor = 'red';
+      this.error.nativeElement.style.display = 'block';
+    }
+    if (this.passText && this.confirmPassText !== '') {
+      if(this.passText == this.confirmPassText){
+        this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp=>{
+          if(resp && resp.success){
+            this.toastrService.success('Password updated succesfully');
+            this.passText='';
+            this.confirmPassText='';
+            localStorage.setItem('token', resp.success.Token);
+          }
+        }); 
+        console.log(this.passText)
+      } else {
+        // alert('Passwords do not match');
+        this.toastrService.error('Passwords do not match');
+      }
+      this.error.nativeElement.style.display = 'none';
+    }
   }
 
   getBankList(){

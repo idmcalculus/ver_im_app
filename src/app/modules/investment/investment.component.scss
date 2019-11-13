@@ -1,3 +1,88 @@
 .side-details{
   padding-right: 0
 }
+
+.section-container{
+  background: url("../../../assets/images/partner-row2-3.png") no-repeat right top, 
+  url("../../../assets/images/partner-row1-2.png") no-repeat left top,
+  url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+
+
+}
+
+.inner-investment{
+  :nth-child(3){
+    justify-content: flex-start;
+  }
+}
+
+.invest-header{
+  .col-md-9{
+    display: flex;
+    justify-content: flex-end;
+
+    .invest-header-text {
+      padding: 1px 20px;
+      width: 15rem;
+    }
+  }
+ 
+} 
+
+.superb-container {
+  margin: 0px !important;
+
+  .content-holder {
+    a {
+      color: #444;
+      font-weight: 400;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      line-height: 25px;
+      font-family: roboto;
+      padding-top: 0;
+      font-size: 1.2rem;
+      letter-spacing: 1.5px;
+    }
+
+    h3 {
+      color: #4f5fbe;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1.5rem 0 10px;
+      position: relative;
+      font-family: roboto;
+      letter-spacing: .2rem;
+
+      &:after {
+        content: none;
+      }
+    }
+
+    .span-profit {
+      padding: 12px 0;
+      color: #555;
+      font-weight: bold;
+      font-family: roboto;
+      letter-spacing: .1rem;
+    }
+
+    p {
+      font-family: roboto;
+    }
+  }
+
+  .img-holder {
+    height: 190px;
+    width: 90%;
+    overflow: hidden;
+    background: transparent;
+    margin: auto;
+    border-radius: inherit;
+
+    img{
+      object-fit: contain;
+    }
+  }
+}

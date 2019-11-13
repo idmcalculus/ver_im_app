@@ -4,15 +4,24 @@
     background-size: cover;
     height: 80%;
     margin-top: 5%;
-    margin-bottom: 10%;
+	margin-bottom: 10%;
+	
+	.inner-landing{
+		h2{
+			font-size: 3.6rem;
+		}
+	}
         
     .lower-content{
-        line-height: 60px !important;
-        letter-spacing: 1px;
+		font-size: 1.1rem !important;
+        line-height: 42px !important;
+        letter-spacing: 1.2px;
+		text-align: justify;
     }
 
     .col-md-6{
-        padding-left: 3% !important;
+		padding-left: 3% !important;
+		max-width: 45%;
     }
 
     .col-md-5{
@@ -21,7 +30,7 @@
         margin-left: -5%;
 
         .circle {
-            width: 55%;
+            width: 60%;
             height: 100%;
             background: url("../../assets/images/rename.svg") no-repeat right;
             background-size: contain;
@@ -29,8 +38,8 @@
         }
 
         .circle2 {     
-            width: 55%;
-            height: 65%;
+            width: 60%;
+            height: 70%;
             background: url("../../assets/images/mobile.svg") no-repeat right;
             background-size: contain;
             margin: -10%;

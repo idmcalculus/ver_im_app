@@ -23,12 +23,8 @@ export class ReportComponent implements OnInit {
 
   }
 
-
   modalSubmitted(){
     this.submit.emit(this.modalData);
   }
-
-  
-
 
 }

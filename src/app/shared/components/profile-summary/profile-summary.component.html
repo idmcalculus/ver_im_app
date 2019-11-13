@@ -6,14 +6,30 @@
                 <div class="page-body list-vacancy">
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
-                            <h3>The Profile of {{user?.first_name}} {{user?.last_name}}</h3>
+                            <h3>The Profile of {{user?.first_name}} {{user?.last_name}}
+                               
+                            </h3>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5>Personal Information</h5>
+                                    <h5>Personal Information
+                                    </h5>
+                                    <a *ngIf="_shown" (click)="_shown=!_shown" class="btn btn-add plus-btn float-right" style="padding: 0;">
+                                        <span style="margin-top: 0;" ><i
+                                        class="fa fa-edit"></i></span>
+        
+                                    </a>
+                                    <a *ngIf="!_shown" class="btn btn-add plus-btn float-right" style="padding: 0;">
+                                            <span style="margin-top: 0;" >
+                                                <i (click)="updateDetails(user)" class="fa fa fa-check" aria-hidden="true"></i>
+                                                <i (click)="_shown=!_shown"
+                                                class="fa fa fa-times" aria-hidden="true"></i>
+                                            </span>
+                                           
+                                    </a>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -24,11 +40,12 @@
                                             </tr>
                                             <tr>
                                                 <td>Email:</td>
-                                                <td>{{user?.email}}</td>
+                                                
+                                                <td><input class='filled' type="text" [(ngModel)]="user.email"  [disabled]="_shown"></td>
                                             </tr>
                                             <tr>
                                                 <td>Phone Number:</td>
-                                                <td>{{user?.phone_number}}</td>
+                                                <td><input class='filled' type="text" [(ngModel)]="user.phone_number"  [disabled]="_shown"></td>
                                             </tr>
                                             <tr>
                                                 <td>Date of Birth:</td>

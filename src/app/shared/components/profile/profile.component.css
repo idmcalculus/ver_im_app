@@ -1,0 +1,12 @@
+.error{
+    justify-content: center;
+    margin-bottom: 0rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: red;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    margin-bottom: 0rem;
+    display: none;
+    margin-top: 4rem;
+}

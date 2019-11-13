@@ -4,6 +4,7 @@ import { AdminService } from '../admin.service';
 import { UserService } from '../../user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
@@ -19,7 +20,8 @@ export class ManageUsersComponent implements OnInit {
      private userService:UserService,
      private adminService:AdminService,
      private authService:AppAuthService,
-     private dynamicScrLoader:DynamicScriptLoaderService
+     private dynamicScrLoader:DynamicScriptLoaderService,
+     private toastrService: ToastrService
      ) { }
 
   ngOnInit() {
@@ -54,6 +56,18 @@ export class ManageUsersComponent implements OnInit {
       })
     }
     
+  }
+
+  updateDetails(user): any{
+    this.userService.adminUpdateProfile(user).subscribe(resp=>{
+      if(resp && resp.success){
+        // alert(resp.success.Message)
+        // this.users[userIndex].email_is_verified=0
+        this.toastrService.success('Details updated succesfully');
+      }else{
+        this.toastrService.error('There was an issue updating.. Try again later');
+      }
+    })
   }
 
 }

@@ -37,6 +37,10 @@ export class UserService {
     &bank_name=${user.bank_name}`,null);
   }
 
+  changePassword(password):Observable<any>{
+    return this.httpService.postRequest(`change_password?password=${password}`,null);
+  }
+
   activateUser(user:User):Observable<any>{
     return this.httpService.postRequest(`activate_user?
     email=${user.email}`,null);
@@ -57,10 +61,16 @@ export class UserService {
   }
 
   getusersInvestment(email){
-    return this.httpService.postRequest(`investment_user/listInvestmentOfUser`, {"user_id":email});
+    console.log(email);
+    return this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {"user_id":email});
   }
 
-  
-
-
+  adminUpdateProfile(user:User):Observable<any>{
+    return this.httpService.postRequest(`admin/update_user?
+    email=${user.email}
+    &first_name=${user.first_name}&last_name=${user.last_name}
+    &user_category=${user.user_category}
+    &average_monthly_income=${user.average_monthly_income}
+    &id=${user.id}`,null);
+  }
 }

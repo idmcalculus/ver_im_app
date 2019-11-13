@@ -4,11 +4,13 @@ const app = express();
 const appName = 'versaim-app';
 const Promise = require('promise');
 const request = require('request');
+const compression = require('compression')
+
 
 
 var cors = require('cors');
 app.use(cors())
-
+app.use(compression())
 
 
 // app.use(function(req, res, next) {

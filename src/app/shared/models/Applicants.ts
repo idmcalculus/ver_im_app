@@ -8,4 +8,5 @@ export class Applicant extends BasicModel{
     career_brief?:string;
     curriculum_vitae ?:any;
     shortlist:any;
+    career_title:any;
 }
