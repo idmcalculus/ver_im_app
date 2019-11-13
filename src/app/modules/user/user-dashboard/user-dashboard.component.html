@@ -8,7 +8,7 @@
                         <div class="col-xl-4 col-md-6 user-invest">
                             <label for="myInvest" class="sr-only">My Investment</label>
                             <select [(ngModel)]="selectedInvestment" (change)="showDetails()" name="" id="myInvest" class="form-control">
-                                <option value="-1" >Investment Plans</option>
+                                <option *ngIf="usersInvestments.length === 0" value="-1" >Investment Plans</option>
                                 <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
                             </select>
                         </div>
@@ -43,7 +43,7 @@
                                             <div class="col">
                                                 <h6 class="m-b-25" style="color: #666; font-weight: bold">Total Number of Slots</h6>
                                                 <h3 class="f-w-700 text-c-blue">{{dashBoardData?.number_of_pools}}</h3>
-                                                <p class="m-b-0">0 active slot(s)</p>
+                                                <p class="m-b-0">{{dashBoardData?.number_of_pools}} active slot(s)</p>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-chart-area text-c-blue f-18"></i>

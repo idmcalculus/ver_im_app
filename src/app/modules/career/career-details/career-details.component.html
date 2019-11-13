@@ -3,8 +3,12 @@
         <div class="post-header">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>{{career?.career_title}}</h3>
-                    <h4>{{career?.position_type}}</h4>
+                    <h3>
+                        <input class='filled' type="text" [(ngModel)]="career.career_title"  [disabled]="_shown">
+                    </h3>
+                    <h4>
+                        {{career?.position_type}}
+                    </h4>
                 </div>
             </div>
             <div class="row">
@@ -12,7 +16,7 @@
                     <small>Posted {{career?.created_at}}</small>
                 </div>
                 <div class="col-md-4">
-                    <small class="text-danger">Deadline {{career?.deadline}}</small>
+                    <small class="text-danger">Deadline <input class='filled deadline' type="text" [(ngModel)]="career.deadline"  [disabled]="_shown"></small>
                 </div>
             </div>
         </div>
@@ -20,19 +24,30 @@
             <h3>Job Description</h3>
             <h4>Role Summary</h4>
 
-            <p>{{career?.career_description}}</p>
-
-            <h4>Responsibilities</h4>
+            <p class="summary"> 
+                <textarea rows="5" class='filled' type="text" [(ngModel)]="career.career_description"  [disabled]="_shown">
+                </textarea>
+            </p>
+            <h4 class="res">Responsibilities</h4>
             <ul>
-              <li *ngFor=" let resp of career?.career_responsibilities,let x=index">
-                  {{resp[x]}}
+              <li *ngFor=" let resp of career.career_responsibilities,let x=index">
+                    <textarea  class='filled' type="text" [(ngModel)]="career.career_responsibilities[x]"  [disabled]="_shown">
+                    </textarea>
+              </li>
+            </ul>
+            <h4 class="res">Requirements</h4>
+            <ul>
+              <li *ngFor=" let resp of career.career_requirements,let x=index">
+                    <textarea  class='filled' type="text" [(ngModel)]="career.career_requirements[x]"  [disabled]="_shown">
+                    </textarea>
               </li>
             </ul>
         </div>
         <div class="post-footer">
-            <a *ngIf="isUser" routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
-            
-            <a (click)="backtoList()" class="btn btn-cancel">Cancel</a>
+            <a *ngIf="isUser && !isAdmin" routerLink="/career/apply/{{career?.id}}" routerLinkActive="active" class="btn btn-apply">Apply</a>
+            <a *ngIf="isAdmin" (click)="deleteCareer()" class="btn btn-danger">Delete</a>
+            <a *ngIf="isAdmin" (click)="edit()" class="btn btn-cancel">{{editText}}</a>
+            <a *ngIf="isAdmin" (click)="backtoList()" class="btn btn-cancel">Cancel</a>
         </div>
     </div>
 </section>

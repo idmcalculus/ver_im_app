@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-pool-detail',
   templateUrl: './pool-detail.component.html',
-  styleUrls: ['./pool-detail.component.css']
+  styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
 pool:any
@@ -62,6 +62,20 @@ userSubscription:Subscription
           this.pool = poolDetails.success.Data;
           // console.log("i have gat :: "+JSON.stringify(this.pool))
           this.isLoading = false;
+        }else{
+          this.router.navigate(['./', {}]);
+        }
+      }else{
+        
+      }
+    })
+  }
+
+  updatePool(poolId:string){
+    this.investmentService.getInvestment(poolId).subscribe(poolDetails=>{
+      if(poolDetails && poolDetails.success){
+        if(poolDetails.success.Data){
+          this.pool = poolDetails.success.Data;
         }else{
           this.router.navigate(['./', {}]);
         }
@@ -134,6 +148,15 @@ userSubscription:Subscription
       this.callBack = this.updateReport;
     }
     
+  }
+
+  addUser(operation,modalData){
+    if(operation=='create'){
+      this.modalData = {investment_id:this.poolId}
+      this.modaltitle = 'Add User To Pool';
+      this.modalButtonTitle = 'Add User';
+      this.callBack = this.updatePool;
+    }
   }
 
   setPlanOperation(investment){

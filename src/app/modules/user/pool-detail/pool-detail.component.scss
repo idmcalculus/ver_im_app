@@ -1,0 +1,23 @@
+[data-href] {
+    cursor: pointer;
+}
+
+.pool-details {
+    h5 {
+      font-size: 1.2rem;
+      color: #444;
+      position: relative;
+      padding: 20px 0;
+      display: flex;
+      width: fit-content;
+      &:after {
+        content: "";
+        width: 100%;
+        bottom: 20%;
+        left: 0;
+        height: 1px;
+        border-bottom: 1px solid rgba(0, 0, 0, .6);
+        position: absolute;
+      }
+    }
+}
