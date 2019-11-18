@@ -73,11 +73,11 @@ jobs:
                 name: Deploy to S3
                 command: |
                     if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-                        aws --region ap-south-1 s3 sync dist s3://project-dev/ --delete
+                        aws --region ap-south-1 s3 sync dist/versaim-app s3://project-dev/ --delete
                     elif [ "${CIRCLE_BRANCH}" == "staging" ]; then
-                        aws --region ap-south-1 s3 sync dist s3://project-qa/ --delete
+                        aws --region ap-south-1 s3 sync dist/versaim-app s3://project-qa/ --delete
                     else
-                        aws --region ap-south-1 s3 sync dist s3://staging.versa.ng/ --delete
+                        aws --region ap-south-1 s3 sync dist/versaim-app s3://staging.versa.ng/ --delete
                     fi
 
 workflows:
