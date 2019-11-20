@@ -98,5 +98,6 @@ workflows:
                             - staging
                             - master
                             - site-updates
+                            - new-dashboard-design
 
     

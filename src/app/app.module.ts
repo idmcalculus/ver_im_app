@@ -24,11 +24,12 @@ import { ServicesComponent } from './modules/services/services.component';
 import { AboutUsComponent } from './modules/about-us/about-us.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import { VerifyUserComponent } from './shared/components/verify-user/verify-user.component';
-
+import { CookieLawModule } from 'angular2-cookie-law';
 import { AppAuthService } from './core/auth/auth.service';
 import { RouterGaurdService } from './core/router-gaurd/router-gaurd';
 import { HttpService } from './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
+import {cookieDetailsComponent} from './modules/cookie-details/cookie-details.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import { httpInterceptorProviders } from './core/auth/index';
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
@@ -70,6 +71,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         VerifyUserComponent,
         ServicesComponent,
         AboutUsComponent,
+        cookieDetailsComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
         AdminProfileComponent,
@@ -106,7 +108,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
             disableBtn: true,
             btnLoadingClass: 'is-loading',
             handleCurrentBtnOnly: false,
-        })
+        }),
+        CookieLawModule // import Angular's CookieLaw modules
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, { dataEncapsulation: false }
         // )
