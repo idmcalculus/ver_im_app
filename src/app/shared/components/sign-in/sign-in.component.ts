@@ -83,6 +83,19 @@ export class SignInComponent implements OnInit {
         });
     }
 
+    resendOTP(): void {
+        this.isSubmitting = new Promise((resolve, reject) => {
+            this.loginText = 'Resending...';
+
+            this.authService.login(this.user)
+                .subscribe(UserDetails => {
+                    this.loginText = 'Login';
+                    this.toastrService.success(`OTP as been resent to your mail`);
+                    resolve();
+                });
+        });
+    }
+
     validateOTP() {
         this.isSubmitting = new Promise((resolve, reject) => {
             this.loginText = 'Authenticating...';

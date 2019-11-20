@@ -18,7 +18,6 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^7.2.15",
-    "@angular/cdk": "~8.2.3",
     "@angular/cli": "~7.3.4",
     "@angular/common": "~7.2.0",
     "@angular/compiler": "~7.2.0",
@@ -38,8 +37,7 @@
     "angular2-cookie-law": "^6.2.0",
     "angular2-promise-buttons": "^3.0.1",
     "angular4-paystack": "^2.3.3",
-    "canvasjs": "^1.8.3",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.8.0",
     "cookieconsent": "^3.1.1",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
@@ -48,10 +46,7 @@
     "hammerjs": "^2.0.8",
     "ng2-charts": "^2.2.3",
     "ngx-cookie-service": "^1.0.10",
-<<<<<<< HEAD
     "ngx-cookieconsent": "^2.2.3",
-=======
->>>>>>> signin/signup page revamp
     "ngx-skeleton-loader": "^1.2.2",
     "ngx-toastr": "^10.0.2",
     "node-sass": "^4.13.1",

@@ -46,6 +46,7 @@ import { ContactusComponent } from './pages/contactus/faq.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SearchService } from './shared/services/search.service';
 // import { ChatComponent } from './modules/chat/chat.component';
 // import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 
@@ -112,8 +113,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
             btnLoadingClass: 'is-loading',
             handleCurrentBtnOnly: false,
         }),
-        CookieLawModule, // import Angular's CookieLaw modules
-        ProgressBarModule
+        CookieLawModule // import Angular's CookieLaw modules
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, { dataEncapsulation: false }
         // )
