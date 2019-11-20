@@ -100,6 +100,9 @@
                                 <input type="submit" class="btn2 btn-login" [disabled]="!otpForm.form.valid"
                                     [promiseBtn]="isSubmitting" [value]="loginText">
                             </div>
+                            <div class="form-group">
+                                <p><a (click)="resendOTP()" style="color: #142272; cursor:pointer">Didn't get it?, resend OTP.</a></p>
+                            </div>
                         </form>
                     </div>
                 </div>

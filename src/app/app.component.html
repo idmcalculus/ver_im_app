@@ -3,7 +3,12 @@
     <i class="fa fa-fw fa-chevron-up"></i>
 </button>
 <app-header [hidden]="!showHeader" *ngIf="isValid()"></app-header>
-<router-outlet></router-outlet>
+<router-outlet>
+    <cookie-law learnMore="/learn-more">
+        We use cookies to give you the best online experience. By using our website you agree to our use of cookies in accordance with our privacy policy.
+        <a href="/learn-more">Read more</a>
+    </cookie-law>
+</router-outlet>
 <app-footer [hidden]="!showFooter" *ngIf="isValid()"></app-footer>
 <script src="assets/js/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>

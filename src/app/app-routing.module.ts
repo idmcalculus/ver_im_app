@@ -7,6 +7,7 @@ import {ForgotPasswordComponent} from './shared/components/forgot-password/forgo
 import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 import {VerifyUserComponent} from './shared/components/verify-user/verify-user.component';
 import {AboutUsComponent} from './modules/about-us/about-us.component';
+import {cookieDetailsComponent} from './modules/cookie-details/cookie-details.component';
 import {ResetPasswordComponent} from './shared/components/reset-password/reset-password.component';
 import {HowitworksComponent} from './pages/howitworks/howitworks.component';
 import {FaqComponent} from './pages/faq/faq.component';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     {path: 'forgot-password', component: ForgotPasswordComponent},
     {path: 'reset_password_request/:token', component: ResetPasswordComponent},
     {path: 'career', component: CareerComponent},
+    {path: 'learn-more', component: cookieDetailsComponent},
     {path: '**', component: PageNotFoundComponent},
 
 ];
