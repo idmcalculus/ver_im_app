@@ -9,8 +9,8 @@ export const environment = {
         messagingSenderId: '839682288435',
         appId: '1:839682288435:web:d97490f5a3851bd2'
     },
-    "app-live-url":"http://13.233.194.218/api",
-    "server_services_base":"https://versa.ng",
+    "app-live-url":"https://new.versa.ng/api",
+     "server_services_base":"https://versa.ng",
     "cloudinary": {
         url:"https://api.cloudinary.com",
         uploadUrl:"v1_1/crystalbit-technology/image/upload",

@@ -72,6 +72,8 @@ export class InvestmentComponent implements OnInit {
         this.investmentService.getCategories().subscribe(categories => {
             if (categories && categories.success) {
                 this.categories = categories.success.Data;
+                console.log(this.categories,'====');
+                
             }
         });
     }
@@ -98,10 +100,11 @@ export class InvestmentComponent implements OnInit {
         if (categoryId === 0) {
             this.investments = allInvestments;
         } else {
-            const sel = String(categoryId.id);
-            this.investments = allInvestments.filter(a1 => {
-                return a1.category_id === sel;
+            const sel = String(categoryId);
+            const se = allInvestments.filter(a1 => {
+                return a1.category_id === parseInt(sel,10);
             });
+            this.investments = se;
         }
     }
 

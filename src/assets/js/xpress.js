@@ -48,6 +48,7 @@ function xpressPay(email,amnt,firstName,lastName,mobile,tranRef) {
         "logoURL": "https://api.elasticemail.com/userfile/5d028e25-bd86-4559-b7c2-31e5870bbbf9/accessnew.jpg",
         "callbackUrl": currentUrl
     };
+    console.log('helllloooooooo')
     // 
     xpressPayonlineSetup(body);
 }
