@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrModule } from 'ngx-toastr';
+import { GoogleChartsModule } from 'angular-google-charts';
+import {ProgressBarModule} from "angular-progress-bar"
 
 import { HttpClientModule } from '@angular/common/http';
 import { Angular2PromiseButtonModule } from 'angular2-promise-buttons/dist';
@@ -102,6 +104,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
             positionClass: 'toast-top-right',
             preventDuplicates: true,
         }),
+        GoogleChartsModule.forRoot('AIzaSyB0FtDODZkDA41tRLEXjSrfQInXgtlmR8Q'),
         // Angular2SocialLoginModule,
         Angular2PromiseButtonModule.forRoot({
             spinnerTpl: '<span class="btn-spinner"></span>',
@@ -109,7 +112,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
             btnLoadingClass: 'is-loading',
             handleCurrentBtnOnly: false,
         }),
-        CookieLawModule // import Angular's CookieLaw modules
+        CookieLawModule, // import Angular's CookieLaw modules
+        ProgressBarModule
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, { dataEncapsulation: false }
         // )

@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-side-bar',
   templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.css']
+  styleUrls: ['./side-bar.component.scss']
 })
 export class SideBarComponent implements OnInit {
   userSubscription:Subscription
@@ -21,7 +21,10 @@ export class SideBarComponent implements OnInit {
 
     this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         this.userInfo = userInfo;
+        console.log(userInfo)
+
     })
+    
   }
 
   ngOnInit() {

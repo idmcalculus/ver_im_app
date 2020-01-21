@@ -1,11 +1,11 @@
 <nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo bgWhite logoBrand">
-            <a href="">
-                <img class="img-fluid" src="../assets/images/logblack-edit.png" style="width: 185px !important;" alt="Theme-Logo"/>
-            </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
-                <i class="feather icon-menu icon-toggle-right"></i>
+                <i class="feather icon-menu icon-align-justify"></i>
+            </a>
+            <a href="" class="mobile-menu-image">
+                <img class="img-fluid" src="../assets/images/logblack-edit.png" style="width: 125px !important;" alt="Theme-Logo"/>
             </a>
         </div>
         <div class="navbar-container container-fluid">
@@ -16,13 +16,13 @@
                     </a>
                 </li>
             </ul> -->
-            <ul [hidden]="isUser" class="nav-left createPlan">
+            <!-- <ul [hidden]="isUser" class="nav-left createPlan">
                 <li>
                     <a (click) = "setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn btn-success">
                         <i class="feather icon-plus"></i> Create Plan
                     </a>
                 </li>
-            </ul>
+            </ul> -->
             <ul class="nav-right">
 
                 <!-- <li class="header-notification">
@@ -80,24 +80,34 @@
                 <li class="header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                                <a routerLink="./chat" routerLinkActive="active">
-                                    <i class="feather icon-message-square"></i>
-                                    <span class="badge bg-c-green">3</span>
+                            <a routerLink="./chat" routerLinkActive="active">
+                                <img class="img-fluid" src="../assets/images/soccer.png" style="width: 18px !important;" alt="Theme-Logo"/>
+                                <span class="badge bg-c-green"> </span>
+                            </a>    
+                            <a routerLink="./chat" routerLinkActive="active">
+                                    <img class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
+                                    <span class="badge bg-c-green"> </span>
                                 </a>
                         </div>
                     </div>
                 </li>
-                
+                <li class="line"><div class="vl"></div></li>
+                <li class="header-notification icon">
+                    <div class="uploads">
+                        <i class="feather icon-log-out"></i><div class="logtext">Logout</div>
+                    </div>
+                </li>
                 <li class="user-profile header-notification">
+                    
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
-                            <img  *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
+                            <!-- <img  *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
                                  alt="User-Profile-Image">
                             <img  *ngIf="userDetails.profile_picture && userDetails.profile_picture!='' " src="{{userDetails.profile_picture}}" class="img-radius"
                             alt="User-Profile-Image">
                                 
-                            <span>{{userDetails?.first_name}} {{userDetails?.last_name}}</span>
-                            <i class="feather icon-chevron-down"></i>
+                            <span>{{userDetails?.first_name}} {{userDetails?.last_name}}</span> -->
+                            <!-- <i class="feather icon-chevron-down"></i> -->
                         </div>
                         <ul class="show-notification profile-notification dropdown-menu"
                             data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
@@ -129,6 +139,8 @@
 <div class="showChat_inner">
     <div class="media chat-inner-header">
         <a class="back_chatBox">
+            <i class="feather icon-upload"></i> {{userDetails.first_name}} {{userDetails.last_name}}
+
             <i class="feather icon-x"></i> {{userDetails.first_name}} {{userDetails.last_name}}
         </a>
     </div>

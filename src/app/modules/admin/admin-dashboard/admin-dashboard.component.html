@@ -1,4 +1,4 @@
-<div class="pcoded-content">
+<div class="pcoded-content bod">
 
   <div class="pcoded-inner-content">
       <div class="main-body">
@@ -18,55 +18,99 @@
                             <div></div>
                             <div></div>
                     </div>
-                  <div *ngIf="!isLoading" class="row">
-                      <div class="col-xl-4 col-md-6">
-                          <div class="card comp-card prod-p-card ">
-                              <div class="card-body">
-                                  <div class="row align-items-center">
-                                      <div class="col">
-                                          <h6 class="m-b-25">Total Users</h6>
-                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_users}}</h3>
-                                          <p class="m-b-0">{{dashBoardData?.unverified_users}} inactive user(s)</p>
-                                      </div>
-                                      <div class="col-auto">
-                                          <i class="fas fa-user text-c-blue f-18"></i>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-md-6">
-                          <div class="card comp-card prod-p-card card-yellow">
-                              <div class="card-body">
-                                  <div class="row align-items-center">
-                                      <div class="col">
-                                          <h6 class="m-b-25">Total Investments</h6>
-                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_investment}}</h3>
-                                          <p class="m-b-0">{{dashBoardData?.pending_investment}} pending investment(s)</p>
-                                      </div>
-                                      <div class="col-auto">
-                                          <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-md-6">
-                          <div class="card comp-card prod-p-card ">
-                              <div class="card-body">
-                                  <div class="row align-items-center">
-                                      <div class="col">
-                                          <h6 class="m-b-25">Total Requests</h6>
-                                          <h3 class="f-w-700 text-c-blue">{{dashBoardData?.all_request}}</h3>
-                                          <p class="m-b-0">{{dashBoardData?.pending_request}} pending request(s)</p>
-                                      </div>
-                                      <div class="col-auto">
-                                          <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
+                  <div *ngIf="!isLoading" class="row info">
+                        <div class="col-xl-3 col-md-4">
+                            <div class="card comp-card prod-p-card card-yellow">
+                                <div class="card-body">
+                                    <div class="row align-items-center head">
+                                        Total Investments
+                                    </div>
+                                    <div class="row divider">
+                                    </div>
+                                    <div class="row align-items-center body">
+                                        <div class="col-auto">
+                                            <i class="fas fa-shopping-cart text-c-white f-18"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="f-w-700 text-c-white">{{dashBoardData?.all_investment}}</h3>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-b-0 foot">View more...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4">
+                            <div class="card comp-card prod-p-card card-yellow">
+                                <div class="card-body">
+                                    <div class="row align-items-center head">
+                                        Total Sales
+                                    </div>
+                                    <div class="row divider">
+                                    </div>
+                                    <div class="row align-items-center body">
+                                        <div class="col-auto">
+                                            <i class="fas fa-credit-card text-c-white f-18"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="f-w-700 text-c-white">{{dashBoardData?.all_investment}}M</h3>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-b-0 foot">View more...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4">
+                            <div class="card comp-card prod-p-card card-yellow">
+                                <div class="card-body">
+                                    <div class="row align-items-center head">
+                                        Total Customers
+                                    </div>
+                                    <div class="row divider">
+                                    </div>
+                                    <div class="row align-items-center body">
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-alt text-c-white f-18"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="f-w-700 text-c-white">{{dashBoardData?.all_users}}</h3>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-b-0 foot">View more...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-4">
+                            <div class="card comp-card prod-p-card card-yellow">
+                                <div class="card-body">
+                                    <div class="row align-items-center head">
+                                        People Online
+                                    </div>
+                                    <div class="row divider">
+                                    </div>
+                                    <div class="row align-items-center body">
+                                        <div class="col-auto">
+                                            <i class="fas fa-eye text-c-white f-18"></i>
+                                        </div>
+                                        <div class="col">
+                                            <h3 class="f-w-700 text-c-white">{{dashBoardData?.all_request}}</h3>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="row">
+                                        <p class="m-b-0 foot">View more...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       <!-- <div class="col-xl-4 col-md-6">
                         <div class="card comp-card prod-p-card card-blue">
                             <div class="card-body">
@@ -84,11 +128,91 @@
                         </div>
                     </div> -->
                   </div>
-                  <div *ngIf="!isLoading" class="row">
-                      <div class="col-xl-8 col-md-12">
+                  <div *ngIf="!isLoading" class="row dashboard-table graphs">
+                    <div class="card-details col-xl-7 col-md-7" style="padding-left: 0;">
+                        <div class="card latest-update-card">
+                            <div class="card-header">
+                                <h5>Investment by State</h5>
+                                <h3>View Full report</h3>
+                            </div>
+                            <div class="card-block">
+                              <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
+                                <div id="regions_div" style="width: 350px; height: 260px;"></div>
+                                <div style="width: 35%;">
+                                    <div class='progress-label'><span>Lagos</span><span>25M of 250M</span></div>
+                                    <progress-bar [progress]="50" [color]="'#a3a1fb'">
+                                    </progress-bar>
+                                    <div class='progress-label'><span>Lagos</span><span>25M of 250M</span></div>
+                                    <progress-bar [progress]="100" [color]="'#488aff'">
+                                    </progress-bar>
+                                    <div class='progress-label'><span>Lagos</span><span>25M of 250M</span></div>
+                                    <progress-bar [progress]="100" [color]="'#488aff'">
+                                    </progress-bar>
+                                    <div class='progress-label'><span>Lagos</span><span>25M of 250M</span></div>
+                                    <progress-bar [progress]="100" [color]="'#488aff'">
+                                    </progress-bar>
+                                </div>
+                              </div>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="card-details col-xl-5 col-md-5" style="padding-right: 0;padding-left: 0;">
+                      <div class="card latest-update-card">
+                          <div class="card-header small-gap">
+                              <h5>Investment Perfomance</h5>
+                          </div>
+                          <div class="row divider"></div>
+                          <div class="card-block" >
+                                <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
+                                    <div style="width: 48%">
+                                        <canvas #mycanvas  baseChart width="700" height="960" padding="20"
+                                        [data]="doughnutChartData"
+                                        [labels]="doughnutChartLabels"
+                                        [chartType]="doughnutChartType"
+                                        [options]="doughnutChartOptions" 
+                                        [plugins]="doughnutChartPlugins"
+                                        [legend]="false">
+                                        >
+                                    </canvas>
+                                    </div>
+                                <div id="legend"></div>
+                           </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-xl-4 col-md-12">
+                        <div class="card latest-update-card">
+                            <div class="card-header">
+                                <h5>Career</h5>
+                            </div>
+                            <div class="card-block">
+                                  <div class="dt-responsive table-responsive">
+                                          <table id="userTable"
+                                                  class="table table-striped nowrap">
+                                              <thead>
+                                              <tr>
+                                                  <th>Title</th>
+                                                  <th>No. of Applicants</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>
+                                              <tr *ngFor="let career of dashBoardData?.career_application,let x=index ">
+                                                  <td>{{career.career_title}}</td>
+                                                  <td >{{career.no_of_applications}}</td>
+                                              </tr>
+                                              </tbody>
+                                          </table>
+                                  </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                  <div *ngIf="!isLoading" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
+                      <div class="card-details col-xl-3.5 col-md-4" style="padding-left: 0;">
                           <div class="card latest-update-card">
                               <div class="card-header">
-                                  <h5>Requests</h5>
+                                  <h5>Recent Activity</h5>
                               </div>
                               <div class="card-block">
                                   
@@ -120,7 +244,45 @@
                           </div>
                       </div>
 
-                      <div class="col-xl-4 col-md-12">
+                      <div class="card-details col-xl-8 col-md-12" style="padding-right: 0;padding-left: 0;">
+                        <div class="card latest-update-card">
+                            <div class="card-header">
+                                <h5>Latest Investment</h5>
+                            </div>
+                            <div class="card-block">
+                                
+                            
+                              <div class="dt-responsive table-responsive">
+                                      <table id="userTable"
+                                              class="table table-striped nowrap">
+                                          <thead>
+                                          <tr>
+                                              <th>ID</th>
+                                              <th>Customer</th>
+                                              <th>Category</th>
+                                              <th>Status</th>
+                                              <th>Date Added</th>
+                                              <th>Amount</th>
+                                              <th>No of Pool</th>
+                                              <th>Action</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
+                                              <td>{{req.first_name}}</td>
+                                              <td >{{req.first_name}}</td>
+                                              <td >{{req.first_name}}</td>
+                                              <td >{{req.first_name}}</td>
+                                              <td >{{req.first_name}}</td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                              </div>
+                             </div>
+                        </div>
+                      </div>
+
+                      <!-- <div class="col-xl-4 col-md-12">
                           <div class="card latest-update-card">
                               <div class="card-header">
                                   <h5>Career</h5>
@@ -132,26 +294,20 @@
                                                 <thead>
                                                 <tr>
                                                     <th>Title</th>
-                                                    <!-- <th>Description</th>
-                                                    <th>Position Type</th> -->
                                                     <th>No. of Applicants</th>
-                                                    <!-- <th>Deadline</th> -->
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr *ngFor="let career of dashBoardData?.career_application,let x=index ">
                                                     <td>{{career.career_title}}</td>
-                                                    <!-- <td >{{career.career_description}}</td>
-                                                    <td >{{career.position_type}}</td> -->
                                                     <td >{{career.no_of_applications}}</td>
-                                                    <!-- <td >{{career.deadline}}</td> -->
                                                 </tr>
                                                 </tbody>
                                             </table>
                                     </div>
                               </div>
                           </div>
-                      </div>
+                      </div> -->
                   </div>
               </div>
           </div>

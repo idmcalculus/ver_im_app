@@ -1,0 +1,95 @@
+.navMenu {
+    padding-top: 0px;
+
+    li > a {
+        border-bottom-style: solid;
+        background-color: #221F72;
+        font-size: 11px !important;
+        padding: 7px 10px 7px 20px !important;
+
+        &:after {
+            float: right;
+            font-style: normal;
+            margin-left: 3px;
+            font-size: 13px;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-family: feather;
+            padding-top: 5px;
+            -webkit-transition: opacity .3s linear;
+            transition: opacity .3s linear;
+        }
+    }
+
+    .user-info{
+        margin-top: 0px !important;
+    }
+    .header{
+        background-color: #4F5FBE;
+        a {
+            border-bottom-style: solid;
+            background-color: #4F5FBE;
+            .pcoded-micon {
+                padding-top: 17px;
+            }
+        }
+        .pcoded-mtext {
+            top: 23px !important;
+            padding-left: 7px;
+            line-height: 18px;
+        }
+
+        .users {
+            font-size: 17px;
+            font-weight: 600;
+        }
+
+        .user-info{
+            margin-top: 0px !important;
+            padding-top: 10px !important;
+            padding-bottom: 9px !important;
+        }
+
+        .users-in {
+            font-size: 10px;
+            font-weight: 600;
+            p {
+                font-size: 11px;
+                font-style: roboto;
+                opacity: 0.6;
+            }
+        }
+        .header-icon{
+            top: 20px;
+            height: auto;
+            padding: 15px;
+            padding-right: 20px;
+            padding-left: 0px;
+            border-radius: 50%;
+
+            i{
+                color: black;
+                background-color: white;
+                border-radius: 50%;
+                padding: 5px;
+                margin-right: 20px;
+                border: 1px solid #77aaff;
+                box-shadow: -1px 1px #77aaff, -2
+            }
+        }
+    }
+}
+
+.pcoded-item > li > a > .pcoded-micon {
+    padding-top: 11px;
+}
+
+.pcoded-navbar {
+    width: 220px !important;
+}
+
+.pcoded-submenu {
+    padding: 0 !important;
+}
+
