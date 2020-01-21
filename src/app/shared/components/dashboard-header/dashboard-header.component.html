@@ -76,42 +76,36 @@
                         </ul>
                     </div>
                 </li> -->
-                
+
                 <li class="header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
                             <a routerLink="./chat" routerLinkActive="active">
                                 <img class="img-fluid" src="../assets/images/soccer.png" style="width: 18px !important;" alt="Theme-Logo"/>
-                            </a>    
+                                <span class="badge bg-c-green"> </span>
+                            </a>
                             <a routerLink="./chat" routerLinkActive="active">
-                                    <i [hidden]='!isUser' class="fas fa-comments" style="font-size: 1.1rem; vertical-align: middle;"></i>
-                                    <img [hidden]='isUser' class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
-                                    <span [hidden]='isUser' class="badge bg-c-green"> </span>
+                                    <img class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
+                                    <span class="badge bg-c-green"> </span>
                                 </a>
                         </div>
                     </div>
                 </li>
                 <li class="line"><div class="vl"></div></li>
                 <li class="header-notification icon">
-                    <div [hidden]='!isUser' class="dropdown-toggle" data-toggle="dropdown">
-                        <span>{{userDetails?.first_name}}</span>
-                        <i class="feather icon-chevron-up" style="padding: 0rem 0.7rem;"></i>
-                        <img  style="width: 2.5rem;" *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
-                        alt="User-Profile-Image">
-                    </div>
-                    <div [hidden]='isUser' class="uploads" (click)="logout()">
+                    <div class="uploads">
                         <i class="feather icon-log-out"></i><div class="logtext">Logout</div>
                     </div>
                 </li>
                 <li class="user-profile header-notification">
-                    
+
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown">
                             <!-- <img  *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
                                  alt="User-Profile-Image">
                             <img  *ngIf="userDetails.profile_picture && userDetails.profile_picture!='' " src="{{userDetails.profile_picture}}" class="img-radius"
                             alt="User-Profile-Image">
-                                
+
                             <span>{{userDetails?.first_name}} {{userDetails?.last_name}}</span> -->
                             <!-- <i class="feather icon-chevron-down"></i> -->
                         </div>

@@ -17,7 +17,7 @@ import { AddCustomerComponent } from './manage-users/add-customer/add_customer.c
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
-import {ProgressBarModule} from 'angular-progress-bar';
+import {ProgressBarModule} from "angular-progress-bar"
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -48,8 +48,9 @@ import {ProgressBarModule} from 'angular-progress-bar';
     }),
     ChartsModule,
 
-  ], providers: [
-  ], exports: [
+  ],providers: [
+    ManageUsersComponent
+  ],exports:[
     // ManageInvestmentComponent
   ]
 })

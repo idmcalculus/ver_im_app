@@ -13,32 +13,32 @@
             &.head{
                 padding: 0.2rem 0.7rem;
                 font-weight: 600;
-                color: white;
+                color: #e2dddd;
             }
 
             &.body{
-                padding: 0.4rem 0;
+                padding: 0.8rem 0;
                     h3.f-w-700.text-c-blue{
                         margin-bottom: 0rem;
                     }
 
-                    .col-auto{   
+                    .col-auto{
                         .fas{
                             background: none !important;
                             text-shadow: none;
                             box-shadow: none;
                             font-size: 35px;
                             padding-top: 4px;
-                        }    
+                        }
                     }
-                
+
             }
         }
 
         .row.divider{
             border-style: solid;
-            border-width: 0.6px;
-            color: #e2dddd2e;
+            border-width: 0.09px;
+            color: #e2dddd52;
         }
 
         .foot{
@@ -59,7 +59,7 @@
                 padding: 10px;
             }
 
-            
+
             .main-body{
                 .page-wrapper {
                     padding: .6rem 1.5rem;
@@ -77,10 +77,10 @@
                     text-align: end;
                     font-size: 35px;
                     font-size: 35px;
-                    text-shadow: none;
+                    text-shadow: 0 6px 8px rgba(56, 35, 35, 0.55);
                     transition: all .3s ease-in-out;
                 }
-            } 
+            }
         }
     }
 
@@ -88,14 +88,10 @@
         &.info{
             .card{
                 background-color: #4F5FBE;
-                color: white;
-                box-shadow: none;
-                border-radius: 0rem;
-                border-color: #b5b5b5;
-                border-style: solid;
-                border-width: 0.2px;
+                color: #ffffff;
+                box-shadow: 0 6px 8px rgba(56, 35, 35, 0.55);
             }
-        } 
+        }
     }
 
     .card-details{
@@ -105,7 +101,7 @@
         }
 
         .card{
-          
+
             .card-header {
                 padding: 10px;
                 letter-spacing: 0.5px;
@@ -192,9 +188,9 @@
         }
     }
 
-          
-       
-    
+
+
+
     progress-bar {
         width: 40%;
 
@@ -208,7 +204,7 @@
             padding: 0px;
             border-radius: 20px;
             height: 5px;
-        }    
+        }
     }
 
     .pcoded-submenu {

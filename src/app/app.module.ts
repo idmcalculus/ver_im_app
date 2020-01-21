@@ -113,7 +113,8 @@ import { SearchService } from './shared/services/search.service';
             btnLoadingClass: 'is-loading',
             handleCurrentBtnOnly: false,
         }),
-        CookieLawModule // import Angular's CookieLaw modules
+        CookieLawModule, // import Angular's CookieLaw modules
+        ProgressBarModule
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, { dataEncapsulation: false }
         // )
