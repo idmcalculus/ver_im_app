@@ -1,0 +1,88 @@
+.header-navbar {
+    min-height: 61px;
+    &.pcoded-header{
+        padding: 0em 0 !important;
+    }
+
+    .navbar-wrapper{ 
+        .navbar-logo{ 
+            .mobile-menu{
+                left: 0;
+                top: 0.40em;
+                position: relative;
+                margin-right: 0;
+                font-size: 25px;
+            }
+            
+        }
+
+        .navbar-container{ 
+            .nav-right{
+                li {
+                    float: left;
+                    line-height: 3.9;
+                    padding: 0 20px;
+                    cursor: pointer;
+                    position: relative;
+                }
+            }
+
+            .badge {
+                    right: 9px !important;
+                    content: '';
+                    animation: none;
+                    border-radius: 50%;
+                    right: -12px;
+                    position: absolute;
+                    top: 17px;
+                    color: #fff;
+                    padding: 4px;
+                    height: 12px;
+                    width: 12px;
+                    &:empty{
+                        display: block;
+                    }
+    
+            }
+        }
+
+        .navbar-logo[logo-theme=theme6] {
+            display: flex;
+            background: #263544;
+            height: 50px;
+        }
+        .header-notification{
+            &.icon{
+                padding-right: 5px !important;
+            }
+        }
+        .icon-log-out{
+            font-size: 1.5em;
+            line-height: 2.7;        
+        }
+
+        .line {
+            border-left: 1px solid green;
+            height: 30px;
+            margin-top: 1em;
+            padding: 0px !important;
+          }
+        
+          .uploads{
+              display: flex;
+              justify-content: space-between;
+              width: 5rem;
+          }
+
+        .logtext{
+            font-size: 0.85em;
+            line-height: 3.8rem;
+            letter-spacing: .1rem;
+        }
+        
+    }
+}
+
+   
+
+

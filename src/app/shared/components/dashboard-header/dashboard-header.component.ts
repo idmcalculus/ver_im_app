@@ -5,7 +5,9 @@ import {Router} from '@angular/router'
 
 @Component({
   selector: 'app-dashboard-header',
-  templateUrl: './dashboard-header.component.html'
+  templateUrl: './dashboard-header.component.html',
+  styleUrls: ['./dashboard-header.scss']
+
 })
 export class DashboardHeaderComponent implements OnInit {
 
