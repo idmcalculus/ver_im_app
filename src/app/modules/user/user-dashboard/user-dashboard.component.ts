@@ -7,7 +7,8 @@ import { User } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html'
+  templateUrl: './user-dashboard.component.html',
+  styleUrls: ['./user-dashboard.scss']
 })
 export class UserDashboardComponent implements OnInit {
 
