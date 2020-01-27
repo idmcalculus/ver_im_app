@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { NgModule,Component, OnInit, ElementRef, Inject, ViewChild } from '@angular/core';
 import {AdminService} from '../admin.service';
 import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
@@ -14,6 +15,7 @@ declare var google:any;
 })
 export class AdminDashboardComponent implements OnInit {
   dashBoardData:AdminDashboard;
+
   careers:[];
   isLoading:boolean=true;
 
@@ -47,16 +49,16 @@ export class AdminDashboardComponent implements OnInit {
     }
   };
   public doughnutChartPlugins: PluginServiceGlobalRegistrationAndOptions[] = [{
-    afterDraw(chart) {
+    afterDraw(chart: any) {
       const ctx = chart.ctx;
       var txt1 = 'Total Investments';
       var txt2 = '';
 
       try{
-        var check = chart.active ? chart.tooltip._active[0]._datasetIndex : "None";
+        var check = chart.active ? chart.tooltip._active[0]._datasetIndex : "None"; //@ts-ignore
         if(check !== "None"){
-        txt2 = chart.tooltip._data.datasets[0].data[chart.tooltip._active[0]._index];
-        txt1 = `${chart.tooltip._data.labels[chart.tooltip._active[0]._index]} Investments`;
+        txt2 = chart.tooltip._data.datasets[0].data[chart.tooltip._active[0]._index]; // @ts-ignore
+        txt1 = `${chart.tooltip._data.labels[chart.tooltip._active[0]._index]} Investments`; // @ts-ignore
         }else{
           txt2 = '1000';
         }
@@ -66,22 +68,22 @@ export class AdminDashboardComponent implements OnInit {
       }
       //Get options from the center object in options
       const sidePadding = 60;
-      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+      const sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2) // @ts-ignore
 
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+      const centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);// @ts-ignore
+      const centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);// @ts-ignore
 
       //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
 
       const stringWidth = ctx.measureText(txt1).width;
-      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+      const elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated; // @ts-ignore
 
       // Find out how much the font can grow in width.
       const widthRatio = elementWidth / stringWidth;
       const newFontSize = Math.floor(30 * widthRatio);
-      const elementHeight = (chart.innerRadius * 2);
+      const elementHeight = (chart.innerRadius * 2); // @ts-ignore
 
       // Pick a new font size so it will not be larger than the height of label.
       const fontSizeToUse = 15;
@@ -104,14 +106,6 @@ export class AdminDashboardComponent implements OnInit {
     @ViewChild('mycanvas')
     canvas:ElementRef;
   ngOnInit() {
-    setTimeout(() => {
-      const legenTags = document.getElementsByClassName("data");
-      console.log(legenTags)
-      for (var i = 0; i < legenTags.length; i++) {
-        legenTags[i].addEventListener('click', this.updateDataset(event), false);
-      }
-    }, 5000);
-
     google.charts.load('current',
     {'packages':['corechart'],
     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
@@ -156,5 +150,4 @@ export class AdminDashboardComponent implements OnInit {
       // We hid a dataset ... rerender the chart
       ci.update();
     };
-
 }

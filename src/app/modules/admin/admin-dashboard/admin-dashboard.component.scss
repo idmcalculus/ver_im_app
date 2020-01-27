@@ -13,11 +13,11 @@
             &.head{
                 padding: 0.2rem 0.7rem;
                 font-weight: 600;
-                color: #e2dddd;
+                color: white;
             }
 
             &.body{
-                padding: 0.8rem 0;
+                padding: 0.4rem 0;
                     h3.f-w-700.text-c-blue{
                         margin-bottom: 0rem;
                     }
@@ -37,8 +37,8 @@
 
         .row.divider{
             border-style: solid;
-            border-width: 0.09px;
-            color: #e2dddd52;
+            border-width: 0.6px;
+            color: #e2dddd2e;
         }
 
         .foot{
@@ -77,7 +77,7 @@
                     text-align: end;
                     font-size: 35px;
                     font-size: 35px;
-                    text-shadow: 0 6px 8px rgba(56, 35, 35, 0.55);
+                    text-shadow: none;
                     transition: all .3s ease-in-out;
                 }
             }
@@ -88,8 +88,12 @@
         &.info{
             .card{
                 background-color: #4F5FBE;
-                color: #ffffff;
-                box-shadow: 0 6px 8px rgba(56, 35, 35, 0.55);
+                color: white;
+                box-shadow: none;
+                border-radius: 0rem;
+                border-color: #b5b5b5;
+                border-style: solid;
+                border-width: 0.2px;
             }
         }
     }
