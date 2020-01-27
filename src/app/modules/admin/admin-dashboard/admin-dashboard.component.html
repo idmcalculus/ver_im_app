@@ -4,6 +4,13 @@
       <div class="main-body">
           <div class="page-wrapper">
               <div class="page-body">
+                    <div style="margin: 1rem 0rem;
+                    color: #43425d;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    letter-spacing: 0.1rem;">
+                        Dashboard
+                    </div>
                     <div *ngIf="isLoading" class="row lds-default">
                             <div></div>
                             <div></div>
@@ -18,6 +25,7 @@
                             <div></div>
                             <div></div>
                     </div>
+                   
                   <div *ngIf="!isLoading" class="row info">
                         <div class="col-xl-3 col-md-4">
                             <div class="card comp-card prod-p-card card-yellow">
