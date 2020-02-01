@@ -566,6 +566,7 @@ h3, h4, p {
 }
 @media only screen and (max-width: 992px) {
     .header-navbar .navbar-wrapper .navbar-logo a img {
+        margin-top: 10px !important;
         display: block;
         width: 185px !important;
         margin-top: -20px;
