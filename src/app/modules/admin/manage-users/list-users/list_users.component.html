@@ -3,53 +3,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                    <div class="clearfix mb-3">
-                        <div class="float-left pt-3">
-                            <a class="h4 pr-2">Customers</a>
-                            <a class=" pl-2">Home / Customers</a>
-                        </div>
-                        <div class="float-right">
-                            <a>
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
-                            </a>
-                            <a (click)="deleteUser(user)" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="container-fluid bg_filter border border-dark rounded mb-5">
-                        <div class="row p-1 py-4">
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
-                                <label class="h7">Fullname</label>
-                                <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)" [(ngModel)]="searchName"></a>
-                                    <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch(searchName)">Clear</button>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
-                                <label class="h7">Email</label>
-                                <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Email" (keyup)="filterTable('email', $event)" [(ngModel)]="searchEmail"></a>
-                                    <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch(searchEmail)">Clear</button>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <label class="h7">Phone Number</label>
-                                <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [(ngModel)]="searchNumber"></a>
-                                    <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch(searchNumber)">Clear</button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">

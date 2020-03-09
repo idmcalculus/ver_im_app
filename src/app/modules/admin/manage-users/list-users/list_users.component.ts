@@ -13,13 +13,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManageUsersComponent implements OnInit {
 
+  users:[User]
   selectedUser:User
   isLoading:boolean=true;
   constructor(
+     private userService:UserService,
+     private adminService:AdminService,
+     private authService:AppAuthService,
+     private dynamicScrLoader:DynamicScriptLoaderService,
+     private toastrService: ToastrService
+     ) { }
 
   ngOnInit() {
-    this.adminService.getUsers().subscribe(resp => {
-      if (resp && resp.success) {
+    this.adminService.getUsers().subscribe(resp=>{
+      if(resp && resp.success){
         this.users = resp.success.Data;
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
@@ -57,10 +64,10 @@ export class ManageUsersComponent implements OnInit {
         // alert(resp.success.Message)
         // this.users[userIndex].email_is_verified=0
         this.toastrService.success('Details updated succesfully');
-      } else {
+      }else{
         this.toastrService.error('There was an issue updating.. Try again later');
       }
-    });
+    })
   }
 
 }

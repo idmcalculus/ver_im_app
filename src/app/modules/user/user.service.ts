@@ -14,7 +14,6 @@ export class UserService {
   }
 
 
-
   updateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`update_user?
     email=${user.email}&authentication_type=${user.authentication_type}
@@ -54,11 +53,11 @@ export class UserService {
     &bank_name=${user.bank_name}`, null);
   }
 
-  changePassword(password):Observable<any>{
-    return this.httpService.postRequest(`change_password?password=${password}`,null);
+  changePassword(password): Observable<any> {
+    return this.httpService.postRequest(`change_password?password=${password}`, null);
   }
 
-  activateUser(user:User):Observable<any>{
+  activateUser(user: User): Observable<any> {
     return this.httpService.postRequest(`activate_user?
     email=${user.email}`, null);
   }
@@ -68,21 +67,26 @@ export class UserService {
     email=${user.email}`, null);
   }
 
-  deleteUser(user: User) {
-    return this.httpService.postRequest(`user/delete`, { user_id: user.id }, true);
-  }
-
-  getUsers() {
-    return this.httpService.postRequest(`user/list`, {});
-  }
-
-  getUserDashBoard(investmentId,email){
+  getUserDashBoard(investmentId, email) {
     return this.httpService.postRequest(`report/userDashboard?
-    investment_id=${investmentId}&user_id=${email}`,null);
+    investment_id=${investmentId}&user_id=${email}`, null);
   }
 
-  getUsers() {
-    return this.httpService.postRequest(`user/list`, {});
+  getBankList() {
+    return this.httpService.postRequest(`bank/list`, null);
   }
 
+  getusersInvestment(email) {
+    console.log(email);
+    return this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {'user_id': email});
+  }
+
+  adminUpdateProfile(user: User): Observable<any> {
+    return this.httpService.postRequest(`admin/update_user?
+    email=${user.email}
+    &first_name=${user.first_name}&last_name=${user.last_name}
+    &user_category=${user.user_category}
+    &average_monthly_income=${user.average_monthly_income}
+    &id=${user.id}`, null);
+  }
 }
