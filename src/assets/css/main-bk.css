@@ -1217,7 +1217,7 @@
 }
 
 .update-profile-form {
-    padding: 3rem 2rem
+    padding: 3rem 2rem;
 }
 
 .update-profile-form .profile-image {
@@ -1322,7 +1322,7 @@
     color: #fff;
     width: 100%;
     font-size: 1.5em;
-    letter-spacing: 1px
+    letter-spacing: 1px;
 }
 
 .update-profile-form .btn-join {

@@ -9,7 +9,7 @@ export const environment = {
         messagingSenderId: '839682288435',
         appId: '1:839682288435:web:d97490f5a3851bd2'
     },
-    "app-live-url":"http://api.versa.ng/api",
+    "app-live-url":"http://13.127.86.5/api",
     "server_services_base":"https://versa.ng",
     "cloudinary": {
         url:"https://api.cloudinary.com",
@@ -35,8 +35,8 @@ export const environment = {
         clientid:"dj0yJmk9Q01TdTRFbHZNVjJjJmQ9WVdrOVdVdFRORE5oTkdzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PWYx",
         secretkey:"60cd5ca9a18f67c3bf418f98218a6fc177d4ac6c",
         profil_base_url:"https://social.yahooapis.com"
-  
-  
+
+
     },
     "linkedin":{
         base_url:"https://www.linkedin.com",
@@ -52,8 +52,8 @@ export const environment = {
         state:"fooobar",
         profile_base_url:'https://api.linkedin.com'
     }
-  
-  
+
+
       // "app-live-url":"https://versabackend.adebiyipaul.com/api",
       // "server_services_base":"https://versa-ims.herokuapp.com",
       // "cloudinary": {
@@ -96,4 +96,3 @@ export const environment = {
       //     profile_base_url:'https://api.linkedin.com'
       // }
   };
-  
