@@ -6,7 +6,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import {addUserService} from './addUser.service';
 import { ToastrService } from 'ngx-toastr';
-      
+
 @Component({
   selector: 'app-pool-addUser',
   templateUrl: './addUser.component.html',
@@ -33,8 +33,8 @@ export class AddUserComponent implements OnInit {
     private toastrService: ToastrService,
     private dynamicScrLoader:DynamicScriptLoaderService,
     private adminService:AdminService,
-  ) { 
-   
+  ) {
+
 
   }
 
@@ -43,8 +43,8 @@ export class AddUserComponent implements OnInit {
       if(resp && resp.success){
         this.users = resp.success.Data;
         this.isLoading =  false;
-        this.dynamicScrLoader.loadSingle('data-table');   
-        this.dynamicScrLoader.loadSingle('trigger-data-table');    
+        this.dynamicScrLoader.loadSingle('data-table');
+        this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
     })
   }
