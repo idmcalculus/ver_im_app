@@ -200,6 +200,22 @@ $slide: (
         font-size: 1.5em;
         letter-spacing: 1px;
     }
+    .btn-update-customer {
+        background: rgb(100, 200, 140);
+        display: flex;
+        color: #fff;
+        width: 100%;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+    }
+    .btn-cancel-customer {
+        background: rgba(200, 160, 100, 0.007);
+        display: flex;
+        color: #fff;
+        width: 100%;
+        font-size: 1.5em;
+        letter-spacing: 1px;
+    }
     .btn-join {
         background: #4f5fbe;
         color: #fff;
