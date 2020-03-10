@@ -1,10 +1,10 @@
 <div class="pcoded-content">
-  <div class="pcoded-inner-content">
-      <div class="main-body">
-          <div class="page-wrapper">
-              <div class="page-body category">
-                  <div class="row">
-                      <div class="col-sm-4">
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body category">
+                <div class="row">
+                    <div class="col-sm-4">
                           <div class="card">
                               <div class="card-header">
                                   <h5>Add New Category</h5>
@@ -15,20 +15,96 @@
                                   </div>-->
                                   <form (ngSubmit)="addCategory()" #addCategoryForm="ngForm" class="">
                                       <div class="form-group">
-                                          <label for="CategoryName">Category Name</label>
+                                          <label for="CategoryName">Category Name</label> 
+                                          <br>
                                           <input [(ngModel)] ="category.category_name" required type="text" name='categoryName'
                                                  class="form-control" id="CategoryName"
                                                  placeholder="Enter name of Category">
                                       </div>
+                                      <br>
                                       <div class="form-group">
                                           <input  type="submit" [disabled]="!addCategoryForm.form.valid" id="actionBtn " value="{{buttonText}}" class="btn btn-success addCategory">
                                       </div>
                                   </form>
                               </div>
                           </div>
-                      </div>
-                      <div class="col-sm-8">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="card">
+                            <div class="card-header">
+                              <h5>Investment Details</h5>
+                            </div>
+                            <div class="category-top">
+                              <div class="dataTables_length" id="categoryTable_length">
+                                <label>Show &nbsp;
+                                  <select name="categoryTable_length" aria-controls="categoryTable" class="">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                  </select>
+                                  &nbsp; entries
+                                </label>
+                              </div>
+                              <div id="categoryTable_filter" class="dataTables_filter">
+                                <label>
+                                    <input type="text" placeholder="Search.." name="search" aria-controls="categoryTable">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </label>
+                              </div>
+                            </div>
+                            <div class="card-block dt-responsive" id="categoryTable">
+                                <div class="category-header">
+                                    <p class="s-n" scope="col">S/N</p>
+                                    <p class="category-name" scope="col">Category Name</p>
+                                    <p class="action" scope="col">Action</p>
+                                </div>
+                                <div *ngIf="isLoading" >
+                                    <div  class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="category-body" *ngIf="!isLoading">
+                                    <div class="row1" *ngFor="let category of categories;let i=index">
+                                        <p class="s-n">{{i+1}}</p>
+                                        <p class="category-name">
+                                            <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name"><button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
+                                            <a *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
+                                        </p>
+                                        <p class="action">
+                                            <a *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-check"></i></a>&nbsp;
+                                            <a *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-pencil-alt"></i></a>&nbsp;
+                                            <a (click)="deleteCategory(category)" id="delCat"><i class="fa fa-trash"></i></a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="styleSelector">
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="col-sm-8">
                           <div class="card">
+                            <div class="card-header">
+                                <h5>Investment Details</h5>
+                            </div>
                               <div class="card-block">
                                   <div class="dt-responsive table-responsive">
                                       <table id="categoryTable"
@@ -80,14 +156,4 @@
                                   </div>
                               </div>
                           </div>
-                      </div>
-                  </div>
-              </div>
-
-          </div>
-      </div>
-
-      <div id="styleSelector">
-      </div>
-  </div>
-</div>
+                      </div>-->

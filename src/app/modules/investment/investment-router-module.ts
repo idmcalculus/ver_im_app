@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule
-} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { InvestmentComponent } from './investment.component';
 import { InvestmentDetailComponent } from './investment-detail/investment-detail.component';
 
