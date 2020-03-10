@@ -39,11 +39,7 @@ export class InvestmentComponent implements OnInit {
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
-            var investmentArray = [];
-
-            if (investments) {
                 investmentArray = investments.success.Data;
-                let cnt = 0;
                 investmentArray.forEach(element => {
                     if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
                         this.investments[cnt] = element;
@@ -53,8 +49,8 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-            console.log(investments,investmentArray,this.investments,allInvestments);
-            var categoryName = this.activatedRoute.snapshot.params['category'];
+            console.log(investments, investmentArray, this.investments, allInvestments);
+            let categoryName = this.activatedRoute.snapshot.params.category;
             if (categoryName) {
                 let category = this.categories.filter(a1 => {
                     return a1.category_name.trim() == categoryName.trim();
@@ -106,9 +102,8 @@ export class InvestmentComponent implements OnInit {
         }
     }
 
-
-    calculateEstimate(returns,inv){
-        const estimate = (((returns*12) - inv)/inv) * 100;
+    calculateEstimate(returns, inv) {
+        const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
 

@@ -21,9 +21,9 @@ export class SideBarComponent implements OnInit {
 
     this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
         this.userInfo = userInfo;
-        console.log(userInfo)
+        console.log(userInfo);
 
-    })
+    });
 
   }
 

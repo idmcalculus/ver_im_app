@@ -15,7 +15,7 @@
                                   </div>-->
                                   <form (ngSubmit)="addCategory()" #addCategoryForm="ngForm" class="">
                                       <div class="form-group">
-                                          <label for="CategoryName">Category Name</label> 
+                                          <label for="CategoryName">Category Name</label>
                                           <br>
                                           <input [(ngModel)] ="category.category_name" required type="text" name='categoryName'
                                                  class="form-control" id="CategoryName"
@@ -48,9 +48,8 @@
                               </div>
                               <div id="categoryTable_filter" class="dataTables_filter">
                                 <label>
-                                    <input type="text" placeholder="Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
-                                    (blur)="filterTable('category_name', search.value)" [(ngModel)]="searchValue" >
-                                    <button type="submit" (click)="clearSearch()">x</button>
+                                    <input type="text" placeholder="Search.." name="search" aria-controls="categoryTable">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
                                 </label>
                               </div>
                             </div>
@@ -61,7 +60,6 @@
                                     <p class="action" scope="col">Action</p>
                                 </div>
                                 <div *ngIf="isLoading" >
-                                <br><br>
                                     <div  class="lds-default">
                                         <div></div>
                                         <div></div>
@@ -102,3 +100,60 @@
         </div>
     </div>
 </div>
+<!--<div class="col-sm-8">
+                          <div class="card">
+                            <div class="card-header">
+                                <h5>Investment Details</h5>
+                            </div>
+                              <div class="card-block">
+                                  <div class="dt-responsive table-responsive">
+                                      <table id="categoryTable"
+                                             class="table table-striped category-table">
+                                          <thead>
+                                          <tr>
+                                              <th scope="col">S/N</th>
+                                              <th scope="col">Category Name</th>
+                                              <th scope="col">Action</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody *ngIf="isLoading" >
+                                            <td></td>
+                                            <td>
+                                                <div  class="lds-default">
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                    <div></div>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                          </tbody>
+
+                                          <tbody *ngIf="!isLoading">
+                                          <tr *ngFor="let category of categories;let i=index">
+                                              <td>{{i+1}}</td>
+                                              <td >
+                                                  <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name"><button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
+                                                  <a *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
+                                              </td>
+                                              <td>
+                                                <a *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-check"></i></a>
+                                                <a *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-pencil-alt"></i></a> |
+
+                                                <a (click)="deleteCategory(category)" id="delCat"><i class="fa fa-trash"></i></a>
+                                              </td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>-->

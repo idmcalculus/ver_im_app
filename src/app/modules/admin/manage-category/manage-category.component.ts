@@ -15,13 +15,9 @@ export class ManageCategoryComponent {
   isLoading = true;
   category: Category = {category_name: ''};
   categories = [];
-  filteredCategories = [];
-  searchValue = '';
-
   constructor(private investmentService: InvestmentService) {
     this.getCategories();
   }
-
   addCategory() {
     if (this.category.category_name) {
         this.buttonText = 'Submitting';
@@ -65,22 +61,6 @@ export class ManageCategoryComponent {
       }
       this.isLoading = false;
     });
-  }
-
-  filterTable(filterType, filterValue: string) {
-    const categoryArray = this.categories;
-
-    if (!filterValue) {
-      return categoryArray;
-    } else {
-        const filtered = this.categories.filter(category => {
-          if (category[filterType] !== null) {
-            return category[filterType].toLowerCase().includes(filterValue.toLowerCase());
-          }
-        });
-        console.log(filtered);
-        this.categories = filtered;
-      }
   }
 
   clearSearch = () => {

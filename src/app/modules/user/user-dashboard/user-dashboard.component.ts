@@ -29,30 +29,30 @@ export class UserDashboardComponent implements OnInit {
               private authService: AppAuthService) { }
 
   ngOnInit() {
-    if(this.overiddenUser){
-      console.log("dashboard data 1 is :: "+JSON.stringify(this.overiddenUser))
-      this.userService.getusersInvestment(this.overiddenUser.email).subscribe(resp=>{
-        if(resp && resp.success){
+    if (this.overiddenUser) {
+      console.log('dashboard data 1 is :: ' + JSON.stringify(this.overiddenUser));
+      this.userService.getusersInvestment(this.overiddenUser.email).subscribe(resp => {
+        if (resp && resp.success) {
           this.usersInvestments = resp.success.Data;
-          if(resp.success.Data !== 0){
-            this.selectedInvestment=0;
-            this.showDetails()
+          if (resp.success.Data !== 0) {
+            this.selectedInvestment = 0;
+            this.showDetails();
           }
           this.isLoading = false;
         }
-      })
-    }else{
-        this.authService.currentUser.subscribe(resp=>{
-          console.log("dashboard data 2 is :: "+JSON.stringify(resp))
-          if(resp){
-            this.overiddenUser =resp;
-            this.userService.getusersInvestment(resp.email).subscribe(res=>{
-              if(res && res.success){
-                this.usersInvestments = res.success.Data
+      });
+    } else {
+        this.authService.currentUser.subscribe(resp => {
+          console.log('dashboard data 2 is :: ' + JSON.stringify(resp));
+          if (resp) {
+            this.overiddenUser = resp;
+            this.userService.getusersInvestment(resp.email).subscribe(res => {
+              if (res && res.success) {
+                this.usersInvestments = res.success.Data;
                 this.isLoading = false;
-                if(res.success.Data !== 0){
-                  this.selectedInvestment=0;
-                  this.showDetails()
+                if (res.success.Data !== 0) {
+                  this.selectedInvestment = 0;
+                  this.showDetails();
                 }
               }
             });
@@ -69,27 +69,27 @@ export class UserDashboardComponent implements OnInit {
       this.investmentInfo = this.usersInvestments[this.selectedInvestment];
       console.log(this.investmentInfo);
       this.getUserDashBoard();
-    }else{
-      this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
+    } else {
+      this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       console.log(this.investmentInfo);
       this.totalYieldedAmount = 0;
     }
 
   }
 
-  getUserDashBoard(){
-    var userEmail = this.overiddenUser.email
-    var investmentId = this.investmentInfo.id;
+  getUserDashBoard() {
+    const userEmail = this.overiddenUser.email;
+    const investmentId = this.investmentInfo.id;
 
-    this.userService.getUserDashBoard(investmentId,userEmail).subscribe(resp=>{
-      if(resp && resp.success){
-        this.dashBoardData = resp.success.Data
+    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+      if (resp && resp.success) {
+        this.dashBoardData = resp.success.Data;
         console.log(this.dashBoardData);
         this.manipulateChartData(this.dashBoardData.investment_return);
-      }else{
-        this.dashBoardData = {number_of_pools:0,investment_return:[],investment_report:[]}
+      } else {
+        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         console.log(this.dashBoardData);
-        this.lineChartData=null;
+        this.lineChartData = null;
         this.totalYieldedAmount = 0;
       }
       this.latest_return = this.dashBoardData.investment_return.length;
