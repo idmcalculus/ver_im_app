@@ -1,6 +1,5 @@
-import { NgModule }            from '@angular/core';
-import { Routes,
-         RouterModule }        from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {AdminComponent} from './admin.component';
 import {UserProfileComponent} from './../user/user-profile/user-profile.component';
@@ -14,7 +13,7 @@ import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
-import {ApplicantsComponent} from './manage-career/applicants/applicants.component'
+import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {ManageCategoryComponent} from './manage-category/manage-category.component';
 import { ChatComponent } from '../chat/chat.component';
 
@@ -23,7 +22,7 @@ import { ChatComponent } from '../chat/chat.component';
 const userRoutes: Routes = [
   {
     path: 'admin',
-    component: AdminComponent,canActivate:[RouterGaurdService],
+    component: AdminComponent, canActivate: [RouterGaurdService],
     children: [
       {
         path: '',
@@ -33,20 +32,20 @@ const userRoutes: Routes = [
           { path: 'settings', component: UserSettingsComponent },
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
-          
-          { path: 'manage-career', 
+
+          { path: 'manage-career',
             children: [
-            {path:'',
+            {path: '',
             children: [
-              {path:'create',component:CreateComponent},
-              {path:'applicants',component:ApplicantsComponent},
-              {path:'list',component:ListComponent},
-              {path:'',component:ListComponent}
+              {path: 'create', component: CreateComponent},
+              {path: 'applicants', component: ApplicantsComponent},
+              {path: 'list', component: ListComponent},
+              {path: '', component: ListComponent}
             ]
             }
           ] },
-          { path: 'manage-category', component:ManageCategoryComponent},
-          { path: 'chat', component:ChatComponent},
+          { path: 'manage-category', component: ManageCategoryComponent},
+          { path: 'chat', component: ChatComponent},
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: '', component: AdminDashboardComponent }
