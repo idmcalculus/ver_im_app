@@ -13,84 +13,85 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManageUsersComponent implements OnInit {
 
-  searchValue=''
-  users:User[]
-  selectedUser:User
-  isLoading:boolean=true;
+  searchValue = '';
+  users: User[];
+  selectedUser: User;
+  isLoading= true;
   constructor(
-     private userService:UserService,
-     private adminService:AdminService,
-     private authService:AppAuthService,
-     private dynamicScrLoader:DynamicScriptLoaderService,
+     private userService: UserService,
+     private adminService: AdminService,
+     private authService: AppAuthService,
+     private dynamicScrLoader: DynamicScriptLoaderService,
      private toastrService: ToastrService
      ) { }
 
   ngOnInit() {
-    this.adminService.getUsers().subscribe(resp=>{
-      if(resp && resp.success){
+    this.adminService.getUsers().subscribe(resp => {
+      if (resp && resp.success) {
         this.users = resp.success.Data;
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
-    })
+    });
   }
 
-  viewUserDetail(userIndex){
-    this.selectedUser = this.users[userIndex]
+  viewUserDetail(userIndex) {
+    this.selectedUser = this.users[userIndex];
   }
 
-  updateUser(user,operation){
-    if(operation=='enable'){
-      this.userService.activateUser(user).subscribe(resp=>{
-        if(resp && resp.success){
+  updateUser(user, operation) {
+    if (operation == 'enable') {
+      this.userService.activateUser(user).subscribe(resp => {
+        if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=1
         }
-      })
+      });
     } else {
-      this.userService.deactivateUser(user).subscribe(resp=>{
-        if(resp && resp.success){
+      this.userService.deactivateUser(user).subscribe(resp => {
+        if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
-      })
+      });
     }
 
   }
 
-  getUsers(){
-    this.isLoading=true;
-    this.userService.getUsers().subscribe(resp=>{
-      if(resp && resp.success){
+  getUsers() {
+    this.isLoading = true;
+    this.userService.getUsers().subscribe(resp => {
+      if (resp && resp.success) {
         this.users = resp.success.Data;
       }
-      this.isLoading=false;
-    })
+      this.isLoading = false;
+    });
   }
 
-  updateDetails(user): any{
-    this.userService.adminUpdateProfile(user).subscribe(resp=>{
-      if(resp && resp.success){
+  updateDetails(user): any {
+    this.userService.adminUpdateProfile(user).subscribe(resp => {
+      if (resp && resp.success) {
         // alert(resp.success.Message)
         // this.users[userIndex].email_is_verified=0
         this.toastrService.success('Details updated succesfully');
-      }else{
+      } else {
         this.toastrService.error('There was an issue updating.. Try again later');
       }
-    })
+    });
   }
 
-  filterTable(filterType, filterValue): any{
-    const value = filterValue.target.value
+  filterTable(filterType, filterValue): any {
+    const value = filterValue.target.value;
 
     if (!value) {
-      return this.users
+      return this.users;
     } else {
       const filtered = this.users.filter(user => {
-        if (user[filterType] !== null)
+        if (user[filterType] !== null) {
         return user[filterType].toLowerCase().includes(value.toLowerCase())
-      })
+        }
+      });
       console.log('Filtered', filtered);
       this.users = filtered;
     }
