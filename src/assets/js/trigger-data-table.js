@@ -1,3 +1,6 @@
 $(document).ready( function () {
-    $('.appTable').DataTable();
+    $('.appTable').DataTable({
+        "searching":   false,
+        "paging":   false,
+    });
 } );
