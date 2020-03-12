@@ -13,7 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ManageUsersComponent implements OnInit {
 
-  users:[User]
+  searchValue=''
+  users:User[]
   selectedUser:User
   isLoading:boolean=true;
   constructor(
@@ -58,6 +59,16 @@ export class ManageUsersComponent implements OnInit {
 
   }
 
+  getUsers(){
+    this.isLoading=true;
+    this.userService.getUsers().subscribe(resp=>{
+      if(resp && resp.success){
+        this.users = resp.success.Data;
+      }
+      this.isLoading=false;
+    })
+  }
+
   updateDetails(user): any{
     this.userService.adminUpdateProfile(user).subscribe(resp=>{
       if(resp && resp.success){
@@ -70,4 +81,23 @@ export class ManageUsersComponent implements OnInit {
     })
   }
 
+  filterTable(filterType, filterValue): any{
+    const value = filterValue.target.value
+
+    if (!value) {
+      return this.users
+    } else {
+      const filtered = this.users.filter(user => {
+        if (user[filterType] !== null)
+        return user[filterType].toLowerCase().includes(value.toLowerCase())
+      })
+      console.log('Filtered', filtered);
+      this.users = filtered;
+    }
+  }
+
+  clearSearch = () => {
+    this.searchValue = null;
+    return this.getUsers();
+  }
 }
