@@ -15,7 +15,8 @@ export class ManageUsersComponent implements OnInit {
 
   users: [User];
   selectedUser: User;
-  isLoading = true;
+  searchValue='';
+  isLoading:boolean=true;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
@@ -58,9 +59,20 @@ export class ManageUsersComponent implements OnInit {
 
   }
 
-  updateDetails(user): any {
-    this.userService.adminUpdateProfile(user).subscribe(resp => {
-      if (resp && resp.success) {
+  getUsers(){
+    this.isLoading=true;
+    this.userService.getUsers().subscribe(resp=>{
+      if(resp && resp.success){
+        this.users = resp.success.Data;
+      }
+      this.isLoading=false;
+    })
+  }
+
+
+  updateDetails(user): any{
+    this.userService.adminUpdateProfile(user).subscribe(resp=>{
+      if(resp && resp.success){
         // alert(resp.success.Message)
         // this.users[userIndex].email_is_verified=0
         this.toastrService.success('Details updated succesfully');
@@ -70,4 +82,23 @@ export class ManageUsersComponent implements OnInit {
     })
   }
 
+  filterTable(filterType, filterValue): any{
+    const value = filterValue.target.value
+
+    if (!value) {
+      return this.users
+    } else {
+      const filtered = this.users.filter(user => {
+        if (user[filterType] !== null)
+        return user[filterType].toLowerCase().includes(value.toLowerCase())
+      })
+      console.log('Filtered', filtered);
+      this.users = filtered;
+    }
+  }
+
+  clearSearch = () => {
+    this.searchValue = null;
+    return this.getUsers();
+  }
 }

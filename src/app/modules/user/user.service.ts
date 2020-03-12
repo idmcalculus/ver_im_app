@@ -13,6 +13,7 @@ export class UserService {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
 
+
   updateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`update_user?
     email=${user.email}&authentication_type=${user.authentication_type}
@@ -60,8 +61,7 @@ export class UserService {
     return this.httpService.postRequest(`user/list`, {});
   }
 
-
-  getUserDashBoard(investmentId,email){
+  getUserDashBoard(investmentId, email) {
     return this.httpService.postRequest(`report/userDashboard?
     investment_id=${investmentId}&user_id=${email}`, null);
   }

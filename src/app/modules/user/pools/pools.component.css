@@ -16,9 +16,3 @@ border_shadow{
 .table-wrapper-scroll-y {
     display: block;
 }
-
-.inputstyle{
-    padding:6px;
-    border-radius: 5px;
-    border-style: none;
-}

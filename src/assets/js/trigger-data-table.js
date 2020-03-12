@@ -1,5 +1,5 @@
 $(document).ready( function () {
-    $('.appPaginateTable').DataTable({
+    $('.appTable').DataTable({
         "searching":   false,
         "paging":   false,
     });
