@@ -67,7 +67,15 @@ export class UserService {
     email=${user.email}`, null);
   }
 
-  getUserDashBoard(investmentId, email) {
+  deleteUser(user: User) {
+    return this.httpService.postRequest(`user/delete`, { user_id: user.id }, true);
+  }
+
+  getUsers() {
+    return this.httpService.postRequest(`user/list`, {});
+  }
+
+  getUserDashBoard(investmentId,email){
     return this.httpService.postRequest(`report/userDashboard?
     investment_id=${investmentId}&user_id=${email}`, null);
   }
