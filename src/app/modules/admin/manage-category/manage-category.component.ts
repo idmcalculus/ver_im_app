@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, Input } from '@angular/core';
 import { InvestmentService } from '../../investment/investment.service';
 import { Category } from 'src/app/shared/models/Category';
 
@@ -7,7 +7,7 @@ import { Category } from 'src/app/shared/models/Category';
   templateUrl: './manage-category.component.html',
   styleUrls: ['./manage-category.component.css']
 })
-export class ManageCategoryComponent implements OnInit {
+export class ManageCategoryComponent {
 
   buttonText = 'Add Category';
   updateButtonText = 'update';
@@ -15,11 +15,11 @@ export class ManageCategoryComponent implements OnInit {
   isLoading = true;
   category: Category = {category_name: ''};
   categories = [];
+  filteredCategories = [];
+  searchValue = '';
+
   constructor(private investmentService: InvestmentService) {
     this.getCategories();
-  }
-
-  ngOnInit() {
   }
 
   addCategory() {
@@ -67,5 +67,25 @@ export class ManageCategoryComponent implements OnInit {
     });
   }
 
+  filterTable(filterType, filterValue: string) {
+    const categoryArray = this.categories;
+
+    if (!filterValue) {
+      return categoryArray;
+    } else {
+        const filtered = this.categories.filter(category => {
+          if (category[filterType] !== null) {
+            return category[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.categories = filtered;
+      }
+  }
+
+  clearSearch = () => {
+    this.searchValue = null;
+    return this.getCategories();
+    }
 
 }
