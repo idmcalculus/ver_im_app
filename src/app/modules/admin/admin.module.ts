@@ -22,7 +22,6 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
 import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
-
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
