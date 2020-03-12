@@ -1,8 +1,10 @@
-import { Component, Input, Output, OnInit, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input,  OnInit, ViewChild, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
+import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
 import { UserService } from 'src/app/modules/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-customer',
@@ -20,54 +22,49 @@ export class AddCustomerComponent implements OnInit {
     isLoading = true;
     countries: string[] = ['Nigeria', 'Ghana'];
     bankList: any = [];
-    dateModel: Date;
     passText = '';
     confirmPassText = '';
     opt1selected = false;
     opt2selected = false;
-    dayComponent = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-                    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-                    '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
-    monthComponent = [{count: '1', title: 'Jan'}, {count: '2', title: 'Feb'},
-    {count: '3', title: 'Mar'}, {count: '4', title: 'Apr'},
-    {count: '5', title: 'May'}, {count: '6', title: 'Jun'},
-    {count: '7', title: 'Jul'}, {count: '8', title: 'Aug'},
-    {count: '9', title: 'Jan'}, {count: '10', title: 'Oct'},
-    {count: '11', title: 'Nov'}, {count: '12', title: 'Dec'}];
-
+    tabProps = {};
 
     constructor(private userService: UserService,
                 private toastrService: ToastrService,
                 private router: Router,
+                private signUpService: SignUpService
       ) {
        this.getBankList();
+
       }
 
 
     ngOnInit() {
         this.isLoading = false;
-    }
+         }
+
 
     cancelProfile() {
         this.isSubmitting = false;
+        this.user = { email: '', password: '' };
         this.router.navigateByUrl('admin/manage-users');
     }
 
-    createProfile() {
-         //  console.log(JSON.stringify(this.user));
-           this.user.user_category = 'User';
-           this.user.authentication_type = 'E';
-           this.user.average_monthly_income = '0';
-           this.user.password = '1234';
-           this.isSubmitting = this.userService.createProfile(this.user).subscribe(resp => {
-              if (resp && resp.success) {
-               // alert(resp.success.Message);
-                this.toastrService.success('Registeration Succesfull');
-                this.user = { email: '', password: '' };
-                this.router.navigateByUrl('admin/manage-users/list-users');
-            }
+    createProfile(): void {
+        this.isSubmitting = new Promise((resolve, reject) => {
+            this.user.authentication_type = 'E';
+            this.user.average_monthly_income = '0';
+            this.signUpService.create(this.user)
+                .subscribe(UserDetails => {
+                    if (UserDetails) {
+                        this.toastrService.success('Registeration Succesfull');
+                        this.user = { email: '', password: '' };
+                        this.router.navigateByUrl('admin/manage-users');
+                    }
+                    resolve();
+                });
         });
     }
+
 
     updateAccountPreference() {
         console.log(JSON.stringify(this.user));
@@ -125,5 +122,17 @@ export class AddCustomerComponent implements OnInit {
         this.bankList = resp.success.Data;
       });
     }
-
+    toggleTab(tabname: string) {
+        switch (tabname) {
+          default:
+            this.tabProps = {profileShow : true};
+            break;
+          case 'bank':
+            this.tabProps = {bankShow : true};
+            break;
+          case 'settings':
+            this.tabProps = {settingsShow : true};
+            break;
+        }
+      }
   }
