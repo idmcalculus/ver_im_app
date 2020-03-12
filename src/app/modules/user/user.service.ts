@@ -12,6 +12,7 @@ export class UserService {
   getProfileDetails(email: string): Observable<any> {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
+  
 
   updateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`update_user?
