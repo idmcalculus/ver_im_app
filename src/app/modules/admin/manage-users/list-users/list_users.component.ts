@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
-import { AdminService } from '../admin.service';
-import { UserService } from '../../user/user.service';
+import { AdminService } from '../../admin.service';
+import { UserService } from '../../../user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
-  templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.css']
+  templateUrl: './list_users.component.html',
+  styleUrls: ['./list_users.component.css']
 })
 export class ManageUsersComponent implements OnInit {
 
@@ -29,8 +29,8 @@ export class ManageUsersComponent implements OnInit {
       if(resp && resp.success){
         this.users = resp.success.Data;
         this.isLoading =  false;
-        this.dynamicScrLoader.loadSingle('data-table');   
-        this.dynamicScrLoader.loadSingle('trigger-data-table');    
+        this.dynamicScrLoader.loadSingle('data-table');
+        this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
     })
   }
@@ -55,7 +55,7 @@ export class ManageUsersComponent implements OnInit {
         }
       })
     }
-    
+
   }
 
   updateDetails(user): any{
