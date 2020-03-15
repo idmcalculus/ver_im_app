@@ -1,0 +1,20 @@
+[data-href] {
+    cursor: pointer;
+}
+
+.space {
+    margin-right: 5rem;
+}
+
+.setting {
+    margin-right: 1rem;
+}
+
+div input {
+    border:none;
+    display: inline;
+}
+
+.col {
+    border-bottom: 1px blue solid;
+}
