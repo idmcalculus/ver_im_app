@@ -38,12 +38,11 @@ export class PoolsComponent implements OnInit {
   }
 
 
-  getPools() {
-    this.investmentService.getInvestments(false).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
+  getPools(){
+    this.investmentService.getInvestments(false).subscribe(investments=>{
+      if(investments){
+        this.pools = investments.success.Data
         console.log(this.pools);
-        this.getCategories();
       }
     })
   }

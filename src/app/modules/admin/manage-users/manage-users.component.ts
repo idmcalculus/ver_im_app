@@ -8,8 +8,8 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
-  templateUrl: './manage-users.component.html',
-  styleUrls: ['./manage-users.component.css']
+  templateUrl: './list_users.component.html',
+  styleUrls: ['./list_users.component.scss']
 })
 export class ManageUsersComponent implements OnInit {
 
