@@ -110,7 +110,6 @@ export class AdminDashboardComponent implements OnInit {
     {'packages':['corechart'],
     'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'  
     });
-    google.charts.setOnLoadCallback(drawRegionsMap);
 
     function drawRegionsMap() {
       var data = google.visualization.arrayToDataTable([
@@ -127,11 +126,12 @@ export class AdminDashboardComponent implements OnInit {
       chart.draw(data, options);
     }
 
-    
+  
       this.adminService.getDashBoardData().subscribe(resp=>{
         if(resp && resp.success){
           this.dashBoardData = resp.success.Data
           this.isLoading = false;
+          google.charts.setOnLoadCallback(drawRegionsMap);
         }
       });
    
