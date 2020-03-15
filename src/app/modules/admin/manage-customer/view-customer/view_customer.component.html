@@ -1,0 +1,134 @@
+<div *ngIf="!selectedUser" class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12 form-row">
+                            <div class="card col-sm-7 space">
+                                <div class="card-header">
+                                    <h5>Personal Information</h5>
+                                </div>
+                                <form>
+                                    <div class="form-group col">
+                                        <span>Full Name:</span>
+                                        <input type="text" class="control" value={{user.full_name}} readonly id="inputEmail4">
+                                    </div>
+                                    <div class="form-group col">
+                                        <span>Email:</span>
+                                        <input type="email" class="control" value={{user.email}} readonly id="inputPassword4">
+                                    </div>
+                                    <div class="form-group  col">
+                                      <span>Phone Number:</span>
+                                      <input type="number" class="control" value={{user.phone_number}} readonly id="inputAddress">
+                                    </div>
+                                    <div class="form-group  col">
+                                      <span>Date of Birth:</span>
+                                      <input type="number" class="control" id="inputAddress2" value={{user.date_of_birth}} readonly>
+                                    </div>
+                                    <div class="form-group col">
+                                        <span>Gender:</span>
+                                        <input type="text" class="control" value={{user.gender}} readonly id="inputCity">
+                                    </div>
+                                    <div class="form-group col">
+                                        <span>Address:</span>
+                                        <input class="control" value={{user.home_address}} readonly id="inputCity">
+                                    </div>
+                                    <div class="form-group col">
+                                        <span>Country:</span>
+                                        <input type="text" class="control" value={{user.country}} readonly id="inputCity">
+                                    </div>
+                                    <div class="form-group col">
+                                        <span>Workplace:</span>
+                                        <input type="text" class="control" value={{user.where_you_work}} readonly id="inputZip">
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <div class="col-sm-4 flex-column">
+                                <div class="card col">
+                                    <div class="card-header">
+                                        <h5>Bank Details</h5>
+                                    </div>
+                                    <form>
+                                        <div class="form-group col">
+                                            <span>Account Name:</span>
+                                            <input type="text" class="control" value={{user.account_name}} readonly id="inputEmail4">
+                                        </div>
+                                        <div class="form-group col">
+                                            <span>Account Number:</span>
+                                            <input type="number" class="control" value={{user.account_number}} readonly id="inputPassword4">
+                                        </div>
+                                        <div class="form-group col">
+                                            <span>Bank:</span>
+                                            <input type="text" class="control" value={{user.bank_name}} readonly id="inputPassword4">
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                                <div class="card col">
+                                    <div class="card-header">
+                                        <h5>Settings Information</h5>
+                                    </div>
+                                    <form>
+                                        <div class="form-group col">
+                                            <span>Receive updates on new Plans?</span>
+                                            <input type="text" class="control" value={{user.updates_on_new_plans}} readonly id="inputEmail4">
+                                        </div>
+                                        <div class="form-group col">
+                                            <span>Send E-mail updates on investment</span>
+                                            <input type="text" class="control" value={{user.email_updates_on_investment_process}} readonly id="inputPassword4">
+                                        </div>
+                                        <div class="form-group col">
+                                            <span>User's Status</span>
+                                            <input type="text" class="control" value={{user.status}} readonly id="inputPassword4">
+                                        </div>
+
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 form-row">
+                            <div class="card col-sm-7 space">
+                                One of three columns
+                              </div>
+                              <div class="card col-sm-2 setting">
+                                One of three columns
+                              </div>
+                              <div class="card col-sm-2">
+                                One of three columns
+                              </div>
+                        </div>
+
+                        <div class="card col-sm-12 form-row">
+                            <div class="card-header">
+                                <h5>Current Investment</h5>
+                            </div>
+                        </div>
+
+                        <div class="card col-sm-12 form-row">
+                            <div class="card-header">
+                                <h5>S/N ....</h5>
+                            </div>
+                        </div>
+
+                        <div class="card col-sm-12 form-row">
+                            <div class="card-header">
+                                <h5>S/N ....</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<app-profile-summary *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<app-user-dashboard *ngIf="selectedUser" [overiddenUser]="selectedUser"></app-user-dashboard>
