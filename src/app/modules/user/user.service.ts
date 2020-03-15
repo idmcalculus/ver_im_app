@@ -12,6 +12,7 @@ export class UserService {
   getProfileDetails(email:string): Observable<any> {
     return this.httpService.postRequest(`fetch_profile?email=${email}`,null);
   }
+  
 
   updateProfile(user:User):Observable<any>{
     return this.httpService.postRequest(`update_user?
@@ -49,6 +50,14 @@ export class UserService {
   deactivateUser(user:User):Observable<any>{
     return this.httpService.postRequest(`deactivate_user?
     email=${user.email}`,null);
+  }
+
+  deleteUser(user: User) {
+    return this.httpService.postRequest(`user/delete`, { user_id: user.id }, true);
+  }
+
+  getUsers() {
+    return this.httpService.postRequest(`user/list`, {});
   }
 
   getUserDashBoard(investmentId,email){
