@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {AdminComponent} from './admin.component';
 import {UserProfileComponent} from './../user/user-profile/user-profile.component';
-import {ManageUsersComponent} from './manage-users/manage-users.component';
+import {ManageUsersComponent} from './/manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 // import {ManageCareerComponent} from './manage-career/manage-career.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';

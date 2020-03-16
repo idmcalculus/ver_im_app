@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../models/user';
-import { ManageUsersComponent } from 'src/app/modules/admin/manage-users/manage-users.component';
+import { ManageUsersComponent } from 'src/app/modules/admin/manage-users/list-users/list_users.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
