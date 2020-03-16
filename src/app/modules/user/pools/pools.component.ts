@@ -64,5 +64,21 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
+  filterTable(filterType, filterValue): any {
+    const value = filterValue.target.value;
+
+    if (!value) {
+      return this.pools;
+    } else {
+      const filtered = this.pools.filter(pool => {
+        if (pool[filterType] !== null) {
+        return pool[filterType].toLowerCase().includes(value.toLowerCase())
+        }
+      });
+      console.log('Filtered', filtered);
+      this.pools = filtered;
+    }
+  }
+
   
 }

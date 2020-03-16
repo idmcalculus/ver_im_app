@@ -1,0 +1,144 @@
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="clearfix mb-3">
+                    <div class="float-left pt-3">
+                        <a class="h4 pr-2">Add Investment</a>
+                        <a class=" pl-2">Home / Investment</a>
+                    </div>  
+                    <div class="float-right">
+                        <a (click)="cancelPool()">
+                            <img class="" src="../../../../assets/images/icon/icons/Back-icon.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="p-3">
+                                <h5 class="head">Add Investment</h5>
+                                <hr class="new my-0">
+                            </div>
+
+                            <form>
+                                <div class="row p-3">
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">ID</h6>
+                                            <div class="col-sm-10">
+                                                <input type="type" class="form-control form-control-sm" placeholder="00010">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Title</h6>
+                                            <div class="col-sm-10">
+                                                <input type="type" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Category</h6>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select custom-select-sm">
+                                                    <option value="1"></option>
+                                                    <option value="2"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Portfolio</h6>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select custom-select-sm">
+                                                    <option value="1">based on the selected category</option>
+                                                    <option value="2">Yearly</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Investors</h6>
+                                            <div class="col-sm-10">
+                                                <input type="type" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Tenure</h6>
+                                            <div class="col-sm-10">
+                                                <input type="type" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Cost</h6>
+                                            <div class="col-sm-10">
+                                                <input type="type" class="form-control form-control-sm">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-2 pr-0 col-form-label">Payback</h6>
+                                            <div class="col-sm-10">
+                                                <select class="custom-select custom-select-sm">
+                                                    <option value="1">Monthly</option>
+                                                    <option value="2">Yearly</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Upload Image</h6>
+                                            <div class="col-sm-9">
+                                                <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 100px;">
+                                                <button type="submit" class="btn btn-sm btn-block btn-primary mt-2">Click to Upload Image</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Show to Public</h6>
+                                            <div class="col-sm-9">
+                                                <input type="checkbox">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">ROI</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="form-control form-control-sm" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="form-control form-control-sm" placeholder="Automatically generated">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-1 pr-0 col-form-label">Description</h6>
+                                            <div class="col-sm-11">
+                                                <textarea class="form-control" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Add</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
+<!-- <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
+<app-pool-addUser [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser> -->

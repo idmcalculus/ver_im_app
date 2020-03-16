@@ -1,18 +1,18 @@
-<div *ngIf="!selectedUser" class="pcoded-content">
+<div class="pcoded-content">
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
                     <div class="clearfix mb-3">
                         <div class="float-left pt-3">
-                            <a class="h4 pr-2">Investors</a>
-                            <a class=" pl-2">Home / Investors</a>
+                            <a class="h4 pr-2">Investments</a>
+                            <a class=" pl-2">Home / Investments</a>
                         </div>  
                         <div class="float-right">
-                            <a>
+                            <a routerLink="./add-pools"  routerLinkActive="active-link">
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a (click)="deleteUser(user)" id="delCat">
+                            <a id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -23,39 +23,39 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Investment ID" (keyup)="filterTable('first_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Email"
+                                    <input type="text" class="form-control form-control-sm" placeholder="Investment Title"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="form-control form-control-sm" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="form-control form-control-sm" placeholder="Category" (keyup)="filterTable('phone_number', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Amount" (keyup)="filterTable('first_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Email"
+                                    <input type="text" class="form-control form-control-sm" placeholder="No of Investors"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="form-control form-control-sm" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="form-control form-control-sm" placeholder="Status" (keyup)="filterTable('phone_number', $event)">
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                                 <td >{{pool.Title}}</td>
                                                 <td >{{pool.reference}}</td>
                                                 <td >{{pool.max_num_of_slots}}( {{pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}}</td>
+                                                <td >{{pool.duration}} year</td>
                                                 <td >{{pool.reference}}</td>
                                                 <td >{{pool.reference}}</td>
                                                 <td  (click)="viewUserDetail(i)">
@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<div class="pcoded-content">
+<!-- <div class="pcoded-content">
 
     <div class="pcoded-inner-content">
         <div class="main-body">
@@ -193,4 +193,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
