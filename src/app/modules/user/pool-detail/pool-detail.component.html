@@ -71,19 +71,19 @@
                                 <form class="card latest-update-card">
                                     <div class="row p-3">
                                         <div class="col-6">
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
                                                 <div class="col-sm-9">
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.id}}>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.title}}>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
                                                     <select required [(ngModel)]="category" name="category" class="custom-select custom-select-sm">
@@ -92,7 +92,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Portfolio</h6>
                                                 <div class="col-sm-9">
                                                     <select class="custom-select custom-select-sm">
@@ -101,19 +101,19 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.num_of_pools_taken}}>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
                                                 <div class="col-sm-9">
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.duration}}>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
                                                 <div class="col-sm-9">
                                                     <input type="type" class="form-control form-control-sm" name="pricing" id="pricing" [(ngModel)]="investment_amount" value={{pool?.investment?.investment_amount}}>
@@ -122,7 +122,7 @@
                                         </div>
 
                                         <div class="col-6">
-                                            <div class="form-group row mb-0">
+                                            <div class="form-group pt-1 row mb-0">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Upload Image</h6>
                                                 <div class="col-sm-8">
                                                     <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 100px;">
@@ -133,21 +133,21 @@
                                                 </div>
                                             </div>
     
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Show to Public</h6>
                                                 <div class="col-sm-8">
                                                     <input class="mt-2" type="checkbox">
                                                 </div>
                                             </div>
     
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
                                                     <input type="number" class="form-control form-control-sm" required name="roi" id="roi" placeholder="" [(ngModel)]="expected_return">
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-8">
                                                     <select class="custom-select custom-select-sm" name="period" [(ngModel)]="period" (change)="calculateEstimate()" id="period">
@@ -157,7 +157,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Return</h6>
                                                 <div class="col-sm-8">
                                                     <input type="type" class="form-control form-control-sm" value="" name="returns" [(ngModel)]="returns">
@@ -167,7 +167,7 @@
 
                                         <div class="col">
                                             
-                                            <div class="form-group row">
+                                            <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-20px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
                                                     <textarea class="form-control" rows="3" value={{pool?.investment?.description}}></textarea>
