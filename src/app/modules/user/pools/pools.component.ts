@@ -80,6 +80,7 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
+<<<<<<< HEAD
   calculateEstimate(returns, inv) {
     const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
@@ -93,4 +94,23 @@ filterTable(filterType, filterValue: string) {
 deleteUser() {
 
 }
+=======
+  filterTable(filterType, filterValue): any {
+    const value = filterValue.target.value;
+
+    if (!value) {
+      return this.pools;
+    } else {
+      const filtered = this.pools.filter(pool => {
+        if (pool[filterType] !== null) {
+        return pool[filterType].toLowerCase().includes(value.toLowerCase())
+        }
+      });
+      console.log('Filtered', filtered);
+      this.pools = filtered;
+    }
+  }
+
+  
+>>>>>>> Created Add investment component
 }
