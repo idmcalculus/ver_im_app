@@ -46,6 +46,17 @@ const userRoutes: Routes = [
             ]
             }
           ] },
+          { path: 'manage-customer',
+            children: [
+            {path: '',
+            children: [
+              {path: '', component: ViewCustomerComponent},
+              {path: 'new', component: AddCustomerComponent},
+              {path: 'view', component: ViewCustomerComponent },
+              {path: 'edit', component: EditCustomerComponent },
+            ]
+            }
+          ] },
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
 
