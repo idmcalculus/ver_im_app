@@ -50,6 +50,7 @@ const userRoutes: Routes = [
 
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
+          { path: 'manage-users', component: ManageUsersComponent },
 
           { path: 'manage-career',
             children: [

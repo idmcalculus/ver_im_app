@@ -34,8 +34,8 @@ export class UserService {
 
   updateBankDetails(user: User): Observable<any> {
     return this.httpService.postRequest(`update_account_detail?
-    account_name=${user.account_name}&account_number=${user.account_number}
-    &bank_name=${user.bank_name}&id=${user.id}`, null);
+    {user.account_name=${user.account_name}&account_number=${user.account_number}
+    &bank_name=$bank_name}`, null);
   }
 
   changePassword(password): Observable<any> {
@@ -89,4 +89,15 @@ export class UserService {
     &bank_name=${user.bank_name}&id=${user.id}`, null);
   }
 
+  adminUpdateCustomerDetails(user: User): Observable<any> {
+    return this.httpService.postRequest(`admin/update_user?
+    email=${user.email}
+    &first_name=${user.first_name}&last_name=${user.last_name}
+    &user_category=${user.user_category}&{user.account_name=${user.account_name}
+    &account_number=${user.account_number}&bank_name=$bank_name
+    &average_monthly_income=${user.average_monthly_income}
+    &updates_on_new_plans=${user.updates_on_new_plans ? 1 : 0}
+    &email_updates_on_investment_process=${user.email_updates_on_investment_process ? 1 : 0}
+    &id=${user.id}`, null);
+  }
 }

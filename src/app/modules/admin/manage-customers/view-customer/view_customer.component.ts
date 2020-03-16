@@ -3,8 +3,6 @@ import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
 import { ToastrService } from 'ngx-toastr';
-import { Investment } from 'src/app/shared/models/Investment';
-import { InvestmentService } from 'src/app/modules/investment/investment.service';
 
 @Component({
   selector: 'app-view-customers',
@@ -12,35 +10,16 @@ import { InvestmentService } from 'src/app/modules/investment/investment.service
   styleUrls: ['./view_customer.component.css']
 })
 export class ViewCustomerComponent implements OnInit {
-    carouselPos = 0;
     _shown = true;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-    investments: Investment;
-    p: number = 1;
-    userInvestment: Investment[];
-    isLoading;
+
     constructor(
       private searchCustomer: SearchCustomerComponent,
-      private investmentService: InvestmentService,
       private userService: UserService,
       private toastrService: ToastrService
       ) { }
 
     ngOnInit() {
-        this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
-            if(investments){
-              this.userInvestment = investments.success.Data
-            }
-            this.isLoading=false;
-          })
-
-          $('#myCarousel').on('slide.bs.carousel', function (e) {
-            const to = e.to;
-            $('.investment-card').hide();
-            let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-            element.style.display = 'block'
-          })
-
     }
 
     updateUser(status: string) {
@@ -54,13 +33,15 @@ export class ViewCustomerComponent implements OnInit {
 
     }
 
-    delete (user: User) {
+    deleteUser = (user) => {
         this.userService.deleteUser(user).subscribe(resp => {
           if (resp && resp.success) {
+            // alert(resp.success.Message)
+            // this.users[userIndex].email_is_verified=0
             this.toastrService.success('Details deleted succesfully');
           } else {
             this.toastrService.error('There was an issue deleting.. Try again later');
           }
         });
       }
-    }
+  }
