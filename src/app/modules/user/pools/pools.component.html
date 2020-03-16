@@ -23,39 +23,39 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Email"
+                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Title"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="form-control form-control-sm" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Category" (keyup)="filterTable('phone_number', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Email"
+                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Email"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="form-control form-control-sm" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="form-control form-control-sm inputstyle" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                                                     <th>Tenure</th>
                                                     <th>ROI</th>
                                                     <th>Payback</th>
-                                                    <th>Cost</th>
+                                                    <th style="font-size:15px;">Cost per slot</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -85,13 +85,20 @@
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
                                                 <td><input type="checkbox"></td>
-                                                <td>{{pool.category_id}}</td>
-                                                <td >{{pool.Title}}</td>
+                                                <td>{{pool.id}}</td>
+                                                <td >{{pool.title}}</td>
+                                                <td >{{pool.category_id}}</td>
+                                                <td >{{pool.max_num_of_slots}}( {{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
+                                                <td >{{pool.duration}} months
+
+                                                </td>
                                                 <td >{{pool.reference}}</td>
-                                                <td >{{pool.max_num_of_slots}}( {{pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}}</td>
                                                 <td >{{pool.reference}}</td>
-                                                <td >{{pool.reference}}</td>
+                                                <td >{{pool.investment_amount}}</td>
+                                                <td *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <ng-template #showThis>      
+                                                    <td>{{'InActive'}}</td>
+                                                </ng-template>
                                                 <td  (click)="viewUserDetail(i)">
                                                     <a *ngIf="!pool.inViewMode" (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>

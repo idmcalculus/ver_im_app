@@ -41,12 +41,34 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <label class="h7">Phone Number</label>
                                 <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [(ngModel)]="searchNumber"></a>
+                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [(ngModel)]="searchNumber"></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                                <div class="col px-0">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                                <div class="col px-0">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                                <div class="col px-0">
                                     <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch(searchNumber)">Clear</button>
+                                        <button class="float-right" type="submit" (click)="clearSearch(searchNumber)" style="
+                                        margin: 20px 0px;
+                                        margin-bottom: 0px;
+                                        border-width: 0px;
+                                        padding: 10px 50px;
+                                        border-radius: 10px;
+                                        background-color: #9797e8;
+                                        color: white;
+                                        letter-spacing: 0.5px;
+                                        font-weight: 700;">Reset Details</button>
                                     </a>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                     

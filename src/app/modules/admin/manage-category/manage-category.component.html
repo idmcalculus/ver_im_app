@@ -49,8 +49,7 @@
                               <div id="categoryTable_filter" class="dataTables_filter">
                                 <label>
                                     <input type="text" placeholder="Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
-                                    (blur)="filterTable('category_name', search.value)" [(ngModel)]="searchValue" >
-                                    <button type="submit" (click)="clearSearch()">x</button>
+                                    (blur)="filterTable('category_name', search.value)">
                                 </label>
                               </div>
                             </div>

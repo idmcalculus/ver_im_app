@@ -17,6 +17,9 @@ import {ApplicantsComponent} from './manage-career/applicants/applicants.compone
 import {ManageCategoryComponent} from './manage-category/manage-category.component';
 import { ChatComponent } from '../chat/chat.component';
 import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
+import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
+import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
+
 
 
 
@@ -42,6 +45,18 @@ const userRoutes: Routes = [
             ]
             }
           ] },
+          { path: 'manage-customer',
+            children: [
+            {path: '',
+            children: [
+              {path: '', component: ViewCustomerComponent},
+              {path: 'new', component: AddCustomerComponent},
+              {path: 'view', component: ViewCustomerComponent },
+              {path: 'edit', component: EditCustomerComponent },
+            ]
+            }
+          ] },
+          { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',

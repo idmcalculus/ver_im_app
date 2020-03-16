@@ -68,10 +68,9 @@ export class ManageCategoryComponent {
   }
 
   filterTable(filterType, filterValue: string) {
-    const categoryArray = this.categories;
 
-    if (!filterValue) {
-      return categoryArray;
+    if (!filterValue || filterValue === null) {
+      return this.getCategories();
     } else {
         const filtered = this.categories.filter(category => {
           if (category[filterType] !== null) {

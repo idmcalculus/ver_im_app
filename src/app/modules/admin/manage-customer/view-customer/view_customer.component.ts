@@ -8,15 +8,14 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
-  templateUrl: './list_users.component.html',
-  styleUrls: ['./list_users.component.scss']
+  templateUrl: './view_customer.component.html',
+  styleUrls: ['./view_customer.component.css']
 })
-export class ManageUsersComponent implements OnInit {
+export class ViewCustomerComponent implements OnInit {
 
-  searchValue = '';
-  users: User[];
+  users: [User];
   selectedUser: User;
-  isLoading= true;
+  isLoading = true;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
@@ -54,19 +53,9 @@ export class ManageUsersComponent implements OnInit {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
-      });
+      })
     }
 
-  }
-
-  getUsers() {
-    this.isLoading = true;
-    this.userService.getUsers().subscribe(resp => {
-      if (resp && resp.success) {
-        this.users = resp.success.Data;
-      }
-      this.isLoading = false;
-    });
   }
 
   updateDetails(user): any {
@@ -78,27 +67,7 @@ export class ManageUsersComponent implements OnInit {
       } else {
         this.toastrService.error('There was an issue updating.. Try again later');
       }
-    });
+    })
   }
 
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-
-    if (!value) {
-      return this.users;
-    } else {
-      const filtered = this.users.filter(user => {
-        if (user[filterType] !== null) {
-        return user[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
-      console.log('Filtered', filtered);
-      this.users = filtered;
-    }
-  }
-
-  clearSearch = () => {
-    this.searchValue = null;
-    return this.getUsers();
-  }
 }
