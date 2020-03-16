@@ -13,9 +13,12 @@ import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
-import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
+import {SearchCustomerComponent} from './manage-customers/search-customer/search_customer.component';
+import { AddCustomerComponent } from './manage-customers/add-customer/add_customer.component';
+import { ViewCustomerComponent } from './manage-customers/view-customer/view_customer.component';
+import { EditCustomerComponent } from './manage-customers/edit-customer/edit_customer.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
-import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
+import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 
@@ -28,9 +31,12 @@ import {ProgressBarModule} from 'angular-progress-bar';
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
+    EditCustomerComponent,
+    ViewCustomerComponent,
     AddCustomerComponent,
-    ManageCategoryComponent,
+    SearchCustomerComponent,
     ManageUsersComponent,
+    ManageCategoryComponent,
     ManageAdminComponent
   ],
   imports: [

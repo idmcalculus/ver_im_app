@@ -3,7 +3,7 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div class="page-body">
+                <div class=" card page-body">
                     <div class="row mb-4">
                         <div class="col-xl-12 col-md-12 user-invest">
                             <h4 class="dash-title"></h4>
@@ -54,15 +54,16 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-2" id="namespace">
-                                                            <span class='normal'>Full Name</span>
+                                                            <span>First Name</span>
                                                         </div>
-                                                        <div class="col-md-5">
-                                                            <label for="firstname">First Name</label>
+                                                        <div class="col-md-4">
                                                             <input [(ngModel)]="user.first_name"  type="text" class="form-control"
                                                                    id="firstname">
                                                         </div>
-                                                        <div class="col-md-5 ph-4"><label for="lastname">Last
-                                                            Name</label>
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Last Name</span>
+                                                        </div>
+                                                        <div class="col-md-4 ph-4">
                                                             <input  [(ngModel)]="user.last_name" type="text" class="form-control"
                                                                     id="lastname">
                                                         </div>
@@ -120,11 +121,11 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2 normal"><span>Gender</span></div>
+                                                        <div class="col-md-2"><span>Gender</span></div>
 
 
-                                                        <div class="col-lg-1 col-md-1">
-                                                            <div class="pretty p-icon p-square" style="margin-top: 2.2rem;">
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <div class="pretty p-icon p-square">
                                                                 <input (click)="user.gender='Male' " class="form-check-input"
                                                                        type="radio" id="male" name="gender"
                                                                        value="male" [checked]="user.gender === 'Male'">
@@ -134,7 +135,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-1 col-md-1" style="margin-top: 2rem;">
+                                                        <div class="col-lg-2 col-md-2">
                                                             <div class="pretty p-icon p-square">
                                                                 <input (click)="user.gender='Female' " class="form-check-input "
                                                                        type="radio" name="gender" id="female"
@@ -147,23 +148,13 @@
                                                         </div>
 
 
-                                                        <div class="col-md-2 offset-2 normal"><span>Date of Birth</span>
+                                                        <div class="col-md-2"><span>Date of Birth</span>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                            <label for="month">Month</label>
-                                                            <select [(ngModel)]="user.month_of_birth" name="month" id="month"
-                                                                    class="form-control">
-                                                                <option *ngFor="let month of monthComponent" [ngValue]="month.count" >{{month.title}}</option>
+                                                        <div class="col-md-4">
+                                                            <input [(ngModel)]="user.month_of_birth" type="date" class="form-control">
 
-                                                            </select>
                                                         </div>
-                                                        <div class="col-md-2"><label for="day">Day</label>
-                                                            <select [(ngModel)]="user.day_of_birth" name="day" id="day"
-                                                                    class="form-control">
-                                                                <option *ngFor="let day of dayComponent" [ngValue]="day">{{day}}</option>
 
-                                                            </select>
-                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -172,17 +163,9 @@
                                                         <div class="col-md-2">
                                                             <span>Work Place</span>
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-10">
                                                             <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
                                                                    id="workplace">
-                                                        </div>
-
-                                                        <div class="col-md-2 offset-1">
-                                                            <span>Average Monthly income(optional)</span>
-                                                        </div>
-                                                        <div class="col-md-4 avgmonthlyLabel">
-                                                            <input [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
-                                                                   id="avgmonthly">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -191,7 +174,7 @@
                                                     <div class="buttons">
                                                         <div class="d-flex flew-row">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="createProfile()" class=" btn-update-customer" value="ADD">
+                                                            <input type="button" (click)="toggleTab('bank')"  class="button btn-update-customer" value="NEXT">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,7 +182,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                             aria-labelledby="nav-profile-tab">
+                                             aria-labelledby="nav-profile-tab" [ngClass]="{'':tabProps.bankShow,'.d-none':!tabProps.bankShow}" >
                                             <div class="create-profile-form">
 
                                                 <div class="form-group">
@@ -249,10 +232,11 @@
 
                                                 </div>
 
-                                                <div *ngIf="editable" class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" [disabled]="acctNumber.invalid" [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-update-profile" value="Update Details">
+                                                <div class="form-group">
+                                                    <div class="buttons">
+                                                        <div class="d-flex flew-row">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button"  (click)="toggleTab('settings')" class=" btn-update-customer" value="NEXT">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -260,7 +244,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                             aria-labelledby="nav-contact-tab">
+                                             aria-labelledby="nav-contact-tab"   [ngClass]="{'':tabProps.settingsShow,'.d-none':!tabProps.settingsShow}">
 
                                             <div class="create-profile-form">
 
@@ -296,58 +280,16 @@
                                                     </div>
                                                 </div>
 
-                                                <div *ngIf="editable" class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-md-4 offset-8 mt-4">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateAccountPreference()" class="btn btn-update-profile" value="Update Preference ">
+                                                <div class="form-group">
+                                                    <div class="buttons">
+                                                        <div class="d-flex flew-row">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateDetails()" class=" btn-update-customer" value="CREATE">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-update-login" role="tabpanel"
-                                        aria-labelledby="nav-contact-tab">
-
-                                       <div class="create-profile-form" style="padding-top: 1rem">
-                                           <div class="form-group">
-                                               <div #error class="error">* All fields are required.</div>
-                                               <div class="row" style="justify-content: center">
-                                                   <div class="col-md-7">
-                                                       <label class="pref">New Password</label>
-                                                   </div>
-                                                   <div class="col-md-7" style="margin-top: 0.5em;">
-                                                    <div>
-                                                        <input [(ngModel)]="passText" required type="password" class="form-control"
-                                                        (keyup)="validate()" #pass>
-                                                    </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                           <div class="form-group">
-                                               <div class="row" style="justify-content: center">
-                                                   <div class="col-md-7">
-                                                       <label class="pref">Confirm New Password</label>
-                                                   </div>
-                                                   <div class="col-md-7" style="margin-top: 0.5em;">
-                                                    <div>
-                                                        <input [(ngModel)]="confirmPassText" required type="password" class="form-control"
-                                                        (keyup)="validate()" #confirmPass>
-                                                    </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                           <div *ngIf="editable" class="form-group">
-                                               <div class="row">
-                                                   <div class="col-md-4 offset-8 mt-4">
-                                                       <input type="button" [promiseBtn]="isSubmitting" (click)="changePassword()" class="btn btn-update-profile" value="Change Password" required>
-                                                   </div>
-                                               </div>
-                                           </div>
-
-                                       </div>
                                         </div>
                                     </div>
                                 </div>

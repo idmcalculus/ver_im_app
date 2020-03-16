@@ -175,22 +175,24 @@
     width: 80%;
     background: rgb(100, 200, 140);
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1em;
     letter-spacing: 1px;
     margin-top: 1rem;
     letter-spacing: 1px;
-    padding: 0.5em;
+    text-align: center;
+    padding-top: 0.4rem;
 }
 .btn-cancel-customer {
     width: 80%;
     background:#6c757d;
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1em;
     letter-spacing: 1px;
     margin-top: 1rem;
     margin-right: 1rem;
     letter-spacing: 1px;
-    padding: 0.5em;
+    text-align: center;
+    padding-top: 0.4rem;
 }
 
 /*media query for  phones */
