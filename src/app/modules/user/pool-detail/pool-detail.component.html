@@ -408,7 +408,7 @@
         </div>
     </div>
 </div>
-<app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<!-- <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
 <app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
