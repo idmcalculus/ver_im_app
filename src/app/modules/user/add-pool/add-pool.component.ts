@@ -215,7 +215,7 @@ export class AddPoolComponent implements OnInit {
   }
 
   cancelPool() {
-    this.router.navigateByUrl('admin/manage-investments');
+    this.router.navigateByUrl('admin/pools');
   }
 
 }

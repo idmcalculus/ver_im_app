@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -17,11 +18,20 @@ export class PoolsComponent implements OnInit {
   categories:any []
 
   constructor(
+<<<<<<< HEAD
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
+=======
+    private authService:AppAuthService,
+    private router:Router,
+    private investmentService:InvestmentService,
+    private userService:UserService) { 
+      let userpath = window.location.pathname;
+      if(userpath.includes('user')){
+>>>>>>> link view investment to investment list
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
           if (resp) {
@@ -72,7 +82,15 @@ export class PoolsComponent implements OnInit {
     })
   }
 
+<<<<<<< HEAD
   setPlanOperation(investment) {
+=======
+  cancelPool() {
+    this.router.navigateByUrl('admin/addpools');
+  }
+
+  setPlanOperation(investment){
+>>>>>>> link view investment to investment list
     this.authService.setCurrentPlanOperation(investment);
   }
 

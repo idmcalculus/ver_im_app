@@ -21,7 +21,6 @@ import {ManageCategoryComponent} from './manage-category/manage-category.compone
 =======
 import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
-import {ViewPoolComponent} from './../user/view-pool/view-pool.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 >>>>>>> Created Add investment component
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
@@ -42,8 +41,11 @@ import {ProgressBarModule} from 'angular-progress-bar';
     EditCustomerComponent,
 =======
     AddPoolComponent,
+<<<<<<< HEAD
     ViewPoolComponent,
 >>>>>>> Created Add investment component
+=======
+>>>>>>> link view investment to investment list
     ManageCategoryComponent,
     ManageUsersComponent,
     ManageAdminComponent
