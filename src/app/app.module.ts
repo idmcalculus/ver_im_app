@@ -42,7 +42,6 @@ import { SocialLogin } from './shared/services/social-login-services';
 import { HowitworksComponent } from './pages/howitworks/howitworks.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ContactusComponent } from './pages/contactus/faq.component';
-import { SearchService } from '../app/shared/services/search.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -127,8 +126,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         httpInterceptorProviders,
         CloudinaryService,
         DynamicScriptLoaderService,
-        SocialLogin,
-        SearchService
+        SocialLogin
     ],
     exports: [],
     bootstrap: [AppComponent]
