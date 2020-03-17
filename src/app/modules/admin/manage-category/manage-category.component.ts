@@ -1,4 +1,4 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { InvestmentService } from '../../investment/investment.service';
 import { Category } from 'src/app/shared/models/Category';
 
@@ -81,10 +81,5 @@ export class ManageCategoryComponent {
         this.categories = filtered;
       }
   }
-
-  clearSearch = () => {
-    this.searchValue = null;
-    return this.getCategories();
-    }
 
 }

@@ -12,34 +12,34 @@ import { Admin } from 'src/app/shared/models/Admin';
 })
 export class AdminService {
 
-  constructor(private httpService:HttpService) { }
+  constructor(private httpService: HttpService) { }
 
 
-  getDashBoardData(){
-    return this.httpService.postRequest(`report/adminDashboard`,null);
+  getDashBoardData() {
+    return this.httpService.postRequest(`report/adminDashboard`, null);
   }
 
-  getUsers(){
-    return this.httpService.postRequest(`user/list`,null);
-  }  
-
-  getAdminUsers(){
-    return this.httpService.postRequest(`list_admin`,null);
-  } 
-
-  createAdminUser(admin:Admin){
-    return this.httpService.postRequest(`register_admin`,admin,true);
+  getUsers() {
+    return this.httpService.postRequest(`user/list`, null);
   }
 
-  updateAdminUser(admin:Admin,userType:string){
-    var reqBody = {"id": admin.id,"user_category":userType};   
-    return this.httpService.postRequest(`update_admin`,reqBody,true);
+  getAdminUsers() {
+    return this.httpService.postRequest(`list_admin`, null);
   }
 
-  addUserToPool(Details){
+  createAdminUser(admin: Admin) {
+    return this.httpService.postRequest(`register_admin`, admin, true);
+  }
+
+  updateAdminUser(admin: Admin, userType: string) {
+    const reqBody = {'id': admin.id, 'user_category': userType};
+    return this.httpService.postRequest(`update_admin`, reqBody, true);
+  }
+
+  addUserToPool(Details) {
     return this.httpService.postRequest(`investment_user/create?investment_id=${Details.investment_id}
     &number_of_pools=${Details.number_of_pools}&amount_paid=${Details.amount_paid}
-    &payment_reference=${Details.payment_reference}&user_email=${Details.user_email}`,null);
+    &payment_reference=${Details.payment_reference}&user_email=${Details.user_email}`, null);
   }
 
 }
