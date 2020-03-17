@@ -15,7 +15,6 @@ import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
-import {ViewPoolComponent} from './../user/view-pool/view-pool.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
@@ -32,7 +31,6 @@ import {ProgressBarModule} from 'angular-progress-bar';
     ListComponent,
     AddCustomerComponent,
     AddPoolComponent,
-    ViewPoolComponent,
     ManageCategoryComponent,
     ManageUsersComponent,
     ManageAdminComponent

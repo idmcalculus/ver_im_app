@@ -14,19 +14,19 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-pool:any
-poolId:number=0;
-reportData:Report = {title:'',description:''}
-categories=[];
-modaltitle:string='Update Plan';
-modalButtonTitle:string='';
-modalData:Report={};
-callBack:any;
-isLoading:boolean=true;
-selectedUser:User;
-loggedInUser:User;
-userSubscription:Subscription
-// @ViewChild('closeBtn') closeBtn: ElementRef;
+  pool:Investment
+  poolId:number=0;
+  reportData:Report = {title:'',description:''}
+  categories=[];
+  modaltitle:string='Update Plan';
+  modalButtonTitle:string='';
+  modalData:Report={};
+  callBack:any;
+  isLoading:boolean=true;
+  selectedUser:User;
+  loggedInUser:User;
+  userSubscription:Subscription
+  // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
     private router:Router,

@@ -44,10 +44,9 @@ const userRoutes: Routes = [
           ] },
           { path: 'manage-investments',
               children: [
-                {path: '', component: PoolsComponent},
-                {path: 'investment', component: PoolsComponent},
-                {path: 'add-pools', component: AddPoolComponent},
-                {path: 'pool-detail', component: PoolDetailComponent},
+                //{path: '', component: PoolsComponent},
+                //{path: 'investment', component: PoolsComponent},
+                //{path: 'add-pools', component: AddPoolComponent},
                 //{path: 'list-users', component: ManageUsersComponent },
           ] },
           { path: 'manage-admins', component: ManageAdminComponent },
@@ -65,6 +64,7 @@ const userRoutes: Routes = [
           ] },
           { path: 'manage-category', component: ManageCategoryComponent},
           { path: 'chat', component: ChatComponent},
+          { path: 'addpools', component: AddPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: '', component: AdminDashboardComponent }

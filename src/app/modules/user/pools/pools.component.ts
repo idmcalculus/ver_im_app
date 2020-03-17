@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -17,6 +18,7 @@ export class PoolsComponent implements OnInit {
 
   constructor(
     private authService:AppAuthService,
+    private router:Router,
     private investmentService:InvestmentService,
     private userService:UserService) { 
       let userpath = window.location.pathname;
@@ -54,6 +56,10 @@ export class PoolsComponent implements OnInit {
       }
       this.isLoading=false;
     })
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/addpools');
   }
 
   setPlanOperation(investment){
