@@ -4,7 +4,8 @@ import { Category } from 'src/app/shared/models/Category';
 
 @Component({
   selector: 'app-manage-investment',
-  templateUrl: './manage-investment.component.html'
+  templateUrl: './manage-investment.component.html',
+  styleUrls: ['./manage-customer.component.scss']
 })
 export class ManageInvestmentComponent implements OnInit {
 

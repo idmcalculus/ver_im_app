@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
+import { Investment } from 'src/app/shared/models/Investment';
+import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
 import { ToastrService } from 'ngx-toastr';
 
@@ -11,10 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ViewCustomerComponent implements OnInit {
     _shown = true;
+    isLoading: false;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-
+    investment: Investment;
+    userInvestment: Investment[];
     constructor(
       private searchCustomer: SearchCustomerComponent,
+      private investmentService: InvestmentService,
       private userService: UserService,
       private toastrService: ToastrService
       ) { }
@@ -43,5 +48,14 @@ export class ViewCustomerComponent implements OnInit {
             this.toastrService.error('There was an issue deleting.. Try again later');
           }
         });
+      }
+
+      getUserInvestment(email){
+        this.investmentService.getUserInvestments(email).subscribe(investments=>{
+          if(investments){
+            this.userInvestment = investments.success.Data
+          }
+          this.isLoading=false;
+        })
       }
   }

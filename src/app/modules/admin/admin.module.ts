@@ -22,6 +22,8 @@ import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 
+import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
+import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -34,7 +36,13 @@ import {ProgressBarModule} from 'angular-progress-bar';
     EditCustomerComponent,
     ViewCustomerComponent,
     AddCustomerComponent,
+<<<<<<< HEAD
     SearchCustomerComponent,
+=======
+    ViewCustomerComponent,
+    EditCustomerComponent,
+    ManageCategoryComponent,
+>>>>>>> d1898c5358ee20c26e086d294cb1a1e114a11a44
     ManageUsersComponent,
     ManageCategoryComponent,
     ManageAdminComponent

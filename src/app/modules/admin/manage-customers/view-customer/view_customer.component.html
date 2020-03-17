@@ -127,11 +127,11 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <span class="card col-sm-7 buttons updates">
-                                <span class="information">Principal {{user.principal}}</span>
-                                <span class="information">ROI {{user.roi}}</span>
-                                <span class="information">Expected Returns {{user.expected_returns}}</span>
+                                <span class="information">Principal {{investment?.investment_amount}}</span>
+                                <span class="information">ROI {{investment?.expected_return_amount}}</span>
+                                <span class="information">Expected Returns {{investment?.expected_return_amount}}</span>
                             </span>
-                
+
                             <span class="col-sm-2 text-center buttons">
                                 <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
                                 <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
@@ -139,9 +139,9 @@
                             <span class="col-sm-2 text-center buttons">
                                 <a  (click)="deleteUser('')" class="btn btn-danger">Delete User</a>
                             </span>
-                        
+
                     </div>
-                    </div> 
+                    </div>
 
                 </div>
             </div>
