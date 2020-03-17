@@ -19,86 +19,55 @@
                     </div>
 
                     <div class="container-fluid bg_filter border border-dark rounded mb-5">
-                        <div class="row p-1 py-4" style="padding-bottom: 1rem !important;">
+                        <div class="row p-1 py-4">
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <label class="h7">Fullname</label>
                                 <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)" [(ngModel)]="searchName"></a>
                                     <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)"></a>
                                     <a>
                                         <button class="float-right" type="submit" (click)="clearSearch(searchName)">Clear</button>
                                     </a>
-                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)" [(ngModel)]="searchName"></a>
-
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <label class="h7">Email</label>
                                 <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Email" (keyup)="filterTable('email', $event)" [(ngModel)]="searchEmail"></a>
-
                                     <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Email" (keyup)="filterTable('email', $event)"></a>
                                     <a>
                                         <button class="float-right" type="submit" (click)="clearSearch(searchEmail)">Clear</button>
                                     </a>
-                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Email" (keyup)="filterTable('email', $event)" [(ngModel)]="searchEmail"></a>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <label class="h7">Phone Number</label>
                                 <div class="col px-0">
-                                    <a><input class="pl-2" type="text" style="width: 100%;padding:6px;border-radius: 5px;border-style: none;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [(ngModel)]="searchNumber"></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="col px-0">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="col px-0">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="col px-0">
+                                    <a><input class="pl-2" type="text" style="width: 80%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)"></a>
                                     <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch(searchNumber)" style="
-                                        margin: 20px 0px;
-                                        margin-bottom: 0px;
-                                        border-width: 0px;
-                                        padding: 10px 50px;
-                                        border-radius: 10px;
-                                        background-color: #9797e8;
-                                        color: white;
-                                        letter-spacing: 0.5px;
-                                        font-weight: 700;">Reset Details</button>
+                                        <button class="float-right" type="submit" (click)="clearSearch(searchNumber)">Clear</button>
                                     </a>
                                 </div>
                             </div>
-
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5>Manage Customers</h5>
-                                </div>
-
                                 <div *ngIf="!isLoading" class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                        <table datatable
-                                                class="table appTable table-striped nowrap">
+                                    <div class="table-wrapper-scroll-y custom-scrollbar">
+                                        <table datatable class="table appTable nowrap">
                                             <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                                <th>User Category</th>
-                                            </tr>
+                                                <tr>
+                                                    <th style="width: 5%;"><input type="checkbox"></th>
+                                                    <th style="width: 30%;">Fullname</th>
+                                                    <th style="width: 30%;">Email</th>
+                                                    <th style="width: 20%;">Phone Number</th>
+                                                    <th style="width: 15%;">Action</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr data-href="#viewUserProfile" (click)="viewUserDetail(i)" *ngFor="let user of users;let i = index;">
+                                            <tr data-href="#viewUserProfile" *ngFor="let user of users;let i = index;">
+                                                <td><input type="checkbox"></td>
                                                 <td>{{user.first_name}} {{user.last_name}}</td>
                                                 <td >{{user.email}}</td>
                                                 <td >{{user.phone_number}}</td>
