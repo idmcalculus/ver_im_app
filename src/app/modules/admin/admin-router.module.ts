@@ -47,8 +47,9 @@ const userRoutes: Routes = [
             ]
             }
           ] },
-          { path: 'manage-admins', component: ManageAdminComponent },
+
           { path: 'manage-users', component: ManageUsersComponent },
+          { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',
             children: [

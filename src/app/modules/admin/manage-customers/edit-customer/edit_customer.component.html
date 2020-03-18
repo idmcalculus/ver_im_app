@@ -182,7 +182,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                             aria-labelledby="nav-profile-tab" [ngClass]="{'':tabProps.bankShow,'.d-none':!tabProps.bankShow}" >
+                                             aria-labelledby="nav-profile-tab" >
                                             <div class="create-profile-form">
 
                                                 <div class="form-group">
@@ -244,7 +244,7 @@
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                             aria-labelledby="nav-contact-tab"   [ngClass]="{'':tabProps.settingsShow,'.d-none':!tabProps.settingsShow}">
+                                             aria-labelledby="nav-contact-tab">
 
                                             <div class="create-profile-form">
 
@@ -284,7 +284,7 @@
                                                     <div class="buttons">
                                                         <div class="d-flex flew-row">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateDetails()" class=" btn-update-customer" value="CREATE">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateDetails()" class=" btn-update-customer" value="UPDATE">
                                                         </div>
                                                     </div>
                                                 </div>
