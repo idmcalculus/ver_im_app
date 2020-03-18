@@ -2,31 +2,52 @@
     cursor: pointer;
 }
 
-.pool-details {
-    h5 {
-      font-size: 1.2rem;
-      color: #444;
-      position: relative;
-      padding: 20px 0;
-      display: flex;
-      width: fit-content;
-      &:after {
-        content: "";
-        width: 100%;
-        bottom: 20%;
-        left: 0;
-        height: 1px;
-        border-bottom: 1px solid rgba(0, 0, 0, .6);
-        position: absolute;
-      }
-    }
+div > a {
+  color: #221F72;
+  font-weight: bold;
 }
+
 .head {
   padding: 0;
   font-weight: bolder;
   color: #221F72;
 }
 
+.shadow {
+  -moz-box-shadow:    .3px .3px .3px .8px #495057;
+  -webkit-box-shadow: .3px .3px .3px .8px #495057;
+  box-shadow:         .3px .3px .3px .8px #495057;
+}
+
+.input-control {
+  display: block;
+  width: 100%;
+  padding: .25rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 0.3px solid #221F72;
+  border-radius: 2px;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #5b58bd;
+  border-color: #5b58bd;
+}
+
+button {
+  font-size: 13px;
+}
+
 hr.new {
   border: 1px solid #221F72;
+}
+
+h6 {
+  color: #221F72;
+  font-size: 12px;
+  font-weight: 600;
 }

@@ -214,4 +214,8 @@ export class PoolDetailComponent implements OnInit {
     }
   }
 
+  cancelPool() {
+    this.router.navigateByUrl('admin/pools');
+  }
+
 }
