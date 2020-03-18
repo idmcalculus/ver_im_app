@@ -4,169 +4,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                   
-                    <div class="row">
-                        <div class="col-sm-12">
-                            
-                            <div class="card">
-                                <div class="card-header col-md-12">
-                                <h5>Current Investment</h5>
-                                </div>
-                                <div class="card flex-row">
-                                    <div class="col-md-4">
-                                           <div class="dt-responsive table-responsive">
-                                                <table class="table reduced-font">
-                                                    <tr>
-                                                        <td>Investment Title</td>
-                                                        <td>{{user?.account_name}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Payback</td>
-                                                        <td>{{user?.account_number}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Amount Paid</td>
-                                                        <td>{{user?.bank_name}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                    </div>
-                                     <div class="col-md-4">
-                                           <div class="dt-responsive table-responsive">
-                                                <table class="table reduced-font">
-                                                    <tr>
-                                                        <td>Cost</td>
-                                                        <td>{{user?.account_name}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Last Payment</td>
-                                                        <td>{{user?.account_number}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Amount Pending</td>
-                                                        <td>{{user?.bank_name}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                    </div>
-                                     <div class="col-md-4">
-                                           <div class="dt-responsive table-responsive">
-                                                <table class="table reduced-font">
-                                                    <tr>
-                                                        <td>Slot(s)</td>
-                                                        <td>{{user?.account_name}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Next Payment</td>
-                                                        <td>{{user?.account_number}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Termination Date</td>
-                                                        <td>{{user?.bank_name}}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card-header">
-                                <h5>Investment Report</h5>
-                            </div>
-                            <div class="card">
-
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                        <table datatable
-                                                class="table appTable table-striped nowrap">
-                                            <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Investment Title</th>
-                                                <th>Payback Frequency</th>
-                                                <th>Amount Credited</th>
-                                                <th>Yield Amount</th>
-                                                <th>Balance</th>
-                                                <th>Status</th>
-                                                <th>Date Paid</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr  *ngFor="let user of users;let i = index;">
-                                                <td>{{user.first_name}} {{user.last_name}}</td>
-                                                <td >{{user.email}}</td>
-                                                <td >{{user.phone_number}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td>{{user.first_name}} {{user.last_name}}</td>
-                                                <td >{{user.email}}</td>
-                                                <td >{{user.phone_number}}</td>
-                                                <td >{{user.user_category}}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                             <div class="card-header">
-                                <h5>Investment History</h5>
-                            </div>
-                            <div class="card">
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                        <table datatable
-                                                class="table appTable table-striped nowrap">
-                                            <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Investment Title</th>
-                                                <th>Category</th>
-                                                <th>Cost</th>
-                                                <th>No of Slots</th>
-                                                <th>Duration</th>
-                                                <th>Returns</th>
-                                                <th>Period</th>
-                                                <th>Amount</th>
-                                                <th>Status</th>
-                                                <th>Date Added</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr  *ngFor="let user of users;let i = index;">
-                                                <td>{{user.first_name}} {{user.last_name}}</td>
-                                                <td >{{user.email}}</td>
-                                                <td >{{user.phone_number}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                                <td >{{user.user_category}}</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
 
                     <div class="row mb-4">
                         <!-- <div class="col-xl-4 col-md-6 user-invest">
@@ -192,9 +29,9 @@
                                 <div class="card-header none-covered">
                                     <h5>Investment Perfomance</h5>
                                 </div>
-                                <div class="card-block"> 
+                                <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        
+
                                     </div>
                                  </div>
                             </div>
@@ -205,9 +42,9 @@
                                 <div class="card-header non-covered">
                                     <h5>Featured Investment</h5>
                                 </div>
-                                <div class="card-block"> 
+                                <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        
+
                                     </div>
                                  </div>
                             </div>
@@ -314,8 +151,8 @@
                                         <h5>Recent Activity</h5>
                                     </div>
                                     <div class="card-block">
-                                        
-                                    
+
+
                                       <div class="dt-responsive table-responsive">
                                               <!-- <table id="userTable"
                                                       class="table table-striped nowrap">
@@ -342,15 +179,15 @@
                                      </div>
                                 </div>
                             </div>
-      
+
                             <div class="card-details col-xl-8 col-md-12" style="padding-right: 0;padding-left: 0;">
                               <div class="card latest-update-card">
                                   <div class="card-header">
                                       <h5>Best Selling</h5>
                                   </div>
                                   <div class="card-block">
-                                      
-                                  
+
+
                                     <div class="dt-responsive table-responsive">
                                             <table id="userTable"
                                                     class="table table-striped nowrap">
@@ -380,7 +217,7 @@
                                    </div>
                               </div>
                             </div>
-      
+
                             <!-- <div class="col-xl-4 col-md-12">
                                 <div class="card latest-update-card">
                                     <div class="card-header">

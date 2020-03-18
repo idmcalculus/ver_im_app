@@ -40,20 +40,19 @@ ngOnInit() {
 
 cancelProfile() {
         this.isSubmitting = false;
-        this.user = { email: '', password: '' };
         this.router.navigateByUrl('admin/manage-customers');
     }
 
-updateDetails(user) {
-    if (user.average_monthly_income === null) {
-        user.average_monthly_income = 0;
+updateDetails(user: any) {
+    if (this.user.average_monthly_income === null) {
+        this.user.average_monthly_income = '0';
     }
-    this.userService.adminUpdateCustomerDetails(user).subscribe(resp => {
+    this.userService.adminUpdateCustomerDetails(this.user).subscribe(resp => {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
         }
     });
-    this._shown = true;
+    this.router.navigateByUrl('admin/manage-customers');
     }
 getBankList() {
     this.userService.getBankList().subscribe(resp => {

@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 
-border_shadow{
+.border_shadow {
     border: 1px solid;
     box-shadow: 1px 1px 5px 5px rgb(5, 2, 2);
     opacity: 10%;

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 // import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
@@ -35,6 +36,9 @@ import {ProgressBarModule} from 'angular-progress-bar';
     ViewCustomerComponent,
     AddCustomerComponent,
     SearchCustomerComponent,
+    ViewCustomerComponent,
+    EditCustomerComponent,
+    ManageCategoryComponent,
     ManageUsersComponent,
     ManageCategoryComponent,
     ManageAdminComponent
@@ -53,6 +57,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
       handleCurrentBtnOnly: false,
     }),
     ChartsModule,
+    NgxPaginationModule,
 
   ], providers: [
   ], exports: [

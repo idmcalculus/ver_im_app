@@ -95,11 +95,9 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  deleteUser = (user) => {
-    this.userService.deleteUser(user).subscribe(resp => {
+  delete = (selectedUser:User) => {
+    this.userService.deleteUser(selectedUser).subscribe(resp => {
       if (resp && resp.success) {
-        // alert(resp.success.Message)
-        // this.users[userIndex].email_is_verified=0
         this.toastrService.success('Details deleted succesfully');
       } else {
         this.toastrService.error('There was an issue deleting.. Try again later');
