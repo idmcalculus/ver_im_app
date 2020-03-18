@@ -20,7 +20,14 @@ export class ViewCustomerComponent implements OnInit {
       ) { }
 
     ngOnInit() {
+        this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
+            if(investments){
+              this.userInvestment = investments.success.Data
+            }
+            this.isLoading=false;
+          })
     }
+
 
     updateUser(status: string) {
       if (status) {
@@ -33,11 +40,9 @@ export class ViewCustomerComponent implements OnInit {
 
     }
 
-    deleteUser = (user) => {
-        this.userService.deleteUser(user).subscribe(resp => {
+    delete (user: User) {
+        this.userService.deleteUser(this.user).subscribe(resp => {
           if (resp && resp.success) {
-            // alert(resp.success.Message)
-            // this.users[userIndex].email_is_verified=0
             this.toastrService.success('Details deleted succesfully');
           } else {
             this.toastrService.error('There was an issue deleting.. Try again later');

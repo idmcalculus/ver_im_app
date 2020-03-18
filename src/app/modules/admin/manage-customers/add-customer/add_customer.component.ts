@@ -89,11 +89,11 @@ createProfile(): void {
     }
 
 
-validate() {
-    this.input.nativeElement.style.borderColor = '#ccc';
-    this.input2.nativeElement.style.borderColor = '#ccc';
-    this.error.nativeElement.style.display = 'none';
-  }
+    validate() {
+        this.input.nativeElement.style.borderColor = '#ccc';
+        this.input2.nativeElement.style.borderColor = '#ccc';
+        this.error.nativeElement.style.display = 'none';
+    }
 
 changePassword(): void {
     if (this.passText === '') {

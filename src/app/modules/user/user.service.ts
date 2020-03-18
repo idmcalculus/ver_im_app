@@ -91,7 +91,11 @@ export class UserService {
 
   adminUpdateCustomerDetails(user: User): Observable<any> {
     return this.httpService.postRequest(`admin/update_user?
-    email=${user.email}
+    email=${user.email}&phone_number=${user.phone_number}&gender=${user.gender}
+    &home_address=${user.home_address}
+    &month_of_birth=${user.month_of_birth}
+    &country=${user.country}
+    &where_you_work=${user.where_you_work}
     &first_name=${user.first_name}&last_name=${user.last_name}
     &user_category=${user.user_category}&{user.account_name=${user.account_name}
     &account_number=${user.account_number}&bank_name=$bank_name
