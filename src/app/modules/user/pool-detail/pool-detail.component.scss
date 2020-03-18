@@ -2,22 +2,53 @@
     cursor: pointer;
 }
 
-.pool-details {
-    h5 {
-      font-size: 1.2rem;
-      color: #444;
-      position: relative;
-      padding: 20px 0;
-      display: flex;
-      width: fit-content;
-      &:after {
-        content: "";
-        width: 100%;
-        bottom: 20%;
-        left: 0;
-        height: 1px;
-        border-bottom: 1px solid rgba(0, 0, 0, .6);
-        position: absolute;
-      }
-    }
+.image-holder { 
+  width:auto; 
+  text-align:center; 
+  padding:20px; 
+}
+
+div > a {
+  color: #221F72;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #5b58bd;
+  border-color: #5b58bd;
+}
+
+
+img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+}
+
+button {
+  font-size: 13px;
+}
+
+hr.new {
+  border: 1px solid #221F72;
+}
+
+h4,h5,p {
+  color: #221F72;
+  font-weight: 600;
+}
+
+h6 {
+  color: #221F72;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.table > thead > tr > th {
+  border-bottom-width: 2px;
+  border-bottom-color: #221F72
+}
+
+td,th,tr {
+  border-color: #221F72
 }
