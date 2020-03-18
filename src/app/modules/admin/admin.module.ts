@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 // import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
@@ -22,8 +23,7 @@ import {ManageUsersComponent} from './manage-users/manage-users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 
-import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
-import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
+
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -36,13 +36,10 @@ import { ViewCustomerComponent } from './manage-customer/view-customer/view_cust
     EditCustomerComponent,
     ViewCustomerComponent,
     AddCustomerComponent,
-<<<<<<< HEAD
     SearchCustomerComponent,
-=======
     ViewCustomerComponent,
     EditCustomerComponent,
     ManageCategoryComponent,
->>>>>>> d1898c5358ee20c26e086d294cb1a1e114a11a44
     ManageUsersComponent,
     ManageCategoryComponent,
     ManageAdminComponent
@@ -61,6 +58,7 @@ import { ViewCustomerComponent } from './manage-customer/view-customer/view_cust
       handleCurrentBtnOnly: false,
     }),
     ChartsModule,
+    NgxPaginationModule,
 
   ], providers: [
   ], exports: [

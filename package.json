@@ -49,6 +49,7 @@
     "ng2-charts": "^2.2.3",
     "ngx-cookie-service": "^1.0.10",
     "ngx-cookieconsent": "^2.2.3",
+    "ngx-pagination": "^5.0.0",
     "ngx-skeleton-loader": "^1.2.2",
     "ngx-toastr": "^10.0.2",
     "node-sass": "^4.13.1",

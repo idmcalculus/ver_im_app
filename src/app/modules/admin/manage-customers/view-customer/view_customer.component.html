@@ -6,12 +6,18 @@
                 <div class="page-body list-vacancy">
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
-                            <h3>The Profile of {{user?.first_name}} {{user?.last_name}}
-
+                            <h3>Profile of {{user?.first_name}} {{user?.last_name}}
                             </h3>
                         </div>
+                        <div class="col">
+                            <div class="float-right">
+                                <a >
+                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" routerLink="./search" routerLinkActive="active">
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -20,42 +26,42 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table class="table reduced-font">
+                                        <table class="table">
                                             <tr>
-                                                <td width="100px">Full Name:</td>
+                                                <td class="table-font">Full Name:</td>
                                                 <td>{{user?.first_name}} {{user?.last_name}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Email:</td>
+                                                <td  class="table-font">Email:</td>
 
                                                 <td> {{user?.email}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Phone Number:</td>
+                                                <td  class="table-font">Phone Number:</td>
                                                 <td>{{user?.phone_number}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Date of Birth:</td>
+                                                <td  class="table-font">Date of Birth:</td>
                                                 <td>{{user?.day_of_birth}} /  {{user?.month_of_birth}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Gender:</td>
+                                                <td  class="table-font">Gender:</td>
                                                 <td>{{user?.gender}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Address:</td>
+                                                <td  class="table-font">Address:</td>
                                                 <td>{{user?.home_address}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Country:</td>
+                                                <td  class="table-font">Country:</td>
                                                 <td>{{user?.country}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Place of Work:</td>
+                                                <td  class="table-font">Place of Work:</td>
                                                 <td>{{user?.where_you_work}}</td>
                                             </tr>
                                             <tr>
-                                                <td>Average <br>Monthly Income:</td>
+                                                <td  class="table-font">Average <br>Monthly Income:</td>
                                                 <td style="text-align: center;">{{user?.average_monthly_income | currency:'NGN':'symbol-narrow'}}</td>
                                             </tr>
                                         </table>
@@ -63,85 +69,250 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Account Information</h5>
-                                        </div>
-                                        <div class="card-block">
-                                            <div class="dt-responsive table-responsive">
+                        <div class="col-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Account Information</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td  class="table-font">Account Name:</td>
+                                                <td>{{user?.account_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Account Number:</td>
+                                                <td>{{user?.account_number}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Bank:</td>
+                                                <td>{{user?.bank_name}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h5>Settings Information</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td  class="table-font">Receive updates on new Plans?</td>
+                                                <td *ngIf="user?.updates_on_new_plans==1"><label class="label label-primary">Yes</label></td>
+                                                <td *ngIf="user?.updates_on_new_plans==0"><label class="label label-danger">No</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Send E-mail updates on investment?</td>
+                                                <td *ngIf="user?.email_updates_on_investment_process==0"><label class="label label-danger">No</label></td>
+                                                <td *ngIf="user?.email_updates_on_investment_process==1"><label class="label label-primary">Yes</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">User's Status:</td>
+                                                <td *ngIf="user?.email_is_verified==1"><label class="label label-success">User is Active</label></td>
+                                                <td *ngIf="user?.email_is_verified==0"><label class="label label-danger">User is not Active</label></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-7">
+                            <span class="card buttons p-3">
+                                <span class="information">Principal: </span>
+                                <span>  {{investment?.investment_amount}}</span>
+                                <span class="information">ROI: </span>
+                                <span>  {{investment?.expected_return_amount}}</span>
+                                <span class="information">Expected Returns: </span>
+                                <span>  {{investment?.expected_return_amount}}</span>
+                            </span>
+                        </div>
+
+                        <div class="col-5">
+                            <span class="float-left text-center buttons">
+                                <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn-lg btn-success">Activate User</a>
+                                <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</a>
+                            </span>
+                            <span class="float-right text-center buttons">
+                                <a  (click)="delete(user)" class="btn-lg btn-danger">Delete User</a>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+
+
+                            <div class="card">
+                                <h5 class="card-header" >Current Investment</h5>
+
+                                <div class=" card-block d-flex flex-row">
+                                    <div class="col-4">
+                                           <div class="dt-responsive table-responsive">
                                                 <table class="table reduced-font">
                                                     <tr>
-                                                        <td>Account Name</td>
+                                                        <td class="highlighted">Investment Title</td>
                                                         <td>{{user?.account_name}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Account Number</td>
+                                                        <td  class="highlighted">Payback</td>
                                                         <td>{{user?.account_number}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Bank</td>
+                                                        <td  class="highlighted">Amount Paid</td>
                                                         <td>{{user?.bank_name}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5>Settings Information</h5>
-                                        </div>
-                                        <div class="card-block pb-0">
-                                            <div class="dt-responsive table-responsive">
+                                     <div class="col-4">
+                                           <div class="dt-responsive table-responsive">
                                                 <table class="table reduced-font">
                                                     <tr>
-                                                        <td>Receive updates on new Plans?</td>
-                                                        <td *ngIf="user?.updates_on_new_plans==1"><label class="label label-primary">Yes</label></td>
-                                                        <td *ngIf="user?.updates_on_new_plans==0"><label class="label label-danger">No</label></td>
+                                                        <td  class="highlighted">Cost</td>
+                                                        <td>{{user?.account_name}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Send E-mail updates on investment</td>
-                                                        <td *ngIf="user?.email_updates_on_investment_process==0"><label class="label label-danger">No</label></td>
-                                                        <td *ngIf="user?.email_updates_on_investment_process==1"><label class="label label-primary">Yes</label></td>
+                                                        <td  class="highlighted">Last Payment</td>
+                                                        <td>{{user?.account_number}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>User's Status</td>
-                                                        <td *ngIf="user?.email_is_verified==1"><label class="label label-success">User is Active</label></td>
-                                                        <td *ngIf="user?.email_is_verified==0"><label class="label label-danger">User is not Active</label></td>
+                                                        <td  class="highlighted">Amount Pending</td>
+                                                        <td>{{user?.bank_name}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div>
                                     </div>
+                                     <div class="col-md-4">
+                                           <div class="dt-responsive table-responsive">
+                                                <table class="table reduced-font">
+                                                    <tr>
+                                                        <td  class="highlighted">Slot(s)</td>
+                                                        <td>{{user?.account_name}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td  class="highlighted">Next Payment</td>
+                                                        <td>{{user?.account_number}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td  class="highlighted">Termination Date</td>
+                                                        <td>{{user?.bank_name}}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="card col-md-12">
+                            <div class="card-header">
+                                <h5>Investment Report</h5>
+                            </div>
+
+
+                            <div class="card-block">
+                                <div class="dt-responsive table-responsive">
+                                    <table datatable
+                                            class="table appTable table-striped nowrap">
+                                        <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Investment Title</th>
+                                            <th>Payback Frequency</th>
+                                            <th>Amount Credited</th>
+                                            <th>Yield Amount</th>
+                                            <th>Balance</th>
+                                            <th>Status</th>
+                                            <th>Date Paid</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr  *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: p};let i = index;">
+                                            <td>{{user.first_name}} {{user.last_name}}</td>
+                                            <td >{{user.email}}</td>
+                                            <td >{{user.phone_number}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td>{{user.first_name}} {{user.last_name}}</td>
+                                            <td >{{user.email}}</td>
+                                            <td >{{user.phone_number}}</td>
+                                            <td >{{user.user_category}}</td>
+                                        </tr>
+                                        </tbody>
+                                        <ul class="pagination">
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                        </ul>
+                                    </table>
                                 </div>
                             </div>
 
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <span class="card col-sm-7 buttons updates">
-                                <span class="information">Principal {{investment?.investment_amount}}</span>
-                                <span class="information">ROI {{investment?.expected_return_amount}}</span>
-                                <span class="information">Expected Returns {{investment?.expected_return_amount}}</span>
-                            </span>
+                    <div class="row mb-4">
+                        <div class="card col-md-12">
+                             <div class="card-header">
+                                <h5>Investment History</h5>
+                            </div>
 
-                            <span class="col-sm-2 text-center buttons">
-                                <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
-                                <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
-                            </span>
-                            <span class="col-sm-2 text-center buttons">
-                                <a  (click)="deleteUser('')" class="btn btn-danger">Delete User</a>
-                            </span>
+                            <div class="card-block">
+                                <div class="dt-responsive table-responsive">
+                                    <table datatable
+                                            class="table appTable table-striped nowrap">
+                                        <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>Investment Title</th>
+                                            <th>Category</th>
+                                            <th>Cost</th>
+                                            <th>No of Slots</th>
+                                            <th>Duration</th>
+                                            <th>Returns</th>
+                                            <th>Period</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                            <th>Date Added</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr  *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: p};let i = index; ">
+                                            <td>{{user.first_name}} {{user.last_name}}</td>
+                                            <td >{{user.email}}</td>
+                                            <td >{{user.phone_number}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                            <td >{{user.user_category}}</td>
+                                        </tr>
+                                        </tbody>
+                                        <ul class="pagination">
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                        </ul>
+                                    </table>
+                                </div>
+                            </div>
 
+
+                        </div>
                     </div>
-                    </div>
+
 
                 </div>
             </div>

@@ -16,17 +16,10 @@ import {ListComponent} from './manage-career/list/list.component';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {ManageCategoryComponent} from './manage-category/manage-category.component';
 import { ChatComponent } from '../chat/chat.component';
-<<<<<<< HEAD
 import {SearchCustomerComponent} from './manage-customers/search-customer/search_customer.component';
 import { AddCustomerComponent } from './manage-customers/add-customer/add_customer.component';
 import { ViewCustomerComponent } from './manage-customers/view-customer/view_customer.component';
 import { EditCustomerComponent } from './manage-customers/edit-customer/edit_customer.component';
-=======
-import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
-import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
-import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
-
->>>>>>> d1898c5358ee20c26e086d294cb1a1e114a11a44
 
 
 
@@ -54,20 +47,9 @@ const userRoutes: Routes = [
             ]
             }
           ] },
-          { path: 'manage-customer',
-            children: [
-            {path: '',
-            children: [
-              {path: '', component: ViewCustomerComponent},
-              {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
-            ]
-            }
-          ] },
+
           { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
-          { path: 'manage-users', component: ManageUsersComponent },
 
           { path: 'manage-career',
             children: [

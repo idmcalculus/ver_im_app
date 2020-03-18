@@ -46,12 +46,13 @@ export class AddCustomerComponent implements OnInit {
     cancelProfile() {
         this.isSubmitting = false;
         this.user = { email: '', password: '' };
-        this.router.navigateByUrl('admin/manage-users');
+        this.router.navigateByUrl('admin/manage-customers');
     }
 
     createProfile(): void {
         this.isSubmitting = new Promise((resolve, reject) => {
             this.user.authentication_type = 'E';
+            this.user.user_category = 'User';
             this.user.average_monthly_income = '0';
             this.signUpService.create(this.user)
                 .subscribe(UserDetails => {
@@ -62,24 +63,6 @@ export class AddCustomerComponent implements OnInit {
                     }
                     resolve();
                 });
-        });
-    }
-
-
-    updateAccountPreference() {
-        console.log(JSON.stringify(this.user));
-        this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp => {
-            if (resp && resp.success) {
-            alert(resp.success.Message);
-            }
-        });
-    }
-
-    updateBankDetails() {
-        this.isSubmitting = this.userService.updateBankDetails(this.user).subscribe(resp => {
-            if (resp && resp.success) {
-            alert(resp.success.Message);
-            }
         });
     }
 
