@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-xl-8">
                                 <form class="card">
-                                    <div class="row p-3" *ngFor="let user of pool?.investment_user">
+                                    <div class="row p-3">
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
@@ -104,7 +104,7 @@
                                             <div class="form-group row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <p type="type" class="form-control form-control-sm" {{user?.user_investment_info?.number_of_pools}}>
+                                                    <input type="type" class="form-control form-control-sm" value={{user?.user_investment_info?.number_of_pools}} readonly>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
