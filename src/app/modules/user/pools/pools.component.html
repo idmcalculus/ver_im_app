@@ -57,10 +57,14 @@
                                     <label class="h7 font-color">Investment Title</label>
 =======
                                     <label class="h7">Investment Title</label>
+<<<<<<< HEAD
 >>>>>>> Redesign View Investment Details
                                     <input type="text" class="input-control shadow" placeholder="Investment Title"
 >>>>>>> link view investment to investment list
                                     (keyup)="filterTable('email', $event)">
+=======
+                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (keyup)="filterTable('title', search.value)">
+>>>>>>> cleanedup
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -188,9 +192,10 @@
                                                 <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
 >>>>>>> cleaning up codebase
                                                 <td>{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.max_num_of_slots}}( {{pool.num_of_pools_taken}} left)</td>
+<<<<<<< HEAD
                                                 <td >{{pool.duration}} year</td>
 <<<<<<< HEAD
                                                 <td >{{pool.reference}}</td>
@@ -201,6 +206,9 @@
                                                     <a *ngIf="!pool.inViewMode" (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
 =======
 =======
+=======
+                                                <td >{{pool.duration}} Months</td>
+>>>>>>> cleanedup
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>

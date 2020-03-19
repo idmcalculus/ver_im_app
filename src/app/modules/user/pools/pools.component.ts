@@ -16,8 +16,13 @@ export class PoolsComponent implements OnInit {
   pool:Investment;
   userType:string;
 <<<<<<< HEAD
+<<<<<<< HEAD
   categories:any []
 =======
+=======
+  searchValue = '';
+  filteredPools = [];
+>>>>>>> cleanedup
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -49,7 +54,11 @@ export class PoolsComponent implements OnInit {
         this.getPools();
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+      this.getPools();
+>>>>>>> cleanedup
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
@@ -133,6 +142,7 @@ export class PoolsComponent implements OnInit {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   calculateEstimate(returns, inv) {
     const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
@@ -149,20 +159,23 @@ deleteUser() {
 =======
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
+=======
+  filterTable(filterType, filterValue: string) {
+>>>>>>> cleanedup
 
-    if (!value) {
-      return this.pools;
+    if (!filterValue || filterValue === null) {
+      return this.getPools();
+      console.log(this.getPools);
     } else {
-      const filtered = this.pools.filter(pool => {
-        if (pool[filterType] !== null) {
-        return pool[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
-      console.log('Filtered', filtered);
-      this.pools = filtered;
-    }
+        const filtered = this.pools.filter(pool => {
+          if (pool[filterType] !== null) {
+            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.pools = filtered;
+      }
   }
-
   
 >>>>>>> Created Add investment component
 }
