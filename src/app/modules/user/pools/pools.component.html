@@ -29,8 +29,7 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment Title"
-                                    (keyup)="filterTable('email', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (keyup)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -86,10 +85,10 @@
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
                                                 <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
                                                 <td>{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.max_num_of_slots}}( {{pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} year</td>
+                                                <td >{{pool.duration}} Months</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>

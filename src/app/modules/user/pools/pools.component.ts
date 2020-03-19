@@ -15,6 +15,8 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
+  searchValue = '';
+  filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -36,6 +38,7 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
+      this.getPools();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
@@ -97,21 +100,20 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
+  filterTable(filterType, filterValue: string) {
 
-    if (!value) {
-      return this.pools;
+    if (!filterValue || filterValue === null) {
+      return this.getPools();
+      console.log(this.getPools);
     } else {
-      const filtered = this.pools.filter(pool => {
-        if (pool[filterType] !== null) {
-        return pool[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
-      console.log('Filtered', filtered);
-      this.pools = filtered;
-    }
+        const filtered = this.pools.filter(pool => {
+          if (pool[filterType] !== null) {
+            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.pools = filtered;
+      }
   }
-
   
 }
