@@ -5,12 +5,12 @@ import { Category } from 'src/app/shared/models/Category';
 @Component({
   selector: 'app-manage-category',
   templateUrl: './manage-category.component.html',
-  styleUrls: ['./manage-category.component.css']
+  styleUrls: ['./manage-category.component.scss']
 })
 export class ManageCategoryComponent {
 
   buttonText = 'Add Category';
-  updateButtonText = 'update';
+  updateButtonText = 'check';
   inEditMode = false;
   isLoading = true;
   category: Category = {category_name: ''};
@@ -35,12 +35,12 @@ export class ManageCategoryComponent {
   }
 
   updateCategory(category: Category) {
-    this.updateButtonText = 'updating';
+    this.updateButtonText = 'spinner';
     this.investmentService.updateCategory(category).subscribe(resp => {
       if (resp && resp.success) {
         category.inEditMode = !category.inEditMode;
         // alert(resp.success.Message);
-        this.updateButtonText = 'update';
+        this.updateButtonText = 'check';
       }
     });
   }
@@ -67,10 +67,9 @@ export class ManageCategoryComponent {
   }
 
   filterTable(filterType, filterValue: string) {
-    const categoryArray = this.categories;
 
-    if (!filterValue) {
-      return categoryArray;
+    if (!filterValue || filterValue === null) {
+      return this.getCategories();
     } else {
         const filtered = this.categories.filter(category => {
           if (category[filterType] !== null) {
