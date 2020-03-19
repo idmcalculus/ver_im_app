@@ -21,6 +21,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   categories:any []
 =======
 =======
@@ -35,6 +36,8 @@ export class PoolsComponent implements OnInit {
 >>>>>>> cleanedup
 =======
 >>>>>>> investment
+=======
+>>>>>>> cleaning up codebase
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -83,6 +86,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
       this.getPools();
@@ -97,6 +101,8 @@ export class PoolsComponent implements OnInit {
 =======
       this.getPools();
 >>>>>>> cleanedup list
+=======
+>>>>>>> cleaning up codebase
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
