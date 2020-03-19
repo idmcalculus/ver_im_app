@@ -3,7 +3,7 @@
     -moz-box-shadow:    .5px .5px 2px 1px #495057;
     -webkit-box-shadow: .5px .5px 2px 1px #495057;
     box-shadow:         .5px .5px 2px 1px #495057;
-  }
+}
 
 .bg_filter{
     background-color: #D0D0D5;
@@ -47,6 +47,7 @@ div > a {
     border-bottom-width: 2px;
     border-bottom-color: #221F72
 }
+
 td {
     border-color: #221F72
 }
