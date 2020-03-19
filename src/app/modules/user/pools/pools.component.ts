@@ -20,6 +20,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   categories:any []
 =======
 =======
@@ -43,6 +44,13 @@ export class PoolsComponent implements OnInit {
   filteredPools = [];
   searchValue = '';
 >>>>>>> cleanedup list
+=======
+  searchValue = '';
+  filteredPools = [];
+  masterSelected:boolean;
+  checklist:any;
+  checkedList:any;
+>>>>>>> cleanedup
 
   constructor(
 <<<<<<< HEAD
