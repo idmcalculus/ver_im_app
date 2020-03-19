@@ -17,12 +17,15 @@ export class PoolsComponent implements OnInit {
   userType:string;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   categories:any []
 =======
 =======
   searchValue = '';
   filteredPools = [];
 >>>>>>> cleanedup
+=======
+>>>>>>> cleaning up codebase
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -55,10 +58,13 @@ export class PoolsComponent implements OnInit {
       }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
       this.getPools();
 >>>>>>> cleanedup
+=======
+>>>>>>> cleaning up codebase
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();

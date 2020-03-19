@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-xl-8">
                                 <form class="card">
-                                    <div class="row p-3">
+                                    <div class="row p-3" *ngFor="let user of pool?.investment_user">
                                         <div class="col-6">
                                             <div class="form-group row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
