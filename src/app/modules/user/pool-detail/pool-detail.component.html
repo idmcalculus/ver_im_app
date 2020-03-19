@@ -245,7 +245,7 @@
                                         <div class="row p-0">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
-                                                <a *ngIf="loggedInUser?.user_category=='Admin' " routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin'  && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
