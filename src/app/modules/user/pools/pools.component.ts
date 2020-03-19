@@ -15,8 +15,6 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
-  searchValue = '';
-  filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -38,7 +36,6 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
-      this.getPools();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
