@@ -15,7 +15,13 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
+<<<<<<< HEAD
   categories:any []
+=======
+  masterSelected:boolean;
+  checklist:any;
+  checkedList:any;
+>>>>>>> cleaning up codebase
 
   constructor(
 <<<<<<< HEAD
@@ -42,11 +48,39 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
+<<<<<<< HEAD
+=======
+      this.masterSelected = false;
+      this.checklist = [this.pool,];
+      this.getCheckedPooList();
+      
+>>>>>>> cleaning up codebase
   }
 
   ngOnInit() {
   }
-
+  
+  checkUncheckAll() {
+    for (var i = 0; i < this.checklist.length; i++) {
+      this.checklist[i] = this.masterSelected;
+    }
+    this.getCheckedPooList();
+  }
+  isAllSelected() {
+    this.masterSelected = this.checklist.every(function(pool:any) {
+        return pool == true;
+      })
+    this.getCheckedPooList();
+  }
+ 
+  getCheckedPooList(){
+    this.checkedList = [];
+    for (var i = 0; i < this.checklist.length; i++) {
+      if(this.checklist[i])
+      this.checkedList.push(this.checklist[i]);
+    }
+    this.checkedList = JSON.stringify(this.checkedList);
+  }
 
   getPools() {
     this.investmentService.getInvestments(false).subscribe(investments => {

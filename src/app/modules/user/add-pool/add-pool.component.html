@@ -27,19 +27,19 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">ID</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" placeholder="00010">
+                                                <input type="type" class="input-control shadow" placeholder="00010" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Title</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Category</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow">
+                                                <select class="input-control shadow" [(ngModel)]="data.name">
                                                     <option value="1"></option>
                                                     <option value="2"></option>
                                                 </select>
@@ -48,7 +48,7 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Portfolio</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow">
+                                                <select class="input-control shadow" [(ngModel)]="data.name">
                                                     <option value="1">based on the selected category</option>
                                                     <option value="2">Yearly</option>
                                                 </select>
@@ -57,26 +57,26 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Investors</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Tenure</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Cost</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                         
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Payback</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow">
+                                                <select class="input-control shadow" [(ngModel)]="data.name">
                                                     <option value="1">Monthly</option>
                                                     <option value="2">Yearly</option>
                                                 </select>
@@ -84,32 +84,35 @@
                                         </div>
                                     </div>
                                     <div class="col-6 pr-5">
-                                        <div class="form-group row">
+                                        <div class="form-group row pt-5">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Upload Image</h6>
                                             <div class="col-sm-9">
-                                                <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 100px;">
-                                                <button type="submit" class="btn btn-sm btn-block btn-primary mt-2">Click to Upload Image</button>
+                                                <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 130px;">
+                                                <div class="upload-btn-wrapper pt-1">
+                                                    <button class="btn btn-block btn-primary">Click to Upload image</button>
+                                                    <input type="file" name="myfile" [(ngModel)]="data.name"/>
+                                                </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Show to Public</h6>
                                             <div class="col-sm-9">
-                                                <input class="mt-2" type="checkbox">
+                                                <input class="mt-2" type="checkbox" [(ngModel)]="data.name">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">ROI</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="">
+                                                <input type="type" class="input-control shadow" placeholder="" [(ngModel)]="data.name">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated">
+                                                <input type="type" class="input-control shadow" placeholder="Automatically generated" [(ngModel)]="data.name">
                                             </div>
                                         </div>
                                     </div>
@@ -118,7 +121,7 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-1 pr-0 col-form-label">Description</h6>
                                             <div class="col-sm-11">
-                                                <textarea class="input-control shadow" rows="3"></textarea>
+                                                <textarea class="input-control shadow" rows="3" [(ngModel)]="data.name"></textarea>
                                             </div>
                                         </div>
                                         

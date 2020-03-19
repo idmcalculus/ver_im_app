@@ -151,7 +151,7 @@
                                         <table datatable class="table appTable nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th><input type="checkbox"></th>
+                                                    <th><input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"></th>
                                                     <th>ID</th>
                                                     <th>Investment Title</th>
                                                     <th>Category</th>
@@ -166,6 +166,7 @@
                                             </thead>
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
+<<<<<<< HEAD
                                                 <td><input type="checkbox"></td>
 <<<<<<< HEAD
                                                 <td>{{pool.id}}</td>
@@ -183,6 +184,9 @@
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
 =======
+=======
+                                                <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
+>>>>>>> cleaning up codebase
                                                 <td>{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
