@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -19,6 +19,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   categories:any []
 =======
 =======
@@ -31,6 +32,8 @@ export class PoolsComponent implements OnInit {
   searchValue = '';
   filteredPools = [];
 >>>>>>> cleanedup
+=======
+>>>>>>> investment
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -65,6 +68,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
       this.getPools();
@@ -74,6 +78,8 @@ export class PoolsComponent implements OnInit {
 =======
       this.getPools();
 >>>>>>> cleanedup
+=======
+>>>>>>> investment
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
