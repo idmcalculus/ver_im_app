@@ -160,21 +160,21 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="category-header">
-                                    <p class="" style="width: 5%;">
+                                <div class="category-header py-3">
+                                    <p class="col-1">
                                         <input type="checkbox">
                                     </p>
-                                    <p class="" style="width: 5%;">ID</p>
-                                    <p class="" style="width: 20%;">Investment Title</p>
-                                    <p class="" style="width: 10%;">Category</p>
-                                    <p class="" style="width: 10%;">No of Investors</p>
-                                    <p class="" style="width: 10%;">Tenure</p>
-                                    <p class="" style="width: 10%;">ROI</p>
-                                    <p class="" style="width: 10%;">Payback</p>
-                                    <p class="" style="width: 10%;">Cost</p>
-                                    <p class="" style="width: 10%;">Status</p>
+                                    <p class="col-1">ID</p>
+                                    <p class="col-2">Investment Title</p>
+                                    <p class="col-1">Category</p>
+                                    <p class="col-1">No of Investors</p>
+                                    <p class="col-1">Tenure</p>
+                                    <p class="col-1">ROI</p>
+                                    <p class="col-1">Payback</p>
+                                    <p class="col-1">Cost</p>
+                                    <p class="col-1">Status</p>
                                 </div>
-                                <div class="card-block dtDynamicVerticalScrollExample" id="categoryTable" style="margin-top: 0px;padding-top: 6px;">
+                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
                                         <br><br>
                                         <div  class="lds-default">
@@ -194,20 +194,20 @@
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1" *ngFor="let pool of pools;let i = index;">
-                                            <p style="width: 5%;"><input type="checkbox"></p>
-                                            <p style="width: 5%;">{{pool.id}}</p>
-                                            <p style="width: 20%;">{{pool.title}}</p>
-                                            <p style="width: 10%;">{{pool.category_id}}</p>
-                                            <p style="width: 10%;">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
-                                            <p style="width: 10%;">{{pool.duration}} Months</p>
-                                            <p style="width: 10%;">{{pool.expected_return_amount}}</p>
-                                            <p style="width: 10%;">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
-                                            <p style="width: 10%;">{{pool.investment_amount}}</p>
-                                            <p style="width: 10%;" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
+                                            <p class="col-1"><input type="checkbox"></p>
+                                            <p class="col-1">{{pool.id}}</p>
+                                            <p class="col-2">{{pool.title}}</p>
+                                            <p class="col-1">{{pool.category_id}}</p>
+                                            <p class="col-1">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p class="col-1">{{pool.duration}} Months</p>
+                                            <p class="col-1">{{pool.expected_return_amount}}</p>
+                                            <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p class="col-1">{{pool.investment_amount}}</p>
+                                            <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
                                             <ng-template #showThis>      
-                                                <p style="width: 10%;" style="color: red">{{'InActive'}}</p>
+                                                <p class="col-1" style="color: red">{{'InActive'}}</p>
                                             </ng-template>
-                                            <p style="width: 10%;">
+                                            <p class="col-1">
                                                 <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </p>
                                         </div>

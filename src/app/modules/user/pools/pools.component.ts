@@ -8,7 +8,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.css']
+  styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
