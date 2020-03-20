@@ -174,7 +174,7 @@
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" (click)="updateProfile(user)"  class="button btn-update-customer" value="NEXT">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile(user)"  class="button btn-update-customer" value="NEXT">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -236,7 +236,7 @@
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
                                                             <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button"  (click)="updateBankDetails(user)" class=" btn-update-customer" value="NEXT">
+                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateBankDetails(user)" class=" btn-update-customer" value="NEXT">
                                                         </div>
                                                     </div>
                                                 </div>
