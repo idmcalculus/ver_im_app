@@ -30,6 +30,7 @@
 <<<<<<< HEAD
                                     <label class="h7">Investment ID</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <input type="text" class="form-control form-control-sm inputstyle" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
 =======
                                     <input type="text" class="form-control form-control-sm" placeholder="Investment ID" (keyup)="filterTable('first_name', $event)">
@@ -41,6 +42,10 @@
 >>>>>>> Redesign View Investment Details
                                     <input type="text" class="input-control shadow" placeholder="Investment ID" (keyup)="filterTable('first_name', $event)">
 >>>>>>> link view investment to investment list
+=======
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment ID" name="search" #search (keyup)="filterTable('id', search.value)"
+                                    (blur)="filterTable('id', search.value)">
+>>>>>>> cleanedup list
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
@@ -58,6 +63,7 @@
 =======
                                     <label class="h7">Investment Title</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Redesign View Investment Details
                                     <input type="text" class="input-control shadow" placeholder="Investment Title"
 >>>>>>> link view investment to investment list
@@ -65,6 +71,10 @@
 =======
                                     <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (keyup)="filterTable('title', search.value)">
 >>>>>>> cleanedup
+=======
+                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
+                                    (blur)="filterTable('title', search.value)">
+>>>>>>> cleanedup list
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -150,7 +160,60 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div  *ngIf="!isLoading && pools?.length > 0 "class="card-block">
+                                <div class="category-header">
+                                    <p class="" style="width: 5%;">
+                                        <input type="checkbox">
+                                    </p>
+                                    <p class="" style="width: 5%;">ID</p>
+                                    <p class="" style="width: 20%;">Investment Title</p>
+                                    <p class="" style="width: 10%;">Category</p>
+                                    <p class="" style="width: 10%;">No of Investors</p>
+                                    <p class="" style="width: 10%;">Tenure</p>
+                                    <p class="" style="width: 10%;">ROI</p>
+                                    <p class="" style="width: 10%;">Payback</p>
+                                    <p class="" style="width: 10%;">Cost</p>
+                                    <p class="" style="width: 10%;">Status</p>
+                                </div>
+                                <div class="card-block dtDynamicVerticalScrollExample" id="categoryTable" style="margin-top: 0px;padding-top: 6px;">
+                                    <div *ngIf="isLoading" >
+                                        <br><br>
+                                        <div  class="lds-default">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+                                        <div class="row1" *ngFor="let pool of pools;let i = index;">
+                                            <p style="width: 5%;"><input type="checkbox"></p>
+                                            <p style="width: 5%;">{{pool.id}}</p>
+                                            <p style="width: 20%;">{{pool.title}}</p>
+                                            <p style="width: 10%;">{{pool.category_id}}</p>
+                                            <p style="width: 10%;">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p style="width: 10%;">{{pool.duration}} Months</p>
+                                            <p style="width: 10%;">{{pool.expected_return_amount}}</p>
+                                            <p style="width: 10%;">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p style="width: 10%;">{{pool.investment_amount}}</p>
+                                            <p style="width: 10%;" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
+                                            <ng-template #showThis>      
+                                                <p style="width: 10%;" style="color: red">{{'InActive'}}</p>
+                                            </ng-template>
+                                            <p style="width: 10%;">
+                                                <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div  *ngIf="!isLoading && pools?.length > 0 "class="card-block">
                                     <div class="table-wrapper-scroll-y custom-scrollbar">
                                         <table datatable class="table appTable nowrap">
                                             <thead>
@@ -225,7 +288,7 @@
 >>>>>>> Redesign View Investment Details
 =======
                                                 <td >{{pool.expected_return_amount}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
                                                 <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>      
@@ -255,7 +318,7 @@
                                     <div></div>
                                     <div></div>
                                     <div></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

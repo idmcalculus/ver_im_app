@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
-  pool:Investment;
+  pool:Investment = {title: '',  };
   userType:string;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -37,7 +37,12 @@ export class PoolsComponent implements OnInit {
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+<<<<<<< HEAD
 >>>>>>> cleaning up codebase
+=======
+  filteredPools = [];
+  searchValue = '';
+>>>>>>> cleanedup list
 
   constructor(
 <<<<<<< HEAD
@@ -69,6 +74,7 @@ export class PoolsComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
       this.getPools();
@@ -80,6 +86,9 @@ export class PoolsComponent implements OnInit {
 >>>>>>> cleanedup
 =======
 >>>>>>> investment
+=======
+      this.getPools();
+>>>>>>> cleanedup list
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
@@ -112,12 +121,20 @@ export class PoolsComponent implements OnInit {
     this.checkedList = JSON.stringify(this.checkedList);
   }
 
+<<<<<<< HEAD
   getPools() {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         console.log(this.pools);
         this.getCategories();
+=======
+  getPools(){
+    this.isLoading = true;
+    this.investmentService.getInvestments(false).subscribe(investments=>{
+      if(investments){
+        this.pools = investments.success.Data
+>>>>>>> cleanedup list
       }
     })
   }
@@ -186,7 +203,6 @@ deleteUser() {
 
     if (!filterValue || filterValue === null) {
       return this.getPools();
-      console.log(this.getPools);
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
@@ -198,5 +214,12 @@ deleteUser() {
       }
   }
   
+<<<<<<< HEAD
 >>>>>>> Created Add investment component
+=======
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
+    return Math.ceil(estimate);
+  }
+>>>>>>> cleanedup list
 }
