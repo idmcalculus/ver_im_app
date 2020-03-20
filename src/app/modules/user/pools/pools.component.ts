@@ -21,6 +21,8 @@ export class PoolsComponent implements OnInit {
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+  filteredPools = [];
+  searchValue = '';
 
   constructor(
     private authService: AppAuthService,
