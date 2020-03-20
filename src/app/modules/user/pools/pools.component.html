@@ -84,15 +84,18 @@
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
                                                 <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
-                                                <td>{{pool.category_id}}</td>
+                                                <td>{{pool.id}}</td>
                                                 <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td >{{pool.duration}} Months</td>
+                                                <td >{{pool.expected_return_amount}}</td>
                                                 <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{pool.investment_amount}}</td>
+                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <ng-template #showThis>      
+                                                    <td  style="color: red">{{'InActive'}}</td>
+                                                </ng-template>
                                                 <td>
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>
