@@ -126,22 +126,22 @@
 
                     <div class="row mb-4">
                         <div class="col-7">
-                            <span class="card buttons p-3">
+                            <span class="card d-flex flex-row">
                                 <span class="information">Principal: </span>
-                                <span>  {{investment?.investment_amount}}</span>
+                                <span>  {{ investment?.investment_amount }}</span>
                                 <span class="information">ROI: </span>
-                                <span>  {{investment?.expected_return_amount}}</span>
+                                <span>  {{investment?.category_id}}</span>
                                 <span class="information">Expected Returns: </span>
                                 <span>  {{investment?.expected_return_amount}}</span>
                             </span>
                         </div>
 
-                        <div class="col-5">
-                            <span class="float-left text-center buttons">
+                        <div class="col-5 d-flex flex-row">
+                            <span class="text-center">
                                 <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn-lg btn-success">Activate User</a>
                                 <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</a>
                             </span>
-                            <span class="float-right text-center buttons">
+                            <span class="buttons text-center">
                                 <a  (click)="delete(user)" class="btn-lg btn-danger">Delete User</a>
                             </span>
                         </div>
@@ -161,15 +161,15 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td class="highlighted">Investment Title</td>
-                                                        <td>{{user?.account_name}}</td>
+                                                        <td>{{investment?.title}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Payback</td>
-                                                        <td>{{user?.account_number}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Amount Paid</td>
-                                                        <td>{{user?.bank_name}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -179,15 +179,15 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td  class="highlighted">Cost</td>
-                                                        <td>{{user?.account_name}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Last Payment</td>
-                                                        <td>{{user?.account_number}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Amount Pending</td>
-                                                        <td>{{user?.bank_name}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -197,15 +197,15 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td  class="highlighted">Slot(s)</td>
-                                                        <td>{{user?.account_name}}</td>
+                                                        <td>{{investment?.num_of_pools_taken}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Next Payment</td>
-                                                        <td>{{user?.account_number}}</td>
+                                                        <td>{{investment?.category_id}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td  class="highlighted">Termination Date</td>
-                                                        <td>{{user?.bank_name}}</td>
+                                                        <td>{{investment?.investment_ended_date}}</td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -225,36 +225,35 @@
 
 
                             <div class="card-block">
-                                <div class="dt-responsive table-responsive">
-                                    <table datatable
-                                            class="table appTable table-striped nowrap">
+                                <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
+                                    <table class="table appTable table-striped nowrap">
                                         <thead>
                                         <tr>
-                                            <th>S/N</th>
-                                            <th>Investment Title</th>
-                                            <th>Payback Frequency</th>
-                                            <th>Amount Credited</th>
-                                            <th>Yield Amount</th>
-                                            <th>Balance</th>
-                                            <th>Status</th>
-                                            <th>Date Paid</th>
+                                            <th style="width: 5%">S/N</th>
+                                            <th style="width: 15%">Investment Title</th>
+                                            <th style="width: 10%">Payback Frequency</th>
+                                            <th style="width: 10%">Amount Credited</th>
+                                            <th style="width: 10%">Yield Amount</th>
+                                            <th style="width: 10%">Balance</th>
+                                            <th style="width: 10%">Status</th>
+                                            <th style="width: 10%">Date Paid</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr  *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: p};let i = index;">
-                                            <td>{{user.first_name}} {{user.last_name}}</td>
-                                            <td >{{user.email}}</td>
-                                            <td >{{user.phone_number}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td>{{user.first_name}} {{user.last_name}}</td>
-                                            <td >{{user.email}}</td>
-                                            <td >{{user.phone_number}}</td>
-                                            <td >{{user.user_category}}</td>
+                                        <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p}">
+                                            <td> </td>
+                                            <td >{{investments.title}}</td>
+                                            <td >{{investments.expected_return_amount}}</td>
+                                            <td >{{investments.category_id}}</td>
+                                            <td>{{investments.category_id}}</td>
+                                            <td >{{investments.category_id}}</td>
+                                            <td >{{investments.category_id}}</td>
+                                            <td >{{investments.category_id}}</td>
                                         </tr>
                                         </tbody>
-                                        <ul class="pagination">
+                                        <span class="pagination">
                                             <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                                        </ul>
+                                        </span>
                                     </table>
                                 </div>
                             </div>
@@ -269,42 +268,41 @@
                             </div>
 
                             <div class="card-block">
-                                <div class="dt-responsive table-responsive">
-                                    <table datatable
-                                            class="table appTable table-striped nowrap">
+                                <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
+                                    <table class="table appTable table-striped nowrap">
                                         <thead>
                                         <tr>
-                                            <th>S/N</th>
-                                            <th>Investment Title</th>
-                                            <th>Category</th>
-                                            <th>Cost</th>
-                                            <th>No of Slots</th>
-                                            <th>Duration</th>
-                                            <th>Returns</th>
-                                            <th>Period</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                            <th>Date Added</th>
+                                            <th style="width: 5%">S/N</th>
+                                            <th style="width: 15%">Investment Title</th>
+                                            <th style="width: 10%">Category</th>
+                                            <th style="width: 10%">Cost</th>
+                                            <th style="width: 10%">No of Slots</th>
+                                            <th style="width: 10%">Duration</th>
+                                            <th style="width: 10%">Returns</th>
+                                            <th style="width: 10%">Period</th>
+                                            <th style="width: 10%">Amount</th>
+                                            <th style="width: 10%">Status</th>
+                                            <th style="width: 10%">Date Added</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr  *ngFor="let user of users | paginate: { itemsPerPage: 6, currentPage: p};let i = index; ">
-                                            <td>{{user.first_name}} {{user.last_name}}</td>
-                                            <td >{{user.email}}</td>
-                                            <td >{{user.phone_number}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                            <td >{{user.user_category}}</td>
-                                        </tr>
+                                            <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p}">
+                                                <td> </td>
+                                                <td >{{investments.title}}</td>
+                                                <td >{{investments.category_id}}</td>
+                                                <td >{{investments.category_id}}</td>
+                                                <td >{{investments.num_of_pools_taken}}</td>
+                                                <td >{{investments.duration}}</td>
+                                                <td >{{investments.category_id}}</td>
+                                                <td >{{investments.category_id}}</td>
+                                                <td >{{investments.investment_amount}}</td>
+                                                <td >{{investments.category_id}}</td>
+                                                <td >{{investments.created_at}}</td>
+                                            </tr>
                                         </tbody>
-                                        <ul class="pagination">
+                                        <span class="pagination">
                                             <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                                        </ul>
+                                        </span>
                                     </table>
                                 </div>
                             </div>
