@@ -23,7 +23,10 @@ export class EditCustomerComponent implements OnInit {
   isLoading = true;
   countries: string[] = ['Nigeria', 'Ghana'];
   bankList: any = [];
-  tabProps = {};
+  passText = '';
+  confirmPassText = '';
+  opt1selected = false;
+  opt2selected = false;
 
   constructor(private userService: UserService,
               private toastrService: ToastrService,
@@ -43,33 +46,72 @@ cancelProfile() {
         this.router.navigateByUrl('admin/manage-customers');
     }
 
-updateDetails(user: any) {
+updateProfile(user: User) {
     if (this.user.average_monthly_income === null) {
         this.user.average_monthly_income = '0';
     }
-    this.userService.adminUpdateCustomerDetails(this.user).subscribe(resp => {
+    this.userService.adminUpdateProfile(this.user).subscribe(resp => {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
         }
     });
-    this.router.navigateByUrl('admin/manage-customers');
     }
-getBankList() {
-    this.userService.getBankList().subscribe(resp => {
-        this.bankList = resp.success.Data;
-    });
-    }
-toggleTab(tabname: string) {
-        switch (tabname) {
-        default:
-            this.tabProps = {profileShow : true};
-            break;
-        case 'bank':
-            this.tabProps = {bankShow : true};
-            break;
-        case 'settings':
-            this.tabProps = {settingsShow : true};
-            break;
+
+updatePreference(user: User) {
+        this.userService.updatePreference(this.user).subscribe(resp => {
+            if (resp && resp.success) {
+            this.toastrService.success('Details updated succesfully');
+            }
+        });
+        this.router.navigateByUrl('admin/manage-customers');
+        }
+
+updateBankDetails(user: User) {
+        this.userService.updateBankDetails(this.user).subscribe(resp => {
+            if (resp && resp.success) {
+            this.toastrService.success('Details updated succesfully');
+            }
+   });
+        }
+
+validate() {
+        this.input.nativeElement.style.borderColor = '#ccc';
+        this.input2.nativeElement.style.borderColor = '#ccc';
+        this.error.nativeElement.style.display = 'none';
+        }
+
+changePassword(): void {
+        if (this.passText === '') {
+            this.input.nativeElement.style.borderColor = 'red';
+            this.error.nativeElement.style.display = 'block';
+        }
+        if (this.confirmPassText === '') {
+            this.input2.nativeElement.style.borderColor = 'red';
+            this.error.nativeElement.style.display = 'block';
+        }
+        if (this.passText && this.confirmPassText !== '') {
+            if (this.passText === this.confirmPassText) {
+            this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp => {
+                if (resp && resp.success) {
+                this.toastrService.success('Password updated succesfully');
+                this.passText = '';
+                this.confirmPassText = '';
+                localStorage.setItem('token', resp.success.Token);
+                }
+            });
+            console.log(this.passText);
+            } else {
+            // alert('Passwords do not match');
+            this.toastrService.error('Passwords do not match');
+            }
+            this.error.nativeElement.style.display = 'none';
         }
     }
+
+getBankList() {
+        this.userService.getBankList().subscribe(resp => {
+            this.bankList = resp.success.Data;
+        });
+    }
+
 }

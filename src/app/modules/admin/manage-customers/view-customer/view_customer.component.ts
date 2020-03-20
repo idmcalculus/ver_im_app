@@ -3,6 +3,8 @@ import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
 import { ToastrService } from 'ngx-toastr';
+import { Investment } from 'src/app/shared/models/Investment';
+import { InvestmentService } from 'src/app/modules/investment/investment.service';
 
 @Component({
   selector: 'app-view-customers',
@@ -12,9 +14,12 @@ import { ToastrService } from 'ngx-toastr';
 export class ViewCustomerComponent implements OnInit {
     _shown = true;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-
+    investment: Investment;
+    p: number = 1;
+    userInvestment: Investment[];
     constructor(
       private searchCustomer: SearchCustomerComponent,
+      private investmentService: InvestmentService,
       private userService: UserService,
       private toastrService: ToastrService
       ) { }
@@ -23,6 +28,7 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
+              console.log(this.userInvestment);
             }
             this.isLoading=false;
           })

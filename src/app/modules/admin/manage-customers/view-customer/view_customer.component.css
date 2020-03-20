@@ -15,10 +15,6 @@ img {
     font-weight: bold;
 }
 
-.row .buttons {
-    display: inline;
-}
-
 .title-list h3 {
     color: #221F72;
     font-weight: 600;
@@ -33,6 +29,8 @@ img {
 
 .col-7 .card {
     background-color:whitesmoke;
+    justify-content: space-between;
+
 }
 
 h5 {
@@ -69,16 +67,29 @@ th {
 
 
 .card .information {
-    margin: 3.60rem;
     font-size: 0.75rem;
     font-family: roboto;
     letter-spacing: .04rem;
     font-weight: 800;
     cursor: pointer;
     border: none;
-    padding: 2px;
+    padding: 1rem;
 }
 
 .btn-danger {
     background-color: #F2533A;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
 }
+
+.btn-success {
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+.col-5 span {
+    margin-top: 0.5rem;
+    margin-right: 1rem;
+}
+
