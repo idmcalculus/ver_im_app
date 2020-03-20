@@ -15,66 +15,19 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   categories:any []
-=======
-=======
-  searchValue = '';
-  filteredPools = [];
->>>>>>> cleanedup
-=======
->>>>>>> cleaning up codebase
-=======
-  searchValue = '';
-  filteredPools = [];
->>>>>>> cleanedup
-=======
->>>>>>> investment
-=======
->>>>>>> cleaning up codebase
-=======
-  searchValue = '';
-  filteredPools = [];
->>>>>>> cleanedup
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
-<<<<<<< HEAD
->>>>>>> cleaning up codebase
-=======
-  filteredPools = [];
-  searchValue = '';
->>>>>>> cleanedup list
-=======
   searchValue = '';
   filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
->>>>>>> cleanedup
 
   constructor(
-<<<<<<< HEAD
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
-=======
-    private authService:AppAuthService,
-    private router:Router,
-    private investmentService:InvestmentService,
-    private userService:UserService) { 
-      let userpath = window.location.pathname;
-      if(userpath.includes('user')){
->>>>>>> link view investment to investment list
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
           if (resp) {
@@ -85,38 +38,11 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
       this.getPools();
->>>>>>> cleanedup
-=======
->>>>>>> cleaning up codebase
-=======
-      this.getPools();
->>>>>>> cleanedup
-=======
->>>>>>> investment
-=======
-      this.getPools();
->>>>>>> cleanedup list
-=======
->>>>>>> cleaning up codebase
-=======
-      this.getPools();
->>>>>>> cleanedup
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
       
->>>>>>> cleaning up codebase
   }
 
   ngOnInit() {
@@ -144,20 +70,12 @@ export class PoolsComponent implements OnInit {
     this.checkedList = JSON.stringify(this.checkedList);
   }
 
-<<<<<<< HEAD
   getPools() {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         console.log(this.pools);
         this.getCategories();
-=======
-  getPools(){
-    this.isLoading = true;
-    this.investmentService.getInvestments(false).subscribe(investments=>{
-      if(investments){
-        this.pools = investments.success.Data
->>>>>>> cleanedup list
       }
     })
   }
@@ -186,15 +104,7 @@ export class PoolsComponent implements OnInit {
     })
   }
 
-<<<<<<< HEAD
   setPlanOperation(investment) {
-=======
-  cancelPool() {
-    this.router.navigateByUrl('admin/addpools');
-  }
-
-  setPlanOperation(investment){
->>>>>>> link view investment to investment list
     this.authService.setCurrentPlanOperation(investment);
   }
 
@@ -202,28 +112,7 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-  calculateEstimate(returns, inv) {
-    const estimate = (((returns * 12) - inv) / inv) * 100;
-    return Math.ceil(estimate);
-  }  
-
-
-filterTable(filterType, filterValue: string) {
-
-}
-
-deleteUser() {
-
-}
-=======
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-=======
   filterTable(filterType, filterValue: string) {
->>>>>>> cleanedup
-
     if (!filterValue || filterValue === null) {
       return this.getPools();
     } else {
@@ -237,12 +126,8 @@ deleteUser() {
       }
   }
   
-<<<<<<< HEAD
->>>>>>> Created Add investment component
-=======
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
->>>>>>> cleanedup list
 }
