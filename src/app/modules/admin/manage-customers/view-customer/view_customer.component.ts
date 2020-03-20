@@ -47,6 +47,6 @@ export class ViewCustomerComponent implements OnInit {
           } else {
             this.toastrService.error('There was an issue deleting.. Try again later');
           }
-        });
+        })
       }
   }
