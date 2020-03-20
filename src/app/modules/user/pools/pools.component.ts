@@ -13,11 +13,13 @@ import { UserService } from '../user.service';
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
-  pool:Investment;
+  pool:Investment = {title: '',  };
   userType:string;
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+  filteredPools = [];
+  searchValue = '';
 
   constructor(
     private authService:AppAuthService,
@@ -36,6 +38,7 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
+      this.getPools();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
@@ -68,6 +71,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getPools(){
+    this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments=>{
       if(investments){
         this.pools = investments.success.Data
@@ -101,7 +105,6 @@ export class PoolsComponent implements OnInit {
 
     if (!filterValue || filterValue === null) {
       return this.getPools();
-      console.log(this.getPools);
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
@@ -113,4 +116,8 @@ export class PoolsComponent implements OnInit {
       }
   }
   
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
+    return Math.ceil(estimate);
+  }
 }
