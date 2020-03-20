@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -15,8 +15,6 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
-  searchValue = '';
-  filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -38,7 +36,6 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
-      this.getPools();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
