@@ -1,8 +1,14 @@
 
 .shadow {
+<<<<<<< HEAD
     -moz-box-shadow:    -1px -1px 1px 1px #495057;
     -webkit-box-shadow: -1px -1px 1px 1px #495057;
     box-shadow: -1px -1px 1px 1px #495057;
+=======
+    -moz-box-shadow:    -1px -1px 3px 1px #495057;
+    -webkit-box-shadow: -1px -1px 3px 1px #495057;
+    box-shadow: -1px -1px 3px 1px #495057;
+>>>>>>> cleanedup
 }
 
 .bg_filter{
@@ -55,7 +61,11 @@ td {
 }
 
 .card {
+<<<<<<< HEAD
 	height: 500px;
+=======
+	height: 400px;
+>>>>>>> cleanedup
 }
 
 .col-md-12 {
@@ -64,6 +74,13 @@ td {
 	width: 100%;
 }
 
+<<<<<<< HEAD
+=======
+.col-md-12 .card {
+	margin: 0 20px;
+	padding: 0 20px;
+}
+>>>>>>> cleanedup
 
 .col-md-12 .card-block {
 	display: flex;
@@ -78,7 +95,11 @@ td {
 
 .card .card-block p {
 	margin-bottom: 0px;
+<<<<<<< HEAD
 	line-height: 3;
+=======
+	line-height: 2;
+>>>>>>> cleanedup
 }
 
 .col-md-12 .card-header {
@@ -93,6 +114,10 @@ td {
  
 .category-header {
     display: flex;
+<<<<<<< HEAD
+=======
+    justify-content: space-between;
+>>>>>>> cleanedup
     font-weight: bold;
     border-style: solid;
     border-left: none;
@@ -105,12 +130,21 @@ td {
 }
 
 .category-header p {
+<<<<<<< HEAD
     color: #221f72;
     padding: 0;
+=======
+    padding: 0;
+    margin: 0;
+>>>>>>> cleanedup
 }
   
 .category-body .row1 {
     display: flex;
+<<<<<<< HEAD
+=======
+    justify-content: space-between;
+>>>>>>> cleanedup
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -122,7 +156,19 @@ td {
     margin: 0px;
     padding: 0px;
 }
+<<<<<<< HEAD
 
 .category-body .row1 p{
     padding: 0;
 }
+=======
+  
+.s-n, .category-name {
+    flex: 1 1 30em;
+    margin-left: 10px;
+}
+  
+.action, .category-name {
+    //border-left: solid 1px black;
+}
+>>>>>>> cleanedup
