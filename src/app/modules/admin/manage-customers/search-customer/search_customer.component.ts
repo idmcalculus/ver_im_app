@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./search_customer.component.css']
 })
 export class SearchCustomerComponent implements OnInit {
-
+  selectedCustomer: User[];
   searchValue = '';
   users: User[];
   selectedUser: User;
@@ -72,18 +72,6 @@ export class SearchCustomerComponent implements OnInit {
     });
   }
 
-  updateDetails(user): any {
-    this.userService.adminUpdateProfile(user).subscribe(resp => {
-      if (resp && resp.success) {
-        // alert(resp.success.Message)
-        // this.users[userIndex].email_is_verified=0
-        this.toastrService.success('Details updated succesfully');
-      } else {
-        this.toastrService.error('There was an issue updating.. Try again later');
-      }
-    });
-  }
-
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
 
@@ -105,13 +93,23 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  delete = (selectedUser:User) => {
-    this.userService.deleteUser(selectedUser).subscribe(resp => {
-      if (resp && resp.success) {
-        this.toastrService.success('Details deleted succesfully');
-      } else {
-        this.toastrService.error('There was an issue deleting.. Try again later');
-      }
-    });
-  }
+ //  delete = (selectedUser:User) => {
+  //  this.userService.deleteUser(selectedUser).subscribe(resp => {
+  //    if (resp && resp.success) {
+  //      this.toastrService.success('Details deleted succesfully');
+  //    } else {
+  //      this.toastrService.error('There was an issue deleting.. Try again later');
+  //    }
+  //  });
+ // }
+    delete(){
+        this.selectedCustomer= this.users.filter(_ => _.selected);
+            for (let user in this.selectedCustomer) {
+           this.userService.deleteUser(this.selectedCustomer[user].id)
+            .subscribe(data =>{
+            console.log(data)
+            }
+            )
+        }
+    }
 }

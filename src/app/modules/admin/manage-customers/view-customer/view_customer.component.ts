@@ -16,6 +16,7 @@ export class ViewCustomerComponent implements OnInit {
     isLoading: false;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investment: Investment;
+    p: number = 1;
     userInvestment: Investment[];
     constructor(
       private searchCustomer: SearchCustomerComponent,
@@ -28,6 +29,7 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
+              console.log(this.userInvestment);
             }
             this.isLoading=false;
           })

@@ -12,7 +12,7 @@
                             <a>
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png"  routerLink="./new" routerLinkActive="active">
                             </a>
-                            <a (click)="delete(selectedUser)" id="delCat">
+                            <a (click)="delete()" id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -73,7 +73,7 @@
                                             </thead>
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let user of users;let i = index;">
-                                                <td><input type="checkbox"></td>
+                                                <td><input [(ngModel)]="user.selected" type="checkbox"></td>
                                                 <td>{{user.first_name}} {{user.last_name}}</td>
                                                 <td >{{user.email}}</td>
                                                 <td >{{user.phone_number}}</td>

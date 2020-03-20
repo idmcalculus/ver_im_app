@@ -26,7 +26,6 @@ export class AddCustomerComponent implements OnInit {
     confirmPassText = '';
     opt1selected = false;
     opt2selected = false;
-    tabProps = {};
 
     constructor(private userService: UserService,
                 private toastrService: ToastrService,
@@ -43,13 +42,13 @@ export class AddCustomerComponent implements OnInit {
          }
 
 
-    cancelProfile() {
+cancelProfile() {
         this.isSubmitting = false;
         this.user = { email: '', password: '' };
         this.router.navigateByUrl('admin/manage-customers');
     }
 
-    createProfile(): void {
+createProfile(): void {
         this.isSubmitting = new Promise((resolve, reject) => {
             this.user.authentication_type = 'E';
             this.user.user_category = 'User';
@@ -67,55 +66,43 @@ export class AddCustomerComponent implements OnInit {
     }
 
 
-    validate() {
-        this.input.nativeElement.style.borderColor = '#ccc';
-        this.input2.nativeElement.style.borderColor = '#ccc';
-        this.error.nativeElement.style.display = 'none';
-    }
+validate() {
+    this.input.nativeElement.style.borderColor = '#ccc';
+    this.input2.nativeElement.style.borderColor = '#ccc';
+    this.error.nativeElement.style.display = 'none';
+  }
 
-  changePassword(): void {
+changePassword(): void {
     if (this.passText === '') {
-     this.input.nativeElement.style.borderColor = 'red';
-     this.error.nativeElement.style.display = 'block';
+        this.input.nativeElement.style.borderColor = 'red';
+        this.error.nativeElement.style.display = 'block';
     }
     if (this.confirmPassText === '') {
-      this.input2.nativeElement.style.borderColor = 'red';
-      this.error.nativeElement.style.display = 'block';
+        this.input2.nativeElement.style.borderColor = 'red';
+        this.error.nativeElement.style.display = 'block';
     }
     if (this.passText && this.confirmPassText !== '') {
-      if (this.passText === this.confirmPassText) {
+        if (this.passText === this.confirmPassText) {
         this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp => {
-          if (resp && resp.success) {
+            if (resp && resp.success) {
             this.toastrService.success('Password updated succesfully');
             this.passText = '';
             this.confirmPassText = '';
             localStorage.setItem('token', resp.success.Token);
-          }
+            }
         });
         console.log(this.passText);
-      } else {
+        } else {
         // alert('Passwords do not match');
         this.toastrService.error('Passwords do not match');
-      }
-      this.error.nativeElement.style.display = 'none';
+        }
+        this.error.nativeElement.style.display = 'none';
     }
   }
     getBankList() {
       this.userService.getBankList().subscribe(resp => {
         this.bankList = resp.success.Data;
       });
-    }
-    toggleTab(tabname: string) {
-        switch (tabname) {
-          default:
-            this.tabProps = {profileShow : true};
-            break;
-          case 'bank':
-            this.tabProps = {bankShow : true};
-            break;
-          case 'settings':
-            this.tabProps = {settingsShow : true};
-            break;
-        }
-      }
+  }
+
   }
