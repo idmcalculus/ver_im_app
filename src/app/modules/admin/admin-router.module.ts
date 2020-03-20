@@ -50,17 +50,6 @@ const userRoutes: Routes = [
           { path: 'manage-customer',
             children: [
             {path: '',
-<<<<<<< HEAD
-            children: [
-              {path: '', component: ViewCustomerComponent},
-              {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
-            ]
-            }
-          ] },
-          { path: 'manage-users', component: ManageUsersComponent },
-=======
               children: [
                 {path: '', component: ManageUsersComponent},
                 {path: 'add-customer', component: AddCustomerComponent},
@@ -75,7 +64,6 @@ const userRoutes: Routes = [
                 //{path: 'add-pools', component: AddPoolComponent},
                 //{path: 'list-users', component: ManageUsersComponent },
           ] },
->>>>>>> Created Add investment component
           { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',

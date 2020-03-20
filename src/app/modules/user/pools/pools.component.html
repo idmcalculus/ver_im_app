@@ -190,8 +190,12 @@
 =======
 =======
                                                 <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
+<<<<<<< HEAD
 >>>>>>> cleaning up codebase
                                                 <td>{{pool.category_id}}</td>
+=======
+                                                <td>{{pool.id}}</td>
+>>>>>>> cleanup
                                                 <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
 <<<<<<< HEAD
@@ -212,12 +216,22 @@
                                                 <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
 >>>>>>> cleanedup codebase
                                                 <td >{{pool.duration}} Months</td>
+<<<<<<< HEAD
 >>>>>>> cleanedup
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.category_id}}</td>
 >>>>>>> Redesign View Investment Details
+=======
+                                                <td >{{pool.expected_return_amount}}</td>
+                                                <td >{{pool.category_id}}</td>
+                                                <td >{{pool.investment_amount}}</td>
+                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <ng-template #showThis>      
+                                                    <td  style="color: red">{{'InActive'}}</td>
+                                                </ng-template>
+>>>>>>> cleanup
                                                 <td>
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
 >>>>>>> link view investment to investment list
