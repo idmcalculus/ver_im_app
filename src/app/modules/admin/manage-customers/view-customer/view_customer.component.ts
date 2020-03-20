@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 export class ViewCustomerComponent implements OnInit {
     _shown = true;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-
     constructor(
       private searchCustomer: SearchCustomerComponent,
       private userService: UserService,
@@ -23,6 +22,7 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
+              console.log(this.userInvestment);
             }
             this.isLoading=false;
           })
