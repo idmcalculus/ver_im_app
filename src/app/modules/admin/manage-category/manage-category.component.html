@@ -31,33 +31,33 @@
                     <div class="col-sm-8">
                         <div class="card">
                             <div class="card-header">
-                              <h5 style="letter-spacing:1px">INVESTMENT CATEGORIES</h5>
+                              <h5>Investment Details</h5>
                             </div>
                             <div class="category-top">
-                                <div class="categories_length" id="category_length">
-                                <!--<label>Show &nbsp;
-                                   <select name="category_length" class="">
+                              <div class="categories_length" id="categoryTable_length">
+                                <label>Show &nbsp;
+                                  <select name="categoryTable_length" aria-controls="categoryTable" class="">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
                                     <option value="100">100</option>
-                                  </select> {% endcomment %}
+                                  </select>
                                   &nbsp; entries
-                                </label> -->
+                                </label>
                               </div>
-                              <div id="category_filter" class="categories_filter">
+                              <div id="categoryTable_filter" class="categories_filter">
                                 <label>
-                                    <input type="text" placeholder="&nbsp; Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
+                                    <input type="text" placeholder="Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
                                     (blur)="filterTable('category_name', search.value)">
                                 </label>
                               </div>
                             </div>
-                            <div class="category-header">
-                                <p class="s-n" scope="col">S/N</p>
-                                <p class="category-name" style="border-left: solid 1px black" scope="col">Category Name</p>
-                                <p class="action" style="border-left: solid 1px black;padding: 15px 35px;" scope="col">Action</p>
-                            </div>
-                            <div class="card-block dtDynamicVerticalScrollExample" id="categoryTable" style="margin-top: 0px;padding-top: 6px;">
+                            <div class="card-block dt-responsive" id="categoryTable">
+                                <div class="category-header">
+                                    <p class="s-n" scope="col">S/N</p>
+                                    <p class="category-name" scope="col">Category Name</p>
+                                    <p class="action" scope="col">Action</p>
+                                </div>
                                 <div *ngIf="isLoading" >
                                 <br><br>
                                     <div  class="lds-default">
@@ -79,20 +79,12 @@
                                     <div class="row1" *ngFor="let category of categories;let i=index">
                                         <p class="s-n">{{i+1}}</p>
                                         <p class="category-name">
-                                            <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name" style="
-                                                       height: 29px;
-                                                        text-align: center;
-                                                        border-width: 0.2px;
-                                                        margin-right: 20px;
-                                                        background-color: transparent;
-                                                        width: 80%;
-                                                        padding: 20px;">
-                                             <a *ngIf="category.inEditMode" (click)="updateCategory(category)" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-{{updateButtonText}}"></i></a>&nbsp;
-                                            <a style="padding: 0px 15px;" *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
+                                            <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name"><button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
+                                            <a *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
                                         </p>
                                         <p class="action">
-                                            <a style="padding: 0px 0px 0px 15px;" *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-times"></i></a>&nbsp;
-                                            <a style="padding: 0px 15px;" *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-pencil-alt"></i></a>&nbsp;
+                                            <a *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-check"></i></a>&nbsp;
+                                            <a *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-pencil-alt"></i></a>&nbsp;
                                             <a (click)="deleteCategory(category)" id="delCat"><i class="fa fa-trash"></i></a>
                                         </p>
                                     </div>
