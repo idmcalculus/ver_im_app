@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="column2">
                     <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
-                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)">|<span>{{category.category_name}}</span></h5>
+                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
                 </div>
             </div>
 
@@ -182,6 +182,56 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{100000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{500000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{750000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                   
             </div>
             <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
                 <div class="inner-workingSection">

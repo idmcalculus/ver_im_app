@@ -2,25 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../../admin.service';
 import { UserService } from '../../../user/user.service';
-import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-users',
-  templateUrl: './list_users.component.html',
-  styleUrls: ['./list_users.component.css']
+  templateUrl: './search_customer.component.html',
+  styleUrls: ['./search_customer.component.css']
 })
-export class ManageUsersComponent implements OnInit {
+export class SearchCustomerComponent implements OnInit {
 
   searchValue = '';
   users: User[];
   selectedUser: User;
+  selectedEditUser: User;
   isLoading= true;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
-     private authService: AppAuthService,
      private dynamicScrLoader: DynamicScriptLoaderService,
      private toastrService: ToastrService
      ) { }
@@ -38,6 +37,10 @@ export class ManageUsersComponent implements OnInit {
 
   viewUserDetail(userIndex) {
     this.selectedUser = this.users[userIndex];
+  }
+
+  editUserDetail(userIndex) {
+    this.selectedEditUser = this.users[userIndex];
   }
 
   updateUser(user, operation) {
@@ -100,5 +103,17 @@ export class ManageUsersComponent implements OnInit {
   clearSearch = () => {
     this.searchValue = null;
     return this.getUsers();
+  }
+
+  deleteUser = (user) => {
+    this.userService.deleteUser(user).subscribe(resp => {
+      if (resp && resp.success) {
+        // alert(resp.success.Message)
+        // this.users[userIndex].email_is_verified=0
+        this.toastrService.success('Details deleted succesfully');
+      } else {
+        this.toastrService.error('There was an issue deleting.. Try again later');
+      }
+    });
   }
 }

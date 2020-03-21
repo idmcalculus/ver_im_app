@@ -1,11 +1,11 @@
-import { Component, OnChanges, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { InvestmentService } from '../../investment/investment.service';
 import { Category } from 'src/app/shared/models/Category';
 
 @Component({
   selector: 'app-manage-category',
   templateUrl: './manage-category.component.html',
-  styleUrls: ['./manage-category.component.css']
+  styleUrls: ['./manage-category.component.scss']
 })
 export class ManageCategoryComponent {
 
@@ -81,10 +81,5 @@ export class ManageCategoryComponent {
         this.categories = filtered;
       }
   }
-
-  clearSearch = () => {
-    this.searchValue = null;
-    return this.getCategories();
-    }
 
 }
