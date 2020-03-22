@@ -62,10 +62,14 @@ td {
 
 .card {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	height: 500px;
 =======
 	height: 400px;
 >>>>>>> cleanedup
+=======
+	height: 500px;
+>>>>>>> addUser
 }
 
 .col-md-12 {
@@ -75,12 +79,15 @@ td {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 .col-md-12 .card {
 	margin: 0 20px;
 	padding: 0 20px;
 }
 >>>>>>> cleanedup
+=======
+>>>>>>> addUser
 
 .col-md-12 .card-block {
 	display: flex;
@@ -96,10 +103,14 @@ td {
 .card .card-block p {
 	margin-bottom: 0px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	line-height: 3;
 =======
 	line-height: 2;
 >>>>>>> cleanedup
+=======
+	line-height: 3;
+>>>>>>> addUser
 }
 
 .col-md-12 .card-header {
@@ -115,9 +126,12 @@ td {
 .category-header {
     display: flex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     justify-content: space-between;
 >>>>>>> cleanedup
+=======
+>>>>>>> addUser
     font-weight: bold;
     border-style: solid;
     border-left: none;
@@ -131,20 +145,29 @@ td {
 
 .category-header p {
 <<<<<<< HEAD
+<<<<<<< HEAD
     color: #221f72;
     padding: 0;
 =======
     padding: 0;
     margin: 0;
 >>>>>>> cleanedup
+=======
+    color: #221f72;
+    padding: 0;
+    padding-right: 4px;
+>>>>>>> addUser
 }
   
 .category-body .row1 {
     display: flex;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     justify-content: space-between;
 >>>>>>> cleanedup
+=======
+>>>>>>> addUser
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -156,6 +179,7 @@ td {
     margin: 0px;
     padding: 0px;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 .category-body .row1 p{
@@ -172,3 +196,10 @@ td {
     //border-left: solid 1px black;
 }
 >>>>>>> cleanedup
+=======
+
+.category-body .row1 p{
+    padding: 0;
+    padding-right: 5px;
+}
+>>>>>>> addUser

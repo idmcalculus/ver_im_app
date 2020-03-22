@@ -68,13 +68,21 @@
                                 </div>
                             </div>
                             <div class="col-xl-8">
+<<<<<<< HEAD
                                 <form class="card latest-update-card">
+=======
+                                <form class="card">
+>>>>>>> addUser
                                     <div class="row p-3">
                                         <div class="col-6">
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
                                                 <div class="col-sm-9">
+<<<<<<< HEAD
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.id}}>
+=======
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.id}} readonly>
+>>>>>>> addUser
                                                 </div>
                                             </div>
                                             <div class="form-group pt-1 row">
@@ -104,7 +112,11 @@
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
+<<<<<<< HEAD
                                                     <input type="type" class="form-control form-control-sm" value={{pool?.investment?.num_of_pools_taken}}>
+=======
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.num_of_pools_taken}} readonly>
+>>>>>>> addUser
                                                 </div>
                                             </div>
                                             <div class="form-group pt-1 row">
@@ -116,7 +128,11 @@
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
                                                 <div class="col-sm-9">
+<<<<<<< HEAD
                                                     <input type="type" class="form-control form-control-sm" name="pricing" id="pricing" [(ngModel)]="investment_amount" value={{pool?.investment?.investment_amount}}>
+=======
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.investment_amount}} readonly>
+>>>>>>> addUser
                                                 </div>
                                             </div>
                                         </div>
@@ -160,16 +176,26 @@
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
+<<<<<<< HEAD
                                                     <input type="number" class="form-control form-control-sm" required name="roi" id="roi" placeholder="" [(ngModel)]="expected_return">
+=======
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.expected_return_amount}} readonly>
+>>>>>>> addUser
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-8">
+<<<<<<< HEAD
                                                     <select class="custom-select custom-select-sm" name="period" [(ngModel)]="period" (change)="calculateEstimate()" id="period">
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
+=======
+                                                    <select class="custom-select custom-select-sm" value={{calculateEstimate(pool?.investment?.investment_amount)}} readonly>
+                                                        <option value="1">Monthly</option>
+                                                        <option value="2">Yearly</option>
+>>>>>>> addUser
                                                     </select>
                                                 </div>
                                             </div>
@@ -192,7 +218,11 @@
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-20px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
+<<<<<<< HEAD
                                                     <textarea class="form-control" rows="3" value={{pool?.investment?.description}}></textarea>
+=======
+                                                    <textarea class="form-control" rows="3" value={{pool?.investment?.description}} readonly></textarea>
+>>>>>>> addUser
                                                 </div>
                                             </div>
                                             
@@ -245,7 +275,11 @@
                                         <div class="row p-0">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
+<<<<<<< HEAD
                                                 <a *ngIf="loggedInUser?.user_category=='Admin'  && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
+=======
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="addUser('create',null)" routerLink="../adduser" class="float-right">
+>>>>>>> addUser
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
