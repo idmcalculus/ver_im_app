@@ -1,55 +1,53 @@
-<div class="modal fade" data-backdrop="static" style="margin-top: 1.5em !important;"
-                     id="addUserModal" tabindex="-1" role="dialog"
-                     aria-labelledby="reportModalTitle" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content create-investment create-report">
-                            <div class="modal-header">
-                                <h5>{{modaltitle}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" id='closeBtn' #closeBtn aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+<div class="container"  style="margin-top: 1.5em !important;" >
+    <div class="row">
+        <div class="col-12">
+            <div class="modal-header">
+                <h5>{{modaltitle}}</h5>
+                <button type="button" class="close" data-dismiss="modal" id='closeBtn' #closeBtn aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <label class="pt-1" for="slotNum">Select User</label>
                             </div>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <label class="pt-1" for="slotNum">Select User</label>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <select required [(ngModel)]="user_email" name="p-type" id="pay-type" class="form-control">
-                                                    <option value="" >Select User...</option>
-                                                    <option *ngFor="let user of users;let i = index;" [ngValue]="user.email">{{user.email}}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <label class="pt-1" for="slotNum">Number of Slots?</label>
-                                            </div>
-                                            <div class="col-md-7">
-                                                <input type="number" [(ngModel)]="number_of_pools" name="slots"
-                                                    id="slotNum" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Payment Reference</label>
-                                        <input autocomplete="off" type="text" required [(ngModel)]="reference" name="title" class="form-control" id="reference">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="title">Amount Paid</label>
-                                        <input autocomplete="off" type="number" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                                <button (click)="modalSubmitted()" class="btn2  btn btn-raised add-invest">{{modalButtonTitle}}</button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-md-10">
+                                <select required [(ngModel)]="user_email" name="p-type" id="pay-type" class="form-control">
+                                    <option value="" >Select User...</option>
+                                    <option *ngFor="let user of users;let i = index;" [ngValue]="user.email">{{user.email}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <label class="pt-1" for="slotNum">Number of Slots?</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="number" [(ngModel)]="number_of_pools" name="slots"
+                                    id="slotNum" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Payment Reference</label>
+                        <input autocomplete="off" type="text" required [(ngModel)]="reference" name="title" class="form-control" id="reference">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Amount Paid</label>
+                        <input autocomplete="off" type="number" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                                <button (click)="modalSubmitted()" class="btn2  btn btn-raised add-invest">{{modalButtonTitle}}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
