@@ -55,7 +55,7 @@ td {
 }
 
 .card {
-	height: 400px;
+	height: 500px;
 }
 
 .col-md-12 {
@@ -64,10 +64,6 @@ td {
 	width: 100%;
 }
 
-.col-md-12 .card {
-	margin: 0 20px;
-	padding: 0 20px;
-}
 
 .col-md-12 .card-block {
 	display: flex;
@@ -82,7 +78,7 @@ td {
 
 .card .card-block p {
 	margin-bottom: 0px;
-	line-height: 2;
+	line-height: 3;
 }
 
 .col-md-12 .card-header {
@@ -97,7 +93,6 @@ td {
  
 .category-header {
     display: flex;
-    justify-content: space-between;
     font-weight: bold;
     border-style: solid;
     border-left: none;
@@ -110,13 +105,13 @@ td {
 }
 
 .category-header p {
+    color: #221f72;
     padding: 0;
-    margin: 0;
+    padding-right: 4px;
 }
   
 .category-body .row1 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -128,12 +123,8 @@ td {
     margin: 0px;
     padding: 0px;
 }
-  
-.s-n, .category-name {
-    flex: 1 1 30em;
-    margin-left: 10px;
-}
-  
-.action, .category-name {
-    //border-left: solid 1px black;
+
+.category-body .row1 p{
+    padding: 0;
+    padding-right: 5px;
 }
