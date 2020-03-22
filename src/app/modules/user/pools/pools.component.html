@@ -66,11 +66,11 @@
                         <div class="col-md-12">
                             <div class="card px-3">
                                 <div class="category-header pt-3 p-2">
-                                    <p class="col-1">
+                                    <p class="mr-3">
                                         <input type="checkbox">
                                     </p>
-                                    <p class="pr-3">ID</p>
-                                    <p class="col-2">Investment Title</p>
+                                    <p class="mr-3">ID</p>
+                                    <p class="col-3">Investment Title</p>
                                     <p class="col-1">Category</p>
                                     <p class="col-2">No of Investors</p>
                                     <p class="col-1">Tenure</p>
@@ -78,7 +78,7 @@
                                     <p class="col-1">Payback</p>
                                     <p class="col-1">Cost</p>
                                     <p class="col-1">Status</p>
-                                    <p class="col-1">Action</p>
+                                    <p class="">Action</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
@@ -100,9 +100,9 @@
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="col-1"><input type="checkbox"></p>
-                                            <p class="pr-3">{{pool.id}}</p>
-                                            <p class="col-2">{{pool.title}}</p>
+                                            <p class="mr-3"><input type="checkbox"></p>
+                                            <p class="mr-3">{{pool.id}}</p>
+                                            <p class="col-3">{{pool.title}}</p>
                                             <p class="col-1">{{pool.category_id}}</p>
                                             <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
                                             <p class="col-1">{{pool.duration}} Months</p>
@@ -113,7 +113,7 @@
                                             <ng-template #showThis>      
                                                 <p class="col-1" style="color: red">{{'InActive'}}</p>
                                             </ng-template>
-                                            <p class="col-1">
+                                            <p class="">
                                                 <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </p>
                                         </div>
