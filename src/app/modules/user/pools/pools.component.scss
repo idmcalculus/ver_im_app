@@ -1,8 +1,8 @@
 
 .shadow {
-    -moz-box-shadow:    -1px -1px 3px 1px #495057;
-    -webkit-box-shadow: -1px -1px 3px 1px #495057;
-    box-shadow: -1px -1px 3px 1px #495057;
+    -moz-box-shadow:    -1px -1px 1px 1px #495057;
+    -webkit-box-shadow: -1px -1px 1px 1px #495057;
+    box-shadow: -1px -1px 1px 1px #495057;
 }
 
 .bg_filter{
@@ -107,7 +107,6 @@ td {
 .category-header p {
     color: #221f72;
     padding: 0;
-    padding-right: 4px;
 }
   
 .category-body .row1 {
@@ -126,5 +125,4 @@ td {
 
 .category-body .row1 p{
     padding: 0;
-    padding-right: 5px;
 }
