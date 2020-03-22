@@ -14,6 +14,7 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
+  user: string
 
   constructor(
     private authService:AppAuthService,
@@ -65,10 +66,12 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
-}
+  filterTable(filterType, filterValue: string) {
 
+  }
+
+  deleteUser(user){
+    
+  }
   
 }

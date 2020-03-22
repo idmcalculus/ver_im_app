@@ -22,6 +22,7 @@ export class InvestmentDetailComponent implements OnInit {
     isLoading: boolean = true;
     investment: Investment;
     transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
+    payment_id: null;
     userinfo: User;
     amountPerPool: number = 0;
     userEmail: string = '';
@@ -33,6 +34,8 @@ export class InvestmentDetailComponent implements OnInit {
     categories: any = [];
     selectedCategory: string = '0';
     allinv:any = [];
+    ViaXpress = true;
+    subOptions = [];
 
 
     constructor(
@@ -59,15 +62,24 @@ export class InvestmentDetailComponent implements OnInit {
 
     }
 
+    triggerSecond(){
+        document.getElementById("openModalButton").click();
+    }
+
     getInvestment(id: string) {
         this.investmentService.getInvestment(id).subscribe(investments => {
             if (investments && investments.success) {
                 this.investment = investments.success.Data.investment;
+                console.log(this.investment)
                 var tday = new Date().getTime;
                 this.investment.reference = `${tday}`;
                 this.amountPerPool = this.investment.investment_amount;
                 var randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0, 4)}`;
                 this.transactionRef = randomString;
+                let slotsLeft = this.investment.max_num_of_slots - this.investment.num_of_pools_taken;
+                for(let i=1;i<=slotsLeft;i++){
+                    this.subOptions.push(i);
+                }
 
                 this.activatedRoute.queryParams.subscribe(resp => {
                     var statusCode = resp['status-code'];
@@ -170,6 +182,10 @@ export class InvestmentDetailComponent implements OnInit {
         this.isLoading = true;
         localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
         xpressPay(email, amnt, firstName, lastName, mobile, tranRef);
+    }
+
+    change(){
+        this.ViaXpress = !this.ViaXpress;
     }
 
 }
