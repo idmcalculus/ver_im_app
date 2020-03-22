@@ -65,6 +65,7 @@
                                 (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
                                 class="btn2 btn-join">Invest now</a>
                             <a *ngIf="investment?.is_investment_started=='1' " class="btn2 btn-join">Closed</a>
+                            <button id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter2">Open Modal</button>
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -121,17 +122,89 @@
                     </div>-->
                     <div class="modal-body">
                         <div class="join-modal">
-                            <h3>Join Investment</h3>
-                            <h4>{{investment?.title}}</h4>
+                            <h3>Select Payment Mode</h3>
+                            <div style="
+                                display: flex;
+                                justify-content: space-around;
+                                margin: 0 auto;
+                                width: 75%;
+                                padding-bottom: 25px;
+                            ">
+                                <label class="container">Debit/Credit Card
+                                <input type="radio" checked="checked" name="radio" ng-change="change()" (click)="change()">
+                                <span class="checkmark"></span>
+                                </label>
+                                <label class="container">   Bank transfer
+                                <input type="radio" name="radio" ng-change="change()" (click)="change()">
+                                <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <h4 *ngIf="ViaXpress">{{investment?.title}}</h4>
 
-                            <div class="form-group">
-                                <div class="row">
+                            <div *ngIf="ViaXpress" class="form-group">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label class="pt-1" for="slotNum">Number of Slots?</label>
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="number" [(ngModel)]="transaction.number_of_pools"  id="slotNum" class="form-control">
+                                            <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                                <option value="" hidden>Select</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="!ViaXpress" class="form-group" style="width:70%;margin:0px auto">
+                                
+                               
+                                 <div class="row" style="justify-content:center">
                                     <div class="col-md-5">
-                                        <label class="pt-1" for="slotNum">Number of Slots?</label>
+                                        <label class="pt-1" for="slotNum">Investment Id</label>
                                     </div>
                                     <div class="col-md-7">
-                                        <input type="number" [(ngModel)]="transaction.number_of_pools" name=""
-                                            id="slotNum" class="form-control">
+                                        <label class="pt-1" for="slotNum">{{investment.id}}</label>
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Cost Per Slot</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">{{investment.investment_amount}}</label>
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Number of Slots</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                         <!--   <input edit style="text-align:center;border-style:none;padding-left: 32px;" type="number" [(ngModel)]="transaction.number_of_pools" name=""
+                                                id="slotNum" class="form-control" max="{{investment.max_num_of_slots - investment.num_of_pools_taken}}"> -->
+                                        <select ng-init="1" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control" style="border-bottom-style: none;width: fit-content;margin: 0 auto;">
+                                            <option *ngFor="let slot of subOptions" [value]="slot">{{slot}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label style="color:#71e378" class="pt-1" for="slotNum">Amount Due</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label style="color:#71e378" class="pt-1" for="slotNum">{{investment.investment_amount*transaction.number_of_pools}}</label>
                                         <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
                                             <option value="" hidden>Select</option>
                                             <option value="1">1</option>
@@ -161,10 +234,142 @@
                             >Paystack pay</button> -->
 
                         <button
-                            (click)="xpressPay(userinfo?.email,amountPerPool * transaction.number_of_pools,userinfo?.first_name,userinfo?.last_name,userinfo?.phone_number,transactionRef)"
+                            (click) = "triggerSecond()"
                             data-dismiss="modal"
                             [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
                             type="button" class="btn btn-join-add">Make Payment
+                        </button>
+                        <!-- <button
+                            data-dismiss="modal"
+                            type="button"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            class="btn btn-join-add"
+                            angular-rave
+                            [PBFPubKey] = "'FLWPUBK-af2c323a9692b4f6a8b599f68d8564a'"
+                            [customer_email] = "userinfo?.email"
+                            [customer_phone] = "userinfo?.phone_number"
+                            [amount]="amountPerPool  * transaction.number_of_pools"
+                            [currency]="'NGN'"
+                            [custom_title]="'Investment Payment'"
+                            [txref]="transactionRef"
+                            (callback)="joinInvestment()"
+                            (close)="paymentCancel()"
+                        >Flutterwave</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!--<div class="modal-header">
+                        &lt;!&ndash;<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;&gt;
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>-->
+                    <div class="modal-body">
+                         <div class="join-modal">
+                            <h3>Select Payment Mode</h3>
+                             <h5 style="
+                                 font-size: 14px;
+                                font-weight: 600;
+                                letter-spacing: 0.2px;
+                                line-height: 20px;
+                             ">To complete this payment kindly transfer the sum of {{investment.investment_amount*transaction.number_of_pools  | currency:"NGN":"symbol"}} to any of the accounts listed below,once done enter your transaction Id and submit</h5>
+                            <div *ngIf="!ViaXpress" class="form-group" style="width:70%;margin:0px auto">
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-7">
+                                        <label style="font-weight:600" class="pt-1" for="slotNum">Zenith Bank</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">AccountName</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">Versa haven</label>
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Number</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">0123456789</label>
+
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-7">
+                                        <label style="font-weight:600" class="pt-1" for="slotNum">Guarantee trust Bank</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Name</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">Versa Haven</label>
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Number</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">0123456789</label>
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center; padding: 30px 0px">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Transaction Id</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="payment_id" style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
+                        <!-- <button
+                            data-dismiss="modal"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            type="button"
+                            class="btn btn-join-add"
+                            angular4-paystack
+                            [key]="'pk_live_c65aca453404fade40e00fca41e19b0df29b21f4'"
+                            [email]="userinfo?.email"
+                            [amount]="amountPerPool * 100 * transaction.number_of_pools"
+                            [ref]="transactionRef"
+                            [class]="'btn btn-success'"
+                            (close)="paymentCancel()"
+                            (callback)="joinInvestment()"
+                            >Paystack pay</button> -->
+
+                        <button
+                            data-dismiss="modal"
+                            [disabled]="payment_id == null || payment_id ==''"
+                            type="button" class="btn btn-join-add">
+                            Make Payment
                         </button>
                         <!-- <button
                             data-dismiss="modal"
