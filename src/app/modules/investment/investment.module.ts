@@ -6,11 +6,12 @@ import { InvestmentDetailComponent } from './investment-detail/investment-detail
 import { FormsModule } from '@angular/forms';
 import { Angular4PaystackModule } from 'angular4-paystack';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { InvestmentGroupComponent } from './investment-group/investment-group.component';
 
 // import { AngularRaveModule } from 'angular-rave';
 
 @NgModule({
-  declarations: [InvestmentComponent, InvestmentDetailComponent],
+  declarations: [InvestmentComponent, InvestmentDetailComponent, InvestmentGroupComponent],
   imports: [
     CommonModule, InvestmentRoutingModule, FormsModule,
     Angular4PaystackModule,
