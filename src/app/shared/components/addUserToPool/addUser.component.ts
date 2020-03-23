@@ -28,8 +28,12 @@ export class AddUserComponent implements OnInit {
   user_email:string='';
   amount_paid:number;
 
+<<<<<<< HEAD
   users:User[]=[];
   user:User = {email: '',};
+=======
+  users:[User]
+>>>>>>> new push
   selectedUser:User;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
@@ -65,6 +69,10 @@ export class AddUserComponent implements OnInit {
     this.selectedUser = user;
     console.log(this.selectedUser);
     
+  }
+
+  onSelect(user: User): void {
+    this.selectedUser = user;
   }
 
   ngOnInit() {

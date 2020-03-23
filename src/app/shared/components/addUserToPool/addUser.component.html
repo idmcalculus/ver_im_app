@@ -25,12 +25,16 @@
                     <div class="col">
                         <div class="card">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> new push
                             <div class="row p-3">
                                 <div class="col-8">
                                     <h5 class="head">Add Pool</h5>
                                 </div>
                                 
                                 <div class="col-4">
+<<<<<<< HEAD
                                     <div class="">
                                         <div class="category-header">
                                             <input type="text" class="input-control shadow" placeholder="Search by Email" name="search" #search (keyup)="filterTable('email', search.value)"
@@ -224,6 +228,12 @@
 =======
                             <div class="p-3">
                                 <h5 class="head">Add Pool</h5>
+=======
+                                        <li *ngFor="let user of users;"
+                                        (click)="onSelect(user)">{{user.email}}</li>
+                                </div>
+
+>>>>>>> new push
                                 <hr class="new my-0">
 >>>>>>> new
                             </div>
@@ -231,22 +241,22 @@
                             <form>
                                 <div class="row p-3">
                                     
-                                    <div class="col-6 pr-5">
+                                    <div class="col-6 pr-5" >
                                         <div class="form-group row">
-                                            <h6 class="col-sm-2 pr-0 col-form-label">First Name</h6>
-                                            <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" placeholder="00010">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">First Name</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.first_name" name="first" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-2 pr-0 col-form-label">Email</h6>
-                                            <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Email</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.email" name="email" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-2 pr-0 col-form-label">Investment Title</h6>
-                                            <div class="col-sm-10">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Investment Title</h6>
+                                            <div class="col-sm-9">
                                                 <select class="input-control shadow">
                                                     <option value="1"></option>
                                                     <option value="2"></option>
@@ -254,8 +264,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-2 pr-0 col-form-label">Cost</h6>
-                                            <div class="col-sm-10">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
+                                            <div class="col-sm-9">
                                                 <select class="input-control shadow">
                                                     <option value="1">based on the selected category</option>
                                                     <option value="2">Yearly</option>
@@ -263,8 +273,8 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-2 pr-0 col-form-label">Slot Taken</h6>
-                                            <div class="col-sm-10">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Slot Taken</h6>
+                                            <div class="col-sm-9">
                                                 <input type="type" class="input-control shadow">
                                             </div>
                                         </div>
@@ -273,14 +283,14 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Last Name</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Phone Number</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
                                             </div>
                                         </div>
 

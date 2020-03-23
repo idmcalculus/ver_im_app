@@ -82,7 +82,6 @@ const userRoutes: Routes = [
           { path: 'investment-group', component: InvestmentGroupComponent},
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
-          { path: 'adduser', component: AddUserComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
