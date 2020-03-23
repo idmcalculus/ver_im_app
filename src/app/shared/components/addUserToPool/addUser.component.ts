@@ -22,6 +22,7 @@ export class AddUserComponent implements OnInit {
   amount_paid:number;
 
   users:[User]
+  selectedUser:User;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
   @Input() public modalData:any;
@@ -36,6 +37,10 @@ export class AddUserComponent implements OnInit {
   ) {
 
 
+  }
+
+  onSelect(user: User): void {
+    this.selectedUser = user;
   }
 
   ngOnInit() {
