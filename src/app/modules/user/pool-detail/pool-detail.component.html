@@ -241,7 +241,7 @@
                                         <div class="row p-0">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
-                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="AddUserPool()" class="float-right">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="addUser('create',null)" class="float-right">
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
