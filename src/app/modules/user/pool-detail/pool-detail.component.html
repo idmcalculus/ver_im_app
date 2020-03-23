@@ -276,10 +276,14 @@
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                 <a *ngIf="loggedInUser?.user_category=='Admin'  && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
 =======
                                                 <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="addUser('create',null)" routerLink="../adduser" class="float-right">
 >>>>>>> addUser
+=======
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="AddUserPool()" class="float-right">
+>>>>>>> new
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
@@ -445,5 +449,8 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
+<<<<<<< HEAD
 <app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
 
+=======
+>>>>>>> new

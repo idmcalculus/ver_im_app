@@ -235,6 +235,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   divisorFunc (period) {
     if (period === "Weekly") {
@@ -252,6 +253,12 @@ export class PoolDetailComponent implements OnInit {
     const estimate = (cost * investment) / divisor
     this.returns = estimate.toFixed(2)
 =======
+=======
+  AddUserPool() {
+    this.router.navigateByUrl('admin/adduser');
+  }
+
+>>>>>>> new
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
