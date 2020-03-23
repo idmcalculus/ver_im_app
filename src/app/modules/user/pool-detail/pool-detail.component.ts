@@ -172,6 +172,7 @@ export class PoolDetailComponent implements OnInit {
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
       this.callBack = this.updatePool;
+      this.router.navigateByUrl('admin/adduser');
     }
   }
 
@@ -236,6 +237,7 @@ export class PoolDetailComponent implements OnInit {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   divisorFunc (period) {
     if (period === "Weekly") {
@@ -257,6 +259,8 @@ export class PoolDetailComponent implements OnInit {
   AddUserPool() {
     this.router.navigateByUrl('admin/adduser');
   }
+=======
+>>>>>>> new
 
 >>>>>>> new
   calculateEstimate(returns,inv){
