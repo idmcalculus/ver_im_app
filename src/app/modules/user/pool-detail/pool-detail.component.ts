@@ -156,6 +156,7 @@ export class PoolDetailComponent implements OnInit {
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
       this.callBack = this.updatePool;
+      this.router.navigateByUrl('admin/adduser');
     }
   }
 
@@ -218,9 +219,6 @@ export class PoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/pools');
   }
 
-  AddUserPool() {
-    this.router.navigateByUrl('admin/adduser');
-  }
 
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
