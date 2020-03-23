@@ -218,6 +218,10 @@ export class PoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/pools');
   }
 
+  AddUserPool() {
+    this.router.navigateByUrl('admin/adduser');
+  }
+
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
