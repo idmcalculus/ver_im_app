@@ -65,5 +65,10 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
+    return Math.ceil(estimate);
+}
+
   
 }

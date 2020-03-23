@@ -92,12 +92,12 @@
                                                 <td >{{pool.duration}} months
 
                                                 </td>
-                                                <td >{{pool.reference}}</td>
-                                                <td >{{pool.reference}}</td>
+                                                <td >{{pool.expected_return_amount}}</td>
+                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
-                                                <td *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>      
-                                                    <td>{{'InActive'}}</td>
+                                                    <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
                                                 <td  (click)="viewUserDetail(i)">
                                                     <a *ngIf="!pool.inViewMode" (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
@@ -133,7 +133,6 @@
 </div>
 
 <div class="pcoded-content">
-
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">

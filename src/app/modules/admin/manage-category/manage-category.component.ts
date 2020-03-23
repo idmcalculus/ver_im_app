@@ -5,7 +5,7 @@ import { Category } from 'src/app/shared/models/Category';
 @Component({
   selector: 'app-manage-category',
   templateUrl: './manage-category.component.html',
-  styleUrls: ['./manage-category.component.css']
+  styleUrls: ['./manage-category.component.scss']
 })
 export class ManageCategoryComponent {
 
