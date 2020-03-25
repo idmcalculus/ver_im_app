@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2"><span>Country</span></div>
+                                                        <div class="col-md-2"><span>State</span></div>
                                                         <div class="col-md-10">
                                                             <select [(ngModel)]="user.country" class="form-control" name="country"
                                                                     id="country">
@@ -160,12 +160,19 @@
 
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-2" id="namespace">
                                                             <span>Work Place</span>
                                                         </div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-4">
                                                             <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
-                                                                   id="workplace">
+                                                            id="workplace">
+                                                        </div>
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Workplace Monthly Income (Optional)</span>
+                                                        </div>
+                                                        <div class="col-md-4 ph-4">
+                                                            <input  [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                    id="avg_monthly_income">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -173,9 +180,30 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateProfile(user)"  class="button btn-update-customer" value="NEXT">
+                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" class="btn-update-customer" value="UPDATE" data-toggle="modal" data-target="#confirmAction">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="confirmAction" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" (click)="TabControl()" class="next btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 
@@ -235,9 +263,30 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateBankDetails(user)" class=" btn-update-customer" value="NEXT">
+                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmBank" class="btn-update-customer" value="UPDATE">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                 <!-- Modal -->
+                                                <div class="modal fade" id="confirmBank" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" (click)="TabControl()" class="next btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 
@@ -284,9 +333,29 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updatePreference(user)" class=" btn-update-customer" value="UPDATE">
+                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmPreference" class=" btn-update-customer" value="UPDATE">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" (click)="cancelProfile()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="next btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 

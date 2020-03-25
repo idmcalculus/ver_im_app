@@ -18,7 +18,7 @@ export class PoolsComponent implements OnInit {
   constructor(
     private authService:AppAuthService,
     private investmentService:InvestmentService,
-    private userService:UserService) { 
+    private userService:UserService) {
       let userpath = window.location.pathname;
       if(userpath.includes('user')){
         this.userType = 'user';
@@ -31,7 +31,7 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
-      
+
   }
 
   ngOnInit() {
@@ -65,5 +65,22 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  
+  filterTable(filterType, filterValue: string) {
+
+    if (!filterValue || filterValue === null) {
+      return this.getPools();
+    } else {
+        const filtered = this.pools.filter(pool => {
+          if (pool[filterType] !== null) {
+            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.pools = filtered;
+      }
+  }
+
+  deleteUser() {}
+
+
 }

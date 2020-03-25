@@ -12,11 +12,13 @@ import { InvestmentService } from 'src/app/modules/investment/investment.service
   styleUrls: ['./view_customer.component.css']
 })
 export class ViewCustomerComponent implements OnInit {
+    carouselPos = 0;
     _shown = true;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-    investment: Investment;
+    investments: Investment;
     p: number = 1;
     userInvestment: Investment[];
+    isLoading;
     constructor(
       private searchCustomer: SearchCustomerComponent,
       private investmentService: InvestmentService,
@@ -28,12 +30,17 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
-              console.log(this.userInvestment);
             }
             this.isLoading=false;
           })
-    }
 
+          $('#myCarousel').on('slide.bs.carousel', function (e) {
+            const to = e.to;
+            $('.investment-card').hide();
+            document.getElementsByClassName('investment-card')[Number(to)].style.display = 'block'
+          })
+
+    }
 
     updateUser(status: string) {
       if (status) {
@@ -47,7 +54,7 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     delete (user: User) {
-        this.userService.deleteUser(this.user).subscribe(resp => {
+        this.userService.deleteUser(user).subscribe(resp => {
           if (resp && resp.success) {
             this.toastrService.success('Details deleted succesfully');
           } else {

@@ -1,5 +1,6 @@
 import { Component, Input,  OnInit, ViewChild, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import * as $ from "jquery";
 import { User } from 'src/app/shared/models/user';
 import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
 import { UserService } from 'src/app/modules/user/user.service';
@@ -20,7 +21,9 @@ export class AddCustomerComponent implements OnInit {
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     isSubmitting;
     isLoading = true;
-    countries: string[] = ['Nigeria', 'Ghana'];
+    countries: string[] = ['Abia','FCT Abuja','Adamawa','Akwa Ibom','Ananmbra','Bauchi','Bayelsa','Benue','Borno','Cross River','Delta','Ebonyi','Edo',
+                           'Ekiti','Enugu','Gombe','Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos',
+                           'Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers','Sokoto','Taraba','Yobe', 'Zamfara'];
     bankList: any = [];
     passText = '';
     confirmPassText = '';
@@ -41,6 +44,26 @@ export class AddCustomerComponent implements OnInit {
         this.isLoading = false;
          }
 
+// Make additional tab buttons
+TabControl(){
+    var i, items = $('.nav-link'), pane = $('.tab-pane');
+    // next
+    $('.next').on('click',function(){
+        for(i = 0; i < items.length; i++){
+            if($(items[i]).hasClass('active') ==true){
+                break;
+            }
+        }
+        if(i < items.length - 1){
+            // for tab
+            $(items[i]).removeClass('active');
+            $(items[i+1]).addClass('active');
+            // for pane
+            $(pane[i]).removeClass('show active');
+            $(pane[i+1]).addClass('show active');
+        }
+    });
+}
 
 cancelProfile() {
         this.isSubmitting = false;
