@@ -54,6 +54,11 @@ th {
 
 }
 
+.table-striped td th {
+    font-size: bold;
+    text-align: center;
+}
+
 .highlighted {
     font-size: 0.80rem;
     color: #221F72;
@@ -77,19 +82,37 @@ th {
 }
 
 .btn-danger {
+    width: 100%;
     background-color: #F2533A;
     border-radius: 10px;
     letter-spacing: 0.5px;
-    font-weight: 700;
+    font-weight: 600;
+    color: white;
+    padding-right: 3rem;
+    padding-left: 3rem;
 }
 
 .btn-success {
+    width: 100%;
     border-radius: 10px;
     letter-spacing: 0.5px;
-    font-weight: 700;
+    font-weight: 600;
+    color: white;
+    padding-right: 3rem;
+    padding-left: 3rem;
 }
-.col-5 span {
-    margin-top: 0.5rem;
-    margin-right: 1rem;
+.col-5 span .buttons {
+    margin-left: 1.5rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
 }
+
+.my_pagination /deep/ .ngx-pagination {
+    display: inline-flex;
+    flex: content;
+}
+
+
+
+
 
