@@ -1,8 +1,10 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Report } from '../../models/Report';
 import { User } from 'src/app/shared/models/user';
-import { Router} from '@angular/router';
+import { Investment } from 'src/app/shared/models/Investment';
+import { ActivatedRoute,Router} from '@angular/router';
 import { AdminService } from '../../../modules/admin/admin.service';
+import {InvestmentService} from '../../../modules/investment/investment.service'
 import { UserService } from '../../../modules/user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
@@ -16,6 +18,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 
 export class AddUserComponent implements OnInit {
+  pool:Investment;
+  poolId:number=0;
   isPaymentreport:boolean=false;
   number_of_pools:number;
   isLoading:boolean=true;
@@ -33,15 +37,22 @@ export class AddUserComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
 
   constructor(
+    private route:ActivatedRoute,
     private router:Router,
     private addUserService:addUserService,
     private toastrService: ToastrService,
     private dynamicScrLoader:DynamicScriptLoaderService,
+    private investmentService:InvestmentService,
     private adminService:AdminService,
     private userService:UserService,
   ) {
-
-
+    this.route.params.subscribe(resp=>{
+      this.poolId = resp.pool_id;
+      if(!this.poolId){
+        this.poolId = Number(this.route.snapshot.paramMap.get('id'));
+      }
+      this.fetchPool(String(this.poolId));
+    })
   }
 
   onSelect(user: User): void {
@@ -63,6 +74,22 @@ export class AddUserComponent implements OnInit {
     })
   }
 
+  fetchPool(poolId:string){
+    this.isLoading =true;
+    this.investmentService.getInvestment(poolId).subscribe(poolDetails=>{
+      if(poolDetails && poolDetails.success){
+        if(poolDetails.success.Data){
+          this.pool = poolDetails.success.Data;
+          // console.log("i have gat :: "+JSON.stringify(this.pool))
+          this.isLoading = false;
+        }else{
+          this.router.navigate(['./', {}]);
+        }
+      }else{
+        
+      }
+    })
+  }
 
   modalSubmitted(){
     this.modalButtonTitle='adding...'
@@ -98,7 +125,7 @@ export class AddUserComponent implements OnInit {
   }
 
   cancelPool() {
-    this.router.navigateByUrl('admin/pools/:id');
+    this.router.navigateByUrl('admin/.poolId');
   }
 
   filterTable(filterType, filterValue: string) {
