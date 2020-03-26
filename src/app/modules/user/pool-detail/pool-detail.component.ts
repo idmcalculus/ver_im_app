@@ -6,6 +6,7 @@ import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
+import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -34,7 +35,7 @@ export class PoolDetailComponent implements OnInit {
     private reportService:ReportService,
     private authService:AppAuthService
     ) { 
-
+      this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         if(userInfo){
           this.loggedInUser = userInfo;
@@ -83,6 +84,16 @@ export class PoolDetailComponent implements OnInit {
         
       }
     })
+  }
+
+  getCategories() {
+    this.isLoading = true;
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+      }
+      this.isLoading = false;
+    });
   }
 
   addReport(filledReport:Report){
@@ -149,14 +160,13 @@ export class PoolDetailComponent implements OnInit {
     }
     
   }
-
+  
   addUser(operation,modalData){
     if(operation=='create'){
       this.modalData = {investment_id:this.poolId}
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
       this.callBack = this.updatePool;
-      this.router.navigateByUrl('admin/adduser');
     }
   }
 

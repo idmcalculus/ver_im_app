@@ -41,7 +41,7 @@
                                                     class="btn btn-add plus-btn float-right"><span><i
                                                         class="fa fa-edit"></i></span></a>
                                             </div> -->
-                                            <div class="image-holder my-4">
+                                            <div class="image-holder my-3">
                                                 <img *ngIf="pool?.investment.investment_image==''" src="../assets/images/notcard.png" alt="image">
                                                 <img *ngIf="pool?.investment.investment_image!=''" src="{{pool?.investment?.investment_image}}" alt="image">
                                             </div>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-xl-8">
-                                <form class="card">
+                                <form class="card latest-update-card">
                                     <div class="row p-3">
                                         <div class="col-6">
                                             <div class="form-group row">
@@ -86,9 +86,9 @@
                                             <div class="form-group row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <select class="custom-select custom-select-sm">
-                                                        <option value="1"></option>
-                                                        <option value="2"></option>
+                                                    <select required [(ngModel)]="category" name="category" class="custom-select custom-select-sm">
+                                                        <option value="" ></option>
+                                                        <option *ngFor="let category of categories;" [ngValue]="category.category_name">{{category.category_name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -160,16 +160,16 @@
                                             <div class="form-group row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.expected_return_amount}} readonly>
+                                                    <input type="type" class="form-control form-control-sm" value={{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}% readonly>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-8">
-                                                    <select class="custom-select custom-select-sm" value={{calculateEstimate(pool?.investment?.investment_amount)}} readonly>
-                                                        <option value="1">Monthly</option>
-                                                        <option value="2">Yearly</option>
+                                                    <select class="custom-select custom-select-sm" value={{pool.expected_return_period}} readonly>
+                                                        <option value="1">Weekly</option>
+                                                        <option value="2">Monthly</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -236,7 +236,7 @@
 
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="card latest-update-card">
+                                <div class="card ">
                                     <div class="card-block">
                                         <div class="row p-0">
                                             <div class="col-12">
@@ -287,7 +287,7 @@
 
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="card latest-update-card">
+                                <div class="card">
                                     <div class="card-block">
                                         <div class="row p-0">
                                             <div class="col-12">
@@ -365,7 +365,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card latest-update-card">
+                                <div class="card">
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
                                             <table id="order-table" class="table nowrap">
@@ -407,3 +407,5 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
+<app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
+
