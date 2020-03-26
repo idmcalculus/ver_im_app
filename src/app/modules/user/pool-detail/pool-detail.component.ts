@@ -172,7 +172,6 @@ export class PoolDetailComponent implements OnInit {
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
       this.callBack = this.updatePool;
-      this.router.navigateByUrl('admin/adduser');
     }
   }
 

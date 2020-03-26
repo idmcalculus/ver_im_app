@@ -13,10 +13,14 @@
                     </div>  
                     <div class="float-right">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <a (click)="cancelPool()">
 =======
                         <a >
 >>>>>>> new
+=======
+                        <a (click)="cancelPool()">
+>>>>>>> new work
                             <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
                         </a>
                     </div> 
@@ -34,6 +38,7 @@
                                 </div>
                                 
                                 <div class="col-4">
+<<<<<<< HEAD
 <<<<<<< HEAD
                                     <div class="">
                                         <div class="category-header">
@@ -229,8 +234,16 @@
                             <div class="p-3">
                                 <h5 class="head">Add Pool</h5>
 =======
+=======
+                                    <div id="categoryTable_filter" class="dataTables_filter">
+                                        <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" #search (keyup)="filterTable('email', search.value)"
+                                        (blur)="filterTable('email', search.value)">
+                                    </div>
+                                    <div style="height: 50px; overflow-y: scroll;">
+>>>>>>> new work
                                         <li *ngFor="let user of users;"
                                         (click)="onSelect(user)">{{user.email}}</li>
+                                    </div>
                                 </div>
 
 >>>>>>> new push
@@ -241,7 +254,7 @@
                             <form>
                                 <div class="row p-3">
                                     
-                                    <div class="col-6 pr-5" >
+                                    <div class="col-6" >
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">First Name</h6>
                                             <div class="col-sm-9">
@@ -254,6 +267,24 @@
                                                 <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.email" name="email" readonly>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Last Name</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Phone Number</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6" >
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Investment Title</h6>
                                             <div class="col-sm-9">
@@ -272,28 +303,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Slot Taken</h6>
-                                            <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow">
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="col-6 pr-5">
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Last Name</h6>
-                                            <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Phone Number</h6>
-                                            <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
-                                            </div>
-                                        </div>
-
+                                    <div class="col-6">
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Investment Category</h6>
                                             <div class="col-sm-9">
@@ -307,7 +319,18 @@
                                                 <input type="type" class="input-control shadow" placeholder="Automatically generated">
                                             </div>
                                         </div>
+                                    </div>
 
+                                    <div class="col-6" >
+                                        <div class="form-group row">
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Slot Taken</h6>
+                                            <div class="col-sm-9">
+                                                <input type="type" class="input-control shadow">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-9">
@@ -320,7 +343,7 @@
                                     <div class="col px-0">
                                         <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Add</button>
                                     </div>
-
+    
                                 </div>
                             </form>
                         </div>

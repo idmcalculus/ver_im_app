@@ -1,10 +1,15 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Report } from '../../models/Report';
 import { User } from 'src/app/shared/models/user';
+<<<<<<< HEAD
 import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute,Router} from '@angular/router';
 import { AdminService } from '../../../modules/admin/admin.service';
 import {InvestmentService} from '../../../modules/investment/investment.service'
+=======
+import { Router} from '@angular/router';
+import { AdminService } from '../../../modules/admin/admin.service';
+>>>>>>> new work
 import { UserService } from '../../../modules/user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
@@ -29,11 +34,16 @@ export class AddUserComponent implements OnInit {
   amount_paid:number;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   users:User[]=[];
   user:User = {email: '',};
 =======
   users:[User]
 >>>>>>> new push
+=======
+  users:User[]=[];
+  user:User = {email: '',};
+>>>>>>> new work
   selectedUser:User;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
@@ -42,7 +52,10 @@ export class AddUserComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
 
   constructor(
+<<<<<<< HEAD
     private route:ActivatedRoute,
+=======
+>>>>>>> new work
     private router:Router,
     private addUserService:addUserService,
     private toastrService: ToastrService,
@@ -50,7 +63,10 @@ export class AddUserComponent implements OnInit {
     private investmentService:InvestmentService,
     private adminService:AdminService,
     private userService:UserService,
+<<<<<<< HEAD
     private location: Location,
+=======
+>>>>>>> new work
   ) {
     this.route.params.subscribe(resp=>{
       this.poolId = resp.pool_id;
@@ -73,6 +89,8 @@ export class AddUserComponent implements OnInit {
 
   onSelect(user: User): void {
     this.selectedUser = user;
+    console.log(this.selectedUser);
+    
   }
 
   ngOnInit() {
@@ -137,6 +155,13 @@ export class AddUserComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
+=======
+  cancelPool() {
+    this.router.navigateByUrl('admin/pools/:id');
+  }
+
+>>>>>>> new work
   filterTable(filterType, filterValue: string) {
 
     if (!filterValue || filterValue === null) {
