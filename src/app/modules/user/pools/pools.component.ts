@@ -38,10 +38,10 @@ export class PoolsComponent implements OnInit {
   }
 
 
-  getPools(){
-    this.investmentService.getInvestments(false).subscribe(investments=>{
-      if(investments){
-        this.pools = investments.success.Data
+  getPools() {
+    this.investmentService.getInvestments(false).subscribe(investments => {
+      if (investments) {
+        this.pools = investments.success.Data;
         console.log(this.pools);
       }
     })
@@ -79,10 +79,17 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
+  calculateEstimate(returns, inv) {
+    const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
 }
 
+filterTable(filterType, filterValue: string) {
+
+}
+
+deleteUser() {
+
+}
 
 }

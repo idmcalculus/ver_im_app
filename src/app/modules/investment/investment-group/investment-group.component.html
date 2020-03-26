@@ -1,34 +1,53 @@
-<div class="card">
-  <div>
-    <form>
-      <div>
-      <label>
-        Investment Group Name
-        <select>
-          <option><img src="src/assets/images/icon/icons/Add-icon.png">Add Investment Group</option>
-        </select>
-      </label>
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body category">
+                  <div class="row">
+                    <div class="card">
+                      <div class="card-title">
+                        <p><i class="fa fa-pencil-alt"></i>&nbsp; &nbsp; Edit Investment Group</p>
+                        <hr>
+                      </div>
+                      <br>
+                      <div class="form-group">
+                          <div class="investment-grp-name">
+                            <mat-form-field>
+                              <mat-label>Investment Group Name</mat-label>
+                                <mat-select placeholder="{{investmentGroupName}}">
+                                  <mat-option>{{investmentGroupName}}</mat-option>
+                                  <mat-option><button class="mat-option-button" (click)="openModal()"><i class="fas fa-plus"></i> &nbsp; Add Investment Group</button></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="investments">
+                            <mat-form-field>
+                              <mat-label>Investments</mat-label>
+                                <mat-select multiple placeholder="{{selected}}" [(value)]="selected" [formControl]="investmentGroups">
+                                  <mat-select-trigger>
+                                    {{investmentGroups.value ? investmentGroups.value[0] : ''}}
+                                    <span *ngIf="investmentGroups.value?.length > 1" class="investmentGroups">
+                                      (+{{investmentGroups.value.length - 1}} {{investmentGroups.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                  </mat-select-trigger>
+                                  <mat-option *ngFor="let investment of investments;let i = index;" value="{{investment.title}}">{{investment.title}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                          </div>
+                          <div class="status">
+                            <mat-form-field color="primary">
+                              <mat-label>Status</mat-label>
+                                <mat-select placeholder="{{selected}}">
+                                  <mat-option value="Enable">Enable</mat-option>
+                                  <mat-option value="Disable">Disable</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
       </div>
-      <div>
-      <label>
-        Investments
-        <select class="mdb-select md-form" multiple>
-          <option>Transport Portfolio - 50000</option>
-          <option>Mass Transit (Transport) Portfolio - 750000</option>
-          <option>Mass Transit (Transport) Portfolio - 100000</option>
-          <option>Agriculture Portfolio - 750000</option>
-        </select>
-      </label>
-      </div>
-      <div>
-      <label>
-        Status
-        <select>
-          <option>Enable</option>
-          <option>Disable</option>
-        </select>
-      </label>
-      </div>
-    </form>
   </div>
 </div>

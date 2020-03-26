@@ -20,6 +20,8 @@ import {SearchCustomerComponent} from './manage-customers/search-customer/search
 import { AddCustomerComponent } from './manage-customers/add-customer/add_customer.component';
 import { ViewCustomerComponent } from './manage-customers/view-customer/view_customer.component';
 import { EditCustomerComponent } from './manage-customers/edit-customer/edit_customer.component';
+import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
+
 
 
 
@@ -63,6 +65,7 @@ const userRoutes: Routes = [
             }
           ] },
           { path: 'manage-category', component: ManageCategoryComponent},
+          { path: 'investment-group', component: InvestmentGroupComponent},
           { path: 'chat', component: ChatComponent},
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },

@@ -19,6 +19,15 @@ h3, h4, p {
     border-radius: 4px;
 } */
 
+mat-dialog-container#modal-component {
+    margin: 40px 0;
+	padding: 40px 0;
+    border: 1px solid #262626;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+}
+
 .pcoded-wrapper,.pcoded-main-container{
     background-color: #e4e4e4 !important;
 }
