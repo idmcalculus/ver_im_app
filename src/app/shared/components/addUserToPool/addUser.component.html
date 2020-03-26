@@ -40,6 +40,9 @@
                                 <div class="col-4">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cleaning up
                                     <div class="">
                                         <div class="category-header">
                                             <input type="text" class="input-control shadow" placeholder="Search by Email" name="search" #search (keyup)="filterTable('email', search.value)"
@@ -52,6 +55,7 @@
                                                 (click)="onSelect(user)">{{user.email}}</li> 
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                     </div>
                                 </div>
 
@@ -243,6 +247,8 @@
 >>>>>>> new work
                                         <li *ngFor="let user of users;"
                                         (click)="onSelect(user)">{{user.email}}</li>
+=======
+>>>>>>> cleaning up
                                     </div>
                                 </div>
 
@@ -325,7 +331,8 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Slot Taken</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
+                                                id="slotNum">
                                             </div>
                                         </div>
                                     </div>
@@ -334,14 +341,14 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated">
+                                                <input type="type" class="input-control shadow" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
                                             </div>
                                         </div>
                                     </div>
                                         
                                         
                                     <div class="col px-0">
-                                        <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Add</button>
+                                        <button type="submit" (click)="modalSubmitted()" class="btn btn-primary btn-sm px-5 float-right">Add</button>
                                     </div>
     
                                 </div>
@@ -349,7 +356,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12">
                         <div class="modal-body">
                             <form>
@@ -394,10 +401,14 @@
                         </div>
                     </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                 </form>
 >>>>>>> addUser
 =======
                 </div>
+=======
+                </div> -->
+>>>>>>> cleaning up
                 
 >>>>>>> new
             </div>

@@ -261,11 +261,29 @@ export class PoolDetailComponent implements OnInit {
 =======
 >>>>>>> new
 
+<<<<<<< HEAD
 >>>>>>> new
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
 >>>>>>> addUser
+=======
+  divisorFunc (period) {
+    if (period === "Weekly") {
+      return 48;
+    } else if (period === "Monthly") {
+      return 12;
+    }
+  };
+
+  calculateEstimate(){
+    const cost = this.investment_amount
+    const investment = this.expected_return/100 
+    const divisor = this.divisorFunc(this.period)
+
+    const estimate = (cost * investment) / divisor
+    this.returns = estimate.toFixed(2)
+>>>>>>> cleaning up
   }
 
 }
