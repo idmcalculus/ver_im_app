@@ -75,9 +75,13 @@ export class AddUserComponent implements OnInit {
     private adminService:AdminService,
     private userService:UserService,
 <<<<<<< HEAD
+<<<<<<< HEAD
     private location: Location,
 =======
 >>>>>>> new work
+=======
+    private location: Location,
+>>>>>>> Created Add User to Pool
   ) {
     this.route.params.subscribe(resp=>{
       this.poolId = resp.pool_id;
@@ -99,6 +103,10 @@ export class AddUserComponent implements OnInit {
     
 =======
 >>>>>>> cleaning up
+  }
+
+  cancelPool() {
+    this.location.back()
   }
 
   onSelect(user: User): void {
@@ -170,12 +178,15 @@ export class AddUserComponent implements OnInit {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   cancelPool() {
     this.router.navigateByUrl('admin/.poolId');
   }
 
 >>>>>>> new work
+=======
+>>>>>>> Created Add User to Pool
   filterTable(filterType, filterValue: string) {
 
     if (!filterValue || filterValue === null) {
