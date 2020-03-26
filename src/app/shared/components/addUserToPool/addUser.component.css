@@ -51,3 +51,30 @@ h6 {
     font-size: 12px;
     font-weight: 600;
 }
+
+.category-header {
+    display: flex;
+    font-weight: bold;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-color: #221f72;
+    border-width: 1.5px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.category-body .row1 {
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 0.5px;
+    border-bottom-color: #221F72;
+    margin: 0px;
+    padding: 0px;
+}

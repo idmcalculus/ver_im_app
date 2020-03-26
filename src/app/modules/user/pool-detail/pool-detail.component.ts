@@ -26,7 +26,12 @@ export class PoolDetailComponent implements OnInit {
   isLoading:boolean=true;
   selectedUser:User;
   loggedInUser:User;
-  userSubscription:Subscription
+  userSubscription:Subscription;
+  
+  expected_return: number;
+  investment_amount: number;
+  period: string;
+  returns: string;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
@@ -230,9 +235,21 @@ export class PoolDetailComponent implements OnInit {
   }
 
 
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
+  divisorFunc (period) {
+    if (period === "Weekly") {
+      return 48;
+    } else if (period === "Monthly") {
+      return 12;
+    }
+  };
+
+  calculateEstimate(){
+    const cost = this.investment_amount
+    const investment = this.expected_return/100 
+    const divisor = this.divisorFunc(this.period)
+
+    const estimate = (cost * investment) / divisor
+    this.returns = estimate.toFixed(2)
   }
 
 }
