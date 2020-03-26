@@ -27,28 +27,28 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">ID</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" placeholder="00010" [(ngModel)]="data.name">
+                                                <input type="type" class="input-control shadow" placeholder="000" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Title</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
+                                                <input type="type" class="input-control shadow" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Category</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow" [(ngModel)]="data.name">
-                                                    <option value="1"></option>
-                                                    <option value="2"></option>
+                                                <select required [(ngModel)]="category" name="category" class="custom-select custom-select-sm">
+                                                    <option value="" ></option>
+                                                    <option *ngFor="let category of categories;" [ngValue]="category.category_name">{{category.category_name}}</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Portfolio</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow" [(ngModel)]="data.name">
+                                                <select class="input-control shadow" required >
                                                     <option value="1">based on the selected category</option>
                                                     <option value="2">Yearly</option>
                                                 </select>
@@ -57,28 +57,28 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Investors</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
+                                                <input type="type" class="input-control shadow" name="investors" id="investors" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Tenure</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
+                                                <input type="type" class="input-control shadow" name="tenure" id="tenure" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Cost</h6>
                                             <div class="col-sm-10">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="data.name">
+                                                <input type="number" class="input-control shadow" required name="pricing" id="pricing" [(ngModel)]="investment_amount">
                                             </div>
                                         </div>
                                         
                                         <div class="form-group row">
                                             <h6 class="col-sm-2 pr-0 col-form-label">Payback</h6>
                                             <div class="col-sm-10">
-                                                <select class="input-control shadow" [(ngModel)]="data.name">
-                                                    <option value="1">Monthly</option>
-                                                    <option value="2">Yearly</option>
+                                                <select class="input-control shadow" name="period" [(ngModel)]="period" (change)="calculateEstimate()" id="period">
+                                                    <option value="Weekly">Weekly</option>
+                                                    <option value="Monthly">Monthly</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@
                                                 <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 130px;">
                                                 <div class="upload-btn-wrapper pt-1">
                                                     <button class="btn btn-block btn-primary">Click to Upload image</button>
-                                                    <input type="file" name="myfile" [(ngModel)]="data.name"/>
+                                                    <input type="file" id="upload-image" accept="image/*" (change)="changeListener($event)"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,21 +98,21 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">Show to Public</h6>
                                             <div class="col-sm-9">
-                                                <input class="mt-2" type="checkbox" [(ngModel)]="data.name">
+                                                <input class="mt-2" type="checkbox">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-3 pr-0 col-form-label">ROI</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="" [(ngModel)]="data.name">
+                                                <input type="number" class="input-control shadow" required name="roi" id="roi" placeholder="" [(ngModel)]="expected_return">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
+                                            <h6 class="col-sm-3 pr-0 col-form-label">Return</h6>
                                             <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated" [(ngModel)]="data.name">
+                                                <input type="type" class="input-control shadow" placeholder="Automatically generated" value="" name="returns" [(ngModel)]="returns">
                                             </div>
                                         </div>
                                     </div>
@@ -121,12 +121,12 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-1 pr-0 col-form-label">Description</h6>
                                             <div class="col-sm-11">
-                                                <textarea class="input-control shadow" rows="3" [(ngModel)]="data.name"></textarea>
+                                                <textarea class="input-control shadow" rows="3"></textarea>
                                             </div>
                                         </div>
                                         
                                         <div class="col px-0">
-                                            <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Add</button>
+                                            <button type="submit"  class="btn btn-primary btn-sm px-5 float-right">Add</button>
                                         </div>
                                     </div>
 
@@ -144,4 +144,4 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <!-- <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
-<app-pool-addUser [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser> -->
+<app-modalData-addUser [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" [modalId]="modalData?.investment?.id" (submit)="callBack($event)"></app-modalData-addUser> -->

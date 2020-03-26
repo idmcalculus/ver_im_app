@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
-  pool:Investment = {title: '',  };
+  pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
   masterSelected:boolean;
   checklist:any;

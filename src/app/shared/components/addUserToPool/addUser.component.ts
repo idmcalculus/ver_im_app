@@ -1,7 +1,9 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Report } from '../../models/Report';
 import { User } from 'src/app/shared/models/user';
+import { Router} from '@angular/router';
 import { AdminService } from '../../../modules/admin/admin.service';
+import { UserService } from '../../../modules/user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import {addUserService} from './addUser.service';
@@ -21,7 +23,8 @@ export class AddUserComponent implements OnInit {
   user_email:string='';
   amount_paid:number;
 
-  users:[User]
+  users:User[]=[];
+  user:User = {email: '',};
   selectedUser:User;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
@@ -30,10 +33,12 @@ export class AddUserComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
 
   constructor(
+    private router:Router,
     private addUserService:addUserService,
     private toastrService: ToastrService,
     private dynamicScrLoader:DynamicScriptLoaderService,
     private adminService:AdminService,
+    private userService:UserService,
   ) {
 
 
@@ -41,9 +46,13 @@ export class AddUserComponent implements OnInit {
 
   onSelect(user: User): void {
     this.selectedUser = user;
+    console.log(this.selectedUser);
+    
   }
 
   ngOnInit() {
+    this.selectedUser = this.user
+
     this.adminService.getUsers().subscribe(resp=>{
       if(resp && resp.success){
         this.users = resp.success.Data;
@@ -76,6 +85,35 @@ export class AddUserComponent implements OnInit {
         this.modalButtonTitle='add User';
       }
     })
+  }
+
+  getUsers() {
+    this.isLoading = true;
+    this.userService.getUsers().subscribe(resp => {
+      if (resp && resp.success) {
+        this.users = resp.success.Data;
+      }
+      this.isLoading = false;
+    });
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/pools/:id');
+  }
+
+  filterTable(filterType, filterValue: string) {
+
+    if (!filterValue || filterValue === null) {
+      return this.getUsers();
+    } else {
+        const filtered = this.users.filter(user => {
+          if (user[filterType] !== null) {
+            return user[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.users = filtered;
+      }
   }
 
 }
