@@ -50,9 +50,9 @@
                                         </div>
 
                                         <div class="category-body">
-                                            <div class=" p-2" style="height: 50px; overflow: hidden;">
-                                                <li *ngFor="let user of users;"
-                                                (click)="onSelect(user)">{{user.email}}</li> 
+                                            <div class=" p-2" style="height: 40px; overflow: hidden;">
+                                                <p *ngFor="let user of users;"
+                                                (click)="onSelect(user)">{{user.email}}</p> 
                                             </div>
                                         </div>
 <<<<<<< HEAD
@@ -341,7 +341,7 @@
                                     </div>
                                         
                                         
-                                    <div class="col px-0">
+                                    <div class="col">
                                         <button type="submit" (click)="modalSubmitted()" class="btn btn-primary btn-sm px-5 float-right">Add</button>
                                     </div>
     

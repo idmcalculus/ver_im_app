@@ -117,7 +117,6 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.selectedUser = this.user
-
     this.adminService.getUsers().subscribe(resp=>{
       if(resp && resp.success){
         this.users = resp.success.Data;
@@ -151,9 +150,10 @@ export class AddUserComponent implements OnInit {
     const data = {
       user_email:this.user_email,
       number_of_pools:this.number_of_pools,
-      payment_reference:this.reference,
+      investment_id:this.modalId,
       amount_paid:this.amount_paid
     }
+    console.log(typeof this.modalId);
     this.adminService.addUserToPool(data).subscribe(resp=>{
       if(resp && resp.success){
         this.modalButtonTitle='add User';
