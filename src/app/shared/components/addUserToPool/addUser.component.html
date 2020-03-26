@@ -45,29 +45,29 @@
                                     
                                     <div class="col-6" >
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">First Name</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">First Name</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.first_name" name="first" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Email</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Email</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.email" name="email" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Last Name</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Last Name</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Phone Number</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Phone Number</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
                                             </div>
                                         </div>
@@ -75,45 +75,39 @@
 
                                     <div class="col-6" >
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Investment Title</h6>
-                                            <div class="col-sm-9">
-                                                <select class="input-control shadow">
-                                                    <option value="1"></option>
-                                                    <option value="2"></option>
-                                                </select>
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Investment Title</h6>
+                                            <div class="col-sm-8">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.title" name="Investment title" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
-                                            <div class="col-sm-9">
-                                                <select class="input-control shadow">
-                                                    <option value="1">based on the selected category</option>
-                                                    <option value="2">Yearly</option>
-                                                </select>
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Cost</h6>
+                                            <div class="col-sm-8">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.investment_amount" name="cost" readonly>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-6">
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Investment Category</h6>
-                                            <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Investment Category</h6>
+                                            <div class="col-sm-8">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.category_id" name="category" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
-                                            <div class="col-sm-9">
-                                                <input type="type" class="input-control shadow" placeholder="Automatically generated">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Investors</h6>
+                                            <div class="col-sm-8">
+                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.num_of_pools_taken" name="investor" readonly>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-6" >
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Slot Taken</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
                                                 id="slotNum">
                                             </div>
@@ -122,8 +116,8 @@
 
                                     <div class="col-6">
                                         <div class="form-group row">
-                                            <h6 class="col-sm-3 pr-0 col-form-label">Amount Paid</h6>
-                                            <div class="col-sm-9">
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
+                                            <div class="col-sm-8">
                                                 <input type="type" class="input-control shadow" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
                                             </div>
                                         </div>

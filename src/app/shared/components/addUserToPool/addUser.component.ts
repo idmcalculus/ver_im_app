@@ -10,6 +10,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import {addUserService} from './addUser.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pool-addUser',
@@ -45,6 +46,7 @@ export class AddUserComponent implements OnInit {
     private investmentService:InvestmentService,
     private adminService:AdminService,
     private userService:UserService,
+    private location: Location,
   ) {
     this.route.params.subscribe(resp=>{
       this.poolId = resp.pool_id;
@@ -53,6 +55,10 @@ export class AddUserComponent implements OnInit {
       }
       this.fetchPool(String(this.poolId));
     })
+  }
+
+  cancelPool() {
+    this.location.back()
   }
 
   onSelect(user: User): void {
@@ -98,7 +104,6 @@ export class AddUserComponent implements OnInit {
       user_email:this.user_email,
       number_of_pools:this.number_of_pools,
       payment_reference:this.reference,
-      investment_id:this.modalId,
       amount_paid:this.amount_paid
     }
     this.adminService.addUserToPool(data).subscribe(resp=>{
@@ -122,10 +127,6 @@ export class AddUserComponent implements OnInit {
       }
       this.isLoading = false;
     });
-  }
-
-  cancelPool() {
-    this.router.navigateByUrl('admin/.poolId');
   }
 
   filterTable(filterType, filterValue: string) {
