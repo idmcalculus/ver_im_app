@@ -1,0 +1,43 @@
+#modal-content-wrapper {
+    width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	color: black;
+	margin: 40px 0;
+	padding: 40px 0;
+}
+
+#modal-content-wrapper > div {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+}
+
+#modal-content-wrapper input {
+	border: 1px solid black;
+}
+
+#modal-buttons {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: right;
+	justify-self: flex-end;
+	align-self: flex-end;
+	float: right;
+	font-size: large;
+}
+
+#modal-action-button {
+	margin-right: 20px;
+	padding-right: 20px;
+	background-color: #21BD46;
+	width: 100px
+}
+
+#modal-cancel-button {
+	background-color: #4e4e4e;
+	margin-right: 10px;
+	width: 100px;
+}

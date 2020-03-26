@@ -19,6 +19,7 @@ import { ChatComponent } from '../chat/chat.component';
 import { AddCustomerComponent } from './manage-customer/add-customer/add_customer.component';
 import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
+import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 
 
 
@@ -72,6 +73,7 @@ const userRoutes: Routes = [
             }
           ] },
           { path: 'manage-category', component: ManageCategoryComponent},
+          { path: 'investment-group', component: InvestmentGroupComponent},
           { path: 'chat', component: ChatComponent},
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
