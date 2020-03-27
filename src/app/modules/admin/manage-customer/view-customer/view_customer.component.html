@@ -131,7 +131,7 @@
                                 <span class="information">ROI {{user.roi}}</span>
                                 <span class="information">Expected Returns {{user.expected_returns}}</span>
                             </span>
-                
+
                             <span class="col-sm-2 text-center buttons">
                                 <a *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn btn-success">Activate User</a>
                                 <a *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn btn-danger">Deactivate User</a>
@@ -139,9 +139,9 @@
                             <span class="col-sm-2 text-center buttons">
                                 <a  (click)="deleteUser('')" class="btn btn-danger">Delete User</a>
                             </span>
-                        
+
                     </div>
-                    </div> 
+                    </div>
 
                 </div>
             </div>
