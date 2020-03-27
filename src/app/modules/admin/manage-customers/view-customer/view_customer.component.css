@@ -33,6 +33,20 @@ img {
 
 }
 
+.card .spacing{
+    margin-right: 3rem;
+
+}
+
+
+table .pending {
+    color: red;
+}
+
+table .success {
+    color:  green;
+}
+
 h5 {
     font-size: 0.80rem;
     letter-spacing: .04rem;
@@ -54,7 +68,12 @@ th {
 
 }
 
-.table-striped td th {
+.table-striped td {
+    font-size: bold;
+    text-align: center;
+}
+
+.table-striped th {
     font-size: bold;
     text-align: center;
 }

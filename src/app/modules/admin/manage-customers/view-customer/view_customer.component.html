@@ -128,9 +128,9 @@
                         <div class="col-7">
                             <span [ngStyle]="{'display': (i == '0') ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
-                                <span  class="information">  {{ investments?.investment_amount }}</span>
+                                <span  class="information spacing">  {{ investments?.investment_amount }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information">  {{investments?.category_id}}</span>
+                                <span  class="information spacing">  {{investments?.category_id}}</span>
                                 <span class="information">Expected Returns: </span>
                                 <span  class="information">  {{investments?.expected_return_amount}}</span>
                             </span>
@@ -172,7 +172,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Paid</td>
-                                                                    <td>{{investments?.category_id}}</td>
+                                                                    <td class="success">{{investments?.category_id}}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -190,7 +190,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Pending</td>
-                                                                    <td>{{investments?.category_id}}</td>
+                                                                    <td class="pending">{{investments?.category_id}}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -260,14 +260,14 @@
                                             <tbody>
                                             <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};
                                             index as i">
-                                                <td>{{i+1}}</td>
-                                                <td >{{investments.title}}</td>
-                                                <td >{{investments.expected_return_amount}}</td>
-                                                <td >{{investments.category_id}}</td>
-                                                <td>{{investments.category_id}}</td>
-                                                <td >{{investments.category_id}}</td>
-                                                <td >{{investments.category_id}}</td>
-                                                <td >{{investments.category_id}}</td>
+                                                <td  style="width: 5%">{{i+1}}</td>
+                                                <td style="width: 15%" >{{investments.title}}</td>
+                                                <td  style="width: 15%">{{investments.expected_return_amount}}</td>
+                                                <td  style="width: 15%">{{investments.category_id}}</td>
+                                                <td style="width: 10%">{{investments.category_id}}</td>
+                                                <td  style="width: 10%">{{investments.category_id}}</td>
+                                                <td  style="width: 15%">{{investments.category_id}}</td>
+                                                <td  style="width: 10%">{{investments.category_id}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -301,23 +301,23 @@
                                                 <th style="width: 10%">Period</th>
                                                 <th style="width: 10%">Amount</th>
                                                 <th style="width: 10%">Status</th>
-                                                <th>Date Added</th>
+                                                <th style="width: 10%">Date Added</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                                 <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};
                                                 index as i">
-                                                    <td> {{i+1}}</td>
-                                                    <td >{{investments.title}}</td>
-                                                    <td >{{investments.category_id}}</td>
-                                                    <td >{{investments.category_id}}</td>
-                                                    <td >{{investments.num_of_pools_taken}}</td>
-                                                    <td >{{investments.duration}}</td>
-                                                    <td >{{investments.category_id}}</td>
-                                                    <td >{{investments.category_id}}</td>
-                                                    <td >{{investments.investment_amount}}</td>
-                                                    <td >{{investments.category_id}}</td>
-                                                    <td >{{investments.created_at}}</td>
+                                                    <td style="width: 5%"> {{i+1}}</td>
+                                                    <td style="width: 15%">{{investments.title}}</td>
+                                                    <td style="width: 10%" >{{investments.category_id}}</td>
+                                                    <td style="width: 10%" >{{investments.category_id}}</td>
+                                                    <td style="width: 10%">{{investments.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{investments.duration}}</td>
+                                                    <td style="width: 10%">{{investments.category_id}}</td>
+                                                    <td style="width: 10%">{{investments.category_id}}</td>
+                                                    <td style="width: 10%">{{investments.investment_amount}}</td>
+                                                    <td style="width: 10%">{{investments.category_id}}</td>
+                                                    <td style="width: 10%">{{investments.created_at}}</td>
                                                 </tr>
                                             </tbody>
 

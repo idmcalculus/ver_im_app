@@ -37,7 +37,8 @@ export class ViewCustomerComponent implements OnInit {
           $('#myCarousel').on('slide.bs.carousel', function (e) {
             const to = e.to;
             $('.investment-card').hide();
-            document.getElementsByClassName('investment-card')[Number(to)].style.display = 'block'
+            let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
+            element.style.display = 'block'
           })
 
     }
