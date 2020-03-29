@@ -180,7 +180,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" class="btn-update-customer" value="UPDATE" data-toggle="modal" data-target="#confirmAction">
                                                         </div>
                                                     </div>
@@ -200,7 +200,7 @@
                                                          Kindly confirm if you want to go ahead with the desired changes?
                                                         </div>
                                                         <div class="modal-footer">
-                                                        <button type="button" (click)="TabControl()" class="next btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="next btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
@@ -263,7 +263,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" data-toggle="modal" data-target="#confirmBank" class="btn-update-customer" value="UPDATE">
                                                         </div>
                                                     </div>
@@ -283,7 +283,7 @@
                                                             Kindly confirm if you want to go ahead with the desired changes?
                                                         </div>
                                                         <div class="modal-footer">
-                                                        <button type="button" (click)="TabControl()" class="next btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  class="next btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
@@ -333,7 +333,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" data-toggle="modal" data-target="#confirmPreference" class=" btn-update-customer" value="UPDATE">
                                                         </div>
                                                     </div>
@@ -352,7 +352,7 @@
                                                             Kindly confirm if you want to go ahead with the desired changes?
                                                         </div>
                                                         <div class="modal-footer">
-                                                        <button type="button" (click)="cancelProfile()" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="next btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>

@@ -5,6 +5,7 @@ import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/
 import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-customers',
@@ -18,30 +19,38 @@ export class ViewCustomerComponent implements OnInit {
     investments: Investment;
     p: number = 1;
     userInvestment: Investment[];
-    isLoading;
+    FilteredInvestment: Investment[];
+    isLoading: boolean;
     constructor(
       private searchCustomer: SearchCustomerComponent,
       private investmentService: InvestmentService,
       private userService: UserService,
-      private toastrService: ToastrService
+      private toastrService: ToastrService,
+      private location: Location
       ) { }
 
     ngOnInit() {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.investment_amount == 50000);
             }
-            this.isLoading=false;
+            this.isLoading = false;
           })
 
           $('#myCarousel').on('slide.bs.carousel', function (e) {
             const to = e.to;
             $('.investment-card').hide();
             let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-            element.style.display = 'block'
+            element.style.display = 'block';
+
+            $('#investmentTable').find('> tbody > tr').hide();
+            const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
+            row.style.display = 'block';
           })
 
     }
+
 
     updateUser(status: string) {
       if (status) {

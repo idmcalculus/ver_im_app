@@ -5,6 +5,7 @@ import { User } from 'src/app/shared/models/user';
 import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
 import { UserService } from 'src/app/modules/user/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -33,7 +34,9 @@ export class AddCustomerComponent implements OnInit {
     constructor(private userService: UserService,
                 private toastrService: ToastrService,
                 private router: Router,
-                private signUpService: SignUpService
+                private signUpService: SignUpService,
+                private location: Location
+
       ) {
        this.getBankList();
 
@@ -64,6 +67,7 @@ TabControl(){
         }
     });
 }
+
 
 cancelProfile() {
         this.isSubmitting = false;
