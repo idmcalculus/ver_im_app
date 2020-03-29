@@ -17,10 +17,10 @@ let allInvestments = [];
 export class InvestmentComponent implements OnInit {
 
 
-    isLoading: boolean = true;
+    isLoading = true;
     investments: any = [];
     categories: any = [];
-    selectedCategory: string = '0';
+    selectedCategory = '0';
 
     transaction: Transaction;
 
@@ -39,11 +39,11 @@ export class InvestmentComponent implements OnInit {
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
-            var investmentArray = [];
-            
+            let investmentArray = [];
+
             if (investments) {
                 investmentArray = investments.success.Data;
-                var cnt = 0;
+                let cnt = 0;
                 investmentArray.forEach(element => {
                     if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
                         this.investments[cnt] = element;
@@ -53,10 +53,10 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-            console.log(investments,investmentArray,this.investments,allInvestments);
-            var categoryName = this.activatedRoute.snapshot.params['category'];
+            console.log(investments, investmentArray, this.investments, allInvestments);
+            let categoryName = this.activatedRoute.snapshot.params.category;
             if (categoryName) {
-                var category = this.categories.filter(a1 => {
+                let category = this.categories.filter(a1 => {
                     return a1.category_name.trim() == categoryName.trim();
                 });
                 if (category && category.length > 0) {
@@ -105,8 +105,8 @@ export class InvestmentComponent implements OnInit {
         }
     }
 
-    calculateEstimate(returns,inv){
-        const estimate = (((returns*12) - inv)/inv) * 100;
+    calculateEstimate(returns, inv) {
+        const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
 
