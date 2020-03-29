@@ -71,24 +71,35 @@ th {
 
 .table-striped td {
     font-size: bold;
-    text-align: justify;
+    text-align: center;
+}
+
+.table-striped th {
+    font-size: bold;
+    text-align: center;
 }
 
 
 .table-striped span {
     font-size: 0.80rem;
-    letter-spacing: .04rem;
+    letter-spacing: .05rem;
     font-family: roboto;
     font-weight: 900;
     cursor: pointer;
     color: #221F72;
-    padding-right: 3rem;
+    padding-right: 3.5rem;
+    text-align: center;
+}
+
+.closure{
+    margin-right: 2rem;
+
 }
 
 
 #investmentTable tbody td {
-    padding-right: 3.5rem;
-    text-align: justify;
+    padding-right: 3rem;
+    text-align: center;
 }
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
-import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
 import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
@@ -21,9 +20,8 @@ export class ViewCustomerComponent implements OnInit {
     FilteredInvestment: Investment[];
     isLoading: boolean;
     constructor(
-      private searchCustomer: SearchCustomerComponent,
-      private userService: UserService,
       private investmentService: InvestmentService,
+      private userService: UserService,
       private toastrService: ToastrService,
       private location: Location
       ) { }
@@ -51,16 +49,24 @@ export class ViewCustomerComponent implements OnInit {
     }
 
 
-    updateUser(status: string) {
-      if (status) {
-        this.searchCustomer.updateUser(this.user, 'enable');
-        this.user.email_is_verified = 1;
-      } else {
-        this.searchCustomer.updateUser(this.user, 'disable');
-        this.user.email_is_verified = 0;
-      }
+    updateUser(user, operation) {
+        if (operation == 'enable') {
+          this.userService.activateUser(user).subscribe(resp => {
+            if (resp && resp.success) {
+              // alert(resp.success.Message)
+              // this.users[userIndex].email_is_verified=1
+            }
+          })
+        }else{
+          this.userService.deactivateUser(user).subscribe(resp=>{
+            if(resp && resp.success){
+              // alert(resp.success.Message)
+              // this.users[userIndex].email_is_verified=0
+            }
+          });
+        }
 
-    }
+      }
 
     delete (user: User) {
         this.userService.deleteUser(this.user).subscribe(resp => {
