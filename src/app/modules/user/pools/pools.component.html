@@ -1,4 +1,4 @@
-<div *ngIf="!selectedUser" class="pcoded-content">
+<div class="pcoded-content">
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
@@ -87,7 +87,7 @@
                                                 <td><input type="checkbox"></td>
                                                 <td>{{pool.id}}</td>
                                                 <td >{{pool.title}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{getCategoryName(pool.category_id)}}</td>
                                                 <td >{{pool.max_num_of_slots}}( {{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td >{{pool.duration}} months
 
