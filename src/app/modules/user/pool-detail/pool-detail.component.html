@@ -33,7 +33,7 @@
                                                 <div class="row p-0">
                                                     <div class="col-md-8"><h5>Details</h5></div>
                                                     <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='0' " (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='0' && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken) " (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
                                                             data-target="#managePlanModal"
                                                             class="btn btn-add plus-btn float-right"><span><i
                                                                 class="fa fa-edit"></i></span></a>
@@ -106,7 +106,7 @@
                                                 <div class="row p-0">
                                                     <div class="col-md-8"><h5>Profile</h5></div>
                                                     <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="addUser('create',null)" href="#" data-toggle="modal"
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken)" (click)="addUser('create',null)" href="#" data-toggle="modal"
                                                         data-target="#addUserModal"
                                                         class="btn btn-add plus-btn float-right"><span><i
                                                                 class="fa fa-plus"></i></span></a>

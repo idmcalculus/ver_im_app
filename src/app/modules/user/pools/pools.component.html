@@ -12,7 +12,7 @@
                             <a>
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a (click)="deleteUser(user)" id="delCat">
+                            <a (click)="deleteUser()" id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -87,7 +87,7 @@
                                                 <td><input type="checkbox"></td>
                                                 <td>{{pool.id}}</td>
                                                 <td >{{pool.title}}</td>
-                                                <td >{{pool.category_id}}</td>
+                                                <td >{{getCategoryName(pool.category_id)}}</td>
                                                 <td >{{pool.max_num_of_slots}}( {{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td >{{pool.duration}} months
 

@@ -82,6 +82,7 @@ export class UserService {
     &first_name=${user.first_name}&last_name=${user.last_name}
     &user_category=${user.user_category}
     &average_monthly_income=${user.average_monthly_income}
+    &phone_number=${user.phone_number}
     &id=${user.id}`, null);
   }
 }
