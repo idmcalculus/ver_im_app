@@ -14,6 +14,7 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
+  categories:any []
 
   constructor(
     private authService:AppAuthService,
@@ -43,17 +44,32 @@ export class PoolsComponent implements OnInit {
       if(investments){
         this.pools = investments.success.Data
         console.log(this.pools);
+        this.getCategories();
       }
-      this.isLoading=false;
     })
+  }
+
+  getCategories() {
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+        console.log(this.categories)
+      }
+      this.isLoading = false;
+    });
+  }
+
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == 21);
+    return res.category_name;
   }
 
   getUserPols(email){
     this.investmentService.getUserInvestments(email).subscribe(investments=>{
       if(investments){
-        this.pools = investments.success.Data
+        this.pools = investments.success.Data;
+        this.getCategories();
       }
-      this.isLoading=false;
     })
   }
 
@@ -68,7 +84,9 @@ export class PoolsComponent implements OnInit {
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
-}
+  }  
 
-  
+  filterTable(filterType, filterValue: string) {}
+
+  deleteUser(user){}
 }
