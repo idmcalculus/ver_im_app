@@ -10,10 +10,11 @@ import { UserService } from '../user.service';
   styleUrls: ['./pools.component.css']
 })
 export class PoolsComponent implements OnInit {
-  isLoading = true;
-  pools: Investment[] = [];
-  pool: Investment;
-  userType: string;
+  isLoading:boolean=true;
+  pools:Investment[]=[];
+  pool:Investment;
+  userType:string;
+  categories:any []
 
   constructor(
     private authService: AppAuthService,
@@ -42,18 +43,33 @@ export class PoolsComponent implements OnInit {
       if (investments) {
         this.pools = investments.success.Data;
         console.log(this.pools);
+        this.getCategories();
+      }
+    })
+  }
+
+  getCategories() {
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+        console.log(this.categories)
       }
       this.isLoading = false;
     });
   }
 
-  getUserPols(email) {
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == 21);
+    return res.category_name;
+  }
+
+  getUserPols(email){
+    this.investmentService.getUserInvestments(email).subscribe(investments=>{
+      if(investments){
         this.pools = investments.success.Data;
+        this.getCategories();
       }
-      this.isLoading = false;
-    });
+    })
   }
 
   setPlanOperation(investment) {
@@ -67,7 +83,9 @@ export class PoolsComponent implements OnInit {
   calculateEstimate(returns, inv) {
     const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
-}
+  }  
+
+  filterTable(filterType, filterValue: string) {}
 
 filterTable(filterType, filterValue: string) {
 
@@ -76,5 +94,4 @@ filterTable(filterType, filterValue: string) {
 deleteUser() {
 
 }
-
 }
