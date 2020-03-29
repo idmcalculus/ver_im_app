@@ -30,10 +30,11 @@ img {
 .col-7 .card {
     background-color:whitesmoke;
     justify-content: space-between;
+    padding: 1.25rem;
 
 }
 
-.card .spacing{
+.spacing{
     margin-right: 3rem;
 
 }
@@ -70,13 +71,26 @@ th {
 
 .table-striped td {
     font-size: bold;
-    text-align: center;
+    text-align: justify;
 }
 
-.table-striped th {
-    font-size: bold;
-    text-align: center;
+
+.table-striped span {
+    font-size: 0.80rem;
+    letter-spacing: .04rem;
+    font-family: roboto;
+    font-weight: 900;
+    cursor: pointer;
+    color: #221F72;
+    padding-right: 3rem;
 }
+
+
+#investmentTable tbody td {
+    padding-right: 3.5rem;
+    text-align: justify;
+}
+
 
 .highlighted {
     font-size: 0.80rem;

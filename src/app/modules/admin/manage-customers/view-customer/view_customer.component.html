@@ -12,7 +12,7 @@
                         <div class="col">
                             <div class="float-right">
                                 <a >
-                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" routerLink="./search" routerLinkActive="active">
+                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" routerLink='./search'>
                                 </a>
                             </div>
                         </div>
@@ -128,7 +128,7 @@
                         <div class="col-7">
                             <span [ngStyle]="{'display': (i == '0') ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
-                                <span  class="information spacing">  {{ investments?.investment_amount }}</span>
+                                <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
                                 <span class="information">ROI: </span>
                                 <span  class="information spacing">  {{investments?.category_id}}</span>
                                 <span class="information">Expected Returns: </span>
@@ -168,7 +168,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Payback</td>
-                                                                    <td>{{investments?.category_id}}</td>
+                                                                    <td> {{ investments?.num_of_pools_taken }} of  {{ investments?.max_num_of_slots }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Paid</td>
@@ -182,7 +182,7 @@
                                                             <table class="table reduced-font">
                                                                 <tr>
                                                                     <td  class="highlighted">Cost</td>
-                                                                    <td>{{investments?.category_id}}</td>
+                                                                    <td>{{investments?.investment_amount}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Last Payment</td>
@@ -220,11 +220,11 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
-                                                <a class="btn btn-outline-secondary carousel-control left" href="#myCarousel" data-slide="prev" title="go back">
-                                                    <i class="fa fa-lg fa-chevron-left"></i>
+                                                <a class="px-1 btn-outline-info carousel-control left" href="#myCarousel" data-slide="prev" title="back">
+                                                    <i class="fa fa-lg  fa-circle"></i>
                                                 </a>
-                                                <a class="btn btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="more">
-                                                    <i class="fa fa-lg fa-chevron-right"></i>
+                                                <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                    <i class="fa fa-lg fa-circle"></i>
                                                 </a>
                                             </div>
                                     </div>
@@ -243,30 +243,29 @@
 
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
-                                        <table class="table appTable table-striped nowrap">
+                                        <table id="investmentTable" class="table appTable table-striped nowrap">
                                             <thead>
                                             <tr>
-                                                <th style="width: 5%">S/N</th>
-                                                <th style="width: 15%">Investment Title</th>
-                                                <th style="width: 15%">Payback Frequency</th>
-                                                <th style="width: 15%">Amount Credited</th>
-                                                <th style="width: 10%">Yield Amount</th>
-                                                <th style="width: 10%">Balance</th>
-                                                <th style="width: 15%">Status</th>
-                                                <th style="width: 10%">Date Paid</th>
+                                                <span  style="width: 5%">S/N</span>
+                                                <span  style="width: 15%">Investment Title</span>
+                                                <span  style="width: 15%">Payback Frequency</span>
+                                                <span  style="width: 15%">Amount Credited</span>
+                                                <span class='spacing'  style="width: 15%">Yield Amount</span>
+                                                <span class='spacing' style="width: 10%">Balance</span>
+                                                <span class='spacing' style="width: 15%">Status</span>
+                                                <span  style="width: 10%">Date Paid</span>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};
-                                            index as i">
-                                                <td  style="width: 5%">{{i+1}}</td>
-                                                <td style="width: 15%" >{{investments.title}}</td>
-                                                <td  style="width: 15%">{{investments.expected_return_amount}}</td>
-                                                <td  style="width: 15%">{{investments.category_id}}</td>
+                                            <tr  [ngStyle]="{'display': (i == '0') ? 'block' : 'none'}" *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};index as i">
+                                                <td style="width: 5%">{{i+1}}</td>
+                                                <td style="width: 15%">{{investments.title}}</td>
+                                                <td style="width: 15%">{{investments.expected_return_period}}</td>
+                                                <td style="width: 15%">{{investments.expected_return_amount}}</td>
+                                                <td style="width: 15%">{{investments.category_id}}</td>
                                                 <td style="width: 10%">{{investments.category_id}}</td>
-                                                <td  style="width: 10%">{{investments.category_id}}</td>
-                                                <td  style="width: 15%">{{investments.category_id}}</td>
-                                                <td  style="width: 10%">{{investments.category_id}}</td>
+                                                <td style="width: 15%">{{investments.category_id}}</td>
+                                                <td style="width: 10%">{{investments.category_id}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -304,17 +303,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <tr  *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};
+                                                <tr  *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td style="width: 15%">{{investments.title}}</td>
                                                     <td style="width: 10%" >{{investments.category_id}}</td>
-                                                    <td style="width: 10%" >{{investments.category_id}}</td>
+                                                    <td style="width: 10%" >{{investments.investment_amount}}</td>
                                                     <td style="width: 10%">{{investments.num_of_pools_taken}}</td>
                                                     <td style="width: 10%">{{investments.duration}}</td>
                                                     <td style="width: 10%">{{investments.category_id}}</td>
-                                                    <td style="width: 10%">{{investments.category_id}}</td>
-                                                    <td style="width: 10%">{{investments.investment_amount}}</td>
+                                                    <td style="width: 10%">{{investments.expected_return_period}}</td>
+                                                    <td style="width: 10%">{{investments.investment_amount*investments.num_of_pools_taken}}</td>
                                                     <td style="width: 10%">{{investments.category_id}}</td>
                                                     <td style="width: 10%">{{investments.created_at}}</td>
                                                 </tr>

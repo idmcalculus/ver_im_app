@@ -29,8 +29,7 @@
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "src/assets/js/xpress.js",
-              "node_modules/jquery/dist/jquery.min.js"
+              "src/assets/js/xpress.js"
             ],
             "es5BrowserSupport": true
           },
