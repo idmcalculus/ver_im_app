@@ -41,8 +41,8 @@ const userRoutes: Routes = [
             children: [
               {path: '', component: SearchCustomerComponent},
               {path: 'new', component: AddCustomerComponent},
-              {path: ':id', component: ViewCustomerComponent },
-              {path: ':id/edit', component: EditCustomerComponent },
+              {path: 'view', component: ViewCustomerComponent },
+              {path: 'edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
             ]
             }
