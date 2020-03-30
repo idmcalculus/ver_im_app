@@ -14,73 +14,84 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment;
   userType:string;
+  categories:any []
 
   constructor(
-    private authService:AppAuthService,
-    private investmentService:InvestmentService,
-    private userService:UserService) {
-      let userpath = window.location.pathname;
-      if(userpath.includes('user')){
+    private authService: AppAuthService,
+    private investmentService: InvestmentService,
+    private userService: UserService) {
+      const userpath = window.location.pathname;
+      if (userpath.includes('user')) {
         this.userType = 'user';
-        this.authService.currentUser.subscribe(resp=>{
-          if(resp){
+        this.authService.currentUser.subscribe(resp => {
+          if (resp) {
             this.getUserPols(resp.email);
           }
-        })
-      }else{
+        });
+      } else {
         this.userType = 'admin';
         this.getPools();
       }
-
   }
 
   ngOnInit() {
   }
 
 
-  getPools(){
-    this.investmentService.getInvestments(false).subscribe(investments=>{
-      if(investments){
-        this.pools = investments.success.Data
+  getPools() {
+    this.investmentService.getInvestments(false).subscribe(investments => {
+      if (investments) {
+        this.pools = investments.success.Data;
         console.log(this.pools);
+        this.getCategories();
       }
-      this.isLoading=false;
     })
+  }
+
+  getCategories() {
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+        console.log(this.categories)
+      }
+      this.isLoading = false;
+    });
+  }
+
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == 21);
+    return res.category_name;
   }
 
   getUserPols(email){
     this.investmentService.getUserInvestments(email).subscribe(investments=>{
       if(investments){
-        this.pools = investments.success.Data
+        this.pools = investments.success.Data;
+        this.getCategories();
       }
-      this.isLoading=false;
     })
   }
 
-  setPlanOperation(investment){
+  setPlanOperation(investment) {
     this.authService.setCurrentPlanOperation(investment);
   }
 
-  setHeaderandFooter(){
+  setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
 
-  filterTable(filterType, filterValue: string) {
-
-    if (!filterValue || filterValue === null) {
-      return this.getPools();
-    } else {
-        const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== null) {
-            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
-          }
-        });
-        console.log(filtered);
-        this.pools = filtered;
-      }
+  calculateEstimate(returns, inv) {
+    const estimate = (((returns * 12) - inv) / inv) * 100;
+    return Math.ceil(estimate);
   }
 
-  deleteUser() {}
+  filterTable(filterType, filterValue: string) {}
 
+filterTable(filterType, filterValue: string) {
 
+}
+
+deleteUser() {
+
+}
 }
