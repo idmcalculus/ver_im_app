@@ -31,7 +31,7 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments){
               this.userInvestment = investments.success.Data
-              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.investment_amount == 50000);
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
             }
             this.isLoading = false;
           })

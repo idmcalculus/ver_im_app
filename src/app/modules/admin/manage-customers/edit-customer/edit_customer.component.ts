@@ -5,7 +5,6 @@ import { User } from 'src/app/shared/models/user';
 import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
 import { UserService } from 'src/app/modules/user/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { Location } from '@angular/common';
 
 
 @Component({
@@ -35,8 +34,7 @@ export class EditCustomerComponent implements OnInit {
   constructor(private userService: UserService,
               private toastrService: ToastrService,
               private searchCustomer: SearchCustomerComponent,
-              private router: Router,
-              private location: Location
+              private router: Router
    ) {
       this.getBankList();
    }
@@ -68,14 +66,14 @@ TabControl(){
 
 cancelProfile() {
         this.isSubmitting = false;
-        this.location.back();
+        this.router.navigateByUrl('admin/manage-customers');
     }
 
 updateProfile(user: User) {
     if (this.user.average_monthly_income === null) {
         this.user.average_monthly_income = '0';
     }
-    this.isSubmitting = this.userService.adminUpdateProfile(user).subscribe(resp => {
+    this.isSubmitting = this.userService.adminUpdateProfile(this.user).subscribe(resp => {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
         }
@@ -83,7 +81,7 @@ updateProfile(user: User) {
     }
 
 updatePreference(user: User) {
-    this.isSubmitting = this.userService.updatePreference(user).subscribe(resp => {
+    this.isSubmitting = this.userService.adminUpdatePreference(this.user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
             }
@@ -92,7 +90,7 @@ updatePreference(user: User) {
         }
 
 updateBankDetails(user: User) {
-    this.isSubmitting = this.userService.updateBankDetails(user).subscribe(resp => {
+    this.isSubmitting = this.userService.adminUpdateBankDetails(this.user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
             }
