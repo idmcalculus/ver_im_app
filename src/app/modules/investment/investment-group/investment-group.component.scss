@@ -1,0 +1,99 @@
+.pcoded-content {
+	margin: 40px 0;
+	padding: 40px 0;
+}
+.row {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+.card {
+	height: 400px;
+	width: 100%;
+}
+
+mat-form-field {
+	width: 100%;
+	display: flex;
+}
+
+.card-title {
+	margin: 10px;
+	padding: 10px;
+	font-size: 20px;
+}
+
+.card-title p {
+	font-size: 20px;
+}
+
+.card mat-label {
+	font-size: 16px;
+	margin: 10px;
+	padding: 10px;
+	color: black;
+	line-height: 3px;
+	width: 200px;
+}
+
+.card mat-select {
+	position: absolute;
+	left: 300px;
+	font-size: 14px;
+}
+
+.investmentGroups {
+	opacity: 0.75;
+	font-size: 0.75em;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.mat-option-button {
+	width: 100%;
+	cursor: pointer;
+	border: none;
+	text-align: left;
+}
+
+::ng-deep{
+	.mat-form-field-wrapper {
+		line-height: normal;
+		width: 300px;
+		height: 5em;
+	}
+
+	.mat-form-field-flex .mat-form-field-infix {
+		height: 3em;
+		color: black;
+	}
+
+	.mat-form-field-underline {
+		display: none;
+	}
+
+	.mat-select-panel {
+		max-height: 150px !important;
+		background-color: white;
+		color: grey;
+	  }
+
+	  .mat-form-field-hide-placeholder .mat-select-placeholder {
+		color: black !important;
+		-webkit-text-fill-color: inherit !important;
+		transition: none;
+		display: block;
+		font-size: 14px;
+	}
+
+	span.mat-option-text {
+		color: grey;
+	}
+
+	.mat-select-value {
+		color: black;
+	}
+}

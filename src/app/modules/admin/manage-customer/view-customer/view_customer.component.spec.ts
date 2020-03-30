@@ -1,3 +1,4 @@
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ViewCustomerComponent } from './view_customer.component';
 

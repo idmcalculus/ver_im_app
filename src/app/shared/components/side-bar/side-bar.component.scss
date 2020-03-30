@@ -4,7 +4,7 @@
     li > a {
         background-color: #221F72;
         font-size: 11px !important;
-        padding: 7px 10px 7px 20px !important;
+        padding: 11px 10px 11px 20px !important;
 
         &:after {
             float: right;
@@ -29,7 +29,7 @@
         a {
             background-color: #4F5FBE;
             .pcoded-micon {
-                padding-top: 17px;
+                padding-top: 2px;
             }
         }
         .pcoded-mtext {
@@ -80,7 +80,7 @@
 }
 
 .pcoded-item > li > a > .pcoded-micon {
-    padding-top: 11px;
+    padding-top: 2px;
 }
 
 .pcoded-navbar {
@@ -101,3 +101,71 @@ a.waves-effect.waves-dark:hover{
     border-left-width: 5px !important;
     border-color: #fbeca0 !important
 }
+
+
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Style the sidenav links and the dropdown button */
+  a, .dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    border-bottom-width: 0px !important;;
+  }
+
+  .pcoded-hasmenu{
+    .dropdown-container a{
+        background-color: #221F72;
+        font-size: 11px !important;
+        padding: 15px 10px 15px 20px !important;
+      }
+  }
+
+  /* On mouse-over */
+  a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Main content */
+  .main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+  }
+  
+  /* Add an active class to the active dropdown button */
+  .active {
+    background-color: green;
+    color: white;
+  }
+  
+  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+  .dropdown-container {
+    display: none;
+    padding: 0 !important;
+    width: 100%;
+  }
+  
+  /* Optional: Style the caret down icon */
+  .fa-caret-down {
+    float: right;
+    padding-right: 8px;
+  }
