@@ -85,7 +85,6 @@ export class PoolsComponent implements OnInit {
     return Math.ceil(estimate);
   }  
 
-  filterTable(filterType, filterValue: string) {}
 
 filterTable(filterType, filterValue: string) {
 
