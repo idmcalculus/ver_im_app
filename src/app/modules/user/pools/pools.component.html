@@ -97,6 +97,24 @@
                                         </div>
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
+                                            <p class="mr-3"><input type="checkbox"></p>
+                                            <p class="mr-3">{{pool.id}}</p>
+                                            <p class="col-3">{{pool.title}}</p>
+                                            <p class="col-1">{{getCategoryName(pool.category_id)}}</p>
+                                            <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p class="col-1">{{pool.duration}} Months</p>
+<<<<<<< HEAD
+                                            <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p class="col-1">{{pool.expected_return_period}}</p>
+=======
+                                        <div class="row1" *ngFor="let pool of pools;let i = index;">
+=======
+>>>>>>> Clean up
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
                                             <p class="mr-3"><input type="checkbox"></p>
                                             <p class="mr-3">{{pool.id}}</p>

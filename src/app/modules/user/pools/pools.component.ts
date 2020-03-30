@@ -21,8 +21,6 @@ export class PoolsComponent implements OnInit {
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
-  filteredPools = [];
-  searchValue = '';
 
   constructor(
     private authService: AppAuthService,
@@ -40,7 +38,7 @@ export class PoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getPools();
       }
-      this.getPools();
+      this.getCategories();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
