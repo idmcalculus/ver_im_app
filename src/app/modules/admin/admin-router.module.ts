@@ -37,18 +37,7 @@ const userRoutes: Routes = [
           { path: 'investments', component: PoolsComponent },
           { path: 'settings', component: UserSettingsComponent },
 
-          { path: 'manage-customer',
-            children: [
-            {path: '',
-            children: [
-              {path: '', component: ViewCustomerComponent},
-              {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
-            ]
-            }
-          ] },
-          { path: 'manage-customer',
+          { path: 'manage-customers',
             children: [
             {path: '',
             children: [

@@ -130,7 +130,7 @@
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information spacing">  {{investments?.category_id}}</span>
+                                <span  class="information spacing">  {{investments?.estimated_percentage_profit}}</span>
                                 <span class="information">Expected Returns: </span>
                                 <span  class="information">  {{investments?.expected_return_amount}}</span>
                             </span>
@@ -247,18 +247,18 @@
                                         <table id="investmentTable" class="table appTable table-striped nowrap">
                                             <thead>
                                             <tr>
-                                                <span  style="width: 5%">S/N</span>
-                                                <span  style="width: 15%">Investment Title</span>
-                                                <span  style="width: 15%">Payback Frequency</span>
-                                                <span  style="width: 15%">Amount Credited</span>
-                                                <span  class='closure'  style="width: 15%">Yield Amount</span>
-                                                <span class='closure' style="width: 10%">Balance</span>
-                                                <span class='closure' style="width: 15%">Status</span>
-                                                <span  style="width: 10%">Date Paid</span>
+                                                <th style="width: 5%">S/N</th>
+                                                <th style="width: 15%">Investment Title</th>
+                                                <th style="width: 15%">Payback Frequency</th>
+                                                <th style="width: 15%">Amount Credited</th>
+                                                <th style="width: 15%">Yield Amount</th>
+                                                <th style="width: 10%">Balance</th>
+                                                <th style="width: 15%">Status</th>
+                                                <th style="width: 10%">Date Paid</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr  [ngStyle]="{'display': (i == '0') ? 'block' : 'none'}" *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};index as i">
+                                            <tr [ngStyle]="{'display': (i == '0') ? 'contents' : 'none'}" *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};index as i">
                                                 <td style="width: 5%">{{i+1}}</td>
                                                 <td style="width: 15%">{{investments.title}}</td>
                                                 <td style="width: 15%">{{investments.expected_return_period}}</td>
@@ -303,8 +303,8 @@
                                                 <th style="width: 10%">Date Added</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr  *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
+                                            <tbody  *ngIf="!FilteredInvestment">
+                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td style="width: 15%">{{investments.title}}</td>
@@ -318,9 +318,14 @@
                                                     <td style="width: 10%">{{investments.category_id}}</td>
                                                     <td style="width: 10%">{{investments.created_at}}</td>
                                                 </tr>
+
                                             </tbody>
 
                                         </table>
+                                        <div *ngIf="FilteredInvestment" >
+                                               <p class='displayStatus'>"No record found, Investment(s) is not yet started or is still on-going..."</p>
+                                        </div>
+
                                         <div  class="col-12">
                                             <pagination-controls class="my_pagination" (pageChange)="p = $event"></pagination-controls>
                                         </div>

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { Location } from '@angular/common';
+import { Report } from 'src/app/shared/models/Report';
 
 @Component({
   selector: 'app-view-customers',
@@ -16,7 +17,9 @@ export class ViewCustomerComponent implements OnInit {
     _shown = true;
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
+    user_id: number;
     p: number = 1;
+    userReports: Report[];
     userInvestment: Investment[];
     FilteredInvestment: Investment[];
     isLoading: boolean;
@@ -32,9 +35,18 @@ export class ViewCustomerComponent implements OnInit {
             if(investments){
               this.userInvestment = investments.success.Data
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
+               console.log(this.userInvestment);
             }
             this.isLoading = false;
           })
+
+         // this.userService.getUserDashBoard(this.investments.id,this.user.email).subscribe(reports=>{
+         //   if(reports){
+         //     this.userReports = reports.success.Data
+         //      console.log(this.userReports);
+         //   }
+         //   this.isLoading = false;
+         // })
 
           $('#myCarousel').on('slide.bs.carousel', function (e) {
             const to = e.to;
@@ -44,7 +56,7 @@ export class ViewCustomerComponent implements OnInit {
 
             $('#investmentTable').find('> tbody > tr').hide();
             const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
-            row.style.display = 'block';
+            row.style.display = 'contents';
           })
 
     }
@@ -69,8 +81,9 @@ export class ViewCustomerComponent implements OnInit {
 
       }
 
-    delete (user: User) {
-        this.userService.deleteUser(user).subscribe(resp => {
+    delete (user_id) {
+        this.user_id = this.user?.id;
+        this.userService.deleteUser(user_id).subscribe(resp => {
           if (resp && resp.success) {
             this.toastrService.success('Details deleted succesfully');
           } else {
