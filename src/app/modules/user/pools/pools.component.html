@@ -23,6 +23,7 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
+
                                     <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
@@ -38,6 +39,7 @@
                                 <div class="form-group">
                                     <label class="h7">Category</label>
                                     <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
@@ -57,6 +59,7 @@
                                 <div class="form-group">
                                     <label class="h7">Status</label>
                                     <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+
                                 </div>
                             </div>
                         </div>
@@ -132,19 +135,21 @@
                                                     <th>Tenure</th>
                                                     <th>ROI</th>
                                                     <th>Payback</th>
-                                                    <th>Cost</th>
+                                                    <th style="font-size:15px;">Cost per slot</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
+
                                                 <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
                                                 <td>{{pool.id}}</td>
                                                 <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
                                                 <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td >{{pool.duration}} Months</td>
+
                                                 <td >{{pool.expected_return_amount}}</td>
                                                 <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
@@ -152,8 +157,10 @@
                                                 <ng-template #showThis>      
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
+
                                                 <td>
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -184,7 +191,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- <div class="pcoded-content">
 

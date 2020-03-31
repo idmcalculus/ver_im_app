@@ -16,113 +16,110 @@ import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-scri
   templateUrl: './admin.component.html'
 })
 export class AdminComponent implements OnInit {
-  user:User={email:'',password:'',user_category:'Admin'};
-  investment:Investment;
-  investments:[Investment];
-  categories:[];
-  modaltitle:string='Create Plan';
-  modalButtonTitle:string='';
-  modalData:Investment={};
-  callBack:any;
-  currentPlanOperation:Subscription
+  user: User = {email: '', password: '', user_category: 'Admin'};
+  investment: Investment;
+  investments: [Investment];
+  categories: [];
+  modaltitle = 'Create Plan';
+  modalButtonTitle = '';
+  modalData: Investment = {};
+  callBack: any;
+  currentPlanOperation: Subscription;
 
   constructor(
-    private authService:AppAuthService,
-    private router:Router,
-    private investmentService:InvestmentService,
-    private cloudinaryService:CloudinaryService,
-    private dynamicScriptLoader:DynamicScriptLoaderService
-    ) { 
+    private authService: AppAuthService,
+    private router: Router,
+    private investmentService: InvestmentService,
+    private cloudinaryService: CloudinaryService,
+    private dynamicScriptLoader: DynamicScriptLoaderService
+    ) {
       this.authService.setInProfileView(true);
-      this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal =>{
+      this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal => {
         this.setPlanModal(modal);
-    })
+    });
 
   }
 
   ngOnInit() {
     // this.loadScripts();
-    this.authService.validateSession().then(resp=>{
-      if(resp && resp.email){
+    this.authService.validateSession().then(resp => {
+      if (resp && resp.email) {
         this.user = resp;
         this.getCategories();
       }
-    })
+    });
   }
 
-  addInvestmnet(filledInvestment:Investment){
-    if(filledInvestment.title){
-      this.modalButtonTitle = 'submitting'
-      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp=>{
-        if(resp){
+  addInvestmnet(filledInvestment: Investment) {
+    if (filledInvestment.title) {
+      this.modalButtonTitle = 'submitting';
+      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp => {
+        if (resp) {
           filledInvestment.investment_image = resp;
-          this.investmentService.addInvestment(filledInvestment).subscribe(resp=>{
-            if(resp && resp.success){
-              // alert(resp.success.Message);  
-              window.location.href = 'admin/pools';      
-            }
-            this.modalButtonTitle = 'Create'
-          })
-        }
-      })
-    }
-  }
-
-  updateInvestment(filledInvestment:Investment){
-    this.investment = filledInvestment;
-    if(filledInvestment.title){
-      this.modalButtonTitle = 'submitting'
-      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp=>{
-        if(resp){
-          filledInvestment.investment_image = resp;
-          this.investmentService.updateInvestment(filledInvestment).subscribe(resp=>{
-            if(resp && resp.success){
+          this.investmentService.addInvestment(filledInvestment).subscribe(resp => {
+            if (resp && resp.success) {
               // alert(resp.success.Message);
-              this.modalData = this.investment = filledInvestment;    
+              window.location.href = 'admin/pools';
             }
-            this.modalButtonTitle = 'Update'
-          })
+            this.modalButtonTitle = 'Create';
+          });
         }
-      })
-      
+      });
     }
   }
 
-  getInvestments(){
+  updateInvestment(filledInvestment: Investment) {
+    this.investment = filledInvestment;
+    if (filledInvestment.title) {
+      this.modalButtonTitle = 'submitting';
+      this.cloudinaryService.upload(filledInvestment.investment_image).subscribe(resp => {
+        if (resp) {
+          filledInvestment.investment_image = resp;
+          this.investmentService.updateInvestment(filledInvestment).subscribe(resp => {
+            if (resp && resp.success) {
+              // alert(resp.success.Message);
+              this.modalData = this.investment = filledInvestment;
+            }
+            this.modalButtonTitle = 'Update';
+          });
+        }
+      });
+    }
+  }
+
+  getInvestments() {
 
   }
 
-  getInvestment(id:number){
+  getInvestment(id: number) {
 
   }
 
-  
-
-  getCategories(){
-    this.investmentService.getCategories().subscribe(categories=>{
-      if(categories && categories.success){
+  getCategories() {
+    this.investmentService.getCategories().subscribe(categories => {
+      if (categories && categories.success) {
         this.categories = categories.success.Data;
       }
-    })
+    });
   }
 
-  setPlanModal(modalData){
-    if(modalData){
-      this.modaltitle='Update Plan';
-      this.modalButtonTitle='Update';
-      this.modalData=modalData.investment;
-      this.callBack=this.updateInvestment;
-    }else{
-      this.modaltitle='Create Plan';
-      this.modalButtonTitle='Create';
-      this.modalData={};
-      this.callBack=this.addInvestmnet;
+  setPlanModal(modalData) {
+    if (modalData) {
+      this.modaltitle = 'Update Plan';
+      this.modalButtonTitle = 'Update';
+      this.modalData = modalData.investment;
+      this.callBack = this.updateInvestment;
+    } else {
+      this.modaltitle = 'Create Plan';
+      this.modalButtonTitle = 'Create';
+      this.modalData = {};
+      this.callBack = this.addInvestmnet;
     }
   }
 
   private loadScripts() {
-      this.dynamicScriptLoader.load('p-coded','v-layout',
-      'slimscroll','dash','platform','data-table','flat-pickr');
+      this.dynamicScriptLoader.load('p-coded', 'v-layout',
+      'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
   }
 
 }

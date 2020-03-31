@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { GoogleChartsModule } from 'angular-google-charts';
-import {ProgressBarModule} from "angular-progress-bar"
+import { ProgressBarModule } from 'angular-progress-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { Angular2PromiseButtonModule } from 'angular2-promise-buttons/dist';
@@ -31,7 +31,7 @@ import { AppAuthService } from './core/auth/auth.service';
 import { RouterGaurdService } from './core/router-gaurd/router-gaurd';
 import { HttpService } from './core/http/httpservice.service';
 import { CookieService } from 'ngx-cookie-service';
-import {cookieDetailsComponent} from './modules/cookie-details/cookie-details.component';
+import { cookieDetailsComponent } from './modules/cookie-details/cookie-details.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 import { httpInterceptorProviders } from './core/auth/index';
 import { AdminProfileComponent } from './modules/admin/admin-profile/admin-profile.component';
@@ -42,11 +42,16 @@ import { SocialLogin } from './shared/services/social-login-services';
 import { HowitworksComponent } from './pages/howitworks/howitworks.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { ContactusComponent } from './pages/contactus/faq.component';
-import { SearchService } from '../app/shared/services/search.service';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 // import { ChatComponent } from './modules/chat/chat.component';
 // import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 
@@ -82,6 +87,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         HowitworksComponent,
         FaqComponent,
         ContactusComponent,
+        ModalComponent,
         // ChatComponent,
         // ApplicantDetailsComponent
 
@@ -114,10 +120,15 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
             handleCurrentBtnOnly: false,
         }),
         CookieLawModule, // import Angular's CookieLaw modules
-        ProgressBarModule
+        ProgressBarModule,
         // HttpClientInMemoryWebApiModule.forRoot(
         //   InMemoryDataService, { dataEncapsulation: false }
         // )
+        MatButtonModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule
     ],
     providers: [
         RouterGaurdService,
@@ -127,11 +138,11 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         httpInterceptorProviders,
         CloudinaryService,
         DynamicScriptLoaderService,
-        SocialLogin,
-        SearchService
+        SocialLogin
     ],
     exports: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [ModalComponent]
 })
 
 

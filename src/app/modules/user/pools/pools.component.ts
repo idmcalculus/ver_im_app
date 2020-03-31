@@ -15,6 +15,7 @@ export class PoolsComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
+
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
@@ -29,20 +30,21 @@ export class PoolsComponent implements OnInit {
       let userpath = window.location.pathname;
       if(userpath.includes('user')){
         this.userType = 'user';
-        this.authService.currentUser.subscribe(resp=>{
-          if(resp){
+        this.authService.currentUser.subscribe(resp => {
+          if (resp) {
             this.getUserPols(resp.email);
           }
-        })
-      }else{
+        });
+      } else {
         this.userType = 'admin';
         this.getPools();
       }
+
       this.getPools();
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
@@ -75,29 +77,45 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments=>{
       if(investments){
         this.pools = investments.success.Data
+
       }
-      this.isLoading=false;
     })
+  }
+
+  getCategories() {
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+        console.log(this.categories)
+      }
+      this.isLoading = false;
+    });
+  }
+
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == 21);
+    return res.category_name;
   }
 
   getUserPols(email){
     this.investmentService.getUserInvestments(email).subscribe(investments=>{
       if(investments){
-        this.pools = investments.success.Data
+        this.pools = investments.success.Data;
+        this.getCategories();
       }
-      this.isLoading=false;
     })
   }
-
+  
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
   }
 
   setPlanOperation(investment){
+
     this.authService.setCurrentPlanOperation(investment);
   }
 
-  setHeaderandFooter(){
+  setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
 
@@ -120,4 +138,5 @@ export class PoolsComponent implements OnInit {
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
+
 }
