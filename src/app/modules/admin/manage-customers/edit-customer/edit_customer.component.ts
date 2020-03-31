@@ -86,7 +86,6 @@ updatePreference(user: User) {
             this.toastrService.success('Details updated succesfully');
             }
         });
-        this.router.navigateByUrl('admin/manage-customers');
         }
 
 updateBankDetails(user: User) {

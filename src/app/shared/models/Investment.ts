@@ -17,4 +17,5 @@ export class Investment extends BasicModel{
   num_of_pools_taken?:number;
   reference?:string;
   investment_image?:string;
+  estimated_percentage_profit?:string;
 }

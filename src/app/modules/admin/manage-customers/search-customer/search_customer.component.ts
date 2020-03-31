@@ -92,8 +92,8 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  delete = (selectedUser:User) => {
-    this.userService.deleteUser(selectedUser).subscribe(resp => {
+  delete = (users:User) => {
+    this.userService.deleteUser(users).subscribe(resp => {
       if (resp && resp.success) {
        this.toastrService.success('Details deleted succesfully');
      } else {
