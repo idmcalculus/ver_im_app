@@ -2,155 +2,371 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                    <div class="page-body">
-                        <div *ngIf="isLoading" class="pool-details lds-default">
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                        </div>
-                            
-                        <div *ngIf="!isLoading" class="pool-details">
-
-                                <div class="row mb-2">
-                                    <div class="col-xl-12 col-md-12">
-                                        <h4 class="dash-title">{{pool?.investment?.title}}</h4>
-                                    </div>
-                                </div>
-
-                                <div class="row p-0">
-                                    <div class="col-xl-4">
-                                        <div class="card latest-update-card">
-                                            <div class="card-block">
-                                                <div class="row p-0">
-                                                    <div class="col-md-8"><h5>Details</h5></div>
-                                                    <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='0' (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
-                                                            data-target="#managePlanModal"
-                                                            class="btn btn-add plus-btn float-right"><span><i
-                                                                class="fa fa-edit"></i></span></a>
-                                                    </div>
-                                                </div>
-                                                   <div class="superb-container no-effects m-b20">
-                                                        <div class="img-holder">
-                                                            <img *ngIf="pool?.investment.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                                            <img *ngIf="pool?.investment.investment_image!=''" src="{{pool?.investment?.investment_image}}" alt="image">
-                                                        </div>
-                                                        <div class="content-holder pool-card-details">
-                                                            
-                                                            <h4>Status: 
-                                                                <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">Active</p> 
-                                                                <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">In-Active</p> 
-                                                            </h4>
-            
-                                                            <h4>Number of Investors: <br>
-                                                                <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p></h4>
-            
-                                                            <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn2 btn-login view mt-2">Pull out</button>
-                                                            <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn2 btn-login view mt-2">Ended</button>
-                                                            <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1' " class="btn2 btn-login view mt-2">End Investment</button>
-                                                            <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn2 btn-login view mt-2">Start Investment</button>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-8">
-                                        <div class="card latest-update-card">
-                                            <div class="card-block">
-                                                <div class="row p-0">
-                                                    <div class="col-md-8"><h5>Report</h5></div>
-                                                    <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('create',null)" href="#" data-toggle="modal"
-                                                        data-target="#reportModal"
-                                                        class="btn btn-add plus-btn float-right"><span><i
-                                                                class="fa fa-plus"></i></span></a>
-                                                    </div>
-                                                </div>
-                                                
-                                                    <div *ngFor="let report of pool?.report " class="report-card">
-                                                    
-                                                        <h4>{{report?.title}}</h4>
-                                                        <div>{{report?.description}}</div>
-                                                        <small class="date">{{report?.updated_at}}</small>
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
-                                                            data-target="#reportModal">
-                                                            <small class="">   Edit</small> 
-                                                        </a>
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
-                                                            data-target="#none">
-                                                            <small class="">   Delete</small> 
-                                                        </a>
-                                                        <!-- <small (click)="deleteReport(report.id)" class="">   Delete</small> -->
-                                                    
-                                                    </div>
-                                                
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xl-12">
-                                        <div class="card latest-update-card">
-                                            <div class="card-block">
-                                                <div class="row p-0">
-                                                    <div class="col-md-8"><h5>Profile</h5></div>
-                                                    <div class="col-md-4">
-                                                        <a *ngIf="loggedInUser?.user_category=='Admin' && (pool?.investment?.max_num_of_slots != pool?.investment?.num_of_pools_taken)" (click)="addUser('create',null)" href="#" data-toggle="modal"
-                                                        data-target="#addUserModal"
-                                                        class="btn btn-add plus-btn float-right"><span><i
-                                                                class="fa fa-plus"></i></span></a>
-                                                    </div>
-                                                </div>
-                                                <div class="dt-responsive table-responsive">
-                                                    <table id="order-table"
-                                                        class="table table-striped table-bordered nowrap">
-                                                        <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Email</th>
-                                                            <th>Phone Number</th>
-                                                            <th>Slots Taken</th>
-                                                            <th>Date Created</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody *ngIf="loggedInUser?.user_category=='Admin'">
-                                                            <tr data-href="#viewUserProfile"  (click)="viewUserDetail(user?.user_info[0])" *ngFor="let user of pool?.investment_user">
-                                                                <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
-                                                                <td>{{user?.user_info[0].email}}</td>
-                                                                <td>{{user?.user_info[0].phone_number}}</td>
-                                                                <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                                                <td>{{user?.user_investment_info?.created_at}}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                        <tbody *ngIf="loggedInUser?.user_category!='Admin'">
-                                                            <tr *ngFor="let user of pool?.investment_user">
-                                                                <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
-                                                                <td>{{user?.user_info[0].email}}</td>
-                                                                <td>{{user?.user_info[0].phone_number}}</td>
-                                                                <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                                                <td>{{user?.user_investment_info?.created_at}}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                        </div>              
+                <div class="page-body">
+                    <div *ngIf="isLoading" class="pool-details lds-default">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
                     </div>
+                        
+                    <div *ngIf="!isLoading" class="">
+                        <div class="clearfix mb-3">
+                            <div class="float-left pt-2">
+                                <a class="h4 pr-2">Investment</a>
+                                <a class=" pl-2">Home / Investment</a>
+                            </div>  
+                            <div class="float-right">
+                                <a (click)="cancelPool()">
+                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row p-0">
+                            <div class="col-xl-4">
+                                <div class="card latest-update-card">
+                                    <div class="card-block">
+                                        <div class="row pt-5">
+                                            <!-- <div class="col-md-4">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='0' " (click)="setPlanOperation(pool)" href="#" data-toggle="modal"
+                                                    data-target="#managePlanModal"
+                                                    class="btn btn-add plus-btn float-right"><span><i
+                                                        class="fa fa-edit"></i></span></a>
+                                            </div> -->
+                                            <div class="image-holder my-3">
+                                                <img *ngIf="pool?.investment.investment_image==''" src="../assets/images/notcard.png" alt="image">
+                                                <img *ngIf="pool?.investment.investment_image!=''" src="{{pool?.investment?.investment_image}}" alt="image">
+                                            </div>
+                                            <div class="col px-2 pt-4">
+                                                
+                                                <h6>Status:</h6>
+
+                                                <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">Active</p> 
+                                                <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">In-Active</p> 
+
+                                                <h6>Number of Investors:</h6>
+
+                                                <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p>
+                                                
+                                                <div class="text-center pt-2">
+                                                    <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
+                                                    <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
+                                                    <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1' " class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>
+                                                    <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn btn-block btn-primary btn-sm mt-2">Start Investment</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <form class="card latest-update-card">
+                                    <div class="row p-3">
+                                        <div class="col-6">
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.id}}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.title}}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
+                                                <div class="col-sm-9">
+                                                    <select required [(ngModel)]="category" name="category" class="custom-select custom-select-sm">
+                                                        <option value="" ></option>
+                                                        <option *ngFor="let category of categories;" [ngValue]="category.category_name">{{category.category_name}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Portfolio</h6>
+                                                <div class="col-sm-9">
+                                                    <select class="custom-select custom-select-sm">
+                                                        <option value="1">based on the selected category</option>
+                                                        <option value="2">Yearly</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.num_of_pools_taken}}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" value={{pool?.investment?.duration}}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" name="pricing" id="pricing" [(ngModel)]="investment_amount" value={{pool?.investment?.investment_amount}}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group pt-1 row mb-0">
+                                                <h6 class="col-sm-4 pr-0 col-form-label">Upload Image</h6>
+                                                <div class="col-sm-8">
+                                                    <img src="../../../../assets/images/estate.png" class="" style="width: 100%; max-height: 100px;">
+                                                    <div class="upload-btn-wrapper pt-1">
+                                                        <button class="btn btn-block btn-primary">Click to Upload image</button>
+                                                        <input type="file" name="myfile"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-4 pr-0 col-form-label">Show to Public</h6>
+                                                <div class="col-sm-8">
+                                                    <input class="mt-2" type="checkbox">
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
+                                                <div class="col-sm-8">
+                                                    <input type="number" class="form-control form-control-sm" required name="roi" id="roi" placeholder="" [(ngModel)]="expected_return">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-4 pr-0 col-form-label">Payback</h6>
+                                                <div class="col-sm-8">
+                                                    <select class="custom-select custom-select-sm" name="period" [(ngModel)]="period" (change)="calculateEstimate()" id="period">
+                                                        <option value="Weekly">Weekly</option>
+                                                        <option value="Monthly">Monthly</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-4 pr-0 col-form-label">Return</h6>
+                                                <div class="col-sm-8">
+                                                    <input type="type" class="form-control form-control-sm" value="" name="returns" [(ngModel)]="returns">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            
+                                            <div class="form-group pt-1 row">
+                                                <h6 class="col-sm-2 col-form-label" style="margin-right:-20px;">Description</h6>
+                                                <div class="col-sm-10 px-0">
+                                                    <textarea class="form-control" rows="3" value={{pool?.investment?.description}}></textarea>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col">
+                                                <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Update</button>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <div class="col-xl-8">
+                                <div class="card latest-update-card">
+                                    <div class="card-block">
+                                        <div class="row p-0">
+                                            <div class="col-md-8"><h5>Report</h5></div>
+                                            <div class="col-md-4">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('create',null)" href="#" data-toggle="modal"
+                                                data-target="#reportModal"
+                                                class="btn btn-add plus-btn float-right"><span><i
+                                                        class="fa fa-plus"></i></span></a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div *ngFor="let report of pool?.report " class="report-card">
+                                        
+                                            <h4>{{report?.title}}</h4>
+                                            <div>{{report?.description}}</div>
+                                            <small class="date">{{report?.updated_at}}</small>
+                                            <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
+                                                data-target="#reportModal">
+                                                <small class="">   Edit</small> 
+                                            </a>
+                                            <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
+                                                data-target="#none">
+                                                <small class="">   Delete</small> 
+                                            </a>
+                                            <small (click)="deleteReport(report.id)" class="">   Delete</small>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card ">
+                                    <div class="card-block">
+                                        <div class="row p-0">
+                                            <div class="col-12">
+                                                <h5 class="float-left pt-2">Investment Profile</h5>
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
+                                                    <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Slots Taken</th>
+                                                        <th>Amount Paid</th>
+                                                        <th>Date Invested</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngIf="loggedInUser?.user_category=='Admin'">
+                                                    <tr data-href="#viewUserProfile"  (click)="viewUserDetail(user?.user_info[0])" *ngFor="let user of pool?.investment_user">
+                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                                        <td>{{user?.user_info[0].email}}</td>
+                                                        <td>{{user?.user_info[0].phone_number}}</td>
+                                                        <td>{{user?.user_investment_info?.number_of_pools}}</td>
+                                                        <td>{{user?.user_investment_info?.investment_amount}}</td>
+                                                        <td>{{user?.user_investment_info?.created_at}}</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tbody *ngIf="loggedInUser?.user_category!='Admin'">
+                                                    <tr *ngFor="let user of pool?.investment_user">
+                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                                        <td>{{user?.user_info[0].email}}</td>
+                                                        <td>{{user?.user_info[0].phone_number}}</td>
+                                                        <td>{{user?.user_investment_info?.number_of_pools}}</td>
+                                                        <td>{{user?.user_investment_info?.investment_amount}}</td>
+                                                        <td>{{user?.user_investment_info?.created_at}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row p-0">
+                                            <div class="col-12">
+                                                <p class="">Investment Summary</p>
+                                                <hr class="new my-0">
+                                            </div>
+                                        </div>
+
+                                        <div class="row pt-3">
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h6 class="">Start Date</h6>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <p class=""></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <h6 class="">End Date</h6>
+                                                    </div>
+                                                    <div class="col-8">
+                                                        <p class=""></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <h6 class="">Last Payment</h6>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <p class=""></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                        <h6 class="">Next Payment</h6>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <p class=""></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="row p-0">
+                                    <div class="col-12">
+                                        <p class="float-left pt-2">Investment Report</p>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <table id="order-table" class="table nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SN</th>
+                                                        <th>Investment Title</th>
+                                                        <th>Payback Frequency</th>
+                                                        <th>Amount Credited</th>
+                                                        <th>Yielded Amount</th>
+                                                        <th>Balance</th>
+                                                        <th>Status</th>
+                                                        <th>Date Paid</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngIf="loggedInUser?.user_category!='Admin'">
+                                                    <tr *ngFor="let report of pool?.report ">
+                                                        <td>{{report?.title}}</td>
+                                                        <td>{{report?.title}}</td>
+                                                        <td>{{report?.title}}</td>
+                                                        <td>{{report?.title}}</td>
+                                                        <td>{{report?.title}}</td>
+                                                        <td>{{report?.title}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>              
+                </div>
             </div>
         </div>
     </div>
@@ -158,4 +374,5 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
-<app-pool-addUser [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
+<app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
+
