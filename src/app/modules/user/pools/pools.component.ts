@@ -15,6 +15,8 @@ export class PoolsComponent implements OnInit {
   pools: Investment[] = [];
   pool: Investment = {title: '', investment_amount: 0, };
   userType: string;
+  categories = [];
+  category_name: string;
 
   masterSelected: boolean;
   checklist: any;
@@ -78,8 +80,8 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-
       }
+      this.isLoading = false;
     });
   }
 
@@ -93,8 +95,8 @@ export class PoolsComponent implements OnInit {
     });
   }
 
-  getCategoryName(id) {
-    const res = this.categories.find( r => r.id == 21);
+  getCategoryName(id: number) {
+    const res = this.categories.find( r => r.id === 21);
     return res.category_name;
   }
 
