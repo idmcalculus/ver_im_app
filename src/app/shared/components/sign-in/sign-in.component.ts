@@ -180,17 +180,3 @@ export class SignInComponent implements OnInit {
         this.dynamicScriptLoader.load('platform');
     }
 }
-<<<<<<< HEAD
-
-
-@Directive({
-    selector: '[appPassText]'
-})
-export class HighlightDirective {
-    constructor(el: ElementRef) {
-        el.nativeElement.style.backgroundColor = 'yellow';
-        console.log('helo');
-    }
-}
-=======
->>>>>>> signin/signup page revamp

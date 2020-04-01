@@ -142,7 +142,7 @@
                                 <button *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</button>
                             </span>
                             <span class="text-center">
-                                <button  (click)="delete(user)" class="buttons btn-lg btn-danger">Delete User</button>
+                                <button  (click)="delete()" class="buttons btn-lg btn-danger">Delete User</button>
                             </span>
                         </div>
 
@@ -227,6 +227,7 @@
                                                     <i class="fa fa-lg fa-circle"></i>
                                                 </a>
                                             </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -302,7 +303,7 @@
                                                 <th style="width: 10%">Date Added</th>
                                             </tr>
                                             </thead>
-                                            <tbody  *ngIf="!FilteredInvestment">
+                                            <tbody  *ngIf="FilteredInvestment.length !== 0">
                                                 <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
@@ -311,17 +312,17 @@
                                                     <td style="width: 10%" >{{investments.investment_amount}}</td>
                                                     <td style="width: 10%">{{investments.num_of_pools_taken}}</td>
                                                     <td style="width: 10%">{{investments.duration}}</td>
-                                                    <td style="width: 10%">{{investments.category_id}}</td>
+                                                    <td style="width: 10%">{{investments.estimated_percentage_profit}}</td>
                                                     <td style="width: 10%">{{investments.expected_return_period}}</td>
                                                     <td style="width: 10%">{{investments.investment_amount*investments.num_of_pools_taken}}</td>
-                                                    <td style="width: 10%">{{investments.category_id}}</td>
+                                                    <td style="width: 10%">Completed</td>
                                                     <td style="width: 10%">{{investments.created_at}}</td>
                                                 </tr>
 
                                             </tbody>
 
                                         </table>
-                                        <div *ngIf="FilteredInvestment" >
+                                        <div *ngIf="FilteredInvestment.length == 0" >
                                                <p class='displayStatus'>"No record found, Investment(s) is not yet started or is still on-going..."</p>
                                         </div>
 

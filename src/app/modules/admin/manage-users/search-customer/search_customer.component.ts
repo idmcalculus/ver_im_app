@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./search_customer.component.css']
 })
 export class SearchCustomerComponent implements OnInit {
-
   searchValue = '';
   users: User[];
   selectedUser: User;
@@ -50,26 +49,16 @@ export class SearchCustomerComponent implements OnInit {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=1
         }
-      });
-    } else {
-      this.userService.deactivateUser(user).subscribe(resp => {
-        if (resp && resp.success) {
+      })
+    }else{
+      this.userService.deactivateUser(user).subscribe(resp=>{
+        if(resp && resp.success){
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
       });
     }
 
-  }
-
-  getUsers() {
-    this.isLoading = true;
-    this.userService.getUsers().subscribe(resp => {
-      if (resp && resp.success) {
-        this.users = resp.success.Data;
-      }
-      this.isLoading = false;
-    });
   }
 
   updateDetails(user): any {
@@ -81,6 +70,16 @@ export class SearchCustomerComponent implements OnInit {
       } else {
         this.toastrService.error('There was an issue updating.. Try again later');
       }
+    });
+  }
+
+  getUsers() {
+    this.isLoading = true;
+    this.userService.getUsers().subscribe(resp => {
+      if (resp && resp.success) {
+        this.users = resp.success.Data;
+      }
+      this.isLoading = false;
     });
   }
 
@@ -105,15 +104,14 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  deleteUser = (user) => {
-    this.userService.deleteUser(user).subscribe(resp => {
+  delete = (users:User) => {
+    this.userService.deleteUser(users).subscribe(resp => {
       if (resp && resp.success) {
-        // alert(resp.success.Message)
-        // this.users[userIndex].email_is_verified=0
-        this.toastrService.success('Details deleted succesfully');
-      } else {
+       this.toastrService.success('Details deleted succesfully');
+     } else {
         this.toastrService.error('There was an issue deleting.. Try again later');
-      }
+     }
     });
   }
+
 }

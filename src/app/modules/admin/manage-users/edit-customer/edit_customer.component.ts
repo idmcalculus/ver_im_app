@@ -2,7 +2,7 @@ import { Component, Input,  OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from "jquery";
 import { User } from 'src/app/shared/models/user';
-import { SearchCustomerComponent } from 'src/app/modules/admin/manage-customers/search-customer/search_customer.component';
+import { SearchCustomerComponent } from 'src/app/modules/admin/manage-users/search-customer/search_customer.component';
 import { UserService } from 'src/app/modules/user/user.service';
 import { ToastrService } from 'ngx-toastr';
 

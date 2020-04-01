@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { Investment } from 'src/app/shared/models/Investment'
 
 
 let category = '0';
@@ -15,13 +16,12 @@ let allInvestments = [];
 
 
 export class InvestmentComponent implements OnInit {
-
-
+    allInvestments: Investment [];
+    investmentArray: Investment [];
     isLoading = true;
     investments: any = [];
     categories: any = [];
     selectedCategory = '0';
-
     transaction: Transaction;
 
     constructor(
@@ -38,30 +38,30 @@ export class InvestmentComponent implements OnInit {
 
     getInvestments() {
 
-        this.investmentService.getInvestments(true).subscribe(investments => {
-                investmentArray = investments.success.Data;
-                investmentArray.forEach(element => {
-                    if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
-                        this.investments[cnt] = element;
-                        cnt++;
-                    }
-                });
+      //  this.investmentService.getInvestments(true).subscribe(investments => {
+      //          this.investmentArray = investments.success.Data;
+      //          this.investmentArray.forEach(element => {
+                  //  if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
+                  //      this.investments[cnt] = element;
+                  //      cnt++;
+                 //   }
+             //   });
+         //   }
+      //      allInvestments = this.investments;
+        //    this.isLoading = false;
+          //  console.log(this.investmentArray, this.investments, allInvestments);
+            //let categoryName = this.activatedRoute.snapshot.params.category;
+          //  if (categoryName) {
+            //    let category = this.categories.filter(a1 => {
+              //      return a1.category_name.trim() == categoryName.trim();
+              //  });
+              //  if (category && category.length > 0) {
+                //    this.selectedCategory = category[0].id;
+                  //  this.filterInvestments();
+             //   }
             }
-            allInvestments = this.investments;
-            this.isLoading = false;
-            console.log(investments, investmentArray, this.investments, allInvestments);
-            let categoryName = this.activatedRoute.snapshot.params.category;
-            if (categoryName) {
-                let category = this.categories.filter(a1 => {
-                    return a1.category_name.trim() == categoryName.trim();
-                });
-                if (category && category.length > 0) {
-                    this.selectedCategory = category[0].id;
-                    this.filterInvestments();
-                }
-            }
-        });
-    }
+     //   });
+
 
 
     getCategories() {

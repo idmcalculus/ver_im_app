@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {AdminComponent} from './admin.component';
 import {UserProfileComponent} from './../user/user-profile/user-profile.component';
-import {ManageUsersComponent} from './/manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 // import {ManageCareerComponent} from './manage-career/manage-career.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
@@ -16,10 +15,10 @@ import {ListComponent} from './manage-career/list/list.component';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {ManageCategoryComponent} from './manage-category/manage-category.component';
 import { ChatComponent } from '../chat/chat.component';
-import {SearchCustomerComponent} from './manage-customers/search-customer/search_customer.component';
-import { AddCustomerComponent } from './manage-customers/add-customer/add_customer.component';
-import { ViewCustomerComponent } from './manage-customers/view-customer/view_customer.component';
-import { EditCustomerComponent } from './manage-customers/edit-customer/edit_customer.component';
+import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
+import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
+import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
+import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 
 
@@ -37,7 +36,7 @@ const userRoutes: Routes = [
           { path: 'investments', component: PoolsComponent },
           { path: 'settings', component: UserSettingsComponent },
 
-          { path: 'manage-customers',
+          { path: 'manage-users',
             children: [
             {path: '',
             children: [
@@ -50,7 +49,6 @@ const userRoutes: Routes = [
             }
           ] },
 
-          { path: 'manage-users', component: ManageUsersComponent },
           { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',
