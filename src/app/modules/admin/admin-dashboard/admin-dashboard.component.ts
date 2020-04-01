@@ -126,17 +126,15 @@ export class AdminDashboardComponent implements OnInit {
     }
 
 
-      this.adminService.getDashBoardData().subscribe(resp=>{
-        if(resp && resp.success){
-          this.dashBoardData = resp.success.Data
+    this.adminService.getDashBoardData().subscribe(resp => {
+        if (resp && resp.success) {
+          this.dashBoardData = resp.success.Data;
           this.isLoading = false;
           google.charts.setOnLoadCallback(drawRegionsMap);
         }
       });
 
   }
-
-
 
     updateDataset = function(e, datasetIndex) {
       const index = datasetIndex;

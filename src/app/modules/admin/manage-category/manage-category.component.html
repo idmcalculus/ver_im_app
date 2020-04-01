@@ -16,6 +16,7 @@
                                   <form (ngSubmit)="addCategory()" #addCategoryForm="ngForm" class="">
                                       <div class="form-group">
                                           <label for="CategoryName">Category Name</label>
+                                          <br>
                                           <input [(ngModel)] ="category.category_name" required type="text" name='categoryName'
                                                  class="form-control" id="CategoryName"
                                                  placeholder="Enter name of Category">
@@ -34,9 +35,9 @@
                               <h5>Investment Details</h5>
                             </div>
                             <div class="category-top">
-                              <div class="categories_length" id="categoryTable_length">
+                              <div class="categories_length" id="category_length">
                                 <label>Show &nbsp;
-                                  <select name="categoryTable_length" aria-controls="categoryTable" class="">
+                                  <select name="category_length" class="">
                                     <option value="10">10</option>
                                     <option value="25">25</option>
                                     <option value="50">50</option>
@@ -45,9 +46,9 @@
                                   &nbsp; entries
                                 </label>
                               </div>
-                              <div id="categoryTable_filter" class="categories_filter">
+                              <div id="category_filter" class="categories_filter">
                                 <label>
-                                    <input type="text" placeholder="Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
+                                    <input type="text" placeholder="&nbsp; Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
                                     (blur)="filterTable('category_name', search.value)">
                                 </label>
                               </div>
@@ -79,7 +80,8 @@
                                     <div class="row1" *ngFor="let category of categories;let i=index">
                                         <p class="s-n">{{i+1}}</p>
                                         <p class="category-name">
-                                            <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name"><button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
+                                            <input *ngIf="category.inEditMode" type="text" [(ngModel)]="category.category_name">
+                                            <button (click)="updateCategory(category)" *ngIf="category.inEditMode">{{updateButtonText}}</button>
                                             <a *ngIf="!category.inEditMode" href='#'>{{category.category_name}}</a>
                                         </p>
                                         <p class="action">

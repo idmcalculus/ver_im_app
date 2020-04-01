@@ -60,6 +60,14 @@ export class InvestmentDetailComponent implements OnInit {
             this.getInvestments();
         });
 
+        this.activatedRoute.params.subscribe((params) => {
+            this.investments = [];
+            this.isLoading = true;
+            var investmentId = params['id'];
+            this.getInvestment(investmentId);
+            this.getInvestments();
+        });
+
     }
 
     triggerSecond(){
@@ -122,7 +130,6 @@ export class InvestmentDetailComponent implements OnInit {
                     }
                 });
             }
-
             this.allinv = [this.investments[0],this.investments[cnt-1],this.investments[(cnt-3)]];
             this.isLoading = false;
 

@@ -87,5 +87,7 @@ export class PoolsComponent implements OnInit {
 
   filterTable(filterType, filterValue: string) {}
 
-  deleteUser(user){}
+deleteUser() {
+
+}
 }

@@ -13,7 +13,6 @@ export class UserService {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
 
-
   updateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`update_user?
     email=${user.email}&authentication_type=${user.authentication_type}
@@ -61,7 +60,8 @@ export class UserService {
     return this.httpService.postRequest(`user/list`, {});
   }
 
-  getUserDashBoard(investmentId, email) {
+
+  getUserDashBoard(investmentId,email){
     return this.httpService.postRequest(`report/userDashboard?
     investment_id=${investmentId}&user_id=${email}`, null);
   }
@@ -93,7 +93,6 @@ export class UserService {
     &email_updates_on_investment_process=${user.email_updates_on_investment_process ? 1 : 0}&id=${user.id}`, null);
   }
 
-
   adminUpdateBankDetails(user: User): Observable<any> {
     return this.httpService.postRequest(`update_account_detail?
     email=${user.email}
@@ -101,5 +100,4 @@ export class UserService {
     account_name=${user.account_name}&account_number=${user.account_number}
     &bank_name=${user.bank_name}&id=${user.id}`, null);
   }
-
 }
