@@ -13,16 +13,12 @@ import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
-<<<<<<< HEAD
 import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 import { AddCustomerComponent } from './manage-customer/add-customer/add_customer.component';
-import {ManageCategoryComponent} from './manage-category/manage-category.component';
-=======
-import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
+import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
->>>>>>> Created Add investment component
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
@@ -36,16 +32,10 @@ import {ProgressBarModule} from 'angular-progress-bar';
     CreateComponent,
     ListComponent,
     AddCustomerComponent,
-<<<<<<< HEAD
     ViewCustomerComponent,
     EditCustomerComponent,
-=======
     AddPoolComponent,
-<<<<<<< HEAD
-    ViewPoolComponent,
->>>>>>> Created Add investment component
-=======
->>>>>>> link view investment to investment list
+    AddUserComponent,
     ManageCategoryComponent,
     ManageUsersComponent,
     ManageAdminComponent

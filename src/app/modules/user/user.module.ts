@@ -14,7 +14,6 @@ import {SideBarComponent} from './../../shared/components/side-bar/side-bar.comp
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {DashboardHeaderComponent} from './../../shared/components/dashboard-header/dashboard-header.component';
 import {ReportComponent} from './../../shared/components/report/report.component';
-import {AddUserComponent} from './../../shared/components/addUserToPool/addUser.component';
 import {ProfileComponent} from './../../shared/components/profile/profile.component'
 import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
 import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component';
@@ -25,7 +24,6 @@ import { ChatComponent } from '../chat/chat.component';
 
 @NgModule({
   declarations: [
-    AddUserComponent,
     UserComponent, 
     UserProfileComponent,
     UserDashboardComponent,

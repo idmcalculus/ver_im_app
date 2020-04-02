@@ -3,7 +3,8 @@
 }
 
 .image-holder { 
-  width:auto; 
+  width:auto;
+  height: 230px; 
   text-align:center; 
   padding:20px; 
 }
@@ -19,11 +20,11 @@ div > a {
 }
 
 .latest-update-card {
-<<<<<<< HEAD
-	height: 550px;
-=======
-	height: 520px;
->>>>>>> new work
+	height: 600px;
+}
+
+textarea {
+  overflow:hidden;
 }
 
 
@@ -74,4 +75,10 @@ h6 {
 
 td,th,tr {
   border-color: #221F72
+}
+
+.row .col-6 {
+  color: red;
+  font-weight: bolder;
+
 }

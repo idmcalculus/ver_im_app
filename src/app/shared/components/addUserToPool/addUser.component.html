@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> new
 <div class="pcoded-content">
     <div class="pcoded-inner-content">
         <div class="main-body">
@@ -12,37 +8,20 @@
                         <a class=" pl-2">Home / Investments</a>
                     </div>  
                     <div class="float-right">
-<<<<<<< HEAD
-<<<<<<< HEAD
                         <a (click)="cancelPool()">
-=======
-                        <a >
->>>>>>> new
-=======
-                        <a (click)="cancelPool()">
->>>>>>> new work
                             <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
                         </a>
                     </div> 
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="card">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> new push
+                        <div class="card p-3">
                             <div class="row p-3">
                                 <div class="col-8">
                                     <h5 class="head">Add Pool</h5>
                                 </div>
                                 
                                 <div class="col-4">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> cleaning up
                                     <div class="">
                                         <div class="category-header">
                                             <input type="text" class="input-control shadow" placeholder="Search by Email" name="search" #search (keyup)="filterTable('email', search.value)"
@@ -51,11 +30,10 @@
 
                                         <div class="category-body">
                                             <div class=" p-2" style="height: 40px; overflow: hidden;">
-                                                <p *ngFor="let user of users;"
+                                                <p style="cursor:pointer" *ngFor="let user of users;"
                                                 (click)="onSelect(user)">{{user.email}}</p> 
                                             </div>
                                         </div>
-<<<<<<< HEAD
                                     </div>
                                 </div>
 
@@ -63,283 +41,89 @@
                             </div>
 
                             <form>
-                                <div class="row p-3">
+                                <div class="row px-4">
                                     
-                                    <div class="col-6" >
+                                    <div class="col-6 pr-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">First Name</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.first_name" name="first" readonly>
+                                                <input type="type" class="input-control shadow" value="{{selectedUser.first_name}}" name="first" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Email</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.email" name="email" readonly>
+                                                <input type="type" class="input-control shadow" [(ngModel)]="user_email" name="pay-type" id="pay-type" value="{{selectedUser.email}}" readonly>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 pl-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Last Name</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
+                                                <input type="type" class="input-control shadow" value="{{selectedUser.last_name}}" name="last" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Phone Number</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
+                                                <input type="type" class="input-control shadow" value="{{selectedUser.phone_number}}" name="number" readonly>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6" >
+                                    <div class="col-6 pr-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investment Title</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.title" name="Investment title" readonly>
+                                                <input type="type" class="input-control shadow" value="{{pool?.investment.title}}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Cost</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.investment_amount" name="cost" readonly>
+                                                <input type="number" class="input-control shadow" [(ngModel)]="investment_amount" value="{{pool?.investment.investment_amount}}" name="amount" id="amount" readonly>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-6 pl-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investment Category</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.category_id" name="category" readonly>
+                                                <input type="type" class="input-control shadow" value="{{pool?.investment.category_id}}" name="category" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investors</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.num_of_pools_taken" name="investor" readonly>
+                                                <input type="type" class="input-control shadow" value="{{pool?.investment.num_of_pools_taken}}" name="investor" readonly>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6" >
+                                    <div class="col-6 pr-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
+                                                <input type="number" autocomplete="off" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
                                                 id="slotNum">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-6 pl-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
+                                                <input type="number" class="input-control shadow" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid" class="form-control"
+                                                id="amount_paid" #amount_paidModel="ngModel"
+                                                >
                                             </div>
                                         </div>
                                     </div>
-                                        
-                                        
-                                    <div class="col px-0">
-                                        <button type="submit" (click)="modalSubmitted()" class="btn btn-primary btn-sm px-5 float-right">Add</button>
-                                    </div>
-    
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="row">
-                    <div class="col-12">
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <label class="pt-1" for="slotNum">Select User</label>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <select required [(ngModel)]="user_email" name="p-type" id="pay-type" class="form-control">
-                                                <option value="" >Select User...</option>
-                                                <option *ngFor="let user of users;let i = index;" [ngValue]="user.email">{{user.email}}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-10">
-                                            <label class="pt-1" for="slotNum">Number of Slots?</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <input type="number" [(ngModel)]="number_of_pools" name="slots"
-                                                id="slotNum" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Payment Reference</label>
-                                    <input autocomplete="off" type="text" required [(ngModel)]="reference" name="title" class="form-control" id="reference">
-                                </div>
-                                <div class="form-group">
-                                    <label for="title">Amount Paid</label>
-                                    <input autocomplete="off" type="number" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                            <button (click)="modalSubmitted()" class="btn2  btn btn-raised add-invest">{{modalButtonTitle}}</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
-                
-=======
-<div class="container"  style="margin-top: 1.5em !important;" >
-    <div class="row">
-        <div class="col-12">
-            <div class="modal-header">
-                <h5>{{modaltitle}}</h5>
-                <button type="button" class="close" data-dismiss="modal" id='closeBtn' #closeBtn aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <label class="pt-1" for="slotNum">Select User</label>
-                            </div>
-                            <div class="col-md-10">
-                                <select required [(ngModel)]="user_email" name="p-type" id="pay-type" class="form-control">
-                                    <option value="" >Select User...</option>
-                                    <option *ngFor="let user of users;let i = index;" [ngValue]="user.email">{{user.email}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <label class="pt-1" for="slotNum">Number of Slots?</label>
-                            </div>
-                            <div class="col-md-7">
-                                <input type="number" [(ngModel)]="number_of_pools" name="slots"
-                                    id="slotNum" class="form-control">
-=======
-                            <div class="p-3">
-                                <h5 class="head">Add Pool</h5>
-=======
-=======
-                                    <div id="categoryTable_filter" class="dataTables_filter">
-                                        <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" #search (keyup)="filterTable('email', search.value)"
-                                        (blur)="filterTable('email', search.value)">
-                                    </div>
-                                    <div style="height: 50px; overflow-y: scroll;">
->>>>>>> new work
-                                        <li *ngFor="let user of users;"
-                                        (click)="onSelect(user)">{{user.email}}</li>
-=======
->>>>>>> cleaning up
-                                    </div>
-                                </div>
-
->>>>>>> new push
-                                <hr class="new my-0">
->>>>>>> new
-                            </div>
-
-                            <form>
-                                <div class="row p-3">
-                                    
-                                    <div class="col-6" >
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">First Name</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.first_name" name="first" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Email</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.email" name="email" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Last Name</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.last_name" name="last" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Phone Number</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="selectedUser.phone_number" name="number" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6" >
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Investment Title</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.title" name="Investment title" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Cost</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.investment_amount" name="cost" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Investment Category</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.category_id" name="category" readonly>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Investors</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="pool?.investment.num_of_pools_taken" name="investor" readonly>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6" >
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
-                                                id="slotNum">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-6">
-                                        <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
-                                            <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" required [(ngModel)]="amount_paid" name="title" class="form-control" id="amount">
-                                            </div>
-                                        </div>
-                                    </div>
-                                        
                                         
                                     <div class="col">
                                         <button type="submit" (click)="modalSubmitted()" class="btn btn-primary btn-sm px-5 float-right">Add</button>
@@ -394,17 +178,9 @@
                             </form>
                         </div>
                     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                </form>
->>>>>>> addUser
-=======
-                </div>
-=======
                 </div> -->
->>>>>>> cleaning up
                 
->>>>>>> new
+
             </div>
         </div>
     </div>

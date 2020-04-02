@@ -1,20 +1,8 @@
 
 .shadow {
-<<<<<<< HEAD
-<<<<<<< HEAD
     -moz-box-shadow:    -1px -1px 1px 1px #495057;
     -webkit-box-shadow: -1px -1px 1px 1px #495057;
     box-shadow: -1px -1px 1px 1px #495057;
-=======
-    -moz-box-shadow:    -1px -1px 3px 1px #495057;
-    -webkit-box-shadow: -1px -1px 3px 1px #495057;
-    box-shadow: -1px -1px 3px 1px #495057;
->>>>>>> cleanedup
-=======
-    -moz-box-shadow:    -1px -1px 1px 1px #495057;
-    -webkit-box-shadow: -1px -1px 1px 1px #495057;
-    box-shadow: -1px -1px 1px 1px #495057;
->>>>>>> update
 }
 
 .bg_filter{
@@ -67,15 +55,7 @@ td {
 }
 
 .card {
-<<<<<<< HEAD
-<<<<<<< HEAD
 	height: 500px;
-=======
-	height: 400px;
->>>>>>> cleanedup
-=======
-	height: 500px;
->>>>>>> addUser
 }
 
 .col-md-12 {
@@ -83,18 +63,9 @@ td {
 	flex-flow: column;
 	width: 100%;
 }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 .col-md-12 .card {
-	margin: 0 20px;
 	padding: 0 20px;
 }
->>>>>>> cleanedup
-=======
->>>>>>> addUser
-
 .col-md-12 .card-block {
 	display: flex;
 	flex-flow: column nowrap;
@@ -108,15 +79,7 @@ td {
 
 .card .card-block p {
 	margin-bottom: 0px;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	line-height: 3;
-=======
-	line-height: 2;
->>>>>>> cleanedup
-=======
-	line-height: 3;
->>>>>>> addUser
 }
 
 .col-md-12 .card-header {
@@ -131,13 +94,7 @@ td {
  
 .category-header {
     display: flex;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     justify-content: space-between;
->>>>>>> cleanedup
-=======
->>>>>>> addUser
     font-weight: bold;
     border-style: solid;
     border-left: none;
@@ -150,33 +107,15 @@ td {
 }
 
 .category-header p {
-<<<<<<< HEAD
-<<<<<<< HEAD
     color: #221f72;
-    padding: 0;
-=======
     padding: 0;
     margin: 0;
->>>>>>> cleanedup
-=======
-    color: #221f72;
-    padding: 0;
-<<<<<<< HEAD
     padding-right: 4px;
->>>>>>> addUser
-=======
->>>>>>> update
 }
   
 .category-body .row1 {
     display: flex;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     justify-content: space-between;
->>>>>>> cleanedup
-=======
->>>>>>> addUser
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -188,13 +127,10 @@ td {
     margin: 0px;
     padding: 0px;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 .category-body .row1 p{
     padding: 0;
 }
-=======
   
 .s-n, .category-name {
     flex: 1 1 30em;
@@ -204,10 +140,7 @@ td {
 .action, .category-name {
     //border-left: solid 1px black;
 }
->>>>>>> cleanedup
-=======
 
 .category-body .row1 p{
     padding: 0;
 }
->>>>>>> addUser

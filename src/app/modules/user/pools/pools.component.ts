@@ -23,6 +23,7 @@ export class PoolsComponent implements OnInit {
   checkedList:any;
 
   constructor(
+    private router:Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
@@ -54,11 +55,16 @@ export class PoolsComponent implements OnInit {
     }
     this.getCheckedPooList();
   }
+
   isAllSelected() {
     this.masterSelected = this.checklist.every(function(pool:any) {
         return pool == true;
       })
     this.getCheckedPooList();
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/addpools');
   }
  
   getCheckedPooList(){

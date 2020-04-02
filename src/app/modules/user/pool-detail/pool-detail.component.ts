@@ -7,6 +7,7 @@ import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Category } from 'src/app/shared/models/Category';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-  pool:Investment
+  pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   poolId:number=0;
   reportData:Report = {title:'',description:''}
   categories=[];
@@ -27,10 +28,7 @@ export class PoolDetailComponent implements OnInit {
   selectedUser:User;
   loggedInUser:User;
   userSubscription:Subscription;
-  
-  expected_return: number;
-  investment_amount: number;
-  period: string;
+  image:any;
   returns: string;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
@@ -38,7 +36,8 @@ export class PoolDetailComponent implements OnInit {
     private router:Router,
     private investmentService:InvestmentService,
     private reportService:ReportService,
-    private authService:AppAuthService
+    private authService:AppAuthService,
+    private cloudinaryService: CloudinaryService
     ) { 
       this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
@@ -59,6 +58,7 @@ export class PoolDetailComponent implements OnInit {
   ngOnInit() {
     
   }
+  
 
   fetchPool(poolId:string){
     this.isLoading =true;
@@ -101,6 +101,10 @@ export class PoolDetailComponent implements OnInit {
     });
   }
 
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == 21);
+    return res.category_name;
+  }
   addReport(filledReport:Report){
     this.reportData = filledReport;
     if(this.reportData.title){
@@ -136,6 +140,20 @@ export class PoolDetailComponent implements OnInit {
         })
       }
   }
+
+  updateInvestment() {
+    this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
+      if (resp) {
+        this.pool.investment_image = resp;
+        this.investmentService.updateInvestment(this.pool).subscribe(resp => {
+          if (resp && resp.success) {
+            // alert(resp.success.Message);
+            window.location.href = 'admin/pools';
+          }
+        });
+      }
+    });
+}
 
   deleteReport(report){
     var proceed = confirm("Confirm Deletion?")
@@ -234,56 +252,26 @@ export class PoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/pools');
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-  divisorFunc (period) {
-    if (period === "Weekly") {
-      return 48;
-    } else if (period === "Monthly") {
-      return 12;
-    }
-  };
-
-  calculateEstimate(){
-    const cost = this.investment_amount
-    const investment = this.expected_return/100 
-    const divisor = this.divisorFunc(this.period)
-
-    const estimate = (cost * investment) / divisor
-    this.returns = estimate.toFixed(2)
-=======
-=======
   AddUserPool() {
     this.router.navigateByUrl('admin/adduser');
   }
-=======
->>>>>>> new
-
-<<<<<<< HEAD
->>>>>>> new
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
->>>>>>> addUser
-=======
-  divisorFunc (period) {
-    if (period === "Weekly") {
+    
+  divisorFunc (expected_return_period) {
+    if (this.pool.expected_return_period === "Weekly") {
       return 48;
-    } else if (period === "Monthly") {
+    } else if (this.pool.expected_return_period === "Monthly") {
       return 12;
     }
   };
 
   calculateEstimate(){
-    const cost = this.investment_amount
-    const investment = this.expected_return/100 
-    const divisor = this.divisorFunc(this.period)
+    const cost = this.pool.investment_amount
+    const investment = parseInt(this.pool.expected_return_amount) /100 
+    const divisor = this.divisorFunc(this.pool.expected_return_period)    
 
     const estimate = (cost * investment) / divisor
     this.returns = estimate.toFixed(2)
->>>>>>> cleaning up
   }
 
 }

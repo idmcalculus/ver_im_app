@@ -1,22 +1,10 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { Report } from '../../models/Report';
 import { User } from 'src/app/shared/models/user';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute,Router} from '@angular/router';
 import { AdminService } from '../../../modules/admin/admin.service';
 import {InvestmentService} from '../../../modules/investment/investment.service'
-=======
-import { Router} from '@angular/router';
-import { AdminService } from '../../../modules/admin/admin.service';
->>>>>>> new work
-=======
-import { Investment } from 'src/app/shared/models/Investment';
-import { ActivatedRoute,Router} from '@angular/router';
-import { AdminService } from '../../../modules/admin/admin.service';
-import {InvestmentService} from '../../../modules/investment/investment.service'
->>>>>>> cleaning up
 import { UserService } from '../../../modules/user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
@@ -35,22 +23,13 @@ export class AddUserComponent implements OnInit {
   poolId:number=0;
   isPaymentreport:boolean=false;
   number_of_pools:number;
+  investment_amount: number;
   isLoading:boolean=true;
   reference:string='';
   user_email:string='';
   amount_paid:number;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
   users:User[]=[];
   user:User = {email: '',};
-=======
-  users:[User]
->>>>>>> new push
-=======
-  users:User[]=[];
-  user:User = {email: '',};
->>>>>>> new work
   selectedUser:User;
   @Input() public modaltitle:string;
   @Input() public modalButtonTitle:string;
@@ -59,14 +38,7 @@ export class AddUserComponent implements OnInit {
   @Output() submit = new EventEmitter<any>();
 
   constructor(
-<<<<<<< HEAD
-<<<<<<< HEAD
     private route:ActivatedRoute,
-=======
->>>>>>> new work
-=======
-    private route:ActivatedRoute,
->>>>>>> cleaning up
     private router:Router,
     private addUserService:addUserService,
     private toastrService: ToastrService,
@@ -74,14 +46,7 @@ export class AddUserComponent implements OnInit {
     private investmentService:InvestmentService,
     private adminService:AdminService,
     private userService:UserService,
-<<<<<<< HEAD
-<<<<<<< HEAD
     private location: Location,
-=======
->>>>>>> new work
-=======
-    private location: Location,
->>>>>>> Created Add User to Pool
   ) {
     this.route.params.subscribe(resp=>{
       this.poolId = resp.pool_id;
@@ -90,7 +55,6 @@ export class AddUserComponent implements OnInit {
       }
       this.fetchPool(String(this.poolId));
     })
-<<<<<<< HEAD
   }
 
   cancelPool() {
@@ -100,19 +64,6 @@ export class AddUserComponent implements OnInit {
   onSelect(user: User): void {
     this.selectedUser = user;
     console.log(this.selectedUser);
-    
-=======
->>>>>>> cleaning up
-  }
-
-  cancelPool() {
-    this.location.back()
-  }
-
-  onSelect(user: User): void {
-    this.selectedUser = user;
-    console.log(this.selectedUser);
-    
   }
 
   ngOnInit() {
@@ -149,9 +100,9 @@ export class AddUserComponent implements OnInit {
     let element = document.getElementById('closeBtn');
     const data = {
       user_email:this.user_email,
-      number_of_pools:this.number_of_pools,
-      investment_id:this.modalId,
-      amount_paid:this.amount_paid
+      number_of_pools:this.number_of_pools,   
+      investment_id:this.poolId,
+      amount_paid: this.amount_paid
     }
     console.log(typeof this.modalId);
     this.adminService.addUserToPool(data).subscribe(resp=>{
@@ -177,16 +128,11 @@ export class AddUserComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  cancelPool() {
-    this.router.navigateByUrl('admin/.poolId');
+  calculateEstimate(returns,inv){
+    const estimate = ((returns * inv));
+    return Math.ceil(estimate);
   }
 
->>>>>>> new work
-=======
->>>>>>> Created Add User to Pool
   filterTable(filterType, filterValue: string) {
 
     if (!filterValue || filterValue === null) {
