@@ -236,7 +236,7 @@
                         <button
                             (click) = "triggerSecond()"
                             data-dismiss="modal"
-                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken || ViaXpress"
                             type="button" class="btn btn-join-add">Make Payment
                         </button>
                         <!-- <button
@@ -309,13 +309,13 @@
                                         <label class="pt-1" for="slotNum">Account Number</label>
                                     </div>
                                     <div class="col-md-7">
-                                        <label class="pt-1" for="slotNum">0123456789</label>
+                                        <label class="pt-1" for="slotNum">1016338776</label>
 
                                     </div>
                                 </div>
                                  <div class="row" style="justify-content:center">
                                     <div class="col-md-7">
-                                        <label style="font-weight:600" class="pt-1" for="slotNum">Guarantee trust Bank</label>
+                                        <label style="font-weight:600" class="pt-1" for="slotNum">Providus Bank</label>
                                     </div>
                                     <div class="col-md-7">
                                     </div>
@@ -328,15 +328,15 @@
                                         <label class="pt-1" for="slotNum">Versa Haven</label>
                                     </div>
                                 </div>
-                                 <div class="row" style="justify-content:center">
+                                 <div class="row" style="justify-content:center;">
                                     <div class="col-md-5">
                                         <label class="pt-1" for="slotNum">Account Number</label>
                                     </div>
                                     <div class="col-md-7">
-                                        <label class="pt-1" for="slotNum">0123456789</label>
+                                        <label class="pt-1" for="slotNum">1300313014</label>
                                     </div>
                                 </div>
-                                 <div class="row" style="justify-content:center; padding: 30px 0px">
+                                 <div class="row" style="justify-content:center; padding: 30px 0px;text-align: left;">
                                     <div class="col-md-5">
                                         <label class="pt-1" for="slotNum">Transaction Id</label>
                                     </div>
@@ -485,7 +485,11 @@
                             data-dismiss="modal"
                             [disabled]="payment_id == null || payment_id ==''"
                             type="button" class="btn btn-join-add">
+<<<<<<< HEAD
+                            Submit
+=======
                             Make Payment
+>>>>>>> 0284501143f913440727ba66bac5513586314858
                         </button>
                         <!-- <button
                             data-dismiss="modal"

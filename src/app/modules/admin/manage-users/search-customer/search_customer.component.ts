@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './search_customer.component.html',
-  styleUrls: ['./search_customer.component.css']
+  styleUrls: ['./search_customer.component.scss']
 })
 export class SearchCustomerComponent implements OnInit {
   searchValue = '';
