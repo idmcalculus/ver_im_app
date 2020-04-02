@@ -10,7 +10,7 @@ import { Category } from 'src/app/shared/models/Category';
 export class ManageCategoryComponent {
 
   buttonText = 'Add Category';
-  updateButtonText = 'check';
+  updateButtonText = 'update';
   inEditMode = false;
   isLoading = true;
   category: Category = {category_name: ''};
@@ -36,12 +36,12 @@ export class ManageCategoryComponent {
   }
 
   updateCategory(category: Category) {
-    this.updateButtonText = 'spinner';
+    this.updateButtonText = 'updating';
     this.investmentService.updateCategory(category).subscribe(resp => {
       if (resp && resp.success) {
         category.inEditMode = !category.inEditMode;
         // alert(resp.success.Message);
-        this.updateButtonText = 'check';
+        this.updateButtonText = 'update';
       }
     });
   }

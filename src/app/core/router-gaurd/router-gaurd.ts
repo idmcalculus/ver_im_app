@@ -3,20 +3,20 @@ import {
   CanActivate, Router,
   ActivatedRouteSnapshot,
   NavigationExtras,
-  RouterStateSnapshot}                           from '@angular/router';
+  RouterStateSnapshot} from '@angular/router';
 import {UserSession} from '../../shared/models/UserSession';
 import {AppAuthService} from './../auth/auth.service';
 
 @Injectable()
 export class RouterGaurdService implements CanActivate {
-usrSession:UserSession;
+usrSession: UserSession;
   constructor(
     private router: Router,
-    private authService:AppAuthService
+    private authService: AppAuthService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    
+
         const currentUser = this.authService.currentUserValue;
         if (currentUser) {
             return true;
