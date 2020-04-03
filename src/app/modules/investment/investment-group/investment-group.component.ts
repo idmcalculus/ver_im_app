@@ -17,6 +17,7 @@ import { MatFormFieldControl } from '@angular/material';
 export class InvestmentGroupComponent implements OnInit {
   isLoading = true;
   investmentGroups = new FormControl();
+  investmentGroupNames = new FormControl();
   investmentGroupName: string;
   investments: Investment[] = [];
 

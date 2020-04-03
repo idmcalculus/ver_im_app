@@ -6,6 +6,7 @@ import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
+import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,19 +15,24 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-pool:any
-poolId:number=0;
-reportData:Report = {title:'',description:''}
-categories=[];
-modaltitle:string='Update Plan';
-modalButtonTitle:string='';
-modalData:Report={};
-callBack:any;
-isLoading:boolean=true;
-selectedUser:User;
-loggedInUser:User;
-userSubscription:Subscription
-// @ViewChild('closeBtn') closeBtn: ElementRef;
+  pool:Investment
+  poolId:number=0;
+  reportData:Report = {title:'',description:''}
+  categories=[];
+  modaltitle:string='Update Plan';
+  modalButtonTitle:string='';
+  modalData:Report={};
+  callBack:any;
+  isLoading:boolean=true;
+  selectedUser:User;
+  loggedInUser:User;
+  userSubscription:Subscription;
+  
+  expected_return: number;
+  investment_amount: number;
+  period: string;
+  returns: string;
+  // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
     private router:Router,
@@ -34,7 +40,7 @@ userSubscription:Subscription
     private reportService:ReportService,
     private authService:AppAuthService
     ) { 
-
+      this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         if(userInfo){
           this.loggedInUser = userInfo;
@@ -83,6 +89,16 @@ userSubscription:Subscription
         
       }
     })
+  }
+
+  getCategories() {
+    this.isLoading = true;
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+      }
+      this.isLoading = false;
+    });
   }
 
   addReport(filledReport:Report){
@@ -149,7 +165,7 @@ userSubscription:Subscription
     }
     
   }
-
+  
   addUser(operation,modalData){
     if(operation=='create'){
       this.modalData = {investment_id:this.poolId}
@@ -212,6 +228,28 @@ userSubscription:Subscription
         }
       })
     }
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/pools');
+  }
+
+
+  divisorFunc (period) {
+    if (period === "Weekly") {
+      return 48;
+    } else if (period === "Monthly") {
+      return 12;
+    }
+  };
+
+  calculateEstimate(){
+    const cost = this.investment_amount
+    const investment = this.expected_return/100 
+    const divisor = this.divisorFunc(this.period)
+
+    const estimate = (cost * investment) / divisor
+    this.returns = estimate.toFixed(2)
   }
 
 }

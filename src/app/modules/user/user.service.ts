@@ -12,7 +12,6 @@ export class UserService {
   getProfileDetails(email: string): Observable<any> {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
-  
 
   updateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`update_user?
@@ -92,7 +91,6 @@ export class UserService {
     &email_updates_on_investment_process=${user.email_updates_on_investment_process ? 1 : 0}&user_id=${user.id}`, null);
   }
 
-  
   adminUpdateBankDetails(user: User): Observable<any> {
     return this.httpService.postRequest(`update_account_detail?
     email=${user.email}
