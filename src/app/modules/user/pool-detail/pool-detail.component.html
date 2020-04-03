@@ -59,9 +59,9 @@
                                                 <div class="text-center pt-2">
                                                     <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
                                                     <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
-                                                    <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1' " class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>
+                                                    <!--<button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>-->
                                                     <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn btn-block btn-primary btn-sm mt-2">Start Investment</button>
-
+                                                    <button  routerLink="./{{pool?.id}}/investment-profile"*ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">Update Investment</button>
                                                 </div>
                                             </div>
                                         </div>

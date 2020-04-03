@@ -22,6 +22,7 @@ import { AddCustomerComponent } from './manage-customer/add-customer/add_custome
 import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
+import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
 
 
 
@@ -84,6 +85,7 @@ const userRoutes: Routes = [
           { path: 'addpools', component: AddPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
+          { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }
         ]
