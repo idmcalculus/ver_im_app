@@ -31,11 +31,6 @@ export class AddUserComponent implements OnInit {
   users:User[]=[];
   user:User = {email: '',};
   selectedUser:User;
-  @Input() public modaltitle:string;
-  @Input() public modalButtonTitle:string;
-  @Input() public modalData:any;
-  @Input() public modalId:any;
-  @Output() submit = new EventEmitter<any>();
 
   constructor(
     private route:ActivatedRoute,
@@ -94,28 +89,23 @@ export class AddUserComponent implements OnInit {
       }
     })
   }
-
-  modalSubmitted(){
-    this.modalButtonTitle='adding...'
-    let element = document.getElementById('closeBtn');
+  addUserToPool(){
     const data = {
       user_email:this.user_email,
       number_of_pools:this.number_of_pools,   
       investment_id:this.poolId,
       amount_paid: this.amount_paid
     }
-    console.log(typeof this.modalId);
+    
     this.adminService.addUserToPool(data).subscribe(resp=>{
       if(resp && resp.success){
-        this.modalButtonTitle='add User';
-        element.click();
+        //this.modalButtonTitle='add User';
         this.toastrService.success('User added to pool')
-        this.submit.emit(this.modalId);
       }else{
-        element.click();
-        this.modalButtonTitle='add User';
+        //this.modalButtonTitle='add User';
       }
     })
+    console.log(this.amount_paid);
   }
 
   getUsers() {
@@ -130,7 +120,7 @@ export class AddUserComponent implements OnInit {
 
   calculateEstimate(returns,inv){
     const estimate = ((returns * inv));
-    return Math.ceil(estimate);
+    return estimate;
   }
 
   filterTable(filterType, filterValue: string) {

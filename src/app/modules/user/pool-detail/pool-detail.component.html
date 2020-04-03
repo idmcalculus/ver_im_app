@@ -284,23 +284,24 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card">
-                                    <div class="card-block">
+                                    <div class="card-block summary-card">
                                         <div class="row p-0">
                                             <div class="col-12">
-                                                <p class="">Investment Summary</p>
+                                                <h5 class="">Investment Summary</h5>
                                                 <hr class="new my-0">
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row mt-5">
                                             <div class="col-xl-12">
-                                                <div class="row pt-3">
+                                                <div class="row">
                                                     <div class="col-3">
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <h6 class="">Start Date</h6>
                                                             </div>
                                                             <div class="col-8">
+                                                                <h6>-</h6>
                                                                 <p class=""></p>
                                                             </div>
                                                         </div>
@@ -311,6 +312,7 @@
                                                                 <h6 class="">End Date</h6>
                                                             </div>
                                                             <div class="col-8">
+                                                                <h6>-</h6>
                                                                 <p class=""></p>
                                                             </div>
                                                         </div>
@@ -321,6 +323,7 @@
                                                                 <h6 class="">Last Payment</h6>
                                                             </div>
                                                             <div class="col-7">
+                                                                <h6>-</h6>
                                                                 <p class=""></p>
                                                             </div>
                                                         </div>
@@ -331,53 +334,13 @@
                                                                 <h6 class="">Next Payment</h6>
                                                             </div>
                                                             <div class="col-7">
+                                                                <h6>-</h6>
                                                                 <p class=""></p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card">
-                                    <div class="card-block">
-                                        <div class="row p-0">
-                                            <div class="col-12">
-                                                <p class="float-left pt-2">Investment Report</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="dt-responsive table-responsive">
-                                            <table id="order-table" class="table nowrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th>SN</th>
-                                                        <th>Investment Title</th>
-                                                        <th>Payback Frequency</th>
-                                                        <th>Amount Credited</th>
-                                                        <th>Yielded Amount</th>
-                                                        <th>Balance</th>
-                                                        <th>Status</th>
-                                                        <th>Date Paid</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody *ngIf="loggedInUser?.user_category!='Admin'">
-                                                    <tr *ngFor="let report of pool?.report ">
-                                                        <td>{{report?.title}}</td>
-                                                        <td>{{report?.title}}</td>
-                                                        <td>{{report?.title}}</td>
-                                                        <td>{{report?.title}}</td>
-                                                        <td>{{report?.title}}</td>
-                                                        <td>{{report?.title}}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
