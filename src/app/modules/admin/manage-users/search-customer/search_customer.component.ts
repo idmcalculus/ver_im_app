@@ -12,10 +12,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SearchCustomerComponent implements OnInit {
   searchValue = '';
-  users: User[];
+  users: User [];
+  user: User = {email: ''};
   selectedUser: User;
   selectedEditUser: User;
+  selectedDelUser: User;
+  checkedUser = [];
   isLoading= true;
+  selectedAll;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
@@ -34,12 +38,41 @@ export class SearchCustomerComponent implements OnInit {
     });
   }
 
+  selectAll() {
+    for (let i = 0; i < this.users.length; i++) {
+      {
+        this.users[i].selected = this.selectedAll;
+      }
+    }
+    this.getCheckedUser();
+  }
+
+  checkIfAllSelected() {
+    this.selectedAll = this.users.every(function(user: User) {
+      return user.selected == true;
+    })
+    this.getCheckedUser();
+  }
+
+  getCheckedUser(){
+    this.checkedUser = [];
+    for (var i = 0; i < this.users.length; i++) {
+      if(this.users[i].selected)
+      this.checkedUser.push(this.users[i]);
+    }
+  }
+
   viewUserDetail(userIndex) {
     this.selectedUser = this.users[userIndex];
   }
 
   editUserDetail(userIndex) {
     this.selectedEditUser = this.users[userIndex];
+  }
+
+  deleteUserDetail(userIndex) {
+    this.selectedDelUser = this.users[userIndex];
+    return this.selectedDelUser;
   }
 
   updateUser(user, operation) {
@@ -94,7 +127,6 @@ export class SearchCustomerComponent implements OnInit {
         return user[filterType].toLowerCase().includes(value.toLowerCase())
         }
       });
-      console.log('Filtered', filtered);
       this.users = filtered;
     }
   }
@@ -104,8 +136,8 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  delete = (users:User) => {
-    this.userService.deleteUser(users).subscribe(resp => {
+  delete = (user) => {
+    this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
       if (resp && resp.success) {
        this.toastrService.success('Details deleted succesfully');
      } else {

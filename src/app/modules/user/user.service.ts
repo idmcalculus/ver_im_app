@@ -53,7 +53,7 @@ export class UserService {
   }
 
   deleteUser(user: User) {
-    return this.httpService.postRequest(`user/delete`, { user_id: user.id }, true);
+    return this.httpService.postRequest(`user/delete? email=${user.email}`, true);
   }
 
   getUsers() {

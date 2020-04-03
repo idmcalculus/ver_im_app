@@ -24,5 +24,5 @@ export class User extends BasicModel{
     email_updates_on_investment_process?: boolean;
     where_you_work?: string;
     average_monthly_income?: string;
-    selected?: string;
+    selected?: boolean;
   }

@@ -77,6 +77,10 @@ updateProfile(user: User) {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
         }
+      else {
+        // alert('Update did not go through');
+        this.toastrService.error('Details update failed');
+        }
     });
     }
 
@@ -84,7 +88,10 @@ updatePreference(user: User) {
     this.isSubmitting = this.userService.adminUpdatePreference(this.user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
-            }
+            } else {
+                // alert('Update did not go through');
+                this.toastrService.error('Details update failed');
+                }
         });
         }
 
@@ -92,7 +99,10 @@ updateBankDetails(user: User) {
     this.isSubmitting = this.userService.adminUpdateBankDetails(this.user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
-            }
+            } else {
+                // alert('Update did not go through');
+                this.toastrService.error('Details update failed');
+                }
    });
         }
 

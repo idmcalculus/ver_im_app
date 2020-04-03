@@ -72,7 +72,7 @@ TabControl(){
 cancelProfile() {
         this.isSubmitting = false;
         this.user = { email: '', password: '' };
-        this.router.navigateByUrl('admin/manage-customers');
+        this.router.navigateByUrl('admin/manage-users');
     }
 
 createProfile(): void {
@@ -85,7 +85,7 @@ createProfile(): void {
                     if (UserDetails) {
                         this.toastrService.success('Registeration Succesfull');
                         this.user = { email: '', password: '' };
-                        this.router.navigateByUrl('admin/manage-customers');
+                        this.router.navigateByUrl('admin/manage-users');
                     }
                     resolve();
                 });
