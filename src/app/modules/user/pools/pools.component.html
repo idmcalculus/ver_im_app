@@ -23,43 +23,44 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', id.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', title.value)"
                                     (blur)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)"
+                                    (blur)="filterTable('id', search.value)">
 
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)"
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
-                                    (keyup)="filterTable('email',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('email',search.value)" 
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
-
+                                    <input type="number" class="input-control shadow" placeholder="Status" #search (keyup)="filterTable('phone_number',search.value)" 
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                         </div>

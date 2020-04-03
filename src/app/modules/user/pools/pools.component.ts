@@ -40,6 +40,7 @@ export class PoolsComponent implements OnInit {
       } else {
         this.userType = 'admin';
         this.getPools();
+        this.getCategories();
       }
 
       this.getPools();
@@ -89,7 +90,6 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories);
       }
       this.isLoading = false;
     });
@@ -123,8 +123,8 @@ export class PoolsComponent implements OnInit {
   }
 
   filterTable(filterType, filterValue: string) {
-
     if (!filterValue || filterValue === null) {
+      console.log(filterValue);
       return this.getPools();
     } else {
         const filtered = this.pools.filter(pool => {
