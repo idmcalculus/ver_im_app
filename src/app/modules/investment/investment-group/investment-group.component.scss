@@ -1,6 +1,6 @@
 .pcoded-content {
 	margin: 40px 0;
-	padding: 40px 0;
+	padding: 0 0 40px 0;
 }
 .row {
 	display: flex;
@@ -10,6 +10,10 @@
 .card {
 	height: 400px;
 	width: 100%;
+}
+
+a.pl-4 {
+	margin: 0 20px;
 }
 
 mat-form-field {
@@ -24,11 +28,11 @@ mat-form-field {
 }
 
 .card-title p {
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .card mat-label {
-	font-size: 16px;
+	font-size: 14px;
 	margin: 10px;
 	padding: 10px;
 	color: black;
@@ -38,18 +42,15 @@ mat-form-field {
 
 .card mat-select {
 	position: absolute;
-	left: 300px;
-	font-size: 14px;
+	left: 250px;
+	font-size: 12px;
+	width: 75%;
+	box-shadow: 1px 1px 1px 1px #888888a6;
 }
 
 .investmentGroups {
 	opacity: 0.75;
 	font-size: 0.75em;
-}
-
-a {
-	text-decoration: none;
-	color: inherit;
 }
 
 .mat-option-button {
@@ -62,7 +63,7 @@ a {
 ::ng-deep{
 	.mat-form-field-wrapper {
 		line-height: normal;
-		width: 300px;
+		width: 100%;
 		height: 5em;
 	}
 
@@ -73,6 +74,10 @@ a {
 
 	.mat-form-field-underline {
 		display: none;
+	}
+
+	.mat-option {
+		width: 75%;
 	}
 
 	.mat-select-panel {
@@ -86,7 +91,7 @@ a {
 		-webkit-text-fill-color: inherit !important;
 		transition: none;
 		display: block;
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	span.mat-option-text {
@@ -95,5 +100,11 @@ a {
 
 	.mat-select-value {
 		color: black;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.card mat-select {
+		width: 60%;
 	}
 }

@@ -3,6 +3,18 @@
       <div class="main-body">
           <div class="page-wrapper">
               <div class="page-body category">
+                <div class="clearfix mb-3">
+                  <div class="float-left pt-3">
+                    <a class="h4 pr-4">Investment Group</a>
+                    &nbsp; &nbsp;
+                    <a class="pl-4">Home / Investment Group</a>
+                  </div>
+                  <div class="float-right">
+                    <a><img src="../../../../assets/images/icon/icons/save-64.png"></a>
+                    &nbsp;
+                    <a (click)="goBack()"><img src="../../../../assets/images/icon/icons/Back-icon.png"></a>
+                  </div>
+                </div>
                   <div class="row">
                     <div class="card">
                       <div class="card-title">
@@ -10,40 +22,41 @@
                         <hr>
                       </div>
                       <br>
-                      <div class="form-group">
-                          <div class="investment-grp-name">
-                            <mat-form-field>
-                              <mat-label>Investment Group Name</mat-label>
-                                <mat-select placeholder="{{investmentGroupName}}">
+                          <mat-form-field>
+                              <div class="investment-grp-name form-group">
+                                <mat-label for="investmentGroupName">Investment Group Name</mat-label>
+                                <mat-select [(value)]="selected" [formControl]="investmentGroupNames" placeholder="Investment Group Name" id="investmentGroupName" class="form-control">
+                                  <mat-select-trigger>
+                                    {{investmentGroupName}}
+                                  </mat-select-trigger>
                                   <mat-option>{{investmentGroupName}}</mat-option>
                                   <mat-option><button class="mat-option-button" (click)="openModal()"><i class="fas fa-plus"></i> &nbsp; Add Investment Group</button></mat-option>
                                 </mat-select>
+                              </div>
                             </mat-form-field>
-                          </div>
-                          <div class="investments">
                             <mat-form-field>
-                              <mat-label>Investments</mat-label>
-                                <mat-select multiple placeholder="{{selected}}" [(value)]="selected" [formControl]="investmentGroups">
+                              <div class="investments form-group">
+                                <mat-label for="investments">Investments</mat-label>
+                                <mat-select multiple placeholder="Investments" [(value)]="selected" [formControl]="investmentGroups" id="investments" class="form-control">
                                   <mat-select-trigger>
                                     {{investmentGroups.value ? investmentGroups.value[0] : ''}}
                                     <span *ngIf="investmentGroups.value?.length > 1" class="investmentGroups">
                                       (+{{investmentGroups.value.length - 1}} {{investmentGroups.value?.length === 2 ? 'other' : 'others'}})
                                     </span>
                                   </mat-select-trigger>
-                                  <mat-option *ngFor="let investment of investments;let i = index;" value="{{investment.title}}">{{investment.title}}</mat-option>
+                                  <mat-option *ngFor="let investment of investments;" value="{{investment.title}}">{{investment.title}}</mat-option>
                                 </mat-select>
+                              </div>
                             </mat-form-field>
-                          </div>
-                          <div class="status">
-                            <mat-form-field color="primary">
-                              <mat-label>Status</mat-label>
-                                <mat-select placeholder="{{selected}}">
+                            <mat-form-field>
+                              <div class="status form-group">
+                                <mat-label>Status</mat-label>
+                                <mat-select class="form-control" placeholder="Status">
                                   <mat-option value="Enable">Enable</mat-option>
                                   <mat-option value="Disable">Disable</mat-option>
                                 </mat-select>
-                            </mat-form-field>
-                          </div>
-                      </div>
+                              </div>
+                          </mat-form-field>
                     </div>
                   </div>
               </div>

@@ -59,7 +59,7 @@ export class AddCustomerComponent implements OnInit {
            this.user.authentication_type = 'E';
            this.user.average_monthly_income = '0';
            this.user.password = '1234';
-           this.isSubmitting = this.userService.createProfile(this.user).subscribe(resp => {
+           this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp => {
               if (resp && resp.success) {
                // alert(resp.success.Message);
                 this.toastrService.success('Registeration Succesfull');
