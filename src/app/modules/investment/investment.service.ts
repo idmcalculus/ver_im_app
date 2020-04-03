@@ -14,7 +14,6 @@ export class InvestmentService {
     private cloudinaryService: CloudinaryService
   ) { }
 
-
   addInvestment(investment: Investment): Observable<any> {
     var imageBody = { "investment_image": investment.investment_image };
     return this.httpService.postRequest(`investment/create?

@@ -8,6 +8,7 @@ import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
+import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 
 import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
@@ -19,6 +20,7 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
+import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -32,7 +34,9 @@ import {ProgressBarModule} from 'angular-progress-bar';
     AddPoolComponent,
     ManageCategoryComponent,
     ManageUsersComponent,
-    ManageAdminComponent
+    ManageAdminComponent,
+    ViewCustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     CommonModule,

@@ -3,16 +3,40 @@
       <div class="main-body">
           <div class="page-wrapper">
               <div class="page-body">
-                <div class="row">
+                <div class="clearfix mb-3">
+                  <div class="float-left pt-2">
+                      <a class="h4 pr-2">Investment</a>
+                      &nbsp; &nbsp;
+                      <a class=" pl-2">Home / Investment</a>
+                  </div>  
+                  <div class="float-right">
+                      <a (click)="goBack()">
+                          <img style="cursor: pointer;" src="../assets/images/icon/icons/Back-icon.png">
+                      </a>
+                  </div>
+              </div>
+              <br><br><br>
+              <div *ngIf="isLoading" class="pool-details lds-default">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+                <div class="row" *ngIf="!isLoading">
                   <div class="col-xl-12">
                       <div class="card ">
                           <div class="card-block">
                               <div class="row p-0">
                                   <div class="col-12">
-                                      <h5 class="float-left pt-2">Investment Profile</h5>
-                                      <a *ngIf="loggedInUser?.user_category=='Admin' " routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
-                                          <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
-                                      </a>
+                                      <p class="float-left pt-2">Investment Profile</p>
                                   </div>
                               </div>
                               <div class="dt-responsive table-responsive">
@@ -34,7 +58,7 @@
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>{{user?.user_investment_info?.investment_amount}}</td>
-                                              <td>{{user?.user_investment_info?.created_at}}</td>
+                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
                                           </tr>
                                       </tbody>
                                       <tbody *ngIf="loggedInUser?.user_category!='Admin'">
@@ -44,7 +68,7 @@
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>{{user?.user_investment_info?.investment_amount}}</td>
-                                              <td>{{user?.user_investment_info?.created_at}}</td>
+                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
                                           </tr>
                                       </tbody>
                                   </table>
@@ -54,7 +78,7 @@
                   </div>
                 </div>
 
-                <div class="row">
+                <div class="row" *ngIf="!isLoading">
                   <div class="col-xl-12">
                       <div class="card">
                           <div class="card-block">
@@ -65,48 +89,75 @@
                                   </div>
                               </div>
 
-                              <div class="row pt-3">
+                              <div class="row pt-3 justify-content-center summary">
                                   <div class="col-3">
                                       <div class="row">
-                                          <div class="col-4">
-                                              <h6 class="">Start Date</h6>
+                                          <div class="col-6">
+                                              <span>Start Date</span>
                                           </div>
-                                          <div class="col-8">
+                                          <div class="col-6">
+                                              <p class="">{{pool?.investment?.investment_started_date | date}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>End Date</span>
+                                          </div>
+                                          <div class="col-6">
+                                              <p class="">{{pool?.investment?.investment_close_date | date}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>Last Payment</span>
+                                          </div>
+                                          <div class="col-6">
                                               <p class=""></p>
                                           </div>
                                       </div>
                                   </div>
                                   <div class="col-3">
                                       <div class="row">
-                                          <div class="col-4">
-                                              <h6 class="">End Date</h6>
+                                          <div class="col-6">
+                                              <span>Next Payment</span>
                                           </div>
-                                          <div class="col-8">
-                                              <p class=""></p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-5">
-                                              <h6 class="">Last Payment</h6>
-                                          </div>
-                                          <div class="col-7">
-                                              <p class=""></p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-5">
-                                              <h6 class="">Next Payment</h6>
-                                          </div>
-                                          <div class="col-7">
+                                          <div class="col-6">
                                               <p class=""></p>
                                           </div>
                                       </div>
                                   </div>
                               </div>
+                              <div class="row pt-3 justify-content-between summary">
+                                <div class="col-4 mr-auto">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Total Monthly Return</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Return Per Slot</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="">{{pool?.investment?.expected_return_amount}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 ml-auto">
+                                    <div class="row justify-content-center">
+                                            <span><button>Pay Investors</button></span>
+                                    </div>
+                                </div>
+                            </div>
                           </div>
                       </div>
                   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter,Input,Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
 import { Category } from 'src/app/shared/models/Category';
 
@@ -9,38 +9,38 @@ import { Category } from 'src/app/shared/models/Category';
 })
 export class ManageInvestmentComponent implements OnInit {
 
-  @Input() public modaltitle:string;
-  @Input() public modalButtonTitle:string;
-  @Input() public modalData:any;
-  @Input() public categories:[Category];
+  @Input() public modaltitle: string;
+  @Input() public modalButtonTitle: string;
+  @Input() public modalData: any;
+  @Input() public categories: [Category];
   @Output() submit = new EventEmitter<Investment>();
 
-  image:any;
+  image: any;
   isSubmitting;
-  
+
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
-  modalSubmitted(){
+  modalSubmitted() {
     // console.log('submitting :: '+JSON.stringify(this.modalData))
     this.submit.emit(this.modalData);
   }
 
-  changeListener($event) : void {
+  changeListener($event): void {
     this.readThis($event.target);
   }
-  
+
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
-  
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       this.modalData.investment_image = this.image;
-    }
+    };
     myReader.readAsDataURL(file);
   }
 }
