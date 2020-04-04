@@ -6,6 +6,7 @@ import { InvestmentService } from '../investment.service';
 import { Investment } from '../../../shared/models/Investment';
 import { MatFormFieldControl } from '@angular/material';
 import { Location } from '@angular/common';
+import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
 
 @Component({
   selector: 'app-investment-group',
@@ -17,10 +18,11 @@ import { Location } from '@angular/common';
 })
 export class InvestmentGroupComponent implements OnInit {
   isLoading = true;
-  investmentGroups = new FormControl();
+  investment = new FormControl();
   investmentGroupNames = new FormControl();
   investmentGroupName: string;
   investments: Investment[] = [];
+  investmentGroups: InvestmentGroup[] = [];
 
   constructor(public matDialog: MatDialog,
               private investmentService: InvestmentService,
@@ -42,15 +44,26 @@ export class InvestmentGroupComponent implements OnInit {
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
 
     modalDialog.afterClosed().subscribe(result => {
-      this.investmentGroupName = result;
+      this.investmentGroups.push(result);
     });
+  }
+
+  deleteGroup(group) {
+    if (confirm('Are you sure you want to delete this group?')) {
+    for ( let i = 0; i < this.investmentGroups.length; i++) {
+      if ( this.investmentGroups[i] === group) {
+        return this.investmentGroups.splice(i, 1);
+      }
+    }
+  } else {
+    return this.investmentGroups;
+  }
   }
 
   getInvestments() {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.investments = investments.success.Data;
-        console.log(this.investments);
       }
       this.isLoading = false;
     });

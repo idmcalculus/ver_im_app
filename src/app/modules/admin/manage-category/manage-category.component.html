@@ -3,6 +3,17 @@
     <div class="main-body">
         <div class="page-wrapper">
             <div class="page-body category">
+                <div class="clearfix mb-1">
+                    <div class="float-left pt-2">
+                      <a class="h4 pr-4">Investment Category</a>
+                      &nbsp; &nbsp;
+                      <a class="pl-4">Home / Investment Category</a>
+                    </div>
+                    <div class="float-right">
+                      <a (click)="goBack()"><img src="../../../../assets/images/icon/icons/Back-icon.png"></a>
+                    </div>
+                  </div>
+                  <br>
                 <div class="row">
                     <div class="col-sm-4">
                           <div class="card">
@@ -15,7 +26,7 @@
                                   </div>-->
                                   <form (ngSubmit)="addCategory()" #addCategoryForm="ngForm" class="">
                                       <div class="form-group">
-                                          <label for="CategoryName">Category Name</label> 
+                                          <label for="CategoryName">Category Name</label>
                                           <br>
                                           <input [(ngModel)] ="category.category_name" required type="text" name='categoryName'
                                                  class="form-control" id="CategoryName"

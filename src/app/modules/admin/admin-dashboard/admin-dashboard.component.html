@@ -1,4 +1,4 @@
-<div class="pcoded-content bod" id="boid">
+<div class="pcoded-content body" id="boid">
 
   <div class="pcoded-inner-content">
       <div class="main-body">
@@ -25,7 +25,6 @@
                             <div></div>
                             <div></div>
                     </div>
-                   
                   <div *ngIf="!isLoading" class="row info">
                         <div class="col-xl-3 col-md-4">
                             <div class="card comp-card prod-p-card card-yellow">
@@ -42,7 +41,6 @@
                                         <div class="col">
                                             <h3 class="f-w-700 text-c-white" style="float: right;">{{dashBoardData?.all_investment}}</h3>
                                         </div>
-                                       
                                     </div>
                                     <div class="row">
                                         <p class="m-b-0 foot" >View more...</p>
@@ -65,7 +63,6 @@
                                         <div class="col">
                                             <h3 class="f-w-700 text-c-white" style="float: right;">{{dashBoardData?.all_investment}}M</h3>
                                         </div>
-                                       
                                     </div>
                                     <div class="row">
                                         <p class="m-b-0 foot">View more...</p>
@@ -88,7 +85,6 @@
                                         <div class="col">
                                             <h3 class="f-w-700 text-c-white" style="float: right;">{{dashBoardData?.all_users}}</h3>
                                         </div>
-                                        
                                     </div>
                                     <div class="row">
                                         <p class="m-b-0 foot">View more...</p>
@@ -111,7 +107,6 @@
                                         <div class="col">
                                             <h3 class="f-w-700 text-c-white" style="float: right;">{{dashBoardData?.all_request}}</h3>
                                         </div>
-                                       
                                     </div>
                                     <div class="row">
                                         <p class="m-b-0 foot">View more...</p>
@@ -169,7 +164,6 @@
                       <div class="card latest-update-card">
                           <div class="card-header small-gap">
                               <h5>Investment Perfomance</h5>
-                              
                           </div>
                           <div class="row divider"></div>
                           <div class="card-block" >
@@ -179,7 +173,7 @@
                                         [data]="doughnutChartData"
                                         [labels]="doughnutChartLabels"
                                         [chartType]="doughnutChartType"
-                                        [options]="doughnutChartOptions" 
+                                        [options]="doughnutChartOptions"
                                         [plugins]="doughnutChartPlugins"
                                         [legend]="false">
                                         >
@@ -224,8 +218,8 @@
                                   <h5>Recent Activity</h5>
                               </div>
                               <div class="card-block">
-                                  
-                              
+
+
                                 <div class="dt-responsive table-responsive">
                                         <!-- <table id="userTable"
                                                 class="table table-striped nowrap">
@@ -259,8 +253,8 @@
                                 <h5>Latest Investment</h5>
                             </div>
                             <div class="card-block">
-                                
-                            
+
+
                               <div class="dt-responsive table-responsive">
                                       <table id="userTable"
                                               class="table table-striped nowrap">

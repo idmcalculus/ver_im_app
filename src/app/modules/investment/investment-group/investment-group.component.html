@@ -15,7 +15,22 @@
                     <a (click)="goBack()"><img src="../../../../assets/images/icon/icons/Back-icon.png"></a>
                   </div>
                 </div>
-                  <div class="row">
+                <br><br><br>
+              <div *ngIf="isLoading" class="pool-details lds-default">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+                  <div class="row" *ngIf="!isLoading">
                     <div class="card">
                       <div class="card-title">
                         <p><i class="fa fa-pencil-alt"></i>&nbsp; &nbsp; Edit Investment Group</p>
@@ -25,11 +40,15 @@
                           <mat-form-field>
                               <div class="investment-grp-name form-group">
                                 <mat-label for="investmentGroupName">Investment Group Name</mat-label>
-                                <mat-select [(value)]="selected" [formControl]="investmentGroupNames" placeholder="Investment Group Name" id="investmentGroupName" class="form-control">
+                                <mat-select [formControl]="investmentGroupNames" placeholder="Investment Group Name" id="investmentGroupName" class="form-control">
                                   <mat-select-trigger>
-                                    {{investmentGroupName}}
+                                    {{investmentGroupNames.value ? investmentGroupNames.value : ''}}
                                   </mat-select-trigger>
-                                  <mat-option>{{investmentGroupName}}</mat-option>
+                                  <mat-option *ngFor="let group of investmentGroups;" [value]="group">{{group}}
+                                    <span *ngIf="group">
+                                      <a (click)="deleteGroup(group)"><i class="fa fa-trash"></i></a>
+                                    </span>
+                                  </mat-option>
                                   <mat-option><button class="mat-option-button" (click)="openModal()"><i class="fas fa-plus"></i> &nbsp; Add Investment Group</button></mat-option>
                                 </mat-select>
                               </div>
@@ -37,11 +56,11 @@
                             <mat-form-field>
                               <div class="investments form-group">
                                 <mat-label for="investments">Investments</mat-label>
-                                <mat-select multiple placeholder="Investments" [(value)]="selected" [formControl]="investmentGroups" id="investments" class="form-control">
-                                  <mat-select-trigger>
-                                    {{investmentGroups.value ? investmentGroups.value[0] : ''}}
-                                    <span *ngIf="investmentGroups.value?.length > 1" class="investmentGroups">
-                                      (+{{investmentGroups.value.length - 1}} {{investmentGroups.value?.length === 2 ? 'other' : 'others'}})
+                                <mat-select multiple placeholder="Investments" [(value)]="selected" [formControl]="investment" id="investments" class="form-control">
+                                  <mat-select-trigger *ngIf="investment.value">
+                                    {{investment.value[0]}}, {{investment.value[1]}}, {{investment.value[2]}} 
+                                    <span *ngIf="investment.value?.length > 3" class="investmentGroups">
+                                      (+{{investment.value.length - 3}} {{investment.value?.length === 4 ? 'other' : 'others'}})
                                     </span>
                                   </mat-select-trigger>
                                   <mat-option *ngFor="let investment of investments;" value="{{investment.title}}">{{investment.title}}</mat-option>

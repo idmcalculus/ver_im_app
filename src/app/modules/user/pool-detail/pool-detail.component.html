@@ -176,6 +176,23 @@
                                             
                                             <div class="col">
                                                 <button type="submit" class="btn btn-primary btn-sm px-5 float-right">Update</button>
+
+                                                    <div *ngFor="let report of pool?.report " class="report-card">
+
+                                                        <h4>{{report?.title}}</h4>
+                                                        <div>{{report?.description}}</div>
+                                                        <small class="date">{{report?.updated_at}}</small>
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
+                                                            data-target="#reportModal">
+                                                            <small class="">   Edit</small>
+                                                        </a>
+                                                        <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
+                                                            data-target="#none">
+                                                            <small class="">   Delete</small>
+                                                        </a>
+                                                        <!-- <small (click)="deleteReport(report.id)" class="">   Delete</small> -->
+
+                                                    </div>
                                             </div>
                                         </div>
     
@@ -285,7 +302,7 @@
                                                         <h6 class="">Start Date</h6>
                                                     </div>
                                                     <div class="col-8">
-                                                        <p class=""></p>
+                                                        <p class="">{{pool?.investment?.investment_started_date | date}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -295,7 +312,7 @@
                                                         <h6 class="">End Date</h6>
                                                     </div>
                                                     <div class="col-8">
-                                                        <p class=""></p>
+                                                        <p class="">{{pool?.investment?.investment_close_date | date}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -368,6 +385,7 @@
 
                     </div>              
                 </div>
+
             </div>
         </div>
     </div>
@@ -376,4 +394,3 @@
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
 <app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser>
-

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { InvestmentService } from '../../investment/investment.service';
 import { Category } from 'src/app/shared/models/Category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-manage-category',
@@ -18,10 +19,10 @@ export class ManageCategoryComponent {
   filteredCategories = [];
   searchValue = '';
 
-  constructor(private investmentService: InvestmentService) {
+  constructor(private investmentService: InvestmentService,
+              private location: Location) {
     this.getCategories();
   }
-
   addCategory() {
     if (this.category.category_name) {
         this.buttonText = 'Submitting';
@@ -77,9 +78,12 @@ export class ManageCategoryComponent {
             return category[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        console.log(filtered);
         this.categories = filtered;
       }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }
