@@ -20,7 +20,7 @@ div > a {
 }
 
 .latest-update-card {
-	height: 600px;
+	height: 550px;
 }
 
 .summary-card {
@@ -49,6 +49,10 @@ hr.new {
 h4,h5,p {
   color: #221F72;
   font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 0;
 }
 
 h6 {

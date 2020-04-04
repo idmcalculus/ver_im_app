@@ -203,9 +203,6 @@ export class PoolDetailComponent implements OnInit {
     this.authService.setCurrentPlanOperation(investment);
   }
 
-  addInvestmnet(){
-
-  }
 
   viewUserDetail(user){
     // console.log("gat it :: "+JSON.stringify(user))
@@ -250,11 +247,6 @@ export class PoolDetailComponent implements OnInit {
 
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
-  }
-
-
-  AddUserPool() {
-    this.router.navigateByUrl('admin/adduser');
   }
     
   divisorFunc (expected_return_period) {
