@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './list_users.component.html',
-  styleUrls: ['./list_users.component.scss']
+  styleUrls: ['./list_users.component.css']
 })
 export class ManageUsersComponent implements OnInit {
 

@@ -1,18 +1,18 @@
-<div *ngIf="!selectedUser" class="pcoded-content">
+<div class="pcoded-content">
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
                     <div class="clearfix mb-3">
                         <div class="float-left pt-3">
-                            <a class="h4 pr-2">Investors</a>
-                            <a class=" pl-2">Home / Investors</a>
+                            <a class="h4 pr-2">Investments</a>
+                            <a class=" pl-2">Home / Investments</a>
                         </div>  
                         <div class="float-right">
-                            <a>
+                            <a (click)="cancelPool()">
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a (click)="deleteUser(user)" id="delCat">
+                            <a id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -23,39 +23,43 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Title"
-                                    (keyup)="filterTable('email', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
+                                    (blur)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Category" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="form-control form-control-sm inputstyle" placeholder="Email"
-                                    (keyup)="filterTable('email', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
+                                    (keyup)="filterTable('email',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="form-control form-control-sm inputstyle" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+
                                 </div>
                             </div>
                         </div>
@@ -63,13 +67,67 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card">
-                                <div *ngIf="!isLoading" class="card-block">
+                            <div class="card px-3">
+                                <div class="category-header pt-3 p-2">
+                                    <p class="mr-3">
+                                        <input type="checkbox">
+                                    </p>
+                                    <p class="mr-3">ID</p>
+                                    <p class="col-3">Investment Title</p>
+                                    <p class="col-1">Category</p>
+                                    <p class="col-2">No of Investors</p>
+                                    <p class="col-1">Tenure</p>
+                                    <p class="col-1">ROI</p>
+                                    <p class="col-1">Payback</p>
+                                    <p class="col-1">Cost</p>
+                                    <p class="col-1">Status</p>
+                                    <p class="">Action</p>
+                                </div>
+                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
+                                    <div *ngIf="isLoading" >
+                                        <br><br>
+                                        <div  class="lds-default">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
+                                            <p class="mr-3"><input type="checkbox"></p>
+                                            <p class="mr-3">{{pool.id}}</p>
+                                            <p class="col-3">{{pool.title}}</p>
+                                            <p class="col-1">{{pool.category_id}}</p>
+                                            <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p class="col-1">{{pool.duration}} Months</p>
+                                            <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p class="col-1">{{pool.expected_return_period}}</p>
+                                            <p class="col-1">{{pool.investment_amount}}</p>
+                                            <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
+                                            <ng-template #showThis>      
+                                                <p class="col-1" style="color: red">{{'InActive'}}</p>
+                                            </ng-template>
+                                            <p class="">
+                                                <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div  *ngIf="!isLoading && pools?.length > 0 "class="card-block">
                                     <div class="table-wrapper-scroll-y custom-scrollbar">
                                         <table datatable class="table appTable nowrap">
                                             <thead>
                                                 <tr>
-                                                    <th><input type="checkbox"></th>
+                                                    <th><input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"></th>
                                                     <th>ID</th>
                                                     <th>Investment Title</th>
                                                     <th>Category</th>
@@ -84,23 +142,25 @@
                                             </thead>
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
-                                                <td><input type="checkbox"></td>
+
+                                                <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
                                                 <td>{{pool.id}}</td>
                                                 <td >{{pool.title}}</td>
                                                 <td >{{pool.category_id}}</td>
-                                                <td >{{pool.max_num_of_slots}}( {{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} months
+                                                <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
+                                                <td >{{pool.duration}} Months</td>
 
-                                                </td>
-                                                <td >{{pool.reference}}</td>
-                                                <td >{{pool.reference}}</td>
+                                                <td >{{pool.expected_return_amount}}</td>
+                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
-                                                <td *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>      
-                                                    <td>{{'InActive'}}</td>
+                                                    <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
-                                                <td  (click)="viewUserDetail(i)">
-                                                    <a *ngIf="!pool.inViewMode" (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+
+                                                <td>
+                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -121,7 +181,7 @@
                                     <div></div>
                                     <div></div>
                                     <div></div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -132,7 +192,7 @@
     </div>
 </div>
 
-<div class="pcoded-content">
+<!-- <div class="pcoded-content">
 
     <div class="pcoded-inner-content">
         <div class="main-body">
@@ -200,4 +260,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

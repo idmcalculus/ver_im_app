@@ -1,102 +1,3 @@
-<div *ngIf="!selectedUser" class="pcoded-content">
-    <div class="pcoded-inner-content">
-        <div class="main-body">
-            <div class="page-wrapper">
-                <div class="page-body">
-                    <div class="clearfix mb-3">
-                        <div class="float-left pt-3">
-                            <a class="h4 pr-2">Customers</a>
-                            <a class=" pl-2">Home / Customers</a>
-                        </div>  
-                        <div class="float-right">
-                            <a>
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
-                            </a>
-                            <a (click)="deleteUser(user)" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="container-fluid bg_filter border border-dark rounded mb-5">
-                        <div class="row p-1 py-4">
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
-                                <div class="form-group">
-                                    <label class="h7">Fullname</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Fullname" (keyup)="filterTable('first_name', $event)">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
-                                <div class="form-group">
-                                    <label class="h7">Email</label>
-                                    <input type="text" class="form-control form-control-sm" placeholder="Email"
-                                    (keyup)="filterTable('email', $event)">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="form-group">
-                                    <label class="h7">Phone Number</label>
-                                    <input type="number" class="form-control form-control-sm" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div *ngIf="!isLoading" class="card-block">
-                                    <div class="table-wrapper-scroll-y custom-scrollbar">
-                                        <table datatable class="table appTable nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 5%;"><input type="checkbox"></th>
-                                                    <th style="width: 30%;">Fullname</th>
-                                                    <th style="width: 30%;">Email</th>
-                                                    <th style="width: 20%;">Phone Number</th>
-                                                    <th style="width: 15%;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr data-href="#viewUserProfile" *ngFor="let user of users;let i = index;">
-                                                <td><input type="checkbox"></td>
-                                                <td>{{user.first_name}} {{user.last_name}}</td>
-                                                <td >{{user.email}}</td>
-                                                <td >{{user.phone_number}}</td>
-                                                <td  (click)="viewUserDetail(i)">
-                                                    <a *ngIf="!user.inViewMode" (click)="user.inViewMode=!user.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                                    <a *ngIf="!user.inEditMode" (click)="user.inEditMode=!user.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pl-2" src="../../../../assets/images/icon/icons/Edit-icon.png"></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="isLoading" class="lds-default">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <section class="invest-header">
     <div class="row">
         <div class="col-md-3">
@@ -125,7 +26,7 @@
             <div class="row">
                 <div class="column2">
                     <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
-                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)">|<span>{{category.category_name}}</span></h5>
+                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
                 </div>
             </div>
 
@@ -182,6 +83,56 @@
                         </div>
                     </a>
                 </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{100000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{500000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                    <a class="sold_out" href="https://abc.com/">Sold out</a>
+                    <div class="superb-container m-b20" style="background-color: #33333324;">
+                        <div class="img-holder">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
+                            <h3>{{750000 | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>12 Month(s)</p>
+                        </div>
+                    </div>
+                </div>
+                   
             </div>
             <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
                 <div class="inner-workingSection">

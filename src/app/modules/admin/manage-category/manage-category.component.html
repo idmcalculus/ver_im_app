@@ -53,12 +53,12 @@
                                 </label>
                               </div>
                             </div>
-                            <div class="card-block dt-responsive" id="categoryTable">
-                                <div class="category-header">
+                            <div class="card-block dt-responsive category-header">
                                     <p class="s-n" scope="col">S/N</p>
                                     <p class="category-name" scope="col">Category Name</p>
                                     <p class="action" scope="col">Action</p>
-                                </div>
+                            </div>
+                            <div class="card-block dt-responsive category-body">
                                 <div *ngIf="isLoading" >
                                 <br><br>
                                     <div  class="lds-default">
@@ -76,7 +76,7 @@
                                         <div></div>
                                     </div>
                                 </div>
-                                <div class="category-body" *ngIf="!isLoading">
+                                <div *ngIf="!isLoading">
                                     <div class="row1" *ngFor="let category of categories;let i=index">
                                         <p class="s-n">{{i+1}}</p>
                                         <p class="category-name">
