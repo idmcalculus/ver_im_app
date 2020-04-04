@@ -60,8 +60,8 @@ export class PoolsComponent implements OnInit {
     this.getCheckedPooList();
   }
   isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool: any) {
-        return pool == true;
+    this.masterSelected = this.checklist.every((pool: any) => {
+        return pool === true;
       });
     this.getCheckedPooList();
   }
