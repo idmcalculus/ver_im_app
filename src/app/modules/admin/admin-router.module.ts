@@ -22,6 +22,7 @@ import { AddCustomerComponent } from './manage-customer/add-customer/add_custome
 import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
+import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
 
 
 
@@ -51,15 +52,20 @@ const userRoutes: Routes = [
           { path: 'manage-customer',
             children: [
             {path: '',
-            children: [
-              {path: '', component: ViewCustomerComponent},
-              {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
-            ]
+              children: [
+                {path: '', component: ManageUsersComponent},
+                {path: 'add-customer', component: AddCustomerComponent},
+                {path: 'list-users', component: ManageUsersComponent },
+              ]
             }
           ] },
-          { path: 'manage-users', component: ManageUsersComponent },
+          { path: 'manage-investments',
+              children: [
+                //{path: '', component: PoolsComponent},
+                //{path: 'investment', component: PoolsComponent},
+                //{path: 'add-pools', component: AddPoolComponent},
+                //{path: 'list-users', component: ManageUsersComponent },
+          ] },
           { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',
@@ -79,6 +85,7 @@ const userRoutes: Routes = [
           { path: 'addpools', component: AddPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
+          { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }
         ]

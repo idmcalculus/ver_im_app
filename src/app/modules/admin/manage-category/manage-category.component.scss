@@ -1,7 +1,8 @@
 .pcoded-content {
 	margin: 40px 0;
-	padding: 40px 0;
+	padding: 0 0 40px 0;
 }
+
 .row {
 	display: flex;
 	flex-flow: row nowrap;
@@ -21,7 +22,6 @@
 	margin: 0 20px;
 	padding: 0 20px;
 }
-
 
 .col-sm-4{
 	.card{
@@ -44,10 +44,29 @@
 	}
 }
 
-.col-sm-8 .card-block {
+.col-sm-8 .card-block.category-header {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	font-weight: bold;
+	border-style: solid;
+	border-color: #221f72;
+	border-width: 0.5px;
+	margin: 0px;
+	padding: 0px;
+	box-shadow: -1px -1px 3px 1px #888888a6;
+	
+	&::-webkit-scrollbar { 
+		display: none;  // Safari and Chrome
+	}
+}
+
+.col-sm-8 .card-block.category-body {
 	display: flex;
 	flex-flow: column nowrap;
 	overflow: auto;
+	margin: 0px;
+	padding: 0px;
 	
 	&::-webkit-scrollbar { 
 		display: none;  // Safari and Chrome
@@ -61,6 +80,36 @@
 	color: #6c69c0;
 }
 
+
+.category-body .row1:nth-of-type(odd) {
+	background: #e1f8ff;
+}
+
+.category-body > div {
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+  
+.category-body .row1 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	justify-items: center;
+	border-style: solid;
+	border-color: black;
+	border-width: 0.5px;
+}
+  
+.s-n, .action, .category-name {
+	  flex: 1 1 20em;
+	  margin-left: 10px;
+	  padding-left: 10px;
+}
+  
+.action, .category-name {
+	  border-left: solid 1px black;
+}
+
 .category-top {
   margin: 10px;
   padding: 10px;
@@ -68,14 +117,13 @@
 
 .col-sm-4 .card-header {
 	border-bottom: 0.5px solid #0b069033;
-    margin: 10px 1.5rem 3px 1.2rem;
-	padding: 10px 10px 5px 0px;
+    margin: 10px 10px 15px 10px;
+	padding: 10px 10px 15px 10px;
 	
 	::after{
 		background-color: transparent;
 	}
 }
-
 
 .col-sm-8 .card-header {
 	margin: 10px 15rem 0px 1rem;
@@ -87,14 +135,13 @@
 	}
 }
 
-
-
 .categories_length, .categories_filter {
   display: inline-block;
 }
 
 .categories_filter {
   float: right;
+
   input{
 	  border-radius: 10px;
 	  padding: 5px 15px;
@@ -104,62 +151,8 @@
 }
 
 
-.category-body > div:nth-of-type(odd) {
-  background: #e1f8ff;
-}
-
-.category-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  border-style: solid;
-  border-color: #221f72;
-  border-width: 0.5px;
-  margin: 0px 19px;
-  padding: 0px;
-  box-shadow: -1px -1px 3px 1px #888888a6;
-  p {
-	flex: 1 1 20em;
-    /* margin-left: 10px; */
-    margin-bottom: 0px;
-    padding: 15px 15px;
-    /* padding-left: 10px;*/
-  }
-}
-
-.category-body .row1 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-items: center;
-  margin: 0px;
-  padding: 0px;
-}
-
-.s-n, .action, .category-name {
-	flex: 1 1 20em;
-	margin-left: 10px;
-	padding-left: 10px;
-}
-
-.action, .category-name {
-	//border-left: solid 1px black;
-}
-
 .categories_length label, .categories_filter label {
 	font-size: 16px;
-}
-
-.categories_filter input[type=search] {
-	border: none;
-	padding: 6px;
-	margin-top: 8px;
-	font-size: 20px;
-	background: #D0D0D5;
-}
-
-.categories_filter button:hover {
-	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .col-sm-4 .card-block .form-group label {

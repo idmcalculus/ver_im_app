@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Report } from '../../models/Report';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -8,7 +8,7 @@ import {InvestmentService} from '../../../modules/investment/investment.service'
 import { UserService } from '../../../modules/user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
-import {addUserService} from './addUser.service';
+import { addUserService } from './addUser.service';
 import { ToastrService } from 'ngx-toastr';
 import { Location } from '@angular/common';
 
@@ -70,7 +70,7 @@ export class AddUserComponent implements OnInit {
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
-    })
+    });
   }
 
   fetchPool(poolId:string){

@@ -59,8 +59,9 @@
                                                 <div class="text-center pt-2">
                                                     <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
                                                     <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
-                                                    <button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1' " class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>
+                                                    <!--<button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>-->
                                                     <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn btn-block btn-primary btn-sm mt-2">Start Investment</button>
+                                                    <button  routerLink="./{{pool?.id}}/investment-profile"*ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">Update Investment</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -276,9 +277,42 @@
                                                 </div> 
                                             </div> 
                                         </div>
+    
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- <div class="col-xl-8">
+                                <div class="card latest-update-card">
+                                    <div class="card-block">
+                                        <div class="row p-0">
+                                            <div class="col-md-8"><h5>Report</h5></div>
+                                            <div class="col-md-4">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('create',null)" href="#" data-toggle="modal"
+                                                data-target="#reportModal"
+                                                class="btn btn-add plus-btn float-right"><span><i
+                                                        class="fa fa-plus"></i></span></a>
+                                            </div>
+                                        </div>
+                                        
+                                        <div *ngFor="let report of pool?.report " class="report-card">
+                                        
+                                            <h4>{{report?.title}}</h4>
+                                            <div>{{report?.description}}</div>
+                                            <small class="date">{{report?.updated_at}}</small>
+                                            <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
+                                                data-target="#reportModal">
+                                                <small class="">   Edit</small> 
+                                            </a>
+                                            <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
+                                                data-target="#none">
+                                                <small class="">   Delete</small> 
+                                            </a>
+                                            <small (click)="deleteReport(report.id)" class="">   Delete</small>
+                                        
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
 
                         <div class="row">
@@ -356,4 +390,3 @@
 <app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
 <app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>
 <app-report [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle" (submit)="callBack($event)"></app-report>
-<!-- <app-pool-addUser *ngIf="!loggedInUser?.user_category=='Admin' " [modalData]="modalData" [modalButtonTitle]="modalButtonTitle" [modalId]="pool?.investment?.id" (submit)="callBack($event)"></app-pool-addUser> -->

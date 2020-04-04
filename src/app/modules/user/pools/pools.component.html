@@ -12,7 +12,7 @@
                             <a (click)="cancelPool()">
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a (click)="deleteUser()" id="delCat">
+                            <a id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -23,40 +23,44 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', id.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', title.value)"
                                     (blur)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)"
+                                    (blur)="filterTable('id', search.value)">
+
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)"
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
-                                    (keyup)="filterTable('email', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('email',search.value)" 
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('phone_number',status.value)" 
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                         </div>
@@ -119,91 +123,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div  *ngIf="!isLoading && pools?.length > 0 "class="card-block">
-                                    <div class="table-wrapper-scroll-y custom-scrollbar">
-                                        <table datatable class="table appTable nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th><input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"></th>
-                                                    <th>ID</th>
-                                                    <th>Investment Title</th>
-                                                    <th>Category</th>
-                                                    <th>No of Investors</th>
-                                                    <th>Tenure</th>
-                                                    <th>ROI</th>
-                                                    <th>Payback</th>
-                                                    <th style="font-size:15px;">Cost per slot</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
-                                                <td><input type="checkbox"></td>
-                                                <td>{{pool.id}}</td>
-                                                <td >{{pool.title}}</td>
-                                                <td >{{getCategoryName(pool.category_id)}}</td>
-                                                <td >{{pool.max_num_of_slots}}( {{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} months
-
-                                                </td>
-                                                <td >{{pool.expected_return_amount}}</td>
-                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
-                                                <td >{{pool.investment_amount}}</td>
-                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>      
-                                                    <td  style="color: red">{{'InActive'}}</td>
-                                                </ng-template>
-                                                <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
->>>>>>> cleaning up codebase
-                                                <td>{{pool.category_id}}</td>
-                                                <td>{{pool.id}}</td>
->>>>>>> cleanup
-                                                <td >{{pool.title}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.max_num_of_slots}}( {{pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} year</td>
-                                                <td >{{pool.reference}}</td>
-                                                <td >{{pool.reference}}</td>
-                                                <td  (click)="viewUserDetail(i)">
-                                                    <a *ngIf="!pool.inViewMode" (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                                <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} Months</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.expected_return_amount}}</td>
-                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
-                                                <td >{{pool.investment_amount}}</td>
-                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>      
-                                                    <td  style="color: red">{{'InActive'}}</td>
-                                                </ng-template>
->>>>>>> cleanup
-                                                <td>
-                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="isLoading" class="lds-default">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -215,8 +134,6 @@
 </div>
 
 <!-- <div class="pcoded-content">
-
->>>>>>> Created Add investment component
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">

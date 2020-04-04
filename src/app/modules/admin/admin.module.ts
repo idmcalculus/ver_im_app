@@ -8,20 +8,20 @@ import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
+import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
 
 import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
-import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
-import { ViewCustomerComponent } from './manage-customer/view-customer/view_customer.component';
-import { AddCustomerComponent } from './manage-customer/add-customer/add_customer.component';
-import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
+import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageUsersComponent} from './manage-users/list-users/list_users.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
+import { EditCustomerComponent } from './manage-customer/edit-customer/edit-customer.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -36,9 +36,12 @@ import {ProgressBarModule} from 'angular-progress-bar';
     EditCustomerComponent,
     AddPoolComponent,
     AddUserComponent,
+    AddPoolComponent,
     ManageCategoryComponent,
     ManageUsersComponent,
-    ManageAdminComponent
+    ManageAdminComponent,
+    ViewCustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     CommonModule,
