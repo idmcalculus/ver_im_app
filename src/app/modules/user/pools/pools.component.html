@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
@@ -155,7 +155,7 @@
                                                 <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
                                                 <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>      
+                                                <ng-template #showThis>
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
 
@@ -233,7 +233,7 @@
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">
                                         <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
+                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">
                                     </div>
                                     <div class="content-holder">
                                         <h2><a href="pool-details.html">{{pool.title}}</a></h2>

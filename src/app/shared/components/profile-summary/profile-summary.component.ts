@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../models/user';
-import { ManageUsersComponent } from 'src/app/modules/admin/manage-users/list-users/list_users.component';
+import { SearchCustomerComponent } from 'src/app/modules/admin/manage-users/search-customer/search_customer.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -14,7 +14,7 @@ export class ProfileSummaryComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
 
   constructor(
-    private manageUser: ManageUsersComponent,
+    private manageUser: SearchCustomerComponent,
     ) { }
 
   ngOnInit() {

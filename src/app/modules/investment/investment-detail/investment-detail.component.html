@@ -51,7 +51,7 @@
                                 Month(s)
                             </div>
                             <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return:
-                                </span>{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}% 
+                                </span>{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}%
                                 profit (Estimated)
                             </div>
                             <!--<div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return: </span>25% profit (Estimated)</div>-->
@@ -97,7 +97,7 @@
                                     <h3 style="text-align: center">
                                         {{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                     <span *ngIf="x?.estimated_percentage_profit"
-                                        class="span-profit">{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}% 
+                                        class="span-profit">{{calculateEstimate(investment?.expected_return_amount,investment?.investment_amount)}}%
                                         Profit (Estimated)</span>
                                     <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
                                     <p>{{x.duration}} Month(s)</p>
@@ -159,8 +159,8 @@
                                 </div>
                             </div>
                             <div *ngIf="!ViaXpress" class="form-group" style="width:70%;margin:0px auto">
-                                
-                               
+
+
                                  <div class="row" style="justify-content:center">
                                     <div class="col-md-5">
                                         <label class="pt-1" for="slotNum">Investment Id</label>
@@ -337,6 +337,122 @@
                                     </div>
                                 </div>
                                  <div class="row" style="justify-content:center; padding: 30px 0px;text-align: left;">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Transaction Id</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="payment_id" style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" data-dismiss="modal" [disabled]="(transaction.number_of_pools > numOfPoolsLeft) || (1 > transaction.number_of_pools )" (click)="joinInvestment()" class="btn btn-success">Join</button> -->
+                        <!-- <button
+                            data-dismiss="modal"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            type="button" class="btn btn-join-add">Make Payment
+                        </button>
+                        <!-- <button
+                            data-dismiss="modal"
+                            type="button"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            class="btn btn-join-add"
+                            angular-rave
+                            [PBFPubKey] = "'FLWPUBK-af2c323a9692b4f6a8b599f68d8564a'"
+                            [customer_email] = "userinfo?.email"
+                            [customer_phone] = "userinfo?.phone_number"
+                            [amount]="amountPerPool  * transaction.number_of_pools"
+                            [currency]="'NGN'"
+                            [custom_title]="'Investment Payment'"
+                            [txref]="transactionRef"
+                            (callback)="joinInvestment()"
+                            (close)="paymentCancel()"
+                        >Flutterwave</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter2" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!--<div class="modal-header">
+                        &lt;!&ndash;<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;&gt;
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>-->
+                    <div class="modal-body">
+                         <div class="join-modal">
+                            <h3>Select Payment Mode</h3>
+                             <h5 style="
+                                 font-size: 14px;
+                                font-weight: 600;
+                                letter-spacing: 0.2px;
+                                line-height: 20px;
+                             ">To complete this payment kindly transfer the sum of {{investment.investment_amount*transaction.number_of_pools  | currency:"NGN":"symbol"}} to any of the accounts listed below,once done enter your transaction Id and submit</h5>
+                            <div *ngIf="!ViaXpress" class="form-group" style="width:70%;margin:0px auto">
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-7">
+                                        <label style="font-weight:600" class="pt-1" for="slotNum">Zenith Bank</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">AccountName</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">Versa haven</label>
+                                        <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                            <option value="" hidden>Select</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Number</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">0123456789</label>
+
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-7">
+                                        <label style="font-weight:600" class="pt-1" for="slotNum">Guarantee trust Bank</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Name</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">Versa Haven</label>
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Account Number</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum">0123456789</label>
+                                    </div>
+                                </div>
+                                 <div class="row" style="justify-content:center; padding: 30px 0px">
                                     <div class="col-md-5">
                                         <label class="pt-1" for="slotNum">Transaction Id</label>
                                     </div>

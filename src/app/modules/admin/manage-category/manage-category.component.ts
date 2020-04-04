@@ -23,7 +23,6 @@ export class ManageCategoryComponent {
               private location: Location) {
     this.getCategories();
   }
-
   addCategory() {
     if (this.category.category_name) {
         this.buttonText = 'Submitting';
