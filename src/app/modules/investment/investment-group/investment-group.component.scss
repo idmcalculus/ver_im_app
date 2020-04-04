@@ -46,6 +46,7 @@ mat-form-field {
 	font-size: 12px;
 	width: 75%;
 	box-shadow: 1px 1px 1px 1px #888888a6;
+	opacity: 50%;
 }
 
 .investmentGroups {
@@ -78,6 +79,15 @@ mat-form-field {
 
 	.mat-option {
 		width: 75%;
+
+		span {
+			float: right;
+
+			a {
+				text-decoration: none;
+				cursor: pointer;
+			}
+		}
 	}
 
 	.mat-select-panel {
