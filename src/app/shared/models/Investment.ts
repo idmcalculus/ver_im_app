@@ -21,4 +21,6 @@ export class Investment extends BasicModel {
     investment_started_date?: Date;
     investment_close_date?: Date;
   };
+  estimated_percentage_profit?:string;
+
 }

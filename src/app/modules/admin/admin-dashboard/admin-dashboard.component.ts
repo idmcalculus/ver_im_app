@@ -135,7 +135,7 @@ export class AdminDashboardComponent implements OnInit {
       });
 
   }
-  
+
     updateDataset = function(e, datasetIndex) {
       const index = datasetIndex;
       const ci = e.view.myGlobalProfiles;

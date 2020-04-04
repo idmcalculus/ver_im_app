@@ -8,15 +8,18 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manage-users',
   templateUrl: './search_customer.component.html',
-  styleUrls: ['./search_customer.component.css']
+  styleUrls: ['./search_customer.component.scss']
 })
 export class SearchCustomerComponent implements OnInit {
-
   searchValue = '';
-  users: User[];
+  users: User [];
+  user: User = {email: ''};
   selectedUser: User;
   selectedEditUser: User;
+  selectedDelUser: User;
+  checkedUser = [];
   isLoading= true;
+  selectedAll;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
@@ -35,12 +38,41 @@ export class SearchCustomerComponent implements OnInit {
     });
   }
 
+  selectAll() {
+    for (let i = 0; i < this.users.length; i++) {
+      {
+        this.users[i].selected = this.selectedAll;
+      }
+    }
+    this.getCheckedUser();
+  }
+
+  checkIfAllSelected() {
+    this.selectedAll = this.users.every(function(user: User) {
+      return user.selected == true;
+    })
+    this.getCheckedUser();
+  }
+
+  getCheckedUser(){
+    this.checkedUser = [];
+    for (var i = 0; i < this.users.length; i++) {
+      if(this.users[i].selected)
+      this.checkedUser.push(this.users[i]);
+    }
+  }
+
   viewUserDetail(userIndex) {
     this.selectedUser = this.users[userIndex];
   }
 
   editUserDetail(userIndex) {
     this.selectedEditUser = this.users[userIndex];
+  }
+
+  deleteUserDetail(userIndex) {
+    this.selectedDelUser = this.users[userIndex];
+    return this.selectedDelUser;
   }
 
   updateUser(user, operation) {
@@ -50,26 +82,16 @@ export class SearchCustomerComponent implements OnInit {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=1
         }
-      });
-    } else {
-      this.userService.deactivateUser(user).subscribe(resp => {
-        if (resp && resp.success) {
+      })
+    }else{
+      this.userService.deactivateUser(user).subscribe(resp=>{
+        if(resp && resp.success){
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
       });
     }
 
-  }
-
-  getUsers() {
-    this.isLoading = true;
-    this.userService.getUsers().subscribe(resp => {
-      if (resp && resp.success) {
-        this.users = resp.success.Data;
-      }
-      this.isLoading = false;
-    });
   }
 
   updateDetails(user): any {
@@ -84,6 +106,16 @@ export class SearchCustomerComponent implements OnInit {
     });
   }
 
+  getUsers() {
+    this.isLoading = true;
+    this.userService.getUsers().subscribe(resp => {
+      if (resp && resp.success) {
+        this.users = resp.success.Data;
+      }
+      this.isLoading = false;
+    });
+  }
+
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
 
@@ -95,7 +127,6 @@ export class SearchCustomerComponent implements OnInit {
         return user[filterType].toLowerCase().includes(value.toLowerCase())
         }
       });
-      console.log('Filtered', filtered);
       this.users = filtered;
     }
   }
@@ -105,15 +136,14 @@ export class SearchCustomerComponent implements OnInit {
     return this.getUsers();
   }
 
-  deleteUser = (user) => {
-    this.userService.deleteUser(user).subscribe(resp => {
+  delete = (user) => {
+    this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
       if (resp && resp.success) {
-        // alert(resp.success.Message)
-        // this.users[userIndex].email_is_verified=0
-        this.toastrService.success('Details deleted succesfully');
-      } else {
+       this.toastrService.success('Details deleted succesfully');
+     } else {
         this.toastrService.error('There was an issue deleting.. Try again later');
-      }
+     }
     });
   }
+
 }

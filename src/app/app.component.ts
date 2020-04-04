@@ -73,7 +73,7 @@ export class AppComponent {
             this.showFooter = false;
         }
         // console.log(this.router);
-        if ((this.router.url !== '/signin') 
+        if ((this.router.url !== '/signin')
         && (this.router.url !== '/signup')
         ) {
             return true;
