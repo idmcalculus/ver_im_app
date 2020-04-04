@@ -1,5 +1,5 @@
 import {BasicModel} from './BasicModel';
-export class User extends BasicModel{
+export class User extends BasicModel {
     password?: string;
     token?: string;
     first_name?: string;

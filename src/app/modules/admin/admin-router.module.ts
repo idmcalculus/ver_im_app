@@ -8,6 +8,8 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
+import {AddUserComponent} from '../../shared/components/addUserToPool/addUser.component';
+import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
@@ -20,6 +22,7 @@ import { AddCustomerComponent } from './manage-users/add-customer/add_customer.c
 import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
+import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
 
 
 
@@ -33,7 +36,6 @@ const userRoutes: Routes = [
         path: '',
         children: [
           { path: 'profile', component: UserProfileComponent },
-          { path: 'investments', component: PoolsComponent },
           { path: 'settings', component: UserSettingsComponent },
 
           { path: 'manage-users',
@@ -48,7 +50,23 @@ const userRoutes: Routes = [
             ]
             }
           ] },
-
+          { path: 'manage-customer',
+            children: [
+            {path: '',
+              children: [
+                {path: '', component: ManageUsersComponent},
+                {path: 'add-customer', component: AddCustomerComponent},
+                {path: 'list-users', component: ManageUsersComponent },
+              ]
+            }
+          ] },
+          { path: 'manage-investments',
+              children: [
+                //{path: '', component: PoolsComponent},
+                //{path: 'investment', component: PoolsComponent},
+                //{path: 'add-pools', component: AddPoolComponent},
+                //{path: 'list-users', component: ManageUsersComponent },
+          ] },
           { path: 'manage-admins', component: ManageAdminComponent },
 
           { path: 'manage-career',
@@ -65,8 +83,11 @@ const userRoutes: Routes = [
           { path: 'manage-category', component: ManageCategoryComponent},
           { path: 'investment-group', component: InvestmentGroupComponent},
           { path: 'chat', component: ChatComponent},
+          { path: 'addpools', component: AddPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
+          { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
+          { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }
         ]
       }

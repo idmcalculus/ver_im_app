@@ -46,7 +46,7 @@ export class AddCustomerComponent implements OnInit {
     ngOnInit() {
         this.isLoading = false;
          }
-
+  
 // Make additional tab buttons
 TabControl(){
     var i, items = $('.nav-link'), pane = $('.tab-pane');

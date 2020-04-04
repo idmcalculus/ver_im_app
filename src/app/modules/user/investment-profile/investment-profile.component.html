@@ -1,0 +1,164 @@
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+      <div class="main-body">
+          <div class="page-wrapper">
+              <div class="page-body">
+                <div class="clearfix mb-3">
+                  <div class="float-left pt-2">
+                      <a class="h4 pr-2">Investment</a>
+                      &nbsp; &nbsp;
+                      <a class=" pl-2">Home / Investment</a>
+                  </div>  
+                  <div class="float-right">
+                      <a (click)="goBack()">
+                          <img style="cursor: pointer;" src="../assets/images/icon/icons/Back-icon.png">
+                      </a>
+                  </div>
+              </div>
+              <br><br><br>
+              <div *ngIf="isLoading" class="pool-details lds-default">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+                <div class="row" *ngIf="!isLoading">
+                  <div class="col-xl-12">
+                      <div class="card ">
+                          <div class="card-block">
+                              <div class="row p-0">
+                                  <div class="col-12">
+                                      <p class="float-left pt-2">Investment Profile</p>
+                                  </div>
+                              </div>
+                              <div class="dt-responsive table-responsive">
+                                  <table id="order-table" class="table table-striped table-bordered nowrap">
+                                      <thead>
+                                          <tr>
+                                              <th>Name</th>
+                                              <th>Email</th>
+                                              <th>Phone Number</th>
+                                              <th>Slots Taken</th>
+                                              <th>Amount Paid</th>
+                                              <th>Date Invested</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody *ngIf="loggedInUser?.user_category=='Admin'">
+                                          <tr data-href="#viewUserProfile"  (click)="viewUserDetail(user?.user_info[0])" *ngFor="let user of pool?.investment_user">
+                                              <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                              <td>{{user?.user_info[0].email}}</td>
+                                              <td>{{user?.user_info[0].phone_number}}</td>
+                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
+                                              <td>{{user?.user_investment_info?.investment_amount}}</td>
+                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
+                                          </tr>
+                                      </tbody>
+                                      <tbody *ngIf="loggedInUser?.user_category!='Admin'">
+                                          <tr *ngFor="let user of pool?.investment_user">
+                                              <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
+                                              <td>{{user?.user_info[0].email}}</td>
+                                              <td>{{user?.user_info[0].phone_number}}</td>
+                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
+                                              <td>{{user?.user_investment_info?.investment_amount}}</td>
+                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
+                                          </tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="row" *ngIf="!isLoading">
+                  <div class="col-xl-12">
+                      <div class="card">
+                          <div class="card-block">
+                              <div class="row p-0">
+                                  <div class="col-12">
+                                      <p class="">Investment Summary</p>
+                                      <hr class="new my-0">
+                                  </div>
+                              </div>
+
+                              <div class="row pt-3 justify-content-center summary">
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>Start Date</span>
+                                          </div>
+                                          <div class="col-6">
+                                              <p class="">{{pool?.investment?.investment_started_date | date}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>End Date</span>
+                                          </div>
+                                          <div class="col-6">
+                                              <p class="">{{pool?.investment?.investment_close_date | date}}</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>Last Payment</span>
+                                          </div>
+                                          <div class="col-6">
+                                              <p class=""></p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-3">
+                                      <div class="row">
+                                          <div class="col-6">
+                                              <span>Next Payment</span>
+                                          </div>
+                                          <div class="col-6">
+                                              <p class=""></p>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row pt-3 justify-content-between summary">
+                                <div class="col-4 mr-auto">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Total Monthly Return</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span>Return Per Slot</span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="">{{pool?.investment?.expected_return_amount}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 ml-auto">
+                                    <div class="row justify-content-center">
+                                            <span><button>Pay Investors</button></span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
