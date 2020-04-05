@@ -4,9 +4,12 @@ import {AdminService} from '../admin.service';
 import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 import { CareerService } from '../../career/career.service';
 import { ChartType, ChartOptions  } from 'chart.js';
+import { InvestmentService } from './../../investment/investment.service';
 
 import { Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
+import { count } from 'rxjs/operators';
 declare var google: any;
+let allInvestments = [{'title':''}];
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -15,12 +18,18 @@ declare var google: any;
 })
 export class AdminDashboardComponent implements OnInit {
   dashBoardData: AdminDashboard;
-
+  allInvestments: [{'title':''}];
   careers: [];
   isLoading = true;
+  categoriesCount = {"agriculture": 10,"housing":0,'transport':0,'others':0};
+  lagosAmount: any = 0;
+  totalAmount: any = 0;
+  lagosFraction: any = 0.5;
+  data=5;
+
 
   public doughnutChartLabels: Label[] = ['Agriculture', 'Real Estate', 'Transprtation', 'Others'];
-  public doughnutChartData = [[350, 450, 100, 200]];
+  public doughnutChartData = [[this.data, this.categoriesCount.housing, this.categoriesCount.transport, this.categoriesCount.others]];
   public doughnutChartType: ChartType = 'doughnut';
   public doughnutChartOptions: (ChartOptions) = {
     responsive: true,
@@ -101,7 +110,10 @@ export class AdminDashboardComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private careerService: CareerService) { }
+    private investmentService: InvestmentService,
+    private careerService: CareerService
+    
+    ) { }
     @ViewChild('mycanvas')
     canvas: ElementRef;
   ngOnInit() {
@@ -127,14 +139,53 @@ export class AdminDashboardComponent implements OnInit {
 
 
     this.adminService.getDashBoardData().subscribe(resp => {
-        if (resp && resp.success) {
-          this.dashBoardData = resp.success.Data;
-          this.isLoading = false;
-          google.charts.setOnLoadCallback(drawRegionsMap);
-        }
-      });
+      if (resp && resp.success) {
+        this.dashBoardData = resp.success.Data;
+        console.log(this.dashBoardData)
+        this.getLagos(this.dashBoardData);
+        this.categoriesCount = {'transport': 10,"agriculture": 5,"housing":5,'others':0};
+        this.data=100;
+        this.isLoading = false;
+        google.charts.setOnLoadCallback(drawRegionsMap);
+      }
+    });
 
   }
+
+  ngAfterViewInit() {
+    this.addData();
+  }
+
+  addData() {
+    let canvas = document.getElementById('myChart');
+    console.log(canvas,'====,.')
+  }
+
+
+
+    getLagos(element){
+      console.log(element,'---====');
+      let canvas = document.getElementById('myChart');
+      console.log(canvas,'====,.')
+      let count = 0;
+      let amount = 0;
+      element.fetch_users_address.forEach(element => {
+        if(element.home_address!=null){
+          const add = element.home_address.toLowerCase();
+          if(add.includes('lagos')){
+            count+=1;
+            amount+=element.amount_paid;
+        }
+      }});
+       // @ts-ignore
+      this.lagosAmount = Intl.NumberFormat('en-US', { notation: "compact" , compactDisplay: "short" }).format(amount);
+       // @ts-ignore
+      this.totalAmount = Intl.NumberFormat('en-US', { maximumSignificantDigits: 4 ,notation: "compact" , compactDisplay: "short" }).format(element.total_investment);
+      this.lagosFraction = (amount/element.total_investment) * 100
+      return {count,amount}
+    }
+
+  
   
     updateDataset = function(e, datasetIndex) {
       const index = datasetIndex;

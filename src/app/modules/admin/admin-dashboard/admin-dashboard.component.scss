@@ -42,7 +42,6 @@
         }
 
         .foot{
-            width: 100%;
             /* text-align: end; */
             padding: 0px 15px;
             padding-bottom: 0px;
@@ -202,7 +201,7 @@
             background-color: none !important;
         }
         .progress-inner {
-            min-width: 15%;
+            min-width: 0.5%;
             white-space: nowrap;
             overflow: hidden;
             padding: 0px;
