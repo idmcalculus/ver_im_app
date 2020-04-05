@@ -27,7 +27,7 @@
                         </div>
 
                         <div *ngIf="user!=null" class="col-xl-12 col-md-12">
-                            <div class="card latest-update-card">
+                            <div class="latest-update-card">
                                 <div class="card-block">
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2"><span>Country</span></div>
+                                                        <div class="col-md-2"><span>State</span></div>
                                                         <div class="col-md-10">
                                                             <select [(ngModel)]="user.country" class="form-control" name="country"
                                                                     id="country">
@@ -160,29 +160,57 @@
 
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-2" id="namespace">
                                                             <span>Work Place</span>
                                                         </div>
-                                                        <div class="col-md-10">
+                                                        <div class="col-md-4">
                                                             <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
-                                                                   id="workplace">
+                                                            id="workplace">
+                                                        </div>
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Workplace Monthly Income (Optional)</span>
+                                                        </div>
+                                                        <div class="col-md-4 ph-4">
+                                                            <input  [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                    id="avg_monthly_income">
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <div class="buttons">
-                                                        <div class="d-flex flew-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" (click)="toggleTab('bank')"  class="button btn-update-customer" value="NEXT">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" class="btn-update-customer" value="UPDATE" data-toggle="modal" data-target="#confirmAction">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="confirmAction" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                             aria-labelledby="nav-profile-tab" [ngClass]="{'':tabProps.bankShow,'.d-none':!tabProps.bankShow}" >
+                                             aria-labelledby="nav-profile-tab" >
                                             <div class="create-profile-form">
 
                                                 <div class="form-group">
@@ -233,18 +261,40 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <div class="buttons">
-                                                        <div class="d-flex flew-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button"  (click)="toggleTab('settings')" class=" btn-update-customer" value="NEXT">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmBank" class="btn-update-customer" value="UPDATE">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                 <!-- Modal -->
+                                                <div class="modal fade" id="confirmBank" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
+
                                         <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                             aria-labelledby="nav-contact-tab"   [ngClass]="{'':tabProps.settingsShow,'.d-none':!tabProps.settingsShow}">
+                                             aria-labelledby="nav-contact-tab">
 
                                             <div class="create-profile-form">
 
@@ -281,11 +331,31 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <div class="buttons">
-                                                        <div class="d-flex flew-row">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
-                                                            <input type="button" [promiseBtn]="isSubmitting" (click)="updateDetails()" class=" btn-update-customer" value="CREATE">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmPreference" class=" btn-update-customer" value="UPDATE">
                                                         </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
                                                     </div>
                                                 </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { Investment } from 'src/app/shared/models/Investment'
 
 
 let category = '0';
@@ -15,13 +16,12 @@ let allInvestments = [];
 
 
 export class InvestmentComponent implements OnInit {
-
-
+    allInvestments: Investment [];
+    investmentArray: Investment [];
     isLoading = true;
     investments: any = [];
     categories: any = [];
     selectedCategory = '0';
-
     transaction: Transaction;
 
     constructor(
@@ -64,8 +64,9 @@ export class InvestmentComponent implements OnInit {
                     this.filterInvestments();
                 }
             }
-        });
-    }
+       });
+        }
+
 
 
     getCategories() {
@@ -109,6 +110,5 @@ export class InvestmentComponent implements OnInit {
         const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
-
 
 }

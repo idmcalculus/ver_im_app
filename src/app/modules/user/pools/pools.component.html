@@ -55,12 +55,13 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="form-control form-control-sm inputstyle" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('phone_number',status.value)" 
+                                    (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
@@ -96,7 +97,7 @@
                                                 <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
                                                 <td >{{pool.investment_amount}}</td>
                                                 <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>      
+                                                <ng-template #showThis>
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
                                                 <td  (click)="viewUserDetail(i)">
@@ -171,7 +172,7 @@
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">
                                         <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
+                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">
                                     </div>
                                     <div class="content-holder">
                                         <h2><a href="pool-details.html">{{pool.title}}</a></h2>

@@ -37,6 +37,28 @@ export class PoolsComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkUncheckAll() {
+    for (let i = 0; i < this.checklist.length; i++) {
+      this.checklist[i] = this.masterSelected;
+    }
+    this.getCheckedPooList();
+  }
+  isAllSelected() {
+    this.masterSelected = this.checklist.every((pool: any) => {
+        return pool === true;
+      });
+    this.getCheckedPooList();
+  }
+
+  getCheckedPooList() {
+    this.checkedList = [];
+    for (let i = 0; i < this.checklist.length; i++) {
+      if (this.checklist[i]) {
+      this.checkedList.push(this.checklist[i]);
+      }
+    }
+    this.checkedList = JSON.stringify(this.checkedList);
+  }
 
   getPools() {
     this.investmentService.getInvestments(false).subscribe(investments => {

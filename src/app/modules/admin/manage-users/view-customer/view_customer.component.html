@@ -1,0 +1,345 @@
+<div class="pcoded-content">
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body list-vacancy">
+                    <div class="row mb-4">
+                        <div class="col-xl-9 col-md-6 title-list">
+                            <h3>Profile of {{user?.first_name}} {{user?.last_name}}
+                            </h3>
+                        </div>
+                        <div class="col">
+                            <div class="float-right">
+                                <a >
+                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-7">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Personal Information
+                                    </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td class="table-font">Full Name:</td>
+                                                <td>{{user?.first_name}} {{user?.last_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Email:</td>
+
+                                                <td> {{user?.email}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Phone Number:</td>
+                                                <td>{{user?.phone_number}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Date of Birth:</td>
+                                                <td>{{user?.day_of_birth}} /  {{user?.month_of_birth}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Gender:</td>
+                                                <td>{{user?.gender}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Address:</td>
+                                                <td>{{user?.home_address}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Country:</td>
+                                                <td>{{user?.country}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Place of Work:</td>
+                                                <td>{{user?.where_you_work}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Average <br>Monthly Income:</td>
+                                                <td >{{user?.average_monthly_income | currency:'NGN':'symbol-narrow'}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Account Information</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td  class="table-font">Account Name:</td>
+                                                <td>{{user?.account_name}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Account Number:</td>
+                                                <td>{{user?.account_number}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Bank:</td>
+                                                <td>{{user?.bank_name}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h5>Settings Information</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <td  class="table-font">Receive updates on new Plans?</td>
+                                                <td *ngIf="user?.updates_on_new_plans==true"><label class="label label-primary">Yes</label></td>
+                                                <td *ngIf="user?.updates_on_new_plans==false"><label class="label label-danger">No</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">Send E-mail updates on investment?</td>
+                                                <td *ngIf="user?.email_updates_on_investment_process==false"><label class="label label-danger">No</label></td>
+                                                <td *ngIf="user?.email_updates_on_investment_process==true"><label class="label label-primary">Yes</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td  class="table-font">User's Status:</td>
+                                                <td *ngIf="user?.email_is_verified==1"><label class="label label-success">User is Active</label></td>
+                                                <td *ngIf="user?.email_is_verified==0"><label class="label label-danger">User is not Active</label></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-7">
+                            <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
+                                <span class="information">Principal: </span>
+                                <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
+                                <span class="information">ROI: </span>
+                                <span  class="information spacing">  {{investments?.estimated_percentage_profit}}</span>
+                                <span class="information">Expected Returns: </span>
+                                <span  class="information">  {{investments?.expected_return_amount}}</span>
+                            </span>
+                        </div>
+
+                        <div class="col-5 d-flex flex-row">
+                            <span class="text-center">
+                                <button *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn-lg btn-success">Activate User</button>
+                                <button *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</button>
+                            </span>
+                            <span class="text-center">
+                                <button  (click)="delete(user)" class="buttons btn-lg btn-danger">Delete User</button>
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+
+                            <div class="card">
+                                <h5 class="card-header" >Current Investment</h5>
+
+                                <div  class="carousel slide" id="myCarousel" data-interval="false">
+
+                                    <div class="container p-t-0 m-t-2 carousel-inner">
+                                        <div class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of userInvestment; index as i;" >
+                                           <div class = "flex-row d-flex">
+                                                <div class="col-4">
+                                                        <div class="dt-responsive table-responsive">
+                                                            <table class="table reduced-font">
+                                                                <tr>
+                                                                    <td class="highlighted">Investment Title</td>
+                                                                    <td>{{investments?.title}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Payback</td>
+                                                                    <td> {{ investments?.num_of_pools_taken }} of  {{ investments?.max_num_of_slots }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Amount Paid</td>
+                                                                    <td class="success">{{investments?.category_id}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                                <div class="col-4">
+                                                        <div class="dt-responsive table-responsive">
+                                                            <table class="table reduced-font">
+                                                                <tr>
+                                                                    <td  class="highlighted">Cost</td>
+                                                                    <td>{{investments?.investment_amount}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Last Payment</td>
+                                                                    <td>{{investments?.category_id}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Amount Pending</td>
+                                                                    <td class="pending">{{investments?.category_id}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                                <div class="col-4">
+                                                        <div class="dt-responsive table-responsive">
+                                                            <table class="table reduced-font">
+                                                                <tr>
+                                                                    <td  class="highlighted">Slot(s)</td>
+                                                                    <td>{{investments?.num_of_pools_taken}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Next Payment</td>
+                                                                    <td>{{investments?.category_id}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Termination Date</td>
+                                                                    <td>{{investments?.investment_ended_date}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                           </div>
+                                       </div>
+
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center mb-4">
+                                                <a class="px-1 btn-outline-info carousel-control left" href="#myCarousel" data-slide="prev" title="back">
+                                                    <i class="fa fa-lg  fa-circle"></i>
+                                                </a>
+                                                <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                    <i class="fa fa-lg fa-circle"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <h5 class="card-header">Investment Report</h5>
+
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
+                                        <table id="investmentTable" class="table appTable table-striped nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 5%">S/N</th>
+                                                <th style="width: 15%">Investment Title</th>
+                                                <th style="width: 15%">Payback Frequency</th>
+                                                <th style="width: 15%">Amount Credited</th>
+                                                <th style="width: 15%">Yield Amount</th>
+                                                <th style="width: 10%">Balance</th>
+                                                <th style="width: 15%">Status</th>
+                                                <th style="width: 10%">Date Paid</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};index as i">
+                                                <td style="width: 5%">{{i+1}}</td>
+                                                <td style="width: 15%">{{investments.title}}</td>
+                                                <td style="width: 15%">{{investments.expected_return_period}}</td>
+                                                <td style="width: 15%">{{investments.expected_return_amount}}</td>
+                                                <td style="width: 15%">{{investments.category_id}}</td>
+                                                <td style="width: 10%">{{investments.category_id}}</td>
+                                                <td style="width: 15%">{{investments.category_id}}</td>
+                                                <td style="width: 10%">{{investments.category_id}}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div  class="col-12">
+                                            <pagination-controls class="my_pagination" (pageChange)="p = $event"></pagination-controls>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <h5 class="card-header">Investment History</h5>
+
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
+                                        <table class="table appTable table-striped nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 5%">S/N</th>
+                                                <th style="width: 15%">Investment Title</th>
+                                                <th style="width: 10%">Category</th>
+                                                <th style="width: 10%">Cost</th>
+                                                <th style="width: 10%">No of Slots</th>
+                                                <th style="width: 10%">Duration</th>
+                                                <th style="width: 10%">Returns</th>
+                                                <th style="width: 10%">Period</th>
+                                                <th style="width: 10%">Amount</th>
+                                                <th style="width: 10%">Status</th>
+                                                <th style="width: 10%">Date Added</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody  *ngIf="FilteredInvestment.length !== 0">
+                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
+                                                index as i">
+                                                    <td style="width: 5%"> {{i+1}}</td>
+                                                    <td style="width: 15%">{{investments.title}}</td>
+                                                    <td style="width: 10%" >{{investments.category_id}}</td>
+                                                    <td style="width: 10%" >{{investments.investment_amount}}</td>
+                                                    <td style="width: 10%">{{investments.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{investments.duration}}</td>
+                                                    <td style="width: 10%">{{investments.estimated_percentage_profit}}</td>
+                                                    <td style="width: 10%">{{investments.expected_return_period}}</td>
+                                                    <td style="width: 10%">{{investments.investment_amount*investments.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">Completed</td>
+                                                    <td style="width: 10%">{{investments.created_at}}</td>
+                                                </tr>
+
+                                            </tbody>
+
+                                        </table>
+                                        <div *ngIf="FilteredInvestment.length == 0" >
+                                               <p class='displayStatus'>"No record found, Investment(s) is not yet completed."</p>
+                                        </div>
+
+                                        <div  class="col-12">
+                                            <pagination-controls class="my_pagination" (pageChange)="p = $event"></pagination-controls>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
