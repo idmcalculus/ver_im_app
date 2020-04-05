@@ -168,11 +168,11 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Payback</td>
-                                                                    <td> {{ investments?.num_of_pools_taken }} of  {{ investments?.max_num_of_slots }}</td>
+                                                                    <td> {{ investments?.num_of_pools_taken }} of   {{ investments?.duration }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Paid</td>
-                                                                    <td class="success">{{investments?.category_id}}</td>
+                                                                    <td class="success">{{investments?.expected_return_amount }}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -186,7 +186,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Last Payment</td>
-                                                                    <td>{{investments?.category_id}}</td>
+                                                                    <td>{{investments?.updated_at}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Pending</td>
@@ -208,7 +208,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Termination Date</td>
-                                                                    <td>{{investments?.investment_ended_date}}</td>
+                                                                    <td>{{investments?.investment_close_date}}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -257,21 +257,21 @@
                                                 <th style="width: 10%">Date Paid</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of userInvestment | paginate: { itemsPerPage: 5, currentPage: p};index as i">
-                                                <td style="width: 5%">{{i+1}}</td>
-                                                <td style="width: 15%">{{investments.title}}</td>
-                                                <td style="width: 15%">{{investments.expected_return_period}}</td>
-                                                <td style="width: 15%">{{investments.expected_return_amount}}</td>
-                                                <td style="width: 15%">{{investments.category_id}}</td>
-                                                <td style="width: 10%">{{investments.category_id}}</td>
-                                                <td style="width: 15%">{{investments.category_id}}</td>
-                                                <td style="width: 10%">{{investments.category_id}}</td>
+                                            <tbody [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
+                                            <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
+                                                    <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
+                                                    <td style="width: 15%">{{report.title}}</td>
+                                                    <td style="width: 15%">{{report.expected_return_period}}</td>
+                                                    <td style="width: 15%">{{report.returned_amount}}</td>
+                                                    <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
+                                                    <td style="width: 10%">{{report.category_id}}</td>
+                                                    <td style="width: 15%"> On-going </td>
+                                                    <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
                                         <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p = $event"></pagination-controls>
+                                            <pagination-controls class="my_pagination" (pageChange)="p2 = $event" id='second'></pagination-controls>
                                         </div>
                                     </div>
                                 </div>
@@ -304,7 +304,7 @@
                                             </tr>
                                             </thead>
                                             <tbody  *ngIf="FilteredInvestment.length !== 0">
-                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage: p};
+                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage:p, id: 'first'};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td style="width: 15%">{{investments.title}}</td>
@@ -316,7 +316,7 @@
                                                     <td style="width: 10%">{{investments.expected_return_period}}</td>
                                                     <td style="width: 10%">{{investments.investment_amount*investments.num_of_pools_taken}}</td>
                                                     <td style="width: 10%">Completed</td>
-                                                    <td style="width: 10%">{{investments.created_at}}</td>
+                                                    <td style="width: 10%">{{investments.created_date}}</td>
                                                 </tr>
 
                                             </tbody>
@@ -327,7 +327,7 @@
                                         </div>
 
                                         <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p = $event"></pagination-controls>
+                                            <pagination-controls class="my_pagination" (pageChange)="p = $event" id='first'></pagination-controls>
                                         </div>
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@ export class Investment extends BasicModel{
   expected_return_period?: string;
   investment_amount?: number;
   opening_date?: string;
-  closing_date?: string;
+  investment_close_date?: string;
   show_publicly?: boolean=false;
   is_investment_ended?: number;
   investment_ended_date?:string;
