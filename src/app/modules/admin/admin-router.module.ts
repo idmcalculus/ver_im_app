@@ -50,16 +50,6 @@ const userRoutes: Routes = [
             ]
             }
           ] },
-          { path: 'manage-customer',
-            children: [
-            {path: '',
-              children: [
-                {path: '', component: ManageUsersComponent},
-                {path: 'add-customer', component: AddCustomerComponent},
-                {path: 'list-users', component: ManageUsersComponent },
-              ]
-            }
-          ] },
           { path: 'manage-investments',
               children: [
                 //{path: '', component: PoolsComponent},

@@ -41,14 +41,14 @@ export class ViewCustomerComponent implements OnInit {
               this.userInvestment = investments.success.Data;
               this.selectedInvestment = 0;
               this.showDetails();
-              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === 1);
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
             }
         this.isLoading = false;
           });
 
 
         $('#myCarousel').on('slide.bs.carousel', function (e) {
-        const to = e.to;
+        const to = e.toElement;
         $('.investment-card').hide();
         let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
         element.style.display = 'block';

@@ -1,0 +1,233 @@
+.error{
+    justify-content: center;
+    margin-bottom: 0rem;
+    font-size: 1rem;
+    font-weight: 800;
+    color: red;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    display: none;
+    margin-top: 4rem;
+}
+
+.create-profile-form {
+    padding-top: 2rem;
+}
+
+.create-profile-form .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%
+}
+
+.create-profile-form .profile-image img {
+    width: inherit;
+    height: inherit;
+    overflow: hidden;
+    border-radius: inherit
+}
+
+.create-profile-form .basic {
+    padding: 25px 25px 5px;
+    border-left: 1px solid rgba(0, 0, 0, .2)
+}
+
+.create-profile-form .basic h3 {
+    color: #888;
+    margin-bottom: 5px
+}
+
+.create-profile-form .basic label {
+    text-decoration: none;
+    color: #3f51b5;
+    font-size: 15px
+}
+
+.create-profile-form .basic label:hover {
+    text-decoration: underline;
+    cursor: pointer
+}
+
+.create-profile-form .form-control, .create-profile-form select.form-control {
+    height: 3.4em;
+    border-radius: 2px;
+    outline: none;
+    padding: 5px 15px;
+    color: #888
+}
+
+.create-profile-form .form-control:focus, .create-profile-form select.form-control:focus {
+    border: 1px solid rgba(63, 81, 181, .6);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none
+}
+
+.create-profile-form select.form-control {
+    height: calc(3rem + 2px) !important;
+    border: 1px solid rgba(0, 0, 0, .3);
+    color: #888;
+    -webkit-border-radius: 0 !important
+}
+
+.create-profile-form select.form-control:hover {
+    border: 1px solid rgba(0, 0, 0, .3)
+}
+
+.create-profile-form span {
+    vertical-align: middle;
+    display: flex;
+    font-size: 1.1rem;
+    color: #888
+}
+
+.normal {
+    padding-top: 1.5rem;
+}
+
+.create-profile-form .pref {
+    padding-top: 2.1em
+}
+
+.create-profile-form .btn2 {
+    padding: .9em 1em;
+    width: 100%;
+    display: block;
+    outline: none;
+    border-radius: 3px;
+    margin-right: 20px;
+    font-weight: 200;
+    border: none
+}
+
+.create-profile-form .btn-login {
+    color: #fff;
+    background: #3f51b5
+}
+
+.create-profile-form .btn-login:hover {
+    -webkit-transition: ease all .5s;
+    -moz-transition: ease all .5s;
+    -ms-transition: ease all .5s;
+    -o-transition: ease all .5s;
+    transition: ease all .5s
+}
+
+
+.create-profile-form .btn-join {
+    background: #64c88c;
+    color: #fff;
+    width: 60%;
+    text-align: center;
+    padding: .5em 1em;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-top: 20px
+}
+
+.create-profile-form .btn-join:hover {
+    text-decoration: none;
+    background: #51aa52
+}
+
+.create-profile-form .add-invest {
+    font-size: 1.5rem;
+    background: #64c88c;
+    color: #fff;
+    padding: .6em 1em;
+    letter-spacing: 2px;
+    font-weight: bold
+}
+
+.create-profile-form label {
+    margin-bottom: 5px;
+    color: #888;
+    font-size: 1rem
+}
+
+.create-profile-form .bgline {
+    height: 1px;
+    background: #999;
+    width: 72%;
+    position: absolute;
+    left: 18%;
+    right: 0;
+    top: 3.4rem;
+    z-index: auto;
+    display: none
+}
+
+.create-profile-form .pretty.p-switch .state:before {
+    width: 2.3em;
+    height: calc(1em + 5px)
+}
+
+.create-profile-form .pretty.p-switch .p-fill input[type=checked]:checked ~ .state:before {
+    background-color: #3f51b5
+}
+
+
+
+.btn-update-customer {
+    width: 100%;
+    cursor: pointer;
+    background: rgb(100, 200, 140);
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    margin: 20px 0px;
+    border-width: 0px;
+    padding: 10px 50px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+.btn-cancel-customer {
+    width: 100%;
+    cursor: pointer;
+    background:#6c757d;
+    color: #fff;
+    font-size: 1em;
+    text-align: center;
+    margin: 20px;
+    border-width: 0px;
+    padding: 10px 50px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+/*media query for  phones */
+@media (max-width: 576px) {
+    #namespace {
+        display: none;
+    }
+    .workplace {
+        margin-bottom: 1.5rem;
+    }
+    .buttons {
+        margin-left: 0 !important;
+    }
+ }
+
+ /*media query for IPADs */
+ @media (max-width: 768px) {
+    .buttons {
+        margin-left: 25rem;
+    }
+}
+
+/*media query for inspect page */
+@media (max-width: 1220px) {
+    .buttons {
+        margin-left: 25rem;
+    }
+}
+
+/*media query for IPAD-pro and above */
+ @media (max-width: 1024px) {
+    .buttons {
+        margin-left: 25rem;
+    }
+ }
