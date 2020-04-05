@@ -14,11 +14,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./add_customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-    @Input() public editable: boolean;
-    @ViewChild('pass') input;
-    @ViewChild('confirmPass') input2;
-    @ViewChild('error') error;
-
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     isSubmitting;
     isLoading = true;
@@ -26,10 +21,7 @@ export class AddCustomerComponent implements OnInit {
                            'Ekiti','Enugu','Gombe','Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos',
                            'Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers','Sokoto','Taraba','Yobe', 'Zamfara'];
     bankList: any = [];
-    passText = '';
-    confirmPassText = '';
-    opt1selected = false;
-    opt2selected = false;
+
 
     constructor(private userService: UserService,
                 private toastrService: ToastrService,
@@ -46,7 +38,7 @@ export class AddCustomerComponent implements OnInit {
     ngOnInit() {
         this.isLoading = false;
          }
-  
+
 // Make additional tab buttons
 TabControl(){
     var i, items = $('.nav-link'), pane = $('.tab-pane');
@@ -85,47 +77,12 @@ createProfile(): void {
                     if (UserDetails) {
                         this.toastrService.success('Registeration Succesfull');
                         this.user = { email: '', password: '' };
-                        this.router.navigateByUrl('admin/manage-users');
                     }
                     resolve();
                 });
         });
     }
 
-
-validate() {
-    this.input.nativeElement.style.borderColor = '#ccc';
-    this.input2.nativeElement.style.borderColor = '#ccc';
-    this.error.nativeElement.style.display = 'none';
-  }
-
-changePassword(): void {
-    if (this.passText === '') {
-        this.input.nativeElement.style.borderColor = 'red';
-        this.error.nativeElement.style.display = 'block';
-    }
-    if (this.confirmPassText === '') {
-        this.input2.nativeElement.style.borderColor = 'red';
-        this.error.nativeElement.style.display = 'block';
-    }
-    if (this.passText && this.confirmPassText !== '') {
-        if (this.passText === this.confirmPassText) {
-        this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp => {
-            if (resp && resp.success) {
-            this.toastrService.success('Password updated succesfully');
-            this.passText = '';
-            this.confirmPassText = '';
-            localStorage.setItem('token', resp.success.Token);
-            }
-        });
-        console.log(this.passText);
-        } else {
-        // alert('Passwords do not match');
-        this.toastrService.error('Passwords do not match');
-        }
-        this.error.nativeElement.style.display = 'none';
-    }
-  }
     getBankList() {
       this.userService.getBankList().subscribe(resp => {
         this.bankList = resp.success.Data;

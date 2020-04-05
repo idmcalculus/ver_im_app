@@ -41,7 +41,7 @@ export class ViewCustomerComponent implements OnInit {
               console.log(this.userInvestment);
               this.selectedInvestment = 0;
               this.showDetails();
-              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === 1);
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
             }
         this.isLoading = false;
           });
