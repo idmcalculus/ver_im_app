@@ -135,13 +135,13 @@
                   </div>
                   <div  class="row dashboard-table graphs">
                     <div class="card-details col-xl-7 col-md-7" style="padding-left: 0;">
-                        <div class="card latest-update-card">
+                        <div class="card latest-update-card mapss">
                             <div class="card-header">
                                 <h5>Investment by State</h5>
                                 <h3>View Full report</h3>
                             </div>
                             <div class="card-block">
-                              <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
+                              <div class="dt-responsive table-responsive maps" style="display: flex;justify-content: space-between;">
                                 <div id="regions_div" style="width: 570px; height: 400px;"></div>
                                 <div *ngIf="!isLoading" style="width: 35%;">
                                     <div class='progress-label'><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
@@ -217,14 +217,24 @@
                 </div>
                   <div *ngIf="!isLoading" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
                       <div class="card-details col-xl-3.5 col-md-4" style="padding-left: 0;">
-                          <div class="card latest-update-card">
-                              <div class="card-header">
+                          <div class="card latest-update-card" style="padding-bottom:15px">
+                              <div class="card-header"
+                              style="margin: 2px 0px;
+                                    padding: 15px 20px !important;
+                                    padding-bottom: 20px !important;"
+                              >
                                   <h5>Recent Activity</h5>
                               </div>
                               <div class="card-block">
 
 
                                 <div class="dt-responsive table-responsive">
+                                    <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 5),let x=index">
+                                        <div class="activities">
+                                            {{req.activity}}
+                                        </div>
+                                        <div *ngIf="x!=4" class="divider2"></div>
+                                    </div>
                                         <!-- <table id="userTable"
                                                 class="table table-striped nowrap">
                                             <thead>

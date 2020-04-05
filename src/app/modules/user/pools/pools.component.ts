@@ -15,6 +15,9 @@ export class PoolsComponent implements OnInit {
   pool:Investment;
   userType:string;
   categories:any []
+  checkedList:any;
+  checklist:any [];
+  masterSelected:any
 
   constructor(
     private authService: AppAuthService,
