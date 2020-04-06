@@ -19,7 +19,7 @@ import { Location } from '@angular/common';
 })
 
 export class AddUserComponent implements OnInit {
-  pool:Investment;
+  pool:any;
   poolId:number=0;
   isPaymentreport:boolean=false;
   number_of_pools:number;
@@ -90,11 +90,13 @@ export class AddUserComponent implements OnInit {
     })
   }
   addUserToPool(){
+    console.log( this.pool);
+    
     const data = {
       user_email:this.user_email,
       number_of_pools:this.number_of_pools,   
       investment_id:this.poolId,
-      amount_paid: this.amount_paid
+      amount_paid: this.calculateEstimate(this.pool.investment.investment_amount,this.number_of_pools)
     }
     
     this.adminService.addUserToPool(data).subscribe(resp=>{
@@ -105,7 +107,6 @@ export class AddUserComponent implements OnInit {
         //this.modalButtonTitle='add User';
       }
     })
-    console.log(this.amount_paid);
   }
 
   getUsers() {
@@ -119,8 +120,11 @@ export class AddUserComponent implements OnInit {
   }
 
   calculateEstimate(returns,inv){
-    const estimate = ((returns * inv));
+    console.log(returns , inv);
+    
+    const estimate = returns * inv;
     return estimate;
+
   }
 
   filterTable(filterType, filterValue: string) {

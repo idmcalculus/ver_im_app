@@ -118,7 +118,7 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" class="input-control shadow" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid" class="form-control"
+                                                <input type="number" class="input-control shadow" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool.investment.investment_amount,number_of_pools)}}" name="amount_paid" class="form-control"
                                                 id="amount_paid" #amount_paidModel="ngModel"
                                                 >
                                             </div>
