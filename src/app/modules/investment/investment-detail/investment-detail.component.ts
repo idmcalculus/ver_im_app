@@ -60,6 +60,14 @@ export class InvestmentDetailComponent implements OnInit {
             this.getInvestments();
         });
 
+        this.activatedRoute.params.subscribe((params) => {
+            this.investments = [];
+            this.isLoading = true;
+            var investmentId = params['id'];
+            this.getInvestment(investmentId);
+            this.getInvestments();
+        });
+
     }
 
     triggerSecond() {

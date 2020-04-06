@@ -8,7 +8,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.scss']
+  styleUrls: ['./pools.component.css']
 })
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
@@ -24,7 +24,6 @@ export class PoolsComponent implements OnInit {
 
   constructor(
     private authService: AppAuthService,
-    private router: Router,
     private investmentService: InvestmentService,
     private userService: UserService) {
       const userpath = window.location.pathname;
@@ -38,7 +37,6 @@ export class PoolsComponent implements OnInit {
       } else {
         this.userType = 'admin';
         this.getPools();
-        this.getCategories();
       }
       this.getCategories();
       this.getPools();
@@ -65,10 +63,6 @@ export class PoolsComponent implements OnInit {
     this.getCheckedPooList();
   }
 
-  cancelPool() {
-    this.router.navigateByUrl('admin/addpools');
-  }
- 
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -79,32 +73,33 @@ export class PoolsComponent implements OnInit {
   }
 
   getPools() {
-    this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+        console.log(this.pools);
+        this.getCategories();
       }
-      this.isLoading = false;
-    });
+    })
   }
 
   getCategories() {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        console.log(this.categories)
       }
       this.isLoading = false;
     });
   }
 
-  getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id === 21);
+  getCategoryName(id){
+    const res = this.categories.find( r=> r.id == id);
     return res.category_name;
   }
 
-  getUserPols(email) {
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
+  getUserPols(email){
+    this.investmentService.getUserInvestments(email).subscribe(investments=>{
+      if(investments){
         this.pools = investments.success.Data;
         this.getCategories();
       }
@@ -112,7 +107,6 @@ export class PoolsComponent implements OnInit {
   }
   
   setPlanOperation(investment) {
-
     this.authService.setCurrentPlanOperation(investment);
   }
 
@@ -137,6 +131,6 @@ export class PoolsComponent implements OnInit {
   calculateEstimate(returns, inv) {
     const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
-  }
+  }  
 
 }

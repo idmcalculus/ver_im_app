@@ -167,32 +167,35 @@
     background-color: #3f51b5
 }
 
-.buttons {
-    margin-left: 44rem;
-}
+
 
 .btn-update-customer {
-    width: 80%;
+    width: 100%;
+    cursor: pointer;
     background: rgb(100, 200, 140);
     color: #fff;
     font-size: 1em;
-    letter-spacing: 1px;
-    margin-top: 1rem;
-    letter-spacing: 1px;
     text-align: center;
-    padding-top: 0.4rem;
+    margin: 20px 0px;
+    border-width: 0px;
+    padding: 10px 50px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
 }
 .btn-cancel-customer {
-    width: 80%;
+    width: 100%;
+    cursor: pointer;
     background:#6c757d;
     color: #fff;
     font-size: 1em;
-    letter-spacing: 1px;
-    margin-top: 1rem;
-    margin-right: 1rem;
-    letter-spacing: 1px;
     text-align: center;
-    padding-top: 0.4rem;
+    margin: 20px;
+    border-width: 0px;
+    padding: 10px 50px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 700;
 }
 
 /*media query for  phones */

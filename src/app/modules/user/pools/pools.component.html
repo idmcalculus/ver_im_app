@@ -12,7 +12,7 @@
                             <a (click)="cancelPool()">
                                 <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a id="delCat">
+                            <a (click)="deleteUser()" id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -23,44 +23,40 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', id.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', title.value)"
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
                                     (blur)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)"
-                                    (blur)="filterTable('id', search.value)">
-
+                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('email',search.value)" 
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
+                                    (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('phone_number',status.value)" 
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
                                 </div>
                             </div>
                         </div>
@@ -77,7 +73,7 @@
                                     <p class="col-3">Investment Title</p>
                                     <p class="col-1">Category</p>
                                     <p class="col-2">No of Investors</p>
-                                    <p class="col-1" style="margin-left: 9px;">Tenure</p>
+                                    <p class="col-1" >Tenure</p>
                                     <p class="col-1" style="margin-left: 9px;">ROI</p>
                                     <p class="col-1">Payback</p>
                                     <p class="col-1" style="margin-left: 9px;">Cost</p>
@@ -133,71 +129,3 @@
     </div>
 </div>
 
-<!-- <div class="pcoded-content">
-    <div class="pcoded-inner-content">
-        <div class="main-body">
-            <div class="page-wrapper">
-                <div class="page-body pools">
-                    <div class="row mb-4">
-                        <div class="col-xl-4 col-md-6 offset-8">
-                            <a *ngIf="userType=='user'" (click)="setHeaderandFooter()" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
-                                Join New
-                                Pool
-                            </a>
-                            <a *ngIf="userType=='admin'" (click)="setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn2 btn-update-profile more">
-                                Create New
-                                Investment
-                            </a>
-                        </div>
-                    </div>
-
-                    <div *ngIf="isLoading" class="lds-default">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                    </div>
-
-                    <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5 ">
-                        <div *ngFor="let pool of pools" class="col-xl-4 pb-2">
-                            <a routerLink="./{{pool?.id}}" routerLinkActive="active">
-                                <div class="superb-container m-b20">
-                                    <div class="img-holder">
-                                        <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
-                                    </div>
-                                    <div class="content-holder">
-                                        <h2><a href="pool-details.html">{{pool.title}}</a></h2>
-                                        <p>{{pool?.max_num_of_slots}} Slots</p>
-                                        <a href="pool-details.html" class="btn2 btn-login view">View Investment</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <section *ngIf="!isLoading && pools?.length == 0 " style="border-radius: 30px;"  class="workingSection">
-                        <div class="inner-workingSection">
-                            <div class="row">
-                                <div  class="col-md-12">
-                                    <div class="working-content">
-                                        <h3>Sorry no investment slot found</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->

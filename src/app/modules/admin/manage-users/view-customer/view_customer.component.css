@@ -1,0 +1,147 @@
+input:disabled {
+    color: rgb(16, 2, 2);
+    color: rgb(84, 84, 84);
+    cursor: default;
+    background-color: white;
+    width: 100%;
+    padding: 0;
+}
+
+img {
+    cursor: pointer;
+}
+
+.table-font {
+    font-weight: bold;
+}
+
+.title-list h3 {
+    color: #221F72;
+    font-weight: 600;
+}
+
+.card-header h5 {
+    color: #221F72;
+    font-size: 0.80rem;
+    letter-spacing: .04rem;
+}
+
+
+.col-7 .card {
+    background-color:whitesmoke;
+    justify-content: space-between;
+    padding: 1.25rem;
+
+}
+
+.spacing{
+    margin-right: 3rem;
+}
+
+
+table .pending {
+    color: red;
+}
+
+table .success {
+    color:  green;
+}
+
+h5 {
+    font-size: 0.80rem;
+    letter-spacing: .04rem;
+    font-family: roboto;
+    font-weight: 900;
+    cursor: pointer;
+    justify-content: center;
+    color: #221F72;
+}
+
+th {
+    font-size: 0.80rem;
+    letter-spacing: .04rem;
+    font-family: roboto;
+    font-weight: 900;
+    cursor: pointer;
+    justify-content: center;
+    color: #221F72;
+
+}
+
+.table-striped td {
+    font-size: bold;
+    text-align: center;
+}
+
+.table-striped th {
+    font-size: bold;
+    text-align: center;
+}
+
+
+.highlighted {
+    font-size: 0.80rem;
+    color: #221F72;
+    font-family: roboto;
+    letter-spacing: .04rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    padding: 4px;
+}
+
+
+.card .information {
+    font-size: 0.75rem;
+    font-family: roboto;
+    letter-spacing: .04rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: none;
+    padding: 1rem;
+}
+
+.btn-danger {
+    width: 100%;
+    background-color: #F2533A;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: white;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+.btn-success {
+    width: 100%;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    color: white;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+.col-5 span .buttons {
+    margin-left: 1.5rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+}
+
+.my_pagination /deep/ .ngx-pagination {
+    display: inline-flex;
+    flex: content;
+}
+
+.displayStatus {
+    justify-content: center;
+    text-align: center;
+    font-family: roboto;
+    letter-spacing: .04rem;
+    font-weight: 500;
+    padding: 0.5rem;
+}
+
+
+
+
+

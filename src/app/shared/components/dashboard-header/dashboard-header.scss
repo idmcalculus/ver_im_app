@@ -4,8 +4,8 @@
         padding: 0em 0 !important;
     }
 
-    .navbar-wrapper{ 
-        .navbar-logo{ 
+    .navbar-wrapper{
+        .navbar-logo{
             .mobile-menu{
                 left: 0;
                 top: 0.40em;
@@ -13,10 +13,10 @@
                 margin-right: 0;
                 font-size: 25px;
             }
-            
+
         }
 
-        .navbar-container{ 
+        .navbar-container{
             .nav-right{
                 li {
                     float: left;
@@ -42,7 +42,7 @@
                     &:empty{
                         display: block;
                     }
-    
+
             }
         }
 
@@ -58,7 +58,7 @@
         }
         .icon-log-out{
             font-size: 1.5em;
-            line-height: 2.7;        
+            line-height: 2.7;
         }
 
         .line {
@@ -67,7 +67,7 @@
             margin-top: 1em;
             padding: 0px !important;
           }
-        
+
           .uploads{
               display: flex;
               justify-content: space-between;
@@ -79,10 +79,10 @@
             line-height: 3.8rem;
             letter-spacing: .1rem;
         }
-        
+
     }
 }
 
-   
+
 
 

@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ToastrModule } from 'ngx-toastr';
 import { GoogleChartsModule } from 'angular-google-charts';
-import { ProgressBarModule } from 'angular-progress-bar';
+import {ProgressBarModule} from "angular-progress-bar"
 
 import { HttpClientModule } from '@angular/common/http';
 import { Angular2PromiseButtonModule } from 'angular2-promise-buttons/dist';
