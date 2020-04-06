@@ -8,7 +8,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.css']
+  styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
@@ -23,6 +23,7 @@ export class PoolsComponent implements OnInit {
   checkedList:any;
 
   constructor(
+    private router:Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
@@ -37,13 +38,13 @@ export class PoolsComponent implements OnInit {
       } else {
         this.userType = 'admin';
         this.getPools();
+        this.getCategories();
       }
       this.getCategories();
-      this.getPools();
       this.masterSelected = false;
-      this.checklist = [this.pool, ];
+      this.checklist = [this.pool,];
       this.getCheckedPooList();
-
+      
   }
 
   ngOnInit() {
@@ -62,7 +63,7 @@ export class PoolsComponent implements OnInit {
       })
     this.getCheckedPooList();
   }
-
+ 
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -73,40 +74,44 @@ export class PoolsComponent implements OnInit {
   }
 
   getPools() {
+    this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        console.log(this.pools);
-        this.getCategories();
       }
-    })
+      this.isLoading = false;
+    });
   }
 
   getCategories() {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories)
       }
       this.isLoading = false;
     });
   }
 
-  getCategoryName(id){
-    const res = this.categories.find( r=> r.id == id);
+  getCategoryName(id: number) {
+    const res = this.categories.find( r => r.id === 21);
     return res.category_name;
   }
 
-  getUserPols(email){
-    this.investmentService.getUserInvestments(email).subscribe(investments=>{
-      if(investments){
+  getUserPols(email) {
+    this.investmentService.getUserInvestments(email).subscribe(investments => {
+      if (investments) {
         this.pools = investments.success.Data;
         this.getCategories();
       }
     });
   }
-  
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/addpools');
+  }
+
   setPlanOperation(investment) {
+
     this.authService.setCurrentPlanOperation(investment);
   }
 
@@ -127,10 +132,9 @@ export class PoolsComponent implements OnInit {
         this.pools = filtered;
       }
   }
-
-  calculateEstimate(returns, inv) {
-    const estimate = (((returns * 12) - inv) / inv) * 100;
+  
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
-  }  
-
+  }
 }

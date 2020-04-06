@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
+import { NgxPaginationModule } from 'ngx-pagination'
 import { AdminComponent } from './admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 // import {ManageInvestmentComponent} from './manage-investment/manage-investment.component';
@@ -21,6 +22,7 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
+import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -38,10 +40,12 @@ import { EditCustomerComponent } from './manage-users/edit-customer/edit_custome
     AddPoolComponent,
     ManageCategoryComponent,
     ManageAdminComponent,
+    SearchCustomerComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    NgxPaginationModule,
     UserModule,
     CareerModule,
     FormsModule,
