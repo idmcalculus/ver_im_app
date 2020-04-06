@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import * as $ from "jquery";
 import { User } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/modules/user/user.service';
+import {AppAuthService} from './../../../core/auth/auth.service';
+import {Subscription} from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -14,8 +16,9 @@ import { ToastrService } from 'ngx-toastr';
 export class UserSettingsComponent implements OnInit {
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     @ViewChild('error') error;
-
+     image;
     _shown = true;
+    userSubscription: Subscription;
     isSubmitting;
     isLoading = true;
     countries: string[] =  ['Abia','FCT Abuja','Adamawa','Akwa Ibom','Ananmbra','Bauchi','Bayelsa','Benue','Borno','Cross River','Delta','Ebonyi','Edo',
@@ -25,10 +28,16 @@ export class UserSettingsComponent implements OnInit {
 
 
     constructor(private userService: UserService,
+        private authService: AppAuthService,
         private toastrService: ToastrService,
         private router: Router
 ) {
 this.getBankList();
+this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
+    if (userInfo) {
+      this.user = userInfo;
+    }
+  });
 }
 
 ngOnInit() {
@@ -103,6 +112,27 @@ getBankList() {
       this.bankList = resp.success.Data;
   });
 }
+
+changeListener($event): void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.image = myReader.result;
+      this.user.profile_picture = this.image;
+    };
+    myReader.readAsDataURL(file);
+  }
+
+
+ngOnDestroy() {
+    this.userSubscription.unsubscribe();
+}
+
 
 }
 

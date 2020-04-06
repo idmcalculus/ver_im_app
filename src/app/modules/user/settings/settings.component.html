@@ -3,10 +3,11 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div class=" card page-body">
+                <div class="list-vacancy page-body">
                     <div class="row mb-4">
-                        <div class="col-xl-12 col-md-12 user-invest">
-                            <h4 class="dash-title">Settings</h4>
+                        <div class="col-xl-12 col-md-12 user-header">
+                            <h4 class="col-md-2">Settings</h4>
+                            <h5 class="col-md-2">Home/Settings</h5>
                         </div>
                     </div>
                     <div class="row">
@@ -26,7 +27,7 @@
                             <div></div>
                         </div>
 
-                        <div *ngIf="user!=null" class="col-xl-12 col-md-12">
+                        <div *ngIf="user!=null" class="card col-xl-12 col-md-12">
                             <div class="latest-update-card">
                                 <div class="card-block">
                                     <nav>
@@ -51,6 +52,27 @@
                                              role="tabpanel" aria-labelledby="nav-home-tab">
 
                                             <div class="create-profile-form">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-2 col-6 col-md-2">
+                                                            <input style="display:none;" type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
+                                                            <div class="profile-image">
+                                                                <img  *ngIf="user.profile_picture && user.profile_picture!='' " onclick="document.getElementById('upload-image').click()" src="{{user.profile_picture}}"
+                                                                      alt="profile_image">
+                                                                <img *ngIf="!user.profile_picture || user.profile_picture=='' " onclick="document.getElementById('upload-image').click()" src="../assets/images/avatar-4.png"
+                                                                     alt="profile_image">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2 col-6 col-md-4">
+                                                            <div class="basic">
+                                                                <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
+                                                                <label>Edit picture
+                                                                    <input style="display:none;" type="file" id="upload-image2" accept="image/*" (change)="changeListener($event)"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-2" id="namespace">

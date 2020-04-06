@@ -68,7 +68,6 @@
     height: calc(3rem + 2px) !important;
     border: 1px solid rgba(0, 0, 0, .3);
     color: #888;
-    -webkit-border-radius: 0 !important
 }
 
 .create-profile-form select.form-control:hover {
@@ -82,8 +81,22 @@
     color: #888
 }
 
-.normal {
-    padding-top: 1.5rem;
+.user-header h4 {
+    color: #3f51b5;
+    font-weight: bold;
+    font-size: 1.45rem;
+    margin-bottom: 0;
+    letter-spacing: .51px;
+    display: inline-block;
+
+}
+
+.user-header h5 {
+color: black;
+margin-bottom: 0;
+letter-spacing: .51px;
+display: inline-block;
+
 }
 
 .create-profile-form .pref {

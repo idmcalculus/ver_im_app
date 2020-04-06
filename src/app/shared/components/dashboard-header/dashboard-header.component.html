@@ -80,7 +80,7 @@
                 <li class="header-notification">
                     <div class="dropdown-primary dropdown">
                         <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                            <a routerLink="./chat" routerLinkActive="active">
+                            <a href="/contactus">
                                 <img class="img-fluid" src="../assets/images/soccer.png" style="width: 18px !important;" alt="Theme-Logo"/>
                             </a>
                             <a routerLink="./chat" routerLinkActive="active">
@@ -101,6 +101,26 @@
                     </div>
                     <div [hidden]='isUser' class="uploads" (click)="logout()">
                         <i class="feather icon-log-out"></i><div class="logtext">Logout</div>
+                    </div>
+                    <div  [hidden]='!isUser' class="dropdown-primary" data-toggle="dropdown">
+                        <ul class="show-notification profile-notification dropdown-menu"
+                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            <li>
+                                <a routerLink="./settings" routerLinkActive="active">
+                                    <i class="feather icon-settings"></i>Account Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="./settings/password" routerLinkActive="active">
+                                    <i class="feather icon-user"></i> Manage Password
+                                </a>
+                            </li>
+                            <li (click)="logout()">
+                                <a>
+                                    <i class="feather icon-log-out"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li class="user-profile header-notification">

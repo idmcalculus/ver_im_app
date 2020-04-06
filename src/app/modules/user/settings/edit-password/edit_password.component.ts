@@ -12,7 +12,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditPasswordComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-  @Input() public editable: boolean;
   @ViewChild('pass') input;
   @ViewChild('confirmPass') input2;
   @ViewChild('error') error;
