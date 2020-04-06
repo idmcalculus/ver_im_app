@@ -106,6 +106,7 @@ export class AddUserComponent implements OnInit {
       }else{
         //this.modalButtonTitle='add User';
       }
+      this.location.back()
     })
   }
 
