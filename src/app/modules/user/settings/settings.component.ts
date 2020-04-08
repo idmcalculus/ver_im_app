@@ -65,11 +65,6 @@ $('.next').on('click',function(){
 });
 }
 
-cancelProfile() {
-  this.isSubmitting = false;
-  this.router.navigateByUrl('user/settings');
-}
-
 updateProfile(user: User) {
 if (this.user.average_monthly_income === null) {
   this.user.average_monthly_income = '0';

@@ -34,12 +34,6 @@ ngOnInit() {
      }
 
 
-cancelProfile() {
-        this.isSubmitting = false;
-        this.router.navigateByUrl('admin/manage-customers');
-    }
-
-
 validate() {
         this.input.nativeElement.style.borderColor = '#ccc';
         this.input2.nativeElement.style.borderColor = '#ccc';
