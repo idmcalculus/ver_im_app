@@ -23,49 +23,49 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', id.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', $event)"
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', title.value)"
-                                    (blur)="filterTable('title', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', $event)"
+                                    (blur)="filterTable('title', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_name', $event)"
+                                    (blur)="filterTable('category_name', $event)">
 
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('id', $event)"
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('email',search.value)" 
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('id', $event)" 
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('phone_number',status.value)" 
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('id', $event)" 
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
@@ -77,10 +77,10 @@
                                     <p class="col-3">Investment Title</p>
                                     <p class="col-1">Category</p>
                                     <p class="col-2">No of Investors</p>
-                                    <p class="col-1">Tenure</p>
-                                    <p class="col-1">ROI</p>
+                                    <p class="col-1" style="margin-left: 9px;">Tenure</p>
+                                    <p class="col-1" style="margin-left: 9px;">ROI</p>
                                     <p class="col-1">Payback</p>
-                                    <p class="col-1">Cost</p>
+                                    <p class="col-1" style="margin-left: 9px;">Cost</p>
                                     <p class="col-1">Status</p>
                                     <p class="">Action</p>
                                 </div>
@@ -107,9 +107,9 @@
                                             <p class="mr-3"><input type="checkbox"></p>
                                             <p class="mr-3">{{pool.id}}</p>
                                             <p class="col-3">{{pool.title}}</p>
-                                            <p class="col-1">{{pool.category_id}}</p>
+                                            <p class="col-1">{{getCategoryName(pool.category_id)}}</p>
                                             <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
-                                            <p class="col-1">{{pool.duration}} Months</p>
+                                            <p class="col-1" style="margin-left: -11px">{{pool.duration}} Months</p>
                                             <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
                                             <p class="col-1">{{pool.expected_return_period}}</p>
                                             <p class="col-1">{{pool.investment_amount}}</p>
@@ -123,66 +123,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div  *ngIf="!isLoading && pools?.length > 0 "class="card-block">
-                                    <div class="table-wrapper-scroll-y custom-scrollbar">
-                                        <table datatable class="table appTable nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th><input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"></th>
-                                                    <th>ID</th>
-                                                    <th>Investment Title</th>
-                                                    <th>Category</th>
-                                                    <th>No of Investors</th>
-                                                    <th>Tenure</th>
-                                                    <th>ROI</th>
-                                                    <th>Payback</th>
-                                                    <th style="font-size:15px;">Cost per slot</th>
-                                                    <th>Status</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr data-href="#viewUserProfile" *ngFor="let pool of pools;let i = index;">
-
-                                                <td><input type="checkbox"  [(ngModel)]="pool" name="list_name" value="{{pool.id}}" (change)="isAllSelected()"></td>
-                                                <td>{{pool.id}}</td>
-                                                <td >{{pool.title}}</td>
-                                                <td >{{pool.category_id}}</td>
-                                                <td >{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
-                                                <td >{{pool.duration}} Months</td>
-
-                                                <td >{{pool.expected_return_amount}}</td>
-                                                <td >{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
-                                                <td >{{pool.investment_amount}}</td>
-                                                <td style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>
-                                                    <td  style="color: red">{{'InActive'}}</td>
-                                                </ng-template>
-
-                                                <td>
-                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                <div *ngIf="isLoading" class="lds-default">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -194,7 +134,6 @@
 </div>
 
 <!-- <div class="pcoded-content">
-
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
@@ -233,7 +172,7 @@
                                 <div class="superb-container m-b20">
                                     <div class="img-holder">
                                         <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">
+                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
                                     </div>
                                     <div class="content-holder">
                                         <h2><a href="pool-details.html">{{pool.title}}</a></h2>

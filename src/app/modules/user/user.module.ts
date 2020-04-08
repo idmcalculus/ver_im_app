@@ -21,7 +21,6 @@ import {ProfileSummaryComponent} from './../../shared/components/profile-summary
 import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
-import { AddCustomerComponent } from '../admin/manage-customer/add-customer/add_customer.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
 
 
@@ -43,7 +42,6 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     ProfileSummaryComponent,
     ChartComponent,
     ChatComponent,
-    AddCustomerComponent,
     InvestmentProfileComponent
   ],
   imports: [
@@ -53,7 +51,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     Angular2PromiseButtonModule,
     ChartsModule
   ],
-  exports:[
+  exports: [
     UserSettingsComponent,
     ProfileComponent,
     PoolsComponent,
@@ -65,8 +63,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     ManageInvestmentComponent,
     UserDashboardComponent,
     ProfileSummaryComponent,
-    ChatComponent,
-    AddCustomerComponent
+    ChatComponent
   ]
 })
 export class UserModule { }

@@ -20,8 +20,6 @@ export class InvestmentProfileComponent implements OnInit {
   selectedUser: User;
   loggedInUser: User;
   userSubscription: Subscription;
-  startDate: Date;
-  endDate: Date;
 
   expected_return: number;
   investment_amount: number;

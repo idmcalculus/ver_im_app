@@ -1,7 +1,7 @@
-import { Component, OnInit, EventEmitter,Input,Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../../investment/investment.service';
-import { ActivatedRoute,Router} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { Category } from 'src/app/shared/models/Category';
 
 @Component({
@@ -10,29 +10,33 @@ import { Category } from 'src/app/shared/models/Category';
   styleUrls: ['./add-pool.component.scss']
 })
 export class AddPoolComponent implements OnInit {
-  @Input() public modaltitle:string;
-  @Input() public modalButtonTitle:string;
-  @Input() public modalData:any;
+  @Input() public modaltitle: string;
+  @Input() public modalButtonTitle: string;
+  @Input() public modalData: any;
   @Output() submit = new EventEmitter<Investment>();
 
-  categories:[];
+  categories: [];
+  category: string;
+  selectedUser: string;
+  data = this.modalData;
+  name: string;
   isLoading = true;
-  image:any;
+  image: any;
   isSubmitting;
   expected_return: number;
   investment_amount: number;
   period: string;
   returns: string;
 
-  constructor(private route:ActivatedRoute,
-    private investmentService: InvestmentService,
-    private router:Router,
+  constructor(private route: ActivatedRoute,
+              private investmentService: InvestmentService,
+              private router: Router,
     ) {
       this.getCategories();
       }
 
   ngOnInit() {
-    
+
   }
 
   getCategories() {
@@ -50,40 +54,39 @@ export class AddPoolComponent implements OnInit {
     this.submit.emit(this.modalData);
   }
 
-  changeListener($event) : void {
+  changeListener($event): void {
     this.readThis($event.target);
   }
-  
+
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
-  
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       this.modalData.investment_image = this.image;
-    }
+    };
     myReader.readAsDataURL(file);
   }
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
   }
 
-  divisorFunc (period) {
-    if (period === "Weekly") {
+  divisorFunc(period) {
+    if (period === 'Weekly') {
       return 48;
-    } else if (period === "Monthly") {
+    } else if (period === 'Monthly') {
       return 12;
     }
-  };
-
-  calculateEstimate(){
-    const cost = this.investment_amount
-    const investment = this.expected_return/100 
-    const divisor = this.divisorFunc(this.period)
-
-    const estimate = (cost * investment) / divisor
-    this.returns = estimate.toFixed(2)
   }
-  
+
+  calculateEstimate() {
+    const cost = this.investment_amount;
+    const investment = this.expected_return / 100;
+    const divisor = this.divisorFunc(this.period);
+
+    const estimate = (cost * investment) / divisor;
+    this.returns = estimate.toFixed(2);
+  }
 
 }

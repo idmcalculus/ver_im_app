@@ -16,7 +16,7 @@
                   </div>
                 </div>
                 <br><br><br>
-              <div *ngIf="isLoading" class="pool-details lds-default">
+              <div *ngIf="isLoading" class="lds-default">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -44,7 +44,7 @@
                                   <mat-select-trigger>
                                     {{investmentGroupNames.value ? investmentGroupNames.value : ''}}
                                   </mat-select-trigger>
-                                  <mat-option *ngFor="let group of investmentGroups;" [value]="group">{{group}}
+                                  <mat-option *ngFor="let group of investmentGroups;" value="{{group.group_name}}">{{group.group_name}}
                                     <span *ngIf="group">
                                       <a (click)="deleteGroup(group)"><i class="fa fa-trash"></i></a>
                                     </span>

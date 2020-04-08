@@ -20,11 +20,9 @@ h3, h4, p {
 } */
 
 mat-dialog-container#modal-component {
-    margin: 40px 0;
-	padding: 40px 0;
     border: 1px solid #262626;
-    border-radius: 10px;
-    background-color: white;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.836);
     width: 100%;
 }
 

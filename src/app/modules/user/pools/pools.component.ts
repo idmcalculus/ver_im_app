@@ -13,7 +13,7 @@
 export class PoolsComponent implements OnInit {
   isLoading = true;
   pools: Investment[] = [];
-  pool: Investment = {title: '', investment_amount: 0, };
+  pool: Investment;
   userType: string;
   categories = [];
   category_name: string;
@@ -81,6 +81,7 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+        console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -90,13 +91,14 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        console.log(this.categories);
       }
       this.isLoading = false;
     });
   }
 
   getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id === 21);
+    const res = this.categories.find( r => r.id);
     return res.category_name;
   }
 
@@ -122,17 +124,17 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  filterTable(filterType, filterValue: string) {
-    if (!filterValue || filterValue === null) {
-      console.log(filterValue);
+  filterTable(filterType, filterValue): any {
+    const value = filterValue.target.value;
+    if (!value || value === null) {
       return this.getPools();
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
-            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+            const filterate = pool[filterType].toString();
+            return filterate.toLowerCase().includes(value.toLowerCase());
           }
         });
-        console.log(filtered);
         this.pools = filtered;
       }
   }

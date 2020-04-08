@@ -7,6 +7,7 @@ import { Investment } from '../../../shared/models/Investment';
 import { MatFormFieldControl } from '@angular/material';
 import { Location } from '@angular/common';
 import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-investment-group',
@@ -23,11 +24,14 @@ export class InvestmentGroupComponent implements OnInit {
   investmentGroupName: string;
   investments: Investment[] = [];
   investmentGroups: InvestmentGroup[] = [];
+  group_name: InvestmentGroup = {group_name: ''};
 
   constructor(public matDialog: MatDialog,
               private investmentService: InvestmentService,
+              private toastrService: ToastrService,
               private location: Location) {
                 this.getInvestments();
+                this.getInvestmentGroups();
               }
 
   ngOnInit() {
@@ -37,24 +41,41 @@ export class InvestmentGroupComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.id = 'modal-component';
-    dialogConfig.height = '350px';
-    dialogConfig.width = '900px';
     dialogConfig.data = {name: this.investmentGroupName};
-
     const modalDialog = this.matDialog.open(ModalComponent, dialogConfig);
-
     modalDialog.afterClosed().subscribe(result => {
-      this.investmentGroups.push(result);
+      if (result && result !== null) {
+        const data = {
+          group_name: result
+        };
+        return this.investmentService.addInvestmentGroup(data).subscribe(group => {
+          if (group && group.success) {
+            this.getInvestmentGroups();
+          } else {
+            this.toastrService.error('There was an issue adding groups... Try again later');
+          }
+        });
+      }
+    });
+  }
+
+  getInvestmentGroups() {
+    this.isLoading = true;
+    this.investmentService.getInvestmentGroups().subscribe(groups => {
+      if (groups && groups.success) {
+        this.investmentGroups = groups.success.Data;
+      }
+      this.isLoading = false;
     });
   }
 
   deleteGroup(group) {
     if (confirm('Are you sure you want to delete this group?')) {
-    for ( let i = 0; i < this.investmentGroups.length; i++) {
-      if ( this.investmentGroups[i] === group) {
-        return this.investmentGroups.splice(i, 1);
-      }
-    }
+      this.investmentGroups.forEach((grp, index) => {
+        if (grp === group) {
+          return this.investmentGroups.splice(index, 1);
+        }
+      });
   } else {
     return this.investmentGroups;
   }

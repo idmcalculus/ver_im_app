@@ -54,18 +54,18 @@ const userRoutes: Routes = [
             children: [
             {path: '',
               children: [
-                {path: '', component: ManageUsersComponent},
+               // {path: '', component: ManageUsersComponent},
                 {path: 'add-customer', component: AddCustomerComponent},
-                {path: 'list-users', component: ManageUsersComponent },
+                // {path: 'list-users', component: ManageUsersComponent },
               ]
             }
           ] },
           { path: 'manage-investments',
               children: [
-                //{path: '', component: PoolsComponent},
-                //{path: 'investment', component: PoolsComponent},
-                //{path: 'add-pools', component: AddPoolComponent},
-                //{path: 'list-users', component: ManageUsersComponent },
+                // {path: '', component: PoolsComponent},
+                // {path: 'investment', component: PoolsComponent},
+                // {path: 'add-pools', component: AddPoolComponent},
+                // {path: 'list-users', component: ManageUsersComponent },
           ] },
           { path: 'manage-admins', component: ManageAdminComponent },
 
