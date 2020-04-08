@@ -8,15 +8,15 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
 import {FormsModule} from '@angular/forms';
-import { PoolsComponent } from './pools/pools.component';
+import { userPoolsComponent } from './user-pool/user-pool.component';
 import { PoolDetailComponent } from './pool-detail/pool-detail.component';
 import {SideBarComponent} from './../../shared/components/side-bar/side-bar.component';
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {DashboardHeaderComponent} from './../../shared/components/dashboard-header/dashboard-header.component';
 import {ReportComponent} from './../../shared/components/report/report.component';
-import {ProfileComponent} from './../../shared/components/profile/profile.component'
-import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
-import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component';
+  import {ProfileComponent} from './../../shared/components/profile/profile.component'
+  import {ManageInvestmentComponent} from './../admin/manage-investment/manage-investment.component';
+  import {ProfileSummaryComponent} from './../../shared/components/profile-summary/profile-summary.component';
 import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
@@ -29,7 +29,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    PoolsComponent,
+    userPoolsComponent,
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
@@ -52,7 +52,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
   exports:[
     UserSettingsComponent,
     ProfileComponent,
-    PoolsComponent,
+    userPoolsComponent,
     PoolDetailComponent,
     SideBarComponent,
     HeaderComponent,

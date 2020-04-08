@@ -8,6 +8,7 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
+import {userPoolsComponent} from './../user/user-pool/user-pool.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
@@ -75,6 +76,7 @@ const userRoutes: Routes = [
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
           { path: 'pools', component: PoolsComponent },
+          { path: 'userPools', component: userPoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
