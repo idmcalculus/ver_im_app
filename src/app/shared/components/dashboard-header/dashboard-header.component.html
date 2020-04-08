@@ -94,32 +94,32 @@
                 <li class="line"><div class="vl"></div></li>
                 <li class="header-notification icon">
                     <div [hidden]='!isUser' class="dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        <div class="dropdown-toggle" data-toggle="dropdown" (click)="TabControl()">
                             <span>{{userDetails?.first_name}}</span>
                             <i class="feather icon-chevron-up" style="padding: 0rem 0.7rem;"></i>
                             <img  style="width: 2.5rem;" *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
                             alt="User-Profile-Image">
                         </div>
-                        <div  class="dropdown-primary" aria-labelledby="dropdownMenuLink">
-                            <ul class="show-notification profile-notification dropdown-menu"
-                                data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                <li>
-                                    <a routerLink="./settings" routerLinkActive="active">
-                                        <i class="feather icon-settings"></i>Account Settings
-                                    </a>
-                                </li>
-                                <li>
-                                    <a routerLink="./settings/password" routerLinkActive="active">
-                                        <i class="feather icon-user"></i> Manage Password
-                                    </a>
-                                </li>
-                                <li (click)="logout()">
-                                    <a>
-                                        <i class="feather icon-log-out"></i> Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+
+                        <ul class="show-notification profile-notification dropdown-menu"
+                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            <li>
+                                <a routerLink="./settings" routerLinkActive="active">
+                                    <i class="feather icon-settings"></i>Account Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a routerLink="./settings/password" routerLinkActive="active">
+                                    <i class="feather icon-user"></i> Manage Password
+                                </a>
+                            </li>
+                            <li (click)="logout()">
+                                <a>
+                                    <i class="feather icon-log-out"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+
                     </div>
                     <div [hidden]='isUser' class="uploads" (click)="logout()">
                         <i class="feather icon-log-out"></i><div class="logtext">Logout</div>
