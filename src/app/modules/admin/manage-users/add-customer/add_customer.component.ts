@@ -41,7 +41,7 @@ export class AddCustomerComponent implements OnInit {
 
 // Make additional tab buttons
 TabControl(){
-    var i, items = $('.nav-link'), pane = $('.tab-pane');
+    let i, items = $('.nav-link'), pane = $('.tab-pane');
     // next
     $('.next').on('click',function(){
         for(i = 0; i < items.length; i++){

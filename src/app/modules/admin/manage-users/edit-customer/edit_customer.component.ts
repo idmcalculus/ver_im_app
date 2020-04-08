@@ -73,7 +73,7 @@ updateProfile(user: User) {
     if (this.user.average_monthly_income === null) {
         this.user.average_monthly_income = '0';
     }
-    this.isSubmitting = this.userService.adminUpdateProfile(this.user).subscribe(resp => {
+    this.isSubmitting = this.userService.adminUpdateProfile(user).subscribe(resp => {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
         }
@@ -85,7 +85,8 @@ updateProfile(user: User) {
     }
 
 updatePreference(user: User) {
-    this.isSubmitting = this.userService.adminUpdatePreference(this.user).subscribe(resp => {
+    console.log(user);
+    this.isSubmitting = this.userService.adminUpdatePreference(user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
             } else {
@@ -96,7 +97,7 @@ updatePreference(user: User) {
         }
 
 updateBankDetails(user: User) {
-    this.isSubmitting = this.userService.adminUpdateBankDetails(this.user).subscribe(resp => {
+    this.isSubmitting = this.userService.adminUpdateBankDetails(user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
             } else {
