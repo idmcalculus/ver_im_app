@@ -19,8 +19,8 @@ export class UserService {
     &first_name=${user.first_name}&last_name=${user.last_name}
     &phone_number=${user.phone_number}&gender=${user.gender}
     &user_category=${user.user_category}&home_address=${user.home_address}
-    &country=${user.country}
-    &profile_picture=${user.profile_picture}
+    &country=${user.country}&month_of_birth=${user.month_of_birth}
+    &profile_picture=${user.profile_picture}&day_of_birth=${user.day_of_birth}
     &where_you_work=${user.where_you_work}&average_monthly_income=${user.average_monthly_income}
     &id=${user.id}`, null);
   }
@@ -79,9 +79,9 @@ export class UserService {
     return this.httpService.postRequest(`admin/update_user?
     email=${user.email}&authentication_type=${user.authentication_type}
     &first_name=${user.first_name}&last_name=${user.last_name}
-    &user_category=${user.user_category}
+    &user_category=${user.user_category}&day_of_birth=${user.day_of_birth}
     &average_monthly_income=${user.average_monthly_income}
-    &phone_number=${user.phone_number}
+    &phone_number=${user.phone_number}&month_of_birth=${user.month_of_birth}
     &id=${user.id}`, null);
   }
 

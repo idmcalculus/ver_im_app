@@ -1,6 +1,5 @@
-import { Component, Input,  OnInit, ViewChild, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from "jquery";
 import { User } from 'src/app/shared/models/user';
 import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
 import { UserService } from 'src/app/modules/user/user.service';
@@ -40,25 +39,27 @@ export class AddCustomerComponent implements OnInit {
          }
 
 // Make additional tab buttons
+
+
 TabControl(){
-    let i, items = $('.nav-link'), pane = $('.tab-pane');
-    // next
-    $('.next').on('click',function(){
+        let i;
+        const items = document.querySelectorAll('.nav-link');
+        const pane = document.querySelectorAll('.tab-pane');
         for(i = 0; i < items.length; i++){
-            if($(items[i]).hasClass('active') ==true){
+            if((items[i]).classList.contains('active') ==true){
                 break;
             }
         }
         if(i < items.length - 1){
             // for tab
-            $(items[i]).removeClass('active');
-            $(items[i+1]).addClass('active');
+            (items[i]).classList.remove('active');
+            (items[i+1]).classList.add('active');
             // for pane
-            $(pane[i]).removeClass('show active');
-            $(pane[i+1]).addClass('show active');
+            (pane[i]).classList.remove('show', 'active');
+            (pane[i+1]).classList.add('show', 'active');
         }
-    });
-}
+    }
+
 
 
 cancelProfile() {

@@ -5,7 +5,7 @@
             <div class="page-wrapper">
                 <div class=" card page-body">
                     <div class="row mb-4">
-                        <div class="col-xl-12 col-md-12 user-invest">
+                        <div class="col-xl-12 col-md-12">
                             <h4 class="dash-title"></h4>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                                         <div class="col-md-2"><span>State</span></div>
                                                         <div class="col-md-10">
                                                             <select [(ngModel)]="user.country" class="form-control" name="country"
-                                                                    id="country">
+                                                                    id="country" required>
                                                                 <option value="0" hidden>Select</option>
                                                                 <option *ngFor="let country of countries" [ngValue]="country">
                                                                     {{country}}
@@ -150,9 +150,11 @@
 
                                                         <div class="col-md-2"><span>Date of Birth</span>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <input [(ngModel)]="user.month_of_birth" type="date" class="form-control">
-
+                                                        <div class="col-md-2">
+                                                            <input [(ngModel)]="user.day_of_birth" class="form-control">
+                                                        </div>
+                                                        <div class= "col-md-2">
+                                                            <input [(ngModel)]="user.month_of_birth" class="form-control">
                                                         </div>
 
                                                     </div>
@@ -219,7 +221,6 @@
                                                             <span class='namespace normal'>Bank Name</span>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <label for="bankname">Bank Name</label>
                                                             <select [(ngModel)]="user.bank_name" name="" id="bankname"
                                                                     class="form-control">
                                                                 <option value="0" hidden>Select</option>
@@ -236,7 +237,6 @@
                                                             <span class='namespace normal'>Account Name</span>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <label for="accountname">Account Name</label>
                                                             <input  [(ngModel)]="user.account_name" type="text" class="form-control"
                                                                     id="accountname">
                                                         </div>
@@ -249,7 +249,6 @@
                                                             <span class='namespace normal'>Account Number</span>
                                                         </div>
                                                         <div class="col-md-9">
-                                                            <label for="accontnumber">Account Number</label>
                                                             <label *ngIf="acctNumber.invalid && (acctNumber.dirty)"  class="m-l-5 alert-danger">
                                                                 * Enter a valid account number
                                                             </label>
@@ -301,7 +300,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <label class="pref">Receive updates on new Plans? </label>
+                                                            <span class="pref">Receive updates on new Plans? </span>
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
@@ -317,7 +316,7 @@
                                                 <div class="form-group">
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <label class="pref">Send E-mail updates on investment</label>
+                                                            <span class="pref">Send E-mail updates on investment</span>
                                                         </div>
                                                         <div class="col-md-2" style="margin-top: 2.3em;">
                                                             <div class="pretty p-switch p-fill">
