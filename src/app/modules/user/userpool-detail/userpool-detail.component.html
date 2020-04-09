@@ -1,0 +1,279 @@
+<div *ngIf="!selectedUser" class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div *ngIf="isLoading" class="pool-details lds-default">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                        
+                    <div *ngIf="!isLoading" class="">
+                        <div class="clearfix mb-3">
+                            <div class="float-left pt-2">
+                                <a class="h4 pr-2">Investment</a>
+                                <a class=" pl-2">Home / Investments</a>
+                            </div>  
+                            <div class="float-right">
+                                <a (click)="cancelPool()">
+                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row p-0">
+                            <div class="col-xl-12">
+                                <div class="card latest-update-card">
+                                    <div class="row p-3">
+                                        <div class="col-12">
+                                            <h5 class="head">Investment Details</h5>
+
+                                            <hr class="new my-0">
+                                        </div>
+                                    </div>
+                                    <div class="row p-4">
+                                        <div class="col-6 pr-4">
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool?.investment?.title}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool?.investment?.max_num_of_slots}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Pricing</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Invested Amount</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Total Return</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 pr-4">
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
+                                                <div class="col-sm-9">
+                                                    <input name="category" class="form-control form-control-sm" readonly value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Slots Purchased</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">ROI</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="number" readonly class="form-control form-control-sm" required name="roi" id="roi" placeholder="" value={{pool?.investment?.expected_return_amount}}>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Payback Frequency</h6>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control form-control-sm" name="period" (change)="calculateEstimate()" id="period" readonly value={{pool?.investment?.expected_return_period}}>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group pb-4 row">
+                                                <h6 class="col-sm-3 pr-0 col-form-label">Status</h6>
+                                                <div class="col-sm-9">
+                                                    <input type="type" class="form-control form-control-sm" value="" name="returns" [(ngModel)]="returns">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-block summary-card">
+                                        <div class="row p-0">
+                                            <div class="col-12">
+                                                <h5 class="">Investment Summary</h5>
+                                                <hr class="new my-0">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-xl-12">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="row">
+                                                            <div class="col-4 summary-font">
+                                                                <a class="">Payback</a>
+                                                            </div>
+                                                            <div class="col-8 summary-font">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5">{{pool?.investment?.investment_started_date | date}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="row">
+                                                            <div class="col-4 summary-font">
+                                                                <a class="">Last Payment</a>
+                                                            </div>
+                                                            <div class="col-8 summary-font">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5">{{pool?.investment?.investment_closed_date | date}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <a class="">Next Payment</a>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 pt-4">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <a class="">Amount Paid</a>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 pt-4">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <a class="">Amount Pending</a>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-4 pt-4">
+                                                        <div class="row">
+                                                            <div class="col-5">
+                                                                <a class="">Termination Date</a>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <a class="pr-2">-</a>
+                                                                <a class="pl-5"></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <h5 class="card-header">Investment Report</h5>
+    
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
+                                            <table id="investmentTable" *ngFor="let investment of userInvestment ;index as i" class="table appTable table-striped nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 5%">S/N</th>
+                                                        <th style="width: 15%">Investment Title</th>
+                                                        <th style="width: 15%">Payback Frequency</th>
+                                                        <th style="width: 15%">Amount Credited</th>
+                                                        <th style="width: 15%">Yield Amount</th>
+                                                        <th style="width: 10%">Balance</th>
+                                                        <th style="width: 15%">Status</th>
+                                                        <th style="width: 10%">Date Paid</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let report of investment.investment_report ;index as i">
+                                                        <td style="width: 5%">{{i+1}}</td>
+                                                        <td style="width: 15%">{{investments.title}}</td>
+                                                        <td style="width: 15%">{{investments.expected_return_period}}</td>
+                                                        <td style="width: 15%">{{investments.expected_return_amount}}</td>
+                                                        <td style="width: 15%">{{investments.category_id}}</td>
+                                                        <td style="width: 10%">{{investments.category_id}}</td>
+                                                        <td style="width: 15%">{{investments.category_id}}</td>
+                                                        <td style="width: 10%">{{investments.category_id}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row justify-content-center" *ngIf="userInvestment.length == '0' ">
+                                                <div class="col-6 text-center">
+                                                    No record found, Investment is not yet started
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+
+                    </div>              
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<app-profile-summary  *ngIf="selectedUser" [user]="selectedUser"></app-profile-summary>
+<app-user-dashboard   *ngIf="selectedUser" [overiddenUser]="selectedUser" ></app-user-dashboard>

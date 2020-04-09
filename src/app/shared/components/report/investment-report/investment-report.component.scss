@@ -55,7 +55,7 @@ td {
 }
 
 .card {
-	height: 300px;
+	height: 500px;
 }
 
 .col-md-12 {
@@ -74,6 +74,10 @@ td {
 	&::-webkit-scrollbar { 
 		display: none;  // Safari and Chrome
 	}
+}
+
+.width {
+    width: 25%;
 }
 
 
@@ -115,6 +119,7 @@ td {
   
 .category-body .row1 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -128,16 +133,12 @@ td {
 }
 
 .category-body .row1 p{
-    display: inline-flex;
     padding: 0;
 }
   
-.category-name {
-    width: 10%;
-}
-
-.category-name1 {
-    width: 20%;
+.s-n, .category-name {
+    flex: 1 1 30em;
+    margin-left: 10px;
 }
 
 .category-body .row1 p{
