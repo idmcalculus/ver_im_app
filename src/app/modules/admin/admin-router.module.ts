@@ -14,6 +14,7 @@ import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
+import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -78,6 +79,7 @@ const userRoutes: Routes = [
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
           { path: 'poolReport', component: PoolreportComponent },
+          { path: 'userReport', component: UserreportComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },
