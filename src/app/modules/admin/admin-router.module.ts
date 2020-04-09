@@ -23,6 +23,12 @@ import { ViewCustomerComponent } from './manage-users/view-customer/view_custome
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
+import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
+import { ViewUsersComponent } from './user-group/view-users/view-users.component';
+import { AddUsersComponent } from './user-group/add-users/add-users.component';
+import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 
 
 
@@ -47,6 +53,19 @@ const userRoutes: Routes = [
               {path: 'view', component: ViewCustomerComponent },
               {path: 'edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
+            ]
+            }
+          ] },
+          { path: 'user-group',
+            children: [
+            {path: '',
+            children: [
+              {path: '', component: ViewUserGroupComponent},
+              {path: 'add', component: AddUserGroupComponent},
+              {path: 'edit', component: EditUserGroupComponent },
+              {path: 'view-users', component: ViewUsersComponent },
+              {path: 'add-users', component: AddUsersComponent },
+              {path: 'edit-users', component: EditUsersComponent}
             ]
             }
           ] },
