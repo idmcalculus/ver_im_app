@@ -10,6 +10,11 @@
     margin-top: 4rem;
 }
 
+.nav-tabs .nav-link {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 .create-profile-form {
     padding-top: 2rem;
 }
@@ -75,10 +80,12 @@
 }
 
 .create-profile-form span {
+    margin-top: 0.85rem;
     vertical-align: middle;
     display: flex;
-    font-size: 1.1rem;
-    color: #888
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: black;
 }
 
 .user-header h4 {
