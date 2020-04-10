@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../user/user.service';
-import { UserDashboard } from 'src/app/shared/models/UserDashboard';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -35,6 +34,7 @@ export class ViewCustomerComponent implements OnInit {
       private location: Location
       ) {
         this.getCategories();
+        this.isLoading = false;
        }
 
     ngOnInit() {
@@ -48,8 +48,12 @@ export class ViewCustomerComponent implements OnInit {
               console.log(this.FilteredInvestment);
 
             }
-        this.isLoading = false;
+            else {
+                this.isLoading = true;
+            }
+
           });
+
 
 
         $('#myCarousel').on('slide.bs.carousel', function (e:any) {
@@ -66,12 +70,10 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     getCategories() {
-        this.isLoading = true;
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {
             this.categories = resp.success.Data;
           }
-          this.isLoading = false;
         });
       }
 
@@ -87,11 +89,10 @@ export class ViewCustomerComponent implements OnInit {
             console.log(this.investmentInfo);
             this.getUserDashBoard();
             this.selectedInvestment++;
-            console.log(this.selectedInvestment);
             return this.selectedInvestment;
             } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-            console.log(this.investmentInfo);
+            this.isLoading = true;
             }
       }
 
@@ -106,7 +107,6 @@ export class ViewCustomerComponent implements OnInit {
             this.dashboardInvestment.push(this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-            console.log(this.dashBoardData);
           }
           console.log(this.dashboardInvestment);
           this.showDetails();
