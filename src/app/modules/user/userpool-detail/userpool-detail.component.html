@@ -104,7 +104,7 @@
                                             <div class="form-group pb-4 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Slots Purchased</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.num_of_pools_taken}}>
                                                 </div>
                                             </div>
     
@@ -156,7 +156,7 @@
                                                             </div>
                                                             <div class="col-8 summary-font">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{pool?.investment?.investment_started_date | date}}</a>
+                                                                <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -167,7 +167,9 @@
                                                             </div>
                                                             <div class="col-8 summary-font">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{pool?.investment?.investment_closed_date | date}}</a>
+                                                                <a class="pl-5">
+                                                                    {{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}}
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -178,7 +180,9 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5"></a>
+                                                                <a class="pl-5">
+                                                                    {{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -189,7 +193,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5"></a>
+                                                                <a class="pl-5">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -200,7 +204,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5"></a>
+                                                                <a class="pl-5">{{ ((((investments?.investment_amount *dashboardInvestment[i].number_of_pools) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -211,7 +215,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5"></a>
+                                                                <a class="pl-5">{{investments?.investment_close_date}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -230,7 +234,7 @@
     
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
-                                            <table id="investmentTable" *ngFor="let investment of userInvestment ;index as i" class="table appTable table-striped nowrap">
+                                            <table id="investmentTable"  class="table appTable table-striped nowrap">
                                                 <thead>
                                                     <tr>
                                                         <th style="width: 5%">S/N</th>
@@ -243,20 +247,20 @@
                                                         <th style="width: 10%">Date Paid</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr *ngFor="let report of investment.investment_report ;index as i">
+                                                <tbody *ngFor="let investments of dashboardInvestment ;index as i">
+                                                    <tr *ngFor="let report of investments.investment_report ;index as i">
                                                         <td style="width: 5%">{{i+1}}</td>
-                                                        <td style="width: 15%">{{investments.title}}</td>
-                                                        <td style="width: 15%">{{investments.expected_return_period}}</td>
-                                                        <td style="width: 15%">{{investments.expected_return_amount}}</td>
+                                                        <td style="width: 15%">{{report.title}}</td>
+                                                        <td style="width: 15%"></td>
+                                                        <td style="width: 15%">{{report.returned_amount}}</td>
+                                                        <td style="width: 15%">{{report.returned_amount * (i+1)}}</td>
+                                                        <td style="width: 10%"></td>
                                                         <td style="width: 15%">{{investments.category_id}}</td>
-                                                        <td style="width: 10%">{{investments.category_id}}</td>
-                                                        <td style="width: 15%">{{investments.category_id}}</td>
-                                                        <td style="width: 10%">{{investments.category_id}}</td>
+                                                        <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <div class="row justify-content-center" *ngIf="userInvestment.length == '0' ">
+                                            <div class="row justify-content-center" *ngIf="dashboardInvestment.length == '0' ">
                                                 <div class="col-6 text-center">
                                                     No record found, Investment is not yet started
                                                 </div> 

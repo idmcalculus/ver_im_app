@@ -2,7 +2,6 @@ import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute, Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
-import { Report } from 'src/app/shared/models/Report';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
@@ -19,13 +18,14 @@ import { Subscription } from 'rxjs';
 export class userPoolDetailComponent implements OnInit {
   user: User = {email: '',};
   pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
-  userInvestment: Investment[];
+  userInvestment: any;
   poolId:number=0;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   latest_return = 0;
   totalYieldedAmount = 0;
   categories=[];
   selectedInvestment = -1;
+  dashboardInvestment: any =[];
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   callBack:any;
   isLoading:boolean=true;
@@ -75,10 +75,12 @@ export class userPoolDetailComponent implements OnInit {
       this.investmentInfo = this.userInvestment[this.selectedInvestment];
       
       this.getUserDashBoard();
-    } else {
+      this.selectedInvestment++;
+      console.log(this.selectedInvestment);
+      return this.selectedInvestment;
+      } else {
       this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       console.log(this.investmentInfo);
-      this.totalYieldedAmount = 0;
     }
 
   }
@@ -92,12 +94,13 @@ export class userPoolDetailComponent implements OnInit {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
         console.log(this.dashBoardData);
+        this.dashboardInvestment.push(this.dashBoardData);
       } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         console.log(this.dashBoardData);
-        this.totalYieldedAmount = 0;
       }
-      this.latest_return = this.dashBoardData.investment_return.length;
+      console.log(this.dashboardInvestment);
+      this.showDetails();
     });
   }
 
@@ -152,6 +155,28 @@ export class userPoolDetailComponent implements OnInit {
 
   cancelPool() {
     this.router.navigateByUrl('admin/userPools');
+  }
+
+  calculateEstimate(returns, inv, expected_return_period, i) {
+    const estimate = (((returns * this.divisorFunc(expected_return_period, i)) - inv) / inv) * 100;
+    return Math.ceil(estimate);
+  }
+
+  divisorFunc (expected_return_period, i) {
+    if (this.userInvestment[i].expected_return_period === "Weekly") {
+      return 48;
+    } else if (this.userInvestment[i].expected_return_period === "Monthly") {
+      return 12;
+    }
+  };
+  addMonth(date: Date, month: number) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    newDate.setMonth(newDate.getMonth() + month);
+    if (newDate.getMonth() == 11) {
+        newDate.setDate(0);
+    }
+    return newDate;
   }
 
 }

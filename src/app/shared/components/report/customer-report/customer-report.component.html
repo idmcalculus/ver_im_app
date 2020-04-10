@@ -10,7 +10,7 @@
                         </div>  
                         <div class="float-right">
                             <a (click)="cancelPool()">
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
+                                <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
                             </a>
                             <a (click)="deleteUser()" id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
@@ -23,14 +23,14 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', search.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Date End" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -76,7 +76,7 @@
                                             <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
                                             <p class="col-2">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
-                                            <p class="col-2">{{user.expected_return_period}}</p>
+                                            <p class="col-2"></p>
                                             <p class="col-2">{{user.investment_amount}}</p>
                                             <p class="col-1">{{user.investment_amount}}</p>
                                         </div>
