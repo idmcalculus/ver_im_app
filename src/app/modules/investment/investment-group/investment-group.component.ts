@@ -25,6 +25,9 @@ export class InvestmentGroupComponent implements OnInit {
   investments: Investment[] = [];
   investmentGroups: InvestmentGroup[] = [];
   group_name: InvestmentGroup = {group_name: ''};
+  selectedValue: Investment[] = [];
+  selectedGroup: InvestmentGroup = {group_name: ''};
+  group_id: any;
 
   constructor(public matDialog: MatDialog,
               private investmentService: InvestmentService,
@@ -70,9 +73,20 @@ export class InvestmentGroupComponent implements OnInit {
   }
 
   deleteGroup(group) {
-    if (confirm('Are you sure you want to delete this group?')) {
+    if (confirm(`Are you sure you want to delete the group ${group.group_name}?`)) {
       this.investmentGroups.forEach((grp, index) => {
+        console.log(grp);
         if (grp === group) {
+          const data = {
+            group_name: grp.group_name
+          };
+          this.investmentService.deleteInvestmentGroup(data).subscribe(group => {
+            if (group && group.success) {
+              this.toastrService.success('Investment group deleted successfully');
+            } else {
+              this.toastrService.error('There was an issue deleting this group... Try again later');
+            }
+          });
           return this.investmentGroups.splice(index, 1);
         }
       });
@@ -85,14 +99,36 @@ export class InvestmentGroupComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.investments = investments.success.Data;
+        console.log(this.investments);
       }
       this.isLoading = false;
     });
   }
 
+  saveToGroup(group, groupId) {
+    if(this.selectedGroup && this.selectedValue) {
+      group = this.selectedGroup;
+      groupId = [];
+      const data = {
+        group_name: group,
+      };
+      this.selectedValue.forEach(investment => {
+        this.group_id = investment.id;
+        groupId.push(this.group_id);
+      })
+      console.log(groupId);
+      this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
+        if(result && result.success) {
+          this.toastrService.success("Selected investments added to the selected group successfully");
+        } else {
+          this.toastrService.error("There was an error adding your chosen investments to the selected group");
+        }
+      })
+    }
+  }
+
   goBack() {
     this.location.back();
   }
-
 
 }

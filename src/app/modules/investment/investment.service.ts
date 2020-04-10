@@ -91,4 +91,12 @@ export class InvestmentService {
   getInvestmentGroups() {
     return this.httpService.postRequest(`investment/getGroups`, {});
   }
+
+  deleteInvestmentGroup(investmentGroup: InvestmentGroup) {
+    return this.httpService.postRequest(`investment/deleteGroup`, {group_name: investmentGroup.group_name}, true);
+  }
+
+  addInvestmentsToGroup(investmentGroup: InvestmentGroup, investmentId: []) {
+    return this.httpService.postRequest(`investment/addToGroup?group_name=${investmentGroup.group_name}&investment_id=${investmentId}`, {}, true);
+  }
 }

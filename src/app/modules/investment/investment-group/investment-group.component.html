@@ -10,7 +10,7 @@
                     <a class="pl-4">Home / Investment Group</a>
                   </div>
                   <div class="float-right">
-                    <a><img src="../../../../assets/images/icon/icons/save-64.png"></a>
+                    <a (click)="saveToGroup()"><img src="../../../../assets/images/icon/icons/save-64.png"></a>
                     &nbsp;
                     <a (click)="goBack()"><img src="../../../../assets/images/icon/icons/Back-icon.png"></a>
                   </div>
@@ -40,11 +40,11 @@
                           <mat-form-field>
                               <div class="investment-grp-name form-group">
                                 <mat-label for="investmentGroupName">Investment Group Name</mat-label>
-                                <mat-select [formControl]="investmentGroupNames" placeholder="Investment Group Name" id="investmentGroupName" class="form-control">
+                                <mat-select [(ngModel)]="selectedGroup" [formControl]="investmentGroupNames" placeholder="Investment Group Name" id="investmentGroupName" class="form-control">
                                   <mat-select-trigger>
                                     {{investmentGroupNames.value ? investmentGroupNames.value : ''}}
                                   </mat-select-trigger>
-                                  <mat-option *ngFor="let group of investmentGroups;" value="{{group.group_name}}">{{group.group_name}}
+                                  <mat-option *ngFor="let group of investmentGroups;" [value]="group.group_name">{{group.group_name}}
                                     <span *ngIf="group">
                                       <a (click)="deleteGroup(group)"><i class="fa fa-trash"></i></a>
                                     </span>
@@ -56,14 +56,14 @@
                             <mat-form-field>
                               <div class="investments form-group">
                                 <mat-label for="investments">Investments</mat-label>
-                                <mat-select multiple placeholder="Investments" [(value)]="selected" [formControl]="investment" id="investments" class="form-control">
+                                <mat-select multiple placeholder="Investments" [(ngModel)]="selectedValue" [formControl]="investment" id="investments" class="form-control">
                                   <mat-select-trigger *ngIf="investment.value">
-                                    {{investment.value[0]}}, {{investment.value[1]}}, {{investment.value[2]}} 
+                                    {{investment.value[0]?.title}}, {{investment.value[1]?.title}}, {{investment.value[2]?.title}} 
                                     <span *ngIf="investment.value?.length > 3" class="investmentGroups">
                                       (+{{investment.value.length - 3}} {{investment.value?.length === 4 ? 'other' : 'others'}})
                                     </span>
                                   </mat-select-trigger>
-                                  <mat-option *ngFor="let investment of investments;" value="{{investment.title}}">{{investment.title}}</mat-option>
+                                  <mat-option *ngFor="let investment of investments;" [value]="investment">{{investment.title}}</mat-option>
                                 </mat-select>
                               </div>
                             </mat-form-field>
