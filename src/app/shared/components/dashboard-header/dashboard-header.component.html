@@ -79,8 +79,8 @@
 
                 <li class="header-notification">
                     <div class="dropdown-primary dropdown">
-                        <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
-                            <a  routerLink="/" routerLinkActive="active">
+                        <div class="displayChatbox">
+                            <a href="https://www.versa.ng">
                                 <img class="img-fluid" src="../assets/images/soccer.png"  style="width: 18px !important;" alt="Theme-Logo"/>
                             </a>
                             <a routerLink="./chat" routerLinkActive="active">
@@ -92,17 +92,17 @@
                     </div>
                 </li>
                 <li class="line"><div class="vl"></div></li>
-                <li class="header-notification icon">
-                    <div [hidden]='!isUser' class="dropdown">
+                <li class="user-profile header-notification">
+                    <div [hidden]='!isUser' class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown" (click)="TabControl()">
                             <span>{{userDetails?.first_name}}</span>
-                            <i class="feather icon-chevron-up" style="padding: 0rem 0.7rem;"></i>
+                            <i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i>
                             <img  style="width: 2.5rem;" *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
                             alt="User-Profile-Image">
                         </div>
 
                         <ul class="show-notification profile-notification dropdown-menu"
-                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                   data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li>
                                 <a routerLink="./settings" routerLinkActive="active">
                                     <i class="feather icon-settings"></i>Account Settings
@@ -125,38 +125,6 @@
                         <i class="feather icon-log-out"></i><div class="logtext">Logout</div>
                     </div>
 
-                </li>
-                <li class="user-profile header-notification">
-
-                    <div class="dropdown-primary dropdown">
-                        <div class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- <img  *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
-                                 alt="User-Profile-Image">
-                            <img  *ngIf="userDetails.profile_picture && userDetails.profile_picture!='' " src="{{userDetails.profile_picture}}" class="img-radius"
-                            alt="User-Profile-Image">
-
-                            <span>{{userDetails?.first_name}} {{userDetails?.last_name}}</span> -->
-                            <!-- <i class="feather icon-chevron-down"></i> -->
-                        </div>
-                        <ul class="show-notification profile-notification dropdown-menu"
-                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <li>
-                                <a routerLink="./profile" routerLinkActive="active">
-                                    <i class="feather icon-settings"></i> Settings
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="./profile" routerLinkActive="active">
-                                    <i class="feather icon-user"></i> Profile
-                                </a>
-                            </li>
-                            <li (click)="logout()">
-                                <a>
-                                    <i class="feather icon-log-out"></i> Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
             </ul>
         </div>
