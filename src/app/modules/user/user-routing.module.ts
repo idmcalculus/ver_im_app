@@ -8,6 +8,7 @@ import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
 import {PoolsComponent} from './pools/pools.component';
 import {PoolDetailComponent} from './pool-detail/pool-detail.component';
 import { ChatComponent } from '../chat/chat.component';
+import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 
 
 
@@ -21,7 +22,16 @@ const userRoutes: Routes = [
         children: [
           { path: 'profile', component: UserProfileComponent },
           { path: 'investments', component: UserProfileComponent },
-          { path: 'settings', component: UserSettingsComponent },
+          { path: 'settings',
+            children: [
+            {path: '',
+            children: [
+              {path: '', component: UserSettingsComponent},
+              {path: 'password', component: EditPasswordComponent},
+              {path: 'user-settings', component: UserSettingsComponent},
+            ]
+            }
+        ] },
           { path: 'chat', component: ChatComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:pool_id', component: PoolDetailComponent },

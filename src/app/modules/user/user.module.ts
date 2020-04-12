@@ -22,6 +22,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
+import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
+    EditPasswordComponent,
     PoolsComponent,
     PoolDetailComponent,
     SideBarComponent,
@@ -53,6 +55,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
   ],
   exports:[
     UserSettingsComponent,
+    EditPasswordComponent,
     ProfileComponent,
     PoolsComponent,
     PoolDetailComponent,

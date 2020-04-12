@@ -3095,6 +3095,10 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
     display: none
 }
 
+.header-navbar .navbar-wrapper .navbar-container .nav-left .dropdown-toggle::before, .header-navbar .navbar-wrapper .navbar-container .nav-right .dropdown-toggle::before {
+    display: block
+}
+
 .header-navbar .navbar-wrapper .navbar-container .nav-right {
     float: right
 }
