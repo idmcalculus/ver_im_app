@@ -45,15 +45,12 @@ export class ViewCustomerComponent implements OnInit {
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
-              console.log(this.FilteredInvestment);
-
             }
             else {
                 this.isLoading = true;
             }
 
           });
-
 
 
         $('#myCarousel').on('slide.bs.carousel', function (e:any) {
