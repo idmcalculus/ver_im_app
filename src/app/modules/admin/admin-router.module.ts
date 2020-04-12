@@ -42,22 +42,12 @@ const userRoutes: Routes = [
             children: [
             {path: '',
             children: [
-              {path: '', component: SearchCustomerComponent},
+              {path: '',  pathMatch: 'full', component: SearchCustomerComponent},
               {path: 'new', component: AddCustomerComponent},
               {path: 'view', component: ViewCustomerComponent },
               {path: 'edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
             ]
-            }
-          ] },
-          { path: 'manage-customer',
-            children: [
-            {path: '',
-              children: [
-                {path: '', component: ManageUsersComponent},
-                {path: 'add-customer', component: AddCustomerComponent},
-                {path: 'list-users', component: ManageUsersComponent },
-              ]
             }
           ] },
           { path: 'manage-investments',
