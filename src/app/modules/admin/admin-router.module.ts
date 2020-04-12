@@ -14,7 +14,10 @@ import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
+import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
+import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
 import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
+import {viewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -79,7 +82,10 @@ const userRoutes: Routes = [
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
           { path: 'poolReport', component: PoolreportComponent },
+          { path: 'purchasedReport', component: PurchasedreportComponent },
+          { path: 'viewedReport', component: ViewedreportComponent },
           { path: 'userReport', component: UserreportComponent },
+          { path: 'userReport/:email', component: viewUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },

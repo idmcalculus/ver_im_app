@@ -21,7 +21,10 @@ import {PoolsComponent} from './../user/pools/pools.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
+import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
+import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
 import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
+import {viewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
@@ -33,6 +36,8 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
+    ViewedreportComponent,
+    PurchasedreportComponent,
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
@@ -41,6 +46,7 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     EditCustomerComponent,
     PoolreportComponent,
     UserreportComponent,
+    viewUserPoolComponent,
     PoolsComponent,
     PoolDetailComponent,
     AddPoolComponent,

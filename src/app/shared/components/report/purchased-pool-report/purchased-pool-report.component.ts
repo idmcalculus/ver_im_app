@@ -7,10 +7,10 @@ import { UserService } from '../../../../modules/user/user.service';
 
 @Component({
   selector: 'app-pools',
-  templateUrl: './investment-report.component.html',
-  styleUrls: ['./investment-report.component.scss']
+  templateUrl: './purchased-pool-report.component.html',
+  styleUrls: ['./purchased-pool-report.component.scss']
 })
-export class PoolreportComponent implements OnInit {
+export class PurchasedreportComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
