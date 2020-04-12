@@ -42,7 +42,7 @@ const userRoutes: Routes = [
             children: [
             {path: '',
             children: [
-              {path: '', component: SearchCustomerComponent},
+              {path: '',  pathMatch: 'full', component: SearchCustomerComponent},
               {path: 'new', component: AddCustomerComponent},
               {path: 'view', component: ViewCustomerComponent },
               {path: 'edit', component: EditCustomerComponent },
