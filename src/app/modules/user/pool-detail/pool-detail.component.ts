@@ -57,6 +57,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   fetchPool(poolId: string) {
@@ -67,6 +68,8 @@ export class PoolDetailComponent implements OnInit {
           this.pool = poolDetails.success.Data;
           // console.log("i have gat :: "+JSON.stringify(this.pool))
           this.isLoading = false;
+          console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
+
         } else {
           this.router.navigate(['./', {}]);
         }

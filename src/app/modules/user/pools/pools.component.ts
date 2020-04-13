@@ -84,6 +84,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id){
+    console.log(this.categories,'=====>')
     const res = this.categories.find( r=> r.id == id);
     return res.category_name;
   }

@@ -170,7 +170,7 @@
                                             <div class="form-group pt-1 row">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-20px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
-                                                    <textarea class="form-control" rows="3" value={{pool?.investment?.description}}></textarea>
+                                                    <textarea class="form-control" rows="6" value={{pool?.investment?.description}}></textarea>
                                                 </div>
                                             </div>
                                             
@@ -240,7 +240,7 @@
                                         <div class="row p-0">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
-                                                <a *ngIf="loggedInUser?.user_category=='Admin' " routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
+                                                <a *ngIf="loggedInUser?.user_category=='Admin' && !(pool.investment.max_num_of_slots === pool.investment.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
@@ -344,14 +344,15 @@
 
                         <div class="row">
                             <div class="col-xl-12">
-                                <div class="row p-0">
-                                    <div class="col-12">
-                                        <p class="float-left pt-2">Investment Report</p>
-                                    </div>
-                                </div>
-
+                               
                                 <div class="card">
                                     <div class="card-block">
+                                        <div class="row p-0">
+                                            <div class="col-12">
+                                                <p class="">Investment Report</p>
+                                                <hr class="new my-0">
+                                            </div>
+                                        </div>
                                         <div class="dt-responsive table-responsive">
                                             <table id="order-table" class="table nowrap">
                                                 <thead>

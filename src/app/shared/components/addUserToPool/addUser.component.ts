@@ -19,7 +19,7 @@ import { Location } from '@angular/common';
 })
 
 export class AddUserComponent implements OnInit {
-  pool: Investment;
+  pool: {investment: Investment};
   poolId = 0;
   isPaymentreport = false;
   number_of_pools: number;
@@ -126,6 +126,12 @@ export class AddUserComponent implements OnInit {
       }
       this.isLoading = false;
     });
+  }
+
+  selectChange(event:any){
+    let costPerSlot = this.pool.investment.investment_amount/this.pool.investment.max_num_of_slots;
+    this.amount_paid = Number(event.target.value)*costPerSlot;
+    console.log(this.amount_paid,this.pool,Number(event.target.value))
   }
 
   filterTable(filterType, filterValue: string) {
