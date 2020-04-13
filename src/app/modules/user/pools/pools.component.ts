@@ -17,7 +17,8 @@ export class PoolsComponent implements OnInit {
   categories:any []
   checkedList:any;
   checklist:any [];
-  masterSelected:any
+  masterSelected:any;
+  search:any;
 
   constructor(
     private authService: AppAuthService,
@@ -111,7 +112,7 @@ export class PoolsComponent implements OnInit {
     return Math.ceil(estimate);
   }  
 
-  filterTable(filterType, filterValue: string) {}
+  filterTable(filterType, search: string) {}
 
   deleteUser(){}
 

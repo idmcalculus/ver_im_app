@@ -23,6 +23,9 @@ export class AddPoolComponent implements OnInit {
   investment_amount: number;
   period: string;
   returns: string;
+  data:any;
+  selectedUser:any;
+  category:any;
 
   constructor(private route:ActivatedRoute,
     private investmentService: InvestmentService,
