@@ -54,6 +54,7 @@
                                             >
                                                 <thead>
                                                     <tr>
+                                                        <th><input type="checkbox" id="bossCheck" name="bossCheck" [(ngModel)]="bossChecked" (click)="checked()"></th>
                                                         <th>S/N</th>
                                                         <th>Username</th>
                                                         <th>Email</th>
@@ -64,21 +65,16 @@
                                                     </tr>
                                                 </thead>
 
-                                                <tbody
-                                                    *ngIf="
-                                                        loggedInUser?.user_category ==
-                                                        'Admin'
-                                                    "
-                                                >
-                                                    <tr
-                                                        data-href="#viewUserProfile"
-                                                    >
-                                                        <td>1</td>
-                                                        <td>Moyo</td>
-                                                        <td>moyo@versa.ng</td>
-                                                        <td>Super Admin</td>
+                                                <tbody *ngIf="loggedInUser?.user_category === 'Admin'">
+
+                                                    <tr data-href="#viewUserProfile" *ngFor=" let user of returnedArray; let i = index;">
+                                                        <td><input type="checkbox" id="myCheck" name="myCheck" [(ngModel)]="myChecked"></td>
+                                                        <td>{{user?.index}}</td>
+                                                        <td>{{user?.first_name}}</td>
+                                                        <td>{{user?.email}}</td>
+                                                        <td>{{user?.user_category}}</td>
                                                         <td>Enabled</td>
-                                                        <td>09-04-2020</td>
+                                                        <td>{{user?.created_at | date}}</td>
                                                         <td>
                                                             <img
                                                                 src="../../../../../assets/images/icon/icons/Edit-icon.png"
@@ -87,6 +83,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            <pagination [totalItems]="adminUsers.length" [itemsPerPage]="3" (pageChanged)="pageChanged($event)"></pagination>
                                         </div>
                                     </div>
                                 </div>
