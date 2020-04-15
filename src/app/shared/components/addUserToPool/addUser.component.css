@@ -65,6 +65,9 @@ h6 {
     padding: 0px;
 }
 
+.col-form-label{
+}
+
 .category-body .row1 {
     display: inline-flex;
     align-items: center;

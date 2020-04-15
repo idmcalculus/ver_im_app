@@ -97,6 +97,10 @@
         }
     }
 
+    .latest-update-card{
+        margin-bottom: 10px;
+    }
+
     .card-details{
         &.col-xl-4.col-md-4{
             padding-left: 0px;
@@ -192,7 +196,20 @@
     }
 
 
+    .divider2{
+        height: 37px;
+        border-width: 1px;
+        border-left-style: solid;
+        margin: 0px 9%;
+        border-left-color: #80808030;
+    }
 
+    .activities{
+        margin: 0px 15px;
+        display: flex;
+    }
+
+    
 
     progress-bar {
         width: 40%;

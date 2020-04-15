@@ -62,17 +62,19 @@ export class AdminDashboardComponent implements OnInit {
       const ctx = chart.ctx;
       let txt1 = 'Total Investments';
       let txt2 = '';
+      let sum = chart.config.data.datasets[0].data.reduce((a,b) => a + b, 0);
 
       try {
         const check = chart.active ? chart.tooltip._active[0]._datasetIndex : 'None'; // @ts-ignore
         if (check !== 'None') {
         txt2 = chart.tooltip._data.datasets[0].data[chart.tooltip._active[0]._index]; // @ts-ignore
         txt1 = `${chart.tooltip._data.labels[chart.tooltip._active[0]._index]} Investments`; // @ts-ignore
+       
         } else {
-          txt2 = '1000';
+          txt2 = sum;
         }
       } catch (err) {
-        txt2 = '1000';
+        txt2 = sum;
       }
       // Get options from the center object in options
       const sidePadding = 60;
@@ -121,7 +123,6 @@ export class AdminDashboardComponent implements OnInit {
     {packages: ['corechart'],
     mapsApiKey: 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
     });
-
     function drawRegionsMap() {
       const data = google.visualization.arrayToDataTable([
         ['Country', 'Popularity'],
@@ -145,8 +146,14 @@ export class AdminDashboardComponent implements OnInit {
         this.getLagos(this.dashBoardData);
         this.categoriesCount = {'transport': 10,"agriculture": 5,"housing":5,'others':0};
         this.data=100;
+        let category = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===12)
+        let housing = 0
+        let agriculture = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===20)
+        let other = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===null)
+        console.log(category,'====+++222')
         this.isLoading = false;
         google.charts.setOnLoadCallback(drawRegionsMap);
+        this.doughnutChartData = [[agriculture[0].no_of_pools_invested, housing, category[0].no_of_pools_invested, other[0].no_of_pools_invested]];
       }
     });
 
