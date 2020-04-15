@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../user/user.service';
+import { UserDashboard } from 'src/app/shared/models/UserDashboard';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -18,38 +19,31 @@ export class ViewCustomerComponent implements OnInit {
     investments: Investment;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
     p: number = 1;
-    p2: number =1;
-    userInvestment: any;
+    userInvestment: Investment[];
     FilteredInvestment: Investment[];
-    dashboardInvestment: any =[];
     isLoading: boolean;
-    categories=[];
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
+    latest_return = 0;
+    totalYieldedAmount = 0;
     constructor(
       private investmentService: InvestmentService,
       private userService: UserService,
       private toastrService: ToastrService,
       private router: Router,
       private location: Location
-      ) {
-        this.getCategories();
-        this.isLoading = false;
-       }
+      ) { }
 
     ngOnInit() {
+        console.log('dashboard data 1 is :: ' + JSON.stringify(this.user));
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
-              console.log(this.userInvestment);
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
             }
-            else {
-                this.isLoading = true;
-            }
-
+        this.isLoading = false;
           });
 
 
@@ -60,38 +54,24 @@ export class ViewCustomerComponent implements OnInit {
         let element = document.getElementsByClassName('investment-card')[to] as HTMLInputElement;
         element.style.display = 'block';
 
-        $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+        $('#investmentTable').find('> tbody > tr').hide();
+        const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
         row.style.display = 'contents';
         })
 
     }
 
-    getCategories() {
-        this.investmentService.getCategories().subscribe(resp => {
-          if (resp && resp.success) {
-            this.categories = resp.success.Data;
-          }
-        });
-      }
-
-      getCategoryName(id){
-        const res = this.categories.find( r=> r.id == 21);
-        return res.category_name;
-      }
-
-
     showDetails() {
-        if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
-            this.investmentInfo = this.userInvestment[this.selectedInvestment];
-            console.log(this.investmentInfo);
-            this.getUserDashBoard();
-            this.selectedInvestment++;
-            return this.selectedInvestment;
-            } else {
-            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-            this.isLoading = true;
-            }
+        if (this.selectedInvestment >= 0) {
+          this.investmentInfo = this.userInvestment[this.selectedInvestment];
+          console.log(this.investmentInfo);
+          this.getUserDashBoard();
+        } else {
+          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+          console.log(this.investmentInfo);
+          this.totalYieldedAmount = 0;
+        }
+
       }
 
       getUserDashBoard() {
@@ -102,12 +82,12 @@ export class ViewCustomerComponent implements OnInit {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
             console.log(this.dashBoardData);
-            this.dashboardInvestment.push(this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+            console.log(this.dashBoardData);
+            this.totalYieldedAmount = 0;
           }
-          console.log(this.dashboardInvestment);
-          this.showDetails();
+          this.latest_return = this.dashBoardData.investment_return.length;
         });
       }
 
@@ -139,7 +119,7 @@ export class ViewCustomerComponent implements OnInit {
 
 
     delete (users: User) {
-        this.userService.deleteUser(users).subscribe(resp => {
+        this.userService.deleteUser(this.user).subscribe(resp => {
           if (resp && resp.success) {
             this.toastrService.success('Details deleted succesfully');
           } else {
@@ -148,26 +128,4 @@ export class ViewCustomerComponent implements OnInit {
           this.router.navigateByUrl('admin/manage-users');
         })
       }
-
-      calculateEstimate(returns, inv, expected_return_period, i) {
-        const estimate = (((returns * this.divisorFunc(expected_return_period, i)) - inv) / inv) * 100;
-        return Math.ceil(estimate);
-      }
-
-      divisorFunc (expected_return_period, i) {
-        if (this.userInvestment[i].expected_return_period === "Weekly") {
-          return 48;
-        } else if (this.userInvestment[i].expected_return_period === "Monthly") {
-          return 12;
-        }
-      };
-      addMonth(date: Date, month: number) {
-        const newDate = new Date(date);
-        const d = newDate.getDate();
-        newDate.setMonth(newDate.getMonth() + month);
-        if (newDate.getMonth() == 11) {
-            newDate.setDate(0);
-        }
-        return newDate;
-    }
   }

@@ -3,7 +3,8 @@
 }
 
 .image-holder { 
-  width:auto; 
+  width:auto;
+  height: 230px; 
   text-align:center; 
   padding:20px; 
 }
@@ -20,6 +21,14 @@ div > a {
 
 .latest-update-card {
 	height: auto;
+}
+
+.summary-card {
+	height: 200px;
+}
+
+textarea {
+  overflow:hidden;
 }
 
 
@@ -42,9 +51,19 @@ h4,h5,p {
   font-weight: 600;
 }
 
+.form-group {
+  margin-bottom: 0;
+}
+
 h6 {
   color: #221F72;
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.summary-font {
+  color: #221F72;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -70,4 +89,10 @@ h6 {
 
 td,th,tr {
   border-color: #221F72
+}
+
+.row .col-6 {
+  color: red;
+  font-weight: bolder;
+
 }

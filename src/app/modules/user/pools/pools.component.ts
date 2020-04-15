@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+ import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute,Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -7,20 +8,22 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.css']
+  styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
-  pool:Investment;
+  pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
   categories:any []
+  searchValue = '';
+  filteredPools = [];
+  masterSelected:boolean;
+  checklist:any;
   checkedList:any;
-  checklist:any [];
-  masterSelected:any;
-  search:any;
 
   constructor(
+    private router:Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
@@ -35,71 +38,81 @@ export class PoolsComponent implements OnInit {
       } else {
         this.userType = 'admin';
         this.getPools();
+        this.getCategories();
       }
+      this.getCategories();
+      this.masterSelected = false;
+      this.checklist = [this.pool,];
+      this.getCheckedPooList();
+      
   }
 
   ngOnInit() {
   }
-
+  
   checkUncheckAll() {
-    for (let i = 0; i < this.checklist.length; i++) {
+    for (var i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
     }
     this.getCheckedPooList();
   }
+
   isAllSelected() {
-    this.masterSelected = this.checklist.every((pool: any) => {
-        return pool === true;
-      });
+    this.masterSelected = this.checklist.every(function(pool:any) {
+        return pool == true;
+      })
     this.getCheckedPooList();
   }
-
-  getCheckedPooList() {
+ 
+  getCheckedPooList(){
     this.checkedList = [];
-    for (let i = 0; i < this.checklist.length; i++) {
-      if (this.checklist[i]) {
+    for (var i = 0; i < this.checklist.length; i++) {
+      if(this.checklist[i])
       this.checkedList.push(this.checklist[i]);
-      }
     }
     this.checkedList = JSON.stringify(this.checkedList);
   }
 
   getPools() {
+    this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        console.log(this.pools);
-        this.getCategories();
       }
-    })
+      this.isLoading = false;
+    });
   }
 
   getCategories() {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories)
       }
       this.isLoading = false;
     });
   }
 
-  getCategoryName(id){
-    console.log(this.categories,'=====>')
-    const res = this.categories.find( r=> r.id == id);
+  getCategoryName(id) {
+    //console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
 
-  getUserPols(email){
-    this.investmentService.getUserInvestments(email).subscribe(investments=>{
-      if(investments){
+  getUserPols(email) {
+    this.investmentService.getUserInvestments(email).subscribe(investments => {
+      if (investments) {
         this.pools = investments.success.Data;
         this.getCategories();
       }
-    })
+    });
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/addpools');
   }
 
   setPlanOperation(investment) {
+
     this.authService.setCurrentPlanOperation(investment);
   }
 
@@ -107,13 +120,22 @@ export class PoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  calculateEstimate(returns, inv) {
-    const estimate = (((returns * 12) - inv) / inv) * 100;
+  filterTable(filterType, filterValue: string) {
+    if (!filterValue || filterValue === null) {
+      return this.getPools();
+    } else {
+        const filtered = this.pools.filter(pool => {
+          if (pool[filterType] !== null) {
+            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+          }
+        });
+        console.log(filtered);
+        this.pools = filtered;
+      }
+  }
+  
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
-  }  
-
-  filterTable(filterType, search: string) {}
-
-  deleteUser(){}
-
+  }
 }

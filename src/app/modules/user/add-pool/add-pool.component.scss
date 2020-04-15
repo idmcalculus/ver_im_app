@@ -19,6 +19,10 @@ div > a {
   box-shadow:         .3px .3px .3px .8px #495057;
 }
 
+textarea {
+  overflow:hidden;
+}
+
 .input-control {
   display: block;
   width: 100%;
@@ -28,9 +32,13 @@ div > a {
   color: #495057;
   background-color: #fff;
   background-clip: padding-box;
-  border: 0.3px solid #221F72;
+  border: 0.8px solid #221F72;
   border-radius: 2px;
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.custom-select {
+  border: 0.8px solid #221F72;
 }
 
 .btn-primary {

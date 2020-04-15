@@ -81,3 +81,8 @@ h6 {
     margin: 0px;
     padding: 0px;
 }
+
+p {
+    color: #221f72;
+    font-weight: 600;
+}
