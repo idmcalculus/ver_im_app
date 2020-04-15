@@ -103,7 +103,7 @@
                                             <p class="mr-3"><input type="checkbox"></p>
                                             <p class="mr-3">{{pool.id}}</p>
                                             <p class="col-3">{{pool.title}}</p>
-                                            <p class="col-1">{{pool.category_id}}</p>
+                                            <p class="col-1">{{getCategoryName(pool.category_id)}}</p>
                                             <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
                                             <p class="col-1" style="margin-left: -11px">{{pool.duration}} Months</p>
                                             <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
