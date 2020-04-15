@@ -6,5 +6,6 @@ export class AdminDashboard {
     all_request: string;
     pending_request: string;
     career_application: [];
-    request_application: []
+    request_application: [];
+    fetch_investment_categories_count: any;
 }
