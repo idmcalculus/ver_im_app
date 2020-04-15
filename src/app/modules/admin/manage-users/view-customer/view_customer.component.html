@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Account Information</h5>
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="row mb-4">
-                        <div class="col-7">
+                        <div class="col-md-7 col-sm-7 col-xs-12">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i].number_of_pools }}</span>
@@ -136,13 +136,13 @@
                             </span>
                         </div>
 
-                        <div class="col-5 d-flex flex-row">
+                        <div class="col-sm-5 col-md-5 d-flex flex-row">
                             <span class="text-center">
                                 <button *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn-lg btn-success">Activate User</button>
                                 <button *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</button>
                             </span>
                             <span class="text-center">
-                                <button  (click)="delete(user)" class="buttons btn-lg btn-danger">Delete User</button>
+                                <button  (click)="delete(user)" class="ml-lg-3 ml-sm-2 ml-md-2 ml-5 btn-lg btn-danger">Delete User</button>
                             </span>
                         </div>
 

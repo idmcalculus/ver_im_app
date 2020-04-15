@@ -41,17 +41,13 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
-              console.log(this.userInvestment);
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
-              console.log(this.FilteredInvestment);
-
             }
             else {
                 this.isLoading = true;
             }
-
           });
 
 
@@ -86,7 +82,6 @@ export class ViewCustomerComponent implements OnInit {
     showDetails() {
         if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
             this.investmentInfo = this.userInvestment[this.selectedInvestment];
-            console.log(this.investmentInfo);
             this.getUserDashBoard();
             this.selectedInvestment++;
             return this.selectedInvestment;
@@ -103,7 +98,6 @@ export class ViewCustomerComponent implements OnInit {
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
-            console.log(this.dashBoardData);
             this.dashboardInvestment.push(this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
