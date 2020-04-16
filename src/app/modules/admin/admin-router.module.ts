@@ -8,9 +8,9 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/addUser.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
+import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -61,14 +61,14 @@ const userRoutes: Routes = [
 
           { path: 'manage-career',
             children: [
-            {path: '',
-            children: [
-              {path: 'create', component: CreateComponent},
-              {path: 'applicants', component: ApplicantsComponent},
-              {path: 'list', component: ListComponent},
-              {path: '', component: ListComponent}
-            ]
-            }
+              {path: '',
+                children: [
+                  {path: 'create', component: CreateComponent},
+                  {path: 'applicants', component: ApplicantsComponent},
+                  {path: 'list', component: ListComponent},
+                  {path: '', component: ListComponent}
+                ]
+              }
           ] },
           { path: 'manage-category', component: ManageCategoryComponent},
           { path: 'investment-group', component: InvestmentGroupComponent},

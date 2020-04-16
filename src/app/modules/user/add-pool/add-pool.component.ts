@@ -3,6 +3,7 @@ import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../../investment/investment.service';
 import { ActivatedRoute,Router} from '@angular/router';
 import { Category } from 'src/app/shared/models/Category';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 
 @Component({
   selector: 'app-add-pool',
@@ -10,22 +11,20 @@ import { Category } from 'src/app/shared/models/Category';
   styleUrls: ['./add-pool.component.scss']
 })
 export class AddPoolComponent implements OnInit {
-  @Input() public modaltitle:string;
-  @Input() public modalButtonTitle:string;
-  @Input() public modalData:any;
-  @Output() submit = new EventEmitter<Investment>();
-
-  categories:[];
-  isLoading = true;
+  pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  buttonText = 'Add';
   image:any;
-  isSubmitting;
-  expected_return: number;
-  investment_amount: number;
-  period: string;
   returns: string;
+  data:any;
+  selectedUser:any;
+  category:any;
+
+  @Input() public editable: boolean;
+  @Input() public categories:[Category];
 
   constructor(private route:ActivatedRoute,
     private investmentService: InvestmentService,
+    private cloudinaryService: CloudinaryService,
     private router:Router,
     ) {
       this.getCategories();
@@ -36,18 +35,31 @@ export class AddPoolComponent implements OnInit {
   }
 
   getCategories() {
-    this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
       }
-      this.isLoading = false;
     });
   }
 
-  modalSubmitted(){
-    // console.log('submitting :: '+JSON.stringify(this.modalData))
-    this.submit.emit(this.modalData);
+  addInvestment() {
+      this.buttonText = 'Adding'
+      this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
+        if (resp) {
+          this.pool.investment_image = resp;
+          this.investmentService.addInvestment(this.pool).subscribe(resp => {
+            if (resp && resp.success) {
+              // alert(resp.success.Message);
+              window.location.href = 'admin/pools';
+            }
+            this.buttonText = 'Add Investment'
+          });
+        }
+      });
+  }
+
+  cancelPool() {
+    this.router.navigateByUrl('admin/pools');
   }
 
   changeListener($event) : void {
@@ -60,26 +72,23 @@ export class AddPoolComponent implements OnInit {
   
     myReader.onloadend = (e) => {
       this.image = myReader.result;
-      this.modalData.investment_image = this.image;
+      this.pool.investment_image = this.image;
     }
     myReader.readAsDataURL(file);
   }
-  cancelPool() {
-    this.router.navigateByUrl('admin/pools');
-  }
 
-  divisorFunc (period) {
-    if (period === "Weekly") {
+  divisorFunc (expected_return_period) {
+    if (this.pool.expected_return_period === "Weekly") {
       return 48;
-    } else if (period === "Monthly") {
+    } else if (this.pool.expected_return_period === "Monthly") {
       return 12;
     }
   };
 
   calculateEstimate(){
-    const cost = this.investment_amount
-    const investment = this.expected_return/100 
-    const divisor = this.divisorFunc(this.period)
+    const cost = this.pool.investment_amount
+    const investment = parseInt(this.pool.expected_return_amount) /100 
+    const divisor = this.divisorFunc(this.pool.expected_return_period)    
 
     const estimate = (cost * investment) / divisor
     this.returns = estimate.toFixed(2)

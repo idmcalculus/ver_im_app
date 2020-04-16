@@ -20,7 +20,7 @@ export class DashboardHeaderComponent implements OnInit {
   constructor(
     private authService:AppAuthService,
     private router:Router
-    
+
     ) {
     // console.log('I recieved: '+this.userDetails);
   }
@@ -39,5 +39,11 @@ export class DashboardHeaderComponent implements OnInit {
   setPlanOperation(investment){
     this.authService.setCurrentPlanOperation(investment);
   }
+
+  TabControl(){
+  const items = document.querySelector('.dropdown-menu');
+  items.classList.toggle('show');
+
+}
 
 }

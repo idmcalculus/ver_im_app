@@ -229,11 +229,26 @@
 
 
                                 <div class="dt-responsive table-responsive">
-                                    <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 5),let x=index">
+                                    <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 4),let x=index">
                                         <div class="activities">
-                                            {{req.activity}}
+                                          <div 
+                                            style=" border-style: solid;
+                                            padding: 18px;
+                                            border-radius: 50%;
+                                            border-color:#e8e8fe
+                                            "> 
+                                            test</div> 
+                                            <div 
+                                            style=" 
+                                            margin: 23px;
+                                            margin-left: 10px;
+                                            font-size: 12px;
+                                            white-space:nowrap;
+                                            overflow:hidden;
+                                            text-overflow:ellipsis;
+                                            ">{{req.activity}}</div>
                                         </div>
-                                        <div *ngIf="x!=4" class="divider2"></div>
+                                        <div *ngIf="x!=3" class="divider2"></div>
                                     </div>
                                         <!-- <table id="userTable"
                                                 class="table table-striped nowrap">
