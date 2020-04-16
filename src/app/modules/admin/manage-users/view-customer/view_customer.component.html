@@ -3,8 +3,8 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div  class="page-body list-vacancy">
-                    <div class="row mb-4" *ngIf="isLoading">
+                <div *ngIf="isLoading" class="page-body list-vacancy">
+                    <div class="row mb-4" >
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>Profile of {{user?.first_name}} {{user?.last_name}}
                             </h3>
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4" *ngIf="isLoading">
+                    <div class="row mb-4">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -142,7 +142,7 @@
                                 <button *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</button>
                             </span>
                             <span class="text-center">
-                                <button  (click)="delete(user)" class="ml-lg-3 ml-sm-2 ml-md-2 ml-5 btn-lg btn-danger">Delete User</button>
+                                <button  (click)="delete(user)" class="ml-lg-3 ml-sm-3 ml-md-4 ml-5 btn-lg btn-danger">Delete User</button>
                             </span>
                         </div>
 
@@ -259,16 +259,16 @@
                                             </tr>
                                             </thead>
                                             <tbody [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
-                                            <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
-                                                    <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
-                                                    <td style="width: 15%">{{report.title}}</td>
-                                                    <td style="width: 15%"></td>
-                                                    <td style="width: 15%">{{report.returned_amount}}</td>
-                                                    <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
-                                                    <td style="width: 10%"></td>
-                                                    <td style="width: 15%"> On-going </td>
-                                                    <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
-                                            </tr>
+                                                <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
+                                                        <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
+                                                        <td style="width: 15%">{{report.title}}</td>
+                                                        <td style="width: 15%"></td>
+                                                        <td style="width: 15%">{{report.returned_amount}}</td>
+                                                        <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
+                                                        <td style="width: 10%"></td>
+                                                        <td style="width: 15%"> On-going </td>
+                                                        <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <div *ngIf="dashboardInvestment.length == 0" >
