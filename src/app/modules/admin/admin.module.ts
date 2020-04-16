@@ -9,6 +9,7 @@ import {AdminRoutingModule} from './admin-router.module';
 import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
+
 import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
 
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,13 @@ import { AddCustomerComponent } from './manage-users/add-customer/add_customer.c
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { ManageAdminComponent } from './manage-admin/manage-admin.component';
 import { ProgressBarModule } from 'angular-progress-bar';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
+import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
+import { ViewUsersComponent } from './user-group/view-users/view-users.component';
+import { AddUsersComponent } from './user-group/add-users/add-users.component';
+import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -40,7 +48,13 @@ import { ProgressBarModule } from 'angular-progress-bar';
     ViewCustomerComponent,
     EditCustomerComponent,
     SearchCustomerComponent,
-    ManageAdminComponent
+    ManageAdminComponent,
+    AddUserGroupComponent,
+    EditUserGroupComponent,
+    ViewUserGroupComponent,
+    ViewUsersComponent,
+    AddUsersComponent,
+    EditUsersComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +71,7 @@ import { ProgressBarModule } from 'angular-progress-bar';
     }),
     ChartsModule,
     NgxPaginationModule,
+    PaginationModule.forRoot()
 
   ], providers: [
   ], exports: [
