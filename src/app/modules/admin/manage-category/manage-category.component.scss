@@ -9,7 +9,7 @@
 }
 
 .card {
-	height: 400px;
+	height: 350px;
 }
 
 .col-sm-8 {
@@ -21,6 +21,11 @@
 .col-sm-8 .card {
 	margin: 0 20px;
 	padding: 0 20px;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
 }
 
 .col-sm-4{
@@ -58,6 +63,10 @@
 	
 	&::-webkit-scrollbar { 
 		display: none;  // Safari and Chrome
+	}
+
+	p {
+		font-weight: bolder;
 	}
 }
 
@@ -107,6 +116,10 @@
   
 .action, .category-name {
 	  border-left: solid 1px black;
+}
+
+p.category-name {
+	font-weight: bolder;
 }
 
 .col-sm-4 .card-header {
