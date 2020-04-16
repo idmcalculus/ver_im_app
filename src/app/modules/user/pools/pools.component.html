@@ -58,8 +58,7 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('id', $event)" 
-                                    (blur)="filterTable('id', $event)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
                                 </div>
                             </div>
                         </div>

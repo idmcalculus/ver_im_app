@@ -19,6 +19,7 @@ export class ViewCustomerComponent implements OnInit {
     investments: Investment;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
     p: number = 1;
+    p2: number =1;
     userInvestment: Investment[];
     FilteredInvestment: Investment[];
     isLoading: boolean;
@@ -61,16 +62,17 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     showDetails() {
-        if (this.selectedInvestment >= 0) {
-          this.investmentInfo = this.userInvestment[this.selectedInvestment];
-          console.log(this.investmentInfo);
-          this.getUserDashBoard();
-        } else {
-          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-          console.log(this.investmentInfo);
-          this.totalYieldedAmount = 0;
-        }
-
+        if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
+            this.investmentInfo = this.userInvestment[this.selectedInvestment];
+            console.log(this.investmentInfo);
+            this.getUserDashBoard();
+            this.selectedInvestment++;
+            console.log(this.selectedInvestment);
+            return this.selectedInvestment;
+            } else {
+            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+            console.log(this.investmentInfo);
+            }
       }
 
       getUserDashBoard() {
@@ -84,7 +86,6 @@ export class ViewCustomerComponent implements OnInit {
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
             console.log(this.dashBoardData);
-            this.totalYieldedAmount = 0;
           }
           this.latest_return = this.dashBoardData.investment_return.length;
         });
