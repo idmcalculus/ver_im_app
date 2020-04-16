@@ -65,6 +65,9 @@ h6 {
     padding: 0px;
 }
 
+.col-form-label{
+}
+
 .category-body .row1 {
     display: inline-flex;
     align-items: center;
@@ -77,4 +80,9 @@ h6 {
     border-bottom-color: #221F72;
     margin: 0px;
     padding: 0px;
+}
+
+p {
+    color: #221f72;
+    font-weight: 600;
 }

@@ -1,6 +1,5 @@
-import { Component, Input,  OnInit, ViewChild, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from "jquery";
 import { User } from 'src/app/shared/models/user';
 import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
 import { UserService } from 'src/app/modules/user/user.service';
@@ -14,11 +13,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./add_customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
-    @Input() public editable: boolean;
-    @ViewChild('pass') input;
-    @ViewChild('confirmPass') input2;
-    @ViewChild('error') error;
-
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     isSubmitting;
     isLoading = true;
@@ -26,10 +20,7 @@ export class AddCustomerComponent implements OnInit {
                            'Ekiti','Enugu','Gombe','Imo','Jigawa','Kaduna','Kano','Katsina','Kebbi','Kogi','Kwara','Lagos',
                            'Nasarawa','Niger','Ogun','Ondo','Osun','Oyo','Plateau','Rivers','Sokoto','Taraba','Yobe', 'Zamfara'];
     bankList: any = [];
-    passText = '';
-    confirmPassText = '';
-    opt1selected = false;
-    opt2selected = false;
+
 
     constructor(private userService: UserService,
                 private toastrService: ToastrService,
@@ -46,27 +37,29 @@ export class AddCustomerComponent implements OnInit {
     ngOnInit() {
         this.isLoading = false;
          }
-  
+
 // Make additional tab buttons
+
+
 TabControl(){
-    var i, items = $('.nav-link'), pane = $('.tab-pane');
-    // next
-    $('.next').on('click',function(){
+        let i;
+        const items = document.querySelectorAll('.nav-link');
+        const pane = document.querySelectorAll('.tab-pane');
         for(i = 0; i < items.length; i++){
-            if($(items[i]).hasClass('active') ==true){
+            if((items[i]).classList.contains('active') ==true){
                 break;
             }
         }
         if(i < items.length - 1){
             // for tab
-            $(items[i]).removeClass('active');
-            $(items[i+1]).addClass('active');
+            (items[i]).classList.remove('active');
+            (items[i+1]).classList.add('active');
             // for pane
-            $(pane[i]).removeClass('show active');
-            $(pane[i+1]).addClass('show active');
+            (pane[i]).classList.remove('show', 'active');
+            (pane[i+1]).classList.add('show', 'active');
         }
-    });
-}
+    }
+
 
 
 cancelProfile() {
@@ -85,47 +78,12 @@ createProfile(): void {
                     if (UserDetails) {
                         this.toastrService.success('Registeration Succesfull');
                         this.user = { email: '', password: '' };
-                        this.router.navigateByUrl('admin/manage-users');
                     }
                     resolve();
                 });
         });
     }
 
-
-validate() {
-    this.input.nativeElement.style.borderColor = '#ccc';
-    this.input2.nativeElement.style.borderColor = '#ccc';
-    this.error.nativeElement.style.display = 'none';
-  }
-
-changePassword(): void {
-    if (this.passText === '') {
-        this.input.nativeElement.style.borderColor = 'red';
-        this.error.nativeElement.style.display = 'block';
-    }
-    if (this.confirmPassText === '') {
-        this.input2.nativeElement.style.borderColor = 'red';
-        this.error.nativeElement.style.display = 'block';
-    }
-    if (this.passText && this.confirmPassText !== '') {
-        if (this.passText === this.confirmPassText) {
-        this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp => {
-            if (resp && resp.success) {
-            this.toastrService.success('Password updated succesfully');
-            this.passText = '';
-            this.confirmPassText = '';
-            localStorage.setItem('token', resp.success.Token);
-            }
-        });
-        console.log(this.passText);
-        } else {
-        // alert('Passwords do not match');
-        this.toastrService.error('Passwords do not match');
-        }
-        this.error.nativeElement.style.display = 'none';
-    }
-  }
     getBankList() {
       this.userService.getBankList().subscribe(resp => {
         this.bankList = resp.success.Data;
