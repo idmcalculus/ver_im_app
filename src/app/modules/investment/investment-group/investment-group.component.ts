@@ -8,6 +8,7 @@ import { MatFormFieldControl } from '@angular/material';
 import { Location } from '@angular/common';
 import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-investment-group',
@@ -26,13 +27,14 @@ export class InvestmentGroupComponent implements OnInit {
   investmentGroups: InvestmentGroup[] = [];
   group_name: InvestmentGroup = {group_name: ''};
   selectedValue: Investment[] = [];
-  selectedGroup: InvestmentGroup = {group_name: ''};
+  selectedGroup: InvestmentGroup;
   group_id: any;
 
   constructor(public matDialog: MatDialog,
               private investmentService: InvestmentService,
               private toastrService: ToastrService,
-              private location: Location) {
+              private location: Location,
+              private router: Router) {
                 this.getInvestments();
                 this.getInvestmentGroups();
               }
@@ -75,17 +77,18 @@ export class InvestmentGroupComponent implements OnInit {
   deleteGroup(group) {
     if (confirm(`Are you sure you want to delete the group ${group.group_name}?`)) {
       this.investmentGroups.forEach((grp, index) => {
-        console.log(grp);
         if (grp === group) {
           const data = {
             group_name: grp.group_name
           };
+          this.isLoading = true;
           this.investmentService.deleteInvestmentGroup(data).subscribe(group => {
             if (group && group.success) {
               this.toastrService.success('Investment group deleted successfully');
             } else {
               this.toastrService.error('There was an issue deleting this group... Try again later');
             }
+            this.isLoading = false;
           });
           return this.investmentGroups.splice(index, 1);
         }
@@ -99,14 +102,15 @@ export class InvestmentGroupComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.investments = investments.success.Data;
-        console.log(this.investments);
       }
       this.isLoading = false;
     });
   }
 
   saveToGroup(group, groupId) {
-    if(this.selectedGroup && this.selectedValue) {
+    if (!this.selectedGroup && this.selectedValue.length === 0) {
+      this.toastrService.info('Please select an Investment Group and investment(s) to be added to the group');
+    } else {
       group = this.selectedGroup;
       groupId = [];
       const data = {
@@ -115,15 +119,12 @@ export class InvestmentGroupComponent implements OnInit {
       this.selectedValue.forEach(investment => {
         this.group_id = investment.id;
         groupId.push(this.group_id);
-      })
-      console.log(groupId);
+      });
       this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
-        if(result && result.success) {
-          this.toastrService.success("Selected investments added to the selected group successfully");
-        } else {
-          this.toastrService.error("There was an error adding your chosen investments to the selected group");
+        if (result) {
+          window.location.href = 'admin/investment-group';
         }
-      })
+      });
     }
   }
 

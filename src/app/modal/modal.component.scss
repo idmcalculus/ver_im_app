@@ -5,12 +5,11 @@
 	flex-flow: column;
 	justify-content: space-between;
 	color: black;
-	margin: 40px;
-	padding: 40px;
 }
 
 #modal-content-wrapper > div {
 	display: flex;
+	width: 100%;
 	flex-flow: row nowrap;
 }
 
@@ -21,8 +20,8 @@
 #modal-buttons {
 	align-items: flex-end;
 	justify-content: flex-end;
-	margin: 10px 40px 0 0;
-	padding: 10px 40px 0 0;
+	margin-top: 10px;
+	padding-top: 10px;
 }
 
 #modal-action-button {
@@ -33,4 +32,32 @@
 #modal-cancel-button {
 	background-color: #4e4e4e;
 	width: 100px;
+}
+
+@media screen and (max-width: 690px) {
+
+	#modal-content-wrapper > div:not(#modal-buttons) {
+		display: flex;
+		width: 100%;
+		flex-flow: column;
+	}
+
+	#modal-content-wrapper input {
+		width: 250px;
+	}
+
+	#modal-buttons {
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+		padding-top: 10px;
+		flex-flow: row nowrap;
+	}
+
+	#modal-input {
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
 }
