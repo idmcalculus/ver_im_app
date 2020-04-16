@@ -44,6 +44,7 @@ button {
   
 hr.new {
     border: 1px solid #221F72;
+    position: relative;
 }
   
 h6 {

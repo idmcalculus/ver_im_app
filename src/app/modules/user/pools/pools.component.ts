@@ -119,17 +119,18 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-
-  filterTable(filterType, filterValue: string) {
-    if (!filterValue || filterValue === null) {
+  
+  filterTable(filterType, filterValue): any {
+    const value = filterValue.target.value;
+    if (!value || value === null) {
       return this.getPools();
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
-            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+            const filterate = pool[filterType].toString();
+            return filterate.toLowerCase().includes(value.toLowerCase());
           }
         });
-        console.log(filtered);
         this.pools = filtered;
       }
   }
