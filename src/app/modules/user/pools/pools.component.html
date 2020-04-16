@@ -9,11 +9,11 @@
                             <a class=" pl-2">Home / Investments</a>
                         </div>  
                         <div class="float-right">
-                            <a (click)="cancelPool()">
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
+                            <a class="pointer" (click)="cancelPool()">
+                                <img class="pointer" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a (click)="deleteUser()" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
+                            <a class="pointer" (click)="deleteUser()" id="delCat">
+                                <img  src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
                     </div>
@@ -23,40 +23,43 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', $event)"
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
-                                    (blur)="filterTable('title', search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', $event)"
+                                    (blur)="filterTable('title', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_name', $event)"
+                                    (blur)="filterTable('category_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('id', $event)"
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
-                                    (keyup)="filterTable('email', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('id', $event)" 
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('id', $event)" 
+                                    (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                         </div>
@@ -70,13 +73,13 @@
                                         <input type="checkbox">
                                     </p>
                                     <p class="mr-3">ID</p>
-                                    <p class="col-3">Investment Title</p>
+                                    <p class="col-3" style="margin-right: -10px;">Investment Title</p>
                                     <p class="col-1">Category</p>
-                                    <p class="col-2">No of Investors</p>
-                                    <p class="col-1" >Tenure</p>
+                                    <p class="col-2" style="margin-right: -1px;">No of Investors</p>
+                                    <p class="col-1" style="margin-right: 8px;">Tenure</p>
                                     <p class="col-1" style="margin-left: 9px;">ROI</p>
                                     <p class="col-1">Payback</p>
-                                    <p class="col-1" style="margin-left: 9px;">Cost</p>
+                                    <p class="col-1" style="margin-right: 9px;">Cost</p>
                                     <p class="col-1">Status</p>
                                     <p class="">Action</p>
                                 </div>
@@ -100,15 +103,15 @@
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="mr-3"><input type="checkbox"></p>
-                                            <p class="mr-3">{{pool.id}}</p>
-                                            <p class="col-3">{{pool.title}}</p>
-                                            <p class="col-1">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
-                                            <p class="col-1" style="margin-left: -11px">{{pool.duration}} Months</p>
+                                            <p class="mr-2"><input type="checkbox"></p>
+                                            <p class="mr-2">{{pool.id}}</p>
+                                            <p class="col-3" style="margin-right:-12px; padding-right: 4px;">{{pool.title}}</p>
+                                            <p class="col-1" style="margin-left:-11px;">{{getCategoryName(pool.category_id)}}</p>
+                                            <p class="col-2" style="margin-right:-11px;">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p class="col-1" style="margin-left: -12px;">{{pool.duration}} Months</p>
                                             <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
                                             <p class="col-1">{{pool.expected_return_period}}</p>
-                                            <p class="col-1">{{pool.investment_amount}}</p>
+                                            <p class="col-1" style="margin-left: -10px;">{{pool.investment_amount}}</p>
                                             <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
                                             <ng-template #showThis>      
                                                 <p class="col-1" style="color: red">{{'InActive'}}</p>

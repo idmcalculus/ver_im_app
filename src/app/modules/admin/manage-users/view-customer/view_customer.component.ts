@@ -19,13 +19,13 @@ export class ViewCustomerComponent implements OnInit {
     investments: Investment;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
     p: number = 1;
-    p2: number =1;
     userInvestment: Investment[];
     FilteredInvestment: Investment[];
-    dashboardInvestment: any =[];
     isLoading: boolean;
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
+    latest_return = 0;
+    totalYieldedAmount = 0;
     constructor(
       private investmentService: InvestmentService,
       private userService: UserService,
@@ -35,10 +35,10 @@ export class ViewCustomerComponent implements OnInit {
       ) { }
 
     ngOnInit() {
+        console.log('dashboard data 1 is :: ' + JSON.stringify(this.user));
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
-              console.log(this.userInvestment);
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
@@ -53,25 +53,24 @@ export class ViewCustomerComponent implements OnInit {
         let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
         element.style.display = 'block';
 
-        $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+        $('#investmentTable').find('> tbody > tr').hide();
+        const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
         row.style.display = 'contents';
         })
 
     }
 
     showDetails() {
-        if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
-            this.investmentInfo = this.userInvestment[this.selectedInvestment];
-            console.log(this.investmentInfo);
-            this.getUserDashBoard();
-            this.selectedInvestment++;
-            console.log(this.selectedInvestment);
-            return this.selectedInvestment;
-            } else {
-            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-            console.log(this.investmentInfo);
-            }
+        if (this.selectedInvestment >= 0) {
+          this.investmentInfo = this.userInvestment[this.selectedInvestment];
+          console.log(this.investmentInfo);
+          this.getUserDashBoard();
+        } else {
+          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+          console.log(this.investmentInfo);
+          this.totalYieldedAmount = 0;
+        }
+
       }
 
       getUserDashBoard() {
@@ -82,13 +81,12 @@ export class ViewCustomerComponent implements OnInit {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
             console.log(this.dashBoardData);
-            this.dashboardInvestment.push(this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
             console.log(this.dashBoardData);
+            this.totalYieldedAmount = 0;
           }
-          console.log(this.dashboardInvestment);
-          this.showDetails();
+          this.latest_return = this.dashBoardData.investment_return.length;
         });
       }
 

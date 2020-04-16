@@ -44,6 +44,7 @@ button {
   
 hr.new {
     border: 1px solid #221F72;
+    position: relative;
 }
   
 h6 {
@@ -63,6 +64,9 @@ h6 {
     border-width: 1.5px;
     margin: 0px;
     padding: 0px;
+}
+
+.col-form-label{
 }
 
 .category-body .row1 {

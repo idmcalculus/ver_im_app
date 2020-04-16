@@ -15,6 +15,9 @@ export class AddPoolComponent implements OnInit {
   buttonText = 'Add';
   image:any;
   returns: string;
+  data:any;
+  selectedUser:any;
+  category:any;
 
   @Input() public editable: boolean;
   @Input() public categories:[Category];
