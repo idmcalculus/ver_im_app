@@ -46,7 +46,7 @@ export class viewUserPoolComponent implements OnInit {
         this.isLoading = true;
         this.userService.getProfileDetails(this.email).subscribe(userx=> {
           this.user = userx.success.Data;
-          console.log(this.user.user[0].first_name, 'Hello');
+         // console.log(this.user.user[0].first_name, 'Hello');
           this.isLoading = false;
           
         });
@@ -66,20 +66,10 @@ export class viewUserPoolComponent implements OnInit {
 
     }
 
-    fetchPool(poolId: string) {
-      this.isLoading = true;
-      this.userService.getProfileDetails(this.email).subscribe(poolDetails => {
-        if (poolDetails && poolDetails.success) {
-          if (poolDetails.success.Data) {
-            this.user = poolDetails.success.Data;
-            // console.log("i have gat :: "+JSON.stringify(this.pool))
-            this.isLoading = false;
-          } else {
-            this.router.navigate(['./', {}]);
-          }
-        } else {
-        }
-      });
+
+    goto(email: User): void {
+      this.router.navigate([`/admin/userReport/${email}/export`]);
+      console.log(email);
     }
 
     // showDetails() {

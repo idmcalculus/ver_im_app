@@ -11,10 +11,6 @@ img {
     cursor: pointer;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
 .table-font {
     font-weight: bold;
 }
@@ -22,6 +18,11 @@ img {
 .title-list h3 {
     color: #221F72;
     font-weight: 600;
+}
+
+hr.new {
+    border: 1px solid #221F72;
+    position: relative;
 }
 
 .card-header h5 {
@@ -143,6 +144,65 @@ th {
     letter-spacing: .04rem;
     font-weight: 500;
     padding: 0.5rem;
+}
+
+.col-md-12 .card-header {
+	margin: 10px 15rem 0px 1rem;
+	padding: 10px 0px 0px 0px;
+	font-size: 20px;
+
+	::after{
+		background-color: transparent;
+	}
+}
+ 
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-style: solid;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-color: #221f72;
+    border-width: 1.5px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.category-header p {
+    color: #221f72;
+    padding: 0;
+    margin: 0;
+    padding-right: 4px;
+}
+  
+.category-body .row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-items: center;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 0.5px;
+    border-bottom-color: #221F72;
+    margin: 0px;
+    padding: 0px;
+}
+
+.category-body .row1 p{
+    padding: 0;
+}
+  
+.s-n, .category-name {
+    flex: 1 1 30em;
+    margin-left: 10px;
+}
+
+.category-body .row1 p{
+    padding: 0;
 }
 
 
