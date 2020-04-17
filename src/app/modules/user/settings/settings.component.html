@@ -1,3 +1,389 @@
-<p>
-  user-settings works!
-</p>
+<div class="pcoded-content">
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="list-vacancy page-body">
+                    <div class="clearfix mb-3">
+                        <div class="float-left pt-3">
+                            <a class="h4 pr-4">Settings</a>
+                            <a class="pl-4">Home/Settings</a>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div *ngIf="user==null" class="lds-default">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+
+                        <div *ngIf="user!=null" class="card col-xl-12 col-md-12">
+                            <div class="latest-update-card">
+                                <div class="card-block">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-home-tab"
+                                               data-toggle="tab" href="#nav-home" role="tab"
+                                               aria-controls="nav-home"
+                                               aria-selected="true">Profile</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab"
+                                               data-toggle="tab" href="#nav-profile" role="tab"
+                                               aria-controls="nav-profile" aria-selected="false">Bank
+                                                Details</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab"
+                                               data-toggle="tab" href="#nav-contact" role="tab"
+                                               aria-controls="nav-contact" aria-selected="false">Settings</a>
+
+                                        </div>
+                                    </nav>
+
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-home"
+                                             role="tabpanel" aria-labelledby="nav-home-tab">
+
+                                            <div class="create-profile-form">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-2 col-6 col-md-2">
+                                                            <input style="display:none;" type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
+                                                            <div class="profile-image">
+                                                                <img  *ngIf="user.profile_picture && user.profile_picture!='' " onclick="document.getElementById('upload-image').click()" src="{{user.profile_picture}}"
+                                                                      alt="profile_image">
+                                                                <img *ngIf="!user.profile_picture || user.profile_picture=='' " onclick="document.getElementById('upload-image').click()" src="../assets/images/avatar-4.png"
+                                                                     alt="profile_image">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-2 col-6 col-md-4">
+                                                            <div class="basic">
+                                                                <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
+                                                                <label>Edit picture
+                                                                    <input style="display:none;" type="file" id="upload-image2" accept="image/*" (change)="changeListener($event)"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>First Name</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input [(ngModel)]="user.first_name"  type="text" class="form-control"
+                                                                   id="firstname">
+                                                        </div>
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Last Name</span>
+                                                        </div>
+                                                        <div class="col-md-4 ph-4">
+                                                            <input  [(ngModel)]="user.last_name" type="text" class="form-control"
+                                                                    id="lastname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>E-mail</span>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <input [(ngModel)]="user.email" type="email" class="form-control"
+                                                                   id="email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Phone</span>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <input [(ngModel)]="user.phone_number" type="tel" class="form-control"
+                                                                   id="phone">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2">
+                                                            <span>Address</span>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <input [(ngModel)]="user.home_address" type="tel" class="form-control"
+                                                                   id="address">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>State</span></div>
+                                                        <div class="col-md-10">
+                                                            <select [(ngModel)]="user.country" class="form-control" name="country"
+                                                                    id="country">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option *ngFor="let country of countries" [ngValue]="country">
+                                                                    {{country}}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2"><span>Gender</span></div>
+
+
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <div class="pretty p-icon p-square">
+                                                                <input (click)="user.gender='Male' " class="form-check-input"
+                                                                       type="radio" id="male" name="gender"
+                                                                       value="male" [checked]="user.gender === 'Male'">
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="male" style="font-size: 15px;">Male</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2">
+                                                            <div class="pretty p-icon p-square">
+                                                                <input (click)="user.gender='Female' " class="form-check-input "
+                                                                       type="radio" name="gender" id="female"
+                                                                       value="female" [checked]="user.gender === 'Female' ">
+                                                                <div class="state p-warning-o">
+                                                                    <i class="icon fa fa-check"></i>
+                                                                    <label for="female" style="font-size: 15px;">Female</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-md-2"><span>Date of Birth</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input [(ngModel)]="user.month_of_birth" type="date" class="form-control">
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Work Place</span>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input [(ngModel)]="user.where_you_work" type="text" class="form-control"
+                                                            id="workplace">
+                                                        </div>
+                                                        <div class="col-md-2" id="namespace">
+                                                            <span>Workplace Monthly Income (Optional)</span>
+                                                        </div>
+                                                        <div class="col-md-4 ph-4">
+                                                            <input  [(ngModel)]="user.average_monthly_income" type="number" class="form-control"
+                                                                    id="avg_monthly_income">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" class="btn-update-customer" value="UPDATE" data-toggle="modal" data-target="#confirmAction">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="confirmAction" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                         Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                             aria-labelledby="nav-profile-tab" >
+                                            <div class="create-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span class='namespace normal'>Bank Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <select [(ngModel)]="user.bank_name" name="" id="bankname"
+                                                                    class="form-control">
+                                                                <option value="0" hidden>Select</option>
+                                                                <option *ngFor="let bank of bankList" [ngValue]="bank.bank_code">
+                                                                    {{bank.bank_name}}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span class='namespace normal'>Account Name</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <input  [(ngModel)]="user.account_name" type="text" class="form-control"
+                                                                    id="accountname">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <span class='namespace normal'>Account Number</span>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <label *ngIf="acctNumber.invalid && (acctNumber.dirty)"  class="m-l-5 alert-danger">
+                                                                * Enter a valid account number
+                                                            </label>
+                                                            <input required minlength="10" pattern="^[0-9]+$" [(ngModel)]="user.account_number" type="text" class="form-control"
+                                                                   id="accontnumber" #acctNumber="ngModel">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmBank" class="btn-update-customer" value="UPDATE">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                 <!-- Modal -->
+                                                <div class="modal fade" id="confirmBank" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                             aria-labelledby="nav-contact-tab">
+
+                                            <div class="create-profile-form">
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <span class="pref">Receive updates on new Plans? </span>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input [(ngModel)]="user.updates_on_new_plans" type="checkbox" [checked]="user.updates_on_new_plans"/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <span class="pref">Send E-mail updates on investment</span>
+                                                        </div>
+                                                        <div class="col-md-2" style="margin-top: 2.3em;">
+                                                            <div class="pretty p-switch p-fill">
+                                                                <input  [(ngModel)]="user.email_updates_on_investment_process" type="checkbox" [checked]="user.email_updates_on_investment_process"/>
+                                                                <div class="state">
+                                                                    <label></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="float-right">
+                                                        <div class="d-flex flex-row">
+                                                            <input type="button" data-toggle="modal" data-target="#confirmPreference" class=" btn-update-customer" value="UPDATE">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Kindly confirm if you want to go ahead with the desired changes?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,32 +1,30 @@
  import { Component, OnInit } from '@angular/core';
- import { ActivatedRoute, Router} from '@angular/router';
- import {InvestmentService} from '../../investment/investment.service';
- import { Investment } from 'src/app/shared/models/Investment';
- import { AppAuthService } from 'src/app/core/auth/auth.service';
- import { UserService } from '../user.service';
+import { ActivatedRoute,Router} from '@angular/router';
+import {InvestmentService} from '../../investment/investment.service';
+import { Investment } from 'src/app/shared/models/Investment';
+import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { UserService } from '../user.service';
 
- @Component({
+@Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
   styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
-  isLoading = true;
-  pools: Investment[] = [];
-  pool: Investment;
-  userType: string;
-  categories = [];
-  category_name: string;
-
-  masterSelected: boolean;
-  checklist: any;
-  checkedList: any;
-  filteredPools = [];
+  isLoading:boolean=true;
+  pools:Investment[]=[];
+  pool:Investment = {title: '', investment_amount: 0, };
+  userType:string;
+  categories:any []
   searchValue = '';
+  filteredPools = [];
+  masterSelected:boolean;
+  checklist:any;
+  checkedList:any;
 
   constructor(
+    private router:Router,
     private authService: AppAuthService,
-    private router: Router,
     private investmentService: InvestmentService,
     private userService: UserService) {
       const userpath = window.location.pathname;
@@ -42,36 +40,35 @@ export class PoolsComponent implements OnInit {
         this.getPools();
         this.getCategories();
       }
-
-      this.getPools();
+      this.getCategories();
       this.masterSelected = false;
-      this.checklist = [this.pool, ];
+      this.checklist = [this.pool,];
       this.getCheckedPooList();
-
+      
   }
 
   ngOnInit() {
   }
-
+  
   checkUncheckAll() {
-    for (let i = 0; i < this.checklist.length; i++) {
+    for (var i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
     }
     this.getCheckedPooList();
   }
+
   isAllSelected() {
-    this.masterSelected = this.checklist.every((pool: any) => {
-        return pool === true;
-      });
+    this.masterSelected = this.checklist.every(function(pool:any) {
+        return pool == true;
+      })
     this.getCheckedPooList();
   }
-
-  getCheckedPooList() {
+ 
+  getCheckedPooList(){
     this.checkedList = [];
-    for (let i = 0; i < this.checklist.length; i++) {
-      if (this.checklist[i]) {
+    for (var i = 0; i < this.checklist.length; i++) {
+      if(this.checklist[i])
       this.checkedList.push(this.checklist[i]);
-      }
     }
     this.checkedList = JSON.stringify(this.checkedList);
   }
@@ -81,7 +78,6 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -91,14 +87,14 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories);
       }
       this.isLoading = false;
     });
   }
 
-  getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id);
+  getCategoryName(id) {
+    //console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
 
@@ -123,7 +119,7 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-
+  
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
     if (!value || value === null) {
@@ -138,10 +134,9 @@ export class PoolsComponent implements OnInit {
         this.pools = filtered;
       }
   }
-
-  calculateEstimate(returns, inv) {
-    const estimate = (((returns * 12) - inv) / inv) * 100;
+  
+  calculateEstimate(returns,inv){
+    const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
-
 }

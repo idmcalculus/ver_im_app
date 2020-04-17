@@ -3,10 +3,10 @@
 }
 
 .image-holder { 
-width:auto;
-height: 230px; 
-text-align:center; 
-padding:20px; 
+  width:auto;
+  height: 230px; 
+  text-align:center; 
+  padding:20px; 
 }
 
 div > a {
@@ -20,7 +20,7 @@ border-color: #5b58bd;
 }
 
 .latest-update-card {
-height: 550px;
+	height: 550px;
 }
 
 .summary-card {
@@ -30,7 +30,6 @@ height: 200px;
 textarea {
 overflow:hidden;
 }
-
 
 img { 
 width: 100%; 
@@ -55,10 +54,21 @@ font-weight: 600;
 margin-bottom: 0;
 }
 
+.form-group {
+  margin-bottom: 0;
+}
+
 h6 {
-color: #221F72;
-font-size: 14px;
-font-weight: 600;
+  color: #221F72;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.summary-font {
+  color: #221F72;
+  font-size: 14px;
+  font-weight: 600;
+
 }
 
 .table > thead > tr > th {
@@ -82,11 +92,10 @@ opacity: 0;
 }
 
 td,th,tr {
-border-color: #221F72
+  border-color: #221F72
 }
 
 .row .col-6 {
-color: red;
-font-weight: bolder;
-
+  color: red;
+  font-weight: bolder;
 }

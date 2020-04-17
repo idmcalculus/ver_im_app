@@ -27,15 +27,15 @@ img {
 }
 
 
-.col-7 .card {
+.investment-card {
     background-color:whitesmoke;
-    justify-content: space-between;
-    padding: 1.25rem;
+    padding-bottom: 1.20rem;
+    padding-top: 1.20rem;
 
 }
 
 .spacing{
-    margin-right: 3rem;
+    margin-right: 8rem;
 }
 
 
@@ -94,11 +94,10 @@ th {
 .card .information {
     font-size: 0.75rem;
     font-family: roboto;
-    letter-spacing: .04rem;
     font-weight: 800;
     cursor: pointer;
     border: none;
-    padding: 1rem;
+    padding: 0.50rem;
 }
 
 .btn-danger {
@@ -121,11 +120,7 @@ th {
     padding-right: 3rem;
     padding-left: 3rem;
 }
-.col-5 span .buttons {
-    margin-left: 1.5rem;
-    padding-right: 3rem;
-    padding-left: 3rem;
-}
+
 
 .my_pagination /deep/ .ngx-pagination {
     display: inline-flex;
@@ -133,6 +128,7 @@ th {
 }
 
 .displayStatus {
+    color: red;
     justify-content: center;
     text-align: center;
     font-family: roboto;
@@ -141,7 +137,16 @@ th {
     padding: 0.5rem;
 }
 
-
+@media only screen and (max-width: 1000px) {
+    .spacing {
+        margin-right:0rem;
+    }
+    .btn-lg {
+        padding: 14px 17px;
+        font-size: 16px;
+        line-height: 28px;
+    }
+}
 
 
 

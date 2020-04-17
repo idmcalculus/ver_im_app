@@ -7,6 +7,7 @@ import { ReportService } from 'src/app/shared/components/report/report.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Category } from 'src/app/shared/models/Category';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -15,34 +16,32 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-  pool: Investment;
-  poolId = 0;
-  reportData: Report = {title: '', description: ''};
-  categories = [];
-  modaltitle = 'Update Plan';
-  modalButtonTitle = '';
-  modalData: Report = {};
-  callBack: any;
-  isLoading = true;
-  selectedUser: User;
-  loggedInUser: User;
-  userSubscription: Subscription;
-
-  expected_return: number;
-  investment_amount: number;
-  period: string;
+  pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  poolId:number=0;
+  reportData:Report = {title:'',description:''}
+  categories=[];
+  modaltitle:string='Update Plan';
+  modalButtonTitle:string='';
+  modalData:Report={};
+  callBack:any;
+  isLoading:boolean=true;
+  selectedUser:User;
+  loggedInUser:User;
+  userSubscription:Subscription;
+  image:any;
   returns: string;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private investmentService: InvestmentService,
-              private reportService: ReportService,
-              private authService: AppAuthService
-    ) {
+  constructor(private route:ActivatedRoute,
+    private router:Router,
+    private investmentService:InvestmentService,
+    private reportService:ReportService,
+    private authService:AppAuthService,
+    private cloudinaryService: CloudinaryService
+    ) { 
       this.getCategories();
-      this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
-        if (userInfo) {
+      this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+        if(userInfo){
           this.loggedInUser = userInfo;
         }
       });
@@ -57,7 +56,9 @@ export class PoolDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
+  
 
   fetchPool(poolId: string) {
     this.isLoading = true;
@@ -67,6 +68,8 @@ export class PoolDetailComponent implements OnInit {
           this.pool = poolDetails.success.Data;
           // console.log("i have gat :: "+JSON.stringify(this.pool))
           this.isLoading = false;
+          console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
+
         } else {
           this.router.navigate(['./', {}]);
         }
@@ -98,7 +101,13 @@ export class PoolDetailComponent implements OnInit {
     });
   }
 
-  addReport(filledReport: Report) {
+  getCategoryName(id) {
+    //console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
+    return res.category_name;
+  }
+  
+  addReport(filledReport:Report){
     this.reportData = filledReport;
     if (this.reportData.title) {
       if (!this.reportData.returned_amount) {
@@ -134,9 +143,33 @@ export class PoolDetailComponent implements OnInit {
       }
   }
 
-  deleteReport(report) {
-    const proceed = confirm('Confirm Deletion?');
-    if (proceed) {
+  updateInvestment() {
+    this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
+      if (resp) {
+        this.pool.investment_image = resp;
+        this.investmentService.updateInvestment(this.pool).subscribe(resp => {
+          if (resp && resp.success) {
+            // alert(resp.success.Message);
+            window.location.href = 'admin/pools';
+          }
+        });
+      }
+    });
+  }
+
+  addMonth(date: Date, month: number) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    newDate.setMonth(newDate.getMonth() + month);
+    if (newDate.getMonth() == 11) {
+        newDate.setDate(0);
+    }
+    return newDate;
+  }
+
+  deleteReport(report){
+    var proceed = confirm("Confirm Deletion?")
+    if(proceed){
       // alert('deleting record :: '+report.id)
       this.reportService.deleteReport(report).subscribe(resp => {
           if (resp && resp.success) {
@@ -162,10 +195,10 @@ export class PoolDetailComponent implements OnInit {
     }
 
   }
-
-  addUser(operation, modalData) {
-    if (operation == 'create') {
-      this.modalData = {investment_id: this.poolId};
+  
+  addUser(operation,modalData){
+    if(operation=='create'){
+      this.modalData = {investment_id:this.poolId}
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
       this.callBack = this.updatePool;
@@ -182,9 +215,6 @@ export class PoolDetailComponent implements OnInit {
     this.authService.setCurrentPlanOperation(investment);
   }
 
-  addInvestmnet() {
-
-  }
 
   viewUserDetail(user) {
     // console.log("gat it :: "+JSON.stringify(user))
@@ -230,23 +260,22 @@ export class PoolDetailComponent implements OnInit {
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
   }
-
-
-  divisorFunc(period) {
-    if (period === 'Weekly') {
+    
+  divisorFunc (expected_return_period) {
+    if (this.pool.expected_return_period === "Weekly") {
       return 48;
-    } else if (period === 'Monthly') {
+    } else if (this.pool.expected_return_period === "Monthly") {
       return 12;
     }
-  }
+  };
 
-  calculateEstimate() {
-    const cost = this.investment_amount;
-    const investment = this.expected_return / 100;
-    const divisor = this.divisorFunc(this.period);
+  calculateEstimate(){
+    const cost = this.pool.investment_amount
+    const investment = parseInt(this.pool.expected_return_amount) /100 
+    const divisor = this.divisorFunc(this.pool.expected_return_period)    
 
-    const estimate = (cost * investment) / divisor;
-    this.returns = estimate.toFixed(2);
+    const estimate = (cost * investment) / divisor
+    this.returns = estimate.toFixed(2)
   }
 
 }

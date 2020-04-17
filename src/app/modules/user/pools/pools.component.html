@@ -9,11 +9,11 @@
                             <a class=" pl-2">Home / Investments</a>
                         </div>  
                         <div class="float-right">
-                            <a (click)="cancelPool()">
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
+                            <a class="pointer" (click)="cancelPool()">
+                                <img class="pointer" src="../../../../assets/images/icon/icons/Add-icon.png">
                             </a>
-                            <a id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
+                            <a class="pointer" (click)="deleteUser()" id="delCat">
+                                <img  src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
                     </div>
@@ -37,9 +37,8 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_name', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_name', $event)"
                                     (blur)="filterTable('category_name', $event)">
-
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
@@ -74,13 +73,13 @@
                                         <input type="checkbox">
                                     </p>
                                     <p class="mr-3">ID</p>
-                                    <p class="col-3">Investment Title</p>
+                                    <p class="col-3" style="margin-right: -10px;">Investment Title</p>
                                     <p class="col-1">Category</p>
-                                    <p class="col-2">No of Investors</p>
-                                    <p class="col-1" style="margin-left: 9px;">Tenure</p>
+                                    <p class="col-2" style="margin-right: -1px;">No of Investors</p>
+                                    <p class="col-1" style="margin-right: 8px;">Tenure</p>
                                     <p class="col-1" style="margin-left: 9px;">ROI</p>
                                     <p class="col-1">Payback</p>
-                                    <p class="col-1" style="margin-left: 9px;">Cost</p>
+                                    <p class="col-1" style="margin-right: 9px;">Cost</p>
                                     <p class="col-1">Status</p>
                                     <p class="">Action</p>
                                 </div>
@@ -104,15 +103,15 @@
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="mr-3"><input type="checkbox"></p>
-                                            <p class="mr-3">{{pool.id}}</p>
-                                            <p class="col-3">{{pool.title}}</p>
-                                            <p class="col-1">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="col-2">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
-                                            <p class="col-1" style="margin-left: -11px">{{pool.duration}} Months</p>
+                                            <p class="mr-2"><input type="checkbox"></p>
+                                            <p class="mr-2">{{pool.id}}</p>
+                                            <p class="col-3" style="margin-right:-12px; padding-right: 4px;">{{pool.title}}</p>
+                                            <p class="col-1" style="margin-left:-11px;">{{getCategoryName(pool.category_id)}}</p>
+                                            <p class="col-2" style="margin-right:-11px;">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
+                                            <p class="col-1" style="margin-left: -12px;">{{pool.duration}} Months</p>
                                             <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
                                             <p class="col-1">{{pool.expected_return_period}}</p>
-                                            <p class="col-1">{{pool.investment_amount}}</p>
+                                            <p class="col-1" style="margin-left: -10px;">{{pool.investment_amount}}</p>
                                             <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
                                             <ng-template #showThis>      
                                                 <p class="col-1" style="color: red">{{'InActive'}}</p>
@@ -132,72 +131,3 @@
         </div>
     </div>
 </div>
-
-<!-- <div class="pcoded-content">
-    <div class="pcoded-inner-content">
-        <div class="main-body">
-            <div class="page-wrapper">
-                <div class="page-body pools">
-                    <div class="row mb-4">
-                        <div class="col-xl-4 col-md-6 offset-8">
-                            <a *ngIf="userType=='user'" (click)="setHeaderandFooter()" routerLink="/investments" routerLinkActive="active"  class="btn2 btn-update-profile more">
-                                Join New
-                                Pool
-                            </a>
-                            <a *ngIf="userType=='admin'" (click)="setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn2 btn-update-profile more">
-                                Create New
-                                Investment
-                            </a>
-                        </div>
-                    </div>
-
-                    <div *ngIf="isLoading" class="lds-default">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                    </div>
-
-                    <div *ngIf="!isLoading && pools?.length > 0 " class="row mb-5 ">
-                        <div *ngFor="let pool of pools" class="col-xl-4 pb-2">
-                            <a routerLink="./{{pool?.id}}" routerLinkActive="active">
-                                <div class="superb-container m-b20">
-                                    <div class="img-holder">
-                                        <img *ngIf="pool?.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                        <img *ngIf="pool?.investment_image!=''" src="{{pool.investment_image}}" alt="image">                                        
-                                    </div>
-                                    <div class="content-holder">
-                                        <h2><a href="pool-details.html">{{pool.title}}</a></h2>
-                                        <p>{{pool?.max_num_of_slots}} Slots</p>
-                                        <a href="pool-details.html" class="btn2 btn-login view">View Investment</a>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <section *ngIf="!isLoading && pools?.length == 0 " style="border-radius: 30px;"  class="workingSection">
-                        <div class="inner-workingSection">
-                            <div class="row">
-                                <div  class="col-md-12">
-                                    <div class="working-content">
-                                        <h3>Sorry no investment slot found</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div> -->
