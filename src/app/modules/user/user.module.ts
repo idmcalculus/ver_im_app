@@ -8,8 +8,8 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
 import {FormsModule} from '@angular/forms';
-import { PoolsComponent } from './pools/pools.component';
-import { PoolDetailComponent } from './pool-detail/pool-detail.component';
+import { userPoolsComponent } from './user-pool/user-pool.component';
+import { userPoolDetailComponent } from './userpool-detail/userpool-detail.component';
 import {SideBarComponent} from './../../shared/components/side-bar/side-bar.component';
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {DashboardHeaderComponent} from './../../shared/components/dashboard-header/dashboard-header.component';
@@ -21,7 +21,6 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
-import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 
 
 @NgModule({
@@ -30,9 +29,8 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    EditPasswordComponent,
-    PoolsComponent,
-    PoolDetailComponent,
+    userPoolsComponent,
+    userPoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
     DashboardHeaderComponent,
@@ -53,10 +51,9 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
   ],
   exports:[
     UserSettingsComponent,
-    EditPasswordComponent,
     ProfileComponent,
-    PoolsComponent,
-    PoolDetailComponent,
+    userPoolsComponent,
+    userPoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
     DashboardHeaderComponent,

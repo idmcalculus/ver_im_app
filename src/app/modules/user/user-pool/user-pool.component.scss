@@ -18,10 +18,6 @@
     display: block;
 }
 
-.pointer {
-    cursor: pointer;
-}
-
 
 .input-control {
     display: block;
@@ -59,7 +55,7 @@ td {
 }
 
 .card {
-	height: 500px;
+	height: 300px;
 }
 
 .col-md-12 {
@@ -114,11 +110,11 @@ td {
     color: #221f72;
     padding: 0;
     margin: 0;
+    padding-right: 4px;
 }
   
 .category-body .row1 {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -132,12 +128,16 @@ td {
 }
 
 .category-body .row1 p{
+    display: inline-flex;
     padding: 0;
 }
   
-.s-n, .category-name {
-    flex: 1 1 30em;
-    margin-left: 10px;
+.category-name {
+    width: 10%;
+}
+
+.category-name1 {
+    width: 20%;
 }
 
 .category-body .row1 p{

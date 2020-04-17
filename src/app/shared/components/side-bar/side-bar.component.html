@@ -22,46 +22,17 @@
                         <span class="pcoded-mtext">Dashboard</span>
                     </a>
                 </li>
-                <li class="pcoded-hasmenu">
-                    <a routerLink="./pools" class="dropdown-btn waves-effect waves-dark">
+                <li [hidden]="!isUser" class="pcoded">
+                    <a routerLink="./userPools" routerLinkActive="active" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                          <span class="pcoded-mtext">Investments</span>
-                     </a>
-                     <ul class="dropdown-container">
-                         <li>
-                             <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Investment Category</span>
-                             </a>
-                         </li>
-                         <li>
-                             <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Manage Investments</span>
-                             </a>
-                         </li>
-                         <li>
-                             <a routerLink="./investment-group" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Investment Group</span>
-                             </a>
-                         </li>
-                     </ul>
-                 </li>
-                <li [hidden]="!isUser" class="pcoded-hasmenu">
-                    <a routerLink="./settings" routerLinkActive="active" class="dropdown-btn waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
+                        <span class="pcoded-mtext">Investment</span>
+                    </a>
+                </li>
+                <li [hidden]="!isUser" class="pcoded">
+                    <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Settings</span>
                     </a>
-                    <ul class="dropdown-container">
-                        <li>
-                            <a routerLink="./settings" routerLinkActive="active" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Edit Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="./settings/password" routerLinkActive="active" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Edit Password</span>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
                 <li [hidden]="!isUser" class="pcoded">
                     <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
@@ -92,6 +63,7 @@
                          </li>
                      </ul>
               </li>
+
                 <li  [hidden]="isUser" class="">
                     <a routerLink="./manage-users"  class="waves-effect waves-dark">
                       <span class="pcoded-micon">
@@ -143,7 +115,7 @@
                     </a>
                 </li> -->
 
-                <li [hidden]="isUser" class="pcoded-hasmenu">
+                <li class="pcoded-hasmenu">
                    <a routerLink="./investments" class="dropdown-btn waves-effect waves-dark">
                          <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Careers</span>
@@ -162,19 +134,34 @@
                     </ul>
                 </li>
 
-                 <li [hidden]="isUser"  class="pcoded-hasmenu">
-                   <a routerLink="./investments"  class="dropdown-btn waves-effect waves-dark">
+                <li class="pcoded-hasmenu">
+                   <a class="dropdown-btn waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Reports</span>
                     </a>
-                        <ul class="dropdown-container">
-                          <li>
-                            <a routerLink="./manage-career" routerLinkActive="active" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Investments Purchased</span>
+                    <ul class="dropdown-container">
+                        <li>
+                            <a routerLink="./userReport" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Customer Report</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./poolReport" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Investment Report</span>
                             </a>
                         </li>
                         <li>
                             <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">User Activity Report</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./purchasedReport" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Investments Purchased</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./viewedReport" routerLinkActive="active" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">Investments Viewed</span>
                             </a>
                         </li>

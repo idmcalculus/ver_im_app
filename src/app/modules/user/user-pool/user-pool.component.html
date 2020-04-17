@@ -1,0 +1,80 @@
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="clearfix mb-3">
+                        <div class="float-left pt-3">
+                            <a class="h4 pr-2">Investments</a>
+                            <a class=" pl-2">Home / Investments</a>
+                        </div>  
+                        
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card px-3">
+                                <div class="category-header pt-3 p-2">
+                                    <p class="mr-3">SN</p>
+                                    <p class="category-name1">Investment Title</p>
+                                    <p class="category-name">Category</p>
+                                    <p class="category-name">Cost</p>
+                                    <p class="category-name" >No of Slot</p>
+                                    <p class="category-name">Duration</p>
+                                    <p class="category-name" >Returns</p>
+                                    <p class="category-name">Period</p>
+                                    <p class="category-name">Amount</p>
+                                    <p class="category-name">Status</p>
+                                    <p class="category-name">Date Added</p>
+                                    <p class="">Action</p>
+                                </div>
+                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
+                                    <div *ngIf="isLoading" >
+                                        <br><br>
+                                        <div  class="lds-default">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
+                                            <p class="mr-4">{{i+1}}</p>
+                                            <p class="category-name1">{{pool.title}}</p>
+                                            <p class="category-name">{{getCategoryName(pool.category_id)}}</p>
+                                            <p class="category-name">{{pool.investment_amount}}</p>
+                                            <p class="category-name" >{{pool.num_of_pools_taken}}</p>
+                                            <p class="category-name" style="margin-left: -13px">{{pool.duration}} Months</p>
+                                            <p class="category-name">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p class="category-name">{{pool.expected_return_period}}</p>
+                                            <p class="category-name">{{calculateAmount(pool.investment_amount,pool.num_of_pools_taken)}}</p>
+                                            <p class="category-name" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
+                                            <ng-template #showThis>      
+                                                <p class="category-name" style="color: red">{{'InActive'}}</p>
+                                            </ng-template>
+                                            <p class="category-name">{{pool.investment_started_date | date}}</p>
+                                            <p class="">
+                                                <a routerLink="./{{pool.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
