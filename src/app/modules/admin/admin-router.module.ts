@@ -8,9 +8,16 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/addUser.component';
+import {userPoolDetailComponent} from './../user/userpool-detail/userpool-detail.component';
+import {userPoolsComponent} from './../user/user-pool/user-pool.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
+import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
+import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
+import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
+import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
+import {viewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -61,21 +68,28 @@ const userRoutes: Routes = [
 
           { path: 'manage-career',
             children: [
-            {path: '',
-            children: [
-              {path: 'create', component: CreateComponent},
-              {path: 'applicants', component: ApplicantsComponent},
-              {path: 'list', component: ListComponent},
-              {path: '', component: ListComponent}
-            ]
-            }
+              {path: '',
+                children: [
+                  {path: 'create', component: CreateComponent},
+                  {path: 'applicants', component: ApplicantsComponent},
+                  {path: 'list', component: ListComponent},
+                  {path: '', component: ListComponent}
+                ]
+              }
           ] },
           { path: 'manage-category', component: ManageCategoryComponent},
           { path: 'investment-group', component: InvestmentGroupComponent},
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
+          { path: 'poolReport', component: PoolreportComponent },
+          { path: 'purchasedReport', component: PurchasedreportComponent },
+          { path: 'viewedReport', component: ViewedreportComponent },
+          { path: 'userReport', component: UserreportComponent },
+          { path: 'userReport/:email', component: viewUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
-          { path: 'pools/:id', component: PoolDetailComponent },
+          { path: 'pools/id', component: PoolDetailComponent },
+          { path: 'userPools', component: userPoolsComponent },
+          { path: 'userPools/:id', component: userPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }

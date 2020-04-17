@@ -44,6 +44,7 @@ button {
   
 hr.new {
     border: 1px solid #221F72;
+    position: relative;
 }
   
 h6 {
@@ -80,4 +81,9 @@ h6 {
     border-bottom-color: #221F72;
     margin: 0px;
     padding: 0px;
+}
+
+p {
+    color: #221f72;
+    font-weight: 600;
 }

@@ -41,31 +41,28 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
-              console.log(this.userInvestment);
               this.selectedInvestment = 0;
               this.showDetails();
-              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '1');
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
             }
             else {
                 this.isLoading = true;
             }
-
           });
 
 
-        $('#myCarousel').on('slide.bs.carousel', function (e:any) {
-        const to = e.to;
-        console.log(Number(to))
-        $('.investment-card').hide();
-        let element = document.getElementsByClassName('investment-card')[to] as HTMLInputElement;
-        element.style.display = 'block';
+          $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+            const to = e.to;
+            console.log(Number(to))
+            $('.investment-card').hide();
+            let element = document.getElementsByClassName('investment-card')[to] as HTMLInputElement;
+            element.style.display = 'block';
 
-        $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
-        row.style.display = 'contents';
-        })
-
-    }
+            $('#investmentTable').find('> tbody > tr').hide();
+            const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
+            row.style.display = 'contents';
+            })
+        }
 
     getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
@@ -84,14 +81,12 @@ export class ViewCustomerComponent implements OnInit {
     showDetails() {
         if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
             this.investmentInfo = this.userInvestment[this.selectedInvestment];
-            console.log(this.investmentInfo);
             this.getUserDashBoard();
             this.selectedInvestment++;
             return this.selectedInvestment;
             } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
             this.isLoading = true;
-            }
       }
 
       getUserDashBoard() {
@@ -101,12 +96,10 @@ export class ViewCustomerComponent implements OnInit {
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
-            console.log(this.dashBoardData);
             this.dashboardInvestment.push(this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
           }
-          console.log(this.dashboardInvestment);
           this.showDetails();
         });
       }
