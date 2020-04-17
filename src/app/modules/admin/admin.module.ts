@@ -30,6 +30,7 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
+import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -41,6 +42,7 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
+    exportUserPoolComponent,
     AddCustomerComponent,
     ViewCustomerComponent,
     EditCustomerComponent,

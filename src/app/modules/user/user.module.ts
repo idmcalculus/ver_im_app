@@ -37,6 +37,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     HeaderComponent,
     DashboardHeaderComponent,
     ReportComponent,
+    EditPasswordComponent,
     ManageInvestmentComponent,
     ProfileComponent,
     ProfileSummaryComponent,

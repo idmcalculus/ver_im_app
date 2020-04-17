@@ -61,7 +61,7 @@
                                             <tbody >
                                                 <tr *ngFor="let investment of userInvestment;let i = index;">
                                                     <td style="width: 5%"> {{i+1}}</td>
-                                                    <td style="width: 15%">{{investment?.title}}</td>
+                                                    <td class="pointer" style="width: 15%" (click)="goto(email)">{{investment?.title}}</td>
                                                     <td style="width: 10%" >{{investment?.category_id}}</td>
                                                     <td style="width: 10%" >{{investment?.investment_amount}}</td>
                                                     <td style="width: 10%">{{investment?.num_of_pools_taken}}</td>
