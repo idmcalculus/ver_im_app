@@ -20,7 +20,11 @@ div > a {
 }
 
 .latest-update-card {
-	height: 550px;
+	height: 450px;
+}
+
+hr.new {
+  border: 1px solid #221F72;
 }
 
 .summary-card {
@@ -42,9 +46,6 @@ button {
   font-size: 13px;
 }
 
-hr.new {
-  border: 1px solid #221F72;
-}
 
 h4,h5,p {
   color: #221F72;
