@@ -102,8 +102,8 @@ export class ViewCustomerComponent implements OnInit {
               // alert(resp.success.Message)
               // this.users[userIndex].email_is_verified=1
             }
-          })
-        }else{
+          });
+        } else {
           this.userService.deactivateUser(user).subscribe(resp=>{
             if(resp && resp.success){
               // alert(resp.success.Message)
@@ -117,7 +117,7 @@ export class ViewCustomerComponent implements OnInit {
 
 
 
-    delete (users: User) {
+    delete(users: User) {
         this.userService.deleteUser(this.user).subscribe(resp => {
           if (resp && resp.success) {
             this.toastrService.success('Details deleted succesfully');
@@ -125,6 +125,6 @@ export class ViewCustomerComponent implements OnInit {
             this.toastrService.error('There was an issue deleting.. Try again later');
           }
           this.router.navigateByUrl('admin/manage-users');
-        })
+        });
       }
   }

@@ -61,7 +61,7 @@ export class UserService {
   }
 
 
-  getUserDashBoard(investmentId,email){
+  getUserDashBoard(investmentId, email) {
     return this.httpService.postRequest(`report/userDashboard?
     investment_id=${investmentId}&user_id=${email}`, null);
   }
