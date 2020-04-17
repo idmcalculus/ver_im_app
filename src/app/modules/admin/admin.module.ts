@@ -10,7 +10,6 @@ import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
 import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
-
 import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
@@ -29,7 +28,16 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
-import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
+import { ManageAdminComponent } from './manage-admin/manage-admin.component';
+import { ProgressBarModule } from 'angular-progress-bar';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
+import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
+import { ViewUsersComponent } from './user-group/view-users/view-users.component';
+import { AddUsersComponent } from './user-group/add-users/add-users.component';
+import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -53,8 +61,18 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
+    // ManageUsersComponent,
     ManageAdminComponent,
-    SearchCustomerComponent
+    ViewCustomerComponent,
+    EditCustomerComponent,
+    SearchCustomerComponent,
+    ManageAdminComponent,
+    AddUserGroupComponent,
+    EditUserGroupComponent,
+    ViewUserGroupComponent,
+    ViewUsersComponent,
+    AddUsersComponent,
+    EditUsersComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +89,8 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
       handleCurrentBtnOnly: false,
     }),
     ChartsModule,
-
+    NgxPaginationModule,
+    PaginationModule.forRoot()
   ], providers: [
   ], exports: [
     // ManageInvestmentComponent
