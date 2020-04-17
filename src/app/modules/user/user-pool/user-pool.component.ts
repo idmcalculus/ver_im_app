@@ -6,11 +6,11 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-pools',
-  templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.scss']
+  selector: 'app-userPools',
+  templateUrl: './user-pool.component.html',
+  styleUrls: ['./user-pool.component.scss']
 })
-export class PoolsComponent implements OnInit {
+export class userPoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
@@ -92,9 +92,8 @@ export class PoolsComponent implements OnInit {
     });
   }
 
-  getCategoryName(id) {
-    //console.log(this.categories,'=====>')
-    const res = this.categories.find( r => r.id === id);
+  getCategoryName(id: number) {
+    const res = this.categories.find( r => r.id === 21);
     return res.category_name;
   }
 
@@ -119,24 +118,28 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-  
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
-      return this.getPools();
-    } else {
-        const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== null) {
-            const filterate = pool[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase());
-          }
-        });
-        this.pools = filtered;
-      }
-  }
+
+  // filterTable(filterType, filterValue: string) {
+  //   if (!filterValue || filterValue === null) {
+  //     return this.getPools();
+  //   } else {
+  //       const filtered = this.pools.filter(pool => {
+  //         if (pool[filterType] !== null) {
+  //           return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
+  //         }
+  //       });
+  //       console.log(filtered);
+  //       this.pools = filtered;
+  //     }
+  // }
   
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
+    return Math.ceil(estimate);
+  }
+
+  calculateAmount(returns,inv){
+    const estimate = returns * inv;
     return Math.ceil(estimate);
   }
 }
