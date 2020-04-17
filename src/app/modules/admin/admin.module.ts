@@ -28,8 +28,6 @@ import {ManageCategoryComponent} from './manage-category//manage-category.compon
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
-import { ManageAdminComponent } from './manage-admin/manage-admin.component';
-import { ProgressBarModule } from 'angular-progress-bar';
 import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
 import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
 import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
@@ -37,6 +35,7 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -57,8 +56,6 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     viewUserPoolComponent,
     PoolsComponent,
     PoolDetailComponent,
-    AddPoolComponent,
-    AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
     // ManageUsersComponent,
