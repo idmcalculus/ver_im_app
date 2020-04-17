@@ -87,7 +87,7 @@ const userRoutes: Routes = [
           { path: 'userReport', component: UserreportComponent },
           { path: 'userReport/:email', component: viewUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
-          { path: 'pools/id', component: PoolDetailComponent },
+          { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },
           { path: 'userPools/:id', component: userPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
