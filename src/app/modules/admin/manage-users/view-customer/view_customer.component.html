@@ -3,8 +3,8 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div  class="page-body list-vacancy">
-                    <div class="row mb-4" *ngIf="isLoading">
+                <div *ngIf="isLoading" class="page-body list-vacancy">
+                    <div class="row mb-4" >
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>Profile of {{user?.first_name}} {{user?.last_name}}
                             </h3>
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-4" *ngIf="isLoading">
+                    <div class="row mb-4">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-sm-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Account Information</h5>
@@ -124,8 +124,8 @@
 
                     </div>
 
-                    <div class="row mb-4" *ngIf="isLoading">
-                        <div class="col-7">
+                    <div class="row mb-4">
+                        <div class="col-md-7 col-sm-7 col-xs-12">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
@@ -136,13 +136,13 @@
                             </span>
                         </div>
 
-                        <div class="col-5 d-flex flex-row">
+                        <div class="col-sm-5 col-md-5 d-flex flex-row">
                             <span class="text-center">
                                 <button *ngIf="user?.email_is_verified==0" (click)="updateUser('enable')" class="btn-lg btn-success">Activate User</button>
                                 <button *ngIf="user?.email_is_verified==1" (click)="updateUser('')" class="btn-lg btn-danger">Deactivate User</button>
                             </span>
                             <span class="text-center">
-                                <button  (click)="delete(user)" class="buttons btn-lg btn-danger">Delete User</button>
+                                <button  (click)="delete(user)" class="ml-lg-3 ml-sm-3 ml-md-4 ml-5 btn-lg btn-danger">Delete User</button>
                             </span>
                         </div>
 
@@ -259,16 +259,16 @@
                                             </tr>
                                             </thead>
                                             <tbody [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
-                                            <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
-                                                    <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
-                                                    <td style="width: 15%">{{report.title}}</td>
-                                                    <td style="width: 15%">{{report.expected_return_period}}</td>
-                                                    <td style="width: 15%">{{report.returned_amount}}</td>
-                                                    <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
-                                                    <td style="width: 10%">{{report.category_id}}</td>
-                                                    <td style="width: 15%"> On-going </td>
-                                                    <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
-                                            </tr>
+                                                <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
+                                                        <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
+                                                        <td style="width: 15%">{{report.title}}</td>
+                                                        <td style="width: 15%"></td>
+                                                        <td style="width: 15%">{{report.returned_amount}}</td>
+                                                        <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
+                                                        <td style="width: 10%"></td>
+                                                        <td style="width: 15%"> On-going </td>
+                                                        <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                         <div  class="col-12">
