@@ -1,13 +1,14 @@
 <div id="modal-content-wrapper">
-  <div>
+  <div id="modal-input">
     <label>
     Investment Group Name
     </label>
     &nbsp; &nbsp; &nbsp;
     <input type="text" size="42%" [(ngModel)]="data.name">
   </div>
+  <br>
   <div id="modal-buttons">
-      <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Cancel</button>
+      <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Cancel</button>&nbsp; &nbsp;
       <button mat-raised-button id="modal-action-button" [mat-dialog-close]="data.name">Add</button>
   </div>
 </div>

@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 .pcoded-content {
 	margin: 40px 0;
 	padding: 0 0 40px 0;
@@ -10,43 +14,55 @@
 .card {
 	height: 400px;
 	width: 100%;
+
+	.card-block {
+		display: flex;
+		flex-flow: column;
+	}
+
+	.card-title {
+		margin: 5px;
+		padding: 5px;
+		font-size: 20px;
+
+		p {
+			font-size: 16px;
+		}
+	}
+
+	mat-label {
+		display: block;
+		font-size: 14px;
+		margin: 10px;
+		padding: 10px;
+		color: black;
+		line-height: 3px;
+		width: 250px;
+	}
+	
+	mat-select {
+		display: block;
+		font-size: 12px;
+		width: 100%;
+		box-shadow: 1px 1px 1px 1px #888888a6;
+		opacity: 50%;
+		border: 1px solid black;
+	}
+	
 }
 
 a.pl-4 {
 	margin: 0 20px;
 }
 
-mat-form-field {
-	width: 100%;
+.float-right a{
+	cursor: pointer;
+}
+
+mat-form-field > div {
 	display: flex;
-}
-
-.card-title {
-	margin: 10px;
-	padding: 10px;
-	font-size: 20px;
-}
-
-.card-title p {
-	font-size: 16px;
-}
-
-.card mat-label {
-	font-size: 14px;
-	margin: 10px;
-	padding: 10px;
-	color: black;
-	line-height: 3px;
-	width: 200px;
-}
-
-.card mat-select {
-	position: absolute;
-	left: 250px;
-	font-size: 12px;
-	width: 75%;
-	box-shadow: 1px 1px 1px 1px #888888a6;
-	opacity: 50%;
+	flex-direction: row;
+	align-items: center;
 }
 
 .investmentGroups {
@@ -113,8 +129,20 @@ mat-form-field {
 	}
 }
 
-@media screen and (max-width: 1024px) {
-	.card mat-select {
-		width: 60%;
+@media screen and (max-width: 690px) {
+
+	.card {
+		height: 450px;
+	}
+	
+	.form-group.d-flex {
+		display: flex;
+		flex-flow: column;
+		justify-content: space-between;
+	}
+
+	mat-form-field {
+		margin: 5px;
+		padding: 5px;
 	}
 }
