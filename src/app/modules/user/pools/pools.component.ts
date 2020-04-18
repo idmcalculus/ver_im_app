@@ -44,12 +44,12 @@ export class PoolsComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
   }
-  
+
   checkUncheckAll() {
     for (var i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
@@ -63,7 +63,7 @@ export class PoolsComponent implements OnInit {
       })
     this.getCheckedPooList();
   }
- 
+
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -119,7 +119,7 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-  
+
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
     if (!value || value === null) {
@@ -134,7 +134,7 @@ export class PoolsComponent implements OnInit {
         this.pools = filtered;
       }
   }
-  
+
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);

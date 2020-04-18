@@ -31,6 +31,7 @@ import { ViewCustomerComponent } from './manage-users/view-customer/view_custome
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 
 
 
@@ -83,6 +84,7 @@ const userRoutes: Routes = [
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
           { path: 'poolReport', component: PoolreportComponent },
+          {  path: 'activityReport', component: UseractivityComponent },
           { path: 'purchasedReport', component: PurchasedreportComponent },
           { path: 'viewedReport', component: ViewedreportComponent },
           { path: 'userReport', component: UserreportComponent },

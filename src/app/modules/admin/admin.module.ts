@@ -31,6 +31,7 @@ import {ProgressBarModule} from 'angular-progress-bar';
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
 @NgModule({
@@ -48,6 +49,7 @@ import {exportUserPoolComponent} from '../../shared/components/report/view-custo
     EditCustomerComponent,
     PoolreportComponent,
     UserreportComponent,
+    UseractivityComponent,
     viewUserPoolComponent,
     PoolsComponent,
     PoolDetailComponent,
