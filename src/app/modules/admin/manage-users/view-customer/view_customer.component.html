@@ -272,7 +272,7 @@
                                             </tbody>
                                         </table>
                                         <div *ngIf="dashboardInvestment.length == 0" >
-                                            <p class='displayStatus'>"No record found, Investment(s) is not yet started."</p>
+                                            <p class='displayStatus'>"No records found."</p>
                                        </div>
                                         <div  class="col-12">
                                             <pagination-controls class="my_pagination" (pageChange)="p2 = $event" id='second'></pagination-controls>
@@ -327,7 +327,7 @@
 
                                         </table>
                                         <div *ngIf="FilteredInvestment.length == 0" >
-                                               <p class='displayStatus'>"No record found, Investment(s) is not yet completed."</p>
+                                               <p class='displayStatus'>"No records found."</p>
                                         </div>
 
                                         <div  class="col-12">
