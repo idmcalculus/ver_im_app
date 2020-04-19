@@ -18,7 +18,7 @@ import { AddCustomerComponent } from './manage-users/add-customer/add_customer.c
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolsComponent} from './../user/pools/pools.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
-//import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
@@ -56,6 +56,8 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     viewUserPoolComponent,
     PoolsComponent,
     PoolDetailComponent,
+    AddPoolComponent,
+    AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
     // ManageUsersComponent,
