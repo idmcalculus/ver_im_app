@@ -36,7 +36,7 @@
                 <p><i class="fa fa-pencil-alt"></i>&nbsp; &nbsp; Edit Investment Group</p>
                 <hr style="border: 0.5px solid black; width: 98%;">
               </div>
-              <div class="card-block">              
+              <div class="card-block">
                 <mat-form-field>
                   <div class="investment-grp-name form-group d-flex">
                     <mat-label for="investmentGroupName">Investment Group Name</mat-label>
@@ -58,7 +58,7 @@
                     <mat-label for="investments">Investments</mat-label>
                     <mat-select multiple placeholder="Investments" [(ngModel)]="selectedValue" [formControl]="investment" id="investments" class="form-control">
                       <mat-select-trigger *ngIf="investment.value">
-                        {{investment.value[0]?.title}}, {{investment.value[1]?.title}}, {{investment.value[2]?.title}} 
+                        {{investment.value[0]?.title}}, {{investment.value[1]?.title}}, {{investment.value[2]?.title}}
                         <span *ngIf="investment.value?.length > 3" class="investmentGroups">
                           (+{{investment.value.length - 3}} {{investment.value?.length === 4 ? 'other' : 'others'}})
                         </span>

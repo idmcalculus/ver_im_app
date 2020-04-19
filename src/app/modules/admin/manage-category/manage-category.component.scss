@@ -22,6 +22,20 @@
 	margin: 0 20px;
 	padding: 0 20px;
 }
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
+
+.card-header .constant {
+    color: #221F72;
+    margin-bottom: 2px;
+}
+
+.new {
+    border:#221F72 0.25px solid;
+    margin: 0px;
+}
 
 a {
 	cursor: pointer;
@@ -208,5 +222,5 @@ p.category-name {
 			line-height: 2;
 		}
 	}
-	
+
 }
