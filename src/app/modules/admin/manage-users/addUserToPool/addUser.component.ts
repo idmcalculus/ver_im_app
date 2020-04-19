@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Report } from '../../models/Report';
+import { Report } from '../../../../shared/models/Report';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute,Router} from '@angular/router';
-import { AdminService } from '../../../modules/admin/admin.service';
-import {InvestmentService} from '../../../modules/investment/investment.service'
-import { UserService } from '../../../modules/user/user.service';
+import { AdminService } from '../../admin.service';
+import {InvestmentService} from '../../../investment/investment.service'
+import { UserService } from '../../../user/user.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { addUserService } from './addUser.service';
