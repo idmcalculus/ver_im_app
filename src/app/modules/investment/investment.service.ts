@@ -5,6 +5,8 @@ import { Transaction } from 'src/app/shared/models/Transaction';
 import { Investment } from './../../shared/models/Investment';
 import { Category } from 'src/app/shared/models/Category';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
+import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
+
 
 @Injectable({ providedIn: 'root' })
 export class InvestmentService {
@@ -29,8 +31,9 @@ export class InvestmentService {
     var imageBody = { "investment_image": investment.investment_image };
     return this.httpService.postRequest(
       `investment/update?title=${investment.title}&description=${investment.description}&investment_id=${investment.id}
-    &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}&duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
-    &investment_amount=${investment.investment_amount}&show_publicly=${investment.show_publicly ? 1 : 0}&expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
+    &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}&duration=${investment.duration}
+    &expected_return_period=${investment.expected_return_period}&investment_amount=${investment.investment_amount}
+    &show_publicly=${investment.show_publicly ? 1 : 0}&expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
   }
 
   getInvestments(is_frontend: boolean): Observable<any> {
@@ -59,7 +62,8 @@ export class InvestmentService {
   }
 
   updateCategory(category: Category) {
-    return this.httpService.postRequest(`category/update?category_name=${category.category_name}&category_id=${category.id}`, {}, true, null);
+    return this.httpService.postRequest(`category/update?category_name=${category.category_name}
+    &category_id=${category.id}`, {}, true, null);
   }
 
   deleteCategory(category: Category) {
@@ -67,7 +71,9 @@ export class InvestmentService {
   }
 
   joinInvestment(transaction: Transaction) {
-    return this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}&number_of_pools=${transaction.number_of_pools}&amount_paid=${transaction.amount_paid}&payment_reference=${transaction.payment_reference}`, {}, true);
+    return this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}
+    &number_of_pools=${transaction.number_of_pools}&amount_paid=${transaction.amount_paid}
+    &payment_reference=${transaction.payment_reference}`, {}, true);
   }
 
   endInvestment(investmentId: string) {
@@ -80,5 +86,21 @@ export class InvestmentService {
 
   pullOutFromInvestment(investmentId: string) {
     return this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`, {}, true);
+  }
+
+  addInvestmentGroup(investmentGroup: InvestmentGroup) {
+    return this.httpService.postRequest(`investment/addGroup?group_name=${investmentGroup.group_name}`, {}, true);
+  }
+
+  getInvestmentGroups() {
+    return this.httpService.postRequest(`investment/getGroups`, {});
+  }
+
+  deleteInvestmentGroup(investmentGroup: InvestmentGroup) {
+    return this.httpService.postRequest(`investment/deleteGroup?group_name=${investmentGroup.group_name}`, true);
+  }
+
+  addInvestmentsToGroup(investmentGroup: InvestmentGroup, investmentId: {}) {
+    return this.httpService.postRequest(`investment/addToGroup?group_name=${investmentGroup.group_name}&investment_id=${investmentId}`, {}, true);
   }
 }
