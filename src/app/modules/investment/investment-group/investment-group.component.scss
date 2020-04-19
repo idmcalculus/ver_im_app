@@ -60,13 +60,18 @@ div > p {
     color: #221F72;
     font-weight: bold;
 }
+.settings {
+    width: 30px;
+    cursor: pointer;
+}
+
+.setting {
+    width: 40px;
+    cursor: pointer;
+}
 
 a.pl-4 {
 	margin: 0 20px;
-}
-
-.float-right a{
-	cursor: pointer;
 }
 
 mat-form-field > div {
