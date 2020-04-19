@@ -66,11 +66,11 @@
                         <div class="col-md-12">
                             <div class="card px-3">
                                 <div class="category-header pt-3 p-2">
-                                    <p class="col-2">Date Start</p>
-                                    <p class="col-2">Date End</p>
-                                    <p class="col-3">No of Investments</p>
-                                    <p class="col-3">No of Slots</p>
-                                    <p class="col-2" >Total</p>
+                                    <p class="width">Date Start</p>
+                                    <p class="width">Date End</p>
+                                    <p class="width">No of Investments</p>
+                                    <p class="width">No of Slots</p>
+                                    <p class="width" >Total</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
@@ -90,15 +90,15 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    <!-- <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="width">{{pool.id}}</p>
-                                            <p class="width">{{pool.title}}</p>
-                                            <p class="width">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="width">{{pool.expected_return_period}}</p>
-                                            <p class="width">{{pool.investment_amount}}</p>
+                                    <div class="category-body" *ngFor="let report of reportlog;let i = index;">
+                                        <div class="row1 p-2" *ngFor="let pool of report;let i = index;">
+                                            <p class="width">{{pool.date}}</p>
+                                            <p class="width">{{pool.date}}</p>
+                                            <p class="width">{{pool.no_of_investments}}</p>
+                                            <p class="width">{{pool.no_of_slots}}</p>
+                                            <p class="width">{{pool.total_amount_invested}}</p>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -22,11 +22,11 @@
                         <div class="col-md-12">
                             <div class="card px-3">
                                 <div class="category-header pt-3 p-2">
-                                    <p class="col-2">Investment Title</p>
-                                    <p class="col-2">Category</p>
-                                    <p class="col-3">Cost</p>
-                                    <p class="col-3">Viewed</p>
-                                    <p class="col-2">Percentage</p>
+                                    <p class="width">Investment Title</p>
+                                    <p class="width">Category</p>
+                                    <p class="width">Cost</p>
+                                    <p class="width">Viewed</p>
+                                    <p class="width">Percentage</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
@@ -46,15 +46,15 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    <!-- <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="width">{{pool.id}}</p>
                                             <p class="width">{{pool.title}}</p>
                                             <p class="width">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="width">{{pool.expected_return_period}}</p>
                                             <p class="width">{{pool.investment_amount}}</p>
+                                            <p class="width"></p>
+                                            <p class="width"></p>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

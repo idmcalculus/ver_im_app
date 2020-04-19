@@ -16,6 +16,8 @@ export class PoolreportComponent implements OnInit {
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
   categories:any []
+  report = {};
+  reportlog = [];
   searchValue = '';
   filteredPools = [];
   masterSelected:boolean;
@@ -48,6 +50,14 @@ export class PoolreportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.investmentService.getpoolReport().subscribe(resp => {
+      if (resp && resp.success) {
+        this.report = resp.success.Data;
+        this.reportlog.push(this.report);
+        console.log(this.reportlog);
+        
+      }
+    });
   }
   
   checkUncheckAll() {
@@ -91,6 +101,7 @@ export class PoolreportComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
 
   getCategoryName(id: number) {
     const res = this.categories.find( r => r.id === 21);

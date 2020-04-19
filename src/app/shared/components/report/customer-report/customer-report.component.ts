@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./customer-report.component.scss']
 })
 export class UserreportComponent implements OnInit {
-  @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
+  user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
   users: any [];
   selectedUser: User;
@@ -25,8 +25,10 @@ export class UserreportComponent implements OnInit {
   selectedInvestment = -1;
   dashboardInvestment: any =[];
   userInvestment: any;
-  investmentInfo: Investment = {duration: '0', investment_amount: 0};
-  dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
+  userPool: any;
+  investmentInfo: Investment = {title: '', investment_amount: 0,};
+  dashboardData = {};
+  activityLog = [];
   noOfPools: any=[];
 
   constructor(
@@ -47,22 +49,23 @@ export class UserreportComponent implements OnInit {
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
-        this.getDetails();
       }
     });
+    this.dashboardReport();
   }
 
-  getDetails() {
-    this.users.forEach(user=>
-      this.investmentService.getUserInvestments(user.email).subscribe(investments=>{
-          this.userInvestment = investments.success.Data;
-          this.noOfPools.push(this.userInvestment.length);
-          //this.alluserInvestment.push(this.userInvestment)
-          console.log(this.noOfPools);
-          //this.selectedInvestment = 0;
-          //this.showDetails();
-      })
-    );
+  dashboardReport() {
+    this.adminService.getDashBoardData().subscribe(resp => {
+      if (resp && resp.success) {
+        this.dashboardData = resp.success.Data;
+        this.activityLog.push(this.dashboardData);
+        //console.log(this.activityLog);
+
+        this.isLoading =  false;
+        this.dynamicScrLoader.loadSingle('data-table');
+        this.dynamicScrLoader.loadSingle('trigger-data-table');
+      }
+    });
   }
 
   // noPools(email){
@@ -71,36 +74,33 @@ export class UserreportComponent implements OnInit {
   
 
   // showDetails() {
-  //   if (this.selectedInvestment >= 0) {
-  //     console.log(this.userInvestment);
-  //     this.investmentInfo = this.alluserInvestment[this.selectedInvestment];
-      
+  //   if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
+  //     this.investmentInfo = this.userInvestment[this.selectedInvestment];
   //     this.getUserDashBoard();
   //     this.selectedInvestment++;
-  //     console.log(this.selectedInvestment);
   //     return this.selectedInvestment;
   //     } else {
   //     this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //     console.log(this.investmentInfo);
+  //     this.isLoading = true;
   //   }
 
   // }
   
   // getUserDashBoard() {
-  //   console.log(this.user.email);
+  //   console.log(this.investmentInfo.id);
   //   const userEmail = this.user.email;
   //   const investmentId = this.investmentInfo.id;
     
   //   this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
   //     if (resp && resp.success) {
   //       this.dashBoardData = resp.success.Data;
-  //       console.log(this.dashBoardData);
+  //       //console.log(this.dashBoardData);
   //       this.dashboardInvestment.push(this.dashBoardData);
   //     } else {
   //       this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //       console.log(this.dashBoardData);
+  //       //console.log(this.dashBoardData);
   //     }
-  //     console.log(this.dashboardInvestment);
+  //     //console.log(this.dashboardInvestment);
   //     this.showDetails();
   //   });
   // }
@@ -110,6 +110,20 @@ export class UserreportComponent implements OnInit {
     console.log(user);
     
   }
+
+  // getPools(email) {
+  //   //console.log(email);
+
+  //   this.investmentService.getUserInvestments(email).subscribe(investments=>{
+      
+  //     if(investments.success.Data !== 0){
+  //       this.userPool = investments.success.Data;
+  //     }
+  //     console.log(this.userPool);
+      
+  //     return this.userPool.length;
+  //   });
+  // }
 
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
