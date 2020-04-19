@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
+import { ExportData } from 'src/app/shared/models/ExportData';
 import { AdminService } from '../../../../modules/admin/admin.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+import { ReportService } from '../report.service';
 
 @Component({
   selector: 'app-activity',
@@ -21,7 +23,8 @@ export class UseractivityComponent implements OnInit {
 
   constructor(
     private adminService: AdminService,
-    private dynamicScrLoader: DynamicScriptLoaderService
+    private dynamicScrLoader: DynamicScriptLoaderService,
+    private reportService: ReportService
     ) {}
 
   ngOnInit() {
@@ -95,4 +98,23 @@ export class UseractivityComponent implements OnInit {
     this.searchValue = null;
     return this.getDashBoardData();
   }
+
+  saveAsCSV() {
+    if(this.filteredAdminActivity.length > 0){
+      const items: ExportData[] = [];
+
+      this.filteredAdminActivity.forEach(line => {
+        let reportDate = new Date();
+        let csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+          activity: line.activity,
+          created_at: line.created_at,
+          ip_address: line.ip_address,
+        }
+        items.push(csvLine);
+      });
+
+      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+    }
+}
 }
