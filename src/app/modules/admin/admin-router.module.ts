@@ -12,7 +12,7 @@ import {userPoolDetailComponent} from './../user/userpool-detail/userpool-detail
 import {userPoolsComponent} from './../user/user-pool/user-pool.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+//import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
@@ -120,7 +120,7 @@ const userRoutes: Routes = [
           { path: 'userPools', component: userPoolsComponent },
           { path: 'userPools/:id', component: userPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
-          { path: 'pools/:id/adduser', component: AddUserComponent },
+      //    { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }
         ]
       }
