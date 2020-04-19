@@ -20,9 +20,6 @@ export class PoolreportComponent implements OnInit {
   reportlog = [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
 
   constructor(
     private router:Router,
@@ -43,9 +40,6 @@ export class PoolreportComponent implements OnInit {
         this.getCategories();
       }
       this.getCategories();
-      this.masterSelected = false;
-      this.checklist = [this.pool,];
-      this.getCheckedPooList();
       
   }
 
@@ -58,29 +52,6 @@ export class PoolreportComponent implements OnInit {
         
       }
     });
-  }
-  
-  checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
-      this.checklist[i] = this.masterSelected;
-    }
-    this.getCheckedPooList();
-  }
-
-  isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
-        return pool == true;
-      })
-    this.getCheckedPooList();
-  }
- 
-  getCheckedPooList(){
-    this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
-      this.checkedList.push(this.checklist[i]);
-    }
-    this.checkedList = JSON.stringify(this.checkedList);
   }
 
   getPools() {
@@ -121,15 +92,6 @@ export class PoolreportComponent implements OnInit {
     this.router.navigateByUrl('admin/addpools');
   }
 
-  setPlanOperation(investment) {
-
-    this.authService.setCurrentPlanOperation(investment);
-  }
-
-  setHeaderandFooter() {
-    this.authService.setInProfileView(false);
-  }
-
   filterTable(filterType, filterValue: string) {
     if (!filterValue || filterValue === null) {
       return this.getPools();
@@ -144,8 +106,4 @@ export class PoolreportComponent implements OnInit {
       }
   }
   
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
-  }
 }

@@ -9,11 +9,11 @@
                             <a class=" pl-2">Home / Product Viewed Report</a>
                         </div>  
                         <div class="float-right">
-                            <a (click)="cancelPool()">
-                                <img class="" src="../../../../assets/images/icon/icons/Add-icon.png">
+                            <a class="pr-3">
+                                <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
                             </a>
-                            <a (click)="deleteUser()" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
+                            <a>
+                                <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>
                     </div>
@@ -23,33 +23,33 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', search.value)"
                                     (blur)="filterTable('id', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #search (keyup)="filterTable('title', search.value)"
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="search" #search (keyup)="filterTable('title', search.value)"
                                     (blur)="filterTable('title', search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Group By</label>
-                                    <input type="number" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('phone_number',search.value)">
+                                    <input type="number" class="input-control shadow" placeholder="Group By" name="category" #search (keyup)="filterTable('phone_number',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="text" class="input-control shadow" placeholder="Date End" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Portfolio</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors"
+                                    <input type="text" class="input-control shadow" placeholder="Portfolio"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
                             </div>
