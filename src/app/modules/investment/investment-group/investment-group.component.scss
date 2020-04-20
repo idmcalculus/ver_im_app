@@ -32,14 +32,15 @@
 
 	mat-label {
 		display: block;
-		font-size: 14px;
+        font-size: 12px;
+        font-weight: bold;
 		margin: 10px;
 		padding: 10px;
 		color: black;
 		line-height: 3px;
 		width: 250px;
 	}
-	
+
 	mat-select {
 		display: block;
 		font-size: 12px;
@@ -48,15 +49,29 @@
 		opacity: 50%;
 		border: 1px solid black;
 	}
-	
+
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
+div > p {
+    color: #221F72;
+    font-weight: bold;
+}
+.settings {
+    width: 30px;
+    cursor: pointer;
+}
+
+.setting {
+    width: 40px;
+    cursor: pointer;
 }
 
 a.pl-4 {
 	margin: 0 20px;
-}
-
-.float-right a{
-	cursor: pointer;
 }
 
 mat-form-field > div {
@@ -134,7 +149,7 @@ mat-form-field > div {
 	.card {
 		height: 450px;
 	}
-	
+
 	.form-group.d-flex {
 		display: flex;
 		flex-flow: column;
