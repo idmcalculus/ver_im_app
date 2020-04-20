@@ -1,16 +1,16 @@
  import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
-import {InvestmentService} from '../../investment/investment.service';
+import {InvestmentService} from '../../../../modules/investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from '../user.service';
+import { UserService } from '../../../../modules/user/user.service';
 
 @Component({
   selector: 'app-pools',
-  templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.scss']
+  templateUrl: './purchased-pool-report.component.html',
+  styleUrls: ['./purchased-pool-report.component.scss']
 })
-export class PoolsComponent implements OnInit {
+export class PurchasedreportComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
@@ -92,9 +92,8 @@ export class PoolsComponent implements OnInit {
     });
   }
 
-  getCategoryName(id) {
-    //console.log(this.categories,'=====>')
-    const res = this.categories.find( r => r.id === id);
+  getCategoryName(id: number) {
+    const res = this.categories.find( r => r.id === 21);
     return res.category_name;
   }
 
@@ -119,18 +118,17 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-  
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
+
+  filterTable(filterType, filterValue: string) {
+    if (!filterValue || filterValue === null) {
       return this.getPools();
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
-            const filterate = pool[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase());
+            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
+        console.log(filtered);
         this.pools = filtered;
       }
   }

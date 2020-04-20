@@ -101,10 +101,12 @@ export class PoolDetailComponent implements OnInit {
     });
   }
 
-  getCategoryName(id){
-    const res = this.categories.find( r=> r.id == 21);
+  getCategoryName(id) {
+    //console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
+  
   addReport(filledReport:Report){
     this.reportData = filledReport;
     if (this.reportData.title) {
@@ -153,7 +155,17 @@ export class PoolDetailComponent implements OnInit {
         });
       }
     });
-}
+  }
+
+  addMonth(date: Date, month: number) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    newDate.setMonth(newDate.getMonth() + month);
+    if (newDate.getMonth() == 11) {
+        newDate.setDate(0);
+    }
+    return newDate;
+  }
 
   deleteReport(report){
     var proceed = confirm("Confirm Deletion?")

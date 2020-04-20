@@ -62,7 +62,6 @@ export class ViewCustomerComponent implements OnInit {
             const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
             row.style.display = 'contents';
             })
-
         }
 
     getCategories() {
@@ -88,7 +87,6 @@ export class ViewCustomerComponent implements OnInit {
             } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
             this.isLoading = true;
-            }
       }
 
       getUserDashBoard() {
@@ -102,7 +100,6 @@ export class ViewCustomerComponent implements OnInit {
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
           }
-          console.log(this.dashboardInvestment);
           this.showDetails();
         });
       }
