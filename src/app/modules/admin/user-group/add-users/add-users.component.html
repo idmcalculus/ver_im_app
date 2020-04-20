@@ -1,3 +1,77 @@
-<p>
-  add-users works!
-</p>
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <div class="main-body">
+      <div class="page-wrapper">
+        <div class="page-body">
+          <div class="clearfix mb-2 pb-2">
+            <div class="float-left pt-2 mt-2">
+              <a class="h4 pr-2" style="font-size: 24px; font-weight: bold;">UserGroup</a>
+              <a class="pl-2">Home/User Group</a>
+            </div>
+            <div class="float-right">
+              <a (click)="goBack()" style="cursor: pointer;"><img src="../../../../../assets/images/icon/icons/Back-icon.png"></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-block">
+              <mat-form-field>
+                <div class="form-group d-flex">
+                  <mat-label for="userName"><span style="color: red;">*</span>User Name</mat-label>
+                  <input matInput type="text" id="userName">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="form-group d-flex">
+                  <mat-label for="userGroup">User Group</mat-label>
+                  <mat-select placeholder="Select User Group" id="userGroup" class="form-control">
+                    <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup">{{usergroup}}</mat-option>
+                  </mat-select>
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="form-group d-flex">
+                  <mat-label for="firstName"><span style="color: red;">*</span>First Name</mat-label>
+                  <input matInput type="text" id="firstName">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="lastName"><span style="color: red;">*</span>Last Name</mat-label>
+                  <input matInput type="text" id="lastName">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="email"><span style="color: red;">*</span>E-mail</mat-label>
+                  <input matInput type="email" id="email">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="password"><span style="color: red;">*</span>Password</mat-label>
+                  <input matInput type="password" id="password">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="confirm"><span style="color: red;">*</span>confirm</mat-label>
+                  <input matInput type="password" id="confirm">
+                </div>
+              </mat-form-field>
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="status"><span style="color: red;">*</span>Status</mat-label>
+                  <input matInput type="text" id="status">
+                </div>
+              </mat-form-field>
+              <div class="buttons mt-3 pt-3">
+                <button mat-raised-button class="cancel-button">Cancel</button>&nbsp; &nbsp;
+                <button mat-raised-button class="submit-button" (click)="goBack()">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

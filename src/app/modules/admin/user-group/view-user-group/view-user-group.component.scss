@@ -1,0 +1,52 @@
+.card {
+	height: 360px;
+}
+
+.card-block {
+	padding: 0px;
+
+	.paging {
+		padding-left: 10px;
+	}
+}
+
+.s-n {
+	flex: 1 0 2em;
+}
+
+.action {
+	flex: 1.5 0 5em;
+	border-left: 1px solid black;
+}
+
+.usergroup-name{
+	flex: 8 1 20em;
+}
+
+.checkbox {
+	flex: 1 0 2em;
+	
+	input {
+		font-size: 20px;
+	}
+}
+
+.d-flex {
+	justify-content: center;
+	align-items: center;
+
+	p {
+		align-self: center;
+		text-align: justify;
+		height: 60px;
+		line-height: 4;
+		margin-bottom: 0px;
+		padding-left: 10px;
+		border-bottom: 1px solid black;
+	}
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
