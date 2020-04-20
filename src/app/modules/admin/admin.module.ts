@@ -16,6 +16,8 @@ import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
+import {PoolsComponent} from '../user/pools/pools.component';
+import {PoolDetailComponent} from '../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
@@ -34,8 +36,6 @@ import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
-import { PoolDetailComponent } from '../user/pool-detail/pool-detail.component';
-import { PoolsComponent } from '../user/pools/pools.component';
 import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';

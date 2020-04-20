@@ -50,7 +50,7 @@ export class ViewUsersComponent implements OnInit {
         });
     }
 
-    pageChanged(event: PageChangedEvent): void {
+     pageChanged(event: PageChangedEvent): void {
         const startItem = (event.page - 1) * event.itemsPerPage;
         const endItem = event.page * event.itemsPerPage;
         this.returnedArray = this.adminUsers.slice(startItem, endItem);
