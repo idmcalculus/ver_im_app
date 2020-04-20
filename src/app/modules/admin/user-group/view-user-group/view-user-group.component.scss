@@ -1,3 +1,7 @@
+.card {
+	height: 360px;
+}
+
 .card-block {
 	padding: 0px;
 
@@ -40,4 +44,9 @@
 		padding-left: 10px;
 		border-bottom: 1px solid black;
 	}
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
 }

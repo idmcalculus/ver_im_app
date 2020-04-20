@@ -3,7 +3,7 @@
 }
 
 .card {
-	height: 750px;
+	height: 660px;
 	width: 100%;
 
 	.card-block {
@@ -61,6 +61,11 @@ mat-form-field > div {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
 }
 
 ::ng-deep{

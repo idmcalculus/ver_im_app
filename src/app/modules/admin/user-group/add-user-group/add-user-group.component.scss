@@ -87,6 +87,11 @@ mat-form-field > div {
 }
 }
 
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
+
 ::ng-deep{
 	.mat-form-field-wrapper {
 		line-height: normal;

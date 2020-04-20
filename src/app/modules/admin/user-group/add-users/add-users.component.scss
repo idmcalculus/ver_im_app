@@ -66,8 +66,6 @@ mat-form-field > div {
 .buttons {
 	align-items: flex-end;
 	justify-content: flex-end;
-	margin-top: 10px;
-	padding-top: 10px;
 	text-align: right;
 
 .submit-button {
@@ -85,6 +83,11 @@ mat-form-field > div {
 	border-radius: 5px;
 	height: 40px;
 }
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
 }
 
 ::ng-deep{
