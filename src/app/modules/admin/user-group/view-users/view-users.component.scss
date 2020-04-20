@@ -1,0 +1,39 @@
+.card-block {
+	padding: 0px;
+
+	.paging {
+		padding-left: 10px;
+	}
+}
+
+.s-n, .checkbox {
+	flex: 1;
+}
+
+.username, .role, .status, .date-added {
+	flex: 2;
+}
+
+.email {
+	flex: 4;
+}
+
+.action {
+	border-left: 1px solid black;
+	flex: 2;
+}
+
+.d-flex {
+	justify-content: center;
+	align-items: center;
+
+	p {
+		align-self: center;
+		text-align: justify;
+		height: 60px;
+		line-height: 4;
+		margin-bottom: 0px;
+		padding-left: 10px;
+		border-bottom: 1px solid black;
+	}
+}

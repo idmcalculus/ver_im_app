@@ -127,6 +127,10 @@ mat-form-field > div {
 	.mat-select-value {
 		color: black;
 	}
+
+	.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+		background: #00000024;
+	}
 }
 
 @media screen and (max-width: 690px) {

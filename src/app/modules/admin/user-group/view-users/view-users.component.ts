@@ -17,9 +17,11 @@ export class ViewUsersComponent implements OnInit {
     loggedInUser: User;
     selectedUser: User;
     userSubscription: Subscription;
-    adminUsers: [];
+    adminUsers: any[];
     returnedArray: string[];
     index: any;
+    selectedAll;
+    checkedUser = [];
 
     constructor(private authService: AppAuthService,
                 private userService: UserService) {
@@ -40,6 +42,7 @@ export class ViewUsersComponent implements OnInit {
             if (users && users.success) {
               this.adminUsers = users.success.Data.filter(user => user.user_category === 'Admin');
               this.adminUsers.forEach((user: any, i) => user.index = i + 1);
+              this.adminUsers.forEach((user: any, i) => user.selected = false);
 
               this.returnedArray = this.adminUsers.slice(0, 3);
             }
@@ -53,22 +56,31 @@ export class ViewUsersComponent implements OnInit {
         this.returnedArray = this.adminUsers.slice(startItem, endItem);
       }
 
-    /*getUserInvestments(email: string) {
-        this.isLoading = true;
-        return this.userAdmins.forEach(each => {
-            this.email = each.email;
-            console.log(this.email);
-        });
-        const data = {
-            user_id: this.email
-        };
-        this.investmentService.getUserInvestments(data).subscribe(x => {
-            if (x && x.success) {
-                console.log(x.success.Data);
-            }
-        });
+    selectAll() {
+    for (let i = 0; i < this.adminUsers.length; i++) {
+        {
+        this.adminUsers[i].selected = this.selectedAll;
+        }
+    }
+    this.getCheckedUser();
+    }
 
-    }*/
+    checkIfAllSelected() {
+    this.selectedAll = this.adminUsers.every(user => {
+        return user.selected === true;
+    });
+    this.getCheckedUser();
+    }
+
+    getCheckedUser() {
+    this.checkedUser = [];
+    for (let i = 0; i < this.adminUsers.length; i++) {
+        if (this.adminUsers[i].selected) {
+        this.checkedUser.push(this.adminUsers[i]);
+        }
+    }
+    }
+
 }
 
 

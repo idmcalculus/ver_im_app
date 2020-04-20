@@ -1,3 +1,51 @@
-<p>
-  view-user-group works!
-</p>
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <div class="main-body">
+      <div class="page-wrapper">
+        <div class="page-body">
+          <div class="clearfix mb-2 pb-2">
+            <div class="float-left pt-2 mt-2">
+              <a class="h4 pr-2" style="font-size: 24px; font-weight: bold;">UserGroup</a>
+              <a class="pl-2">Home/User Group</a>
+            </div>
+            <div class="float-right">
+              <a routerLink="../add">
+                  <img
+                      class=""
+                      src="../../../../../assets/images/icon/icons/Add-icon.png"
+                      style="height: 50px;"
+                  />
+              </a>
+              <a href="#">
+                  <img
+                      class=""
+                      src="../../../../../assets/images/icon/icons/Delete-icon.png"
+                      style="height: 50px;"
+                  />
+              </a>
+            </div>
+          </div>
+        <div class="card">
+          <div class="card-block dt-responsive usergroup-header d-flex">
+            <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
+            <p class="s-n" scope="col">S/N</p>
+            <p class="usergroup-name" scope="col">User Group Name</p>
+            <p class="action" scope="col">Action</p>
+          </div>
+          <div class="card-block dt-responsive usergroup-body">
+            <div *ngFor="let usergroup of usergroups; index as i" class="d-flex">
+              <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="usergroup.selected" (change)="checkIfAllSelected()"></p>
+              <p class="s-n">{{i+1}}</p>
+              <p class="usergroup-name">{{usergroup.value}}</p>
+              <p class="action" routerLink="../edit"><img src="../../../../assets/images/icon/icons/Edit-icon.png"></p>
+            </div>
+            <div class="mt-2 pt-2 paging">
+              <pagination></pagination>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
