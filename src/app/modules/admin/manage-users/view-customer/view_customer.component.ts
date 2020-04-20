@@ -88,6 +88,7 @@ export class ViewCustomerComponent implements OnInit {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
             this.isLoading = true;
       }
+    }
 
       getUserDashBoard() {
         const userEmail = this.user.email;
