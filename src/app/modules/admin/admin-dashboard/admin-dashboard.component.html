@@ -43,8 +43,8 @@
                                         </div>
                                     </div>
                                     <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
-                                        <p class="m-b-0 foot" style="font-size:13px;color:#1ce01c">{{dashBoardData.all_investment - dashBoardData.pending_investment}} Active</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./pools" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
+                                        <p class="m-b-0 foot" style="font-size:12px;color:#1ce01c">{{dashBoardData.all_investment - dashBoardData.pending_investment}} Active</p>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                       <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./poolReport" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -88,8 +88,8 @@
                                         </div>
                                     </div>
                                     <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
-                                        <p class="m-b-0 foot" style="font-size:13px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./manage-users" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
+                                        <p class="m-b-0 foot" style="font-size:12px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
                                     </div>
                                 </div>
                             </div>
@@ -327,7 +327,7 @@
                                               <td >{{req.amount_paid}}</td>
                                               <td >{{req.number_of_pools}}</td>
                                               <td  (click)="viewUserDetail(i)">
-                                                    <a (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                     <a routerLink="./{{req.number_of_pools}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </td>
                                           </tr>
                                           </tbody>
