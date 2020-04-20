@@ -1,7 +1,7 @@
-import { Component, OnInit, EventEmitter,Input,Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output} from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../../investment/investment.service';
-import { ActivatedRoute,Router} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { Category } from 'src/app/shared/models/Category';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 
@@ -31,7 +31,7 @@ export class AddPoolComponent implements OnInit {
       }
 
   ngOnInit() {
-    
+
   }
 
   getCategories() {
@@ -62,14 +62,14 @@ export class AddPoolComponent implements OnInit {
     this.router.navigateByUrl('admin/pools');
   }
 
-  changeListener($event) : void {
+  changeListener($event): void {
     this.readThis($event.target);
   }
-  
+
   readThis(inputValue: any): void {
-    var file:File = inputValue.files[0];
-    var myReader:FileReader = new FileReader();
-  
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
     myReader.onloadend = (e) => {
       this.image = myReader.result;
       this.pool.investment_image = this.image;
@@ -83,16 +83,15 @@ export class AddPoolComponent implements OnInit {
     } else if (this.pool.expected_return_period === "Monthly") {
       return 12;
     }
-  };
+  }
 
   calculateEstimate(){
     const cost = this.pool.investment_amount
     const investment = parseInt(this.pool.expected_return_amount) /100 
     const divisor = this.divisorFunc(this.pool.expected_return_period)    
 
-    const estimate = (cost * investment) / divisor
-    this.returns = estimate.toFixed(2)
+    const estimate = (cost * investment) / divisor;
+    this.returns = estimate.toFixed(2);
   }
-  
 
 }

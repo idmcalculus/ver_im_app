@@ -48,7 +48,7 @@ export class ManageCategoryComponent {
   }
 
   deleteCategory(category) {
-    if (confirm(`Confirm Deletion of categoory ${category.category_name}`)) {
+    if (confirm(`Confirm Deletion of category ${category.category_name}`)) {
       this.investmentService.deleteCategory(category).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message);

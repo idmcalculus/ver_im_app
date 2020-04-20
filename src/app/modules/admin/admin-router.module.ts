@@ -32,6 +32,12 @@ import { EditCustomerComponent } from './manage-users/edit-customer/edit_custome
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
 import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
+import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
+import { ViewUsersComponent } from './user-group/view-users/view-users.component';
+import { AddUsersComponent } from './user-group/add-users/add-users.component';
+import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 
 
 
@@ -59,12 +65,35 @@ const userRoutes: Routes = [
             ]
             }
           ] },
+          { path: 'user-group',
+            children: [
+            {path: '',
+            children: [
+              {path: '', component: ViewUserGroupComponent},
+              {path: 'add', component: AddUserGroupComponent},
+              {path: 'edit', component: EditUserGroupComponent },
+              {path: 'view-users', component: ViewUsersComponent },
+              {path: 'add-users', component: AddUsersComponent },
+              {path: 'edit-users', component: EditUsersComponent}
+            ]
+            }
+          ] },
+          { path: 'manage-customer',
+            children: [
+            {path: '',
+              children: [
+               // {path: '', component: ManageUsersComponent},
+                {path: 'add-customer', component: AddCustomerComponent},
+                // {path: 'list-users', component: ManageUsersComponent },
+              ]
+            }
+          ] },
           { path: 'manage-investments',
               children: [
-                //{path: '', component: PoolsComponent},
-                //{path: 'investment', component: PoolsComponent},
-                //{path: 'add-pools', component: AddPoolComponent},
-                //{path: 'list-users', component: ManageUsersComponent },
+                // {path: '', component: PoolsComponent},
+                // {path: 'investment', component: PoolsComponent},
+                // {path: 'add-pools', component: AddPoolComponent},
+                // {path: 'list-users', component: ManageUsersComponent },
           ] },
           { path: 'manage-admins', component: ManageAdminComponent },
 
@@ -91,7 +120,7 @@ const userRoutes: Routes = [
           { path: 'userReport/:email', component: viewUserPoolComponent },
           { path: 'userReport/:email/export', component: exportUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
-          { path: 'pools/id', component: PoolDetailComponent },
+          { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },
           { path: 'userPools/:id', component: userPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
