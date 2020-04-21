@@ -141,10 +141,10 @@
                                 <h3>View Full report</h3>
                             </div>
                             <div class="card-block">
-                              <div class="dt-responsive table-responsive maps" style="display: flex;justify-content: space-between;">
-                                <div id="regions_div" style="width: 570px; height: 400px;"></div>
-                                <div *ngIf="!isLoading" style="width: 35%;">
-                                    <div class='progress-label'><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
+                              <div class="dt-responsive table-responsive maps">
+                                <div id="regions_div" style="width: 570px; height: 420px;margin: 0 auto;margin-bottom:15px"></div>
+                                <div *ngIf="!isLoading" class="state">
+                                    <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
                                     <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
                                     </progress-bar>
                                     <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
@@ -187,7 +187,7 @@
                           <div class="card-block" >
                                 <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
                                     <div style="width: 48%">
-                                        <canvas  id="myChart" #mycanvas  baseChart width="700" height="960" padding="20"
+                                        <canvas  id="myChart" #mycanvas  baseChart width="600" height="850" padding="20"
                                         [data]="doughnutChartData"
                                         [labels]="doughnutChartLabels"
                                         [chartType]="doughnutChartType"
@@ -315,7 +315,7 @@
                                           </tr>
                                           </thead>
                                           <tbody style="text-align:center">
-                                          <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 5),let x=index ">
+                                          <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 6),let x=index ">
                                               <td>{{req.id}}</td>
                                               <td >{{req.user_id}}</td>
                                               <td >{{req.category_id}}</td>

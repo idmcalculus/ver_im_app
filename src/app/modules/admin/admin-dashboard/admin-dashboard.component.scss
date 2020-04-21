@@ -98,7 +98,7 @@
     }
 
     .latest-update-card{
-        margin-bottom: 10px;
+        margin-bottom: 30px;
     }
 
     .card-details{
@@ -135,6 +135,8 @@
 
     .dashboard-table{
         &.graphs{
+
+          
 
 
             .card-header {
@@ -174,6 +176,17 @@
                 width: 100%;
             }
         }
+
+        @media only screen and (max-width: 1488px) {
+            &.graphs{
+                display: block;
+
+                .card-details{
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
         .card-block {
             padding: 0 0.5rem;
             font-size: 0.78rem;
@@ -197,15 +210,15 @@
 
 
     .divider2{
-        height: 37px;
+        height: 43px;
         border-width: 1px;
         border-left-style: solid;
-        margin: 0px 7.8%;
+        margin: 0px 8%;    
         border-left-color: #80808030;
     }
 
     .activities{
-        margin: 0px 15px;
+        margin: 0px 16px;
         display: flex;
     }
 
@@ -236,7 +249,7 @@
         justify-content: space-between;
         padding: 0rem 0.4rem;
         font-size: 10px;
-        margin-top: 0.9rem;
+        margin-top: 1.5rem;
         color:#bcbdc1;
     }
 
@@ -251,4 +264,27 @@
 
     .label-sub{
         color: '#bcbdc2'
+    }
+
+    .maps{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .state{
+        width: 35%
+    }
+
+    @media only screen and (max-width: 1488px) {
+        .maps{
+            display: block;
+            justify-content: space-between;
+        }
+
+        .state{
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 5%;
+        
+        }
     }
