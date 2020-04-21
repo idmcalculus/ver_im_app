@@ -142,7 +142,7 @@
                             </div>
                             <div class="card-block">
                               <div class="dt-responsive table-responsive maps">
-                                <div id="regions_div" style="width: 570px; height: 420px;margin: 0 auto;margin-bottom:15px"></div>
+                                <div id="regions_div" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
                                 <div *ngIf="!isLoading" class="state">
                                     <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
                                     <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
@@ -256,7 +256,7 @@
                                             <div 
                                             style=" 
                                             margin: 15px;
-                                            margin-left: 16px;
+                                            margin-left: 25px;
                                             font-size: 15px;
                                             white-space:nowrap;
                                             overflow:hidden;
@@ -315,7 +315,7 @@
                                           </tr>
                                           </thead>
                                           <tbody style="text-align:center">
-                                          <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 6),let x=index ">
+                                          <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 5),let x=index ">
                                               <td>{{req.id}}</td>
                                               <td >{{req.user_id}}</td>
                                               <td >{{req.category_id}}</td>
