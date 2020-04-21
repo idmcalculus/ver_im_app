@@ -251,7 +251,7 @@
                                             border-radius: 50%;
                                             border-color:#e8e8fe
                                             "> 
-                                            <img class="" src="../../../../assets/images/activities/Icon-1.png" style="height: 50px;">
+                                            <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 50px;">
                                             </div> 
                                             <div 
                                             style=" 
@@ -327,7 +327,7 @@
                                               <td >{{req.amount_paid}}</td>
                                               <td >{{req.number_of_pools}}</td>
                                               <td  (click)="viewUserDetail(i)">
-                                                     <a routerLink="./{{req.number_of_pools}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                     <a routerLink="./pools/{{req.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </td>
                                           </tr>
                                           </tbody>
