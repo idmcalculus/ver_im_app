@@ -20,28 +20,28 @@
 
                     <div class="container-fluid bg_filter border border-dark rounded mb-5">
                         <div class="row p-1 py-4">
-                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
                                     <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable('created_at',  $event)"
                                     (blur)="filterTable('created_at', $event)">
                                 </div>
                             </div>
-                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
                                     <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable2('created_at',  $event)"
                                     (blur)="filterTable2('created_at',$event)">
                                 </div>
                             </div>
-                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
                                     <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable('updated_at', $event)"
                                     (blur)="filterTable('updated_at', $event)">
                                 </div>
                             </div>
-                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
                                     <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable2('updated_at', $event)"
@@ -56,21 +56,21 @@
                                     <i class="feather icon-chevron-down icon" (click)="Toggle()" style="padding: 0rem 0.7rem;"></i>
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label hidden class="h7">Date Start</label>
                                     <input hidden type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', $event)"
                                     (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
-                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">IP</label>
                                     <input type="text" class="input-control shadow" placeholder="IP" name="ip" #ip (keyup)="filterTable('ip_address', $event)"
                                     (blur)="filterTable('ip_address', $event)">
                                 </div>
                             </div>
-                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">IP</label>
                                     <input type="text" class="input-control shadow" placeholder="IP" name="ip" #ip (keyup)="filterTable2('ip_address', $event)"
@@ -96,10 +96,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
-                                <div class="category-header pt-3 p-2">
-                                    <p class="col-7">Comment</p>
-                                    <p class="col-3">IP</p>
-                                    <p class="col-2">Date</p>
+                                <div class="category-header pt-3 p-2 pb-3">
+                                    <p class=" header col-7">Comment</p>
+                                    <p class="header col-3">IP</p>
+                                    <p class="header col-2">Date</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
