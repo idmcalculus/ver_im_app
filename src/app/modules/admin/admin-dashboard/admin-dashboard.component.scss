@@ -177,16 +177,6 @@
             }
         }
 
-        @media only screen and (max-width: 1488px) {
-            &.graphs{
-                display: block;
-
-                .card-details{
-                    width: 100%;
-                    max-width: 100%;
-                }
-            }
-        }
         .card-block {
             padding: 0 0.5rem;
             font-size: 0.78rem;
@@ -273,18 +263,4 @@
 
     .state{
         width: 35%
-    }
-
-    @media only screen and (max-width: 1488px) {
-        .maps{
-            display: block;
-            justify-content: space-between;
-        }
-
-        .state{
-            width: 90%;
-            margin: 0 auto;
-            margin-bottom: 5%;
-        
-        }
     }
