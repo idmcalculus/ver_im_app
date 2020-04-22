@@ -4,6 +4,7 @@ import { AdminService } from '../../admin.service';
 import { UserService } from '../../../user/user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-users',
@@ -12,10 +13,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SearchCustomerComponent implements OnInit {
   searchValue = '';
+  emailValue = '';
+  numberValue = '';
   users: User [];
   user: User = {email: ''};
-  selectedUser: User;
-  selectedEditUser: User;
   selectedDelUser: User;
   checkedUser = [];
   isLoading= true;
@@ -24,7 +25,8 @@ export class SearchCustomerComponent implements OnInit {
      private userService: UserService,
      private adminService: AdminService,
      private dynamicScrLoader: DynamicScriptLoaderService,
-     private toastrService: ToastrService
+     private toastrService: ToastrService,
+     private router: Router
      ) { }
 
   ngOnInit() {
@@ -60,14 +62,6 @@ export class SearchCustomerComponent implements OnInit {
       if(this.users[i].selected)
       this.checkedUser.push(this.users[i]);
     }
-  }
-
-  viewUserDetail(userIndex) {
-    this.selectedUser = this.users[userIndex];
-  }
-
-  editUserDetail(userIndex) {
-    this.selectedEditUser = this.users[userIndex];
   }
 
   deleteUserDetail(userIndex) {
@@ -120,7 +114,7 @@ export class SearchCustomerComponent implements OnInit {
     const value = filterValue.target.value;
 
     if (!value) {
-      return this.users;
+      return this.getUsers();
     } else {
       const filtered = this.users.filter(user => {
         if (user[filterType] !== null) {
@@ -133,10 +127,12 @@ export class SearchCustomerComponent implements OnInit {
 
   clearSearch = () => {
     this.searchValue = null;
+    this.emailValue = null;
+    this.numberValue = null;
     return this.getUsers();
   }
 
-  delete = (user) => {
+  delete = () => {
     this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
       if (resp && resp.success) {
        this.toastrService.success('Details deleted succesfully');

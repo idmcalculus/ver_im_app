@@ -7,7 +7,7 @@
                         <div class="float-left pt-3">
                             <a class="h4 pr-2">Investments</a>
                             <a class=" pl-2">Home / Investments</a>
-                        </div>  
+                        </div>
                         <div class="float-right">
                             <a class="pointer" (click)="cancelPool()">
                                 <img class="pointer" src="../../../../assets/images/icon/icons/Add-icon.png">
@@ -51,7 +51,7 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('id', $event)" 
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('id', $event)"
                                     (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
@@ -112,7 +112,7 @@
                                             <p class="col-1">{{pool.expected_return_period}}</p>
                                             <p class="col-1" style="margin-left: -10px;">{{pool.investment_amount}}</p>
                                             <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
-                                            <ng-template #showThis>      
+                                            <ng-template #showThis>
                                                 <p class="col-1" style="color: red">{{'InActive'}}</p>
                                             </ng-template>
                                             <p class="">

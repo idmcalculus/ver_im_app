@@ -1,4 +1,4 @@
-<div *ngIf="!selectedUser && !selectedEditUser" class="pcoded-content">
+<div class="pcoded-content">
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
@@ -12,7 +12,7 @@
                             <a>
                                 <img class="settings" src="../../../../assets/images/icon/icons/Add-icon.png"  routerLink="./new" routerLinkActive="active">
                             </a>
-                            <a (click)="delete(user)" id="delCat">
+                            <a (click)="delete()" id="delCat">
                                 <img class="settings" src="../../../../assets/images/icon/icons/Delete-icon.png">
                             </a>
                         </div>
@@ -23,21 +23,23 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <label class="h7">Fullname</label>
                                 <div class="col px-0">
-                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)"></a>
+                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Fullname" (keyup)="filterTable('first_name', $event)"
+                                        [ngModel]="searchValue"></a>
 
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <label class="h7">Email</label>
                                 <div class="col px-0">
-                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Email" (keyup)="filterTable('email', $event)"></a>
+                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Email" (keyup)="filterTable('email', $event)"
+                                        [ngModel]="emailValue"></a>
 
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <label class="h7">Phone Number</label>
                                 <div class="col px-0">
-                                    <a><input class="p-2" type="text" style="width: 100%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)"></a>
+                                    <a><input class="p-2" type="text" style="width: 100%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [ngModel]="numberValue"></a>
                                     <a>
                                         <button class="float-right" type="submit" (click)="clearSearch()" style="
                                         margin: 20px 0px;
@@ -79,8 +81,8 @@
                                                 <td >{{user.email}}</td>
                                                 <td >{{user.phone_number}}</td>
                                                 <td >
-                                                    <a  (click)="viewUserDetail(i)" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                                    <a  (click)="editUserDetail(i)" href="#" data-toggle="modal" data-target="#nullModal"><img class="pl-2" src="../../../../assets/images/icon/icons/Edit-icon.png"></a>
+                                                    <a  routerLink="./{{user?.email}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                    <a routerLink="./{{user?.email}}/edit"><img class="pl-2" src="../../../../assets/images/icon/icons/Edit-icon.png"></a>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -111,6 +113,3 @@
         </div>
     </div>
 </div>
-
-<app-view-customers *ngIf="selectedUser" [user]="selectedUser"></app-view-customers>
-<app-edit-customer *ngIf="selectedEditUser" [user]="selectedEditUser"></app-edit-customer>
