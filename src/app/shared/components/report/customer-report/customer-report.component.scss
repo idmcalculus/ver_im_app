@@ -18,6 +18,11 @@
     display: block;
 }
 
+a .setting {
+    width: 40px;
+    height: 35px;
+}
+
 
 .input-control {
     display: block;
@@ -70,8 +75,8 @@ td {
 	display: flex;
 	flex-flow: column nowrap;
 	overflow: auto;
-	
-	&::-webkit-scrollbar { 
+
+	&::-webkit-scrollbar {
 		display: none;  // Safari and Chrome
 	}
 }
@@ -95,7 +100,7 @@ td {
 		background-color: transparent;
 	}
 }
- 
+
 .category-header {
     display: flex;
     justify-content: space-between;
@@ -116,7 +121,7 @@ td {
     margin: 0;
     padding-right: 4px;
 }
-  
+
 .category-body .row1 {
     display: flex;
     justify-content: space-between;
@@ -135,7 +140,7 @@ td {
 .category-body .row1 p{
     padding: 0;
 }
-  
+
 .s-n, .category-name {
     flex: 1 1 30em;
     margin-left: 10px;
