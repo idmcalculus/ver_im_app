@@ -125,4 +125,6 @@ export class UserreportComponent implements OnInit {
       this.users = filtered;
     }
   }
+
+  deleteUser(){}
 }

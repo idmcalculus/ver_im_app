@@ -38,7 +38,7 @@ export class AdminDashboardComponent implements OnInit {
     legendCallback(chart) {
       updateDatasets: () => { };
       const text = [];
-      text.push('<ul style="width: 80%">');
+      text.push('<ul style="width: 70%">');
       for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
             text.push('<li style="display: flex;justify-content: space-between;font-size: 0.7rem;padding: 6% 0%;" class="data">');
             text.push('<div style="display: flex;justify-content: space-between">');

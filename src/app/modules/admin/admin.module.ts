@@ -18,7 +18,7 @@ import { AddCustomerComponent } from './manage-users/add-customer/add_customer.c
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolsComponent} from './../user/pools/pools.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import {AddUserComponent} from './manage-users/addUserToPool/addUser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
@@ -35,9 +35,9 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
 import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
+import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -58,9 +58,6 @@ import { UseractivityComponent } from 'src/app/shared/components/report/user-act
     UserreportComponent,
     UseractivityComponent,
     viewUserPoolComponent,
-    PoolsComponent,
-    PoolDetailComponent,
-    AddPoolComponent,
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
@@ -75,7 +72,9 @@ import { UseractivityComponent } from 'src/app/shared/components/report/user-act
     ViewUserGroupComponent,
     ViewUsersComponent,
     AddUsersComponent,
-    EditUsersComponent
+    EditUsersComponent,
+    PoolDetailComponent,
+    PoolsComponent
   ],
   imports: [
     CommonModule,

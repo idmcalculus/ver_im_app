@@ -25,11 +25,12 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
 import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 
 
+
 @NgModule({
   declarations: [
     UserComponent,
     EditPasswordComponent,
-    UserComponent, 
+    UserComponent,
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
@@ -46,7 +47,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     ProfileSummaryComponent,
     ChartComponent,
     ChatComponent,
-    InvestmentProfileComponent
+    InvestmentProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -55,7 +56,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     Angular2PromiseButtonModule,
     ChartsModule
   ],
-  exports:[
+  exports: [
     UserSettingsComponent,
     ProfileComponent,
     userPoolsComponent,
@@ -70,4 +71,4 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     ChatComponent,
   ]
 })
-export class UserModule { }
+export class UserModule {}
