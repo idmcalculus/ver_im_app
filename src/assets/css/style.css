@@ -3214,7 +3214,8 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
 }
 
 .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification {
-    width: 17em
+    width: 17em;
+    margin-right: 45%;
 }
 
 .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification a {
