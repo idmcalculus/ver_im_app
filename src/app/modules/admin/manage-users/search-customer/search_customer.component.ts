@@ -19,7 +19,7 @@ export class SearchCustomerComponent implements OnInit {
   user: User = {email: ''};
   selectedDelUser: User;
   checkedUser = [];
-  isLoading= true;
+  isLoading = true;
   selectedAll;
   constructor(
      private userService: UserService,
@@ -50,17 +50,18 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   checkIfAllSelected() {
-    this.selectedAll = this.users.every(function(user: User) {
-      return user.selected == true;
-    })
+    this.selectedAll = this.users.every((user: User) => {
+      return user.selected === true;
+    });
     this.getCheckedUser();
   }
 
-  getCheckedUser(){
+  getCheckedUser() {
     this.checkedUser = [];
     for (var i = 0; i < this.users.length; i++) {
-      if(this.users[i].selected)
+      if (this.users[i].selected) {
       this.checkedUser.push(this.users[i]);
+      }
     }
   }
 
@@ -70,16 +71,16 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   updateUser(user, operation) {
-    if (operation == 'enable') {
+    if (operation === 'enable') {
       this.userService.activateUser(user).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=1
         }
-      })
-    }else{
-      this.userService.deactivateUser(user).subscribe(resp=>{
-        if(resp && resp.success){
+      });
+    } else {
+      this.userService.deactivateUser(user).subscribe(resp => {
+        if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
@@ -117,10 +118,11 @@ export class SearchCustomerComponent implements OnInit {
       return this.getUsers();
     } else {
       const filtered = this.users.filter(user => {
-        if (user[filterType] !== null) {
-        return user[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
+          if (user[filterType] !== null) {
+            const filterate = user[filterType].toString();
+            return filterate.toLowerCase().includes(value.toLowerCase());
+          }
+        });
       this.users = filtered;
     }
   }

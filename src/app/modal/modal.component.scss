@@ -5,14 +5,12 @@
 	flex-flow: column;
 	justify-content: space-between;
 	color: black;
-	margin: 40px 0;
-	padding: 40px 0;
 }
 
 #modal-content-wrapper > div {
 	display: flex;
+	width: 100%;
 	flex-flow: row nowrap;
-	justify-content: space-evenly;
 }
 
 #modal-content-wrapper input {
@@ -20,24 +18,46 @@
 }
 
 #modal-buttons {
-	display: flex;
-	flex-flow: row nowrap;
-	justify-content: right;
-	justify-self: flex-end;
-	align-self: flex-end;
-	float: right;
-	font-size: large;
+	align-items: flex-end;
+	justify-content: flex-end;
+	margin-top: 10px;
+	padding-top: 10px;
 }
 
 #modal-action-button {
-	margin-right: 20px;
-	padding-right: 20px;
 	background-color: #21BD46;
 	width: 100px
 }
 
 #modal-cancel-button {
 	background-color: #4e4e4e;
-	margin-right: 10px;
 	width: 100px;
+}
+
+@media screen and (max-width: 690px) {
+
+	#modal-content-wrapper > div:not(#modal-buttons) {
+		display: flex;
+		width: 100%;
+		flex-flow: column;
+	}
+
+	#modal-content-wrapper input {
+		width: 250px;
+	}
+
+	#modal-buttons {
+		align-items: center;
+		justify-content: center;
+		margin-top: 10px;
+		padding-top: 10px;
+		flex-flow: row nowrap;
+	}
+
+	#modal-input {
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
 }

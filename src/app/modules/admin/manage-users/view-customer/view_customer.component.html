@@ -124,6 +124,7 @@
 
                     </div>
 
+
                     <div *ngIf="isLoading" class="row mb-4">
                         <div class="col-md-7 col-sm-7 col-xs-12">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
@@ -342,6 +343,20 @@
                     </div>
 
 
+                </div>
+                <div *ngIf="!isLoading" class="lds-default">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
                 </div>
             </div>
         </div>

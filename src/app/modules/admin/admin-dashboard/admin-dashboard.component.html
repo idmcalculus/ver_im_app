@@ -43,8 +43,8 @@
                                         </div>
                                     </div>
                                     <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
-                                        <p class="m-b-0 foot" style="font-size:13px;color:#1ce01c">{{dashBoardData.all_investment - dashBoardData.pending_investment}} Active</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./pools" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
+                                        <p class="m-b-0 foot" style="font-size:12px;color:#1ce01c">{{dashBoardData.all_investment - dashBoardData.pending_investment}} Active</p>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                       <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./poolReport" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -88,8 +88,8 @@
                                         </div>
                                     </div>
                                     <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" >View more...</p>
-                                        <p class="m-b-0 foot" style="font-size:13px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
+                                        <p class="m-b-0 foot" ><a routerLink="./manage-users" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
+                                        <p class="m-b-0 foot" style="font-size:12px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
                                     </div>
                                 </div>
                             </div>
@@ -141,10 +141,10 @@
                                 <h3>View Full report</h3>
                             </div>
                             <div class="card-block">
-                              <div class="dt-responsive table-responsive maps" style="display: flex;justify-content: space-between;">
-                                <div id="regions_div" style="width: 570px; height: 400px;"></div>
-                                <div *ngIf="!isLoading" style="width: 35%;">
-                                    <div class='progress-label'><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
+                              <div class="dt-responsive table-responsive maps">
+                                <div id="regions_div" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
+                                <div *ngIf="!isLoading" class="state">
+                                    <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
                                     <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
                                     </progress-bar>
                                     <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
@@ -157,6 +157,20 @@
                                     <progress-bar [progress]="0" [color]="'#488aff'">
                                     </progress-bar>
                                 </div>
+                                   <div *ngIf="isLoading" class="row lds-default" style="width:auto;height:auto;position:absolute">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                    </div>
                               </div>
                              </div>
                         </div>
@@ -173,7 +187,7 @@
                           <div class="card-block" >
                                 <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
                                     <div style="width: 48%">
-                                        <canvas  id="myChart" #mycanvas  baseChart width="700" height="960" padding="20"
+                                        <canvas  id="myChart" #mycanvas  baseChart width="600" height="850" padding="20"
                                         [data]="doughnutChartData"
                                         [labels]="doughnutChartLabels"
                                         [chartType]="doughnutChartType"
@@ -232,20 +246,21 @@
                                     <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 4),let x=index">
                                         <div class="activities">
                                           <div 
-                                            style=" border-style: solid;
-                                            padding: 18px;
+                                            style="
+                                            padding: auto;
                                             border-radius: 50%;
                                             border-color:#e8e8fe
                                             "> 
-                                            test</div> 
+                                            <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 50px;">
+                                            </div> 
                                             <div 
                                             style=" 
-                                            margin: 23px;
+                                            margin: 16px;
                                             margin-left: 10px;
-                                            font-size: 12px;
-                                            white-space:nowrap;
-                                            overflow:hidden;
-                                            text-overflow:ellipsis;
+                                            font-size: 13px;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
                                             ">{{req.activity}}</div>
                                         </div>
                                         <div *ngIf="x!=3" class="divider2"></div>
@@ -286,7 +301,7 @@
 
                               <div class="dt-responsive table-responsive">
                                       <table id="userTable"
-                                              class="table table-striped nowrap">
+                                              class="table table-striped nowrap" style="font-size:10px">
                                           <thead style="text-align:center">
                                           <tr>
                                               <th>ID</th>
@@ -312,7 +327,7 @@
                                               <td >{{req.amount_paid}}</td>
                                               <td >{{req.number_of_pools}}</td>
                                               <td  (click)="viewUserDetail(i)">
-                                                    <a (click)="pool.inViewMode=!pool.inViewMode" href="#" data-toggle="modal" data-target="#nullModal"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                     <a routerLink="./pools/{{req.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </td>
                                           </tr>
                                           </tbody>

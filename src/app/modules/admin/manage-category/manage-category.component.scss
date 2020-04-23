@@ -9,7 +9,7 @@
 }
 
 .card {
-	height: 400px;
+	height: 350px;
 }
 
 .col-sm-8 {
@@ -18,9 +18,33 @@
 	width: 33.33%;
 }
 
+div a .settings {
+    width: 50px;
+    height: 50px;
+}
+
 .col-sm-8 .card {
 	margin: 0 20px;
 	padding: 0 20px;
+}
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
+
+.card-header .constant {
+    color: #221F72;
+    margin-bottom: 2px;
+}
+
+.new {
+    border:#221F72 0.25px solid;
+    margin: 0px;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
 }
 
 .col-sm-4{
@@ -59,6 +83,10 @@
 	&::-webkit-scrollbar {
 		display: none;  // Safari and Chrome
 	}
+
+	p {
+		font-weight: bolder;
+	}
 }
 
 .col-sm-8 .card-block.category-body {
@@ -74,7 +102,6 @@
 }
 
 .card .card-block p {
-
 	margin-bottom: 0px;
 	line-height: 4;
 	color: #6c69c0;
@@ -110,9 +137,8 @@
 	  border-left: solid 1px black;
 }
 
-.category-top {
-  margin: 10px;
-  padding: 10px;
+p.category-name {
+	font-weight: bolder;
 }
 
 .col-sm-4 .card-header {
@@ -126,8 +152,9 @@
 }
 
 .col-sm-8 .card-header {
-	margin: 10px 15rem 0px 1rem;
-	padding: 10px 0px 0px 0px;
+	width: 100%;
+	margin: 10px 15rem 10px 0px;
+	padding: 10px 0px 10px 5px;
 	font-size: 20px;
 
 	::after{
@@ -135,12 +162,10 @@
 	}
 }
 
-.categories_length, .categories_filter {
-  display: inline-block;
-}
-
 .categories_filter {
   float: right;
+  display: block;
+  font-size: 16px;
 
   input{
 	  border-radius: 10px;
@@ -148,11 +173,6 @@
 	  padding-left: 5px;
 	  border-width: 0.6px;
   }
-}
-
-
-.categories_length label, .categories_filter label {
-	font-size: 16px;
 }
 
 .col-sm-4 .card-block .form-group label {
@@ -168,4 +188,44 @@
 	font-size: 14px;
 	height: 40px;
 	background: #4F5FBE;
+}
+
+@media screen and (max-width: 690px) {
+
+	.row {
+		display: flex;
+		flex-flow: column nowrap;
+	}
+
+	.col-sm-8 {
+		display: flex;
+		flex-flow: column;
+		width: 100%;
+	}
+
+	.col-sm-8 .card {
+		margin: 0;
+		padding: 0;
+		height: 450px;
+	}
+
+	.col-sm-4 .card {
+		height: 300px;
+	}
+
+	.categories_filter {
+		margin-top: 10px;
+		float: none;
+	  }
+
+	  .col-sm-8 .card-block.category-header {
+		height: 60px;
+		flex-flow: row;
+		justify-content: space-between;
+
+		p {
+			line-height: 2;
+		}
+	}
+
 }
