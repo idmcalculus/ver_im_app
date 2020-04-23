@@ -10,6 +10,7 @@ import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
 import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
+
 import {FormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
@@ -61,7 +62,6 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
-    // ManageUsersComponent,
     ManageAdminComponent,
     ViewCustomerComponent,
     EditCustomerComponent,
@@ -91,8 +91,7 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
       handleCurrentBtnOnly: false,
     }),
     ChartsModule,
-    NgxPaginationModule,
-    PaginationModule.forRoot()
+
   ], providers: [
   ], exports: [
     // ManageInvestmentComponent

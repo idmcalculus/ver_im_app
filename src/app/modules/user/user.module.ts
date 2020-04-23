@@ -24,14 +24,13 @@ import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
 
 
-
 @NgModule({
   declarations: [
+    EditPasswordComponent,
     UserComponent,
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    EditPasswordComponent,
     userPoolsComponent,
     userPoolDetailComponent,
     SideBarComponent,
@@ -43,7 +42,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     ProfileSummaryComponent,
     ChartComponent,
     ChatComponent,
-    InvestmentProfileComponent,
+    InvestmentProfileComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +51,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     Angular2PromiseButtonModule,
     ChartsModule
   ],
-  exports: [
+  exports:[
     UserSettingsComponent,
     ProfileComponent,
     userPoolsComponent,
@@ -67,4 +66,4 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     ChatComponent,
   ]
 })
-export class UserModule {}
+export class UserModule { }

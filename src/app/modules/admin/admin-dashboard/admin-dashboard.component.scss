@@ -210,11 +210,11 @@
 
 
     .divider2{
-        height: 52px;
+        height: 46.5px;
         border-width: 1px;
         border-right-style: solid;
         margin: 0px 16px;
-        width: 25px;
+        width: 17.5px;
         border-right-color: #80808030;    
     }
 
@@ -276,7 +276,7 @@
         width: 45%
     }
 
-    @media only screen and (max-width: 1508px) {
+    @media only screen and (max-width: 988px) {
         .maps{
             display: block;
             justify-content: space-between;
