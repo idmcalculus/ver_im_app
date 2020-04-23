@@ -49,20 +49,6 @@ export class PurchasedreportComponent implements OnInit {
 
   ngOnInit() {
   }
-  
-  checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
-      this.checklist[i] = this.masterSelected;
-    }
-    this.getCheckedPooList();
-  }
-
-  isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
-        return pool == true;
-      })
-    this.getCheckedPooList();
-  }
  
   getCheckedPooList(){
     this.checkedList = [];
@@ -109,15 +95,6 @@ export class PurchasedreportComponent implements OnInit {
 
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
-  }
-
-  setPlanOperation(investment) {
-
-    this.authService.setCurrentPlanOperation(investment);
-  }
-
-  setHeaderandFooter() {
-    this.authService.setInProfileView(false);
   }
 
   filterTable(filterType, filterValue: string) {

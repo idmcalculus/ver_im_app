@@ -27,9 +27,10 @@ export class UserreportComponent implements OnInit {
   userInvestment: any;
   userPool: any;
   investmentInfo: Investment = {title: '', investment_amount: 0,};
-  dashboardData = {};
-  activityLog = [];
-  noOfPools: any=[];
+  report = {};
+  reportlog = [];
+  currentlog = [];
+  email:any;
 
   constructor(
     private router: Router,
@@ -38,7 +39,9 @@ export class UserreportComponent implements OnInit {
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
     private toastrService: ToastrService
-    ) {}
+    ) {
+      this.getCategoryName(this.email);
+    }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp => {
@@ -51,59 +54,24 @@ export class UserreportComponent implements OnInit {
         this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
     });
-    this.dashboardReport();
   }
 
-  dashboardReport() {
+  getCategoryName(email) {
     this.adminService.getDashBoardData().subscribe(resp => {
       if (resp && resp.success) {
-        this.dashboardData = resp.success.Data;
-        this.activityLog.push(this.dashboardData);
-        //console.log(this.activityLog);
+        this.report = resp.success.Data;
+        this.reportlog.push(this.report);
+        this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
 
-        this.isLoading =  false;
-        this.dynamicScrLoader.loadSingle('data-table');
-        this.dynamicScrLoader.loadSingle('trigger-data-table');
+        //console.log(this.currentlog);
+        
       }
     });
+    //console.log(this.categories,'=====>')
+     const res = this.currentlog.find( r => r.email === email);
+     return res.no_of_pools_invested;
   }
-
-  // noPools(email){
-  //     return this.userInvestment.length;
-  // }
   
-
-  // showDetails() {
-  //   if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
-  //     this.investmentInfo = this.userInvestment[this.selectedInvestment];
-  //     this.getUserDashBoard();
-  //     this.selectedInvestment++;
-  //     return this.selectedInvestment;
-  //     } else {
-  //     this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //     this.isLoading = true;
-  //   }
-
-  // }
-  
-  // getUserDashBoard() {
-  //   console.log(this.investmentInfo.id);
-  //   const userEmail = this.user.email;
-  //   const investmentId = this.investmentInfo.id;
-    
-  //   this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-  //     if (resp && resp.success) {
-  //       this.dashBoardData = resp.success.Data;
-  //       //console.log(this.dashBoardData);
-  //       this.dashboardInvestment.push(this.dashBoardData);
-  //     } else {
-  //       this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //       //console.log(this.dashBoardData);
-  //     }
-  //     //console.log(this.dashboardInvestment);
-  //     this.showDetails();
-  //   });
-  // }
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
@@ -111,19 +79,6 @@ export class UserreportComponent implements OnInit {
     
   }
 
-  // getPools(email) {
-  //   //console.log(email);
-
-  //   this.investmentService.getUserInvestments(email).subscribe(investments=>{
-      
-  //     if(investments.success.Data !== 0){
-  //       this.userPool = investments.success.Data;
-  //     }
-  //     console.log(this.userPool);
-      
-  //     return this.userPool.length;
-  //   });
-  // }
 
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;

@@ -22,6 +22,7 @@ export class exportUserPoolComponent implements OnInit {
     //user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
     users: User[];
+    investment_id: string;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
     userInvestment: Investment[];
     FilteredInvestment: Investment[];
@@ -52,10 +53,13 @@ export class exportUserPoolComponent implements OnInit {
     ngOnInit() {
       this.investmentService.getUserInvestments(this.email).subscribe(investments=>{
         this.isLoading = true;
-        this.userInvestment = investments.success.Data;
+        this.investment_id = this.route.snapshot.paramMap.get("id");
+        let poolId = Number(this.investment_id);
+        this.userInvestment = investments.success.Data.filter((i)=> i.id==poolId);
+       // this.userInvestment=this.userInvestment.filter((i)=> i.id=poolId)
         console.log(this.userInvestment);
-        //this.selectedInvestment = 0;
-        //this.showDetails();
+        this.selectedInvestment = 0;
+        this.showDetails();
         this.isLoading = false;
       });
     }
