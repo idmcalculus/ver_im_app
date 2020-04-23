@@ -7,6 +7,7 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
+import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 import {FormsModule} from '@angular/forms';
 import { userPoolsComponent } from './user-pool/user-pool.component';
 import { userPoolDetailComponent } from './userpool-detail/userpool-detail.component';
@@ -21,17 +22,15 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
-import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
-
 
 
 @NgModule({
   declarations: [
-    UserComponent,
+    EditPasswordComponent,
+    UserComponent, 
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    EditPasswordComponent,
     userPoolsComponent,
     userPoolDetailComponent,
     SideBarComponent,
@@ -44,7 +43,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     ProfileSummaryComponent,
     ChartComponent,
     ChatComponent,
-    InvestmentProfileComponent,
+    InvestmentProfileComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +52,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     Angular2PromiseButtonModule,
     ChartsModule
   ],
-  exports: [
+  exports:[
     UserSettingsComponent,
     ProfileComponent,
     userPoolsComponent,
@@ -68,4 +67,4 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     ChatComponent,
   ]
 })
-export class UserModule {}
+export class UserModule { }
