@@ -69,7 +69,7 @@ export class AdminDashboardComponent implements OnInit {
         if (check !== 'None') {
         txt2 = chart.tooltip._data.datasets[0].data[chart.tooltip._active[0]._index]; // @ts-ignore
         txt1 = `${chart.tooltip._data.labels[chart.tooltip._active[0]._index]} Investments`; // @ts-ignore
-       
+
         } else {
           txt2 = sum;
         }
@@ -114,7 +114,7 @@ export class AdminDashboardComponent implements OnInit {
     private adminService: AdminService,
     private investmentService: InvestmentService,
     private careerService: CareerService
-    
+
     ) { }
     @ViewChild('mycanvas')
     canvas: ElementRef;
@@ -192,8 +192,8 @@ export class AdminDashboardComponent implements OnInit {
       return {count,amount}
     }
 
-  
-  
+
+
     updateDataset = function(e, datasetIndex) {
       const index = datasetIndex;
       const ci = e.view.myGlobalProfiles;

@@ -35,7 +35,9 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import {SearchCustomerComponent} from './manage-users/search-customer/search_customer.component';
+import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
+import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -48,15 +50,14 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
+    exportUserPoolComponent,
     AddCustomerComponent,
     ViewCustomerComponent,
     EditCustomerComponent,
     PoolreportComponent,
     UserreportComponent,
+    UseractivityComponent,
     viewUserPoolComponent,
-    PoolsComponent,
-    PoolDetailComponent,
-    AddPoolComponent,
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
@@ -71,7 +72,9 @@ import {SearchCustomerComponent} from './manage-users/search-customer/search_cus
     ViewUserGroupComponent,
     ViewUsersComponent,
     AddUsersComponent,
-    EditUsersComponent
+    EditUsersComponent,
+    PoolDetailComponent,
+    PoolsComponent
   ],
   imports: [
     CommonModule,
