@@ -18,6 +18,7 @@ export class Investment extends BasicModel {
   reference?: string;
   investment_image?: string;
   investment?: {
+    id: number;
     investment_started_date?: string;
     investment_close_date?: string;
     title?: string;
@@ -38,6 +39,13 @@ export class Investment extends BasicModel {
     reference?: string;
     investment_image?: string;
   };
+  investment_user?: [{
+    user_info: [{
+      id: number;
+      email: string;
+    }];
+    user_investment_info: {};
+  }];
   estimated_percentage_profit?:string;
 
 }

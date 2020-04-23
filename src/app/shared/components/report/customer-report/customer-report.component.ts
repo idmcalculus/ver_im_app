@@ -27,6 +27,7 @@ export class UserreportComponent implements OnInit {
   userInvestment: any;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
+  noOfPools: any=[];
 
   constructor(
     private router: Router,
@@ -35,15 +36,13 @@ export class UserreportComponent implements OnInit {
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
     private toastrService: ToastrService
-    ) {
-      //this.noPools(this.user.email);
-     }
+    ) {}
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
         this.users = resp.success.Data;
-        console.log(this.users);
+        //console.log(this.users);
         
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
@@ -53,28 +52,22 @@ export class UserreportComponent implements OnInit {
     });
   }
 
-  // noPools(email){
-  //   this.investmentService.getUserInvestments(email).subscribe(investments=>{
-  //     this.userInvestment = investments.success.Data;
-  //     console.log(this.userInvestment.length, 'Hello');
-      
-  //     return this.userInvestment.length;
-
-  //   })
-  // }
-
   getDetails() {
     this.users.forEach(user=>
       this.investmentService.getUserInvestments(user.email).subscribe(investments=>{
           this.userInvestment = investments.success.Data;
-           
+          this.noOfPools.push(this.userInvestment.length);
           //this.alluserInvestment.push(this.userInvestment)
-          //console.log(this.alluserInvestment);
+          console.log(this.noOfPools);
           //this.selectedInvestment = 0;
           //this.showDetails();
       })
     );
   }
+
+  // noPools(email){
+  //     return this.userInvestment.length;
+  // }
   
 
   // showDetails() {

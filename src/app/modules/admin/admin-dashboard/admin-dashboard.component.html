@@ -142,7 +142,7 @@
                             </div>
                             <div class="card-block">
                               <div class="dt-responsive table-responsive maps">
-                                <div id="regions_div" style="width: 570px; height: 420px;margin: 0 auto;margin-bottom:15px"></div>
+                                <div id="regions_div" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
                                 <div *ngIf="!isLoading" class="state">
                                     <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
                                     <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
@@ -255,12 +255,12 @@
                                             </div> 
                                             <div 
                                             style=" 
-                                            margin: 15px;
-                                            margin-left: 16px;
-                                            font-size: 15px;
-                                            white-space:nowrap;
-                                            overflow:hidden;
-                                            text-overflow:ellipsis;
+                                            margin: 16px;
+                                            margin-left: 10px;
+                                            font-size: 13px;
+                                            white-space: nowrap;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
                                             ">{{req.activity}}</div>
                                         </div>
                                         <div *ngIf="x!=3" class="divider2"></div>
@@ -301,7 +301,7 @@
 
                               <div class="dt-responsive table-responsive">
                                       <table id="userTable"
-                                              class="table table-striped nowrap">
+                                              class="table table-striped nowrap" style="font-size:10px">
                                           <thead style="text-align:center">
                                           <tr>
                                               <th>ID</th>

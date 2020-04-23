@@ -177,6 +177,16 @@
             }
         }
 
+        @media only screen and (max-width: 988px) {
+            &.graphs{
+                display: block;
+
+                .card-details{
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
         .card-block {
             padding: 0 0.5rem;
             font-size: 0.78rem;
@@ -200,11 +210,12 @@
 
 
     .divider2{
-        height: 43px;
+        height: 52px;
         border-width: 1px;
-        border-left-style: solid;
-        margin: 0px 8%;    
-        border-left-color: #80808030;
+        border-right-style: solid;
+        margin: 0px 16px;
+        width: 25px;
+        border-right-color: #80808030;    
     }
 
     .activities{
@@ -262,5 +273,19 @@
     }
 
     .state{
-        width: 35%
+        width: 45%
+    }
+
+    @media only screen and (max-width: 1508px) {
+        .maps{
+            display: block;
+            justify-content: space-between;
+        }
+
+        .state{
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 5%;
+        
+        }
     }

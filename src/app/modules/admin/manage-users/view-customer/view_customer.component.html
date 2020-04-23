@@ -4,7 +4,7 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body list-vacancy">
-                    <div class="row mb-4" *ngIf="isLoading" >
+                    <div *ngIf="isLoading" class="row mb-4" >
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>Profile of {{user?.first_name}} {{user?.last_name}}
                             </h3>
@@ -12,13 +12,12 @@
                         <div class="col">
                             <div class="float-right">
                                 <a >
-                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
+                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)="cancelProfile()">
                                 </a>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="row mb-4" *ngIf="isLoading">
+                    <div *ngIf="isLoading" class="row mb-4">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -125,15 +124,16 @@
 
                     </div>
 
-                    <div class="row mb-4" *ngIf="isLoading">
+
+                    <div *ngIf="isLoading" class="row mb-4">
                         <div class="col-md-7 col-sm-7 col-xs-12">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information spacing">  {{investments?.estimated_percentage_profit}}</span>
+                                <span  class="information spacing">  {{calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)}}%</span>
                                 <span class="information">Expected Returns: </span>
-                                <span  class="information">  {{investments?.expected_return_amount}}</span>
+                                <span  class="information">  {{ (investments?.investment_amount * investments?.num_of_pools_taken) + (((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)}}</span>
                             </span>
                         </div>
 
@@ -161,60 +161,60 @@
                                     <div class="container p-t-0 m-t-2 carousel-inner" style="max-width: 99%;">
                                         <div class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of userInvestment; index as i;" >
                                            <div class = "flex-row d-flex">
-                                                <div class="col-4">
-                                                        <div class="dt-responsive table-responsive">
-                                                            <table class="table reduced-font">
-                                                                <tr>
-                                                                    <td class="highlighted">Investment Title</td>
-                                                                    <td>{{investments?.title}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Payback</td>
-                                                                    <td> {{ investments?.num_of_pools_taken }} of   {{ investments?.duration }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Amount Paid</td>
-                                                                    <td class="success">{{investments?.expected_return_amount }}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
+                                        <div class="col-4">
+                                            <div class="dt-responsive table-responsive">
+                                                <table class="table reduced-font">
+                                                    <tr>
+                                                        <td class="highlighted">Investment Title</td>
+                                                        <td>{{investments?.title}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td  class="highlighted">Payback</td>
+                                                        <td> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td  class="highlighted">Amount Paid</td>
+                                                        <td class="success">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                                <div class="dt-responsive table-responsive">
+                                                    <table class="table reduced-font">
+                                                        <tr>
+                                                            <td  class="highlighted">Cost</td>
+                                                            <td>{{investments?.investment_amount}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td  class="highlighted">Last Payment</td>
+                                                            <td>{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td  class="highlighted">Amount Pending</td>
+                                                            <td class="pending">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                                <div class="col-4">
-                                                        <div class="dt-responsive table-responsive">
-                                                            <table class="table reduced-font">
-                                                                <tr>
-                                                                    <td  class="highlighted">Cost</td>
-                                                                    <td>{{investments?.investment_amount}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Last Payment</td>
-                                                                    <td>{{investments?.updated_at}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Amount Pending</td>
-                                                                    <td class="pending">{{investments?.category_id}}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
+                                        </div>
+                                        <div class="col-4">
+                                                <div class="dt-responsive table-responsive">
+                                                    <table class="table reduced-font">
+                                                        <tr>
+                                                            <td  class="highlighted">Slot(s)</td>
+                                                            <td>{{investments?.num_of_pools_taken}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td  class="highlighted">Next Payment</td>
+                                                            <td>{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td  class="highlighted">Termination Date</td>
+                                                            <td>{{investments?.investment_close_date}}</td>
+                                                        </tr>
+                                                    </table>
                                                 </div>
-                                                <div class="col-4">
-                                                        <div class="dt-responsive table-responsive">
-                                                            <table class="table reduced-font">
-                                                                <tr>
-                                                                    <td  class="highlighted">Slot(s)</td>
-                                                                    <td>{{investments?.num_of_pools_taken}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Next Payment</td>
-                                                                    <td>{{investments?.category_id}}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td  class="highlighted">Termination Date</td>
-                                                                    <td>{{investments?.investment_close_date}}</td>
-                                                                </tr>
-                                                            </table>
-                                                        </div>
-                                                </div>
+                                        </div>
                                            </div>
                                        </div>
 
@@ -308,7 +308,7 @@
                                                 <th style="width: 10%">Date Added</th>
                                             </tr>
                                             </thead>
-                                            <tbody  *ngIf="FilteredInvestment.length !== 0">
+                                            <tbody  *ngIf="FilteredInvestment.length > 0">
                                                 <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage:p, id: 'first'};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
