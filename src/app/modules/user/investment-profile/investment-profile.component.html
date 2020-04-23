@@ -8,14 +8,13 @@
                       <a class="h4 pr-2">Investment</a>
                       &nbsp; &nbsp;
                       <a class=" pl-2">Home / Investment</a>
-                  </div>  
+                  </div>
                   <div class="float-right">
                       <a (click)="goBack()">
-                          <img style="cursor: pointer;" src="../assets/images/icon/icons/Back-icon.png">
+                          <img class="settings" src="../assets/images/icon/icons/Back-icon.png">
                       </a>
                   </div>
               </div>
-              <br><br><br>
               <div *ngIf="isLoading" class="pool-details lds-default">
                 <div></div>
                 <div></div>
@@ -58,7 +57,7 @@
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>{{user?.user_investment_info?.investment_amount}}</td>
-                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
+                                              <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                       </tbody>
                                       <tbody *ngIf="loggedInUser?.user_category!='Admin'">
@@ -68,7 +67,7 @@
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                               <td>{{user?.user_investment_info?.investment_amount}}</td>
-                                              <td>{{user?.user_investment_info?.created_at | date}}</td>
+                                              <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                       </tbody>
                                   </table>
@@ -89,75 +88,77 @@
                                   </div>
                               </div>
 
-                              <div class="row pt-3 justify-content-center summary">
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-6">
-                                              <span>Start Date</span>
-                                          </div>
-                                          <div class="col-6">
-                                              <p class="">{{pool?.investment?.investment_started_date | date}}</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-6">
-                                              <span>End Date</span>
-                                          </div>
-                                          <div class="col-6">
-                                              <p class="">{{pool?.investment?.investment_close_date | date}}</p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-6">
-                                              <span>Last Payment</span>
-                                          </div>
-                                          <div class="col-6">
-                                              <p class=""></p>
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="col-3">
-                                      <div class="row">
-                                          <div class="col-6">
-                                              <span>Next Payment</span>
-                                          </div>
-                                          <div class="col-6">
-                                              <p class=""></p>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="row pt-3 justify-content-between summary">
-                                <div class="col-4 mr-auto">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <span>Total Monthly Return</span>
+                              <div class="column pt-3 summary">
+                                <div class="rowkini row mb-5">
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>Start Date</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="">{{pool?.investment?.investment_started_date}}</p>
+                                            </div>
                                         </div>
-                                        <div class="col-6">
-                                            <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots}}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>End Date</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="">{{pool?.investment?.investment_close_date}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>Last Payment</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class=""></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <span>Return Per Slot</span>
+                                <div class="rowkeji row mt-5 mb-4">
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>Total Monthly Return</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots}}</p>
+                                            </div>
                                         </div>
-                                        <div class="col-6">
-                                            <p class="">{{pool?.investment?.expected_return_amount}}</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>Return Per Slot</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class="">{{pool?.investment?.expected_return_amount}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row justify-content-center">
+                                            <div class="col-6">
+                                                <span>Next Payment</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <p class=""></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 ml-auto">
-                                    <div class="row justify-content-center">
+                                <div class="rowketa justify-content-center row">
+                                    <div class="row">
                                             <span><button>Pay Investors</button></span>
                                     </div>
                                 </div>
-                            </div>
+                              </div>
                           </div>
                       </div>
                   </div>

@@ -59,7 +59,6 @@ export class ViewCustomerComponent implements OnInit {
             }
           });
 
-
           $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
             $('.investment-card').hide();

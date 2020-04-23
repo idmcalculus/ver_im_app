@@ -137,4 +137,7 @@ export class PurchasedreportComponent implements OnInit {
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
+
+  deleteUser(){}
+  
 }
