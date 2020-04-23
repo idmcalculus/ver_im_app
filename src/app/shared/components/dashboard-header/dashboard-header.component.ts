@@ -40,10 +40,10 @@ export class DashboardHeaderComponent implements OnInit {
     this.authService.setCurrentPlanOperation(investment);
   }
 
-  TabControl(){
+ /* TabControl(){
   const items = document.querySelector('.dropdown-menu');
   items.classList.toggle('show');
 
-}
+} */
 
 }
