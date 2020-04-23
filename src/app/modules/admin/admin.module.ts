@@ -35,9 +35,9 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
-import { PoolDetailComponent } from '../user/pool-detail/pool-detail.component';
-import { PoolsComponent } from '../user/pools/pools.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -50,11 +50,13 @@ import { PoolsComponent } from '../user/pools/pools.component';
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
+    exportUserPoolComponent,
     AddCustomerComponent,
     ViewCustomerComponent,
     EditCustomerComponent,
     PoolreportComponent,
     UserreportComponent,
+    UseractivityComponent,
     viewUserPoolComponent,
     AddUserComponent,
     AddPoolComponent,
