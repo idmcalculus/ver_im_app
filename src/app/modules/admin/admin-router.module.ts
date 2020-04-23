@@ -55,15 +55,11 @@ const userRoutes: Routes = [
 
           { path: 'manage-users',
             children: [
-            {path: '',
-            children: [
               {path: '',  pathMatch: 'full', component: SearchCustomerComponent},
               {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
+              {path: ':email', component: ViewCustomerComponent },
+              {path: ':email/edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
-            ]
-            }
           ] },
           { path: 'user-group',
             children: [
