@@ -187,7 +187,7 @@
                           <div class="card-block" >
                                 <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
                                     <div style="width: 48%">
-                                        <canvas  id="myChart" #mycanvas  baseChart width="600" height="850" padding="20"
+                                        <canvas  id="myChart" #mycanvas  baseChart width="600" height="890" padding="20"
                                         [data]="doughnutChartData"
                                         [labels]="doughnutChartLabels"
                                         [chartType]="doughnutChartType"
@@ -243,7 +243,7 @@
 
 
                                 <div class="dt-responsive table-responsive">
-                                    <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 4),let x=index">
+                                    <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 5),let x=index">
                                         <div class="activities">
                                           <div 
                                             style="
@@ -251,11 +251,11 @@
                                             border-radius: 50%;
                                             border-color:#e8e8fe
                                             "> 
-                                            <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 50px;">
+                                            <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
                                             </div> 
                                             <div 
                                             style=" 
-                                            margin: 16px;
+                                            margin: 8.5px;
                                             margin-left: 10px;
                                             font-size: 13px;
                                             white-space: nowrap;
@@ -263,7 +263,7 @@
                                             text-overflow: ellipsis;
                                             ">{{req.activity}}</div>
                                         </div>
-                                        <div *ngIf="x!=3" class="divider2"></div>
+                                        <div *ngIf="x!=4" class="divider2"></div>
                                     </div>
                                         <!-- <table id="userTable"
                                                 class="table table-striped nowrap">
