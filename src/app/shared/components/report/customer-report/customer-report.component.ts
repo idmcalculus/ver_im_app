@@ -29,7 +29,8 @@ export class UserreportComponent implements OnInit {
   investmentInfo: Investment = {title: '', investment_amount: 0,};
   report = {};
   reportlog = [];
-  currentlog = [];
+  latest_return = 0;
+  currentlog = {no_of_pools_invested: 0};
   email:any;
 
   constructor(
@@ -40,7 +41,7 @@ export class UserreportComponent implements OnInit {
     private dynamicScrLoader: DynamicScriptLoaderService,
     private toastrService: ToastrService
     ) {
-      this.getCategoryName(this.email);
+      this.getpool(this.email);
     }
 
   ngOnInit() {
@@ -56,20 +57,16 @@ export class UserreportComponent implements OnInit {
     });
   }
 
-  getCategoryName(email) {
+  getpool(email) {
     this.adminService.getDashBoardData().subscribe(resp => {
       if (resp && resp.success) {
         this.report = resp.success.Data;
         this.reportlog.push(this.report);
         this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
 
-        //console.log(this.currentlog);
-        
+        console.log(this.currentlog);
       }
     });
-    //console.log(this.categories,'=====>')
-     const res = this.currentlog.find( r => r.email === email);
-     return res.no_of_pools_invested;
   }
   
 
