@@ -7,6 +7,7 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
+import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 import {FormsModule} from '@angular/forms';
 import { userPoolsComponent } from './user-pool/user-pool.component';
 import { userPoolDetailComponent } from './userpool-detail/userpool-detail.component';
@@ -26,6 +27,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
 
 @NgModule({
   declarations: [
+    EditPasswordComponent,
     UserComponent, 
     UserProfileComponent,
     UserDashboardComponent,
