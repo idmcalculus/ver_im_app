@@ -12,7 +12,7 @@ import {userPoolDetailComponent} from './../user/userpool-detail/userpool-detail
 import {userPoolsComponent} from './../user/user-pool/user-pool.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import {AddUserComponent} from './manage-users/addUserToPool/addUser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
@@ -31,6 +31,13 @@ import { ViewCustomerComponent } from './manage-users/view-customer/view_custome
 import { EditCustomerComponent } from './manage-users/edit-customer/edit_customer.component';
 import { InvestmentGroupComponent } from '../investment/investment-group/investment-group.component';
 import { InvestmentProfileComponent } from '../user/investment-profile/investment-profile.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
+import { ViewUserGroupComponent } from './user-group/view-user-group/view-user-group.component';
+import { AddUserGroupComponent } from './user-group/add-user-group/add-user-group.component';
+import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-group.component';
+import { ViewUsersComponent } from './user-group/view-users/view-users.component';
+import { AddUsersComponent } from './user-group/add-users/add-users.component';
+import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 
 
 
@@ -48,15 +55,11 @@ const userRoutes: Routes = [
 
           { path: 'manage-users',
             children: [
-            {path: '',
-            children: [
               {path: '',  pathMatch: 'full', component: SearchCustomerComponent},
               {path: 'new', component: AddCustomerComponent},
-              {path: 'view', component: ViewCustomerComponent },
-              {path: 'edit', component: EditCustomerComponent },
+              {path: ':email', component: ViewCustomerComponent },
+              {path: ':email/edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
-            ]
-            }
           ] },
           { path: 'manage-investments',
               children: [
@@ -83,6 +86,7 @@ const userRoutes: Routes = [
           { path: 'chat', component: ChatComponent},
           { path: 'addpools', component: AddPoolComponent },
           { path: 'poolReport', component: PoolreportComponent },
+          {  path: 'activityReport', component: UseractivityComponent },
           { path: 'purchasedReport', component: PurchasedreportComponent },
           { path: 'viewedReport', component: ViewedreportComponent },
           { path: 'userReport', component: UserreportComponent },

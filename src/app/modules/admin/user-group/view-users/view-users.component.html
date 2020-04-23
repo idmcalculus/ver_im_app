@@ -3,7 +3,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                    <br /><br /><br />
                     <div *ngIf="isLoading" class="lds-default">
                         <div></div>
                         <div></div>
@@ -83,7 +82,7 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                            <pagination [totalItems]="adminUsers.length" [itemsPerPage]="3" (pageChanged)="pageChanged($event)"></pagination>
+                                            
                                         </div>
                                     </div>
                                 </div>

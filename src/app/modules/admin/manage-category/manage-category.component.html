@@ -10,7 +10,7 @@
                       <a class="pl-4">Home/Investment Category</a>
                     </div>
                     <div class="float-right">
-                      <a (click)="goBack()"><img src="../../../../assets/images/icon/icons/Back-icon.png"></a>
+                      <a  (click)="goBack()"><img class="settings" src="../../../../assets/images/icon/icons/Back-icon.png"></a>
                     </div>
                 </div>
                 <br>
@@ -18,7 +18,8 @@
                     <div class="col-sm-4">
                           <div class="card">
                               <div class="card-header">
-                                  <h5>Add New Category</h5>
+                                  <h5 class="constant">Add New Category</h5>
+                                  <hr class="new">
                               </div>
                               <div class="card-block">
                                  <!-- <div class="alert alert-warning">
@@ -55,9 +56,8 @@
                                     <p class="action" scope="col">Action</p>
                             </div>
                             <div class="card-block dt-responsive category-body">
-                                <div *ngIf="isLoading" >
-                                <br><br>
-                                    <div  class="lds-default">
+                                <div *ngIf="isLoading">
+                                    <div  class="lds-default mt-5 pt-5">
                                         <div></div>
                                         <div></div>
                                         <div></div>

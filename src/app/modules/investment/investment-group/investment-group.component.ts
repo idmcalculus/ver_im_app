@@ -107,13 +107,13 @@ export class InvestmentGroupComponent implements OnInit {
     });
   }
 
-  saveToGroup(group, groupId) {
+  saveToGroup() {
     if (!this.selectedGroup && this.selectedValue.length === 0) {
       this.toastrService.info('Please select an Investment Group and investment(s) to be added to the group');
     } else {
-      group = this.selectedGroup;
-      groupId = [];
-      const data = {
+      let group = this.selectedGroup;
+      let groupId = [];
+      const data:any = {
         group_name: group,
       };
       this.selectedValue.forEach(investment => {
