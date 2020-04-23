@@ -143,6 +143,7 @@ export class AdminDashboardComponent implements OnInit {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
         console.log(this.dashBoardData)
+        this.isLoading = false;
         this.getLagos(this.dashBoardData);
         this.categoriesCount = {'transport': 10,"agriculture": 5,"housing":5,'others':0};
         this.data=100;
@@ -151,7 +152,6 @@ export class AdminDashboardComponent implements OnInit {
         let agriculture = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===20)
         let other = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===null)
         console.log(category,'====+++222')
-        this.isLoading = false;
         google.charts.setOnLoadCallback(drawRegionsMap);
         this.doughnutChartData = [[agriculture[0].no_of_pools_invested, housing, category[0].no_of_pools_invested, other[0].no_of_pools_invested]];
       }

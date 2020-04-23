@@ -18,11 +18,6 @@
     display: block;
 }
 
-a .setting {
-    width: 40px;
-    height: 35px;
-}
-
 
 .input-control {
     display: block;
@@ -101,6 +96,10 @@ td {
 	}
 }
 
+.pointer {
+    cursor: pointer;
+}
+ 
 .category-header {
     display: flex;
     justify-content: space-between;
