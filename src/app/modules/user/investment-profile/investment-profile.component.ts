@@ -66,8 +66,8 @@ export class InvestmentProfileComponent implements OnInit {
                   }
                 });
 
-                this.route.params.subscribe(resp => {
-                  this.poolId = resp.pool_id;
+                this.route.params.subscribe(async resp => {
+                  this.poolId = await resp.pool_id;
                   if (!this.poolId) {
                     this.poolId = Number(this.route.snapshot.paramMap.get('id'));
                   }
@@ -77,8 +77,8 @@ export class InvestmentProfileComponent implements OnInit {
                       if (poolDetails.success.Data) {
                         this.pool = await poolDetails.success.Data;
                         console.log(this.pool);
-                        this.userEmail = await this.pool.investment_user[0].user_info[0].email;
-                        await this.getUserDashBoard(this.poolId, this.userEmail);
+                        this.userEmail = this.pool.investment_user[0].user_info[0].email;
+                        this.getUserDashBoard(this.poolId, this.userEmail);
                       }
                     }
                   });
@@ -143,7 +143,7 @@ export class InvestmentProfileComponent implements OnInit {
     });
   }
 
-  payInvestors(report: Report) {
+  payInvestors() {
     this.isLoading = true;
     this.title = this.latestReport.title;
     this.returnedAmount = this.latestReport.returned_amount;
@@ -159,7 +159,7 @@ export class InvestmentProfileComponent implements OnInit {
       investment_id: this.investmentId,
       payment_type: this.paymentType,
       user_id: this.user_id,
-      report_id: report.id
+      report_id: 74
     };
 
     this.reportService.updateReport(data).subscribe(resp => {

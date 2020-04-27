@@ -1,0 +1,184 @@
+<div class="pcoded-content">
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div *ngIf="isLoading" >
+                    <br><br>
+                    <div  class="lds-default">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="page-body list-vacancy" *ngIf="!isLoading">
+                    <div class="row mb-4">
+                        <div class="col-xl-9 col-md-6 title-list">
+                            <h3>Profile of {{user?.user[0]?.first_name}} {{user?.user[0]?.last_name}}
+                            </h3>
+                        </div>
+                        <div class="col">
+                            <div class="float-right">
+                                <a >
+                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card" *ngFor="let investment of userInvestment;let i = index;">
+                                <div class="card-block summary-card">
+                                    <div class="row p-0">
+                                        <div class="col-12">
+                                            <h5 class="">Current Investment</h5>
+                                            <hr class="new my-0">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-xl-12">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="row">
+                                                        <div class="col-5 summary-font">
+                                                            <a class="font-weight-bold">Investment Title</a>
+                                                        </div>
+                                                        <div class="col-7 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{investment?.title}}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="row">
+                                                        <div class="col-6 summary-font">
+                                                            <a class="font-weight-bold">Cost</a>
+                                                        </div>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="row">
+                                                        <div class="col-6 summary-font">
+                                                            <a class="font-weight-bold">Slot(s)</a>
+                                                        </div>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="row">
+                                                        <div class="col-6 summary-font">
+                                                            <a class="font-weight-bold">Principal</a>
+                                                        </div>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="row">
+                                                        <div class="col-6 summary-font">
+                                                            <a class="font-weight-bold">ROI</a>
+                                                        </div>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="row">
+                                                        <div class="col-6 summary-font">
+                                                            <a class="font-weight-bold">Total Return</a>
+                                                        </div>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="pr-2">-</a>
+                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-sm-12">
+                            <h5 class="">Investment Report</h5>
+                            <div class="card px-3">
+                                <div class="category-header pt-3 p-2">
+                                    <p class="mr-3">S/N</p>
+                                    <p class="col-3">Investment Title</p>
+                                    <p class="col-2">Payback Frequency</p>
+                                    <p class="col-2">Amount Credited</p>
+                                    <p class="col-2">Yield Amount</p>
+                                    <p class="col-1">Balance</p>
+                                    <p class="mr-3">Status</p>
+                                    <p class="col-2">Date Paid</p>
+                                </div>
+                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
+                                    <div *ngIf="isLoading" >
+                                        <br><br>
+                                        <div  class="lds-default">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="category-body" *ngFor="let investments of dashboardInvestment ;index as i">
+                                        <div class="row1 p-2" *ngFor="let report of investments.investment_report ;index as i">
+                                            <p class="width">{{i+1}}</p>
+                                            <p class="width">{{report.title}}</p>
+                                            <p class="width"></p>
+                                            <p class="width">{{report.returned_amount}}</p>
+                                            <p class="width">{{report.returned_amount * (i+1)}}</p>
+                                            <p class="width"></p>
+                                            <p class="width">{{investments.category_id}}</p>
+                                            <p class="width">{{report.created_at | date :  "dd.MM.y"}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center pb-3" *ngIf="dashboardInvestment.length == '0' ">
+                                    <div class="col-6 text-center">
+                                        No record found, Investment is not yet started
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
