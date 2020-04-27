@@ -20,7 +20,7 @@ import { Report } from 'src/app/shared/models/Report';
 })
 export class InvestmentProfileComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
-  report: Report;
+  @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
   userEmail: string;
   pool: Investment;
   poolId = 0;
@@ -66,8 +66,8 @@ export class InvestmentProfileComponent implements OnInit {
                   }
                 });
 
-                this.route.params.subscribe(async resp => {
-                  this.poolId = await resp.pool_id;
+                this.route.params.subscribe(resp => {
+                  this.poolId = resp.pool_id;
                   if (!this.poolId) {
                     this.poolId = Number(this.route.snapshot.paramMap.get('id'));
                   }
@@ -143,7 +143,7 @@ export class InvestmentProfileComponent implements OnInit {
     });
   }
 
-  payInvestors() {
+  payInvestors(report: Report) {
     this.isLoading = true;
     this.title = this.latestReport.title;
     this.returnedAmount = this.latestReport.returned_amount;
@@ -152,14 +152,13 @@ export class InvestmentProfileComponent implements OnInit {
     this.investmentId = this.latestReport.investment_id;
     this.paymentType = this.latestReport.payment_type;
 
-    const data: Report = {
-      title: this.title,
+    const data = {
+      title: report.title,
       description: this.description,
-      returned_amount: this.returnedAmount,
-      investment_id: this.investmentId,
-      payment_type: this.paymentType,
-      user_id: this.user_id,
-      report_id: 74
+      returned_amount: report.returned_amount,
+      investment_id: report.investment_id,
+      payment_type: report.payment_type,
+      report_id: report.id
     };
 
     this.reportService.updateReport(data).subscribe(resp => {
