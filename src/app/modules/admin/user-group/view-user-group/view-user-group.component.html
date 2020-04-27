@@ -3,7 +3,21 @@
     <div class="main-body">
       <div class="page-wrapper">
         <div class="page-body">
-          <div class="clearfix mb-2 pb-2">
+          <div *ngIf="isLoading" class="lds-default">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+          <div *ngIf="!isLoading" class="clearfix mb-2 pb-2">
             <div class="float-left pt-2 mt-2">
               <a class="h4 pr-2" style="font-size: 24px; font-weight: bold;">UserGroup</a>
               <a class="pl-2">Home/User Group</a>
@@ -25,7 +39,7 @@
               </a>
             </div>
           </div>
-        <div class="card">
+        <div *ngIf="!isLoading" class="card">
           <div class="card-block dt-responsive usergroup-header d-flex">
             <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
             <p class="s-n" scope="col">S/N</p>

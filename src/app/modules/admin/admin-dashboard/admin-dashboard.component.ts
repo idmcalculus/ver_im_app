@@ -38,7 +38,7 @@ export class AdminDashboardComponent implements OnInit {
     legendCallback(chart) {
       updateDatasets: () => { };
       const text = [];
-      text.push('<ul style="width: 80%">');
+      text.push('<ul style="width: 70%">');
       for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
             text.push('<li style="display: flex;justify-content: space-between;font-size: 0.7rem;padding: 6% 0%;" class="data">');
             text.push('<div style="display: flex;justify-content: space-between">');
@@ -69,7 +69,7 @@ export class AdminDashboardComponent implements OnInit {
         if (check !== 'None') {
         txt2 = chart.tooltip._data.datasets[0].data[chart.tooltip._active[0]._index]; // @ts-ignore
         txt1 = `${chart.tooltip._data.labels[chart.tooltip._active[0]._index]} Investments`; // @ts-ignore
-       
+
         } else {
           txt2 = sum;
         }
@@ -114,7 +114,7 @@ export class AdminDashboardComponent implements OnInit {
     private adminService: AdminService,
     private investmentService: InvestmentService,
     private careerService: CareerService
-    
+
     ) { }
     @ViewChild('mycanvas')
     canvas: ElementRef;
@@ -143,6 +143,7 @@ export class AdminDashboardComponent implements OnInit {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
         console.log(this.dashBoardData)
+        this.isLoading = false;
         this.getLagos(this.dashBoardData);
         this.categoriesCount = {'transport': 10,"agriculture": 5,"housing":5,'others':0};
         this.data=100;
@@ -151,7 +152,6 @@ export class AdminDashboardComponent implements OnInit {
         let agriculture = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===20)
         let other = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===null)
         console.log(category,'====+++222')
-        this.isLoading = false;
         google.charts.setOnLoadCallback(drawRegionsMap);
         this.doughnutChartData = [[agriculture[0].no_of_pools_invested, housing, category[0].no_of_pools_invested, other[0].no_of_pools_invested]];
       }
@@ -192,8 +192,8 @@ export class AdminDashboardComponent implements OnInit {
       return {count,amount}
     }
 
-  
-  
+
+
     updateDataset = function(e, datasetIndex) {
       const index = datasetIndex;
       const ci = e.view.myGlobalProfiles;

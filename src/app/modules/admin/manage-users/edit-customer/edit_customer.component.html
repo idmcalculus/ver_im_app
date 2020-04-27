@@ -11,7 +11,7 @@
                     </div>
                     <div class="row">
 
-                        <div *ngIf="user==null" class="lds-default">
+                        <div *ngIf="!isLoading" class="lds-default">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -26,7 +26,7 @@
                             <div></div>
                         </div>
 
-                        <div *ngIf="user!=null" class="col-xl-12 col-md-12">
+                        <div *ngIf="isLoading" class="col-xl-12 col-md-12">
                             <div class="latest-update-card">
                                 <div class="card-block">
                                     <nav>
@@ -179,7 +179,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" (click) ="cancelProfile()" class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" class="btn-update-customer" value="UPDATE" data-toggle="modal" data-target="#confirmAction">
                                                         </div>
                                                     </div>
@@ -259,7 +259,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" (click) ="cancelProfile()"  class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" data-toggle="modal" data-target="#confirmBank" class="btn-update-customer" value="UPDATE">
                                                         </div>
                                                     </div>
@@ -329,7 +329,7 @@
                                                 <div class="form-group">
                                                     <div class="float-right">
                                                         <div class="d-flex flex-row">
-                                                            <input type="button" routerLink="./search" routerLinkActive="active" class="btn-cancel-customer" value="CANCEL">
+                                                            <input type="button" (click) ="cancelProfile()"  class="btn-cancel-customer" value="CANCEL">
                                                             <input type="button" data-toggle="modal" data-target="#confirmPreference" class=" btn-update-customer" value="UPDATE">
                                                         </div>
                                                     </div>

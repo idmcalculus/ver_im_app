@@ -1,11 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-customers',
@@ -14,7 +13,8 @@ import { Location } from '@angular/common';
 })
 export class ViewCustomerComponent implements OnInit {
     _shown = true;
-    @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
+    userData: any [];
+    user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
     p: number = 1;
@@ -23,7 +23,7 @@ export class ViewCustomerComponent implements OnInit {
     FilteredInvestment: Investment[];
     dashboardInvestment: any =[];
     isLoading: boolean;
-    categories=[];
+   // categories=[];
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
     constructor(
@@ -31,13 +31,22 @@ export class ViewCustomerComponent implements OnInit {
       private userService: UserService,
       private toastrService: ToastrService,
       private router: Router,
-      private location: Location
+      private route: ActivatedRoute
       ) {
-        this.getCategories();
+     //   this.getCategories();
         this.isLoading = false;
        }
 
     ngOnInit() {
+        this.user.email = this.route.snapshot.paramMap.get('email');
+        this.userService.getProfileDetails(this.user.email).subscribe(resp => {
+            if (resp && resp.success) {
+            this.userData = resp.success.Data.user;
+            this.user = this.userData[0];
+
+            }
+        });
+
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
@@ -53,18 +62,17 @@ export class ViewCustomerComponent implements OnInit {
 
           $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
-            console.log(Number(to))
             $('.investment-card').hide();
-            let element = document.getElementsByClassName('investment-card')[to] as HTMLInputElement;
+            let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
             element.style.display = 'block';
 
-            $('#investmentTable').find('> tbody > tr').hide();
-            const row = $('#investmentTable').find('> tbody > tr')[Number(to)] as HTMLInputElement;
+            $('#investmentTable').find('> tbody').hide();
+            const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
             row.style.display = 'contents';
             })
-        }
 
-    getCategories() {
+        }
+   /* getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {
             this.categories = resp.success.Data;
@@ -76,7 +84,7 @@ export class ViewCustomerComponent implements OnInit {
         const res = this.categories.find( r=> r.id == 21);
         return res.category_name;
       }
-
+*/
 
     showDetails() {
         if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
@@ -98,17 +106,14 @@ export class ViewCustomerComponent implements OnInit {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
             this.dashboardInvestment.push(this.dashBoardData);
+            console.log(this.dashboardInvestment, 'HELLO');
+
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
           }
           this.showDetails();
         });
       }
-
-    Back(){
-        this.location.back();
-    }
-
 
     updateUser(user, operation) {
         if (operation == 'enable') {
@@ -129,8 +134,10 @@ export class ViewCustomerComponent implements OnInit {
 
       }
 
-
-
+      cancelProfile() {
+        this.user = null;
+        this.router.navigateByUrl('admin/manage-users');
+    }
 
     delete (users: User) {
         this.userService.deleteUser(users).subscribe(resp => {

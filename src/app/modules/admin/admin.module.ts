@@ -16,9 +16,9 @@ import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
 import { AddCustomerComponent } from './manage-users/add-customer/add_customer.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
-import {PoolsComponent} from '../user/pools/pools.component';
-import {PoolDetailComponent} from '../user/pool-detail/pool-detail.component';
-import {AddUserComponent} from '../../shared/components/addUserToPool/adduser.component';
+import {PoolsComponent} from './../user/pools/pools.component';
+import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
+import {AddUserComponent} from './manage-users/addUserToPool/addUser.component';
 import {PoolreportComponent} from '../../shared/components/report/investment-report/investment-report.component';
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
@@ -35,8 +35,10 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
 import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
+import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
+import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -49,16 +51,17 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEF
     ApplicantsComponent,
     CreateComponent,
     ListComponent,
+    exportUserPoolComponent,
     AddCustomerComponent,
     ViewCustomerComponent,
     EditCustomerComponent,
     PoolreportComponent,
     UserreportComponent,
+    UseractivityComponent,
     viewUserPoolComponent,
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,
-    // ManageUsersComponent,
     ManageAdminComponent,
     ViewCustomerComponent,
     EditCustomerComponent,

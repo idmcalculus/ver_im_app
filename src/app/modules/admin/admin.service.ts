@@ -37,8 +37,6 @@ export class AdminService {
   }
 
   addUserToPool(Details) {
-    console.log(Details);
-    
     return this.httpService.postRequest(`investment_user/create?investment_id=${Details.investment_id}
     &number_of_pools=${Details.number_of_pools}&amount_paid=${Details.amount_paid}
     &payment_reference=${Details.payment_reference}&user_email=${Details.user_email}`, null);
@@ -48,6 +46,10 @@ export class AdminService {
     return this.httpService.postRequest(`investment_user/create?investment_id=${Details.investment_id}
     &number_of_pools=${Details.number_of_pools}&amount_paid=${Details.amount_paid}
     &payment_reference=${Details.payment_reference}&user_email=${Details.user_email}`, null);
+  }
+
+  getUserCategories() {
+    return this.httpService.postRequest(`admin/getUserCategories`, null);
   }
 
 }
