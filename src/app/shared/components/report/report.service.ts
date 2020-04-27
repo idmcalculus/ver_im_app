@@ -5,27 +5,22 @@ import { Report } from '../../models/Report';
 
 @Injectable({ providedIn: 'root' })
 export class ReportService {
-  constructor(
-    private httpService:HttpService
-  ) { }
-  
-  createReport(report:Report): Observable<any> {
+  constructor(private httpService: HttpService) {}
+
+  createReport(report: Report): Observable<any> {
     return this.httpService.postRequest(`report/create?title=${report.title}
     &description=${report.description}&returned_amount=${report.returned_amount}
-    &investment_id=${report.investment_id}&payment_type=${report.payment_type}`,{},true);
+    &investment_id=${report.investment_id}&payment_type=${report.payment_type}`, {}, true);
   }
 
-  updateReport(report:Report): Observable<any> {
+  updateReport(report: Report): Observable<any> {
     return this.httpService.postRequest(`report/update?title=${report.title}
     &description=${report.description}&returned_amount=${report.returned_amount}
-    &investment_id=${report.investment_id}&payment_type=${report.payment_type}
-    &report_id=${report.id}`,{},true);
+    &investment_id=${report.investment_id}&payment_type=${report.payment_type}&report_id=${report.id}`, {}, true);
   }
 
-  deleteReport(report:Report): Observable<any> {
-    return this.httpService.postRequest(`report/delete?report_id=${report.id}`,{},true);
+  deleteReport(report: Report): Observable<any> {
+    return this.httpService.postRequest(`report/delete?report_id=${report.id}`, {}, true);
   }
-
-  
 
 }

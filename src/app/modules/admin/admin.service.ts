@@ -50,4 +50,8 @@ export class AdminService {
     &payment_reference=${Details.payment_reference}&user_email=${Details.user_email}`, null);
   }
 
+  getUserCategories() {
+    return this.httpService.postRequest(`admin/getUserCategories`, null);
+  }
+
 }
