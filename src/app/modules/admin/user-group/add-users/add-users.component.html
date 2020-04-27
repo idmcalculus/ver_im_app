@@ -17,13 +17,13 @@
               <mat-form-field>
                 <div class="form-group d-flex">
                   <mat-label for="userName"><span style="color: red;">*</span>User Name</mat-label>
-                  <input matInput type="text" id="userName">
+                  <input matInput type="text" id="userName" [(ngModel)]="userName">
                 </div>
               </mat-form-field>
               <mat-form-field>
                 <div class="form-group d-flex">
                   <mat-label for="userGroup">User Group</mat-label>
-                  <mat-select placeholder="Select User Group" id="userGroup" class="form-control">
+                  <mat-select placeholder="Select User Group" id="userGroup" class="form-control" [(ngModel)]="selectedUserGroup">
                     <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup.value">{{usergroup.value}}</mat-option>
                   </mat-select>
                 </div>
@@ -31,25 +31,25 @@
               <mat-form-field>
                 <div class="form-group d-flex">
                   <mat-label for="firstName"><span style="color: red;">*</span>First Name</mat-label>
-                  <input matInput type="text" id="firstName">
+                  <input matInput type="text" id="firstName" [(ngModel)]="firstName">
                 </div>
               </mat-form-field>
               <mat-form-field>
                 <div class="investment-grp-name form-group d-flex">
                   <mat-label for="lastName"><span style="color: red;">*</span>Last Name</mat-label>
-                  <input matInput type="text" id="lastName">
+                  <input matInput type="text" id="lastName" [(ngModel)]="lastName">
                 </div>
               </mat-form-field>
               <mat-form-field>
                 <div class="investment-grp-name form-group d-flex">
                   <mat-label for="email"><span style="color: red;">*</span>E-mail</mat-label>
-                  <input matInput type="email" id="email">
+                  <input matInput type="email" id="email" [(ngModel)]="email">
                 </div>
               </mat-form-field>
               <mat-form-field>
                 <div class="investment-grp-name form-group d-flex">
                   <mat-label for="password"><span style="color: red;">*</span>Password</mat-label>
-                  <input matInput type="password" id="password">
+                  <input matInput type="password" id="password" [(ngModel)]="password">
                 </div>
               </mat-form-field>
               <mat-form-field>
@@ -65,8 +65,8 @@
                 </div>
               </mat-form-field>
               <div class="buttons mt-3 pt-3">
-                <button mat-raised-button class="cancel-button">Cancel</button>&nbsp; &nbsp;
-                <button mat-raised-button class="submit-button" (click)="goBack()">Submit</button>
+                <button mat-raised-button class="cancel-button" (click)="goBack()">Cancel</button>&nbsp; &nbsp;
+                <button mat-raised-button class="submit-button" (click)="createAdmin()">Submit</button>
               </div>
             </div>
           </div>
