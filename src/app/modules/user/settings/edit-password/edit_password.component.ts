@@ -15,7 +15,9 @@ export class EditPasswordComponent implements OnInit {
   @ViewChild('pass') input;
   @ViewChild('confirmPass') input2;
   @ViewChild('error') error;
+  @ViewChild('closebutton') closebutton;
 
+   modalText = 'Save Changes';
   _shown = true;
   isSubmitting;
   isLoading = true;
@@ -51,15 +53,18 @@ changePassword(): void {
         }
         if (this.passText && this.confirmPassText !== '') {
             if (this.passText === this.confirmPassText) {
+            this.modalText = 'Updating...';
+
             this.isSubmitting = this.userService.changePassword(this.passText).subscribe(resp => {
                 if (resp && resp.success) {
                 this.toastrService.success('Password updated succesfully');
                 this.passText = '';
                 this.confirmPassText = '';
                 localStorage.setItem('token', resp.success.Token);
+                this.modalText = 'Save Changes';
+                this.closebutton.nativeElement.click();
                 }
             });
-            console.log(this.passText);
             } else {
             // alert('Passwords do not match');
             this.toastrService.error('Passwords do not match');

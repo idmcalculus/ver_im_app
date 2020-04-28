@@ -16,7 +16,12 @@ import { ToastrService } from 'ngx-toastr';
 export class UserSettingsComponent implements OnInit {
     @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     @ViewChild('error') error;
-     image;
+    @ViewChild('closebutton') closebutton;
+    @ViewChild('closetab') closetab;
+    @ViewChild('closemodal') closemodal;
+
+    modalText = 'Save Changes';
+    image;
     _shown = true;
     userSubscription: Subscription;
     isSubmitting;
@@ -69,35 +74,53 @@ updateProfile(user: User) {
 if (this.user.average_monthly_income === null) {
   this.user.average_monthly_income = '0';
 }
+this.modalText = 'Updating...';
+
 this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp => {
   if (resp && resp.success) {
   this.toastrService.success('Details updated succesfully');
+  this.modalText = 'Save Changes';
+  this.closebutton.nativeElement.click();
   }
 else {
   // alert('Update did not go through');
   this.toastrService.error('Details update failed');
+  this.modalText = 'Save Changes';
+  this.closebutton.nativeElement.click();
   }
 });
 }
 
 updatePreference(user: User) {
+this.modalText = 'Updating...';
+
 this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp => {
       if (resp && resp.success) {
       this.toastrService.success('Details updated succesfully');
+      this.modalText = 'Save Changes';
+      this.closetab.nativeElement.click();
       } else {
           // alert('Update did not go through');
           this.toastrService.error('Details update failed');
+          this.modalText = 'Save Changes';
+          this.closetab.nativeElement.click();
           }
   });
   }
 
 updateBankDetails(user: User) {
+this.modalText = 'Updating...';
+
 this.isSubmitting = this.userService.updateBankDetails(this.user).subscribe(resp => {
       if (resp && resp.success) {
       this.toastrService.success('Details updated succesfully');
+      this.modalText = 'Save Changes';
+      this.closemodal.nativeElement.click();
       } else {
           // alert('Update did not go through');
           this.toastrService.error('Details update failed');
+          this.modalText = 'Save Changes';
+          this.closemodal.nativeElement.click();
           }
 });
   }
