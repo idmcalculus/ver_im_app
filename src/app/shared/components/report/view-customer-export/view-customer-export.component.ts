@@ -16,16 +16,14 @@ import { subscribeOn } from 'rxjs/operators';
 })
 export class exportUserPoolComponent implements OnInit {
     _shown = true;
+    pools:Investment[]=[];
     user: any;
     email:any;
     //user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
     users: User[];
+    investment_id: string;
     dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
-    p: number = 1;
-    p2: number =1;
-    routeUser: string ;
-    currentURL: string;
     userInvestment: Investment[];
     FilteredInvestment: Investment[];
     dashboardInvestment: any =[];
@@ -46,41 +44,38 @@ export class exportUserPoolComponent implements OnInit {
         this.isLoading = true;
         this.userService.getProfileDetails(this.email).subscribe(userx=> {
           this.user = userx.success.Data;
-          console.log(this.user.user[0].first_name, 'Hello');
+         // console.log(this.user.user[0].first_name, 'Hello');
           this.isLoading = false;
           
         });
 
       }
-
     ngOnInit() {
       this.investmentService.getUserInvestments(this.email).subscribe(investments=>{
-        console.log(investments);
         this.isLoading = true;
-        this.userInvestment = investments.success.Data;
+        this.investment_id = this.route.snapshot.paramMap.get("id");
+        let poolId = Number(this.investment_id);
+        this.userInvestment = investments.success.Data.filter((i)=> i.id==poolId);
+       // this.userInvestment=this.userInvestment.filter((i)=> i.id=poolId)
         console.log(this.userInvestment);
-        //this.selectedInvestment = 0;
-        //this.showDetails();
+        this.selectedInvestment = 0;
+        this.showDetails();
         this.isLoading = false;
       });
     }
 
-    fetchPool(poolId: string) {
+    getPools() {
       this.isLoading = true;
-      this.userService.getProfileDetails(this.email).subscribe(poolDetails => {
-        if (poolDetails && poolDetails.success) {
-          if (poolDetails.success.Data) {
-            this.user = poolDetails.success.Data;
-            // console.log("i have gat :: "+JSON.stringify(this.pool))
-            this.isLoading = false;
-          } else {
-            this.router.navigate(['./', {}]);
-          }
-        } else {
+      this.investmentService.getInvestments(false).subscribe(investments => {
+        if (investments) {
+          this.pools = investments.success.Data;
+          console.log(this.pools);
+          
         }
+        this.isLoading = false;
       });
     }
-
+    
    showDetails() {
      if ( this.selectedInvestment >= 0) {
          this.investmentInfo = this.userInvestment[this.selectedInvestment];

@@ -9,11 +9,11 @@
                             <a class=" pl-2">Home / Product Viewed Report</a>
                         </div>  
                         <div class="float-right">
-                            <a>
+                            <a class="pr-3">
                                 <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
                             </a>
-                            <a (click)="deleteUser()" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
+                            <a>
+                                <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>
                     </div>
@@ -21,12 +21,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
-                                <div class="category-header pt-3 p-2">
-                                    <p class="col-2">Investment Title</p>
-                                    <p class="col-2">Category</p>
-                                    <p class="col-3">Cost</p>
-                                    <p class="col-3">Viewed</p>
-                                    <p class="col-2">Total</p>
+                                <div class="category-header py-3 p-2">
+                                    <p class="width">Investment Title</p>
+                                    <p class="width">Category</p>
+                                    <p class="width">Cost</p>
+                                    <p class="width">Number of slots</p>
+                                    <p class="width">Total</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
                                     <div *ngIf="isLoading" >
@@ -46,15 +46,15 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    <!-- <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
+                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
                                         <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="width">{{pool.id}}</p>
                                             <p class="width">{{pool.title}}</p>
                                             <p class="width">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="width">{{pool.expected_return_period}}</p>
                                             <p class="width">{{pool.investment_amount}}</p>
+                                            <p class="width">{{pool.max_num_of_slots}}</p>
+                                            <p class="width">{{pool.max_num_of_slots * pool.investment_amount}}</p>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
