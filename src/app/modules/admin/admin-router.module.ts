@@ -61,6 +61,18 @@ const userRoutes: Routes = [
               {path: ':email/edit', component: EditCustomerComponent },
               {path: 'search', component: SearchCustomerComponent },
           ] },
+          { path: 'user-group',
+            children: [
+              {path: '',
+              children: [
+                {path: '', component: ViewUserGroupComponent},
+                {path: 'add', component: AddUserGroupComponent},
+                {path: 'edit', component: EditUserGroupComponent },
+                {path: 'view-users', component: ViewUsersComponent },
+                {path: 'add-users', component: AddUsersComponent },
+                {path: 'edit-users', component: EditUsersComponent}
+              ]}
+          ]},
           { path: 'manage-investments',
               children: [
                 //{path: '', component: PoolsComponent},
@@ -93,7 +105,7 @@ const userRoutes: Routes = [
           { path: 'userReport/:email', component: viewUserPoolComponent },
           { path: 'userReport/:email/export/:id', component: exportUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
-          { path: 'pools/id', component: PoolDetailComponent },
+          { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },
           { path: 'userPools/:id', component: userPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },

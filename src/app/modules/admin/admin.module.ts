@@ -10,8 +10,7 @@ import {UserModule} from './../user/user.module';
 import {CareerModule} from './../career/career.module';
 import { ChartsModule } from 'ng2-charts';
 import { ViewCustomerComponent } from './manage-users/view-customer/view_customer.component';
-
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApplicantsComponent} from './manage-career/applicants/applicants.component';
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -36,6 +35,7 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
 import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
@@ -83,6 +83,7 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
     UserModule,
     CareerModule,
     FormsModule,
+    ReactiveFormsModule,
     ProgressBarModule,
     Angular2PromiseButtonModule.forRoot({
       spinnerTpl: '<span class="btn-spinner"></span>',
@@ -91,8 +92,13 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
       handleCurrentBtnOnly: false,
     }),
     ChartsModule,
-
+    NgxPaginationModule,
+    PaginationModule.forRoot(),
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ], providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'}}
   ], exports: [
     // ManageInvestmentComponent
   ]
