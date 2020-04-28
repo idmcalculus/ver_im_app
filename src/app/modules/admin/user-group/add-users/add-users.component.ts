@@ -23,7 +23,9 @@ export class AddUsersComponent implements OnInit {
   lastName: '';
   firstName: '';
   selectedUserGroup: '';
+  selectedStatus: '';
   password: '';
+  confirmPassword: '';
   userName: '';
 
   constructor(private location: Location,
@@ -48,27 +50,35 @@ export class AddUsersComponent implements OnInit {
     });
   }
 
-  /*email=${userCreds.email}&authentication_type=${userCreds.authentication_type}
-    &password=${userCreds.password}&first_name=${userCreds.first_name}&last_name=${userCreds.last_name}
-    &user_category=${userCreds.user_category}*/
-
   createAdmin() {
-    const data = {
-      email: this.email,
-      authentication_type: 'E',
-      password: this.password,
-      first_name: this.firstName,
-      last_name: this.lastName,
-      user_category: this.selectedUserGroup,
-      username: this.userName
-    };
-    this.signupService.register(data).subscribe(resp => {
-      if (resp && resp.success) {
-        this.toastrService.success('Admin User created successfully');
-      } else {
-        this.toastrService.error('There is an issue creating the Admin User');
-      }
-    });
+    this.isLoading = true;
+    if (this.confirmPassword === this.password) {
+
+      const data = {
+        email: this.email,
+        authentication_type: 'E',
+        password: this.password,
+        first_name: this.firstName,
+        last_name: this.lastName,
+        user_category: this.selectedUserGroup,
+        username: this.userName,
+        status: this.selectedStatus
+      };
+
+      console.log(data);
+
+      this.signupService.register(data).subscribe(resp => {
+        if (resp && resp.success) {
+          this.toastrService.success('Admin User created successfully');
+          this.isLoading = false;
+          this.location.back();
+        } else {
+          this.toastrService.error('There is an issue creating the Admin User');
+        }
+      });
+    } else {
+      this.toastrService.error('Passwords do not match');
+    }
 
   }
 

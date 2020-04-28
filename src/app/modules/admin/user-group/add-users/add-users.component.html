@@ -27,6 +27,7 @@
                     <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup.value">{{usergroup.value}}</mat-option>
                   </mat-select>
                 </div>
+                <p>{{selectedUserGroup}}</p>
               </mat-form-field>
               <mat-form-field>
                 <div class="form-group d-flex">
@@ -55,13 +56,16 @@
               <mat-form-field>
                 <div class="investment-grp-name form-group d-flex">
                   <mat-label for="confirm"><span style="color: red;">*</span>confirm</mat-label>
-                  <input matInput type="password" id="confirm">
+                  <input matInput type="password" id="confirm" [(ngModel)]="confirmPassword">
                 </div>
               </mat-form-field>
               <mat-form-field>
                 <div class="investment-grp-name form-group d-flex">
                   <mat-label for="status"><span style="color: red;">*</span>Status</mat-label>
-                  <input matInput type="text" id="status">
+                  <mat-select placeholder="Status" id="status" class="form-control" [(ngModel)]="selectedStatus">
+                    <mat-option value="Enabled">Enable</mat-option>
+                    <mat-option value="Disabled">Disable</mat-option>
+                  </mat-select>
                 </div>
               </mat-form-field>
               <div class="buttons mt-3 pt-3">

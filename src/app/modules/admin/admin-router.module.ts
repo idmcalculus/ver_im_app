@@ -62,18 +62,17 @@ const userRoutes: Routes = [
               {path: 'search', component: SearchCustomerComponent },
           ] },
           { path: 'user-group',
-          children: [
-          {path: '',
-          children: [
-            {path: '', component: ViewUserGroupComponent},
-            {path: 'add', component: AddUserGroupComponent},
-            {path: 'edit', component: EditUserGroupComponent },
-            {path: 'view-users', component: ViewUsersComponent },
-            {path: 'add-users', component: AddUsersComponent },
-            {path: 'edit-users', component: EditUsersComponent}
-          ]
-          }
-        ] },
+            children: [
+              {path: '',
+              children: [
+                {path: '', component: ViewUserGroupComponent},
+                {path: 'add', component: AddUserGroupComponent},
+                {path: 'edit', component: EditUserGroupComponent },
+                {path: 'view-users', component: ViewUsersComponent },
+                {path: 'add-users', component: AddUsersComponent },
+                {path: 'edit-users', component: EditUsersComponent}
+              ]}
+          ]},
           { path: 'manage-investments',
               children: [
                 //{path: '', component: PoolsComponent},
