@@ -74,6 +74,7 @@ updateProfile(user: User) {
 if (this.user.average_monthly_income === null) {
   this.user.average_monthly_income = '0';
 }
+this.user.user_category = 'User'
 this.modalText = 'Updating...';
 
 this.isSubmitting = this.userService.updateProfile(this.user).subscribe(resp => {
