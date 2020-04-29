@@ -27,7 +27,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
 @NgModule({
   declarations: [
     EditPasswordComponent,
-    UserComponent, 
+    UserComponent,
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
@@ -37,7 +37,6 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     HeaderComponent,
     DashboardHeaderComponent,
     ReportComponent,
-    EditPasswordComponent,
     ManageInvestmentComponent,
     ProfileComponent,
     ProfileSummaryComponent,

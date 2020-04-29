@@ -213,7 +213,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                         <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
@@ -222,7 +222,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">Save changes</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateProfile()" class="btn btn-primary">{{modalText}}</button>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -292,7 +292,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                         <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" #closemodal class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
@@ -301,7 +301,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">Save changes</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updateBankDetails()" class="btn btn-primary">{{modalText}}</button>
                                                         </div>
                                                     </div>
                                                     </div>
@@ -360,7 +360,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                         <h5 class="modal-title" id="confirmActionTitle">Confirm Changes Made</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <button type="button" #closetab class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                         </div>
@@ -369,7 +369,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="btn btn-primary">Save changes</button>
+                                                        <button type="button"  [promiseBtn]="isSubmitting" (click)="updatePreference()" class="btn btn-primary">{{modalText}}</button>
                                                         </div>
                                                     </div>
                                                     </div>
