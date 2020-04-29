@@ -10,7 +10,7 @@ export class Investment extends BasicModel {
   investment_amount?: number;
   opening_date?: string;
   closing_date?: string;
-  show_publicly? = false;
+  show_publicly ? = false;
   is_investment_ended?: string;
   investment_ended_date?: string;
   expected_return_amount?: string;
@@ -46,6 +46,7 @@ export class Investment extends BasicModel {
     }];
     user_investment_info: {};
   }];
-  estimated_percentage_profit?:string;
+  estimated_percentage_profit?: string;
+  report?: any;
 
 }

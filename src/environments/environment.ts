@@ -9,7 +9,7 @@ export const environment = {
         messagingSenderId: '839682288435',
         appId: '1:839682288435:web:d97490f5a3851bd2'
     },
-    'app-live-url': 'http://13.127.86.5/api',
+    'app-live-url': 'http://13.235.254.88/api',
     'server_services_base': 'https://versa.ng',
     'cloudinary': {
         url: 'https://api.cloudinary.com',

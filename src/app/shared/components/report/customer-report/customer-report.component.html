@@ -9,11 +9,11 @@
                             <a class=" pl-2">Home / Customer Report</a>
                         </div>  
                         <div class="float-right">
-                            <a>
+                            <a class="pr-3">
                                 <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
                             </a>
-                            <a (click)="deleteUser()" id="delCat">
-                                <img class="" src="../../../../assets/images/icon/icons/Delete-icon.png">
+                            <a>
+                                <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>
                     </div>
@@ -76,10 +76,10 @@
                                             <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
                                             <p class="col-2">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
-                                            <p class="col-2">{{user.email}}</p>
+                                            <p class="col-2" >{{(user.email).no_of_pools_invested}}</p>
                                             <p class="col-2">{{user.investment_amount}}</p>
                                             <p class="col-1">
-                                                <a (click)="goto(user)"  ><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                <a (click)="goto(user)"  ><img class="pr-2 pointer" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </p>
                                         </div>
                                     </div>

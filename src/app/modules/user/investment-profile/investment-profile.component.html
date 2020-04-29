@@ -15,7 +15,7 @@
                       </a>
                   </div>
               </div>
-              <div *ngIf="isLoading" class="pool-details lds-default">
+              <div *ngIf="isLoading" class="lds-default">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -28,7 +28,7 @@
                 <div></div>
                 <div></div>
                 <div></div>
-            </div>
+              </div>
                 <div class="row" *ngIf="!isLoading">
                   <div class="col-xl-12">
                       <div class="card ">
@@ -115,8 +115,8 @@
                                             <div class="col-6">
                                                 <span>Last Payment</span>
                                             </div>
-                                            <div class="col-6">
-                                                <p class="">{{ dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at | date :  "dd.MM.y"}}</p>
+                                            <div class="col-6" *ngIf="latestReport?.created_at">
+                                                <p class="">{{ latestReport?.created_at | date :  "dd.MM.y" }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -147,9 +147,9 @@
                                             <div class="col-6">
                                                 <span>Next Payment</span>
                                             </div>
-                                            <div class="col-6">
-                                                <p class="" *ngIf="dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at">
-                                                    {{ addMonth(dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at , 1)  | date:  "dd.MM.y" }}
+                                            <div class="col-6" *ngIf="latestReport?.created_at">
+                                                <p class="">
+                                                    {{ addMonth(latestReport?.created_at , 1)  | date:  "dd.MM.y" }}
                                                 </p>
                                             </div>
                                         </div>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="rowketa justify-content-center row">
                                     <div class="row">
-                                            <span><button>Pay Investors</button></span>
+                                            <span><button (click)="payInvestors(latestReport)">Pay Investors</button></span>
                                     </div>
                                 </div>
                               </div>

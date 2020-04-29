@@ -29,18 +29,18 @@
                     </a>
                 </li>
                 <li [hidden]="!isUser" class="pcoded">
-                    <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
+                    <a routerLink="./settings" routerLinkActive="active" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Settings</span>
                     </a>
                 </li>
                 <li [hidden]="!isUser" class="pcoded">
-                    <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
+                    <a routerLink="#" routerLinkActive="active" class="waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Help Center</span>
                     </a>
                 </li>
-                <li class="pcoded-hasmenu">
+                <li [hidden]="isUser" class="pcoded-hasmenu">
                     <a routerLink="./pools" class="dropdown-btn waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                           <span class="pcoded-mtext">Investments</span>
@@ -72,7 +72,7 @@
                         <span class="pcoded-mtext">Customers</span>
                     </a>
                 </li>
-                <li class="pcoded-hasmenu">
+                <li [hidden]="isUser" class="pcoded-hasmenu">
                     <a routerLink="./user-group" class="dropdown-btn waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-user"></i></span>
                           <span class="pcoded-mtext">UserGroup</span>
@@ -114,27 +114,27 @@
                         <span class="pcoded-mtext">Categories</span>
                     </a>
                 </li> -->
-
-                <li class="pcoded-hasmenu">
-                   <a routerLink="./investments" class="dropdown-btn waves-effect waves-dark">
+                <li [hidden]="isUser" class="pcoded-hasmenu">
+                   <a routerLink="./manage-career" class="dropdown-btn waves-effect waves-dark">
                          <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Careers</span>
                     </a>
                     <ul class="dropdown-container">
-                         <li>
-                            <a routerLink="./manage-admins" routerLinkActive="active" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Admins</span>
-                            </a>
-                        </li>
                         <li>
-                            <a routerLink="./manage-admins" routerLinkActive="active" class="waves-effect waves-dark">
-                                <span class="pcoded-mtext">Super Admins</span>
+                            <a routerLink="./manage-career/" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Job Placements</span>
+                            </a>
+                            
+                        </li>
+                         <li>
+                            <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark">
+                                <span class="pcoded-mtext">Applicants</span>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                <li class="pcoded-hasmenu">
+                <li [hidden]="isUser" class="pcoded-hasmenu">
                    <a class="dropdown-btn waves-effect waves-dark">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Reports</span>
@@ -151,7 +151,7 @@
                             </a>
                         </li>
                         <li>
-                            <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./activityReport" routerLinkActive="active" class="waves-effect waves-dark">
                                 <span class="pcoded-mtext">User Activity Report</span>
                             </a>
                         </li>

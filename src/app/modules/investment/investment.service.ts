@@ -43,6 +43,10 @@ export class InvestmentService {
   getUserInvestments(email): Observable<any> {
     return this.httpService.postRequest('investment_user/listInvestmentOfUser', { "user_id": email });
   }
+  
+  getpoolReport() {
+    return this.httpService.postRequest('investment_user/getInvestmentPerDay?', null);
+  }
 
   getInvestment(investmentId: string) {
     return this.httpService.postRequest(`investment/show?investment_id=${investmentId}`, {});

@@ -24,7 +24,7 @@
                 <div class="form-group d-flex">
                   <mat-label for="userGroup">User Group</mat-label>
                   <mat-select placeholder="Select User Group" id="userGroup" class="form-control">
-                    <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup">{{usergroup}}</mat-option>
+                    <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup.value">{{usergroup.value}}</mat-option>
                   </mat-select>
                 </div>
               </mat-form-field>
