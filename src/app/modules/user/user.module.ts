@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination'
 import { UserComponent } from './user.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
@@ -48,6 +49,7 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
   imports: [
     CommonModule,
     UserRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     Angular2PromiseButtonModule,
     ChartsModule
