@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpService} from '../../../core/http/httpservice.service';
+import {HttpService} from '../../../../core/http/httpservice.service';
 import { Observable } from 'rxjs';
-import { Report } from '../../models/Report';
+import { Report } from '../../../../shared/models/Report';
 
 @Injectable({ providedIn: 'root' })
 export class addUserService {

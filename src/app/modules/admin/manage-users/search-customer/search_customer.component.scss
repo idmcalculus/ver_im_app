@@ -2,6 +2,15 @@
     cursor: pointer;
 }
 
+img .settings {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+img {
+    cursor: pointer;
+}
 .border_shadow {
     border: 1px solid;
     box-shadow: 1px 1px 5px 5px rgb(5, 2, 2);
@@ -19,4 +28,25 @@
 }
 .table-wrapper-scroll-y {
     display: block;
+}
+
+label,th {
+    color: #221F72;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
+}
+
+.table > thead > tr > th {
+    border-top: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #221F72
+}
+
+td {
+    border-color: #221F72
 }

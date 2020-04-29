@@ -1,0 +1,96 @@
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div class="clearfix mb-3">
+                        <div class="float-left pt-3">
+                            <a class="h4 pr-2">Reports</a>
+                            <a class=" pl-2">Home / Customer Report</a>
+                        </div>  
+                        <div class="float-right">
+                            <a class="pr-3">
+                                <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
+                            </a>
+                            <a>
+                                <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid bg_filter border border-dark rounded mb-5">
+                        <div class="row p-1 py-4">
+                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                                <div class="form-group">
+                                    <label class="h7">Date Start</label>
+                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', search.value)"
+                                    (blur)="filterTable('id', search.value)">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                                <div class="form-group">
+                                    <label class="h7">Date End</label>
+                                    <input type="text" class="input-control shadow" placeholder="Date End" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                                <div class="form-group">
+                                    <label class="h7">Status</label>
+                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card px-3">
+                                <div class="category-header pt-3 p-2">
+                                    <p class="col-3">Fullname</p>
+                                    <p class="col-2">Email</p>
+                                    <p class="col-2">Phone Number</p>
+                                    <p class="col-2">No of Investments</p>
+                                    <p class="col-2">Total</p>
+                                    <p class="col-1" >Action</p>
+                                </div>
+                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
+                                    <div *ngIf="isLoading" >
+                                        <br><br>
+                                        <div  class="lds-default">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="category-body" *ngIf="!isLoading && users?.length > 0">
+                                        <div class="row1 p-2" *ngFor="let user of users;let i = index;">
+                                            <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
+                                            <p class="col-2">{{user.email}}</p>
+                                            <p class="col-2">{{user.phone_number}}</p>
+                                            <p class="col-2" >{{(user.email).no_of_pools_invested}}</p>
+                                            <p class="col-2">{{user.investment_amount}}</p>
+                                            <p class="col-1">
+                                                <a (click)="goto(user)"  ><img class="pr-2 pointer" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

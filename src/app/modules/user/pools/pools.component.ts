@@ -1,29 +1,29 @@
  import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
-import {InvestmentService} from '../../investment/investment.service';
-import { Investment } from 'src/app/shared/models/Investment';
-import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from '../user.service';
+ import { ActivatedRoute, Router} from '@angular/router';
+ import {InvestmentService} from '../../investment/investment.service';
+ import { Investment } from 'src/app/shared/models/Investment';
+ import { AppAuthService } from 'src/app/core/auth/auth.service';
+ import { UserService } from '../user.service';
 
-@Component({
+ @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
   styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
-  isLoading:boolean=true;
-  pools:Investment[]=[];
-  pool:Investment = {title: '', investment_amount: 0, };
-  userType:string;
-  categories:any []
+  isLoading = true;
+  pools: Investment[] = [];
+  pool: Investment = {title: '', investment_amount: 0, };
+  userType: string;
+  categories: any [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
+  masterSelected: boolean;
+  checklist: any;
+  checkedList: any;
 
   constructor(
-    private router:Router,
+    private router: Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private userService: UserService) {
@@ -42,33 +42,34 @@ export class PoolsComponent implements OnInit {
       }
       this.getCategories();
       this.masterSelected = false;
-      this.checklist = [this.pool,];
+      this.checklist = [this.pool, ];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
   }
-  
+
   checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
+    for (let i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
     }
     this.getCheckedPooList();
   }
 
   isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
+    this.masterSelected = this.checklist.every(function(pool: any) {
         return pool == true;
-      })
+      });
     this.getCheckedPooList();
   }
- 
-  getCheckedPooList(){
+
+  getCheckedPooList() {
     this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
+    for (let i = 0; i < this.checklist.length; i++) {
+      if (this.checklist[i]) {
       this.checkedList.push(this.checklist[i]);
+      }
     }
     this.checkedList = JSON.stringify(this.checkedList);
   }
@@ -93,7 +94,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    //console.log(this.categories,'=====>')
+    // console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
@@ -119,7 +120,7 @@ export class PoolsComponent implements OnInit {
   setHeaderandFooter() {
     this.authService.setInProfileView(false);
   }
-  
+
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
     if (!value || value === null) {
@@ -134,9 +135,11 @@ export class PoolsComponent implements OnInit {
         this.pools = filtered;
       }
   }
-  
+
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
+
+  deleteUser(){}
 }

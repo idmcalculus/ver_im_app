@@ -4,6 +4,7 @@ import { AdminService } from '../../admin.service';
 import { UserService } from '../../../user/user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-manage-users',
@@ -12,19 +13,20 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SearchCustomerComponent implements OnInit {
   searchValue = '';
+  emailValue = '';
+  numberValue = '';
   users: User [];
   user: User = {email: ''};
-  selectedUser: User;
-  selectedEditUser: User;
   selectedDelUser: User;
   checkedUser = [];
-  isLoading= true;
+  isLoading = true;
   selectedAll;
   constructor(
      private userService: UserService,
      private adminService: AdminService,
      private dynamicScrLoader: DynamicScriptLoaderService,
-     private toastrService: ToastrService
+     private toastrService: ToastrService,
+     private router: Router
      ) { }
 
   ngOnInit() {
@@ -48,26 +50,19 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   checkIfAllSelected() {
-    this.selectedAll = this.users.every(function(user: User) {
-      return user.selected == true;
-    })
+    this.selectedAll = this.users.every((user: User) => {
+      return user.selected === true;
+    });
     this.getCheckedUser();
   }
 
-  getCheckedUser(){
+  getCheckedUser() {
     this.checkedUser = [];
     for (var i = 0; i < this.users.length; i++) {
-      if(this.users[i].selected)
+      if (this.users[i].selected) {
       this.checkedUser.push(this.users[i]);
+      }
     }
-  }
-
-  viewUserDetail(userIndex) {
-    this.selectedUser = this.users[userIndex];
-  }
-
-  editUserDetail(userIndex) {
-    this.selectedEditUser = this.users[userIndex];
   }
 
   deleteUserDetail(userIndex) {
@@ -76,16 +71,16 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   updateUser(user, operation) {
-    if (operation == 'enable') {
+    if (operation === 'enable') {
       this.userService.activateUser(user).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=1
         }
-      })
-    }else{
-      this.userService.deactivateUser(user).subscribe(resp=>{
-        if(resp && resp.success){
+      });
+    } else {
+      this.userService.deactivateUser(user).subscribe(resp => {
+        if (resp && resp.success) {
           // alert(resp.success.Message)
           // this.users[userIndex].email_is_verified=0
         }
@@ -120,23 +115,26 @@ export class SearchCustomerComponent implements OnInit {
     const value = filterValue.target.value;
 
     if (!value) {
-      return this.users;
+      return this.getUsers();
     } else {
       const filtered = this.users.filter(user => {
-        if (user[filterType] !== null) {
-        return user[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
+          if (user[filterType] !== null) {
+            const filterate = user[filterType].toString();
+            return filterate.toLowerCase().includes(value.toLowerCase());
+          }
+        });
       this.users = filtered;
     }
   }
 
   clearSearch = () => {
     this.searchValue = null;
+    this.emailValue = null;
+    this.numberValue = null;
     return this.getUsers();
   }
 
-  delete = (user) => {
+  delete = () => {
     this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
       if (resp && resp.success) {
        this.toastrService.success('Details deleted succesfully');

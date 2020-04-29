@@ -1,0 +1,79 @@
+<div *ngIf="!selectedUser" class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
+                    <div *ngIf="isLoading" class="lds-default">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div *ngIf="!isLoading" class="">
+                        <div class="clearfix mb-3">
+                            <div class="float-left pt-2">
+                                <a class="h4 pr-2">UserGroup</a>
+                                <a class="pl-2">Home / users</a>
+                            </div>
+                            <div class="float-right">
+                                <a routerLink="../add-users">
+                                    <img
+                                        class=""
+                                        src="../../../../../assets/images/icon/icons/Add-icon.png"
+                                        style="cursor: pointer; height: 50px;"
+                                    />
+                                </a>
+                                <a>
+                                    <img
+                                        class=""
+                                        src="../../../../../assets/images/icon/icons/Delete-icon.png"
+                                        style="cursor: pointer; height: 50px;"
+                                    />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card" *ngIf="!isLoading">
+                            <div class="card-block dt-responsive usergroup-header d-flex">
+                              <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
+                              <p class="s-n" scope="col">S/N</p>
+                              <p class="username" scope="col">Username</p>
+                              <p class="email">Email</p>
+                              <p class="role">Role</p>
+                              <p class="status">Status</p>
+                              <p class="date-added">Date Added</p>
+                              <p class="action" scope="col">Action</p>
+                            </div>
+                            <div class="card-block dt-responsive usergroup-body">
+                              <div *ngFor="let user of returnedArray; index as i;" class="d-flex">
+                                <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="user.selected" (change)="checkIfAllSelected()"></p>
+                                <p class="s-n">{{user?.index}}</p>
+                                <p class="username" scope="col">{{user?.first_name}}</p>
+                                <p class="email">{{user?.email}}</p>
+                                <p class="role">{{user?.user_category}}</p>
+                                <p class="status">Enabled</p>
+                                <p class="date-added">{{user?.created_at | date}}</p>
+                                <p class="action" routerLink="../edit-users" style="cursor: pointer;">
+                                    <img src="../../../../assets/images/icon/icons/Edit-icon.png">
+                                </p>
+                              </div>
+                              <div class="mt-3 pt-3 paging">
+                                <pagination [boundaryLinks]="true" [directionLinks]="false" firstText="First" lastText="Last" 
+                                            [totalItems]="adminUsers.length" [itemsPerPage]="3" (pageChanged)="pageChanged($event)">
+                                </pagination>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
