@@ -70,7 +70,7 @@ const userRoutes: Routes = [
                 {path: 'edit', component: EditUserGroupComponent },
                 {path: 'view-users', component: ViewUsersComponent },
                 {path: 'add-users', component: AddUsersComponent },
-                {path: 'edit-users', component: EditUsersComponent}
+                {path: 'view-users/:email', component: EditUsersComponent}
               ]}
           ]},
           { path: 'manage-investments',
