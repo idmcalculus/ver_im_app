@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
+import { AdminService } from '../../admin/admin.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -13,7 +14,9 @@ import { User } from 'src/app/shared/models/user';
 export class UserDashboardComponent implements OnInit {
 
   @Input() public overiddenUser: User;
+  allDashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
+  userActivity: any = [];
   usersInvestments: [Investment];
   isLoading = true;
   selectedInvestment = -1;
@@ -26,6 +29,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   constructor(private userService: UserService,
+             private adminService: AdminService,
               private authService: AppAuthService) { }
 
   ngOnInit() {
@@ -49,6 +53,8 @@ export class UserDashboardComponent implements OnInit {
             this.userService.getusersInvestment(resp.email).subscribe(res => {
               if (res && res.success) {
                 this.usersInvestments = res.success.Data;
+                console.log(this.usersInvestments);
+
                 this.isLoading = false;
                 if (res.success.Data !== 0) {
                   this.selectedInvestment = 0;
@@ -59,6 +65,16 @@ export class UserDashboardComponent implements OnInit {
           }
         });
     }
+    this.adminService.getDashBoardData().subscribe(resp => {
+        if (resp && resp.success) {
+          this.allDashBoardData = resp.success.Data;
+          console.log(this.allDashBoardData);
+          this.isLoading = false;
+          this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
+          console.log(this.userActivity);
+          //  let category = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===12)
+        }
+      });
 
 
 

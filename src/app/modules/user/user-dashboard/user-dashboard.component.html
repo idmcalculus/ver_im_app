@@ -154,6 +154,16 @@
 
 
                                       <div class="dt-responsive table-responsive">
+                                          <div *ngFor="let req of userActivity.slice(0, 4),let x=index">
+                                              <div class="activities d-flex flex-row">
+                                                    <div class="image pr-2">
+                                                      <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
+                                                    </div>
+                                                    <div class="post pr-1 pt-2">{{req.first_name}}</div>
+                                                    <div class="post pr-1 pt-2">{{req.activity}}</div>
+                                              </div>
+                                              <div *ngIf="x!=4" class="divider2"></div>
+                                          </div>
                                               <!-- <table id="userTable"
                                                       class="table table-striped nowrap">
                                                   <thead>
@@ -180,7 +190,7 @@
                                 </div>
                             </div>
 
-                            <div class="card-details col-xl-8 col-md-12" style="padding-right: 0;padding-left: 0;">
+                            <div class="card-details col-xl-8 col-md-8" style="padding-right: 0;padding-left: 0;">
                               <div class="card latest-update-card">
                                   <div class="card-header">
                                       <h5>Best Selling</h5>
@@ -193,14 +203,11 @@
                                                     class="table table-striped nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>ID</th>
                                                     <th>Customer</th>
                                                     <th>Category</th>
                                                     <th>Status</th>
                                                     <th>Date Added</th>
                                                     <th>Amount</th>
-                                                    <th>No of Pool</th>
-                                                    <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
