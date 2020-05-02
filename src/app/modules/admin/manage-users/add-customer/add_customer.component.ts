@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { SignUpService } from 'src/app/shared/components/sign-up/sign-up.service';
@@ -13,6 +13,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./add_customer.component.css']
 })
 export class AddCustomerComponent implements OnInit {
+    @ViewChild('closebutton') closebutton;
+
+    modalText = 'Save Changes';
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     isSubmitting;
     isLoading = true;
@@ -69,19 +72,26 @@ cancelProfile() {
     }
 
 createProfile(): void {
-        this.isSubmitting = new Promise((resolve, reject) => {
+        this.modalText = 'Creating...';
             this.user.authentication_type = 'E';
             this.user.user_category = 'User';
             this.user.average_monthly_income = '0';
             this.signUpService.create(this.user)
                 .subscribe(UserDetails => {
-                    if (UserDetails) {
+                    if (UserDetails.success) {
                         this.toastrService.success('Registeration Succesfull');
+                        this.modalText = 'Save Changes';
+                        this.closebutton.nativeElement.click();
+                        this.user = { email: '', password: '' };
+                        this.router.navigateByUrl('admin/manage-users');
+                    } else {
+                        this.toastrService.error('Registeration Failed');
+                        this.modalText = 'Save Changes';
+                        this.closebutton.nativeElement.click();
                         this.user = { email: '', password: '' };
                     }
-                    resolve();
-                });
         });
+
     }
 
     getBankList() {

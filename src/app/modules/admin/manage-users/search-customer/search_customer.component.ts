@@ -70,36 +70,6 @@ export class SearchCustomerComponent implements OnInit {
     return this.selectedDelUser;
   }
 
-  updateUser(user, operation) {
-    if (operation === 'enable') {
-      this.userService.activateUser(user).subscribe(resp => {
-        if (resp && resp.success) {
-          // alert(resp.success.Message)
-          // this.users[userIndex].email_is_verified=1
-        }
-      });
-    } else {
-      this.userService.deactivateUser(user).subscribe(resp => {
-        if (resp && resp.success) {
-          // alert(resp.success.Message)
-          // this.users[userIndex].email_is_verified=0
-        }
-      });
-    }
-
-  }
-
-  updateDetails(user): any {
-    this.userService.adminUpdateProfile(user).subscribe(resp => {
-      if (resp && resp.success) {
-        // alert(resp.success.Message)
-        // this.users[userIndex].email_is_verified=0
-        this.toastrService.success('Details updated succesfully');
-      } else {
-        this.toastrService.error('There was an issue updating.. Try again later');
-      }
-    });
-  }
 
   getUsers() {
     this.isLoading = true;
@@ -135,13 +105,16 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   delete = () => {
+    if(confirm('Are you sure you want to delete user')){
     this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
       if (resp && resp.success) {
        this.toastrService.success('Details deleted succesfully');
+       this.getUsers();
      } else {
         this.toastrService.error('There was an issue deleting.. Try again later');
      }
     });
   }
+ }
 
 }

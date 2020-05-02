@@ -22,24 +22,16 @@ export class ProfileSummaryComponent implements OnInit {
 
   updateUser(status: string) {
     if (status) {
-      this.manageUser.updateUser(this.user, 'enable');
       this.user.email_is_verified = 1;
     } else {
-      this.manageUser.updateUser(this.user, 'disable');
+      (this.user, 'disable');
       this.user.email_is_verified = 0;
     }
 
   }
 
   updateDetails(user) {
-    if (user.average_monthly_income === null) {
-      user.average_monthly_income = 0;
-    }
-    this.manageUser.updateDetails(user).subscribe(resp => {
-      if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
-      }
-    });
-    this._shown = true;
-  }
+        this._shown = true;
+    }
 }

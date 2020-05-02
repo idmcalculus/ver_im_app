@@ -28,15 +28,7 @@ export class UseractivityComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.adminService.getDashBoardData().subscribe(resp => {
-      if (resp && resp.success) {
-        this.dashboardData = resp.success.Data;
-        this.activityLog.push(this.dashboardData);
-        this.filteredAdminActivity = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'Admin');
-        this.filteredUserActivity  = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'User');
-        this.isLoading =  false;
-      }
-    });
+    this.getDashBoardData();
   }
 
   Toggle() {
@@ -55,7 +47,6 @@ export class UseractivityComponent implements OnInit {
           this.activityLog.push(this.dashboardData);
           this.filteredAdminActivity = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'Admin');
           this.filteredUserActivity  = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'User');
-
         }
       this.isLoading = false;
     });

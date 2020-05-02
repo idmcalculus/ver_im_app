@@ -64,7 +64,7 @@ $(document).ready(function () {
         //altFormat: "M j, Y h:iK",
     });
 
-    $('#applicants, #userTable, #categoryTable').DataTable();
+   // $('#applicants, #userTable, #categoryTable').DataTable();
 });
 
 function readURL(input) {
