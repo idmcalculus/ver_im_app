@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card px-3">
-                                <div class="category-header pt-3 p-2">
+                                <div class="category-header py-3 p-2">
                                     <p class="mr-3">SN</p>
                                     <p class="category-name1">Investment Title</p>
                                     <p class="category-name">Category</p>
@@ -68,6 +68,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="pool.length == 0" >
+                                    <p class="displayStatus">"No records found."</p>
+                               </div>
                             </div>
                         </div>
                     </div>

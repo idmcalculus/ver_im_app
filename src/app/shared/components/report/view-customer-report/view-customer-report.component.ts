@@ -67,8 +67,8 @@ export class viewUserPoolComponent implements OnInit {
     }
 
 
-    goto(email: User): void {
-      this.router.navigate([`/admin/userReport/${email}/export`]);
+    goto(email: User, id: number): void {
+      this.router.navigate([`/admin/userReport/${email}/export/${id}`]);
       console.log(email);
     }
 

@@ -1,3 +1,63 @@
-<p>
-  edit-user-group works!
-</p>
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <div class="main-body">
+      <div class="page-wrapper">
+        <div class="page-body">
+          <div class="clearfix mb-2 pb-2">
+            <div class="float-left pt-2 mt-2">
+              <a class="h4 pr-2" style="font-size: 24px; font-weight: bold;">UserGroup</a>
+              <a class="pl-2">Home/User Group</a>
+            </div>
+            <div class="float-right">
+              <a (click)="goBack()" style="cursor: pointer;"><img src="../../../../../assets/images/icon/icons/Back-icon.png"></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <p><i class="fa fa-pencil-alt"></i>&nbsp; &nbsp; Edit User Group</p>
+              <hr style="border: 0.5px solid black; width: 98%;">
+            </div>
+            <div class="card-block">
+              <mat-form-field>
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="userGroupName">User Group Name</mat-label>
+                  <input matInput type="text" id="userGroupName">
+                </div>
+              </mat-form-field>
+              <mat-form-field [formGroup]="accessPermissionsForm">
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="accessPermissions">Access Permission</mat-label>
+                  <mat-select multiple placeholder="Access Permissions" [(ngModel)]="selectedAccessPermissions" formControlName="accessPermissions" id="accessPermissions" class="form-control">
+                    <mat-select-trigger *ngIf="accessPermissions.value">
+                      {{accessPermissions.value[0]}}, {{accessPermissions.value[1]}}, {{accessPermissions.value[2]}}
+                      <span *ngIf="accessPermissions.value?.length > 3" class="selected-permissions">
+                        (+{{accessPermissions.value.length - 3}} {{accessPermissions.value?.length === 4 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option #allSelectedA (click)="toggleAccess()" [value]="0">Select All / Unselect All</mat-option>
+                    <mat-option *ngFor="let permission of permissions" [value]="permission" (click)="tosslePerOne(allSelected.viewValue)">{{permission}}</mat-option>
+                  </mat-select>
+                </div>
+              </mat-form-field>
+              <mat-form-field [formGroup]="modifyPermissionsForm">
+                <div class="investment-grp-name form-group d-flex">
+                  <mat-label for="modifyPermission">Modify Permission</mat-label>
+                  <mat-select multiple placeholder="Modify Permissions" [(ngModel)]="selectedModPermissions" formControlName="modifyPermissions" id="modifyPermission" class="form-control">
+                    <mat-select-trigger *ngIf="modifyPermissions.value">
+                      {{modifyPermissions.value[0]}}, {{modifyPermissions.value[1]}}, {{modifyPermissions.value[2]}}
+                      <span *ngIf="modifyPermissions.value?.length > 3" class="selected-permissions">
+                        (+{{modifyPermissions.value.length - 3}} {{modifyPermissions.value?.length === 4 ? 'other' : 'others'}})
+                      </span>
+                    </mat-select-trigger>
+                    <mat-option #allSelectedM (click)="toggleModify()" [value]="0">Select All / Unselect All</mat-option>
+                    <mat-option *ngFor="let permission of permissions" [value]="permission" (click)="togglePerOne(allSelected.viewValue)">{{permission}}</mat-option>
+                  </mat-select>
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,9 +19,6 @@ div > a {
   border-color: #5b58bd;
 }
 
-.latest-update-card {
-	height: 450px;
-}
 
 hr.new {
   border: 1px solid #221F72;
@@ -45,9 +42,12 @@ img {
 button {
   font-size: 13px;
 }
+.form-control {
+  background-color: transparent;
+}
 
 
-h4,h5,p {
+h4,h5,p,a {
   color: #221F72;
   font-weight: 600;
 }
@@ -58,8 +58,12 @@ h4,h5,p {
 
 h6 {
   color: #221F72;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
+}
+
+.col-7, .col-5 a {
+  font-size: 12px;
 }
 
 .summary-font {
@@ -67,6 +71,7 @@ h6 {
   font-size: 14px;
   font-weight: 600;
 }
+
 
 .table > thead > tr > th {
   border-bottom-width: 2px;
@@ -96,4 +101,19 @@ td,th,tr {
   color: red;
   font-weight: bolder;
 
+}
+
+.displayStatus {
+  color: red;
+  justify-content: center;
+  text-align: center;
+  font-family: roboto;
+  letter-spacing: .04rem;
+  font-weight: 500;
+  padding: 0.5rem;
+}
+.my-pagination /deep/ .ngx-pagination {
+  display: block;
+  width: 100%;
+  padding: 50px;
 }
