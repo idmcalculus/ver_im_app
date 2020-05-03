@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./view_customer.component.css']
 })
 export class ViewCustomerComponent implements OnInit {
+
     _shown = true;
     userData: any [];
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
@@ -26,6 +27,8 @@ export class ViewCustomerComponent implements OnInit {
    // categories=[];
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
+    pageValue = 5;
+
     constructor(
       private investmentService: InvestmentService,
       private userService: UserService,
@@ -58,7 +61,6 @@ export class ViewCustomerComponent implements OnInit {
                 this.isLoading = true;
             }
           });
-
 
           $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
@@ -148,25 +150,31 @@ export class ViewCustomerComponent implements OnInit {
         })
       }
     }
+
+    setItemsPerPage(event){
+        this.pageValue = event;
+    }
+
     calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
-    return Math.ceil(estimate);
+        const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+        return Math.ceil(estimate);
     }
 
     divisorFunc (expected_return_period) {
-    if ( expected_return_period === "Weekly") {
-        return 48;
-    } else if (expected_return_period === "Monthly") {
-        return 12;
+        if ( expected_return_period === "Weekly") {
+            return 48;
+        } else if (expected_return_period === "Monthly") {
+            return 12;
+        }
     }
-    };
+
     addMonth(date: Date, month: number) {
-    const newDate = new Date(date);
-    const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() == 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
+        const newDate = new Date(date);
+        const d = newDate.getDate();
+        newDate.setMonth(newDate.getMonth() + month);
+        if (newDate.getMonth() == 11) {
+            newDate.setDate(0);
+        }
+        return newDate;
    }
 }

@@ -71,12 +71,12 @@ th {
 }
 
 .table-striped td {
-    font-size: bold;
+    font-size: 12px;
     text-align: center;
 }
 
 .table-striped th {
-    font-size: bold;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -124,10 +124,7 @@ th {
 }
 
 
-.my_pagination /deep/ .ngx-pagination {
-    display: inline-flex;
-    flex: content;
-}
+
 
 .displayStatus {
     color: red;

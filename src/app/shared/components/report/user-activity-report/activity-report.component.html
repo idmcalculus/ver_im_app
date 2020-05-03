@@ -49,7 +49,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="form-group">
+                                <div class="form-group  cursor">
                                     <label class="h7">User</label>
                                     <input type="text" class="input-control shadow" *ngIf="User" placeholder="Customer" readonly>
                                     <input type="text" class="input-control shadow" *ngIf="!User" placeholder="Admin" readonly>
@@ -121,28 +121,44 @@
                                     </div>
                                     <div *ngIf="!isLoading">
                                         <div *ngIf="!User && filteredAdminActivity?.length > 0">
-                                            <div class="category-body" *ngFor="let report of filteredAdminActivity | paginate: { itemsPerPage: 5, currentPage:p, id: 'second'};let i = index;">
+                                            <div class="category-body" *ngFor="let report of filteredAdminActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
                                                 <div class="row1 p-2">
                                                     <p class="col-7 col-md-7 col-sm-7">{{report.activity}}</p>
                                                     <p class="col-3 col-md-3 col-sm-3">{{report.ip_address}}</p>
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p = $event" id='second'></pagination-controls>
-                                         </div>
+                                           <div  class="col-12 d-flex flex-row">
+                                                <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                                <span class="col-md-1 col-xs-1 px-0 controls">
+                                                    <select class="ml-lg-5 ml-md-3 py-2 px-2" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                        <option value="5"> 5 rows </option>
+                                                        <option value="10"> 10 rows </option>
+                                                        <option value="20"> 20 rows </option>
+                                                        <option value="0"> view all </option>
+                                                    </select>
+                                                </span>
+                                            </div>
                                         </div>
                                         <div *ngIf="User && filteredUserActivity?.length > 0">
-                                            <div class="category-body" *ngFor="let report of filteredUserActivity | paginate: { itemsPerPage: 5, currentPage:p, id: 'second'};let i = index;">
+                                            <div class="category-body" *ngFor="let report of filteredUserActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
                                                 <div class="row1 p-2">
                                                     <p class="col-7 col-md-7 col-sm-7">{{report.activity}}</p>
                                                     <p class="col-3 col-md-3 col-sm-3">{{report.ip_address}}</p>
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p = $event" id='second'></pagination-controls>
-                                         </div>
+                                           <div  class="col-12 d-flex flex-row">
+                                            <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                            <span class="col-md-1 col-xs-1 px-0  controls">
+                                                <select class="ml-lg-5 ml-md-3 py-2 px-2" data-type="items-per-page" (change) = setItemsPerPage(page2.value) #page2>
+                                                    <option value="5"> 5 rows </option>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                            </span>
+                                        </div>
                                         </div>
                                    </div>
                                 </div>

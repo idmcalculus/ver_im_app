@@ -13,6 +13,7 @@ import { ReportService } from '../report.service';
 export class UseractivityComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
+  pageValue = 5;
   dashboardData = {};
   p: number = 1;
   activityLog = [];
@@ -38,6 +39,10 @@ export class UseractivityComponent implements OnInit {
         this.User = false;
       }
   }
+
+  setItemsPerPage(event){
+    this.pageValue = event;
+}
 
   getDashBoardData() {
     this.isLoading = true;
@@ -105,4 +110,5 @@ export class UseractivityComponent implements OnInit {
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
 }
+
 }

@@ -44,12 +44,12 @@ export class PoolreportComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
   }
-  
+
   checkUncheckAll() {
     for (var i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
@@ -63,7 +63,7 @@ export class PoolreportComponent implements OnInit {
       })
     this.getCheckedPooList();
   }
- 
+
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -132,7 +132,12 @@ export class PoolreportComponent implements OnInit {
         this.pools = filtered;
       }
   }
-  
+
+  clearSearch() {
+    this.searchValue = null;
+    return this.getPools();
+  }
+
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);

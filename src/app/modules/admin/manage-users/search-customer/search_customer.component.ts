@@ -15,12 +15,15 @@ export class SearchCustomerComponent implements OnInit {
   searchValue = '';
   emailValue = '';
   numberValue = '';
+  pageValue = 5;
   users: User [];
   user: User = {email: ''};
   selectedDelUser: User;
   checkedUser = [];
   isLoading = true;
   selectedAll;
+  p2 = 1;
+
   constructor(
      private userService: UserService,
      private adminService: AdminService,
@@ -63,6 +66,10 @@ export class SearchCustomerComponent implements OnInit {
       this.checkedUser.push(this.users[i]);
       }
     }
+  }
+
+  setItemsPerPage(event){
+      this.pageValue = event;
   }
 
   deleteUserDetail(userIndex) {
