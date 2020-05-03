@@ -36,23 +36,29 @@ export class ViewUserGroupComponent implements OnInit {
     this.usergroups.forEach(usergroup => {
       usergroup.selected = this.selectedAll;
     });
-    this.getCheckedUser();
+    // this.getCheckedUser();
   }
 
   checkIfAllSelected() {
     this.selectedAll = this.usergroups.every(user => {
       return user.selected === true;
     });
-    this.getCheckedUser();
+    // this.getCheckedUser();
   }
 
-  getCheckedUser() {
+  deleteSelected() {
+    const filtered = this.usergroups.filter(user => user.selected === false);
+    filtered.forEach((user, i) => user.index = i + 1 );
+    this.usergroups = filtered;
+}
+
+  /*getCheckedUser() {
     this.checkedUser = [];
     this.usergroups.forEach(usergroup => {
       if (usergroup.selected) {
         this.checkedUser.push(usergroup);
       }
     });
-  }
+  }*/
 
 }
