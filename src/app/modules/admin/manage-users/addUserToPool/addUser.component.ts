@@ -85,20 +85,20 @@ export class AddUserComponent implements OnInit {
           this.router.navigate(['./', {}]);
         }
       }else{
-        
+
       }
     })
   }
   addUserToPool(){
     console.log( this.pool);
-    
+
     const data = {
       user_email:this.user_email,
-      number_of_pools:this.number_of_pools,   
+      number_of_pools:this.number_of_pools,
       investment_id:this.poolId,
       amount_paid: this.calculateEstimate(this.pool.investment.investment_amount,this.number_of_pools)
     }
-    
+
     this.adminService.addUserToPool(data).subscribe(resp=>{
       if(resp && resp.success){
         //this.modalButtonTitle='add User';
@@ -122,7 +122,7 @@ export class AddUserComponent implements OnInit {
 
   calculateEstimate(returns,inv){
     console.log(returns , inv);
-    
+
     const estimate = returns * inv;
     return estimate;
 

@@ -95,8 +95,9 @@ export class ViewedreportComponent implements OnInit {
     });
   }
 
-  getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id === 21);
+  getCategoryName(id) {
+    //console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
 

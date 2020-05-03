@@ -16,11 +16,10 @@ export class PoolreportComponent implements OnInit {
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
   categories:any []
+  report = {};
+  reportlog = [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
 
   constructor(
     private router:Router,
@@ -40,37 +39,18 @@ export class PoolreportComponent implements OnInit {
         this.getPools();
         this.getCategories();
       }
-      this.getCategories();
-      this.masterSelected = false;
-      this.checklist = [this.pool,];
-      this.getCheckedPooList();
-
+      this.getCategories();     
   }
 
   ngOnInit() {
-  }
-
-  checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
-      this.checklist[i] = this.masterSelected;
-    }
-    this.getCheckedPooList();
-  }
-
-  isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
-        return pool == true;
-      })
-    this.getCheckedPooList();
-  }
-
-  getCheckedPooList(){
-    this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
-      this.checkedList.push(this.checklist[i]);
-    }
-    this.checkedList = JSON.stringify(this.checkedList);
+    this.investmentService.getpoolReport().subscribe(resp => {
+      if (resp && resp.success) {
+        this.report = resp.success.Data;
+        this.reportlog.push(this.report);
+        console.log(this.reportlog);
+        
+      }
+    });
   }
 
   getPools() {
@@ -92,6 +72,7 @@ export class PoolreportComponent implements OnInit {
     });
   }
 
+
   getCategoryName(id: number) {
     const res = this.categories.find( r => r.id === 21);
     return res.category_name;
@@ -108,15 +89,6 @@ export class PoolreportComponent implements OnInit {
 
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
-  }
-
-  setPlanOperation(investment) {
-
-    this.authService.setCurrentPlanOperation(investment);
-  }
-
-  setHeaderandFooter() {
-    this.authService.setInProfileView(false);
   }
 
   filterTable(filterType, filterValue: string) {
@@ -137,11 +109,4 @@ export class PoolreportComponent implements OnInit {
     this.searchValue = null;
     return this.getPools();
   }
-
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
-  }
-
-  deleteUser(){}
 }
