@@ -65,8 +65,24 @@
 
             <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
                 <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                        <div class="superb-container m-b20">
+                    <a *ngIf="x.state===-1" class="coming" href="#">Coming Soon</a>
+                    <div *ngIf="x.state===-1" class="superb-container m-b20 " [ngClass]="(x.state===-1)?'inactive':''">
+                        <div class="img-holder">
+                            <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                            <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
+                        </div>
+                        <div class="content-holder">
+                            <h2><a href="investment-details.html">{{x.title}}</a></h2>
+                            <h3 style="filter: blur(15px);">{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                            <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
+                                class="span-profit">{{calculateEstimate(x?.expected_return_amount,x?.investment_amount)}}% Profit
+                                (Estimated)</span>
+                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                            <p>{{x.duration}} Month(s)</p>
+                        </div>
+                    </div>
+                    <a *ngIf="x.state!==-1" [routerLink]="(x.state===-1)?['/investments', x.id]:''" routerLinkActive="active">
+                        <div class="superb-container m-b20 " [ngClass]="(x.state===-1)?'inactive':''">
                             <div class="img-holder">
                                 <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
                                 <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
