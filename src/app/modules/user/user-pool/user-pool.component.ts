@@ -92,8 +92,8 @@ export class userPoolsComponent implements OnInit {
     });
   }
 
-  getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id === 21);
+  getCategoryName(id) {
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
 
