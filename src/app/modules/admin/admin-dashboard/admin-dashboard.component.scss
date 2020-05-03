@@ -210,7 +210,7 @@
 
 
     .divider2{
-        height: 46.5px;
+        height: 44.5px;
         border-width: 1px;
         border-right-style: solid;
         margin: 0px 16px;
@@ -287,5 +287,9 @@
             margin: 0 auto;
             margin-bottom: 5%;
         
+        }
+
+        .activity-card{
+            min-width: 100%;
         }
     }

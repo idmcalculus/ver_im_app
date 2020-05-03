@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination'
 import { UserComponent } from './user.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
@@ -7,6 +8,7 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
+import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 import {FormsModule} from '@angular/forms';
 import { userPoolsComponent } from './user-pool/user-pool.component';
 import { userPoolDetailComponent } from './userpool-detail/userpool-detail.component';
@@ -21,39 +23,37 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
-import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
-
 
 
 @NgModule({
   declarations: [
+    EditPasswordComponent,
     UserComponent,
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    EditPasswordComponent,
     userPoolsComponent,
     userPoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
     DashboardHeaderComponent,
     ReportComponent,
-    EditPasswordComponent,
     ManageInvestmentComponent,
     ProfileComponent,
     ProfileSummaryComponent,
     ChartComponent,
     ChatComponent,
-    InvestmentProfileComponent,
+    InvestmentProfileComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     Angular2PromiseButtonModule,
     ChartsModule
   ],
-  exports: [
+  exports:[
     UserSettingsComponent,
     ProfileComponent,
     userPoolsComponent,
@@ -68,4 +68,4 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
     ChatComponent,
   ]
 })
-export class UserModule {}
+export class UserModule { }

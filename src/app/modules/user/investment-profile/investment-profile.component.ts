@@ -8,6 +8,10 @@ import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { UserService } from '../user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+import { ReportService } from 'src/app/shared/components/report/report.service';
+import { Report } from 'src/app/shared/models/Report';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -17,6 +21,7 @@ import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-scri
 })
 export class InvestmentProfileComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
+  @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
   userEmail: string;
   pool: Investment;
   poolId = 0;
@@ -38,6 +43,15 @@ export class InvestmentProfileComponent implements OnInit {
   investment_amount: number;
   period: string;
   returns: string;
+  numOfReports: number;
+  latestReport: Report = {title: '', returned_amount: 0, investment_id: 0, payment_type: '', description: ''};
+  reportId = 0;
+  returnedAmount: number;
+  user_id: string;
+  title: string;
+  investmentId: number;
+  paymentType: string;
+  description: string;
 
   constructor(private location: Location,
               private route: ActivatedRoute,
@@ -45,7 +59,9 @@ export class InvestmentProfileComponent implements OnInit {
               private investmentService: InvestmentService,
               private authService: AppAuthService,
               private userService: UserService,
-              private dynamicScriptLoader: DynamicScriptLoaderService) {
+              private dynamicScriptLoader: DynamicScriptLoaderService,
+              private reportService: ReportService,
+              private toastrService: ToastrService) {
                 this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
                   if (userInfo) {
                     this.loggedInUser = userInfo;
@@ -57,68 +73,43 @@ export class InvestmentProfileComponent implements OnInit {
                   if (!this.poolId) {
                     this.poolId = Number(this.route.snapshot.paramMap.get('id'));
                   }
-                  this.fetchPool(String(this.poolId));
+                });
+                this.isLoading = true;
+                this.investmentService.getInvestment(String(this.poolId)).subscribe(async poolDetails => {
+                  if (poolDetails && poolDetails.success) {
+                      this.pool = await poolDetails.success.Data;
+                      this.numOfReports = this.pool.report.length;
+                      this.latestReport = this.pool.report[0];
+                      this.isLoading = false;
+                  }
                 });
                 this.loadScripts();
                }
 
-  ngOnInit() {
-   /* this.investmentService.getUserInvestments(this.user.email).subscribe(investments => {
-      if (investments.success.Data !== 0) {
-        this.userInvestment = investments.success.Data;
-        console.log(this.userInvestment);
-        this.selectedInvestment = 0;
-        // this.showDetails();
-        this.FilteredInvestment = this.userInvestment.filter((investment: Investment) => investment.is_investment_ended === '0');
-      } else {
-          this.isLoading = true;
-      }
-  });*/
-}
+  ngOnInit() {}
 
-  async fetchPool(poolId: string) {
+  payInvestors(report: Report) {
     this.isLoading = true;
-    this.investmentService.getInvestment(poolId).subscribe(async poolDetails => {
-      if (poolDetails && poolDetails.success) {
-        if (poolDetails.success.Data) {
-          this.pool = await poolDetails.success.Data;
-          console.log(this.pool);
-          this.userEmail = await this.pool.investment_user[0].user_info[0].email;
-          await this.getUserDashBoard(this.poolId, this.userEmail);
-          this.isLoading = false;
-        } else {
-          this.router.navigate(['./', {}]);
-        }
-      } else {
-      }
-    });
-  }
+    report.title = this.pool.investment.title;
+    report.returned_amount = Number(this.pool.investment.expected_return_amount);
+    report.investment_id = this.pool.investment.id;
+    report.payment_type = 'Credit';
+    report.description = `Return on Investment Week ${this.numOfReports + 1}`;
 
-  /*showDetails() {
-    if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
-        this.investmentInfo = this.userInvestment[this.selectedInvestment];
-        //this.getUserDashBoard();
-        this.selectedInvestment++;
-        return this.selectedInvestment;
-        } else {
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = true;
-        }
-  }*/
+    const data = {
+      title: report.title,
+      description: report.description,
+      returned_amount: report.returned_amount,
+      investment_id: report.investment_id,
+      payment_type: report.payment_type,
+    };
 
-  getUserDashBoard(investmentId, userEmail) {
-    this.isLoading = true;
-    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(async resp => {
+    this.reportService.createReport(data).subscribe(resp => {
       if (resp && resp.success) {
-        this.dashBoardData = await resp.success.Data;
-        console.log(this.dashBoardData);
-        await this.dashboardInvestment.push(this.dashBoardData);
+        this.toastrService.success('Investors were paid successfully');
         this.isLoading = false;
-      } else {
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       }
-      console.log(this.dashboardInvestment);
-      // this.showDetails();
+      this.location.back();
     });
   }
 

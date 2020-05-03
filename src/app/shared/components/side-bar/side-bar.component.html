@@ -2,7 +2,7 @@
     <div class="nav-list navMenu">
         <div class="pcoded-inner-navbar main-menu">
             <ul class="pcoded-item pcoded-left-item">
-                <li  *ngIf="userInfo" [hidden]="isUser" class="header">
+                <li  *ngIf="userInfo" class="header">
                     <a routerLink="./" class="waves-effect waves-dark user-info">
                         <span class="pcoded-micon header-icon"><i class="feather icon-user"></i></span>
                         <span class="pcoded-mtext">
@@ -114,7 +114,6 @@
                         <span class="pcoded-mtext">Categories</span>
                     </a>
                 </li> -->
-
                 <li [hidden]="isUser" class="pcoded-hasmenu">
                    <a routerLink="./manage-career" class="dropdown-btn waves-effect waves-dark">
                          <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>

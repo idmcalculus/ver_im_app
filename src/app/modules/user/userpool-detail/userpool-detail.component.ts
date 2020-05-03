@@ -1,4 +1,5 @@
 import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ActivatedRoute, Router} from '@angular/router';
 import {InvestmentService} from '../../investment/investment.service';
@@ -7,23 +8,25 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { UserService } from '../../user/user.service';
 import { UserDashboard } from 'src/app/shared/models/UserDashboard';
-import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pool-detail',
   templateUrl: './userpool-detail.component.html',
-  styleUrls: ['./userpool-detail.component.scss']
+  styleUrls: ['./userpool-detail.component.css']
 })
 export class userPoolDetailComponent implements OnInit {
+  _shown = true;
+  userData: any [];
   user: User = {email: '',};
-  pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
-  userInvestment: any;
+  pool:Investment = {investment_amount: 0, expected_return_amount: '', is_investment_started:'number', expected_return_period: ''};
+  userInvestment: any = [];
+  userPool: Investment;
   poolId:number=0;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   latest_return = 0;
   totalYieldedAmount = 0;
-  categories=[];
+  categories:any [];
   selectedInvestment = -1;
   dashboardInvestment: any =[];
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
@@ -32,6 +35,8 @@ export class userPoolDetailComponent implements OnInit {
   selectedUser:User;
   loggedInUser:User = {email: '',};
   userSubscription:Subscription;
+  p: number = 1;
+  p2: number =1;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route:ActivatedRoute,
@@ -41,7 +46,6 @@ export class userPoolDetailComponent implements OnInit {
     private reportService:ReportService,
     private authService:AppAuthService,
     ) { 
-      this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
         if(userInfo){
           this.loggedInUser = userInfo;
@@ -55,6 +59,7 @@ export class userPoolDetailComponent implements OnInit {
         }
         this.fetchPool(String(this.poolId));
       });
+      this.getCategories();
   }
 
   ngOnInit() {
@@ -68,39 +73,34 @@ export class userPoolDetailComponent implements OnInit {
     });
 
   }
-
   showDetails() {
-    if (this.selectedInvestment >= 0) {
-      console.log(this.userInvestment);
-      this.investmentInfo = this.userInvestment[this.selectedInvestment];
-      
-      this.getUserDashBoard();
-      this.selectedInvestment++;
-      console.log(this.selectedInvestment);
-      return this.selectedInvestment;
-      } else {
-      this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-      console.log(this.investmentInfo);
-    }
-
+    if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
+        this.investmentInfo = this.userInvestment[this.selectedInvestment];
+        this.getUserDashBoard();
+        this.selectedInvestment++;
+        return this.selectedInvestment;
+        } else {
+        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+        this.isLoading = true;
   }
+}
+
   
   getUserDashBoard() {
     console.log(this.loggedInUser.email);
     const userEmail = this.loggedInUser.email;
-    const investmentId = this.investmentInfo.id;
+    const investmentId = this.poolId;
     
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
-        console.log(this.dashBoardData);
+        //console.log(this.dashBoardData);
         this.dashboardInvestment.push(this.dashBoardData);
+        console.log(this.dashboardInvestment);
       } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        console.log(this.dashBoardData);
+        
       }
-      console.log(this.dashboardInvestment);
-      this.showDetails();
     });
   }
 
@@ -142,10 +142,17 @@ export class userPoolDetailComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
-  getCategoryName(id){
-    const res = this.categories.find( r=> r.id == 21);
+  getCategoryName(id) {
+    const res = this.categories.find( r => r.id === id);
     return res.category_name;
+  }
+
+  getPoolstatus(){
+    if (this.userInvestment.is_investment_started === 1) {
+      return 'Active';
+    } else{
+      return 'Inactive';
+    }
   }
 
   viewUserDetail(user) {
@@ -157,18 +164,20 @@ export class userPoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/userPools');
   }
 
-  calculateEstimate(returns, inv, expected_return_period, i) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period, i)) - inv) / inv) * 100;
+  calculateEstimate(returns, inv, expected_return_period) {
+    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
     return Math.ceil(estimate);
   }
-
-  divisorFunc (expected_return_period, i) {
-    if (this.userInvestment[i].expected_return_period === "Weekly") {
+  
+  divisorFunc (expected_return_period) {
+    if (expected_return_period === "Weekly") {
       return 48;
-    } else if (this.userInvestment[i].expected_return_period === "Monthly") {
+    } else if (expected_return_period === "Monthly") {
       return 12;
     }
   };
+
+  
   addMonth(date: Date, month: number) {
     const newDate = new Date(date);
     const d = newDate.getDate();

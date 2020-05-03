@@ -63,33 +63,22 @@ const userRoutes: Routes = [
           ] },
           { path: 'user-group',
             children: [
-            {path: '',
-            children: [
-              {path: '', component: ViewUserGroupComponent},
-              {path: 'add', component: AddUserGroupComponent},
-              {path: 'edit', component: EditUserGroupComponent },
-              {path: 'view-users', component: ViewUsersComponent },
-              {path: 'add-users', component: AddUsersComponent },
-              {path: 'edit-users', component: EditUsersComponent}
-            ]
-            }
-          ] },
-          { path: 'manage-customer',
-            children: [
-            {path: '',
+              {path: '',
               children: [
-               // {path: '', component: ManageUsersComponent},
-                {path: 'add-customer', component: AddCustomerComponent},
-                // {path: 'list-users', component: ManageUsersComponent },
-              ]
-            }
-          ] },
+                {path: '', component: ViewUserGroupComponent},
+                {path: 'add', component: AddUserGroupComponent},
+                {path: 'edit', component: EditUserGroupComponent },
+                {path: 'view-users', component: ViewUsersComponent },
+                {path: 'add-users', component: AddUsersComponent },
+                {path: 'edit-users', component: EditUsersComponent}
+              ]}
+          ]},
           { path: 'manage-investments',
               children: [
-                // {path: '', component: PoolsComponent},
-                // {path: 'investment', component: PoolsComponent},
-                // {path: 'add-pools', component: AddPoolComponent},
-                // {path: 'list-users', component: ManageUsersComponent },
+                //{path: '', component: PoolsComponent},
+                //{path: 'investment', component: PoolsComponent},
+                //{path: 'add-pools', component: AddPoolComponent},
+                //{path: 'list-users', component: ManageUsersComponent },
           ] },
           { path: 'manage-admins', component: ManageAdminComponent },
 
@@ -114,7 +103,7 @@ const userRoutes: Routes = [
           { path: 'viewedReport', component: ViewedreportComponent },
           { path: 'userReport', component: UserreportComponent },
           { path: 'userReport/:email', component: viewUserPoolComponent },
-          { path: 'userReport/:email/export', component: exportUserPoolComponent },
+          { path: 'userReport/:email/export/:id', component: exportUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
           { path: 'userPools', component: userPoolsComponent },

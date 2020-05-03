@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./customer-report.component.scss']
 })
 export class UserreportComponent implements OnInit {
-  @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
+  user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
   users: any [];
   selectedUser: User;
@@ -27,9 +27,13 @@ export class UserreportComponent implements OnInit {
   selectedInvestment = -1;
   dashboardInvestment: any =[];
   userInvestment: any;
-  investmentInfo: Investment = {duration: '0', investment_amount: 0};
-  dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
-  noOfPools: any=[];
+  userPool: any;
+  investmentInfo: Investment = {title: '', investment_amount: 0,};
+  report = {};
+  reportlog = [];
+  latest_return = 0;
+  currentlog = {no_of_pools_invested: 0};
+  email:any;
 
   constructor(
     private router: Router,
@@ -37,9 +41,11 @@ export class UserreportComponent implements OnInit {
     private investmentService:InvestmentService,
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
-    private toastrService: ToastrService,
-    private reportService: ReportService
-    ) {}
+    private reportService: ReportService,
+    private toastrService: ToastrService
+    ) {
+      this.getpool(this.email);
+    }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp => {
@@ -50,23 +56,10 @@ export class UserreportComponent implements OnInit {
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
-        this.getDetails();
       }
     });
   }
 
-  getDetails() {
-    this.users.forEach(user=>
-      this.investmentService.getUserInvestments(user.email).subscribe(investments=>{
-          this.userInvestment = investments.success.Data;
-          this.noOfPools.push(this.userInvestment.length);
-          //this.alluserInvestment.push(this.userInvestment)
-          console.log(this.noOfPools);
-          //this.selectedInvestment = 0;
-          //this.showDetails();
-      })
-    );
-  }
 
   getUsers(){
     this.adminService.getUsers().subscribe(resp => {
@@ -76,45 +69,17 @@ export class UserreportComponent implements OnInit {
   });
 }
 
-  // noPools(email){
-  //     return this.userInvestment.length;
-  // }
+  getpool(email) {
+    this.adminService.getDashBoardData().subscribe(resp => {
+      if (resp && resp.success) {
+        this.report = resp.success.Data;
+        this.reportlog.push(this.report);
+        this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
 
-
-  // showDetails() {
-  //   if (this.selectedInvestment >= 0) {
-  //     console.log(this.userInvestment);
-  //     this.investmentInfo = this.alluserInvestment[this.selectedInvestment];
-
-  //     this.getUserDashBoard();
-  //     this.selectedInvestment++;
-  //     console.log(this.selectedInvestment);
-  //     return this.selectedInvestment;
-  //     } else {
-  //     this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //     console.log(this.investmentInfo);
-  //   }
-
-  // }
-
-  // getUserDashBoard() {
-  //   console.log(this.user.email);
-  //   const userEmail = this.user.email;
-  //   const investmentId = this.investmentInfo.id;
-
-  //   this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-  //     if (resp && resp.success) {
-  //       this.dashBoardData = resp.success.Data;
-  //       console.log(this.dashBoardData);
-  //       this.dashboardInvestment.push(this.dashBoardData);
-  //     } else {
-  //       this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-  //       console.log(this.dashBoardData);
-  //     }
-  //     console.log(this.dashboardInvestment);
-  //     this.showDetails();
-  //   });
-  // }
+        console.log(this.currentlog);
+      }
+    });
+  }
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
@@ -122,11 +87,12 @@ export class UserreportComponent implements OnInit {
 
   }
 
+
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value;
 
     if (!value) {
-      return this.users;
+      return this.getUsers();
     } else {
       const filtered = this.users.filter(user => {
         if (user[filterType] !== null) {
