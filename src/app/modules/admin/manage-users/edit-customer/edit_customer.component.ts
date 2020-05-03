@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component,  OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { UserService } from 'src/app/modules/user/user.service';
@@ -11,6 +11,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./edit_customer.component.scss']
 })
 export class EditCustomerComponent implements OnInit {
+  @ViewChild('closebutton') closebutton;
+  @ViewChild('closemodal') closemodal;
+  @ViewChild('closetab') closetab;
+
+  modalText = 'Save Changes';
   user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   userData: any[];
   _shown = true;
@@ -42,26 +47,6 @@ ngOnInit() {
     });
     }
 
-
-// Make additional tab buttons
-TabControl(){
-    let i;
-    const items = document.querySelectorAll('.nav-link');
-    const pane = document.querySelectorAll('.tab-pane');
-    for(i = 0; i < items.length; i++){
-        if((items[i]).classList.contains('active') ==true){
-            break;
-        }
-    }
-    if(i < items.length - 1){
-        // for tab
-        (items[i]).classList.remove('active');
-        (items[i+1]).classList.add('active');
-        // for pane
-        (pane[i]).classList.remove('show', 'active');
-        (pane[i+1]).classList.add('show', 'active');
-    }
-}
 cancelProfile() {
         this.user = null;
         this.router.navigateByUrl('admin/manage-users');
@@ -71,38 +56,54 @@ updateProfile(user: User) {
     if (this.user.average_monthly_income === null) {
         this.user.average_monthly_income = '0';
     }
+    this.modalText = 'Updating...';
     this.isSubmitting = this.userService.adminUpdateProfile(user).subscribe(resp => {
         if (resp && resp.success) {
         this.toastrService.success('Details updated succesfully');
+        this.modalText = 'Save Changes';
+        this.closebutton.nativeElement.click();
         }
       else {
         // alert('Update did not go through');
         this.toastrService.error('Details update failed');
+        this.modalText = 'Save Changes';
+        this.closebutton.nativeElement.click();
         }
     });
     }
 
 updatePreference(user: User) {
-    console.log(user);
+    this.modalText = 'Updating...';
+
     this.isSubmitting = this.userService.adminUpdatePreference(user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
+            this.modalText = 'Save Changes';
+            this.closetab.nativeElement.click();
             } else {
                 // alert('Update did not go through');
                 this.toastrService.error('Details update failed');
+                this.modalText = 'Save Changes';
+                this.closetab.nativeElement.click();
                 }
         });
         }
 
 updateBankDetails(user: User) {
+    this.modalText = 'Updating...';
+
     this.isSubmitting = this.userService.adminUpdateBankDetails(user).subscribe(resp => {
             if (resp && resp.success) {
             this.toastrService.success('Details updated succesfully');
+            this.modalText = 'Save Changes';
+            this.closemodal.nativeElement.click();
             } else {
                 // alert('Update did not go through');
                 this.toastrService.error('Details update failed');
+                this.modalText = 'Save Changes';
+                this.closemodal.nativeElement.click();
                 }
-   });
+        });
         }
 
 getBankList() {

@@ -66,7 +66,7 @@
                                         </div>
                                     </div>
                                       <div class="row" style="display:flex;justify-content:space-between">
-                                        <p class="m-b-0 foot" ><a routerLink="./poolReport" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
+                                        <p class="m-b-0 foot" ><a routerLink="./purchasedReport" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                     </div>
                                     <div class="row" style="display:flex;justify-content:space-between">
                                         <p class="m-b-0 foot" ><a routerLink="./manage-users" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
-                                        <p class="m-b-0 foot" style="font-size:12px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
+                                        <p class="m-b-0 foot" style="font-size:10px;color:white">{{dashBoardData.total_users_with_investment.length}} currently investing</p>
                                     </div>
                                 </div>
                             </div>
@@ -230,14 +230,15 @@
                     </div> -->
                 </div>
                   <div *ngIf="!isLoading" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
-                      <div class="card-details col-xl-3.5 col-md-4" style="padding-left: 0;max-width:30%">
+                      <div class="card-details activity-card col-xl-3.5 col-md-4" style="padding-left: 0;max-width:30%">
                           <div class="card latest-update-card" style="padding-bottom:15px">
                               <div class="card-header"
-                              style="margin: 2px 0px;
-                                    padding: 18px 20px !important;
-                                    padding-bottom: 25px !important;"
+                              style="margin-bottom: 15px;
+                                    padding: 15px 25px !important;
+                                    padding-bottom: 18px !important;
+                                    background-color:#4F5FBE !important"
                               >
-                                  <h5>Recent Activity</h5>
+                                  <h5 style="color:white !important">Recent Activity</h5>
                               </div>
                               <div class="card-block">
 
@@ -293,8 +294,8 @@
 
                       <div class="card-details col-xl-8 col-md-12" style="padding-right: 0;padding-left: 0;max-width: 100%;min-width: 70%;">
                         <div class="card latest-update-card">
-                            <div class="card-header">
-                                <h5>Latest Investment</h5>
+                            <div class="card-header" style="background-color:#4F5FBE !important">
+                                <h5 style="color:white !important">Latest Investment</h5>
                             </div>
                             <div class="card-block">
 
