@@ -359,7 +359,7 @@
                                                                 <a>Last Payment</a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a>{{ pool?.report[0]?.created_at | date :  "dd.MM.y" }}</a>
+                                                                <a>{{ pool?.report[0]?.created_at ? (pool?.report[0]?.created_at | date :  "dd.MM.y") : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -369,7 +369,7 @@
                                                                 <a>Next Payment</a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a>{{ addMonth(pool?.report[0]?.created_at , 1)  | date:  "dd.MM.y" }}</a>
+                                                                <a>{{ pool?.report[0]?.created_at ? (addMonth(pool?.report[0]?.created_at , 1)  | date:  "dd.MM.y") : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>

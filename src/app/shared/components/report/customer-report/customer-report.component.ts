@@ -102,7 +102,7 @@ export class UserreportComponent implements OnInit {
       this.users = filtered;
     }
   }
-
+  
   clearSearch() {
     this.searchValue = null;
     return this.getUsers();
@@ -127,4 +127,17 @@ export class UserreportComponent implements OnInit {
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
 }
+   
+  getTotalInv(email){
+    this.userService.getProfileDetails(email).subscribe(investments=>{
+      if(investments.success.Data !== 0){
+        this.userInvestment = investments.success.Data;
+        console.log('hello')
+        return this.userInvestment.total
+      }
+      else {
+      }
+    });
+  }
+
 }

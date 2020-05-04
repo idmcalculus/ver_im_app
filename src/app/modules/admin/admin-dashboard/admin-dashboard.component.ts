@@ -40,7 +40,7 @@ export class AdminDashboardComponent implements OnInit {
       const text = [];
       text.push('<ul style="width: 70%">');
       for (let i = 0; i < chart.data.datasets[0].data.length; i++) {
-            text.push('<li style="display: flex;justify-content: space-between;font-size: 0.7rem;padding: 6% 0%;" class="data">');
+            text.push('<li style="display: flex;justify-content: space-between;font-size: 8.5px;padding: 6% 0%;" class="data">');
             text.push('<div style="display: flex;justify-content: space-between">');
             text.push('<span style="border: 2.5px solid ' + chart.data.datasets[0].backgroundColor[i] + ';border-radius: 60%;width: 14px;height:14px;margin: 1px 2px;"></span>');
             if (chart.data.labels[i]) {
