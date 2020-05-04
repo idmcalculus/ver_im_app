@@ -81,7 +81,6 @@ export class UserreportComponent implements OnInit {
     });
   }
 
-
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
     console.log(user);
