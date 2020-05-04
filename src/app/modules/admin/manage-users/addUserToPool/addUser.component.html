@@ -41,7 +41,7 @@
                             </div>
 
                             <form>
-                                <div class="row px-4">
+                                <div class="row px-4" *ngIf="!isLoading">
 
                                     <div class="col-6 pr-4">
                                         <div class="form-group row">
@@ -53,11 +53,9 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Email</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control " [(ngModel)]="user_email" name="pay-type" id="pay-type" value="{{selectedUser.email}}" readonly>
+                                                <input type="type" class="input-control " [(ngModel)]="user_email" name="pay-type" id="pay-type" [value]="selectedUser.email" readonly>
                                             </div>
-                                        </div>
-                                        <div><p>{{selectedUser.email}}</p></div>
-                                        
+                                        </div>                                        
                                         
                                     </div>
                                     <div class="col-6 pl-4">
@@ -95,7 +93,7 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investment Category</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control " value="{{pool?.investment.category_id}}" name="category" readonly>
+                                                <input type="type" class="input-control " value="{{getCategoryName(pool?.investment.category_id)}}" name="category" readonly>
                                             </div>
                                         </div>
 
@@ -111,12 +109,11 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" autocomplete="off" class="input-control " [(ngModel)]="number_of_pools" name="slots"
+                                                <input type="number" (keyup)="validPool()" autocomplete="off" class="input-control " [(ngModel)]="number_of_pools" name="slots"
                                                 id="slotNum">
+
+                                                <div *ngIf="validpoolError === 'Number of Pools Exceeded' " class="font-weight-bold pt-2 text-danger">{{validpoolError}}</div>
                                             </div>
-                                            <!-- <div>{{pool.max_num_of_slots * (pool.max_num_of_slots - pool.num_of_pools_taken)}}</div> -->
-                                            <!-- <div *ngIf="condition as value; else elseBlock"{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)}></div>
-                                            <ng-template #elseBlock>Content to render when value is null.</ng-template> -->
                                         </div>
                                     </div>
 
@@ -124,7 +121,7 @@
                                         <div class="form-group row">    
                                             <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" class="input-control " [(ngModel)]="amount_paid" value="{{calculateEstimate(pool.investment.investment_amount,number_of_pools)}}" name="amount_paid" class="form-control"
+                                                <input type="number" class="input-control" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid"
                                                 id="amount_paid" #amount_paidModel="ngModel"
                                                 >
                                             </div>
@@ -136,25 +133,25 @@
                                     </div>
 
                                 </div>
-                            </form>
-                        </div>
-                    </div>
 
-                    <div *ngIf="isLoading" >
-                        <br><br>
-                        <div  class="lds-default">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                                <div *ngIf="isLoading" class="center" >
+                                    <br><br>
+                                    <div  class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

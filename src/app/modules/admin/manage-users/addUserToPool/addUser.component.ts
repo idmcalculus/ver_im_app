@@ -22,10 +22,12 @@ export class AddUserComponent implements OnInit {
   pool:any;
   poolId:number=0;
   buttonText = 'Add';
+  categories: any;
   isPaymentreport:boolean=false;
   number_of_pools:number;
   investment_amount: number;
   isLoading:boolean=true;
+  validpoolError:string;
   reference:string='';
   user_email: '';
   amount_paid:number;
@@ -50,7 +52,8 @@ export class AddUserComponent implements OnInit {
         this.poolId = Number(this.route.snapshot.paramMap.get('id'));
       }
       this.fetchPool(String(this.poolId));
-    })
+    });
+    this.getCategories();
   }
 
   cancelPool() {
@@ -60,6 +63,20 @@ export class AddUserComponent implements OnInit {
   onSelect(user: User): void {
     this.selectedUser = user;
     console.log(this.selectedUser);
+  }
+
+  validPool(pool) {
+    if (this.number_of_pools != 0){ 
+    const remain = this.pool.investment.max_num_of_slots - this.pool.investment.num_of_pools_taken
+    const want = this.number_of_pools
+
+    if(want > remain) {
+      console.log('Exceeded');
+      this.validpoolError = 'Number of Pools Exceeded';  
+    } else {
+      this.validpoolError ='';
+    }
+  } 
   }
 
   ngOnInit() {
@@ -74,6 +91,21 @@ export class AddUserComponent implements OnInit {
     });
   }
 
+  getCategories() {
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
+      }
+      this.isLoading = false;
+    });
+  }
+
+  getCategoryName(id) {
+    // console.log(this.categories,'=====>')
+    const res = this.categories.find( r => r.id === id);
+    return res.category_name;
+  }
+
   fetchPool(poolId:string){
     this.isLoading =true;
     this.investmentService.getInvestment(poolId).subscribe(poolDetails=>{
@@ -81,6 +113,8 @@ export class AddUserComponent implements OnInit {
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
           // console.log("i have gat :: "+JSON.stringify(this.pool))
+         this.validPool(this.pool);
+
           this.isLoading = false;
         }else{
           this.router.navigate(['./', {}]);
@@ -122,7 +156,7 @@ export class AddUserComponent implements OnInit {
   }
 
   calculateEstimate(returns,inv){
-    console.log(returns , inv);
+    //console.log(returns , inv);
 
     const estimate = returns * inv;
     return estimate;
