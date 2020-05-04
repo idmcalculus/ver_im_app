@@ -41,6 +41,7 @@ export class PoolreportComponent implements OnInit {
         this.getPools();
         this.getCategories();
       }
+      
       this.getCategories();
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
@@ -111,5 +112,9 @@ export class PoolreportComponent implements OnInit {
         this.pools = filtered;
       }
   }
-
+  
+  clearSearch() {
+    this.searchValue = null;
+    return this.getPools();
+  }
 }

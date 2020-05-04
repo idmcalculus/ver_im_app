@@ -7,7 +7,7 @@
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>The Profile of {{user?.first_name}} {{user?.last_name}}
-                               
+
                             </h3>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                                     <a *ngIf="_shown" (click)="_shown=!_shown" class="btn btn-add plus-btn float-right" style="padding: 0;">
                                         <span style="margin-top: 0;" ><i
                                         class="fa fa-edit"></i></span>
-        
+
                                     </a>
                                     <a *ngIf="!_shown" class="btn btn-add plus-btn float-right" style="padding: 0;">
                                             <span style="margin-top: 0;" >
@@ -28,7 +28,7 @@
                                                 <i (click)="_shown=!_shown"
                                                 class="fa fa fa-times" aria-hidden="true"></i>
                                             </span>
-                                           
+
                                     </a>
                                 </div>
                                 <div class="card-block">
@@ -40,7 +40,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Email:</td>
-                                                
+
                                                 <td><input class='filled' type="text" [(ngModel)]="user.email"  [disabled]="_shown"></td>
                                             </tr>
                                             <tr>
@@ -114,13 +114,13 @@
                                                 <table class="table reduced-font">
                                                     <tr>
                                                         <td>Receive updates on new Plans?</td>
-                                                        <td *ngIf="user?.updates_on_new_plans==1"><label class="label label-primary">Yes</label></td>
-                                                        <td *ngIf="user?.updates_on_new_plans==0"><label class="label label-danger">No</label></td>
+                                                        <td *ngIf="user?.updates_on_new_plans== true"><label class="label label-primary">Yes</label></td>
+                                                        <td *ngIf="user?.updates_on_new_plans== false"><label class="label label-danger">No</label></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Send E-mail updates on investment</td>
-                                                        <td *ngIf="user?.email_updates_on_investment_process==0"><label class="label label-danger">No</label></td>
-                                                        <td *ngIf="user?.email_updates_on_investment_process==1"><label class="label label-primary">Yes</label></td>
+                                                        <td *ngIf="user?.email_updates_on_investment_process== false"><label class="label label-danger">No</label></td>
+                                                        <td *ngIf="user?.email_updates_on_investment_process== true"><label class="label label-primary">Yes</label></td>
                                                     </tr>
                                                     <tr>
                                                         <td>User's Status</td>

@@ -180,8 +180,8 @@
                       <div class="card latest-update-card">
                           <div class="card-header small-gap">
                               <h5>Investment Perfomance</h5>
-                              
-                              
+
+
                           </div>
                           <div class="row divider"></div>
                           <div class="card-block" >
@@ -246,16 +246,16 @@
                                 <div class="dt-responsive table-responsive">
                                     <div *ngFor="let req of dashBoardData?.fetch_activities.slice(0, 5),let x=index">
                                         <div class="activities">
-                                          <div 
+                                          <div
                                             style="
                                             padding: auto;
                                             border-radius: 50%;
                                             border-color:#e8e8fe
-                                            "> 
+                                            ">
                                             <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
-                                            </div> 
-                                            <div 
-                                            style=" 
+                                            </div>
+                                            <div
+                                            style="
                                             margin: 8.5px;
                                             margin-left: 10px;
                                             font-size: 13px;
@@ -321,7 +321,7 @@
                                               <td >{{req.user_id}}</td>
                                               <td >{{req.category_id}}</td>
                                              <td style="color: green" *ngIf="req.is_investment_started === 1; else showThis">{{'Active'}}</td>
-                                                <ng-template #showThis>      
+                                                <ng-template #showThis>
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
                                               <td >{{req.date_added}}</td>

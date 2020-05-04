@@ -1,5 +1,7 @@
  import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute,Router} from '@angular/router';
+import { ExportData } from 'src/app/shared/models/ExportData';
+import { ReportService } from '../report.service';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AdminService } from '../../../../modules/admin/admin.service';
@@ -39,6 +41,7 @@ export class UserreportComponent implements OnInit {
     private investmentService:InvestmentService,
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
+    private reportService: ReportService,
     private toastrService: ToastrService
     ) {
       this.getpool(this.email);
@@ -49,13 +52,22 @@ export class UserreportComponent implements OnInit {
       if (resp && resp.success) {
         this.users = resp.success.Data;
         //console.log(this.users);
-        
+
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
       }
     });
   }
+
+
+  getUsers(){
+    this.adminService.getUsers().subscribe(resp => {
+        if (resp && resp.success) {
+          this.users = resp.success.Data;
+        }
+  });
+}
 
   getpool(email) {
     this.adminService.getDashBoardData().subscribe(resp => {
@@ -68,12 +80,11 @@ export class UserreportComponent implements OnInit {
       }
     });
   }
- 
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
     console.log(user);
-    
+
   }
 
 
@@ -81,7 +92,7 @@ export class UserreportComponent implements OnInit {
     const value = filterValue.target.value;
 
     if (!value) {
-      return this.users;
+      return this.getUsers();
     } else {
       const filtered = this.users.filter(user => {
         if (user[filterType] !== null) {
@@ -92,7 +103,31 @@ export class UserreportComponent implements OnInit {
     }
   }
 
-   
+  clearSearch() {
+    this.searchValue = null;
+    return this.getUsers();
+  }
+
+  saveAsCSV() {
+    if(this.users.length > 0){
+      const items: ExportData[] = [];
+
+      this.users.forEach(line => {
+        let reportDate = new Date();
+        let csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+          first_name: line.first_name,
+          last_name: line.last_name,
+          email: line.email,
+          phone_number: line.phone_number,
+        }
+        items.push(csvLine);
+      });
+
+      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+    }
+}
+
   getTotalInv(email){
     this.userService.getProfileDetails(email).subscribe(investments=>{
       if(investments.success.Data !== 0){
@@ -104,6 +139,4 @@ export class UserreportComponent implements OnInit {
       }
     });
   }
-
-  deleteUser(){}
 }

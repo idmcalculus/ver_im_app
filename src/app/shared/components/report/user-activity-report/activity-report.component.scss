@@ -18,20 +18,23 @@
     display: block;
 }
 
+.cursor {
+    cursor: pointer;
+}
+
 
 .input-control {
     display: block;
     width: 100%;
-    padding: .35rem .8rem;
-    font-size: .875rem;
-    line-height: 1.5;
+    padding: .5rem .5rem;
     color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
     background-color: #fff;
     background-clip: padding-box;
-    border: 0.3px solid #221F72;
+    border: 0px solid ;
     border-radius: 2px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+  }
 
 label,th {
     color: #221F72;
@@ -91,7 +94,7 @@ div > a {
 .col-md-12 .card-header {
 	margin: 10px 15rem 0px 1rem;
 	padding: 10px 0px 0px 0px;
-	font-size: 20px;
+	font-size: 14px;
 
 	::after{
 		background-color: transparent;
@@ -117,6 +120,7 @@ div > a {
     padding: 0;
     margin: 0;
     padding-right: 4px;
+    font-size: 14px;
 }
 
 .category-body .row1 {
@@ -134,17 +138,14 @@ div > a {
     padding: 0px;
 }
 
-.category-body .row1 p{
+.category-body .row1 p {
     padding: 0;
+    font-size: 12px;
 }
 
 .s-n, .category-name {
     flex: 1 1 30em;
     margin-left: 10px;
-}
-
-.category-body .row1 p{
-    padding: 0;
 }
 
 .icon {
@@ -159,6 +160,9 @@ div > a {
 .my_pagination /deep/ .ngx-pagination {
     display: inline-flex;
     flex: content;
+}
+.controls{
+    padding-top: 0.95rem;
 }
 
 

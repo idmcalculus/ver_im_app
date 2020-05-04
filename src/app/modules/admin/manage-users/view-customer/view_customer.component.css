@@ -7,6 +7,18 @@ input:disabled {
     padding: 0;
 }
 
+.input-control {
+    display: block;
+    width: 100%;
+    color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
 img {
     cursor: pointer;
     width: 50px;
@@ -71,12 +83,12 @@ th {
 }
 
 .table-striped td {
-    font-size: bold;
+    font-size: 12px;
     text-align: center;
 }
 
 .table-striped th {
-    font-size: bold;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -124,10 +136,7 @@ th {
 }
 
 
-.my_pagination /deep/ .ngx-pagination {
-    display: inline-flex;
-    flex: content;
-}
+
 
 .displayStatus {
     color: red;
@@ -149,6 +158,3 @@ th {
         line-height: 28px;
     }
 }
-
-
-
