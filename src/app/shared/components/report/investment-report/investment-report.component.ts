@@ -112,6 +112,8 @@ export class PoolreportComponent implements OnInit {
         this.pools = filtered;
       }
   }
+
+  saveAsCSV(){}
   
   clearSearch() {
     this.searchValue = null;
