@@ -6,6 +6,8 @@ import { UserService } from 'src/app/modules/user/user.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { AdminService } from '../../admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-view-users',
@@ -24,7 +26,9 @@ export class ViewUsersComponent implements OnInit {
     checkedUser = [];
 
     constructor(private authService: AppAuthService,
-                private userService: UserService) {
+                private userService: UserService,
+                private adminService: AdminService,
+                private toastrService: ToastrService) {
                 this.userSubscription = this.authService.currentUser.subscribe((userInfo) => {
                         if (userInfo) {
                             this.loggedInUser = userInfo;
@@ -79,9 +83,35 @@ export class ViewUsersComponent implements OnInit {
         });
     }*/
     deleteSelected() {
+        this.isLoading = true;
         const filtered = this.adminUsers.filter(user => user.selected === false);
         filtered.forEach((user, i) => user.index = i + 1 );
-        this.adminUsers = filtered;
+        setTimeout(() => {
+            this.adminUsers = filtered;
+            this.isLoading = false;
+        }, 3000);
+        /*const selected = this.adminUsers.filter(user => user.selected === true);
+        selected.forEach(user => {
+            const data = {
+            last_name: user.last_name,
+            first_name: user.first_name,
+            authentication_type: user.authentication_type,
+            password: user.password,
+            user_category: user.user_category,
+            email: user.email
+            };
+
+            this.adminService.updateAdminUser(data, 'User').subscribe(resp => {
+                if (resp && resp.success) {
+                    console.log(resp);
+                    this.toastrService.success('Selected user(s) successfully deleted');
+                } else {
+                    this.toastrService.error('There was an error deleting selected User(s)');
+                }
+                this.isLoading = false;
+            });
+
+        });*/
     }
 
 }

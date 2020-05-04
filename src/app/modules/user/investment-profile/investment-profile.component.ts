@@ -79,7 +79,15 @@ export class InvestmentProfileComponent implements OnInit {
                   if (poolDetails && poolDetails.success) {
                       this.pool = await poolDetails.success.Data;
                       this.numOfReports = this.pool.report.length;
-                      this.latestReport = this.pool.report[0];
+                      this.numOfReports === 0 ?
+                      (this.latestReport = {
+                        title: '',
+                        returned_amount: 0,
+                        investment_id: 0,
+                        payment_type: '',
+                        description: ''
+                      })
+                      : this.latestReport = this.pool.report[0];
                       this.isLoading = false;
                   }
                 });

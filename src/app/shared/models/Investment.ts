@@ -17,6 +17,7 @@ export class Investment extends BasicModel {
   num_of_pools_taken?: number;
   reference?: string;
   investment_image?: string;
+  length?: any;
   investment?: {
     id: number;
     investment_started_date?: string;
