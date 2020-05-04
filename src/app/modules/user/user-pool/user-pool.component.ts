@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class userPoolsComponent implements OnInit {
   isLoading:boolean=true;
   pools:Investment[]=[];
-  pool:Investment = {title: '', investment_amount: 0, };
+  pool:any = {title: '', investment_amount: 0, };
   userType:string;
   categories:any []
   searchValue = '';
