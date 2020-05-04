@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 export class PoolDetailComponent implements OnInit {
   pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   poolId = 0;
+  url:any;
   reportData: Report = {title: '', description: ''};
   categories = [];
   modaltitle = 'Update Plan';
@@ -265,6 +266,26 @@ export class PoolDetailComponent implements OnInit {
       return 48;
     } else if (this.pool.expected_return_period === 'Monthly') {
       return 12;
+    }
+  }
+
+  changeListener($event): void {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    if (inputValue.files && inputValue.files[0]) {
+      var file: File = inputValue.files[0];
+      var myReader: FileReader = new FileReader();
+
+      myReader.onloadend = (e) => {
+        this.image = myReader.result;
+        this.pool.investment_image = this.image;
+      }
+      myReader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = 'event.target.result';
+      }
+      myReader.readAsDataURL(file);
     }
   }
 
