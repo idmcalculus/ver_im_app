@@ -6,6 +6,8 @@ import { UserService } from 'src/app/modules/user/user.service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { AdminService } from '../../admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-view-users',
@@ -24,14 +26,16 @@ export class ViewUsersComponent implements OnInit {
     checkedUser = [];
 
     constructor(private authService: AppAuthService,
-                private userService: UserService) {
-        this.userSubscription = this.authService.currentUser.subscribe((userInfo) => {
-                if (userInfo) {
-                    this.loggedInUser = userInfo;
-                }
-            }
-        );
-        this.getAdminUsers();
+                private userService: UserService,
+                private adminService: AdminService,
+                private toastrService: ToastrService) {
+                this.userSubscription = this.authService.currentUser.subscribe((userInfo) => {
+                        if (userInfo) {
+                            this.loggedInUser = userInfo;
+                        }
+                    }
+                );
+                this.getAdminUsers();
     }
 
     ngOnInit() {}
@@ -42,7 +46,7 @@ export class ViewUsersComponent implements OnInit {
             if (users && users.success) {
               this.adminUsers = users.success.Data.filter(user => user.user_category === 'Admin');
               this.adminUsers.forEach((user: any, i) => user.index = i + 1);
-              this.adminUsers.forEach((user: any, i) => user.selected = false);
+              this.adminUsers.forEach(user => user.selected = false);
 
               this.returnedArray = this.adminUsers.slice(0, 3);
             }
@@ -57,28 +61,57 @@ export class ViewUsersComponent implements OnInit {
       }
 
     selectAll() {
-    for (let i = 0; i < this.adminUsers.length; i++) {
-        {
-        this.adminUsers[i].selected = this.selectedAll;
-        }
-    }
-    this.getCheckedUser();
+    this.adminUsers.forEach(user => {
+        user.selected = this.selectedAll;
+    });
+    // this.getCheckedUser();
     }
 
     checkIfAllSelected() {
     this.selectedAll = this.adminUsers.every(user => {
         return user.selected === true;
     });
-    this.getCheckedUser();
+    // this.getCheckedUser();
     }
 
-    getCheckedUser() {
-    this.checkedUser = [];
-    for (let i = 0; i < this.adminUsers.length; i++) {
-        if (this.adminUsers[i].selected) {
-        this.checkedUser.push(this.adminUsers[i]);
-        }
-    }
+    /*getCheckedUser() {
+        this.adminUsers.forEach(user => {
+            if (user.selected) {
+                this.checkedUser.push(user);
+                console.log(this.checkedUser);
+            }
+        });
+    }*/
+    deleteSelected() {
+        this.isLoading = true;
+        const filtered = this.adminUsers.filter(user => user.selected === false);
+        filtered.forEach((user, i) => user.index = i + 1 );
+        setTimeout(() => {
+            this.adminUsers = filtered;
+            this.isLoading = false;
+        }, 3000);
+        /*const selected = this.adminUsers.filter(user => user.selected === true);
+        selected.forEach(user => {
+            const data = {
+            last_name: user.last_name,
+            first_name: user.first_name,
+            authentication_type: user.authentication_type,
+            password: user.password,
+            user_category: user.user_category,
+            email: user.email
+            };
+
+            this.adminService.updateAdminUser(data, 'User').subscribe(resp => {
+                if (resp && resp.success) {
+                    console.log(resp);
+                    this.toastrService.success('Selected user(s) successfully deleted');
+                } else {
+                    this.toastrService.error('There was an error deleting selected User(s)');
+                }
+                this.isLoading = false;
+            });
+
+        });*/
     }
 
 }

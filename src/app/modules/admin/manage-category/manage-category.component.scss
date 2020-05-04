@@ -87,6 +87,7 @@ a {
 
 	p {
 		font-weight: bolder;
+		font-size: 14px;
 	}
 }
 
@@ -99,6 +100,10 @@ a {
 
 	&::-webkit-scrollbar {
 		display: none;  // Safari and Chrome
+	}
+
+	p {
+		font-size: 12px;
 	}
 }
 
@@ -143,9 +148,9 @@ p.category-name {
 }
 
 .col-sm-4 .card-header {
-	border-bottom: 0.5px solid #0b069033;
-    margin: 10px 10px 15px 10px;
-	padding: 10px 10px 15px 10px;
+	border-bottom: 0.5px solid #221F72;
+    margin: 10px 20px 0px 20px;
+	padding: 10px 10px 5px 0px;
 
 	::after{
 		background-color: transparent;
