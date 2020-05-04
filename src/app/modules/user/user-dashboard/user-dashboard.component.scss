@@ -113,15 +113,13 @@
             padding: 10px;
             letter-spacing: 0.5px;
             color: black;
-            border-bottom-width: 2px;
-            border-bottom-style: solid;
-            border-bottom-color:#e4e4e4;
+            border-bottom: 1.5px solid #4F5FBE;
 
             h5 {
                 margin-bottom: 0;
                 color: #221f72;
-                font-size: 13px;
-                font-weight: 700;
+                font-size: 14px;
+                font-weight: bold;
                 display: inline-block;
                 margin-right: 10px;
                 line-height: 1.1;
@@ -144,7 +142,8 @@
             justify-content: space-between;
             h5 {
                 margin-bottom: 0;
-                color: #071a73fa !important;
+                font-size: 14px;
+                color: #071a73fa;
                 font-weight: bolder;
             }
             h3{
@@ -198,7 +197,12 @@
 }
 
 .latest-update-card {
-    padding-bottom:15px;
+
+    .card-footer{
+        border-radius: 0em;
+        padding: 18px 20px !important;
+        padding-bottom: 25px !important;
+    }
 
      .card-header{
         margin: 2px 0px;
@@ -222,6 +226,67 @@
 
         }
     }
+}
+
+.header-bg{
+    background-color: #4F5FBE;
+}
+
+.header-bg button{
+    border-radius: 10px;
+}
+
+.header-bg  h6{
+        color:white;
+        margin-bottom: 0;
+        font-weight: bold;
+}
+
+.carousel-inner .card-block .adjust {
+    margin: 0.5rem;
+}
+
+.nav-item {
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.latest-update-card > .input-control {
+    display: block;
+    width: 100%;
+    color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .input-control  img {
+      height: 100px;
+  }
+
+  .input-control .spectre{
+    margin-left: 2.5rem;
+    color: #495057;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.row1 p {
+    border-bottom: 1px #495057 solid ;
+    color: #495057;
+    font-size: 12px;
+}
+
+.divider2{
+    height: 44.5px;
+    border-width: 1px;
+    border-right-style: solid;
+    margin: 0px 16px;
+    width: 17.5px;
+    border-right-color: #80808030;
 }
 
 

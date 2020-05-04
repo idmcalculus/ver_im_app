@@ -1651,5 +1651,9 @@ body, html {
     width: 100%;
 }
 
+td{
+    text-overflow: ellipsis;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif; }

@@ -853,7 +853,8 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .table-primary, .table-primary > td, .table-primary > th {
-    background-color: #4680fe
+    background-color: #4680fe;
+    text-overflow: ellipsis;
 }
 
 .table-responsive {
@@ -863,7 +864,8 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .table.table-xl td, .table.table-xl th {
-    padding: 1.25rem 2rem
+    padding: 1.25rem 2rem;
+    text-overflow: ellipsis;
 }
 
 .table.table-lg td, .table.table-lg th {
@@ -879,7 +881,8 @@ a.bg-danger:focus, a.bg-danger:hover {
 }
 
 .table.table-xs td, .table.table-xs th {
-    padding: .4rem 2rem
+    padding: .4rem 2rem;
+    text-overflow: ellipsis;
 }
 
 .table-columned > tbody > tr > th:first-child, .table-columned > tbody > tr > td:first-child {
@@ -892,12 +895,14 @@ a.bg-danger:focus, a.bg-danger:hover {
 
 .table-columned > tbody > tr > th, .table-columned > tbody > tr > td {
     border: 0;
-    border-left: 1px solid #ddd
+    border-left: 1px solid #ddd;
+    text-overflow: ellipsis;
 }
 
 .table-columned > tfoot > tr > th, .table-columned > tfoot > tr > td {
     border: 0;
-    border-left: 1px solid #ddd
+    border-left: 1px solid #ddd;
+    text-overflow: ellipsis;
 }
 
 .table-border-style {
