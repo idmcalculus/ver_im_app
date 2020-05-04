@@ -425,6 +425,7 @@
 
   .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
     padding: 10px 0;
+    text-overflow: ellipsis;
     vertical-align: top;
     border-top: 1px solid rgba($theme-blue, .2);
   }
