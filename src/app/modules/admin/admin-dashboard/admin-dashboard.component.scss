@@ -177,7 +177,7 @@
             }
         }
 
-        @media only screen and (max-width: 988px) {
+        @media only screen and (max-width: 1088px) {
             &.graphs{
                 display: block;
 
@@ -276,11 +276,37 @@
         width: 45%
     }
 
-    @media only screen and (max-width: 988px) {
+    @media only screen and (max-width: 1100px) {
+        .graphs{
+            display: block;
+        }
+
+        .latest-update-card{
+            display: block;
+            width: 100%;
+        }
+
+        .tabl{
+            min-width:100%;
+        }
+
+        .perf{
+            width: 100%;
+            display: block;
+        }
+
         .maps{
             display: block;
             justify-content: space-between;
         }
+
+        .activity-card{
+            min-width: 100%;
+        }
+
+    }
+
+    @media only screen and (max-width: 1100px) {
 
         .state{
             width: 90%;

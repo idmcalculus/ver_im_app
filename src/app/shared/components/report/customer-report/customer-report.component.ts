@@ -68,7 +68,7 @@ export class UserreportComponent implements OnInit {
       }
     });
   }
-  
+ 
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
@@ -90,6 +90,19 @@ export class UserreportComponent implements OnInit {
       });
       this.users = filtered;
     }
+  }
+
+   
+  getTotalInv(email){
+    this.userService.getProfileDetails(email).subscribe(investments=>{
+      if(investments.success.Data !== 0){
+        this.userInvestment = investments.success.Data;
+        console.log('hello')
+        return this.userInvestment.total
+      }
+      else {
+      }
+    });
   }
 
   deleteUser(){}
