@@ -44,9 +44,27 @@ div > a {
 .table > thead > tr > th {
     border-top: none;
     border-bottom-width: 2px;
-    border-bottom-color: #221F72
+    border-bottom-color: #221F72;
+    font-size: 14px;
 }
 
-td {
-    border-color: #221F72
+.table > thead > tr > td {
+    border-color: #221F72;
+    font-size: 12px;
 }
+
+.input-control {
+    display: block;
+    width: 70%;
+    color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .controls {
+      text-align: center;
+  }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./view_customer.component.css']
 })
 export class ViewCustomerComponent implements OnInit {
+
     _shown = true;
     userData: any [];
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
@@ -26,6 +27,8 @@ export class ViewCustomerComponent implements OnInit {
    // categories=[];
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
+    pageValue = 5;
+
     constructor(
       private investmentService: InvestmentService,
       private userService: UserService,
@@ -59,7 +62,6 @@ export class ViewCustomerComponent implements OnInit {
             }
           });
 
-
           $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
             $('.investment-card').hide();
@@ -79,7 +81,6 @@ export class ViewCustomerComponent implements OnInit {
           }
         });
       }
-
       getCategoryName(id){
         const res = this.categories.find( r=> r.id == 21);
         return res.category_name;
@@ -106,8 +107,6 @@ export class ViewCustomerComponent implements OnInit {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
             this.dashboardInvestment.push(this.dashBoardData);
-            console.log(this.dashboardInvestment, 'HELLO');
-
           } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
           }
@@ -115,19 +114,19 @@ export class ViewCustomerComponent implements OnInit {
         });
       }
 
-    updateUser(user, operation) {
+    updateUser(operation) {
         if (operation == 'enable') {
-          this.userService.activateUser(user).subscribe(resp => {
-            if (resp && resp.success) {
-              // alert(resp.success.Message)
-              // this.users[userIndex].email_is_verified=1
+          this.userService.activateUser(this.user).subscribe(resp => {
+            if(resp && resp.success) {
+               this.toastrService.success('User activated succesfully');
+               this.user.email_is_verified=1;
             }
           })
         }else{
-          this.userService.deactivateUser(user).subscribe(resp=>{
+          this.userService.deactivateUser(this.user).subscribe(resp=>{
             if(resp && resp.success){
-              // alert(resp.success.Message)
-              // this.users[userIndex].email_is_verified=0
+               this.toastrService.success('User deactivated succesfully');
+               this.user.email_is_verified=0;
             }
           });
         }
@@ -140,6 +139,7 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     delete (users: User) {
+      if(confirm('Are you sure you want to delete user')){
         this.userService.deleteUser(users).subscribe(resp => {
           if (resp && resp.success) {
             this.toastrService.success('Details deleted succesfully');
@@ -149,20 +149,26 @@ export class ViewCustomerComponent implements OnInit {
           this.router.navigateByUrl('admin/manage-users');
         })
       }
+    }
 
-      calculateEstimate(returns, inv, expected_return_period, i) {
-        const estimate = (((returns * this.divisorFunc(expected_return_period, i)) - inv) / inv) * 100;
+    setItemsPerPage(event){
+        this.pageValue = event;
+    }
+
+    calculateEstimate(returns, inv, expected_return_period) {
+        const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
         return Math.ceil(estimate);
-      }
+    }
 
-      divisorFunc (expected_return_period, i) {
-        if (this.userInvestment[i].expected_return_period === "Weekly") {
-          return 48;
-        } else if (this.userInvestment[i].expected_return_period === "Monthly") {
-          return 12;
+    divisorFunc (expected_return_period) {
+        if ( expected_return_period === "Weekly") {
+            return 48;
+        } else if (expected_return_period === "Monthly") {
+            return 12;
         }
-      };
-      addMonth(date: Date, month: number) {
+    }
+
+    addMonth(date: Date, month: number) {
         const newDate = new Date(date);
         const d = newDate.getDate();
         newDate.setMonth(newDate.getMonth() + month);
@@ -170,5 +176,5 @@ export class ViewCustomerComponent implements OnInit {
             newDate.setDate(0);
         }
         return newDate;
-    }
-  }
+   }
+}
