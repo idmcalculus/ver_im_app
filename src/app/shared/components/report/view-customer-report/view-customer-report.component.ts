@@ -52,10 +52,10 @@ export class viewUserPoolComponent implements OnInit {
         });
 
         this.investmentService.getUserInvestments(this.email).subscribe(investments=>{
-          console.log(investments);
+          //console.log(investments);
           this.isLoading = true;
           this.userInvestment = investments.success.Data;
-          console.log(this.userInvestment);
+          //console.log(this.userInvestment);
           //this.selectedInvestment = 0;
           //this.showDetails();
           this.isLoading = false;
@@ -69,40 +69,8 @@ export class viewUserPoolComponent implements OnInit {
 
     goto(email: User, id: number): void {
       this.router.navigate([`/admin/userReport/${email}/export/${id}`]);
-      console.log(email);
+      //console.log(email);
     }
-
-    // showDetails() {
-    //     if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
-    //         this.investmentInfo = this.userInvestment[this.selectedInvestment];
-    //         console.log(this.investmentInfo);
-    //         this.getUserDashBoard();
-    //         this.selectedInvestment++;
-    //         console.log(this.selectedInvestment);
-    //         return this.selectedInvestment;
-    //         } else {
-    //         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-    //         console.log(this.investmentInfo);
-    //         }
-    //   }
-
-    //   getUserDashBoard() {
-    //     const userEmail = this.user.email;
-    //     const investmentId = this.investmentInfo.id;
-
-    //     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-    //       if (resp && resp.success) {
-    //         this.dashBoardData = resp.success.Data;
-    //         console.log(this.dashBoardData);
-    //         this.dashboardInvestment.push(this.dashBoardData);
-    //       } else {
-    //         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-    //         console.log(this.dashBoardData);
-    //       }
-    //       console.log(this.dashboardInvestment);
-    //       this.showDetails();
-    //     });
-    //   }
 
     Back(){
         this.location.back();

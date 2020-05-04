@@ -64,7 +64,7 @@ export class UserreportComponent implements OnInit {
         this.reportlog.push(this.report);
         this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
 
-        console.log(this.currentlog);
+        //console.log(this.currentlog);
       }
     });
   }
@@ -72,7 +72,7 @@ export class UserreportComponent implements OnInit {
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
-    console.log(user);
+    //console.log(user);
     
   }
 

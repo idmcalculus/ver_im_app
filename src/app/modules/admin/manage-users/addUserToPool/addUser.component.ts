@@ -21,16 +21,17 @@ import { Location } from '@angular/common';
 export class AddUserComponent implements OnInit {
   pool:any;
   poolId:number=0;
+  buttonText = 'Add';
   isPaymentreport:boolean=false;
   number_of_pools:number;
   investment_amount: number;
   isLoading:boolean=true;
   reference:string='';
-  user_email:string='';
+  user_email: '';
   amount_paid:number;
   users:User[]=[];
   user:User = {email: '',};
-  selectedUser:User;
+  selectedUser:User = {email: '',};
 
   constructor(
     private route:ActivatedRoute,
@@ -91,21 +92,21 @@ export class AddUserComponent implements OnInit {
   }
   addUserToPool(){
     console.log( this.pool);
-
+  
     const data = {
-      user_email:this.user_email,
+      user_email:this.selectedUser.email,
       number_of_pools:this.number_of_pools,
       investment_id:this.poolId,
       amount_paid: this.calculateEstimate(this.pool.investment.investment_amount,this.number_of_pools)
     }
 
+    this.buttonText = 'Investing'
     this.adminService.addUserToPool(data).subscribe(resp=>{
       if(resp && resp.success){
         //this.modalButtonTitle='add User';
         this.toastrService.success('User added to pool')
-      }else{
-        //this.modalButtonTitle='add User';
       }
+      this.buttonText='Invested'
       this.location.back()
     })
   }

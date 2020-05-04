@@ -48,7 +48,7 @@ export class PoolreportComponent implements OnInit {
       if (resp && resp.success) {
         this.report = resp.success.Data;
         this.reportlog.push(this.report);
-        console.log(this.reportlog);
+       // console.log(this.reportlog);
         
       }
     });
