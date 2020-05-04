@@ -4,6 +4,8 @@ import {InvestmentService} from '../../../../modules/investment/investment.servi
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { UserService } from '../../../../modules/user/user.service';
+import { ReportService } from '../report.service';
+import { ExportData } from 'src/app/shared/models/ExportData';
 
 @Component({
   selector: 'app-pools',
@@ -26,6 +28,7 @@ export class ViewedreportComponent implements OnInit {
     private router:Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
+    private reportService: ReportService,
     private userService: UserService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
@@ -44,12 +47,12 @@ export class ViewedreportComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool,];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
   }
-  
+
   checkUncheckAll() {
     for (var i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
@@ -63,7 +66,7 @@ export class ViewedreportComponent implements OnInit {
       })
     this.getCheckedPooList();
   }
- 
+
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -133,13 +136,43 @@ export class ViewedreportComponent implements OnInit {
         this.pools = filtered;
       }
   }
-  
+
   calculateEstimate(returns,inv){
     const estimate = (((returns*12) - inv)/inv) * 100;
     return Math.ceil(estimate);
   }
 
-  deleteUser(){
-    
+  divisorFunc(expected_return_period) {
+    if ( expected_return_period === "Weekly") {
+        return 48;
+    } else if (expected_return_period === "Monthly") {
+        return 12;
+    }
+}
+
+  clearSearch() {
+    this.searchValue = null;
+    return this.getPools();
   }
+
+  saveAsCSV() {
+    if(this.pools.length > 0){
+      const items: ExportData[] = [];
+
+      this.pools.forEach(line => {
+        let reportDate = new Date();
+        let csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+          id: line.id,
+          title: line.title,
+          category_id: line.category_id,
+          expected_return_period:line.expected_return_period,
+          investment_amount:line.investment_amount,
+        }
+        items.push(csvLine);
+      });
+
+      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+    }
+}
 }

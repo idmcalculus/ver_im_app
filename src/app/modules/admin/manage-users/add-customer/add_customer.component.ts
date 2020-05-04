@@ -83,6 +83,7 @@ createProfile(): void {
                         this.modalText = 'Save Changes';
                         this.closebutton.nativeElement.click();
                         this.user = { email: '', password: '' };
+                        this.router.navigateByUrl('admin/manage-users');
                     } else {
                         this.toastrService.error('Registeration Failed');
                         this.modalText = 'Save Changes';

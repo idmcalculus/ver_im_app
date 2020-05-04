@@ -126,7 +126,7 @@
 
 
                     <div *ngIf="isLoading" class="row mb-4">
-                        <div class="col-md-7 col-sm-7 col-xs-12">
+                        <div class="col-md-7 col-sm-7 col-xs-12 carousel-inner">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
@@ -152,8 +152,7 @@
                     <div class="row mb-4">
                         <div class="col-sm-12">
 
-                            <div class="card"
-                            >
+                            <div class="card" >
                                 <h5 class="card-header" >Current Investment</h5>
 
                                 <div  class="carousel slide" id="myCarousel" data-interval="false">
@@ -161,60 +160,60 @@
                                     <div class="container p-t-0 m-t-2 carousel-inner" style="max-width: 99%;">
                                         <div class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of userInvestment; index as i;" >
                                            <div class = "flex-row d-flex">
-                                        <div class="col-4">
-                                            <div class="dt-responsive table-responsive">
-                                                <table class="table reduced-font">
-                                                    <tr>
-                                                        <td class="highlighted">Investment Title</td>
-                                                        <td>{{investments?.title}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  class="highlighted">Payback</td>
-                                                        <td> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td  class="highlighted">Amount Paid</td>
-                                                        <td class="success">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                                <div class="dt-responsive table-responsive">
-                                                    <table class="table reduced-font">
-                                                        <tr>
-                                                            <td  class="highlighted">Cost</td>
-                                                            <td>{{investments?.investment_amount}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td  class="highlighted">Last Payment</td>
-                                                            <td>{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td  class="highlighted">Amount Pending</td>
-                                                            <td class="pending">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</td>
-                                                        </tr>
-                                                    </table>
+                                                <div class="col-4">
+                                                    <div class="dt-responsive table-responsive">
+                                                        <table class="table reduced-font">
+                                                            <tr>
+                                                                <td class="highlighted">Investment Title</td>
+                                                                <td>{{investments?.title}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td  class="highlighted">Payback</td>
+                                                                <td> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period) }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td  class="highlighted">Amount Paid</td>
+                                                                <td class="success">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
                                                 </div>
-                                        </div>
-                                        <div class="col-4">
-                                                <div class="dt-responsive table-responsive">
-                                                    <table class="table reduced-font">
-                                                        <tr>
-                                                            <td  class="highlighted">Slot(s)</td>
-                                                            <td>{{investments?.num_of_pools_taken}}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td  class="highlighted">Next Payment</td>
-                                                            <td>{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td  class="highlighted">Termination Date</td>
-                                                            <td>{{investments?.investment_close_date}}</td>
-                                                        </tr>
-                                                    </table>
+                                                <div class="col-4">
+                                                        <div class="dt-responsive table-responsive">
+                                                            <table class="table reduced-font">
+                                                                <tr>
+                                                                    <td  class="highlighted">Cost</td>
+                                                                    <td>{{investments?.investment_amount}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Last Payment</td>
+                                                                    <td>{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Amount Pending</td>
+                                                                    <td class="pending">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
                                                 </div>
-                                        </div>
+                                                <div class="col-4">
+                                                        <div class="dt-responsive table-responsive">
+                                                            <table class="table reduced-font">
+                                                                <tr>
+                                                                    <td  class="highlighted">Slot(s)</td>
+                                                                    <td>{{investments?.num_of_pools_taken}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Next Payment</td>
+                                                                    <td>{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td  class="highlighted">Termination Date</td>
+                                                                    <td>{{investments?.investment_close_date}}</td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                </div>
                                            </div>
                                        </div>
 
@@ -222,7 +221,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
-                                                <a class="px-1 btn-outline-info carousel-control left" href="#myCarousel" data-slide="prev" title="back">
+                                                <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
                                                     <i class="fa fa-lg  fa-circle"></i>
                                                 </a>
                                                 <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
@@ -259,8 +258,8 @@
                                                 <th style="width: 10%">Date Paid</th>
                                             </tr>
                                             </thead>
-                                            <tbody [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
-                                                <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
+                                            <tbody class="carousel-inner" [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
+                                                <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                         <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
                                                         <td style="width: 15%">{{report.title}}</td>
                                                         <td style="width: 15%"></td>
@@ -275,8 +274,16 @@
                                         <div *ngIf="dashboardInvestment.length == 0" >
                                             <p class='displayStatus'>"No records found."</p>
                                        </div>
-                                        <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                        <div  class="col-12  d-flex flex-row">
+                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                            <span class="col-md-1 col-xs-1 px-0">
+                                                <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
+                                                    <option value="5"> 5 rows </option>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -309,7 +316,7 @@
                                             </tr>
                                             </thead>
                                             <tbody  *ngIf="FilteredInvestment.length > 0">
-                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: 5, currentPage:p, id: 'first'};
+                                                <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'first'};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td style="width: 15%">{{investments.title}}</td>
@@ -331,8 +338,16 @@
                                                <p class='displayStatus'>"No records found."</p>
                                         </div>
 
-                                        <div  class="col-12">
-                                            <pagination-controls class="my_pagination" (pageChange)="p = $event" id='first'></pagination-controls>
+                                        <div  class="col-12  d-flex flex-row">
+                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p = $event" id='first'></pagination-controls>
+                                            <span class="col-md-1 col-xs-1 px-0">
+                                                <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page2.value) #page2>
+                                                    <option value="5"> 5 rows </option>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -13,40 +13,151 @@
                                 <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
                             </select>
                         </div> -->
-                        <div style="margin: 1rem 0rem;
+                        <div style="margin: 1.1rem 0rem;
                                     color: #43425d;
-                                    font-size: 1.2rem;
-                                    font-weight: 600;
+                                    font-size: 1.3rem;
+                                    font-weight: 700;
                                     letter-spacing: 0.1rem;
-                                    margin-bottom: 0rem;
                                     ">
                                         Dashboard
                         </div>
                     </div>
                     <div class="row">
-                        <div class="card-details col-xl-7 col-md-6" style="padding-left: 0;">
+                        <div class="card-details col-xl-7 col-md-7" style="padding-left: 0;">
                             <div class="card latest-update-card">
                                 <div class="card-header none-covered">
                                     <h5>Investment Perfomance</h5>
                                 </div>
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
+                                <div  class="carousel slide" id="myCarousel" data-interval="false">
+                                    <div class="container p-t-0 m-t-2 carousel-inner" style="max-width: 99%;">
+                                        <div class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of usersInvestments; index as i;" >
 
+                                            <div class="card-block d-flex flex-row">
+                                                <div class="col-6 input-control adjust">
+                                                    <div class="table-responsive">
+                                                        <table class="table reduced-font">
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                  <td class="col-7">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }} <br>
+                                                                    Amount Paid
+                                                                  </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                <td  class="col-7"> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period) }} <br>
+                                                                     Payback
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                <td  class="col-7">{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}} <br>
+                                                                    Last Payment
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 input-control adjust">
+                                                    <div class="table-responsive">
+                                                        <table class="table reduced-font">
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                <td  class="col-7">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}<br>
+                                                                    Amount Pending
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                <td  class="col-7">{{investments?.num_of_pools_taken}} <br>
+                                                                    Number of Slot(s)
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="col-3">
+                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 35px;width:35px">
+                                                                </td>
+                                                                <td  class="col-7">{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}<br>
+                                                                    Next Payment
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                 </div>
+                                   <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center mb-4">
+                                                <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
+                                                    <i class="fa fa-lg  fa-circle"></i>
+                                                </a>
+                                                <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                    <i class="fa fa-lg fa-circle"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer header-bg d-flex flex-row">
+                                    <div class="col-6 text-center">
+                                        <h6>ACCOUNT BALANCE</h6>
+                                        <h6>N</h6>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <button type="button" class=" col-5 btn btn-success mr-2">Withdraw</button>
+                                        <button type="button" class=" col-5 btn btn-warning">Deposit</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="card-details col-xl-5 col-md-4" style="padding-left: 0;">
+                        <div class="card-details col-xl-5 col-md-5" style="padding-left: 0;">
                             <div class="card latest-update-card">
                                 <div class="card-header non-covered">
                                     <h5>Featured Investment</h5>
                                 </div>
                                 <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
+                                    <div class="col-12 col-sm-12">
+
+                                        <div class="col-12 col-sm-12 d-flex flex-row">
+                                            <div class="col-6 col-sm-6 input-control p-3">
+                                                <img  src="{{pools[0].investment_image}}" alt="image">
+                                                <div class="spectre my-2">N{{pools[0].investment_amount}} per slot</div>
+                                                <div  class="spectre my-2">Return: {{pools[0].estimated_percentage_profit}} profit</div>
+                                            </div>
+                                            <div class="col-6 col-sm-6 input-control p-3">
+                                                <img  src="{{pools[2].investment_image}}" alt="image">
+                                                <div  class="spectre my-2">N{{pools[2].investment_amount}} per slot</div>
+                                                <div  class="spectre my-2">Return: {{pools[2].estimated_percentage_profit}} profit</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-12 d-flex flex-row">
+                                            <div class="col-6 col-sm-6 input-control p-3">
+                                                <img  src="{{pools[5].investment_image}}" alt="image">
+                                                <div  class="spectre my-2">N{{pools[5].investment_amount}} per slot</div>
+                                                <div  class="spectre my-2">Return: {{pools[5].estimated_percentage_profit}} profit</div>
+                                            </div>
+                                            <div class="col-6 col-sm-6 input-control p-3">
+                                                <img  src="{{pools[8].investment_image}}" alt="image">
+                                                <div  class="spectre my-2">N{{pools[8].investment_amount}} per slot</div>
+                                                <div  class="spectre my-2">Return: {{pools[8].estimated_percentage_profit}} profit</div>
+                                            </div>
+                                        </div>
 
                                     </div>
-                                 </div>
+                                </div>
                             </div>
                         </div>
 
@@ -59,8 +170,8 @@
                                                 <h6 class="m-b-25">Total Returns</h6>
                                                 <h3 *ngIf="dashBoardData?.investment_return[latest_return-1]" class="f-w-700 text-c-blue">{{totalYieldedAmount | currency:'NGN':'symbol-narrow'}}</h3>
                                                 <h3 *ngIf="!dashBoardData?.investment_return[latest_return-1]"class="f-w-700 text-c-blue">0.00</h3>
-                                                <p *ngIf="dashBoardData.number_of_pools>0" class="m-b-0">{{investmentInfo?.duration}} Month(s)</p>
-                                                <p *ngIf="dashBoardData.number_of_pools==0" class="m-b-0">0 Month(s)</p>
+                                                <p *ngIf="dashBoardData.number_of_poolss>0" class="m-b-0">{{investmentInfo?.duration}} Month(s)</p>
+                                                <p *ngIf="dashBoardData.number_of_poolss==0" class="m-b-0">0 Month(s)</p>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-money-bill-alt text-c-blue f-18"></i>
@@ -77,8 +188,8 @@
                                         <div class="row align-items-center">
                                             <div class="col">
                                                 <h6 class="m-b-25" style="color: #666; font-weight: bold">Total Number of Slots</h6>
-                                                <h3 class="f-w-700 text-c-blue">{{dashBoardData?.number_of_pools}}</h3>
-                                                <p class="m-b-0">{{dashBoardData?.number_of_pools}} active slot(s)</p>
+                                                <h3 class="f-w-700 text-c-blue">{{dashBoardData?.number_of_poolss}}</h3>
+                                                <p class="m-b-0">{{dashBoardData?.number_of_poolss}} active slot(s)</p>
                                             </div>
                                             <div class="col-auto">
                                                 <i class="fas fa-chart-area text-c-blue f-18"></i>
@@ -144,16 +255,26 @@
                                 </div>
                             </div>
                         </div> -->
-                        <div *ngIf="!isLoading" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
+                        <div class="row dashboard-table" style="width: 100%;margin-left: 2px;">
                             <div class="card-details col-xl-3.5 col-md-4" style="padding-left: 0;">
                                 <div class="card latest-update-card">
-                                    <div class="card-header">
-                                        <h5>Recent Activity</h5>
+                                    <div class="card-header header-bg">
+                                        <h6>Recent Activity</h6>
                                     </div>
                                     <div class="card-block">
 
 
                                       <div class="dt-responsive table-responsive">
+                                          <div *ngFor="let req of userActivity.slice(0, 5),let x=index">
+                                              <div class="activities d-flex flex-row">
+                                                    <div class="image pr-2">
+                                                      <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
+                                                    </div>
+                                                    <div class="post pr-1 pt-2">{{req.first_name}}</div>
+                                                    <div class="post pr-1 pt-2">{{req.activity}}</div>
+                                              </div>
+                                              <div *ngIf="x!=4" class="divider2"></div>
+                                          </div>
                                               <!-- <table id="userTable"
                                                       class="table table-striped nowrap">
                                                   <thead>
@@ -180,40 +301,36 @@
                                 </div>
                             </div>
 
-                            <div class="card-details col-xl-8 col-md-12" style="padding-right: 0;padding-left: 0;">
+                            <div class="card-details col-xl-8 col-md-8" style="padding-right: 0;padding-left: 0;">
                               <div class="card latest-update-card">
-                                  <div class="card-header">
-                                      <h5>Best Selling</h5>
+                                  <div class="card-header header-bg">
+                                      <h6>Best Selling</h6>
                                   </div>
                                   <div class="card-block">
+                                        <div class="category-body">
+                                            <nav>
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-item nav-link active col-4" id="nav-home-tab"
+                                                       data-toggle="tab" role="tab"
+                                                       aria-controls="nav-home"
+                                                       aria-selected="true">Past 24 Hours</a>
+                                                    <a class="nav-item nav-link col-4" id="nav-profile-tab"
+                                                       data-toggle="tab" role="tab"
+                                                       aria-controls="nav-profile" aria-selected="false">Past 30 Days</a>
+                                                    <a class="nav-item nav-link col-4" id="nav-contact-tab"
+                                                       data-toggle="tab" role="tab"
+                                                       aria-controls="nav-contact" aria-selected="false">Past 365 Days</a>
 
+                                                </div>
+                                            </nav>
 
-                                    <div class="dt-responsive table-responsive">
-                                            <table id="userTable"
-                                                    class="table table-striped nowrap">
-                                                <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Customer</th>
-                                                    <th>Category</th>
-                                                    <th>Status</th>
-                                                    <th>Date Added</th>
-                                                    <th>Amount</th>
-                                                    <th>No of Pool</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
-                                                    <td>{{req.first_name}}</td>
-                                                    <td >{{req.first_name}}</td>
-                                                    <td >{{req.first_name}}</td>
-                                                    <td >{{req.first_name}}</td>
-                                                    <td >{{req.first_name}}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                    </div>
+                                            <div class="row1 d-flex flex-row p-2 mt-3" *ngFor="let pool of pools.slice(0, 5);let i = index;">
+                                                <p class="col-3 px-0">{{pool.title}}</p>
+                                                <p class="col-3 px-0">N{{pool.investment_amount}} per slot</p>
+                                                <p class="col-3 px-1">Return:{{calculateEstimate(pool.expected_return_amount,pool.investment_amount, pool.expected_return_period)}}% profit (Estimated)</p>
+                                                <p class="col-3 px-0">Monthly return: N{{pool.expected_return_amount}}</p>
+                                            </div>
+                                        </div>
                                    </div>
                               </div>
                             </div>
@@ -260,7 +377,7 @@
                 <div class="page-body">
                     <div class="row mb-4">
                         <div class="col-xl-4 col-md-6 user-invest">
-                            <button (click)= "hideGraph()" class="btn btn2 btn-primary">Back</button>
+                            <button class="btn btn2 btn-primary">Back</button>
                         </div>
                     </div>
                 </div>

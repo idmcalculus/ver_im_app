@@ -13,6 +13,7 @@ import { ReportService } from '../report.service';
 export class UseractivityComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
+  pageValue = 5;
   dashboardData = {};
   p: number = 1;
   activityLog = [];
@@ -28,15 +29,7 @@ export class UseractivityComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.adminService.getDashBoardData().subscribe(resp => {
-      if (resp && resp.success) {
-        this.dashboardData = resp.success.Data;
-        this.activityLog.push(this.dashboardData);
-        this.filteredAdminActivity = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'Admin');
-        this.filteredUserActivity  = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'User');
-        this.isLoading =  false;
-      }
-    });
+    this.getDashBoardData();
   }
 
   Toggle() {
@@ -47,6 +40,10 @@ export class UseractivityComponent implements OnInit {
       }
   }
 
+  setItemsPerPage(event){
+    this.pageValue = event;
+}
+
   getDashBoardData() {
     this.isLoading = true;
     this.adminService.getDashBoardData().subscribe(resp => {
@@ -55,7 +52,6 @@ export class UseractivityComponent implements OnInit {
           this.activityLog.push(this.dashboardData);
           this.filteredAdminActivity = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'Admin');
           this.filteredUserActivity  = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'User');
-
         }
       this.isLoading = false;
     });
@@ -114,4 +110,5 @@ export class UseractivityComponent implements OnInit {
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
 }
+
 }

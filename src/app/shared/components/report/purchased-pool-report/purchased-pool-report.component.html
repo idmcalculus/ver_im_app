@@ -10,9 +10,9 @@
                         </div>
                         <div class="float-right">
                             <a class="pr-3">
-                                <button class="btn btn-secondary btn-sm font-weight-bold" type="submit">Export</button>
+                                <button class="btn btn-secondary btn-sm font-weight-bold" (click)= "saveAsCSV()" type="submit">Export</button>
                             </a>
-                            <a>
+                            <a (click)="clearSearch()" id="delCat">
                                 <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>

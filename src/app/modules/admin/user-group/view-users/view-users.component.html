@@ -31,7 +31,7 @@
                                         style="cursor: pointer; height: 50px;"
                                     />
                                 </a>
-                                <a>
+                                <a (click)="deleteSelected()">
                                     <img
                                         class=""
                                         src="../../../../../assets/images/icon/icons/Delete-icon.png"
@@ -60,7 +60,7 @@
                                 <p class="role">{{user?.user_category}}</p>
                                 <p class="status">Enabled</p>
                                 <p class="date-added">{{user?.created_at | date}}</p>
-                                <p class="action" routerLink="../edit-users" style="cursor: pointer;">
+                                <p class="action" routerLink="./{{user?.email}}" style="cursor: pointer;">
                                     <img src="../../../../assets/images/icon/icons/Edit-icon.png">
                                 </p>
                               </div>
