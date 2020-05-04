@@ -9,6 +9,10 @@ export class UserService {
     private httpService: HttpService
   ) { }
 
+  getProfile(email: string) {
+    return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
+  }
+  
   getProfileDetails(email: string): Observable<any> {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }

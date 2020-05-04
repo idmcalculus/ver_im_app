@@ -76,8 +76,8 @@
                                             <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
                                             <p class="col-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
-                                            <p class="col-2" >{{(user.email).no_of_pools_invested}}</p>
-                                            <p class="col-2">{{user.investment_amount}}</p>
+                                            <p class="col-2" >{{user?.no_of_slots}}</p>
+                                            <p class="col-2">{{user.total_amount_invested || 0}}</p>
                                             <p class="col-1">
                                                 <a (click)="goto(user)"  ><img class="pr-2 pointer" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </p>
