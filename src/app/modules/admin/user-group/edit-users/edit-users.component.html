@@ -38,7 +38,7 @@
                 </mat-form-field>
                 <mat-form-field>
                   <div class="form-group d-flex">
-                    <mat-label for="userGroup">User Group</mat-label>
+                    <mat-label for="userGroup"><span style="color: red;">*</span>User Group</mat-label>
                     <mat-select placeholder="Select User Group" id="userGroup" class="form-control">
                       <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup.value">{{usergroup.value}}</mat-option>
                     </mat-select>
@@ -77,7 +77,10 @@
                 <mat-form-field>
                   <div class="investment-grp-name form-group d-flex">
                     <mat-label for="status"><span style="color: red;">*</span>Status</mat-label>
-                    <input matInput type="text" id="status">
+                    <mat-select placeholder="Status" id="status" class="form-control" [(ngModel)]="selectedStatus">
+                      <mat-option value="Enabled">Enable</mat-option>
+                      <mat-option value="Disabled">Disable</mat-option>
+                    </mat-select>
                   </div>
                 </mat-form-field>
               </div>
