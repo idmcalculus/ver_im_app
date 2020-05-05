@@ -76,14 +76,14 @@ export class UserreportComponent implements OnInit {
         this.reportlog.push(this.report);
         this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
 
-        console.log(this.currentlog);
+        //console.log(this.currentlog);
       }
     });
   }
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
-    console.log(user);
+    //console.log(user);
 
   }
 
@@ -132,7 +132,7 @@ export class UserreportComponent implements OnInit {
     this.userService.getProfileDetails(email).subscribe(investments=>{
       if(investments.success.Data !== 0){
         this.userInvestment = investments.success.Data;
-        console.log('hello')
+        //console.log('hello')
         return this.userInvestment.total
       }
       else {
