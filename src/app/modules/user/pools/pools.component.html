@@ -37,29 +37,29 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_name', $event)"
-                                    (blur)="filterTable('category_name', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('getCategoryName.pool.category_id', $event)"
+                                    (blur)="filterTable('getCategoryName.pool.category_id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="amount" #search (keyup)="filterTable('id', $event)"
-                                    (blur)="filterTable('id', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="investment_amount" #search (keyup)="filterTable('investment_amount', $event)"
+                                    (blur)="filterTable('investment_amount', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" #search (keyup)="filterTable('id', $event)"
-                                    (blur)="filterTable('id', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" name="max_num_of_slots" #search (keyup)="filterTable('max_num_of_slots', $event)"
+                                    (blur)="filterTable('max_num_of_slots', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" #status (keyup)="filterTable('id', $event)"
-                                    (blur)="filterTable('id', $event)">
+                                    <input type="number" class="input-control shadow" placeholder="Status" name="is_investment_started" #search (keyup)="filterTable('is_investment_started', $event)"
+                                    (blur)="filterTable('is_investment_started', $event)">
                                 </div>
                             </div>
                         </div>
@@ -67,59 +67,84 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card px-3">
-                                <div class="category-header pt-3 p-2">
-                                    <p class="mr-3">
-                                        <input type="checkbox">
-                                    </p>
-                                    <p class="mr-3">ID</p>
-                                    <p class="col-3" style="margin-right: -10px;">Investment Title</p>
-                                    <p class="col-1">Category</p>
-                                    <p class="col-2" style="margin-right: -1px;">No of Investors</p>
-                                    <p class="col-1" style="margin-right: 8px;">Tenure</p>
-                                    <p class="col-1" style="margin-left: 9px;">ROI</p>
-                                    <p class="col-1">Payback</p>
-                                    <p class="col-1" style="margin-right: 9px;">Cost</p>
-                                    <p class="col-1">Status</p>
-                                    <p class="">Action</p>
+                            <div class="card">
+                                <div class="card-block pt-2 p-0 px-3" *ngIf="!isLoading && pools?.length > 0">
+                                    <table datatable class="table appTable nowrap">
+                                        <thead>
+                                            <tr class="pb-1">
+                                                <th class="mr-3">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th class="mr-3">ID</th>
+                                                <th class="">Investment Title</th>
+                                                <th class="">Category</th>
+                                                <th class="">No of Investors</th>
+                                                <th class="">Tenure</th>
+                                                <th class="">ROI</th>
+                                                <th class="">Payback</th>
+                                                <th class="">Cost</th>
+                                                <th class="">Status</th>
+                                                <th class="">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                                <td class="mr-3"><input type="checkbox"></td>
+                                                <td class="mr-3">{{pool.id}}</td>
+                                                <td class="">{{pool.title}}</td>
+                                                <td class="">{{pool.category_id}}</td>
+                                                <td class="">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
+                                                <td class="">{{pool.duration}} Months</td>
+                                                <td class="">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
+                                                <td class="">{{pool.expected_return_period}}</td>
+                                                <td class="">{{pool.investment_amount}}</td>
+                                                <td class="" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <ng-template #showThis>
+                                                    <td class="" style="color: red">{{'InActive'}}</td>
+                                                </ng-template>
+                                                <td class="">
+                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>    
+                                        <tfoot>
+                                            <tr>
+                                              <td [colSpan]="6" class="pb-0 mr-5">
+                                                <pagination-controls
+                                                  (pageChange)="p2=$event" id='second'>
+                                                </pagination-controls>
+                                              </td>
+                                              <td></td>
+                                              <td></td>
+                                              <td></td>
+                                              <td [colSpan]="6" class="pb-0">
+                                                <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="30"> 30 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                              </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
-                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div *ngIf="isLoading" >
-                                        <br><br>
-                                        <div  class="lds-default">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="mr-2"><input type="checkbox"></p>
-                                            <p class="mr-2">{{pool.id}}</p>
-                                            <p class="col-3" style="margin-right:-12px; padding-right: 4px;">{{pool.title}}</p>
-                                            <p class="col-1" style="margin-left:-11px;">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="col-2" style="margin-right:-11px;">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</p>
-                                            <p class="col-1" style="margin-left: -12px;">{{pool.duration}} Months</p>
-                                            <p class="col-1">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
-                                            <p class="col-1">{{pool.expected_return_period}}</p>
-                                            <p class="col-1" style="margin-left: -10px;">{{pool.investment_amount}}</p>
-                                            <p class="col-1" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>
-                                            <ng-template #showThis>
-                                                <p class="col-1" style="color: red">{{'InActive'}}</p>
-                                            </ng-template>
-                                            <p class="">
-                                                <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                            </p>
-                                        </div>
+                                <div *ngIf="isLoading" >
+                                    <br><br>
+                                    <div  class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
                                     </div>
                                 </div>
                             </div>

@@ -18,6 +18,9 @@ export class AddPoolComponent implements OnInit {
   data:any;
   selectedUser:any;
   category:any;
+  public imagePath;
+  url = '';
+  public message: string;
 
   @Input() public editable: boolean;
   @Input() public categories:[Category];
@@ -38,6 +41,7 @@ export class AddPoolComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        console.log(this.categories)
       }
     });
   }
@@ -67,14 +71,19 @@ export class AddPoolComponent implements OnInit {
   }
 
   readThis(inputValue: any): void {
-    var file: File = inputValue.files[0];
-    var myReader: FileReader = new FileReader();
+    if (inputValue.files && inputValue.files[0]) {
+      var file: File = inputValue.files[0];
+      var myReader: FileReader = new FileReader();
 
-    myReader.onloadend = (e) => {
-      this.image = myReader.result;
-      this.pool.investment_image = this.image;
+      myReader.onloadend = (e) => {
+        this.image = myReader.result;
+        this.pool.investment_image = this.image;
+      }
+      myReader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = 'event.target.result';
+      }
+      myReader.readAsDataURL(file);
     }
-    myReader.readAsDataURL(file);
   }
 
   divisorFunc (expected_return_period) {
