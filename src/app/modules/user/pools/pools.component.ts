@@ -11,6 +11,7 @@
   styleUrls: ['./pools.component.scss']
 })
 export class PoolsComponent implements OnInit {
+  pageValue = 10;
   isLoading = true;
   pools: Investment[] = [];
   pool: Investment = {title: '', investment_amount: 0, };
@@ -134,6 +135,10 @@ export class PoolsComponent implements OnInit {
         });
         this.pools = filtered;
       }
+  }
+
+  setItemsPerPage(event){
+    this.pageValue = event;
   }
 
   calculateEstimate(returns,inv){

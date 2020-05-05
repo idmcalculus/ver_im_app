@@ -57,7 +57,7 @@ export class exportUserPoolComponent implements OnInit {
         let poolId = Number(this.investment_id);
         this.userInvestment = investments.success.Data.filter((i)=> i.id==poolId);
        // this.userInvestment=this.userInvestment.filter((i)=> i.id=poolId)
-        console.log(this.userInvestment);
+        //console.log(this.userInvestment);
         this.selectedInvestment = 0;
         this.showDetails();
         this.isLoading = false;
@@ -69,7 +69,7 @@ export class exportUserPoolComponent implements OnInit {
       this.investmentService.getInvestments(false).subscribe(investments => {
         if (investments) {
           this.pools = investments.success.Data;
-          console.log(this.pools);
+         // console.log(this.pools);
           
         }
         this.isLoading = false;
@@ -79,14 +79,14 @@ export class exportUserPoolComponent implements OnInit {
    showDetails() {
      if ( this.selectedInvestment >= 0) {
          this.investmentInfo = this.userInvestment[this.selectedInvestment];
-         console.log(this.investmentInfo);
+         //console.log(this.investmentInfo);
          this.getUserDashBoard();
          this.selectedInvestment++;
-         console.log(this.selectedInvestment);
+         //console.log(this.selectedInvestment);
          return this.selectedInvestment;
          } else {
          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-         console.log(this.investmentInfo);
+         //console.log(this.investmentInfo);
          }
    }
 
@@ -97,13 +97,13 @@ export class exportUserPoolComponent implements OnInit {
      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
        if (resp && resp.success) {
          this.dashBoardData = resp.success.Data;
-         console.log(this.dashBoardData);
+         //console.log(this.dashBoardData);
          this.dashboardInvestment.push(this.dashBoardData);
        } else {
          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-         console.log(this.dashBoardData);
+         //console.log(this.dashBoardData);
        }
-       console.log(this.dashboardInvestment);
+       //console.log(this.dashboardInvestment);
        this.showDetails();
      });
    }
