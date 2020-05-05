@@ -24,7 +24,7 @@
                                 <div class="col-4">
                                     <div class="">
                                         <div class="category-header">
-                                            <input type="text" class="input-control shadow" placeholder="Search by Email" name="search" #search (keyup)="filterTable('email', search.value)"
+                                            <input type="text" class="input-control " placeholder="Search by Email" name="search" #search (keyup)="filterTable('email', search.value)"
                                             (blur)="filterTable('email', search.value)">
                                         </div>
 
@@ -41,34 +41,35 @@
                             </div>
 
                             <form>
-                                <div class="row px-4">
+                                <div class="row px-4" *ngIf="!isLoading">
 
                                     <div class="col-6 pr-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">First Name</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{selectedUser.first_name}}" name="first" readonly>
+                                                <input type="type" class="input-control " value="{{selectedUser.first_name}}" name="first" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Email</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" [(ngModel)]="user_email" name="pay-type" id="pay-type" value="{{selectedUser.email}}" readonly>
+                                                <input type="type" class="input-control " [(ngModel)]="user_email" name="pay-type" id="pay-type" [value]="selectedUser.email" readonly>
                                             </div>
-                                        </div>
+                                        </div>                                        
+                                        
                                     </div>
                                     <div class="col-6 pl-4">
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Last Name</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{selectedUser.last_name}}" name="last" readonly>
+                                                <input type="type" class="input-control " value="{{selectedUser.last_name}}" name="last" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Phone Number</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{selectedUser.phone_number}}" name="number" readonly>
+                                                <input type="type" class="input-control " value="{{selectedUser.phone_number}}" name="number" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -77,13 +78,13 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investment Title</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{pool?.investment.title}}" readonly>
+                                                <input type="type" class="input-control " value="{{pool?.investment.title}}" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Cost</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" class="input-control shadow" [(ngModel)]="investment_amount" value="{{pool?.investment.investment_amount}}" name="amount" id="amount" readonly>
+                                                <input type="number" class="input-control " [(ngModel)]="investment_amount" value="{{pool?.investment?.investment_amount}}" name="amount" id="amount" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -92,14 +93,14 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investment Category</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{pool?.investment.category_id}}" name="category" readonly>
+                                                <input type="type" class="input-control " value="{{getCategoryName(pool?.investment.category_id)}}" name="category" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Investors</h6>
                                             <div class="col-sm-8">
-                                                <input type="type" class="input-control shadow" value="{{pool?.investment.num_of_pools_taken}}" name="investor" readonly>
+                                                <input type="type" class="input-control " value="{{pool?.investment.num_of_pools_taken}}" name="investor" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -108,17 +109,19 @@
                                         <div class="form-group row">
                                             <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" autocomplete="off" class="input-control shadow" [(ngModel)]="number_of_pools" name="slots"
+                                                <input type="number" (keyup)="validPool()" autocomplete="off" class="input-control " [(ngModel)]="number_of_pools" name="slots"
                                                 id="slotNum">
+
+                                                <div *ngIf="validpoolError === 'Number of Pools Exceeded' " class="font-weight-bold pt-2 text-danger">{{validpoolError}}</div>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="col-6 pl-4">
-                                        <div class="form-group row">
+                                        <div class="form-group row">    
                                             <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" class="input-control shadow" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool.investment.investment_amount,number_of_pools)}}" name="amount_paid" class="form-control"
+                                                <input type="number" class="input-control" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid"
                                                 id="amount_paid" #amount_paidModel="ngModel"
                                                 >
                                             </div>
@@ -126,9 +129,27 @@
                                     </div>
 
                                     <div class="col">
-                                        <button type="submit" (click)="addUserToPool()" class="btn btn-primary btn-sm px-5 float-right">Add</button>
+                                        <button type="submit" (click)="addUserToPool()" class="btn btn-primary btn-sm px-5 float-right">{{buttonText}}</button>
                                     </div>
 
+                                </div>
+
+                                <div *ngIf="isLoading" class="center" >
+                                    <br><br>
+                                    <div  class="lds-default">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
                                 </div>
                             </form>
                         </div>
