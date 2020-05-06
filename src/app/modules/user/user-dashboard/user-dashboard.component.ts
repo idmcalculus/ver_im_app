@@ -107,17 +107,16 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
-    if ( this.selectedInvestment >= 0 ) {
+    if ( this.selectedInvestment < 0 ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
         } else {
-          console.log('-=====---------=9999')
-
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = false;
+          console.log('-=====---------=9999');
+          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+          this.isLoading = false;
   }
 }
 
