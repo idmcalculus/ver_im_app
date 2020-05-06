@@ -20,6 +20,7 @@ export class EditUsersComponent implements OnInit {
   email: string;
   isLoading: boolean;
   user: User;
+  selectedStatus: '';
 
   constructor(private location: Location,
               private route: ActivatedRoute,

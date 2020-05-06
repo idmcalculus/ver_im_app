@@ -18,10 +18,10 @@ export class ViewUsersComponent implements OnInit {
     isLoading = false;
     loggedInUser: User;
     selectedUser: User;
+    pageValue = 5;
+    p2 = 1;
     userSubscription: Subscription;
     adminUsers: any[];
-    returnedArray: string[];
-    index: any;
     selectedAll;
     checkedUser = [];
 
@@ -47,49 +47,52 @@ export class ViewUsersComponent implements OnInit {
               this.adminUsers = users.success.Data.filter(user => user.user_category === 'Admin');
               this.adminUsers.forEach((user: any, i) => user.index = i + 1);
               this.adminUsers.forEach(user => user.selected = false);
-
-              this.returnedArray = this.adminUsers.slice(0, 3);
             }
             this.isLoading = false;
         });
     }
 
-     pageChanged(event: PageChangedEvent): void {
-        const startItem = (event.page - 1) * event.itemsPerPage;
-        const endItem = event.page * event.itemsPerPage;
-        this.returnedArray = this.adminUsers.slice(startItem, endItem);
-      }
+    setItemsPerPage(event) {
+    this.pageValue = event;
+    }
 
     selectAll() {
     this.adminUsers.forEach(user => {
         user.selected = this.selectedAll;
     });
-    // this.getCheckedUser();
+    this.getCheckedUser();
     }
 
     checkIfAllSelected() {
     this.selectedAll = this.adminUsers.every(user => {
         return user.selected === true;
     });
-    // this.getCheckedUser();
+    this.getCheckedUser();
     }
 
-    /*getCheckedUser() {
+    getCheckedUser() {
         this.adminUsers.forEach(user => {
             if (user.selected) {
                 this.checkedUser.push(user);
                 console.log(this.checkedUser);
             }
         });
-    }*/
+    }
+
     deleteSelected() {
-        this.isLoading = true;
-        const filtered = this.adminUsers.filter(user => user.selected === false);
-        filtered.forEach((user, i) => user.index = i + 1 );
-        setTimeout(() => {
-            this.adminUsers = filtered;
-            this.isLoading = false;
-        }, 3000);
+        if (this.checkedUser.length > 0) {
+            if (confirm('Are you sure you want to delete the selected Users?')) {
+                this.isLoading = true;
+                const filtered = this.adminUsers.filter(user => user.selected === false);
+                filtered.forEach((user, i) => user.index = i + 1 );
+                setTimeout(() => {
+                    this.isLoading = false;
+                }, 3000);
+                return this.adminUsers = filtered;
+            }
+        } else {
+            this.toastrService.info('No user is selected!');
+        }
         /*const selected = this.adminUsers.filter(user => user.selected === true);
         selected.forEach(user => {
             const data = {

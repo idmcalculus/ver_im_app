@@ -18,7 +18,7 @@ import { Subscription } from 'rxjs';
 export class PoolDetailComponent implements OnInit {
   pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   poolId = 0;
-  url:any;
+  url: any;
   reportData: Report = {title: '', description: ''};
   categories = [];
   modaltitle = 'Update Plan';
@@ -44,11 +44,9 @@ export class PoolDetailComponent implements OnInit {
       this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
         if (userInfo) {
           this.loggedInUser = userInfo;
-          
-          
         }
       });
-      //console.log(this.userSubscription, "hello");
+      // console.log(this.userSubscription, "hello");
 
       this.route.params.subscribe(resp => {
         this.poolId = resp.pool_id;
@@ -67,9 +65,9 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          //console.log(this.pool);
+          // console.log(this.pool);
           this.isLoading = false;
-          //console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
+          // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
         } else {
           this.router.navigate(['./', {}]);
