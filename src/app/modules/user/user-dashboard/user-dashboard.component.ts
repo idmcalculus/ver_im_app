@@ -114,9 +114,8 @@ export class UserDashboardComponent implements OnInit {
         this.selectedInvestment++;
         return this.selectedInvestment;
         } else {
-          console.log('-=====---------=9999');
-          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-          this.isLoading = false;
+        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+        this.isLoading = false;
   }
 }
 
