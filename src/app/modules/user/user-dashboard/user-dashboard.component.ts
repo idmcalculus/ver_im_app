@@ -25,6 +25,7 @@ export class UserDashboardComponent implements OnInit {
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = false;
+  groupName:'Top Rated Investments';
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -74,9 +75,10 @@ export class UserDashboardComponent implements OnInit {
      });
 
     this.isLoading = true;
-    this.investmentService.getInvestmentGroups().subscribe(groups => {
+    this.investmentService.getBestInvestmentGroups(this.groupName).subscribe(groups => {
       if (groups && groups.success) {
         this.poolGroup = groups.success.Data;
+        console.log(this.poolGroup );
 
         const seventhDay = new Date();
         seventhDay.setDate(seventhDay.getDate() - 7);

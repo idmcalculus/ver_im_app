@@ -218,7 +218,10 @@
                                        </div>
 
                                     </div>
-                                    <div class="container">
+                                    <div *ngIf="userInvestment.length == 0" >
+                                        <p class='displayStatus'>"No Current Investment Found."</p>
+                                   </div>
+                                    <div *ngIf= "userInvestment.length > 0" class="container" >
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
                                                 <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
