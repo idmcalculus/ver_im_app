@@ -2,7 +2,7 @@
     <div class="nav-list navMenu">
         <div class="pcoded-inner-navbar main-menu">
             <ul class="pcoded-item pcoded-left-item">
-                <li  *ngIf="userInfo" class="header">
+                <li  *ngIf="userInfo?.user_category === 'Admin'" class="header">
                     <a routerLink="./" class="waves-effect waves-dark user-info">
                         <span class="pcoded-micon header-icon"><i class="feather icon-user"></i></span>
                         <span class="pcoded-mtext">

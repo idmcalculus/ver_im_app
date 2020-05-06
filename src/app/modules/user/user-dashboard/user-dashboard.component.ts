@@ -49,9 +49,12 @@ export class UserDashboardComponent implements OnInit {
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
-            this.isLoading = false;
             this.selectedInvestment = 0;
+            console.log(this.dashBoardData,this.usersInvestments,'-=====---------=')
+
             this.showDetails();
+            this.isLoading = false;
+
             }
           });
         }
@@ -104,12 +107,15 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
-    if ( this.selectedInvestment < (this.usersInvestments.length - 1) ) {
+    if ( this.selectedInvestment >= 0 ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
+        //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
         } else {
+          console.log('-=====---------=9999')
+
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = false;
   }
@@ -124,8 +130,10 @@ export class UserDashboardComponent implements OnInit {
         this.dashBoardData = resp.success.Data;
         this.dashboardInvestment.push(this.dashBoardData);
       } else {
+
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       }
+
       this.showDetails();
     });
   }

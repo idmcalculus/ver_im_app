@@ -53,29 +53,29 @@
                                             <div class="card-block d-flex flex-row">
                                                 <div class="col-6 input-control adjust">
                                                     <div class="table-responsive">
-                                                        <table class="table reduced-font">
+                                                        <table class="table mon reduced-font" style="display: contents">
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3 leftBorder">
+                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                  <td class="col-7">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }} <br>
-                                                                    Amount Paid
+                                                                  <td class="col-7  rightBorder"><span  style="color:#baeab5">N{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</span> <br>
+                                                                    <span style="font-size:12px;color:grey">Amount Paid</span>
                                                                   </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3  leftBorder">
+                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7"> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period) }} <br>
-                                                                     Payback
+                                                                <td  class="col-7 rightBorder"> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period) }} <br>
+                                                                    <span style="font-size:12px;color:grey"> Payback</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3 leftBorder">
+                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7">{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}} <br>
-                                                                    Last Payment
+                                                                <td  class="col-7 rightBorder">{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}} <br>
+                                                                    <span style="font-size:12px;color:grey">Last Payment</span>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -83,29 +83,29 @@
                                                 </div>
                                                 <div class="col-6 input-control adjust">
                                                     <div class="table-responsive">
-                                                        <table class="table reduced-font">
+                                                        <table class="table mon reduced-font">
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3 leftBorder">
+                                                                    <img class="" src="../../../../assets/images/icon/icons/Deposit-icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}<br>
-                                                                    Amount Pending
+                                                                <td  class="col-7 rightBorder"><span style="color:#e99b89">N{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</span><br>
+                                                                   <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3 leftBorder">
+                                                                    <img class="" src="../../../../assets/images/icon/invest-icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7">{{investments?.num_of_pools_taken}} <br>
-                                                                    Number of Slot(s)
+                                                                <td  class="col-7 rightBorder">{{investments?.num_of_pools_taken}} <br>
+                                                                    <span style="font-size:12px;color:grey">Number of Slot(s)</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="col-3">
-                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 35px;width:35px">
+                                                                <td class="col-3 leftBorder">
+                                                                    <img class="" src="../../../../assets/images/activities/Icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7">{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}<br>
-                                                                    Next Payment
+                                                                <td  class="col-7 rightBorder">{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}<br>
+                                                                    <span style="font-size:12px;color:grey">Next Payment</span>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -130,7 +130,7 @@
                                 <div class="card-footer header-bg d-flex flex-row">
                                     <div class="col-6 text-center">
                                         <h6>ACCOUNT BALANCE</h6>
-                                        <h6>N</h6>
+                                        <h6 style="font-size:25px">N{{totalYieldedAmount}}</h6>
                                     </div>
                                     <div class="col-6 text-center">
                                         <button type="button" class=" col-5 btn btn-success mr-2">Withdraw</button>
