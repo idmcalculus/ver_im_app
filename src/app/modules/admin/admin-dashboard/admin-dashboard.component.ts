@@ -5,6 +5,8 @@ import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 import { CareerService } from '../../career/career.service';
 import { ChartType, ChartOptions  } from 'chart.js';
 import { InvestmentService } from './../../investment/investment.service';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
 import { Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
 import { count } from 'rxjs/operators';
@@ -205,4 +207,17 @@ export class AdminDashboardComponent implements OnInit {
       // We hid a dataset ... rerender the chart
       ci.update();
     };
-}
+
+    getTimeAgo(time){
+        TimeAgo.addLocale(en);
+        var date = new Date(time);
+        var hours = date.getHours();
+
+        const timeAgo = new TimeAgo('en-US');
+        return timeAgo.format(date);
+      }
+
+
+
+    }
+

@@ -137,7 +137,7 @@
     .dashboard-table{
         &.graphs{
 
-          
+
 
 
             .card-header {
@@ -211,12 +211,21 @@
 
 
     .divider2{
-        height: 44.5px;
+        height: 28.5px;
         border-width: 1px;
         border-right-style: solid;
         margin: 0px 16px;
         width: 17.5px;
-        border-right-color: #80808030;    
+        border-right-color: #80808030;
+    }
+
+    .dashcam{
+        margin: 4px;
+        margin-left: 10px;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .activities{
@@ -224,7 +233,7 @@
         display: flex;
     }
 
-    
+
 
     progress-bar {
         width: 40%;
@@ -313,7 +322,7 @@
             width: 90%;
             margin: 0 auto;
             margin-bottom: 5%;
-        
+
         }
 
         .activity-card{
