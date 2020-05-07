@@ -95,12 +95,14 @@ export class AddPoolComponent implements OnInit {
   }
 
   calculateEstimate() {
+    if(this.pool.investment_amount !=0 && this.pool.expected_return_amount !='' && this.pool.expected_return_period !=''){
       const cost = this.pool.investment_amount
       const investment = parseInt(this.pool.expected_return_amount) /100 
       const divisor = this.divisorFunc(this.pool.expected_return_period)
 
       const estimate = (cost * investment) / divisor;
       this.returns = estimate.toFixed(2);
+    }
   }
 
 }
