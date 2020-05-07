@@ -104,12 +104,12 @@
                         <ul class="show-notification profile-notification dropdown-menu"
                                    data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                             <li>
-                                <a routerLink="./settings" routerLinkActive="active">
+                                <a [hidden]='!isUser' routerLink="./settings" routerLinkActive="active">
                                     <i class="feather icon-settings"></i>Account Settings
                                 </a>
                             </li>
                             <li>
-                                <a routerLink="./settings/password" routerLinkActive="active">
+                                <a [hidden]='!isUser' routerLink="./settings/password" routerLinkActive="active">
                                     <i class="feather icon-user"></i> Manage Password
                                 </a>
                             </li>
