@@ -97,7 +97,7 @@ export class InvestmentService {
   }
 
   getBestInvestmentGroups(groupName: string) {
-    return this.httpService.postRequest(`investment/getInvestmentGroup?group_name=${groupName}`,true);
+    return this.httpService.postRequest(`investment/getInvestmentGroup`, {group_name: groupName}, true);
   }
 
   deleteInvestmentGroup(investmentGroup: InvestmentGroup) {
