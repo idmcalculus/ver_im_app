@@ -5,6 +5,8 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 @Component({
   selector: 'app-user-dashboard',
@@ -63,6 +65,7 @@ export class UserDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
+          console.log(this.allDashBoardData,'090----')
           this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
         }
       });
@@ -165,7 +168,16 @@ calculateReturn (expected_return_amount, expected_return_period) {
         newDate.setDate(0);
     }
     return newDate;
-}
+  }
+
+  getTimeAgo(time){
+    TimeAgo.addLocale(en);
+    var date = new Date(time);
+    var hours = date.getHours();
+    
+    const timeAgo = new TimeAgo('en-US');
+    return timeAgo.format(date);
+  }
 
 
 
