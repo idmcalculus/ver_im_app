@@ -53,11 +53,8 @@ export class UserDashboardComponent implements OnInit {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
             this.selectedInvestment = 0;
-            console.log(this.dashBoardData,this.usersInvestments,'-=====---------=')
 
             this.showDetails();
-            this.isLoading = false;
-
             }
           });
         }
@@ -66,7 +63,6 @@ export class UserDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
-          console.log(this.allDashBoardData,'090----')
           this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
         }
       });
@@ -108,11 +104,10 @@ export class UserDashboardComponent implements OnInit {
           console.log('No groups yet');
       }
     });
-
   }
 
   showDetails() {
-    if ( this.selectedInvestment < 0 ) {
+    if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
@@ -121,8 +116,8 @@ export class UserDashboardComponent implements OnInit {
         } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = false;
-  }
-}
+        }
+    }
 
   getUserDashBoard() {
     const userEmail = this.overiddenUser.email;
@@ -136,7 +131,7 @@ export class UserDashboardComponent implements OnInit {
 
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       }
-
+      this.isLoading = false;
       this.showDetails();
     });
   }
