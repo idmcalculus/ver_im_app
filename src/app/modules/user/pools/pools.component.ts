@@ -127,9 +127,27 @@ export class PoolsComponent implements OnInit {
     if (!value || value === null) {
       return this.getPools();
     } else {
+        console.log(this.pools);
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== null) {
             const filterate = pool[filterType].toString();
+            console.log(filterate);
+            return filterate.toLowerCase().includes(value.toLowerCase());
+          }
+        });
+        this.pools = filtered;
+      }
+  }
+
+  filterCategory(filterType, filterValue): any {
+    const value = filterValue.target.value;
+    if (!value || value === null) {
+      return this.getPools();
+    } else {
+        const filtered = this.pools.filter(pool => {
+          if (pool[filterType] !== null) {
+            const filterate = pool[filterType].toString();
+            console.log(filterate);
             return filterate.toLowerCase().includes(value.toLowerCase());
           }
         });
