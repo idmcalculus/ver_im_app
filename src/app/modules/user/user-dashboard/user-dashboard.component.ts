@@ -176,7 +176,7 @@ calculateReturn (expected_return_amount, expected_return_period) {
     TimeAgo.addLocale(en);
     var date = new Date(time);
     var hours = date.getHours();
-    
+
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
