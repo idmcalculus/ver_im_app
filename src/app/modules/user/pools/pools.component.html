@@ -93,7 +93,7 @@
                                                 <td class="mr-3"><input type="checkbox"></td>
                                                 <td class="mr-3">{{pool.id}}</td>
                                                 <td class="">{{pool.title}}</td>
-                                                <td class="">{{pool.category_id}}</td>
+                                                <td class="">{{getCategoryName(pool.category_id)}}</td>
                                                 <td class="">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td class="">{{pool.duration}} Months</td>
                                                 <td class="">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
