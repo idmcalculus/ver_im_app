@@ -26,7 +26,8 @@ export class UserDashboardComponent implements OnInit {
   filteredYearData: Investment[] = [];
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
-  isLoading = false;
+  isLoading = true;
+  groupName:'Discounted Investments';
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -52,11 +53,10 @@ export class UserDashboardComponent implements OnInit {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
             this.selectedInvestment = 0;
-            console.log(this.dashBoardData,this.usersInvestments,'-=====---------=')
 
             this.showDetails();
-            this.isLoading = false;
-
+            } else {
+                this.isLoading = false;
             }
           });
         }
@@ -65,7 +65,6 @@ export class UserDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
-          console.log(this.allDashBoardData,'090----')
           this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
         }
       });
@@ -76,10 +75,10 @@ export class UserDashboardComponent implements OnInit {
         }
      });
 
-    this.isLoading = true;
-    this.investmentService.getInvestmentGroups().subscribe(groups => {
+    this.investmentService.getBestInvestmentGroups(this.groupName).subscribe(groups => {
       if (groups && groups.success) {
-        this.poolGroup = groups.success.Data;
+        this.poolGroup = groups.success.Data.filter((res)=>res.group_name === 'Best Selling Investments');
+        console.log(this.poolGroup );
 
         const seventhDay = new Date();
         seventhDay.setDate(seventhDay.getDate() - 7);
@@ -106,11 +105,11 @@ export class UserDashboardComponent implements OnInit {
           console.log('No groups yet');
       }
     });
-
   }
 
   showDetails() {
-    if ( this.selectedInvestment >= 0 ) {
+    this.isLoading = false;
+    if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
@@ -119,8 +118,8 @@ export class UserDashboardComponent implements OnInit {
         } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = false;
-  }
-}
+        }
+    }
 
   getUserDashBoard() {
     const userEmail = this.overiddenUser.email;
@@ -133,8 +132,8 @@ export class UserDashboardComponent implements OnInit {
       } else {
 
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+        this.isLoading = false;
       }
-
       this.showDetails();
     });
   }
@@ -174,7 +173,7 @@ calculateReturn (expected_return_amount, expected_return_period) {
     TimeAgo.addLocale(en);
     var date = new Date(time);
     var hours = date.getHours();
-    
+
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }

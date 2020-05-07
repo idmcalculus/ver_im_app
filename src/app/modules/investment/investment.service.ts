@@ -43,7 +43,7 @@ export class InvestmentService {
   getUserInvestments(email): Observable<any> {
     return this.httpService.postRequest('investment_user/listInvestmentOfUser', { "user_id": email });
   }
-  
+
   getpoolReport() {
     return this.httpService.postRequest('investment_user/getInvestmentPerDay?', null);
   }
@@ -94,6 +94,10 @@ export class InvestmentService {
 
   getInvestmentGroups() {
     return this.httpService.postRequest(`investment/getGroups`, {});
+  }
+
+  getBestInvestmentGroups(groupName: string) {
+    return this.httpService.postRequest(`investment/getInvestmentGroup`, {group_name: groupName}, true);
   }
 
   deleteInvestmentGroup(investmentGroup: InvestmentGroup) {
