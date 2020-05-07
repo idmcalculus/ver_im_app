@@ -137,6 +137,10 @@ body{
     }
 }
 
+.card.recentActivity, .card.bestSelling {
+    height: 430px;
+}
+
 .leftBorder{
     box-shadow: -4px 8px 5px #88888838;
     text-align: end;

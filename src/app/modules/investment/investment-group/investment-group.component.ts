@@ -20,7 +20,6 @@ import { Router } from '@angular/router';
 })
 export class InvestmentGroupComponent implements OnInit {
   isLoading = true;
-  investment = new FormControl();
   investmentGroupNames = new FormControl();
   investmentGroupName: string;
   investments: Investment[] = [];
@@ -29,6 +28,10 @@ export class InvestmentGroupComponent implements OnInit {
   selectedValue: Investment[] = [];
   selectedGroup: InvestmentGroup;
   group_id: any;
+  investmentIds: string;
+  idArray: any[];
+  selectedPortfolios: any[];
+  investment = new FormControl();
 
   constructor(public matDialog: MatDialog,
               private investmentService: InvestmentService,
@@ -40,6 +43,28 @@ export class InvestmentGroupComponent implements OnInit {
               }
 
   ngOnInit() {
+  }
+
+  bindData(group) {
+    this.isLoading = true;
+    this.selectedPortfolios = [];
+    const data: any = {
+      group_name: group.group_name
+    };
+    this.investmentService.getInvestmentGroup(data).subscribe(resp => {
+      if (resp && resp.success) {
+        const groups = resp.success.Data;
+        const numOfGroup = groups.length;
+        this.investmentIds = resp.success.Data[numOfGroup - 1].investment_id;
+        this.idArray = this.investmentIds.split(',');
+        this.isLoading = false;
+        this.idArray.forEach(id => {
+          const foundInvestment = this.investments.find(investment => investment.id === Number(id));
+          this.selectedPortfolios.push(foundInvestment);
+        });
+      }
+    });
+    this.investment.setValue(this.selectedPortfolios);
   }
 
   openModal() {
@@ -111,17 +136,20 @@ export class InvestmentGroupComponent implements OnInit {
     if (!this.selectedGroup && this.selectedValue.length === 0) {
       this.toastrService.info('Please select an Investment Group and investment(s) to be added to the group');
     } else {
-      let group = this.selectedGroup;
-      let groupId = [];
-      const data:any = {
+      this.isLoading = true;
+      const group = this.selectedGroup;
+      const groupId = [];
+      const data: any = {
         group_name: group,
       };
       this.selectedValue.forEach(investment => {
         this.group_id = investment.id;
         groupId.push(this.group_id);
       });
+      console.log(groupId);
       this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
         if (result) {
+          this.isLoading = false;
           window.location.href = 'admin/investment-group';
         }
       });
