@@ -26,7 +26,7 @@ export class UserDashboardComponent implements OnInit {
   filteredYearData: Investment[] = [];
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
-  isLoading = false;
+  isLoading = true;
   groupName:'Discounted Investments';
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
@@ -55,6 +55,8 @@ export class UserDashboardComponent implements OnInit {
             this.selectedInvestment = 0;
 
             this.showDetails();
+            } else {
+                this.isLoading = false;
             }
           });
         }
@@ -73,7 +75,6 @@ export class UserDashboardComponent implements OnInit {
         }
      });
 
-    this.isLoading = true;
     this.investmentService.getBestInvestmentGroups(this.groupName).subscribe(groups => {
       if (groups && groups.success) {
         this.poolGroup = groups.success.Data.filter((res)=>res.group_name === 'Best Selling Investments');
@@ -107,6 +108,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
+    this.isLoading = false;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
@@ -130,8 +132,8 @@ export class UserDashboardComponent implements OnInit {
       } else {
 
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+        this.isLoading = false;
       }
-      this.isLoading = false;
       this.showDetails();
     });
   }
