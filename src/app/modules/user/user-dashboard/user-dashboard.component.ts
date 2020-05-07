@@ -1,11 +1,12 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { UserDashboard } from 'src/app/shared/models/UserDashboard';
 import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
 
 @Component({
   selector: 'app-user-dashboard',
@@ -20,8 +21,12 @@ export class UserDashboardComponent implements OnInit {
   dashboardInvestment: any = [];
   userActivity: any = [];
   usersInvestments: [Investment];
-  pools: Investment[] = [];
-  isLoading = true;
+  pools: any = [];
+  poolGroup: Investment[] = [];
+  filteredYearData: Investment[] = [];
+  filteredDayData: Investment[] = [];
+  filteredMonthData: Investment[] = [];
+  isLoading = false;
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -39,15 +44,19 @@ export class UserDashboardComponent implements OnInit {
               {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
         if (resp) {
         this.overiddenUser = resp;
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
-            this.isLoading = false;
             this.selectedInvestment = 0;
+            console.log(this.dashBoardData,this.usersInvestments,'-=====---------=')
+
             this.showDetails();
+            this.isLoading = false;
+
             }
           });
         }
@@ -56,29 +65,60 @@ export class UserDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
-          this.isLoading = false;
+          console.log(this.allDashBoardData,'090----')
           this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
         }
       });
 
-      this.investmentService.getInvestments(false).subscribe(investments => {
+     this.investmentService.getInvestments(false).subscribe(investments => {
         if (investments) {
           this.pools = investments.success.Data;
         }
-        this.isLoading = false;
-      });
+     });
+
+    this.isLoading = true;
+    this.investmentService.getInvestmentGroups().subscribe(groups => {
+      if (groups && groups.success) {
+        this.poolGroup = groups.success.Data;
+
+        const seventhDay = new Date();
+        seventhDay.setDate(seventhDay.getDate() - 7);
+        this.filteredDayData = this.poolGroup.filter((d) => {
+        return new Date(d.created_at).getTime() >= seventhDay.getTime();
+        });
+        console.log(this.filteredDayData);
+
+        const Month = new Date();
+        Month.setDate(Month.getDate() - 31);
+        this.filteredMonthData = this.poolGroup.filter((d) => {
+        return new Date(d.created_at).getTime() >= Month.getTime();
+        });
+        console.log(this.filteredMonthData);
+
+        const Year = new Date();
+        Year.setDate(Year.getDate() - 365);
+        this.filteredYearData = this.poolGroup.filter((d) => {
+        return new Date(d.created_at).getTime() >= Year.getTime();
+        });
+        console.log(this.filteredYearData);
+
+      }else {
+          console.log('No groups yet');
+      }
+    });
 
   }
 
   showDetails() {
-    if ( this.selectedInvestment <= (this.usersInvestments.length - 1) ) {
+    if ( this.selectedInvestment >= 0 ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
+        //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
         } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = true;
+        this.isLoading = false;
   }
 }
 
@@ -91,8 +131,10 @@ export class UserDashboardComponent implements OnInit {
         this.dashBoardData = resp.success.Data;
         this.dashboardInvestment.push(this.dashBoardData);
       } else {
+
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       }
+
       this.showDetails();
     });
   }
@@ -110,7 +152,15 @@ export class UserDashboardComponent implements OnInit {
     }
 }
 
-addMonth(date: Date, month: number) {
+calculateReturn (expected_return_amount, expected_return_period) {
+    if ( expected_return_period === "Monthly") {
+        return expected_return_amount;
+    } else   {
+        return expected_return_amount*4;
+    }
+}
+
+ addMonth(date: Date, month: number) {
     const newDate = new Date(date);
     const d = newDate.getDate();
     newDate.setMonth(newDate.getMonth() + month);
@@ -118,7 +168,16 @@ addMonth(date: Date, month: number) {
         newDate.setDate(0);
     }
     return newDate;
-}
+  }
+
+  getTimeAgo(time){
+    TimeAgo.addLocale(en);
+    var date = new Date(time);
+    var hours = date.getHours();
+    
+    const timeAgo = new TimeAgo('en-US');
+    return timeAgo.format(date);
+  }
 
 
 

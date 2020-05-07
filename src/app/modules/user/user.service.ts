@@ -12,7 +12,7 @@ export class UserService {
   getProfile(email: string) {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
-  
+
   getProfileDetails(email: string): Observable<any> {
     return this.httpService.postRequest(`fetch_profile?email=${email}`, null);
   }
@@ -75,7 +75,6 @@ export class UserService {
   }
 
   getusersInvestment(email) {
-    console.log(email);
     return this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {'user_id': email});
   }
 
