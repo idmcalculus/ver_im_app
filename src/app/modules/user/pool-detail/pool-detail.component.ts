@@ -65,7 +65,7 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          // console.log(this.pool);
+          console.log(this.pool);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
