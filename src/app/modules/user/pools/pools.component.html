@@ -23,43 +23,46 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Investment ID</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" #id (keyup)="filterTable('id', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment ID" name="id" (keyup)="filterTable('id', $event)"
                                     (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" #title (keyup)="filterTable('title', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" (keyup)="filterTable('title', $event)"
                                     (blur)="filterTable('title', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterCategory('category_name', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" (keyup)="filterCategory('category_name', $event)"
                                     (blur)="filterCategory('category_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="investment_amount" #search (keyup)="filterTable('investment_amount', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Amount" name="investment_amount" (keyup)="filterTable('investment_amount', $event)"
                                     (blur)="filterTable('investment_amount', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" name="max_num_of_slots" #search (keyup)="filterTable('max_num_of_slots', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="No of Investors" name="max_num_of_slots" (keyup)="filterTable('max_num_of_slots', $event)"
                                     (blur)="filterTable('max_num_of_slots', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
-                                    <label class="h7">Status</label>
-                                    <input type="text" class="input-control shadow" placeholder="Status" name="is_investment_started" #search (keyup)="filterStatus('is_investment_started', $event)"
-                                    (blur)="filterStatus('is_investment_started', $event)">
+                                    <label class="h7" for="status">Status</label>
+                                    <select id="status" class="input-control shadow" name="status" #status (change)="filterStatus('is_investment_started', status.value)" (click)="clearFilter(status.value)">
+                                        <option selected>Status</option>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">InActive</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -154,26 +154,32 @@ export class PoolsComponent implements OnInit {
         }
       });
       filteredCat.forEach(cat => {
-        const filteredCatPool = this.pools.filter(eachpool => cat.id == eachpool.category_id);
+        const filteredCatPool = this.pools.filter(eachpool => cat.id === eachpool.category_id);
         CatPool.push(filteredCatPool);
       });
-      this.pools = [].concat.apply([], CatPool);
+      this.pools = CatPool.flat();
       }
   }
 
   filterStatus(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
+    const value = filterValue === 'active' ? 1 :
+    filterValue === 'inactive' ? 0 : null;
+    if (value === null) {
       return this.getPools();
     } else {
         const filtered = this.pools.filter(pool => {
           if (pool[filterType] !== undefined && pool[filterType] !== null) {
-            const filterate = pool[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase());
+            return pool[filterType] === value;
           }
         });
         this.pools = filtered;
       }
+  }
+
+  clearFilter(value) {
+    if (value !== null) {
+    return this.getPools();
+    }
   }
 
   setItemsPerPage(event) {
