@@ -74,7 +74,7 @@
                                     <div class="category-body" *ngIf="!isLoading && users?.length > 0">
                                         <div class="row1 p-2" *ngFor="let user of users;let i = index;">
                                             <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
-                                            <p class="col-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;">{{user.email}}</p>
+                                            <p class="col-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;padding-right: 5px;">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
                                             <p class="col-2" >{{user?.no_of_slots}}</p>
                                             <p class="col-2">{{user.total_amount_invested || 0}}</p>

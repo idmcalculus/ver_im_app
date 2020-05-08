@@ -138,7 +138,11 @@ body{
 }
 
 .card.recentActivity, .card.bestSelling {
-    height: 430px;
+    height: 500px;
+
+    .table-responsive{
+        padding: 0.5rem 0rem;
+    }
 }
 
 .leftBorder{
@@ -203,7 +207,7 @@ body{
         }
     }
     .card-block {
-        padding: 0 0.5rem;
+        padding: 1rem 0.8rem;
         font-size: 0.78rem;
         font-weight: bolder;
 
