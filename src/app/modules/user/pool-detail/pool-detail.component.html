@@ -401,28 +401,30 @@
                                       <p class="status">Status</p>
                                       <p class="datePaid">Date Paid</p>
                                     </div>
-                                    <div class="card-block dt-responsive report-body" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
-                                      <div class="d-flex">
-                                        <p class="s-n">1</p>
-                                        <p class="invTitle">{{pool?.investment?.title}}</p>
+                                    <div class="card-block dt-responsive" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
+                                      <div class="d-flex report-body" *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
+                                        <p class="s-n">{{report?.index}}</p>
+                                        <p class="invTitle">{{report?.title}}</p>
                                         <p class="payback">{{pool?.investment?.expected_return_period}}</p>
-                                        <p class="amtCred">20,833.33</p>
-                                        <p class="yieldedAmt">20,833.33</p>
-                                        <p class="balance">229,166.67</p>
+                                        <p class="amtCred">{{report?.returned_amount | number:'1.2'}}</p>
+                                        <p class="yieldedAmt">{{report?.returned_amount * report?.index | number:'1.2'}}</p>
+                                        <p class="balance">{{pool?.investment?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</p>
                                         <p class="status">On-going</p>
-                                        <p class="datePaid">{{ pool?.report[0]?.created_at ? (pool?.report[0]?.created_at | date :  "dd.MM.y") : 'N/A' }}</p>
+                                        <p class="datePaid">{{ report?.created_at ? (report?.created_at | date :  "dd.MM.y") : 'N/A' }}</p>
                                       </div>
-                                      <!--<div  class="col-12 d-flex flex-row mt-3">
+                                      <div  class="col-12 d-flex flex-row mt-3">
                                         <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
                                         <span class="col-md-2 col-xs-2 controls">
-                                            <select class="py-2 input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                            <select class="py-2 input-control" data-type="items-per-page" (change)=setItemsPerPage(page.value) #page>
                                                 <option value="5"> 5 rows </option>
                                                 <option value="10"> 10 rows </option>
                                                 <option value="20"> 20 rows </option>
+                                                <option value="40"> 40 rows </option>
+                                                <option value="50"> 50 rows </option>
                                                 <option value="0"> view all </option>
                                             </select>
                                         </span>
-                                       </div>-->
+                                       </div>
                                     </div>
                                 </div>
                             </div>

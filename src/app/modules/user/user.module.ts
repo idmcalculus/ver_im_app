@@ -23,6 +23,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
+import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
 
 
 @NgModule({
@@ -51,7 +52,10 @@ import { InvestmentProfileComponent } from './investment-profile/investment-prof
     NgxPaginationModule,
     FormsModule,
     Angular2PromiseButtonModule,
-    ChartsModule
+    ChartsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   exports:[
     UserSettingsComponent,

@@ -32,6 +32,9 @@ export class PoolDetailComponent implements OnInit {
   userSubscription: Subscription;
   image: any;
   returns: string;
+  pageValue = 5;
+  p2 = 1;
+  reports: any[];
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
@@ -66,14 +69,14 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          console.log(this.pool);
+          this.reports = this.pool.report;
+          this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
         } else {
           this.router.navigate(['./', {}]);
         }
-      } else {
       }
     });
   }
@@ -127,7 +130,9 @@ export class PoolDetailComponent implements OnInit {
     }
   }
 
-
+  setItemsPerPage(event) {
+    this.pageValue = event;
+  }
 
   updateReport(filledReport: Report) {
       this.reportData = filledReport;
