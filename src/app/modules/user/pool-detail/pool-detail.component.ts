@@ -19,6 +19,7 @@ export class PoolDetailComponent implements OnInit {
   pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   poolId = 0;
   url: any;
+  res: Category;
   reportData: Report = {title: '', description: ''};
   categories = [];
   modaltitle = 'Update Plan';
@@ -65,7 +66,7 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          // console.log(this.pool);
+          console.log(this.pool);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
@@ -101,8 +102,12 @@ export class PoolDetailComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    const res = this.categories.find( r => r.id === id);
-    return res.category_name;
+    if (id) {
+    this.res = this.categories.find(r => r.id === id);
+    return this.res.category_name;
+    } else {
+      return this.res = {category_name: ''};
+    }
   }
 
   addReport(filledReport: Report) {

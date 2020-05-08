@@ -4,6 +4,7 @@
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
  import { UserService } from '../user.service';
+ import { Category } from 'src/app/shared/models/Category';
 
  @Component({
   selector: 'app-pools',
@@ -22,6 +23,7 @@ export class PoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
+  res: Category;
 
   constructor(
     private router: Router,
@@ -95,9 +97,12 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    // console.log(this.categories,'=====>')
-    const res = this.categories.find( r => r.id === id);
-    return res.category_name;
+    if (id) {
+    this.res = this.categories.find(r => r.id === id);
+    return this.res.category_name;
+    } else {
+      return this.res = {category_name: ''};
+    }
   }
 
   getUserPols(email) {
@@ -127,11 +132,9 @@ export class PoolsComponent implements OnInit {
     if (!value || value === null) {
       return this.getPools();
     } else {
-        console.log(this.pools);
         const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== null) {
+          if (pool[filterType] !== undefined && pool[filterType] !== null) {
             const filterate = pool[filterType].toString();
-            console.log(filterate);
             return filterate.toLowerCase().includes(value.toLowerCase());
           }
         });
@@ -141,28 +144,52 @@ export class PoolsComponent implements OnInit {
 
   filterCategory(filterType, filterValue): any {
     const value = filterValue.target.value;
+    let CatPool = [];
     if (!value || value === null) {
       return this.getPools();
     } else {
+      const filteredCat = this.categories.filter(category => {
+        if (category[filterType] !== null) {
+          return category[filterType].toLowerCase().includes(value.toLowerCase());
+        }
+      });
+      filteredCat.forEach(cat => {
+        const filteredCatPool = this.pools.filter(eachpool => cat.id === eachpool.category_id);
+        CatPool.push(filteredCatPool);
+      });
+      this.pools = CatPool.flat();
+      }
+  }
+
+  filterStatus(filterType, filterValue): any {
+    const value = filterValue === 'active' ? 1 :
+    filterValue === 'inactive' ? 0 : null;
+    if (value === null) {
+      return this.getPools();
+    } else {
         const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== null) {
-            const filterate = pool[filterType].toString();
-            console.log(filterate);
-            return filterate.toLowerCase().includes(value.toLowerCase());
+          if (pool[filterType] !== undefined && pool[filterType] !== null) {
+            return pool[filterType] === value;
           }
         });
         this.pools = filtered;
       }
   }
 
-  setItemsPerPage(event){
+  clearFilter(value) {
+    if (value !== null) {
+    return this.getPools();
+    }
+  }
+
+  setItemsPerPage(event) {
     this.pageValue = event;
   }
 
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
+  calculateEstimate(returns, inv) {
+    const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
   }
 
-  deleteUser(){}
+  deleteUser() {}
 }
