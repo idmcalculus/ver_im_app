@@ -70,8 +70,8 @@ td {
 	display: flex;
 	flex-flow: column nowrap;
 	overflow: auto;
-	
-	&::-webkit-scrollbar { 
+
+	&::-webkit-scrollbar {
 		display: none;  // Safari and Chrome
 	}
 }
@@ -91,7 +91,7 @@ td {
 		background-color: transparent;
 	}
 }
- 
+
 .category-header {
     display: flex;
     justify-content: space-between;
@@ -112,7 +112,7 @@ td {
     margin: 0;
     padding-right: 4px;
 }
-  
+
 .category-body .row1 {
     display: flex;
     align-items: center;
@@ -131,7 +131,7 @@ td {
     display: inline-flex;
     padding: 0;
 }
-  
+
 .category-name {
     width: 10%;
 }
@@ -142,4 +142,14 @@ td {
 
 .category-body .row1 p{
     padding: 0;
+}
+
+.displayStatus {
+    color: red;
+    justify-content: center;
+    text-align: center;
+    font-family: roboto;
+    letter-spacing: .04rem;
+    font-weight: 500;
+    padding: 0.5rem;
 }
