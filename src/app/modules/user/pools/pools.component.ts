@@ -144,7 +144,7 @@ export class PoolsComponent implements OnInit {
 
   filterCategory(filterType, filterValue): any {
     const value = filterValue.target.value;
-    let CatPool = [];
+    let CatPool:any = [];
     if (!value || value === null) {
       return this.getPools();
     } else {
