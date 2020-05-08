@@ -37,8 +37,8 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterTable('category_id', $event)"
-                                    (blur)="filterTable('getCategoryName.pool.category_id', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" #search (keyup)="filterCategory('category_name', $event)"
+                                    (blur)="filterCategory('category_name', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
@@ -58,8 +58,8 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" name="is_investment_started" #search (keyup)="filterTable('is_investment_started', $event)"
-                                    (blur)="filterTable('is_investment_started', $event)">
+                                    <input type="text" class="input-control shadow" placeholder="Status" name="is_investment_started" #search (keyup)="filterStatus('is_investment_started', $event)"
+                                    (blur)="filterStatus('is_investment_started', $event)">
                                 </div>
                             </div>
                         </div>
