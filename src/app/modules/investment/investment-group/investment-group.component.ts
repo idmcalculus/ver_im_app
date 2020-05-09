@@ -146,7 +146,6 @@ export class InvestmentGroupComponent implements OnInit {
         this.group_id = investment.id;
         groupId.push(this.group_id);
       });
-      console.log(groupId);
       this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
         if (result) {
           this.isLoading = false;
