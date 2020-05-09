@@ -35,6 +35,8 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
+  expectedPeriod: '';
+  expectedTitle: '';
 
 
   constructor(private userService: UserService,
@@ -126,22 +128,29 @@ export class UserDashboardComponent implements OnInit {
     const investmentId = this.investmentInfo.id;
 
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-      if (resp && resp.success) {
-        this.dashBoardData = resp.success.Data;
-        this.dashboardInvestment.push(this.dashBoardData);
-      } else {
+        if (resp && resp.success) {
+          this.dashBoardData = resp.success.Data;
+          this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
+          this.expectedTitle = this.dashBoardData.investment[0].title;
 
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = false;
-      }
-      this.showDetails();
+          this.dashBoardData.investment_return.forEach(element => {
+              element.expected_return_period = 'Weekly' ;
+              element.title =  'Transport Investment';
+          });
+          this.dashboardInvestment.push(this.dashBoardData);
+
+        } else {
+          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
+        }
+        this.showDetails();
     });
   }
 
-  calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+  calculateEstimate(returns, inv, expected_return_period,number_of_pools) {
+    const estimate = ((returns * this.divisorFunc(expected_return_period)) / (inv * number_of_pools)) * 100;
     return Math.ceil(estimate);
 }
+
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {

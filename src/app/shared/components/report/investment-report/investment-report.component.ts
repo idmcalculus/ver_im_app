@@ -20,6 +20,8 @@ export class PoolreportComponent implements OnInit {
   reportlog = [];
   searchValue = '';
   filteredPools = [];
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router: Router,
@@ -41,7 +43,7 @@ export class PoolreportComponent implements OnInit {
         this.getPools();
         this.getCategories();
       }
-      
+
       this.getCategories();
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
@@ -114,9 +116,15 @@ export class PoolreportComponent implements OnInit {
   }
 
   saveAsCSV(){}
-  
+
   clearSearch() {
     this.searchValue = null;
     return this.getPools();
   }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 }

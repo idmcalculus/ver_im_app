@@ -22,6 +22,7 @@ export class PoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
+  p2 = 1;
 
   constructor(
     private router: Router,

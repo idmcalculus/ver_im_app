@@ -17,9 +17,11 @@ export class ViewCustomerComponent implements OnInit {
     userData: any [];
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
-    dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
+    dashBoardData: any = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
     p: number = 1;
     p2: number =1;
+    expectedPeriod = '';
+    expectedTitle = '';
     userInvestment: any;
     FilteredInvestment: Investment[];
     dashboardInvestment: any =[];
@@ -53,6 +55,8 @@ export class ViewCustomerComponent implements OnInit {
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
+              console.log(this.userInvestment);
+
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
@@ -106,9 +110,17 @@ export class ViewCustomerComponent implements OnInit {
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
+            this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
+            this.expectedTitle = this.dashBoardData.investment[0].title;
+
+            this.dashBoardData.investment_return.forEach(element => {
+                element.expected_return_period = 'Weekly' ;
+                element.title =  'Transport Investment';
+            });
             this.dashboardInvestment.push(this.dashBoardData);
+
           } else {
-            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+            this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
           this.showDetails();
         });
@@ -155,8 +167,8 @@ export class ViewCustomerComponent implements OnInit {
         this.pageValue = event;
     }
 
-    calculateEstimate(returns, inv, expected_return_period) {
-        const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+    calculateEstimate(returns, inv, expected_return_period,number_of_pools) {
+        const estimate = ((returns * this.divisorFunc(expected_return_period)) / (inv * number_of_pools)) * 100;
         return Math.ceil(estimate);
     }
 
@@ -165,6 +177,14 @@ export class ViewCustomerComponent implements OnInit {
             return 48;
         } else if (expected_return_period === "Monthly") {
             return 12;
+        }
+    }
+
+    getBalance (expected_return_period, expected_return) {
+        if ( expected_return_period === "Weekly") {
+            return 48 * expected_return ;
+        } else if (expected_return_period === "Monthly") {
+            return 12 * expected_return;
         }
     }
 

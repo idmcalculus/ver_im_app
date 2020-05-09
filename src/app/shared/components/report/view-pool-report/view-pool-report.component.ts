@@ -17,12 +17,14 @@ export class ViewedreportComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
-  categories:any []
+  categories:any [];
   searchValue = '';
   filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router:Router,
@@ -175,4 +177,10 @@ export class ViewedreportComponent implements OnInit {
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
 }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 }
