@@ -55,6 +55,7 @@ export class UserDashboardComponent implements OnInit {
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
+            console.log(this.usersInvestments);
             this.selectedInvestment = 0;
 
             this.showDetails();
