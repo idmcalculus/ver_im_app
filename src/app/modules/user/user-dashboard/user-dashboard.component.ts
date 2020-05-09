@@ -7,6 +7,7 @@ import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -27,7 +28,7 @@ export class UserDashboardComponent implements OnInit {
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = true;
-  groupName:'Discounted Investments';
+  group_name: InvestmentGroup = {group_name: 'Best Selling Investments'};
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -77,9 +78,9 @@ export class UserDashboardComponent implements OnInit {
         }
      });
 
-    this.investmentService.getBestInvestmentGroups(this.groupName).subscribe(groups => {
+    this.investmentService.getInvestmentGroup(this.group_name).subscribe(groups => {
       if (groups && groups.success) {
-        this.poolGroup = groups.success.Data.filter((res)=>res.group_name === 'Best Selling Investments');
+        this.poolGroup = groups.success.Data;
         console.log(this.poolGroup );
 
         const seventhDay = new Date();
@@ -151,6 +152,10 @@ export class UserDashboardComponent implements OnInit {
     return Math.ceil(estimate);
 }
 
+  calculateGroupEstimate(returns, inv, expected_return_period) {
+    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
+    return Math.ceil(estimate);
+}
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {
@@ -160,7 +165,7 @@ export class UserDashboardComponent implements OnInit {
     }
 }
 
-calculateReturn (expected_return_amount, expected_return_period) {
+ calculateReturn (expected_return_amount, expected_return_period) {
     if ( expected_return_period === "Monthly") {
         return expected_return_amount;
     } else   {
