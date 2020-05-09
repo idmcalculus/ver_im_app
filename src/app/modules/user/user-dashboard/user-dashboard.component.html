@@ -88,7 +88,7 @@
                                                                 <td class="col-3 leftBorder">
                                                                     <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7 rightBorder"><span style="color:#e99b89">N{{ ((((investments?.investment_amount * dashboardInvestment[i].number_of_pools) * (calculateEstimate(dashboardInvestment[i].investment_return[i].yielded_amount,investments.investment_amount, dashboardInvestment[i].investment_return[i].expected_return_period, dashboardInvestment[i].number_of_pools)))/100)) - (dashboardInvestment[i].investment_return[i].yielded_amount* dashboardInvestment[i].investment_report.length) }}</span><br>
+                                                                <td  class="col-7 rightBorder"><span style="color:#e99b89">N{{ ((((investments?.investment_amount * dashboardInvestment[i].number_of_pools) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period)))/100)) - (dashboardInvestment[i].investment_return[i].yielded_amount* dashboardInvestment[i].investment_report.length) }}</span><br>
                                                                    <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                                 </td>
                                                             </tr>
@@ -355,28 +355,28 @@
                                            <div class="tab-content" id="nav-tabContent">
                                                <div class="tab-pane fade show active" id="nav-day" role="tabpanel" aria-labelledby="nav-day-tab">
                                                     <div class="row1 d-flex flex-row p-2 mt-3" *ngFor="let pool of filteredDayData.slice(0, 5);let i = index;">
-                                                        <p class="col-3 px-0">{{pool.title}}</p>
-                                                        <p class="col-3 px-0">N{{pool.investment_amount}} per slot</p>
-                                                        <p class="col-3 px-1">Return:{{calculateGroupEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
-                                                        <p class="col-3 px-0">Monthly return: N{{calculateReturn(pool.expected_return_amount,pool.expected_return_period)}}</p>
+                                                        <p class=" special col-3 px-0">{{pool.title}}</p>
+                                                        <p class="normal col-3 px-0">N{{pool.investment_amount}} per slot</p>
+                                                        <p class="normal col-3 px-1">Return:{{calculateEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
+                                                        <p class="normal col-3 px-0">Monthly return: N{{calculateReturn(pool.expected_return_amount,pool.expected_return_period)}}</p>
                                                     </div>
                                                </div>
 
                                                <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
                                                     <div class="row1 d-flex flex-row p-2 mt-3" *ngFor="let pool of filteredMonthData.slice(0, 5);let i = index;">
-                                                        <p class="col-3 px-0">{{pool.title}}</p>
-                                                        <p class="col-3 px-0">N{{pool.investment_amount}} per slot</p>
-                                                        <p class="col-3 px-1">Return:{{calculateGroupEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
-                                                        <p class="col-3 px-0">Monthly return: N{{pool.expected_return_amount}}</p>
+                                                        <p class="special col-3 px-0">{{pool.title}}</p>
+                                                        <p class="normal col-3 px-0">N{{pool.investment_amount}} per slot</p>
+                                                        <p class="normal col-3 px-1">Return:{{calculateEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
+                                                        <p class="normal col-3 px-0">Monthly return: N{{pool.expected_return_amount}}</p>
                                                     </div>
                                                </div>
 
                                                <div class="tab-pane fade show" id="nav-year" role="tabpanel" aria-labelledby="nav-year-tab">
                                                     <div class="row1 d-flex flex-row p-2 mt-3" *ngFor="let pool of filteredYearData.slice(0, 5);let i = index;">
-                                                        <p class="col-3 px-0">{{pool.title}}</p>
-                                                        <p class="col-3 px-0">N{{pool.investment_amount}} per slot</p>
-                                                        <p class="col-3 px-1">Return:{{calculateGroupEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
-                                                        <p class="col-3 px-0">Monthly return: N{{pool.expected_return_amount}}</p>
+                                                        <p class="special col-3 px-0">{{pool.title}}</p>
+                                                        <p class="normal col-3 px-0">N{{pool.investment_amount}} per slot</p>
+                                                        <p class="normal col-3 px-1">Return:{{calculateEstimate(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)}}% profit (Estimated)</p>
+                                                        <p class="normal col-3 px-0">Monthly return: N{{pool.expected_return_amount}}</p>
                                                     </div>
                                                 </div>
                                             </div>

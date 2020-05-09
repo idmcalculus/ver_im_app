@@ -167,8 +167,8 @@ export class ViewCustomerComponent implements OnInit {
         this.pageValue = event;
     }
 
-    calculateEstimate(returns, inv, expected_return_period,number_of_pools) {
-        const estimate = ((returns * this.divisorFunc(expected_return_period)) / (inv * number_of_pools)) * 100;
+    calculateEstimate(returns, inv, expected_return_period) {
+        const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
         return Math.ceil(estimate);
     }
 

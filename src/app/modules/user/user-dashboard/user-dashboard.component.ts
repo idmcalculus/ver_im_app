@@ -136,10 +136,12 @@ export class UserDashboardComponent implements OnInit {
           this.expectedTitle = this.dashBoardData.investment[0].title;
 
           this.dashBoardData.investment_return.forEach(element => {
-              element.expected_return_period = 'Weekly' ;
-              element.title =  'Transport Investment';
+              element.expected_return_period = this.expectedPeriod ;
+              element.title =  this.expectedTitle;
           });
           this.dashboardInvestment.push(this.dashBoardData);
+          console.log(this.dashboardInvestment);
+
 
         } else {
           this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
@@ -148,15 +150,11 @@ export class UserDashboardComponent implements OnInit {
     });
   }
 
-  calculateEstimate(returns, inv, expected_return_period,number_of_pools) {
-    const estimate = ((returns * this.divisorFunc(expected_return_period)) / (inv * number_of_pools)) * 100;
-    return Math.ceil(estimate);
-}
-
-  calculateGroupEstimate(returns, inv, expected_return_period) {
+  calculateEstimate(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
 }
+
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {
