@@ -89,8 +89,8 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <select name="category" class="input-control" readonly value={{getCategoryName(pool?.investment?.category_id)}}>
-                                                        <option *ngFor="let category of categories;" [ngValue]="category.category_name">{{category.category_name}}</option>
+                                                    <select name="category" class="input-control" value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                        <option *ngFor="let category of categories;" [ngValue]="category.id">{{category.category_name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-9">
-                                                    <select class="input-control" name="period" (change)="calculateEstimate()" id="period" value={{pool?.investment?.expected_return_period}}>
+                                                    <select class="input-control" name="dur" (change)="calculateEstimate()" id="dur" value={{pool?.investment?.expected_return_period}}>
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
                                                     </select>
@@ -132,7 +132,8 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" (keyup)="calculateEstimate()" class="input-control" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                    <input type="number" min="0" autocomplete="off"
+                                                     (keyup)="calculateEstimate()" class="input-control" name="inv" id="inv"  value={{pool?.investment?.investment_amount}}>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +163,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="number" min="0" autocomplete="off" (keyup)="calculateEstimate()" class="input-control" required name="roi" id="roi" placeholder="" value={{pool?.investment?.expected_return_amount}}>
+                                                    <input type="number" min="0" autocomplete="off" class="input-control"  name="roi" id="roi" value="{{calculateEstimate(pool)}}" placeholder="" >
                                                 </div>
                                             </div>
 
@@ -170,7 +171,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Return</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="type" class="input-control" value="" disabled name="returns" [(ngModel)]="returns">
+                                                    <input type="type" class="input-control" disabled name="returns" value={{pool?.investment?.expected_return_amount}}>
                                                 </div>
                                             </div>
                                         </div>

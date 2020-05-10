@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  pool: Investment = {};
   poolId = 0;
   url: any;
   reportData: Report = {title: '', description: ''};
@@ -30,7 +30,7 @@ export class PoolDetailComponent implements OnInit {
   loggedInUser: User;
   userSubscription: Subscription;
   image: any;
-  returns: string;
+  roi: number;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
@@ -279,22 +279,23 @@ export class PoolDetailComponent implements OnInit {
     }
   }
 
-  divisorFunc (expected_return_period) {
-    if (this.pool.investment.expected_return_period === "Weekly") {
-      return 48;
-    } else if (this.pool.investment.expected_return_period === "Monthly") {
-      return 12;
-    }
-  }
+  // calculateEstimate() {
+  //   if(this.pool.investment.investment_amount !=0 && this.pool.investment.expected_return_amount !='' && this.pool.investment.expected_return_period !=''){
+  //     const cost = this.pool.investment.investment_amount
+  //     const investment = parseInt(this.pool.investment.expected_return_amount) /100 
+  //     const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
 
-  calculateEstimate() {
-    if(this.pool.investment.investment_amount !=0 && this.pool.investment.expected_return_amount !='' && this.pool.investment.expected_return_period !=''){
-      const cost = this.pool.investment.investment_amount
-      const investment = parseInt(this.pool.investment.expected_return_amount) /100 
-      const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
+  //     const estimate = (cost * investment) / divisor;
+  //     this.returns = estimate.toFixed(2);
+  //   }
+  // }
 
-      const estimate = (cost * investment) / divisor;
-      this.returns = estimate.toFixed(2);
-    }
+  calculateEstimate(pool) {
+    const returns = pool.investment.expected_return_amount;
+    const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
+    const inv = pool.investment.investment_amount;
+    const estimate = (((returns * dur) - inv)/inv) * 100;
+    return Math.ceil(estimate);
+    
   }
 }

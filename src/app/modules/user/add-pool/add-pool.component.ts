@@ -14,7 +14,7 @@ export class AddPoolComponent implements OnInit {
   pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   buttonText = 'Add';
   image:any;
-  returns: string;
+  roi: string;
   data:any;
   selectedUser:any;
   category:any;
@@ -95,13 +95,13 @@ export class AddPoolComponent implements OnInit {
   }
 
   calculateEstimate() {
-    if(this.pool.investment_amount !=0 && this.pool.expected_return_amount !='' && this.pool.expected_return_period !=''){
+    if(this.pool.investment_amount !=0 && this.roi !='' && this.pool.expected_return_period !=''){
       const cost = this.pool.investment_amount
-      const investment = parseInt(this.pool.expected_return_amount) /100 
+      const investment = parseInt(this.roi) /100 
       const divisor = this.divisorFunc(this.pool.expected_return_period)
 
       const estimate = (cost * investment) / divisor;
-      this.returns = estimate.toFixed(2);
+      this.pool.expected_return_amount = estimate.toFixed(2);
     }
   }
 
