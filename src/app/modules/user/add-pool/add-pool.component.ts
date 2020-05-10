@@ -112,5 +112,4 @@ export class AddPoolComponent implements OnInit {
       this.returns = estimate.toFixed(2);
     }
   }
-
 }

@@ -140,21 +140,29 @@ p.showThis {
 .d-flex {
 	justify-content: space-between;
 	align-items: center;
+}
 
-	p {
-		align-self: center;
-		text-align: justify;
-		margin-bottom: 0px;
+.d-flex.report-body {
+  p {
+		align-self: flex-end;
+		text-align: start;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #221F72;
 	}
 }
 
 .report-header {
-  border-bottom: 1px solid #221F72;
+  border-bottom: 2px solid #221F72;
   margin: 0 20px;
   padding-left: 0px !important;
   padding-right: 0px !important;
 
   p {
+    align-self: center;
+		text-align: justify;
+    margin-bottom: 0px;
     color: #221F72;
     font-size: 16px;
     font-weight: bold;
@@ -162,5 +170,5 @@ p.showThis {
 }
 
 .card.report {
-  height: 150px;
+  min-height: 150px;
 }

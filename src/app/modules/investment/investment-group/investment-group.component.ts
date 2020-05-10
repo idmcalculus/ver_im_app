@@ -54,6 +54,7 @@ export class InvestmentGroupComponent implements OnInit {
     this.investmentService.getInvestmentGroup(data).subscribe(resp => {
       if (resp && resp.success) {
         const groups = resp.success.Data;
+        console.log(groups);
         const numOfGroup = groups.length;
         this.investmentIds = resp.success.Data[numOfGroup - 1].investment_id;
         this.idArray = this.investmentIds.split(',');
@@ -146,6 +147,7 @@ export class InvestmentGroupComponent implements OnInit {
         this.group_id = investment.id;
         groupId.push(this.group_id);
       });
+      console.log(groupId);
       this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
         if (result) {
           this.isLoading = false;
