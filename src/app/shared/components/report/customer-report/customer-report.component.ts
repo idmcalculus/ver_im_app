@@ -1,14 +1,12 @@
  import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ExportData } from 'src/app/shared/models/ExportData';
 import { ReportService } from '../report.service';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AdminService } from '../../../../modules/admin/admin.service';
 import { UserService } from '../../../../modules/user/user.service';
-import {InvestmentService} from '../../../../modules/investment/investment.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pools',
@@ -40,11 +38,9 @@ export class UserreportComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private investmentService:InvestmentService,
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
-    private reportService: ReportService,
-    private toastrService: ToastrService
+    private reportService: ReportService
     ) {
       this.getpool(this.email);
     }
