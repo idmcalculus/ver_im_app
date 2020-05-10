@@ -4,6 +4,8 @@
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
  import { UserService } from '../../../../modules/user/user.service';
+import { ReportService } from '../report.service';
+import { ExportData } from 'src/app/shared/models/ExportData';
 
  @Component({
   selector: 'app-pools',
@@ -13,7 +15,7 @@
 export class PoolreportComponent implements OnInit {
   isLoading = true;
   pools: Investment[] = [];
-  pool: Investment = {title: '', investment_amount: 0, };
+  pool: Investment = {title: '', investment_amount: 0 };
   userType: string;
   categories: any [];
   report = {};
@@ -27,6 +29,7 @@ export class PoolreportComponent implements OnInit {
     private router: Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
+    private reportService: ReportService,
     private userService: UserService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
@@ -90,6 +93,7 @@ export class PoolreportComponent implements OnInit {
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+
         this.getCategories();
       }
       this.isLoading = false;
@@ -114,8 +118,26 @@ export class PoolreportComponent implements OnInit {
       }
   }
 
-  saveAsCSV(){}
+  saveAsCSV() {
+    if(this.pools.length > 0){
+      const items: ExportData[] = [];
 
+      this.pools.forEach(line => {
+        let reportDate = new Date();
+        let csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+        //  date_start: line.date_start,
+        //  date_end: line.date_end,
+        //  no_of_investments: line.no_of_investments,
+       //   no_of_slots: line.no_of_slots,
+       //   total_amount_invested: line.total_amount_invested,
+        }
+        items.push(csvLine);
+      });
+
+      this.reportService.exportToCsv('ProductsViewedReport.csv', items);
+    }
+}
   clearSearch() {
     this.searchValue = null;
     return this.getPools();

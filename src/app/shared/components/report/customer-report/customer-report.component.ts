@@ -126,7 +126,7 @@ export class UserreportComponent implements OnInit {
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('CustomerReport.csv', items);
     }
 }
 

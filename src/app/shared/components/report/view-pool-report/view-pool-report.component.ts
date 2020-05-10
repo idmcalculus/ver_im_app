@@ -165,16 +165,16 @@ export class ViewedreportComponent implements OnInit {
         let reportDate = new Date();
         let csvLine: ExportData = {
           date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
-          id: line.id,
           title: line.title,
           category_id: line.category_id,
-          expected_return_period:line.expected_return_period,
           investment_amount:line.investment_amount,
+         // viewed:line.viewed,
+        //  percentage:line.percentage,
         }
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('ProductViewedReport.csv', items);
     }
 }
 

@@ -134,16 +134,16 @@ export class PurchasedreportComponent implements OnInit {
         let reportDate = new Date();
         let csvLine: ExportData = {
           date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
-          id: line.id,
           title: line.title,
           category_id: line.category_id,
-          expected_return_period:line.expected_return_period,
           investment_amount:line.investment_amount,
+          max_no_of_slots:line.max_num_of_slots,
+          total:line.max_num_of_slots * line.investment_amount,
         }
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('ProductsPurchasedReport.csv', items);
     }
 }
 
