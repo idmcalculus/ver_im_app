@@ -89,6 +89,7 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+        console.log(this.pools);
       }
       this.isLoading = false;
     });
