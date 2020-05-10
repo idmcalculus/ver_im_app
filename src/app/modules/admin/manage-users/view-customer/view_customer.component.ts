@@ -17,9 +17,11 @@ export class ViewCustomerComponent implements OnInit {
     userData: any [];
     user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
     investments: Investment;
-    dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
-    p = 1;
-    p2 = 1;
+    dashBoardData: any = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+    p: number = 1;
+    p2: number =1;
+    expectedPeriod = '';
+    expectedTitle = '';
     userInvestment: any;
     FilteredInvestment: Investment[];
     dashboardInvestment: any = [];
@@ -62,16 +64,30 @@ export class ViewCustomerComponent implements OnInit {
           this.isLoading = false;
         });
 
-      $('#myCarousel').on('slide.bs.carousel', (e: any) => {
-          const to = e.to;
-          $('.investment-card').hide();
-          let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-          element.style.display = 'block';
+        this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
+            if(investments.success.Data !== 0){
+              this.userInvestment = investments.success.Data;
+              console.log(this.userInvestment);
 
-          $('#investmentTable').find('> tbody').hide();
-          const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
-          row.style.display = 'contents';
+              this.selectedInvestment = 0;
+              this.showDetails();
+              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
+            }
+            else {
+                this.isLoading = true;
+            }
           });
+
+          $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+            const to = e.to;
+            $('.investment-card').hide();
+            let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
+            element.style.display = 'block';
+
+            $('#investmentTable').find('> tbody').hide();
+            const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+            row.style.display = 'contents';
+            });
         }
    /* getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
@@ -104,12 +120,19 @@ export class ViewCustomerComponent implements OnInit {
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
+            this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
+            this.expectedTitle = this.dashBoardData.investment[0].title;
+
+            this.dashBoardData.investment_return.forEach(element => {
+                element.expected_return_period = 'Weekly' ;
+                element.title =  'Transport Investment';
+            });
             this.dashboardInvestment.push(this.dashBoardData);
             this.dashboardInvestment.forEach(investment => {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
             });
           } else {
-            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+            this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
           this.isLoading = false;
           this.showDetails();
@@ -162,7 +185,7 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     calculateEstimate(returns, inv, expected_return_period) {
-        const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+        const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
         return Math.ceil(estimate);
     }
 
@@ -171,6 +194,14 @@ export class ViewCustomerComponent implements OnInit {
             return 48;
         } else if (expected_return_period === "Monthly") {
             return 12;
+        }
+    }
+
+    getBalance (expected_return_period, expected_return) {
+        if ( expected_return_period === "Weekly") {
+            return 48 * expected_return ;
+        } else if (expected_return_period === "Monthly") {
+            return 12 * expected_return;
         }
     }
 

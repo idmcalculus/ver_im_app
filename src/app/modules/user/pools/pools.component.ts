@@ -29,6 +29,7 @@ export class PoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
+  p2 = 1;
   res: Category;
   status = new FormControl();
 

@@ -286,6 +286,7 @@ body{
 .nav-item {
     font-size: 14px;
     cursor: pointer;
+    font-weight: 900;
 }
 
 .latest-update-card > .input-control {
@@ -312,9 +313,19 @@ body{
 }
 
 .row1 p {
-    border-bottom: 1px #495057 solid ;
-    color: #495057;
+    border-bottom: 1px #4F5FBE solid ;
+    padding: 0.125rem;
+}
+
+.row1 .normal {
+    color: #4F5FBE;
     font-size: 12px;
+}
+
+.row1 .special {
+    font-weight: 900;
+    color: #4F5FBE;
+    font-size: 13px;
 }
 
 .divider2{

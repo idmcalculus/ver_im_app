@@ -93,7 +93,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                                 <td class="mr-3"><input type="checkbox"></td>
                                                 <td class="mr-3">{{pool.id}}</td>
@@ -112,7 +112,7 @@
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>
                                             </tr>
-                                        </tbody>    
+                                        </tbody>
                                         <tfoot>
                                             <tr>
                                               <td [colSpan]="6" class="pb-0 mr-5">
