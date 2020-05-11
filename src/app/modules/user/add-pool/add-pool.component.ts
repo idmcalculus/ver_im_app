@@ -35,7 +35,6 @@ export class AddPoolComponent implements OnInit {
       this.isLoading = true;
       this.investmentService.getInvestments(false).subscribe(investment => {
         this.pools = investment.success.Data;
-        this.id = this.pools[0].id;
         this.isLoading = false;
       });
       this.getCategories();
