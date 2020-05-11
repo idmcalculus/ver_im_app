@@ -83,15 +83,15 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" autocomplete="off" class="input-control" name="title" [(ngModel)]="pool.title" value={{pool?.investment?.title}}>
+                                                    <input type="type" autocomplete="off" [disabled]="pool?.investment?.is_investment_started == '1' " class="input-control" value={{pool?.investment?.title}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <select name="category" class="input-control" readonly value={{getCategoryName(pool?.investment?.category_id)}}>
-                                                        <option *ngFor="let category of categories;" [ngValue]="category.category_name">{{category.category_name}}</option>
+                                                    <select name="category" class="input-control" value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                        <option *ngFor="let category of categories;" [ngValue]="category.id">{{category.category_name}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -109,21 +109,21 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" name="investors" class="input-control" [(ngModel)]="pool.max_num_of_slots" value={{pool?.investment?.max_num_of_slots}}>
+                                                    <input type="number" min="0" autocomplete="off" [disabled]="pool?.investment?.is_investment_started == '1' " class="input-control"  value={{pool?.investment?.max_num_of_slots}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" class="input-control" name="tenure" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
+                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="pool?.investment?.is_investment_started == '1' " value={{pool?.investment?.duration}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-9">
-                                                    <select class="input-control" name="period" (change)="calculateEstimate()" id="period" value={{pool?.investment?.expected_return_period}}>
+                                                    <select class="input-control" name="dur" (change)="calculateEstimate()" [disabled]="pool?.investment?.is_investment_started == '1' " id="dur" value={{pool?.investment?.expected_return_period}}>
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
                                                     </select>
@@ -133,13 +133,14 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" (keyup)="calculateEstimate()" class="input-control" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                    <input type="number" min="0" autocomplete="off"
+                                                     (keyup)="calculateEstimate()" class="input-control" name="inv" id="inv" [disabled]="pool?.investment?.is_investment_started == '1' " value={{pool?.investment?.investment_amount}}>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-6 pr-4">
-                                            <div class="form-group py-3 pb-2 row">
+                                            <div class="form-group pt-3 pb-3 row">
                                                 <h6 class="col-sm-4  pr-0 col-form-label">Upload Image</h6>
                                                 <div class="col-sm-8">
                                                     <div class="image_preview">
@@ -148,7 +149,7 @@
                                                     </div>
                                                     <div class="upload-btn-wrapper">
                                                         <button class="btn btn-block btn-primary">Click to Upload image</button>
-                                                        <input type="file" id="upload-image" accept="image/*" (change)="changeListener($event)"/>
+                                                        <input type="file" id="upload-image" [disabled]="pool?.investment?.is_investment_started == '1' " accept="image/*" (change)="changeListener($event)"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,14 +157,14 @@
                                             <div class="form-group pt-4 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Show to Public</h6>
                                                 <div class="col-sm-8">
-                                                    <input class="mt-2" type="checkbox" name="show_publicly" [(ngModel)]="show_publicly">
+                                                    <input class="mt-2" type="checkbox" disabled="pool?.investment?.is_investment_started == '1' " [(ngModel)]="pool.show_publicly">
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="number" min="0" autocomplete="off" (keyup)="calculateEstimate()" class="input-control" required name="roi" id="roi" placeholder="" value={{pool?.investment?.expected_return_amount}}>
+                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="pool?.investment?.is_investment_started == '1' "  name="roi" id="roi" value="{{calculateEstimate(pool)}}">
                                                 </div>
                                             </div>
 
@@ -171,7 +172,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Return</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="type" class="input-control" value="" disabled name="returns" [(ngModel)]="returns">
+                                                    <input type="type" class="input-control" disabled name="returns" value={{pool?.investment?.expected_return_amount}}>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,12 +182,12 @@
                                             <div class="form-group row pt-1 pb-2">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-27px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
-                                                    <textarea class="input-control" rows="3" value={{pool?.investment?.description}}></textarea>
+                                                    <textarea class="input-control" rows="3" [disabled]="pool?.investment?.is_investment_started == '1' " value={{pool?.investment?.description}}></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col py-2">
-                                                <button type="button" (click)="updateInvestment()" class="btn btn-primary btn-sm px-5 float-right">Update</button>
+                                                <button type="button" [disabled]="pool?.investment?.is_investment_started == '1' " (click)="updateInvestment()" class="btn btn-primary btn-sm px-5 float-right">Update</button>
                                             </div>
                                         </div>
 
