@@ -22,8 +22,6 @@ export class ViewCustomerComponent implements OnInit {
     p: number = 1;
     p2: number =1;
     res: Category;
-    expectedPeriod = '';
-    expectedTitle = '';
     userInvestment: any;
     FilteredInvestment: Investment[];
     dashboardInvestment: any = [];

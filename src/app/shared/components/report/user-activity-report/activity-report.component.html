@@ -9,7 +9,7 @@
                             <a class=" pl-2">Home / <span *ngIf="!User">User Activity Admin</span><span  *ngIf="User">User Activity Customer</span></a>
                         </div>
                         <div class="float-right">
-                            <a>
+                            <a class='pr-3'>
                                 <button class="btn btn-secondary btn-sm font-weight-bold" (click)= "saveAsCSV()" type="submit">Export</button>
                             </a>
                             <a  type="submit" (click)="clearSearch()" id="refresh">
