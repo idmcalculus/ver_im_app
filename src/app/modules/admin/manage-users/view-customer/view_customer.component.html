@@ -128,14 +128,14 @@
                         <div *ngIf="userInvestment?.length > 0" class="col-md-7 col-sm-7 col-xs-12 carousel-inner">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
-                                <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i].number_of_pools }}</span>
+                                <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i]?.number_of_pools }}</span>
                                 <span class="information">ROI: </span>
                                 <span  class="information spacing">  {{calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)}}%</span>
                                 <span class="information">Expected Returns: </span>
                                 <span  class="information">  {{ (investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) + (((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)))/100)}}</span>
                             </span>
                         </div>
-                        <div *ngIf="userInvestment.length ==0" class="col-md-7 col-sm-7 col-xs-12">
+                        <div *ngIf="userInvestment?.length ==0" class="col-md-7 col-sm-7 col-xs-12">
                             <p class='displayStatus'>"No Current Investment Found."</p>
                         </div>
 
@@ -203,7 +203,7 @@
                                                             <table class="table reduced-font">
                                                                 <tr>
                                                                     <td  class="highlighted">Slot(s)</td>
-                                                                    <td>{{dashboardInvestment[i].number_of_pools}}</td>
+                                                                    <td>{{dashboardInvestment[i]?.number_of_pools}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Next Payment</td>
@@ -325,15 +325,15 @@
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td style="width: 15%">{{investments?.title}}</td>
-                                                    <td style="width: 10%" >{{investments?.category_id}}</td>
+                                                    <td style="width: 10%" >{{getCategoryName(investments?.category_id)}}</td>
                                                     <td style="width: 10%" >{{investments?.investment_amount}}</td>
-                                                    <td style="width: 10%">{{investments?.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{dashboardInvestment[i]?.number_of_pools}}</td>
                                                     <td style="width: 10%">{{investments?.duration}}</td>
-                                                    <td style="width: 10%">{{investments?.estimated_percentage_profit}}</td>
+                                                    <td style="width: 10%">{{calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)}}%</td>
                                                     <td style="width: 10%">{{investments?.expected_return_period}}</td>
-                                                    <td style="width: 10%">{{investments?.investment_amount*investments?.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{investments?.investment_amount*dashboardInvestment[i]?.number_of_pools}}</td>
                                                     <td style="width: 10%">Completed</td>
-                                                    <td style="width: 10%">{{investments?.created_date}}</td>
+                                                    <td style="width: 10%">{{investments?.created_at | date :  "dd.MM.y"}}</td>
                                                 </tr>
 
                                             </tbody>
