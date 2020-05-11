@@ -7,6 +7,7 @@ import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -27,7 +28,7 @@ export class UserDashboardComponent implements OnInit {
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = true;
-  groupName:'Discounted Investments';
+  group_name: InvestmentGroup = {group_name: 'Best Selling Investments'};
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -35,6 +36,8 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
+  expectedPeriod: '';
+  expectedTitle: '';
 
 
   constructor(private userService: UserService,
@@ -76,9 +79,9 @@ export class UserDashboardComponent implements OnInit {
         }
      });
 
-    this.investmentService.getBestInvestmentGroups(this.groupName).subscribe(groups => {
+    this.investmentService.getInvestmentGroup(this.group_name).subscribe(groups => {
       if (groups && groups.success) {
-        this.poolGroup = groups.success.Data.filter((res)=>res.group_name === 'Best Selling Investments');
+        this.poolGroup = groups.success.Data;
         console.log(this.poolGroup );
 
         const seventhDay = new Date();
@@ -127,22 +130,31 @@ export class UserDashboardComponent implements OnInit {
     const investmentId = this.investmentInfo.id;
 
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-      if (resp && resp.success) {
-        this.dashBoardData = resp.success.Data;
-        this.dashboardInvestment.push(this.dashBoardData);
-      } else {
+        if (resp && resp.success) {
+          this.dashBoardData = resp.success.Data;
+          this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
+          this.expectedTitle = this.dashBoardData.investment[0].title;
 
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = false;
-      }
-      this.showDetails();
+          this.dashBoardData.investment_return.forEach(element => {
+              element.expected_return_period = this.expectedPeriod ;
+              element.title =  this.expectedTitle;
+          });
+          this.dashboardInvestment.push(this.dashBoardData);
+          console.log(this.dashboardInvestment);
+
+
+        } else {
+          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
+        }
+        this.showDetails();
     });
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
 }
+
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {
@@ -152,7 +164,7 @@ export class UserDashboardComponent implements OnInit {
     }
 }
 
-calculateReturn (expected_return_amount, expected_return_period) {
+ calculateReturn (expected_return_amount, expected_return_period) {
     if ( expected_return_period === "Monthly") {
         return expected_return_amount;
     } else   {

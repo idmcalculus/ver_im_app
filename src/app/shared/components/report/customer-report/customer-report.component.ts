@@ -19,6 +19,8 @@ export class UserreportComponent implements OnInit {
   user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
   users: any [];
+  p2 = 1;
+  pageValue = 5;
   selectedUser: User;
   checkedUser = [];
   isLoading= true;
@@ -126,6 +128,10 @@ export class UserreportComponent implements OnInit {
 
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
+}
+
+setItemsPerPage(event){
+    this.pageValue = event;
 }
 
   getTotalInv(email){

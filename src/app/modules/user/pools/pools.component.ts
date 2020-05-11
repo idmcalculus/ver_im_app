@@ -5,11 +5,17 @@
  import { AppAuthService } from 'src/app/core/auth/auth.service';
  import { UserService } from '../user.service';
  import { Category } from 'src/app/shared/models/Category';
+ import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+ import { FormControl } from '@angular/forms';
 
  @Component({
   selector: 'app-pools',
   templateUrl: './pools.component.html',
-  styleUrls: ['./pools.component.scss']
+  styleUrls: ['./pools.component.scss'],
+  providers: [
+    { provide: MatFormFieldControl, useExisting: PoolsComponent },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'} }
+  ]
 })
 export class PoolsComponent implements OnInit {
   pageValue = 10;
@@ -23,7 +29,9 @@ export class PoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
+  p2 = 1;
   res: Category;
+  status = new FormControl();
 
   constructor(
     private router: Router,
@@ -82,6 +90,7 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+        console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -144,7 +153,7 @@ export class PoolsComponent implements OnInit {
 
   filterCategory(filterType, filterValue): any {
     const value = filterValue.target.value;
-    let CatPool:any = [];
+    const CatPool: any = [];
     if (!value || value === null) {
       return this.getPools();
     } else {
@@ -157,13 +166,13 @@ export class PoolsComponent implements OnInit {
         const filteredCatPool = this.pools.filter(eachpool => cat.id === eachpool.category_id);
         CatPool.push(filteredCatPool);
       });
-      this.pools = CatPool.flat();
+      this.pools = [].concat.apply([], CatPool);
       }
   }
 
   filterStatus(filterType, filterValue): any {
-    const value = filterValue === 'active' ? 1 :
-    filterValue === 'inactive' ? 0 : null;
+    const value = filterValue === 'Active' ? 1 :
+    filterValue === 'InActive' ? 0 : null;
     if (value === null) {
       return this.getPools();
     } else {

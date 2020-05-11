@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && users?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let user of users;let i = index;">
+                                        <div class="row1 p-2" *ngFor="let user of users| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                             <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
                                             <p class="col-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;padding-right: 5px;">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
@@ -81,6 +81,17 @@
                                             <p class="col-1">
                                                 <a (click)="goto(user)"  ><img class="pr-2 pointer" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </p>
+                                        </div>
+                                        <div  class="col-12 mt-3 d-flex flex-row">
+                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                            <span class="col-md-1 col-xs-1 px-0">
+                                                <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
+                                                    <option value="5"> 5 rows </option>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

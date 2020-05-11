@@ -55,14 +55,16 @@
                                     (blur)="filterTable('max_num_of_slots', $event)">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
-                                    <label class="h7" for="status">Status</label>
-                                    <select id="status" class="input-control shadow" name="status" #status (change)="filterStatus('is_investment_started', status.value)" (click)="clearFilter(status.value)">
-                                        <option selected>Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">InActive</option>
-                                    </select>
+                                    <mat-label class="h7 mb-2" for="status" (click)="clearFilter(status.value)">Status</mat-label>
+                                    <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status" (click)="clearFilter(status.value)">
+                                        <mat-select-trigger>
+                                            {{status.value ? status.value : 'Status'}}
+                                        </mat-select-trigger>
+                                        <mat-option value="Active" (click)="filterStatus('is_investment_started', status.value)">Active</mat-option>
+                                        <mat-option value="InActive" (click)="filterStatus('is_investment_started', status.value)">InActive</mat-option>
+                                    </mat-select>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +93,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                                 <td class="mr-3"><input type="checkbox"></td>
                                                 <td class="mr-3">{{pool.id}}</td>
@@ -110,7 +112,7 @@
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>
                                             </tr>
-                                        </tbody>    
+                                        </tbody>
                                         <tfoot>
                                             <tr>
                                               <td [colSpan]="6" class="pb-0 mr-5">
