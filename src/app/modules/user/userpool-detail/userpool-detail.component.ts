@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class userPoolDetailComponent implements OnInit {
   _shown = true;
+  pageValue = 5;
   userData: any [];
   user: User = {email: '',};
   pool:Investment = {investment_amount: 0, expected_return_amount: '', is_investment_started:'number', expected_return_period: ''};
@@ -147,8 +148,8 @@ export class userPoolDetailComponent implements OnInit {
     return res.category_name;
   }
 
-  getPoolstatus(){
-    if (this.userInvestment.is_investment_started === 1) {
+  getPoolstatus(pool){
+    if (pool.investment.is_investment_started == 1) {
       return 'Active';
     } else{
       return 'Inactive';
@@ -164,20 +165,19 @@ export class userPoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/userPools');
   }
 
-  calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+  calculateEstimate(pool) {
+    const returns = pool.investment.expected_return_amount;
+    const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
+    const inv = pool.investment.investment_amount;
+    const estimate = (((returns * dur) - inv)/inv) * 100;
     return Math.ceil(estimate);
+    
   }
-  
-  divisorFunc (expected_return_period) {
-    if (expected_return_period === "Weekly") {
-      return 48;
-    } else if (expected_return_period === "Monthly") {
-      return 12;
-    }
-  };
 
-  
+  setItemsPerPage(event){
+    this.pageValue = event;
+  }
+
   addMonth(date: Date, month: number) {
     const newDate = new Date(date);
     const d = newDate.getDate();

@@ -41,7 +41,7 @@ export class AddPoolComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories)
+        //console.log(this.categories)
       }
     });
   }
@@ -80,7 +80,7 @@ export class AddPoolComponent implements OnInit {
         this.pool.investment_image = this.image;
       }
       myReader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = 'event.target.result';
+        this.url = event.target.result;
       }
       myReader.readAsDataURL(file);
     }

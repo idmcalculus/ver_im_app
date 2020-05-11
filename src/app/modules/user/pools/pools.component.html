@@ -96,7 +96,7 @@
                                                 <td class="">{{getCategoryName(pool.category_id)}}</td>
                                                 <td class="">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
                                                 <td class="">{{pool.duration}} Months</td>
-                                                <td class="">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</td>
+                                                <td class="">{{calculateEstimate(pool)}}%</td>
                                                 <td class="">{{pool.expected_return_period}}</td>
                                                 <td class="">{{pool.investment_amount}}</td>
                                                 <td class="" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>

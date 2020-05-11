@@ -101,6 +101,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
   getCategoryName(id) {
+    // console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
@@ -294,7 +295,7 @@ export class PoolDetailComponent implements OnInit {
     const returns = pool.investment.expected_return_amount;
     const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
     const inv = pool.investment.investment_amount;
-    const estimate = (((returns * dur) - inv)/inv) * 100;
+    const estimate = (((returns * dur)/inv) * 100);
     return Math.ceil(estimate);
     
   }
