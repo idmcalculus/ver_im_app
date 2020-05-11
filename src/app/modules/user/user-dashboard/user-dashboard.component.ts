@@ -7,6 +7,7 @@ import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
+import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -26,7 +27,8 @@ export class UserDashboardComponent implements OnInit {
   filteredYearData: Investment[] = [];
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
-  isLoading = false;
+  isLoading = true;
+  group_name: InvestmentGroup = {group_name: 'Best Selling Investments'};
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -34,6 +36,8 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
+  expectedPeriod: '';
+  expectedTitle: '';
 
 
   constructor(private userService: UserService,
@@ -51,12 +55,12 @@ export class UserDashboardComponent implements OnInit {
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
+            console.log(this.usersInvestments);
             this.selectedInvestment = 0;
-            console.log(this.dashBoardData,this.usersInvestments,'-=====---------=')
 
             this.showDetails();
-            this.isLoading = false;
-
+            } else {
+                this.isLoading = false;
             }
           });
         }
@@ -65,7 +69,6 @@ export class UserDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
-          console.log(this.allDashBoardData,'090----')
           this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
         }
       });
@@ -76,10 +79,10 @@ export class UserDashboardComponent implements OnInit {
         }
      });
 
-    this.isLoading = true;
-    this.investmentService.getInvestmentGroups().subscribe(groups => {
+    this.investmentService.getInvestmentGroup(this.group_name).subscribe(groups => {
       if (groups && groups.success) {
         this.poolGroup = groups.success.Data;
+        console.log(this.poolGroup );
 
         const seventhDay = new Date();
         seventhDay.setDate(seventhDay.getDate() - 7);
@@ -106,11 +109,11 @@ export class UserDashboardComponent implements OnInit {
           console.log('No groups yet');
       }
     });
-
   }
 
   showDetails() {
-    if ( this.selectedInvestment >= 0 ) {
+    this.isLoading = false;
+    if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
@@ -119,30 +122,39 @@ export class UserDashboardComponent implements OnInit {
         } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = false;
-  }
-}
+        }
+    }
 
   getUserDashBoard() {
     const userEmail = this.overiddenUser.email;
     const investmentId = this.investmentInfo.id;
 
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-      if (resp && resp.success) {
-        this.dashBoardData = resp.success.Data;
-        this.dashboardInvestment.push(this.dashBoardData);
-      } else {
+        if (resp && resp.success) {
+          this.dashBoardData = resp.success.Data;
+          this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
+          this.expectedTitle = this.dashBoardData.investment[0].title;
 
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-      }
+          this.dashBoardData.investment_return.forEach(element => {
+              element.expected_return_period = this.expectedPeriod ;
+              element.title =  this.expectedTitle;
+          });
+          this.dashboardInvestment.push(this.dashBoardData);
+          console.log(this.dashboardInvestment);
 
-      this.showDetails();
+
+        } else {
+          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
+        }
+        this.showDetails();
     });
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = (((returns * this.divisorFunc(expected_return_period)) - inv) / inv) * 100;
+    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
 }
+
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {
@@ -152,7 +164,7 @@ export class UserDashboardComponent implements OnInit {
     }
 }
 
-calculateReturn (expected_return_amount, expected_return_period) {
+ calculateReturn (expected_return_amount, expected_return_period) {
     if ( expected_return_period === "Monthly") {
         return expected_return_amount;
     } else   {
@@ -174,7 +186,7 @@ calculateReturn (expected_return_amount, expected_return_period) {
     TimeAgo.addLocale(en);
     var date = new Date(time);
     var hours = date.getHours();
-    
+
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }

@@ -137,6 +137,14 @@ body{
     }
 }
 
+.card.recentActivity, .card.bestSelling {
+    height: 500px;
+
+    .table-responsive{
+        padding: 0.5rem 0rem;
+    }
+}
+
 .leftBorder{
     box-shadow: -4px 8px 5px #88888838;
     text-align: end;
@@ -199,7 +207,7 @@ body{
         }
     }
     .card-block {
-        padding: 0 0.5rem;
+        padding: 1rem 0.8rem;
         font-size: 0.78rem;
         font-weight: bolder;
 
@@ -278,6 +286,7 @@ body{
 .nav-item {
     font-size: 14px;
     cursor: pointer;
+    font-weight: 900;
 }
 
 .latest-update-card > .input-control {
@@ -304,16 +313,26 @@ body{
 }
 
 .row1 p {
-    border-bottom: 1px #495057 solid ;
-    color: #495057;
+    border-bottom: 1px #4F5FBE solid ;
+    padding: 0.125rem;
+}
+
+.row1 .normal {
+    color: #4F5FBE;
     font-size: 12px;
+}
+
+.row1 .special {
+    font-weight: 900;
+    color: #4F5FBE;
+    font-size: 13px;
 }
 
 .divider2{
     height: 44.5px;
     border-width: 1px;
     border-right-style: solid;
-    margin: 0px 16px;
+    margin: 0px 3px;
     width: 17.5px;
     border-right-color: #80808030;
 }

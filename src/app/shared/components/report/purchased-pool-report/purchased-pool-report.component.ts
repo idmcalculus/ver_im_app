@@ -23,6 +23,8 @@ export class PurchasedreportComponent implements OnInit {
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router:Router,
@@ -52,7 +54,7 @@ export class PurchasedreportComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -144,5 +146,11 @@ export class PurchasedreportComponent implements OnInit {
       this.reportService.exportToCsv('myCsvDocumentName.csv', items);
     }
 }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 
 }

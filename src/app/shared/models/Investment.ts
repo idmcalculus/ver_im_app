@@ -49,5 +49,4 @@ export class Investment extends BasicModel {
   }];
   estimated_percentage_profit?: string;
   report?: any;
-
 }

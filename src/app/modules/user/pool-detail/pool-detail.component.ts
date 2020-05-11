@@ -19,6 +19,7 @@ export class PoolDetailComponent implements OnInit {
   pool: Investment = {};
   poolId = 0;
   url: any;
+  res: Category;
   reportData: Report = {title: '', description: ''};
   categories = [];
   modaltitle = 'Update Plan';
@@ -31,6 +32,10 @@ export class PoolDetailComponent implements OnInit {
   userSubscription: Subscription;
   image: any;
   roi: number;
+  returns: string;
+  pageValue = 5;
+  p2 = 1;
+  reports: any[];
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
@@ -65,14 +70,14 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          // console.log(this.pool);
+          this.reports = this.pool.report;
+          this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
         } else {
           this.router.navigate(['./', {}]);
         }
-      } else {
       }
     });
   }
@@ -101,9 +106,12 @@ export class PoolDetailComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    // console.log(this.categories,'=====>')
-    const res = this.categories.find( r => r.id === id);
-    return res.category_name;
+    if (id) {
+    this.res = this.categories.find(r => r.id === id);
+    return this.res.category_name;
+    } else {
+      return this.res = {category_name: ''};
+    }
   }
 
   addReport(filledReport: Report) {
@@ -123,7 +131,9 @@ export class PoolDetailComponent implements OnInit {
     }
   }
 
-
+  setItemsPerPage(event) {
+    this.pageValue = event;
+  }
 
   updateReport(filledReport: Report) {
       this.reportData = filledReport;

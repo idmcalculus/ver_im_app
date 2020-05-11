@@ -11,7 +11,8 @@ import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
   styleUrls: ['./add-pool.component.scss']
 })
 export class AddPoolComponent implements OnInit {
-  pool:Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  isLoading: boolean;
+  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
   buttonText = 'Add';
   image:any;
   roi: string;
@@ -21,15 +22,22 @@ export class AddPoolComponent implements OnInit {
   public imagePath;
   url = '';
   public message: string;
+  pools: Investment;
 
   @Input() public editable: boolean;
-  @Input() public categories:[Category];
+  @Input() public categories: [Category];
 
-  constructor(private route:ActivatedRoute,
-    private investmentService: InvestmentService,
-    private cloudinaryService: CloudinaryService,
-    private router:Router,
+  constructor(private route: ActivatedRoute,
+              private investmentService: InvestmentService,
+              private cloudinaryService: CloudinaryService,
+              private router: Router,
     ) {
+      this.isLoading = true;
+      this.investmentService.getInvestments(false).subscribe(investment => {
+        this.pools = investment.success.Data;
+        this.id = this.pools[0].id;
+        this.isLoading = false;
+      });
       this.getCategories();
       }
 
@@ -47,7 +55,7 @@ export class AddPoolComponent implements OnInit {
   }
 
   addInvestment() {
-      this.buttonText = 'Adding'
+      this.buttonText = 'Adding';
       this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
         if (resp) {
           this.pool.investment_image = resp;
@@ -56,7 +64,7 @@ export class AddPoolComponent implements OnInit {
               // alert(resp.success.Message);
               window.location.href = 'admin/pools';
             }
-            this.buttonText = 'Add Investment'
+            this.buttonText = 'Add Investment';
           });
         }
       });
@@ -72,13 +80,13 @@ export class AddPoolComponent implements OnInit {
 
   readThis(inputValue: any): void {
     if (inputValue.files && inputValue.files[0]) {
-      var file: File = inputValue.files[0];
-      var myReader: FileReader = new FileReader();
+      let file: File = inputValue.files[0];
+      let myReader: FileReader = new FileReader();
 
       myReader.onloadend = (e) => {
         this.image = myReader.result;
         this.pool.investment_image = this.image;
-      }
+      };
       myReader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       }
@@ -86,10 +94,10 @@ export class AddPoolComponent implements OnInit {
     }
   }
 
-  divisorFunc (expected_return_period) {
-    if (this.pool.expected_return_period === "Weekly") {
+  divisorFunc(expected_return_period) {
+    if (this.pool.expected_return_period === 'Weekly') {
       return 48;
-    } else if (this.pool.expected_return_period === "Monthly") {
+    } else if (this.pool.expected_return_period === 'Monthly') {
       return 12;
     }
   }
@@ -104,5 +112,4 @@ export class AddPoolComponent implements OnInit {
       this.pool.expected_return_amount = estimate.toFixed(2);
     }
   }
-
 }

@@ -112,7 +112,7 @@ opacity: 0;
 }
 
 td,th,tr {
-  border-color: #221F72
+  border-color: #221F72;
 }
 
 .row .col-6 {
@@ -123,4 +123,52 @@ td,th,tr {
 p.showThis {
     margin: 3rem auto;
     text-align: center;
+}
+
+.s-n {
+	flex: 1;
+}
+
+.balance, .status, .datePaid {
+	flex: 2;
+}
+
+.yieldedAmt, .invTitle, .amtCred, .payback {
+  flex: 3;
+}
+
+.d-flex {
+	justify-content: space-between;
+	align-items: center;
+}
+
+.d-flex.report-body {
+  p {
+		align-self: flex-end;
+		text-align: start;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #221F72;
+	}
+}
+
+.report-header {
+  border-bottom: 2px solid #221F72;
+  margin: 0 20px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+
+  p {
+    align-self: center;
+		text-align: justify;
+    margin-bottom: 0px;
+    color: #221F72;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.card.report {
+  min-height: 150px;
 }

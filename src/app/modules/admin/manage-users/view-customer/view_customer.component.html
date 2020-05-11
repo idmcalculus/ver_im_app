@@ -4,7 +4,7 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body list-vacancy">
-                    <div *ngIf="isLoading" class="row mb-4" >
+                    <div *ngIf="!isLoading" class="row mb-4" >
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>Profile of {{user?.first_name}} {{user?.last_name}}
                             </h3>
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div *ngIf="isLoading" class="row mb-4">
+                    <div *ngIf="!isLoading" class="row mb-4">
                         <div class="col-sm-7">
                             <div class="card">
                                 <div class="card-header">
@@ -124,17 +124,19 @@
 
                     </div>
 
-
-                    <div *ngIf="isLoading" class="row mb-4">
-                        <div class="col-md-7 col-sm-7 col-xs-12 carousel-inner">
+                    <div *ngIf="!isLoading" class="row mb-4">
+                        <div *ngIf="userInvestment?.length > 0" class="col-md-7 col-sm-7 col-xs-12 carousel-inner">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
-                                <span  class="information spacing">  {{ investments?.investment_amount * investments?.num_of_pools_taken }}</span>
+                                <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i].number_of_pools }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information spacing">  {{calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)}}%</span>
+                                <span  class="information spacing">  {{calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)}}%</span>
                                 <span class="information">Expected Returns: </span>
-                                <span  class="information">  {{ (investments?.investment_amount * investments?.num_of_pools_taken) + (((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)}}</span>
+                                <span  class="information">  {{ (investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) + (((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)))/100)}}</span>
                             </span>
+                        </div>
+                        <div *ngIf="userInvestment.length ==0" class="col-md-7 col-sm-7 col-xs-12">
+                            <p class='displayStatus'>"No Current Investment Found."</p>
                         </div>
 
                         <div class="col-sm-5 col-md-5 d-flex flex-row">
@@ -169,11 +171,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td  class="highlighted">Payback</td>
-                                                                <td> {{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period) }}</td>
+                                                                <td> {{ dashboardInvestment[i]?.investment_report?.length }} of   {{ divisorFunc(investments?.expected_return_period) }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td  class="highlighted">Amount Paid</td>
-                                                                <td class="success">{{investments?.expected_return_amount * dashboardInvestment[i].investment_report.length }}</td>
+                                                                <td class="success">{{dashboardInvestment[i]?.investment_return[i]?.yielded_amount * dashboardInvestment[i]?.investment_report?.length }}</td>
                                                             </tr>
                                                         </table>
                                                     </div>
@@ -187,11 +189,11 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Last Payment</td>
-                                                                    <td>{{ dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at | date :  "dd.MM.y"}}</td>
+                                                                    <td>{{ dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length -1]?.created_at | date :  "dd.MM.y"}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Amount Pending</td>
-                                                                    <td class="pending">{{ ((((investments?.investment_amount * investments?.num_of_pools_taken) * (calculateEstimate(investments.expected_return_amount,investments.investment_amount, investments.expected_return_period, i)))/100)) - (investments?.expected_return_amount * dashboardInvestment[i].investment_report.length) }}</td>
+                                                                    <td class="pending">{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</td>
                                                                 </tr>
                                                             </table>
                                                         </div>
@@ -201,11 +203,11 @@
                                                             <table class="table reduced-font">
                                                                 <tr>
                                                                     <td  class="highlighted">Slot(s)</td>
-                                                                    <td>{{investments?.num_of_pools_taken}}</td>
+                                                                    <td>{{dashboardInvestment[i].number_of_pools}}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Next Payment</td>
-                                                                    <td>{{ addMonth(dashboardInvestment[i].investment_report[dashboardInvestment[i].investment_report.length -1].created_at , 1)  | date:  "dd.MM.y" }}</td>
+                                                                    <td>{{ addMonth(dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length -1]?.created_at , 1)  | date:  "dd.MM.y" }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Termination Date</td>
@@ -218,7 +220,10 @@
                                        </div>
 
                                     </div>
-                                    <div class="container">
+                                    <div *ngIf="userInvestment?.length == 0" >
+                                        <p class='displayStatus'>"No Current Investment Found."</p>
+                                   </div>
+                                    <div *ngIf= "userInvestment?.length > 0" class="container" >
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
                                                 <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
@@ -238,7 +243,7 @@
 
                     </div>
 
-                    <div class="row mb-4" *ngIf="isLoading">
+                    <div class="row mb-4" *ngIf="!isLoading">
                         <div class="col-sm-12">
                             <div class="card">
                                 <h5 class="card-header">Investment Report</h5>
@@ -259,19 +264,19 @@
                                             </tr>
                                             </thead>
                                             <tbody class="carousel-inner" [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
-                                                <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
-                                                        <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
-                                                        <td style="width: 15%">{{report.title}}</td>
-                                                        <td style="width: 15%"></td>
-                                                        <td style="width: 15%">{{report.returned_amount}}</td>
-                                                        <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
-                                                        <td style="width: 10%"></td>
+                                                <tr  *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
+                                                        <td style="width: 5%">{{report?.index}}</td>
+                                                        <td style="width: 15%">{{report?.title}}</td>
+                                                        <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
+                                                        <td style="width: 15%">{{report?.returned_amount}}</td>
+                                                        <td style="width: 15%">{{report?.returned_amount * report?.index | number:'1.2'}}</td>
+                                                        <td style="width: 10%">{{investments?.investment[0]?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</td>
                                                         <td style="width: 15%"> On-going </td>
-                                                        <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
+                                                        <td style="width: 10%">{{report?.created_at | date :  "dd.MM.y"}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <div *ngIf="dashboardInvestment.length == 0" >
+                                        <div *ngIf="dashboardInvestment?.length == 0" >
                                             <p class='displayStatus'>"No records found."</p>
                                        </div>
                                         <div  class="col-12  d-flex flex-row">
@@ -292,7 +297,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-4" *ngIf="isLoading">
+                    <div class="row mb-4" *ngIf="!isLoading">
                         <div class="col-sm-12">
                             <div class="card">
                                 <h5 class="card-header">Investment History</h5>
@@ -315,26 +320,26 @@
                                                 <th style="width: 10%">Date Added</th>
                                             </tr>
                                             </thead>
-                                            <tbody  *ngIf="FilteredInvestment.length > 0">
+                                            <tbody  *ngIf="FilteredInvestment?.length > 0">
                                                 <tr *ngFor="let investments of FilteredInvestment | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'first'};
                                                 index as i">
                                                     <td style="width: 5%"> {{i+1}}</td>
-                                                    <td style="width: 15%">{{investments.title}}</td>
-                                                    <td style="width: 10%" >{{investments.category_id}}</td>
-                                                    <td style="width: 10%" >{{investments.investment_amount}}</td>
-                                                    <td style="width: 10%">{{investments.num_of_pools_taken}}</td>
-                                                    <td style="width: 10%">{{investments.duration}}</td>
-                                                    <td style="width: 10%">{{investments.estimated_percentage_profit}}</td>
-                                                    <td style="width: 10%">{{investments.expected_return_period}}</td>
-                                                    <td style="width: 10%">{{investments.investment_amount*investments.num_of_pools_taken}}</td>
+                                                    <td style="width: 15%">{{investments?.title}}</td>
+                                                    <td style="width: 10%" >{{investments?.category_id}}</td>
+                                                    <td style="width: 10%" >{{investments?.investment_amount}}</td>
+                                                    <td style="width: 10%">{{investments?.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{investments?.duration}}</td>
+                                                    <td style="width: 10%">{{investments?.estimated_percentage_profit}}</td>
+                                                    <td style="width: 10%">{{investments?.expected_return_period}}</td>
+                                                    <td style="width: 10%">{{investments?.investment_amount*investments?.num_of_pools_taken}}</td>
                                                     <td style="width: 10%">Completed</td>
-                                                    <td style="width: 10%">{{investments.created_date}}</td>
+                                                    <td style="width: 10%">{{investments?.created_date}}</td>
                                                 </tr>
 
                                             </tbody>
 
                                         </table>
-                                        <div *ngIf="FilteredInvestment.length == 0" >
+                                        <div *ngIf="FilteredInvestment?.length == 0" >
                                                <p class='displayStatus'>"No records found."</p>
                                         </div>
 
@@ -359,7 +364,7 @@
 
 
                 </div>
-                <div *ngIf="!isLoading" class="lds-default">
+                <div *ngIf="isLoading" class="lds-default">
                     <div></div>
                     <div></div>
                     <div></div>

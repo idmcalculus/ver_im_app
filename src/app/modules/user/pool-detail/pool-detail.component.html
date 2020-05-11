@@ -30,6 +30,7 @@
                                 </a>
                             </div>
                         </div>
+
                         <div class="row p-0">
                             <div class="col-xl-4">
                                 <div class="card latest-update-card">
@@ -42,8 +43,8 @@
                                                         class="fa fa-edit"></i></span></a>
                                             </div> -->
                                             <div class="image-holder my-3">
-                                                <img *ngIf="pool?.investment.investment_image==''" src="../assets/images/notcard.png" alt="image">
-                                                <img *ngIf="pool?.investment.investment_image!=''" src="{{pool?.investment?.investment_image}}" alt="image">
+                                                <img *ngIf="pool?.investment?.investment_image == ''" src = "../assets/images/notcard.png" alt="image">
+                                                <img *ngIf="pool?.investment?.investment_image != ''" src = "{{pool?.investment?.investment_image}}" alt="image">
                                             </div>
                                             <div class="col px-2 pt-5">
                                                 
@@ -143,7 +144,7 @@
                                                 <h6 class="col-sm-4  pr-0 col-form-label">Upload Image</h6>
                                                 <div class="col-sm-8">
                                                     <div class="image_preview">
-                                                        <img *ngIf="pool?.investment.investment_image!=''" class="pb-0" src="{{pool?.investment?.investment_image}}" alt="image">
+                                                        <img *ngIf="pool?.investment?.investment_image != ''" class="pb-0" src="{{pool?.investment?.investment_image}}" alt="image">
                                                         <img [src]="url" hidden  width="100%" height="200">
                                                     </div>
                                                     <div class="upload-btn-wrapper">
@@ -234,7 +235,7 @@
                                         <div class="row p-0">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
-                                                <a *ngIf="loggedInUser?.user_category=='Admin'  && (pool?.investment?.max_num_of_slots !== pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
+                                                <a *ngIf="loggedInUser?.user_category == 'Admin'  && (pool?.investment?.max_num_of_slots !== pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
                                                     <img class="" src="../assets/images/icon/icons/Add-icon.png" style="height: 50px;">
                                                 </a>
                                             </div>
@@ -255,9 +256,9 @@
 
                                                 <tbody *ngIf="loggedInUser?.user_category=='Admin' ">
                                                     <tr data-href="#viewUserProfile"  (click)="viewUserDetail(user?.user_info[0])" *ngFor="let user of pool?.investment_user">
-                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
-                                                        <td>{{user?.user_info[0].email}}</td>
-                                                        <td>{{user?.user_info[0].phone_number}}</td>
+                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0]?.last_name}}</td>
+                                                        <td>{{user?.user_info[0]?.email}}</td>
+                                                        <td>{{user?.user_info[0]?.phone_number}}</td>
                                                         <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                                         <td>{{user?.user_investment_info?.amount_paid}}</td>
                                                         <td>{{user?.user_investment_info?.created_at}}</td>
@@ -266,9 +267,9 @@
 
                                                 <tbody *ngIf="loggedInUser?.user_category!='Admin'">
                                                     <tr *ngFor="let user of pool?.investment_user">
-                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
-                                                        <td>{{user?.user_info[0].email}}</td>
-                                                        <td>{{user?.user_info[0].phone_number}}</td>
+                                                        <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0]?.last_name}}</td>
+                                                        <td>{{user?.user_info[0]?.email}}</td>
+                                                        <td>{{user?.user_info[0]?.phone_number}}</td>
                                                         <td>{{user?.user_investment_info?.number_of_pools}}</td>
                                                         <td>{{user?.user_investment_info?.amount_paid}}</td>
                                                         <td>{{user?.user_investment_info?.created_at}}</td>
@@ -276,7 +277,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <div class="row justify-content-center" *ngIf="pool?.investment_user.length == '0' ">
+                                            <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
                                                 <div class="col-6 text-center">
                                                     No User has been Added
                                                 </div> 
@@ -331,7 +332,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-5" *ngIf="pool?.investment.is_investment_started === 1; else showThis">
+                                        <div class="row mt-5" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
                                             <div class="col-xl-12">
                                                 <div class="row">
                                                     <div class="col-3">
@@ -380,6 +381,51 @@
                                         <ng-template #showThis>
                                             <p class="showThis" style="color: red; font-size: 16px; font-weight: bold;">Investment Not Yet Started</p>
                                         </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3 mb-1">
+                            <div class="col-xl-12">
+                                <div class="mb-3 pb-1">
+                                    <h5>Investment Report</h5>
+                                </div>
+                                <div class="card report">
+                                    <div class="card-block dt-responsive report-header d-flex">
+                                      <p class="s-n">S/N</p>
+                                      <p class="invTitle">Investment Title</p>
+                                      <p class="payback">Payback Frequency</p>
+                                      <p class="amtCred">Amount Credited</p>
+                                      <p class="yieldedAmt">Yielded Amount</p>
+                                      <p class="balance">Balance</p>
+                                      <p class="status">Status</p>
+                                      <p class="datePaid">Date Paid</p>
+                                    </div>
+                                    <div class="card-block dt-responsive" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
+                                      <div class="d-flex report-body" *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
+                                        <p class="s-n">{{report?.index}}</p>
+                                        <p class="invTitle">{{report?.title}}</p>
+                                        <p class="payback">{{pool?.investment?.expected_return_period}}</p>
+                                        <p class="amtCred">{{report?.returned_amount | number:'1.2'}}</p>
+                                        <p class="yieldedAmt">{{report?.returned_amount * report?.index | number:'1.2'}}</p>
+                                        <p class="balance">{{pool?.investment?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</p>
+                                        <p class="status">On-going</p>
+                                        <p class="datePaid">{{ report?.created_at ? (report?.created_at | date :  "dd.MM.y") : 'N/A' }}</p>
+                                      </div>
+                                      <div  class="col-12 d-flex flex-row mt-3">
+                                        <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                        <span class="col-md-2 col-xs-2 controls">
+                                            <select class="py-2 input-control" data-type="items-per-page" (change)=setItemsPerPage(page.value) #page>
+                                                <option value="5"> 5 rows </option>
+                                                <option value="10"> 10 rows </option>
+                                                <option value="20"> 20 rows </option>
+                                                <option value="40"> 40 rows </option>
+                                                <option value="50"> 50 rows </option>
+                                                <option value="0"> view all </option>
+                                            </select>
+                                        </span>
+                                       </div>
                                     </div>
                                 </div>
                             </div>

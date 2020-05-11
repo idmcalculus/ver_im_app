@@ -20,6 +20,8 @@ export class PoolreportComponent implements OnInit {
   reportlog = [];
   searchValue = '';
   filteredPools = [];
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router: Router,
@@ -41,14 +43,14 @@ export class PoolreportComponent implements OnInit {
         this.getPools();
         this.getCategories();
       }
-      
+
       this.getCategories();
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.report = resp.success.Data;
-          //console.log(this.report);
+          console.log(this.report);
           this.reportlog.push(this.report);
-          //console.log(this.reportlog);
+          console.log(this.reportlog);
         }
         this.isLoading = false;
       });
@@ -62,7 +64,6 @@ export class PoolreportComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        //console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -114,9 +115,15 @@ export class PoolreportComponent implements OnInit {
   }
 
   saveAsCSV(){}
-  
+
   clearSearch() {
     this.searchValue = null;
     return this.getPools();
   }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 }
