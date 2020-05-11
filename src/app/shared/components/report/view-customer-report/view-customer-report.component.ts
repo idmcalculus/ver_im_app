@@ -46,16 +46,13 @@ export class viewUserPoolComponent implements OnInit {
         this.isLoading = true;
         this.userService.getProfileDetails(this.email).subscribe(userx=> {
           this.user = userx.success.Data;
-         // console.log(this.user.user[0].first_name, 'Hello');
           this.isLoading = false;
-          
+
         });
 
         this.investmentService.getUserInvestments(this.email).subscribe(investments=>{
-          //console.log(investments);
           this.isLoading = true;
           this.userInvestment = investments.success.Data;
-          //console.log(this.userInvestment);
           //this.selectedInvestment = 0;
           //this.showDetails();
           this.isLoading = false;
@@ -69,11 +66,10 @@ export class viewUserPoolComponent implements OnInit {
 
     goto(email: User, id: number): void {
       this.router.navigate([`/admin/userReport/${email}/export/${id}`]);
-      //console.log(email);
     }
 
     Back(){
         this.location.back();
     }
-    
+
   }

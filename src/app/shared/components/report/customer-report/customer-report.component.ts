@@ -1,14 +1,12 @@
  import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ExportData } from 'src/app/shared/models/ExportData';
 import { ReportService } from '../report.service';
 import { User } from 'src/app/shared/models/user';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AdminService } from '../../../../modules/admin/admin.service';
 import { UserService } from '../../../../modules/user/user.service';
-import {InvestmentService} from '../../../../modules/investment/investment.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pools',
@@ -40,11 +38,9 @@ export class UserreportComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private investmentService:InvestmentService,
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
-    private reportService: ReportService,
-    private toastrService: ToastrService
+    private reportService: ReportService
     ) {
       this.getpool(this.email);
     }
@@ -53,7 +49,6 @@ export class UserreportComponent implements OnInit {
     this.adminService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
         this.users = resp.success.Data;
-        //console.log(this.users);
 
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
@@ -77,15 +72,12 @@ export class UserreportComponent implements OnInit {
         this.report = resp.success.Data;
         this.reportlog.push(this.report);
         this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
-
-        //console.log(this.currentlog);
       }
     });
   }
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
-    //console.log(user);
 
   }
 
@@ -126,7 +118,7 @@ export class UserreportComponent implements OnInit {
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('CustomerReport.csv', items);
     }
 }
 
@@ -138,7 +130,6 @@ setItemsPerPage(event){
     this.userService.getProfileDetails(email).subscribe(investments=>{
       if(investments.success.Data !== 0){
         this.userInvestment = investments.success.Data;
-        //console.log('hello')
         return this.userInvestment.total
       }
       else {

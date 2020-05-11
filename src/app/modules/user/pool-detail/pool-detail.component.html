@@ -17,16 +17,16 @@
                         <div></div>
                         <div></div>
                     </div>
-                        
+
                     <div *ngIf="!isLoading" class="">
                         <div class="clearfix mb-3">
                             <div class="float-left pt-2">
                                 <a class="h4 pr-2">Investment</a>
                                 <a class=" pl-2">Home / Investment</a>
-                            </div>  
+                            </div>
                             <div class="float-right">
                                 <a (click)="cancelPool()">
-                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
+                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px; cursor: pointer;">
                                 </a>
                             </div>
                         </div>
@@ -47,16 +47,16 @@
                                                 <img *ngIf="pool?.investment?.investment_image != ''" src = "{{pool?.investment?.investment_image}}" alt="image">
                                             </div>
                                             <div class="col px-2 pt-5">
-                                                
+
                                                 <h6>Status:</h6>
 
-                                                <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">Active</p> 
-                                                <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">In-Active</p> 
+                                                <p *ngIf="pool?.investment?.is_investment_started == '1' " class="active">Active</p>
+                                                <p *ngIf="pool?.investment?.is_investment_started == '0' " class="active">In-Active</p>
 
                                                 <h6>Number of Investors:</h6>
 
                                                 <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p>
-                                                
+
                                                 <div class="text-center pt-2">
                                                     <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
                                                     <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
@@ -119,7 +119,7 @@
                                                     <input type="number" min="0" autocomplete="off" class="input-control" name="tenure" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-9">
@@ -152,14 +152,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="form-group pt-4 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Show to Public</h6>
                                                 <div class="col-sm-8">
                                                     <input class="mt-2" type="checkbox" name="show_publicly" [(ngModel)]="show_publicly">
                                                 </div>
                                             </div>
-    
+
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
@@ -177,19 +177,19 @@
                                         </div>
 
                                         <div class="col">
-                                            
+
                                             <div class="form-group row pt-1 pb-2">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-27px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
                                                     <textarea class="input-control" rows="3" value={{pool?.investment?.description}}></textarea>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col py-2">
                                                 <button type="button" (click)="updateInvestment()" class="btn btn-primary btn-sm px-5 float-right">Update</button>
                                             </div>
                                         </div>
-    
+
                                     </div>
                                 </form>
                             </div>
@@ -205,22 +205,22 @@
                                                         class="fa fa-plus"></i></span></a>
                                             </div>
                                         </div>
-                                        
+
                                         <div *ngFor="let report of pool?.report " class="report-card">
-                                        
+
                                             <h4>{{report?.title}}</h4>
                                             <div>{{report?.description}}</div>
                                             <small class="date">{{report?.updated_at}}</small>
                                             <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
                                                 data-target="#reportModal">
-                                                <small class="">   Edit</small> 
+                                                <small class="">   Edit</small>
                                             </a>
                                             <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
                                                 data-target="#none">
-                                                <small class="">   Delete</small> 
+                                                <small class="">   Delete</small>
                                             </a>
                                             <small (click)="deleteReport(report.id)" class="">   Delete</small>
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -279,10 +279,10 @@
                                             <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
                                                 <div class="col-6 text-center">
                                                     No User has been Added
-                                                </div> 
-                                            </div> 
+                                                </div>
+                                            </div>
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
@@ -298,22 +298,22 @@
                                                         class="fa fa-plus"></i></span></a>
                                             </div>
                                         </div>
-                                        
+
                                         <div *ngFor="let report of pool?.report " class="report-card">
-                                        
+
                                             <h4>{{report?.title}}</h4>
                                             <div>{{report?.description}}</div>
                                             <small class="date">{{report?.updated_at}}</small>
                                             <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="manageReport('update',report)" href="#" data-toggle="modal"
                                                 data-target="#reportModal">
-                                                <small class="">   Edit</small> 
+                                                <small class="">   Edit</small>
                                             </a>
                                             <a *ngIf="loggedInUser?.user_category=='Admin' " (click)="deleteReport(report)" href="#" data-toggle="modal"
                                                 data-target="#none">
-                                                <small class="">   Delete</small> 
+                                                <small class="">   Delete</small>
                                             </a>
                                             <small (click)="deleteReport(report.id)" class="">   Delete</small>
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -430,7 +430,7 @@
                             </div>
                         </div>
 
-                    </div>              
+                    </div>
                 </div>
             </div>
         </div>
