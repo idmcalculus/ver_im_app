@@ -68,7 +68,6 @@ export class ViewedreportComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    //console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
@@ -104,7 +103,6 @@ export class ViewedreportComponent implements OnInit {
             return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        console.log(filtered);
         this.pools = filtered;
       }
   }

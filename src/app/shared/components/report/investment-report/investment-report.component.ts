@@ -29,9 +29,7 @@ export class PoolreportComponent implements OnInit {
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.report = resp.success.Data;
-          console.log(this.report);
           this.reportlog.push(this.report);
-          console.log(this.reportlog);
         }
         this.isLoading = false;
       });

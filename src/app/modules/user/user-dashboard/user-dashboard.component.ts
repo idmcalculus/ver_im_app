@@ -55,7 +55,6 @@ export class UserDashboardComponent implements OnInit {
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
             this.usersInvestments = res.success.Data;
-            console.log(this.usersInvestments);
             this.selectedInvestment = 0;
 
             this.showDetails();
@@ -82,28 +81,24 @@ export class UserDashboardComponent implements OnInit {
     this.investmentService.getInvestmentGroup(this.group_name).subscribe(groups => {
       if (groups && groups.success) {
         this.poolGroup = groups.success.Data;
-        console.log(this.poolGroup );
 
         const seventhDay = new Date();
         seventhDay.setDate(seventhDay.getDate() - 7);
         this.filteredDayData = this.poolGroup.filter((d) => {
         return new Date(d.created_at).getTime() >= seventhDay.getTime();
         });
-        console.log(this.filteredDayData);
 
         const Month = new Date();
         Month.setDate(Month.getDate() - 31);
         this.filteredMonthData = this.poolGroup.filter((d) => {
         return new Date(d.created_at).getTime() >= Month.getTime();
         });
-        console.log(this.filteredMonthData);
 
         const Year = new Date();
         Year.setDate(Year.getDate() - 365);
         this.filteredYearData = this.poolGroup.filter((d) => {
         return new Date(d.created_at).getTime() >= Year.getTime();
         });
-        console.log(this.filteredYearData);
 
       }else {
           console.log('No groups yet');
@@ -140,7 +135,6 @@ export class UserDashboardComponent implements OnInit {
               element.title =  this.expectedTitle;
           });
           this.dashboardInvestment.push(this.dashBoardData);
-          console.log(this.dashboardInvestment);
 
 
         } else {

@@ -49,7 +49,6 @@ export class UserreportComponent implements OnInit {
     this.adminService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
         this.users = resp.success.Data;
-        //console.log(this.users);
 
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
@@ -73,15 +72,12 @@ export class UserreportComponent implements OnInit {
         this.report = resp.success.Data;
         this.reportlog.push(this.report);
         this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
-
-        //console.log(this.currentlog);
       }
     });
   }
 
   goto(user: User): void {
     this.router.navigate([`/admin/userReport/${user.email}`]);
-    //console.log(user);
 
   }
 
@@ -134,7 +130,6 @@ setItemsPerPage(event){
     this.userService.getProfileDetails(email).subscribe(investments=>{
       if(investments.success.Data !== 0){
         this.userInvestment = investments.success.Data;
-        //console.log('hello')
         return this.userInvestment.total
       }
       else {
