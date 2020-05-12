@@ -86,7 +86,8 @@ export class AddPoolComponent implements OnInit {
         this.image = myReader.result;
         this.pool.investment_image = this.image;
       };
-      myReader.onload = (event: any) => { // called once readAsDataURL is completed
+
+      myReader.onload = (event:any) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       };
       myReader.readAsDataURL(file);
@@ -104,7 +105,7 @@ export class AddPoolComponent implements OnInit {
   calculateEstimate() {
     if(this.pool.investment_amount !=0 && this.roi !='' && this.pool.expected_return_period !=''){
       const cost = this.pool.investment_amount
-      const investment = parseInt(this.roi) /100 
+      const investment = parseInt(this.roi) /100
       const divisor = this.divisorFunc(this.pool.expected_return_period)
 
       const estimate = (cost * investment) / divisor;
