@@ -64,7 +64,7 @@ export class ViewCustomerComponent implements OnInit {
           this.isLoading = false;
         });
 
-        this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
+      this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
               console.log(this.userInvestment);
@@ -78,7 +78,7 @@ export class ViewCustomerComponent implements OnInit {
             }
           });
 
-          $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
             $('.investment-card').hide();
             let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;

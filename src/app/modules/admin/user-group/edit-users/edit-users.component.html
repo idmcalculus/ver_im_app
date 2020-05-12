@@ -24,7 +24,7 @@
                 <a class="pl-2">Home/User Group</a>
               </div>
               <div class="float-right">
-                <a style="cursor: pointer; height: 50px;"><img src="../../../../../assets/images/icon/icons/save-64.png"></a>
+                <a style="cursor: pointer; height: 50px;" (click)="updateUserGroup(user, selectedUser)"><img src="../../../../../assets/images/icon/icons/save-64.png"></a>
                 <a (click)="goBack()" style="cursor: pointer;"><img src="../../../../../assets/images/icon/icons/Back-icon.png"></a>
               </div>
             </div>
@@ -39,7 +39,7 @@
                 <mat-form-field>
                   <div class="form-group d-flex">
                     <mat-label for="userGroup"><span style="color: red;">*</span>User Group</mat-label>
-                    <mat-select placeholder="Select User Group" id="userGroup" class="form-control">
+                    <mat-select placeholder="Select User Group" id="userGroup" class="form-control" [(ngModel)]="selectedUser">
                       <mat-option *ngFor="let usergroup of usergroups;" [value]="usergroup.value">{{usergroup.value}}</mat-option>
                     </mat-select>
                   </div>
