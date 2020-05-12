@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Category } from 'src/app/shared/models/Category';
 
 @Component({
   selector: 'app-view-customers',
@@ -20,13 +21,12 @@ export class ViewCustomerComponent implements OnInit {
     dashBoardData: any = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
     p: number = 1;
     p2: number =1;
-    expectedPeriod = '';
-    expectedTitle = '';
+    res: Category;
     userInvestment: any;
     FilteredInvestment: Investment[];
     dashboardInvestment: any = [];
     isLoading: boolean;
-   // categories=[];
+    categories=[];
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
     pageValue = 5;
@@ -39,7 +39,7 @@ export class ViewCustomerComponent implements OnInit {
       private router: Router,
       private route: ActivatedRoute
       ) {
-     //   this.getCategories();
+        this.getCategories();
         this.isLoading = true;
        }
 
@@ -51,27 +51,17 @@ export class ViewCustomerComponent implements OnInit {
         this.userData = resp.success.Data.user;
         this.user = this.userData[0];
         }
-        this.isLoading = false;
+       // this.isLoading = false;
       });
-
-      this.investmentService.getUserInvestments(this.user.email).subscribe(investments => {
-          if (investments.success.Data) {
-            this.userInvestment = investments.success.Data;
-            this.selectedInvestment = 0;
-            this.showDetails();
-            this.FilteredInvestment = this.userInvestment.filter((investment: Investment) => investment.is_investment_ended === '0');
-          }
-          this.isLoading = false;
-        });
 
         this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
             if(investments.success.Data !== 0){
               this.userInvestment = investments.success.Data;
-              console.log(this.userInvestment);
 
               this.selectedInvestment = 0;
               this.showDetails();
-              this.FilteredInvestment = this.userInvestment.filter((investment : Investment) => investment.is_investment_ended === '0');
+              this.FilteredInvestment = this.userInvestment.filter((investment) => investment.is_investment_ended === 1);
+
             }
             else {
                 this.isLoading = true;
@@ -89,18 +79,21 @@ export class ViewCustomerComponent implements OnInit {
             row.style.display = 'contents';
             });
         }
-   /* getCategories() {
+    getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {
             this.categories = resp.success.Data;
           }
         });
       }
-      getCategoryName(id){
-        const res = this.categories.find( r=> r.id == 21);
-        return res.category_name;
+    getCategoryName(id) {
+        if (id) {
+        this.res = this.categories.find(r => r.id === id);
+        return this.res.category_name;
+        } else {
+          return this.res = {category_name: ''};
+        }
       }
-*/
 
     showDetails() {
         if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
@@ -120,13 +113,6 @@ export class ViewCustomerComponent implements OnInit {
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
-            this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
-            this.expectedTitle = this.dashBoardData.investment[0].title;
-
-            this.dashBoardData.investment_return.forEach(element => {
-                element.expected_return_period = 'Weekly' ;
-                element.title =  'Transport Investment';
-            });
             this.dashboardInvestment.push(this.dashBoardData);
             this.dashboardInvestment.forEach(investment => {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
@@ -136,6 +122,7 @@ export class ViewCustomerComponent implements OnInit {
           }
           this.isLoading = false;
           this.showDetails();
+
         });
       }
 

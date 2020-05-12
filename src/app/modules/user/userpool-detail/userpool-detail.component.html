@@ -81,7 +81,7 @@
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.expected_return_amount}}>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" readonly class="form-control form-control-sm" required name="roi" id="roi" placeholder="" value={{pool?.investment?.expected_return_amount}}>
+                                                    <input type="number" readonly class="form-control form-control-sm" required name="roi" id="roi" placeholder="" value={{calculateEstimate(pool)}}>
                                                 </div>
                                             </div>
 
@@ -126,7 +126,7 @@
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Status</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control form-control-sm" value={{getPoolstatus(pool?.investment?.is_investment_started)}} [(ngModel)]="returns">
+                                                    <input type="text" class="form-control form-control-sm" value={{getPoolstatus(pool)}} [(ngModel)]="returns">
                                                 </div>
                                             </div>
                                         </div>
@@ -249,7 +249,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody >
-                                                    <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: 5, currentPage:p2, id: 'second'};index as i">
+                                                    <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                         <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
                                                         <td style="width: 15%">{{report.title}}</td>
                                                         <td style="width: 15%"></td>
@@ -262,13 +262,23 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                      <td [colSpan]="99" class="pb-0">
+                                                      <td [colSpan]="6" class="pb-0 mr-5">
                                                         <pagination-controls
                                                           (pageChange)="p2=$event" id='second'>
                                                         </pagination-controls>
                                                       </td>
+                                                      <td></td>
+                                                      <td [colSpan]="6" class="pb-0">
+                                                        <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                            <option value="5"> 5 rows </option>
+                                                            <option value="10"> 10 rows </option>
+                                                            <option value="20"> 20 rows </option>
+                                                            <option value="0"> view all </option>
+                                                        </select>
+                                                      </td>
                                                     </tr>
-                                                  </tfoot>
+                                                </tfoot>
+                                               
                                                 
                                             </table>
                                             <div *ngIf="dashboardInvestment.length == 0" >
