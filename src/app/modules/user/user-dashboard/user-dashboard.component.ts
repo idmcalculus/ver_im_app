@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -7,7 +7,7 @@ import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
-import { InvestmentGroup } from 'src/app/shared/models/InvestmentGroup';
+import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -23,12 +23,11 @@ export class UserDashboardComponent implements OnInit {
   userActivity: any = [];
   usersInvestments: [Investment];
   pools: any = [];
-  poolGroup: Investment[] = [];
+  poolGroup: any = [];
   filteredYearData: Investment[] = [];
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = true;
-  group_name: InvestmentGroup = {group_name: 'Best Selling Investments'};
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -36,14 +35,16 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
-  expectedPeriod: '';
-  expectedTitle: '';
+  order = "num_of_pools_taken";
+  ascending = false;
+
 
 
   constructor(private userService: UserService,
              private adminService: AdminService,
              private investmentService: InvestmentService,
-              private authService: AppAuthService)
+             private filterby: FilterTablesPipe,
+             private authService: AppAuthService)
 
               {}
 
@@ -74,34 +75,31 @@ export class UserDashboardComponent implements OnInit {
 
      this.investmentService.getInvestments(false).subscribe(investments => {
         if (investments) {
-          this.pools = investments.success.Data;
-        }
-     });
+            this.pools = investments.success.Data;
+            this.poolGroup = this.filterby.transform(this.pools, this.order, this.ascending);
 
-    this.investmentService.getInvestmentGroup(this.group_name).subscribe(groups => {
-      if (groups && groups.success) {
-        this.poolGroup = groups.success.Data;
+            const seventhDay = new Date();
+            seventhDay.setDate(seventhDay.getDate() - 7);
+            this.filteredDayData = this.poolGroup.filter((d) => {
+            return new Date(d.created_at).getTime() >= seventhDay.getTime();
+            });
 
-        const seventhDay = new Date();
-        seventhDay.setDate(seventhDay.getDate() - 7);
-        this.filteredDayData = this.poolGroup.filter((d) => {
-        return new Date(d.created_at).getTime() >= seventhDay.getTime();
-        });
+            const Month = new Date();
+            Month.setDate(Month.getDate() - 31);
+            this.filteredMonthData = this.poolGroup.filter((d) => {
+            return new Date(d.created_at).getTime() >= Month.getTime();
+            });
 
-        const Month = new Date();
-        Month.setDate(Month.getDate() - 31);
-        this.filteredMonthData = this.poolGroup.filter((d) => {
-        return new Date(d.created_at).getTime() >= Month.getTime();
-        });
+            const Year = new Date();
+            Year.setDate(Year.getDate() - 365);
+            this.filteredYearData = this.poolGroup.filter((d) => {
+            return new Date(d.created_at).getTime() >= Year.getTime();
+            });
 
-        const Year = new Date();
-        Year.setDate(Year.getDate() - 365);
-        this.filteredYearData = this.poolGroup.filter((d) => {
-        return new Date(d.created_at).getTime() >= Year.getTime();
-        });
+            console.log(this.filteredYearData);
 
       }else {
-          console.log('No groups yet');
+           console.log('No groups yet');
       }
     });
   }
@@ -127,16 +125,7 @@ export class UserDashboardComponent implements OnInit {
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
         if (resp && resp.success) {
           this.dashBoardData = resp.success.Data;
-          this.expectedPeriod = this.dashBoardData.investment[0].expected_return_period;
-          this.expectedTitle = this.dashBoardData.investment[0].title;
-
-          this.dashBoardData.investment_return.forEach(element => {
-              element.expected_return_period = this.expectedPeriod ;
-              element.title =  this.expectedTitle;
-          });
-          this.dashboardInvestment.push(this.dashBoardData);
-
-
+          this.dashboardInvestment.push(this.dashBoardData)
         } else {
           this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
         }
