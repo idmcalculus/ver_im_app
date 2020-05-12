@@ -65,17 +65,15 @@ export class AddUsersComponent implements OnInit {
         status: this.selectedStatus
       };
 
-      console.log(data);
-
       this.signupService.register(data).subscribe(resp => {
         if (resp && resp.success) {
           this.toastrService.success('Admin User created successfully');
-          this.isLoading = false;
           this.location.back();
         } else {
           this.toastrService.error('There is an issue creating the Admin User');
         }
       });
+      this.isLoading = false;
     } else {
       this.toastrService.error('Passwords do not match');
     }
