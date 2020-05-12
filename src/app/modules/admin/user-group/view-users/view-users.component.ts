@@ -74,7 +74,6 @@ export class ViewUsersComponent implements OnInit {
         this.adminUsers.forEach(user => {
             if (user.selected) {
                 this.checkedUser.push(user);
-                console.log(this.checkedUser);
             }
         });
     }
@@ -88,7 +87,6 @@ export class ViewUsersComponent implements OnInit {
                     this.userService.getProfileDetails(user.email).subscribe(async resp => {
                         const details = await resp.success.Data;
                         const userId = details.user[0].id;
-                        console.log(userId);
                         this.adminService.updateUserCategory(userId, 'User').subscribe(async resp => {
                             if (resp && resp.success) {
                                 this.toastrService.success('Selected admin user(s) successfully removed');
@@ -96,7 +94,7 @@ export class ViewUsersComponent implements OnInit {
                                 this.toastrService.error('There was an error removing selected admin user(s)');
                             }
                             this.isLoading = false;
-                            window.location.href = 'admin/user-group/view-users';
+                            window.location.reload();
                         });
                     });
                 });

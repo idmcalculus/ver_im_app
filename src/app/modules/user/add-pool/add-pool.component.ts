@@ -86,9 +86,9 @@ export class AddPoolComponent implements OnInit {
         this.image = myReader.result;
         this.pool.investment_image = this.image;
       };
-      myReader.onload = (event) => { // called once readAsDataURL is completed
+      myReader.onload = (event: any) => { // called once readAsDataURL is completed
         this.url = event.target.result;
-      }
+      };
       myReader.readAsDataURL(file);
     }
   }
