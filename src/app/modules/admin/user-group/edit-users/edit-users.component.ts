@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/modules/user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../../admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-users',
@@ -20,12 +21,15 @@ export class EditUsersComponent implements OnInit {
   email: string;
   isLoading: boolean;
   user: User;
+  userId: number;
   selectedStatus: '';
+  selectedUser: '';
 
   constructor(private location: Location,
               private route: ActivatedRoute,
               private userService: UserService,
-              private adminService: AdminService) {
+              private adminService: AdminService,
+              private toastrService: ToastrService) {
               this.email = this.route.snapshot.paramMap.get('email');
               this.isLoading = true;
               this.userService.getProfileDetails(this.email).subscribe(userx => {
@@ -35,8 +39,7 @@ export class EditUsersComponent implements OnInit {
               this.getUserGroups();
    }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   getUserGroups() {
     this.isLoading = true;
@@ -47,6 +50,21 @@ export class EditUsersComponent implements OnInit {
         });
       }
       this.isLoading = false;
+    });
+  }
+
+  updateUserGroup(user: any, selectedUser) {
+    this.isLoading = true;
+    const userId = user.user[0].id;
+    const userCategory = selectedUser;
+    this.adminService.updateUserCategory(userId, userCategory).subscribe(resp => {
+      if (resp && resp.success) {
+        this.toastrService.success('User category updated successfully');
+      } else {
+        this.toastrService.error('There was an error updating User category');
+      }
+      this.isLoading = false;
+      this.location.back();
     });
   }
 

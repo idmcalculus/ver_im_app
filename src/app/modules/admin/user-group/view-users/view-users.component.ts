@@ -44,9 +44,9 @@ export class ViewUsersComponent implements OnInit {
         this.isLoading = true;
         this.userService.getUsers().subscribe(users => {
             if (users && users.success) {
-              this.adminUsers = users.success.Data.filter(user => user.user_category === 'Admin');
-              this.adminUsers.forEach((user: any, i) => user.index = i + 1);
-              this.adminUsers.forEach(user => user.selected = false);
+                this.adminUsers = users.success.Data.filter(user => user.user_category === 'Admin' || user.user_category === 'SuperAdmin');
+                this.adminUsers.forEach((user: any, i) => user.index = i + 1);
+                this.adminUsers.forEach(user => user.selected = false);
             }
             this.isLoading = false;
         });
@@ -74,47 +74,34 @@ export class ViewUsersComponent implements OnInit {
         this.adminUsers.forEach(user => {
             if (user.selected) {
                 this.checkedUser.push(user);
-                console.log(this.checkedUser);
             }
         });
     }
 
-    deleteSelected() {
+   deleteSelected() {
         if (this.checkedUser.length > 0) {
             if (confirm('Are you sure you want to delete the selected Users?')) {
                 this.isLoading = true;
-                const filtered = this.adminUsers.filter(user => user.selected === false);
-                filtered.forEach((user, i) => user.index = i + 1 );
-                setTimeout(() => {
-                    this.isLoading = false;
-                }, 3000);
-                return this.adminUsers = filtered;
+                const filtered = this.adminUsers.filter(user => user.selected === true);
+                filtered.forEach(async user => {
+                    this.userService.getProfileDetails(user.email).subscribe(async resp => {
+                        const details = await resp.success.Data;
+                        const userId = details.user[0].id;
+                        this.adminService.updateUserCategory(userId, 'User').subscribe(async resp => {
+                            if (resp && resp.success) {
+                                this.toastrService.success('Selected admin user(s) successfully removed');
+                            } else {
+                                this.toastrService.error('There was an error removing selected admin user(s)');
+                            }
+                            this.isLoading = false;
+                            window.location.reload();
+                        });
+                    });
+                });
+            } else {
+                this.toastrService.info('No user is selected!');
             }
-        } else {
-            this.toastrService.info('No user is selected!');
         }
-        /*const selected = this.adminUsers.filter(user => user.selected === true);
-        selected.forEach(user => {
-            const data = {
-            last_name: user.last_name,
-            first_name: user.first_name,
-            authentication_type: user.authentication_type,
-            password: user.password,
-            user_category: user.user_category,
-            email: user.email
-            };
-
-            this.adminService.updateAdminUser(data, 'User').subscribe(resp => {
-                if (resp && resp.success) {
-                    console.log(resp);
-                    this.toastrService.success('Selected user(s) successfully deleted');
-                } else {
-                    this.toastrService.error('There was an error deleting selected User(s)');
-                }
-                this.isLoading = false;
-            });
-
-        });*/
     }
 
 }

@@ -52,4 +52,8 @@ export class AdminService {
     return this.httpService.postRequest(`admin/getUserCategories`, null);
   }
 
+  updateUserCategory(id, userType: string) {
+    return this.httpService.postRequest(`admin/updateUserCategory?id=${id}&user_category=${userType}`, {}, null);
+  }
+
 }
