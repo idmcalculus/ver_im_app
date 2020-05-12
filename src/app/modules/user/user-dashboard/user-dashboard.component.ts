@@ -22,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
   dashboardInvestment: any = [];
   userActivity: any = [];
   usersInvestments: [Investment];
+  usersInvestment: any =[];
   pools: any = [];
   poolGroup: any = [];
   filteredYearData: Investment[] = [];
@@ -55,8 +56,10 @@ export class UserDashboardComponent implements OnInit {
         this.overiddenUser = resp;
         this.userService.getusersInvestment(resp.email).subscribe(res => {
             if (res && res.success) {
-            this.usersInvestments = res.success.Data;
+            this.usersInvestment = res.success.Data;
+            this.usersInvestments = this.usersInvestment.filter((res)=>res.is_investment_started === 1);
             this.selectedInvestment = 0;
+            console.log(this.usersInvestments);
 
             this.showDetails();
             } else {
@@ -108,7 +111,6 @@ export class UserDashboardComponent implements OnInit {
     this.isLoading = false;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
-        //const total:any = this.investmentInfo?.expected_return_amount * dashboardInvestment[i].investment_report.length
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
