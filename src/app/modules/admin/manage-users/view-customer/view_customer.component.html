@@ -268,7 +268,7 @@
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
                                                         <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
-                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount}}</td>
+                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | number:'1.2'}}</td>
                                                         <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | number:'1.2'}}</td>
                                                         <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | number:'1.2'}}</td>
                                                         <td style="width: 15%"> On-going </td>
