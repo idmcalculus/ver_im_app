@@ -44,9 +44,8 @@ export class exportUserPoolComponent implements OnInit {
         this.isLoading = true;
         this.userService.getProfileDetails(this.email).subscribe(userx=> {
           this.user = userx.success.Data;
-         // console.log(this.user.user[0].first_name, 'Hello');
           this.isLoading = false;
-          
+
         });
 
       }
@@ -56,8 +55,6 @@ export class exportUserPoolComponent implements OnInit {
         this.investment_id = this.route.snapshot.paramMap.get("id");
         let poolId = Number(this.investment_id);
         this.userInvestment = investments.success.Data.filter((i)=> i.id==poolId);
-       // this.userInvestment=this.userInvestment.filter((i)=> i.id=poolId)
-        //console.log(this.userInvestment);
         this.selectedInvestment = 0;
         this.showDetails();
         this.isLoading = false;
@@ -69,24 +66,20 @@ export class exportUserPoolComponent implements OnInit {
       this.investmentService.getInvestments(false).subscribe(investments => {
         if (investments) {
           this.pools = investments.success.Data;
-         // console.log(this.pools);
-          
+
         }
         this.isLoading = false;
       });
     }
-    
+
    showDetails() {
      if ( this.selectedInvestment >= 0) {
          this.investmentInfo = this.userInvestment[this.selectedInvestment];
-         //console.log(this.investmentInfo);
          this.getUserDashBoard();
          this.selectedInvestment++;
-         //console.log(this.selectedInvestment);
          return this.selectedInvestment;
          } else {
          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-         //console.log(this.investmentInfo);
          }
    }
 
@@ -97,13 +90,10 @@ export class exportUserPoolComponent implements OnInit {
      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
        if (resp && resp.success) {
          this.dashBoardData = resp.success.Data;
-         //console.log(this.dashBoardData);
          this.dashboardInvestment.push(this.dashBoardData);
        } else {
          this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-         //console.log(this.dashBoardData);
        }
-       //console.log(this.dashboardInvestment);
        this.showDetails();
      });
    }
@@ -111,5 +101,5 @@ export class exportUserPoolComponent implements OnInit {
     Back(){
         this.location.back();
     }
-    
+
   }

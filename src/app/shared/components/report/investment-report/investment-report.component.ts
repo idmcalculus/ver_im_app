@@ -1,9 +1,9 @@
  import { Component, OnInit } from '@angular/core';
- import { ActivatedRoute, Router} from '@angular/router';
+ import { Router } from '@angular/router';
  import {InvestmentService} from '../../../../modules/investment/investment.service';
  import { Investment } from 'src/app/shared/models/Investment';
- import { AppAuthService } from 'src/app/core/auth/auth.service';
- import { UserService } from '../../../../modules/user/user.service';
+import { ReportService } from '../report.service';
+import { ExportData } from 'src/app/shared/models/ExportData';
 
  @Component({
   selector: 'app-pools',
@@ -13,10 +13,8 @@
 export class PoolreportComponent implements OnInit {
   isLoading = true;
   pools: Investment[] = [];
-  pool: Investment = {title: '', investment_amount: 0, };
-  userType: string;
-  categories: any [];
-  report = {};
+  pool: Investment = {title: '', investment_amount: 0 };
+  report = [];
   reportlog = [];
   searchValue = '';
   filteredPools = [];
@@ -25,32 +23,13 @@ export class PoolreportComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AppAuthService,
     private investmentService: InvestmentService,
-    private userService: UserService) {
-      const userpath = window.location.pathname;
-      if (userpath.includes('user')) {
-        this.userType = 'user';
-        this.isLoading = true;
-        this.authService.currentUser.subscribe(resp => {
-          if (resp) {
-            this.getUserPols(resp.email);
-          }
-          this.isLoading = false;
-        });
-      } else {
-        this.userType = 'admin';
-        this.getPools();
-        this.getCategories();
-      }
+    private reportService: ReportService,) {
 
-      this.getCategories();
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.report = resp.success.Data;
-          console.log(this.report);
           this.reportlog.push(this.report);
-          console.log(this.reportlog);
         }
         this.isLoading = false;
       });
@@ -69,33 +48,6 @@ export class PoolreportComponent implements OnInit {
     });
   }
 
-  getCategories() {
-    this.isLoading =  true;
-    this.investmentService.getCategories().subscribe(resp => {
-      if (resp && resp.success) {
-        this.categories = resp.success.Data;
-      }
-      this.isLoading = false;
-    });
-  }
-
-
-  getCategoryName(id: number) {
-    const res = this.categories.find( r => r.id === 21);
-    return res.category_name;
-  }
-
-  getUserPols(email) {
-    this.isLoading = true;
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
-        this.getCategories();
-      }
-      this.isLoading = false;
-    });
-  }
-
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
   }
@@ -109,13 +61,30 @@ export class PoolreportComponent implements OnInit {
             return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        //console.log(filtered);
         this.pools = filtered;
       }
   }
 
-  saveAsCSV(){}
+  saveAsCSV() {
+    if(this.report.length > 0){
+      const items: ExportData[] = [];
 
+      this.report.forEach(line => {
+        let reportDate = new Date();
+        let csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+          date_start: line.date_start,
+          date_end: line.date_end,
+          no_of_investments: line.no_of_investments,
+          no_of_slots: line.no_of_slots,
+          total_amount_invested: line.total_amount_invested,
+        }
+        items.push(csvLine);
+      });
+
+      this.reportService.exportToCsv('ProductsViewedReport.csv', items);
+    }
+}
   clearSearch() {
     this.searchValue = null;
     return this.getPools();

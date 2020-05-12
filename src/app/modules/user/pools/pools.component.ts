@@ -90,7 +90,7 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        console.log(this.pools);
+        //console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -195,9 +195,13 @@ export class PoolsComponent implements OnInit {
     this.pageValue = event;
   }
 
-  calculateEstimate(returns, inv) {
-    const estimate = (((returns * 12) - inv) / inv) * 100;
+  calculateEstimate(pool) {
+    const returns = pool.expected_return_amount;
+    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
+    const inv = pool.investment_amount;
+    const estimate = (((returns * dur)/inv) * 100);
     return Math.ceil(estimate);
+    
   }
 
   deleteUser() {}
