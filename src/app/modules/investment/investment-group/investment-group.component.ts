@@ -54,16 +54,15 @@ export class InvestmentGroupComponent implements OnInit {
     this.investmentService.getInvestmentGroup(data).subscribe(resp => {
       if (resp && resp.success) {
         const groups = resp.success.Data;
-        console.log(groups);
         const numOfGroup = groups.length;
-        this.investmentIds = resp.success.Data[numOfGroup - 1].investment_id;
+        this.investmentIds = groups[numOfGroup - 1].investment_id;
         this.idArray = this.investmentIds.split(',');
-        this.isLoading = false;
         this.idArray.forEach(id => {
           const foundInvestment = this.investments.find(investment => investment.id === Number(id));
           this.selectedPortfolios.push(foundInvestment);
         });
       }
+      this.isLoading = false;
     });
     this.investment.setValue(this.selectedPortfolios);
   }
@@ -147,11 +146,11 @@ export class InvestmentGroupComponent implements OnInit {
         this.group_id = investment.id;
         groupId.push(this.group_id);
       });
-      console.log(groupId);
-      this.investmentService.addInvestmentsToGroup(data, groupId).subscribe(result => {
-        if (result) {
+      this.investmentService.addInvestmentsToGroup(data, groupId.toString()).subscribe(async result => {
+        if (await result) {
+          this.toastrService.success('Investments successfully added to selected group');
           this.isLoading = false;
-          window.location.href = 'admin/investment-group';
+          window.location.reload();
         }
       });
     }

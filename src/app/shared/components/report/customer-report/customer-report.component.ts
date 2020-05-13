@@ -114,6 +114,8 @@ export class UserreportComponent implements OnInit {
           last_name: line.last_name,
           email: line.email,
           phone_number: line.phone_number,
+          no_of_investments: line.no_of_investments,
+          total_amount_invested: line.total_amount_invested
         }
         items.push(csvLine);
       });

@@ -68,7 +68,7 @@ export class ViewCustomerComponent implements OnInit {
             }
           });
 
-          $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
             const to = e.to;
             $('.investment-card').hide();
             let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
@@ -117,6 +117,7 @@ export class ViewCustomerComponent implements OnInit {
             this.dashboardInvestment.forEach(investment => {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
             });
+
           } else {
             this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
@@ -129,6 +130,7 @@ export class ViewCustomerComponent implements OnInit {
     updateUser(operation) {
         this.isLoading = true;
         if (operation === 'enable') {
+         if(confirm('Are you sure you want to activate user')){
           this.userService.activateUser(this.user).subscribe(resp => {
             if (resp && resp.success) {
                this.toastrService.success('User activated succesfully');
@@ -136,7 +138,8 @@ export class ViewCustomerComponent implements OnInit {
             }
             this.isLoading = false;
           });
-        } else {
+        }} else {
+          if(confirm('Are you sure you want to deactivate user')){
           this.userService.deactivateUser(this.user).subscribe(resp => {
             if (resp && resp.success) {
                this.toastrService.success('User deactivated succesfully');
@@ -144,7 +147,7 @@ export class ViewCustomerComponent implements OnInit {
             }
             this.isLoading = false;
           });
-        }
+        }}
       }
 
       cancelProfile() {
