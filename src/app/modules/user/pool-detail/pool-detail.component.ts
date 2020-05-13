@@ -70,6 +70,7 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
+          console.log(this.pool);
           this.reports = this.pool.report;
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
@@ -305,8 +306,7 @@ export class PoolDetailComponent implements OnInit {
     const returns = pool.investment.expected_return_amount;
     const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
     const inv = pool.investment.investment_amount;
-    const estimate = (((returns * dur)/inv) * 100);
+    const estimate = (((returns * dur) / inv) * 100);
     return Math.ceil(estimate);
-    
   }
 }
