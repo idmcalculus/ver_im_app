@@ -103,35 +103,19 @@ export class userPoolDetailComponent implements OnInit {
 
   
   getUserDashBoard() {
-    //console.log(this.loggedInUser.email);
     const userEmail = this.loggedInUser.email;
     const investmentId = this.poolId;
     
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
-        //console.log(this.dashBoardData);
         this.dashboardInvestment.push(this.dashBoardData);
         this.dashboardInvestment.forEach(investment => {
           investment.investment_report.forEach((report, i) => report.index = i + 1);
         });
-        console.log(this.dashboardInvestment, 'hello');
       } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         
-      }
-    });
-  }
-
-  updatePool(poolId: string) {
-    this.investmentService.getInvestment(poolId).subscribe(poolDetails => {
-      if (poolDetails && poolDetails.success) {
-        if (poolDetails.success.Data) {
-          this.pool = poolDetails.success.Data;
-        } else {
-          this.router.navigate(['./', {}]);
-        }
-      } else {
       }
     });
   }
@@ -142,7 +126,7 @@ export class userPoolDetailComponent implements OnInit {
     } else if (expected_return_period === "Monthly") {
         return 12;
     }
-}
+  }
 
   getCategories() {
     this.isLoading = true;
