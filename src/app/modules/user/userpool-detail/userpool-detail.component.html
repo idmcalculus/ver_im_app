@@ -46,42 +46,42 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool?.investment?.title}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool.title}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool?.investment?.max_num_of_slots}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool.max_num_of_slots}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Pricing</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Invested Amount</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Total Return</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="return" id="return"  value={{pool?.investment?.max_num_of_slots*pool?.investment?.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="return" id="return"  value={{noPool.number_of_pools*pool.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment?.expected_return_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.expected_return_amount}}>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,21 +90,21 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <input name="category" class="form-control form-control-sm" readonly value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                    <input name="category" class="form-control form-control-sm" readonly value={{getCategoryName(pool.category_id)}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.duration}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" value={{pool.duration}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Slots Purchased</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.duration" value={{pool?.investment?.num_of_pools_taken}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" value={{noPool.number_of_pools}}>
                                                 </div>
                                             </div>
     
@@ -118,7 +118,7 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback Frequency</h6>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control form-control-sm" name="period" (change)="calculateEstimate()" id="period" readonly value={{pool?.investment?.expected_return_period}}>
+                                                    <input class="form-control form-control-sm" name="period" id="period" readonly value={{pool.expected_return_period}}>
                                                 </div>
                                             </div>
 
@@ -126,7 +126,7 @@
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Status</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control form-control-sm" value={{getPoolstatus(pool)}} [(ngModel)]="returns">
+                                                    <input type="text" class="form-control form-control-sm" readonly value={{getPoolstatus(pool)}} [(ngModel)]="returns">
                                                 </div>
                                             </div>
                                         </div>
@@ -157,7 +157,7 @@
                                                             </div>
                                                             <div class="col-7 summary-font">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{ dashboardInvestment[0].investment_report.length }} of   {{ divisorFunc(pool?.investment?.expected_return_period) }}</a>
+                                                                <a class="pl-5">{{ dashboardInvestment[0].investment_report.length }} of   {{ divisorFunc(pool.expected_return_period) }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5 text-success">{{pool?.investment?.expected_return_amount * dashboardInvestment[0].investment_report.length }}</a>
+                                                                <a class="pl-5 text-success">{{pool.expected_return_amount * dashboardInvestment[0].investment_report.length }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,7 +205,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5 text-danger">{{ ((((pool?.investment?.investment_amount *dashboardInvestment[0].number_of_pools) * (calculateEstimate(pool?.investment?.expected_return_amount,pool?.investment?.investment_amount, pool?.investment?.expected_return_period)))/100)) - (pool?.investment?.expected_return_amount * dashboardInvestment[0].investment_report.length) }}</a>
+                                                                <a class="pl-5 text-danger">{{ ((((pool.investment_amount *dashboardInvestment[0].number_of_pools) * (calculateamount(pool.expected_return_amount,pool.investment_amount, pool.expected_return_period)))/100)) - (pool.expected_return_amount * dashboardInvestment[0].investment_report.length) }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -216,7 +216,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{pool?.investment?.investment_close_date}}</a>
+                                                                <a class="pl-5">{{pool.investment_close_date}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -248,17 +248,17 @@
                                                     <th>Date Paid</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody >
-                                                    <tr  *ngFor="let report of investments.investment_report| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
-                                                        <td style="width: 5%">{{(i+1) + (p2 - 1) * 5}}</td>
-                                                        <td style="width: 15%">{{report.title}}</td>
-                                                        <td style="width: 15%"></td>
-                                                        <td style="width: 15%">{{report.returned_amount}}</td>
-                                                        <td style="width: 15%">{{report.returned_amount * ((i+1) + (p2 - 1) * 5 ) | number:'1.1-2'}}</td>
-                                                        <td style="width: 10%"></td>
+                                                <tbody>
+                                                    <tr  *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
+                                                        <td style="width: 5%">{{report?.index}}</td>
+                                                        <td style="width: 15%">{{report?.title}}</td>
+                                                        <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
+                                                        <td style="width: 15%">{{report?.returned_amount}}</td>
+                                                        <td style="width: 15%">{{report?.returned_amount * report?.index | number:'1.2'}}</td>
+                                                        <td style="width: 10%">{{investments?.investment[0]?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</td>
                                                         <td style="width: 15%"> On-going </td>
-                                                        <td style="width: 10%">{{report.created_at | date :  "dd.MM.y"}}</td>
-                                                </tr>
+                                                        <td style="width: 10%">{{report?.created_at | date :  "dd.MM.y"}}</td>
+                                                    </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
@@ -281,7 +281,7 @@
                                                
                                                 
                                             </table>
-                                            <div *ngIf="dashboardInvestment.length == 0" >
+                                            <div *ngIf="dashboardInvestment?.length == 0" >
                                                 <p class="displayStatus">"No records found."</p>
                                            </div>
                                             

@@ -54,10 +54,6 @@ td {
     border-color: #221F72
 }
 
-.card {
-	height: 300px;
-}
-
 .col-md-12 {
 	display: flex;
 	flex-flow: column;
@@ -92,57 +88,18 @@ td {
 	}
 }
 
-.category-header {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    border-style: solid;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-color: #221f72;
-    border-width: 1.5px;
-    margin: 0px;
-    padding: 0px;
-}
-
-.category-header p {
-    color: #221f72;
-    padding: 0;
-    margin: 0;
-    padding-right: 4px;
-}
-
-.category-body .row1 {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    border-style: solid;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-width: 0.5px;
-    border-bottom-color: #221F72;
-    margin: 0px;
-    padding: 0px;
-}
-
-.category-body .row1 p{
-    display: inline-flex;
-    padding: 0;
-}
-
-.category-name {
-    width: 10%;
-}
-
-.category-name1 {
-    width: 20%;
-}
-
-.category-body .row1 p{
-    padding: 0;
-}
+.input-control {
+    display: block;
+    width: 100%;
+    padding: .5rem .5rem;
+    color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 2px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
 
 .displayStatus {
     color: red;
