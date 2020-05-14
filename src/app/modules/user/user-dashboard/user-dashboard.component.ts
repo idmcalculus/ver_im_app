@@ -5,8 +5,8 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
-import TimeAgo from 'javascript-time-ago'
-import en from 'javascript-time-ago/locale/en'
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
 @Component({
@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   dashboardInvestment: any = [];
   userActivity: any = [];
   usersInvestments: [Investment];
-  usersInvestment: any =[];
+  usersInvestment: any = [];
   pools: any = [];
   poolGroup: any = [];
   filteredYearData: Investment[] = [];
@@ -38,72 +38,82 @@ export class UserDashboardComponent implements OnInit {
   totalYieldedAmount = 0;
   order = "num_of_pools_taken";
   ascending = false;
-
-
+  investmentIds: string;
+  idArray: any[];
+  groupInvestments: any[] = [];
 
   constructor(private userService: UserService,
-             private adminService: AdminService,
-             private investmentService: InvestmentService,
-             private filterby: FilterTablesPipe,
-             private authService: AppAuthService)
-
-              {}
+              private adminService: AdminService,
+              private investmentService: InvestmentService,
+              private filterby: FilterTablesPipe,
+              private authService: AppAuthService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
         if (resp) {
-        this.overiddenUser = resp;
-        this.userService.getusersInvestment(resp.email).subscribe(res => {
-            if (res && res.success) {
-            this.usersInvestment = res.success.Data;
-            this.usersInvestments = this.usersInvestment.filter((res)=>res.is_investment_started === 1);
-            this.selectedInvestment = 0;
-            console.log(this.usersInvestments);
+          this.overiddenUser = resp;
+          this.userService.getusersInvestment(resp.email).subscribe(res => {
+              if (res && res.success) {
+              this.usersInvestment = res.success.Data;
+              this.usersInvestments = this.usersInvestment.filter(res => res.is_investment_started === 1);
+              this.selectedInvestment = 0;
 
-            this.showDetails();
-            } else {
-                this.isLoading = false;
-            }
-          });
+              this.showDetails();
+              }
+              this.isLoading = false;
+            });
         }
     });
 
     this.adminService.getDashBoardData().subscribe(resp => {
         if (resp && resp.success) {
           this.allDashBoardData = resp.success.Data;
-          this.userActivity = this.allDashBoardData.fetch_activities.filter((res)=>res.email=== this.overiddenUser.email);
+          this.userActivity = this.allDashBoardData.fetch_activities.filter(res => res.email === this.overiddenUser.email);
         }
+        this.isLoading = false;
       });
 
-     this.investmentService.getInvestments(false).subscribe(investments => {
+    this.investmentService.getInvestments(false).subscribe(investments => {
         if (investments) {
             this.pools = investments.success.Data;
             this.poolGroup = this.filterby.transform(this.pools, this.order, this.ascending);
 
             const seventhDay = new Date();
             seventhDay.setDate(seventhDay.getDate() - 7);
-            this.filteredDayData = this.poolGroup.filter((d) => {
-            return new Date(d.created_at).getTime() >= seventhDay.getTime();
+            this.filteredDayData = this.poolGroup.filter(d => {
+              return new Date(d.created_at.split(' ')[0]).getTime() >= seventhDay.getTime();
             });
 
             const Month = new Date();
             Month.setDate(Month.getDate() - 31);
             this.filteredMonthData = this.poolGroup.filter((d) => {
-            return new Date(d.created_at).getTime() >= Month.getTime();
+            return new Date(d.created_at.split(' ')[0]).getTime() >= Month.getTime();
             });
 
             const Year = new Date();
             Year.setDate(Year.getDate() - 365);
             this.filteredYearData = this.poolGroup.filter((d) => {
-            return new Date(d.created_at).getTime() >= Year.getTime();
+            return new Date(d.created_at.split(' ')[0]).getTime() >= Year.getTime();
             });
 
-            console.log(this.filteredYearData);
-
-      }else {
+      } else {
            console.log('No groups yet');
       }
+        this.isLoading = false;
+    });
+
+    this.investmentService.getInvestmentGroup({group_name: 'Featured Investments'}).subscribe(async resp => {
+      if (resp && resp.success) {
+        const groups = await resp.success.Data;
+        this.investmentIds = groups[groups.length - 1].investment_id;
+        this.idArray = this.investmentIds.split(',');
+        this.idArray.forEach(async id => {
+          const foundInvestment = await this.pools.find(investment => investment.id === Number(id));
+          this.groupInvestments.push(foundInvestment);
+        });
+      }
+      this.isLoading = false;
     });
   }
 
@@ -121,6 +131,7 @@ export class UserDashboardComponent implements OnInit {
     }
 
   getUserDashBoard() {
+    this.isLoading = false;
     const userEmail = this.overiddenUser.email;
     const investmentId = this.investmentInfo.id;
 
@@ -132,6 +143,7 @@ export class UserDashboardComponent implements OnInit {
           this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
         }
         this.showDetails();
+        this.isLoading = false;
     });
   }
 
