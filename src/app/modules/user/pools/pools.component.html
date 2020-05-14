@@ -30,7 +30,7 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (input)="filterTable('title', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (keyup)="filterTable('title', $event)"
                                     (blur)="filterTable('title', $event)">
                                 </div>
                             </div>
@@ -104,15 +104,15 @@
 
                                             <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                                 <td class="mr-3"><input type="checkbox"></td>
-                                                <td class="mr-3">{{pool.id}}</td>
-                                                <td class="">{{pool.title}}</td>
-                                                <td class="">{{getCategoryName(pool.category_id)}}</td>
-                                                <td class="">{{pool.max_num_of_slots}}({{pool.max_num_of_slots - pool.num_of_pools_taken}} left)</td>
-                                                <td class="">{{pool.duration}} Months</td>
+                                                <td class="mr-3">{{pool?.id}}</td>
+                                                <td class="">{{pool?.title}}</td>
+                                                <td class="">{{getCategoryName(pool?.category_id)}}</td>
+                                                <td class="">{{pool?.max_num_of_slots}}({{pool?.max_num_of_slots - pool?.num_of_pools_taken}} left)</td>
+                                                <td class="">{{pool?.duration}} Months</td>
                                                 <td class="">{{calculateEstimate(pool)}}%</td>
-                                                <td class="">{{pool.expected_return_period}}</td>
-                                                <td class="">{{pool.investment_amount}}</td>
-                                                <td class="" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <td class="">{{pool?.expected_return_period}}</td>
+                                                <td class="">{{pool?.investment_amount}}</td>
+                                                <td class="" style="color: green" *ngIf="pool?.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>
                                                     <td class="" style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
