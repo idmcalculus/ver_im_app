@@ -30,15 +30,22 @@
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Investment Title</label>
-                                    <input type="text" class="input-control shadow" placeholder="&nbsp; Investment Title" name="search" (keyup)="filterTable('title', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Investment Title" name="search" (input)="filterTable('title', $event)"
                                     (blur)="filterTable('title', $event)">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
-                                    <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="Category" name="category" (keyup)="filterCategory('category_name', $event)"
-                                    (blur)="filterCategory('category_name', $event)">
+                                    <mat-label class="h7 mb-2" for="category">Category</mat-label>
+                                    <mat-select id="category" class="form-control" placeholder="Category" name="category" [formControl]="Category">
+                                        <mat-select-trigger>
+                                            {{Category.value ? Category.value : ''}}
+                                        </mat-select-trigger>
+                                        <mat-option value="All" (click)="filterCategory('category_name', Category.value)">All</mat-option>
+                                        <mat-option [value]="category.category_name" (click)="filterCategory('category_name', Category.value)" *ngFor="let category of categories">
+                                            {{category.category_name}}
+                                        </mat-option>
+                                    </mat-select>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
@@ -57,11 +64,12 @@
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
-                                    <mat-label class="h7 mb-2" for="status" (click)="clearFilter(status.value)">Status</mat-label>
-                                    <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status" (click)="clearFilter(status.value)">
+                                    <mat-label class="h7 mb-2" for="status">Status</mat-label>
+                                    <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status">
                                         <mat-select-trigger>
-                                            {{status.value ? status.value : 'Status'}}
+                                            {{status.value ? status.value : ''}}
                                         </mat-select-trigger>
+                                        <mat-option value="All" (click)="filterStatus('is_investment_started', status.value)">All</mat-option>
                                         <mat-option value="Active" (click)="filterStatus('is_investment_started', status.value)">Active</mat-option>
                                         <mat-option value="InActive" (click)="filterStatus('is_investment_started', status.value)">InActive</mat-option>
                                     </mat-select>
