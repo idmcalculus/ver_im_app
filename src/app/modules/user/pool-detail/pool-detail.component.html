@@ -329,7 +329,7 @@
                                                                 <a>Last Payment</a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a>{{ pool?.report[0]?.created_at ? (pool?.report[0]?.created_at | date :  "dd.MM.y") : 'N/A' }}</a>
+                                                                <a>{{ pool?.report[0]?.created_at ? (pool?.report[0]?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -339,7 +339,7 @@
                                                                 <a>Next Payment</a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a>{{ pool?.report[0]?.created_at ? (addMonth(pool?.report[0]?.created_at , 1)  | date:  "dd.MM.y") : 'N/A' }}</a>
+                                                                <a>{{ pool?.report[0]?.created_at ? (addMonth(pool?.report[0]?.created_at.split(' ')[0] , 1)  | date:  "dd.MM.y") : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -379,7 +379,7 @@
                                         <p class="yieldedAmt">{{report?.returned_amount * report?.index | number:'1.2'}}</p>
                                         <p class="balance">{{pool?.investment?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</p>
                                         <p class="status">On-going</p>
-                                        <p class="datePaid">{{ report?.created_at ? (report?.created_at | date :  "dd.MM.y") : 'N/A' }}</p>
+                                        <p class="datePaid">{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</p>
                                       </div>
                                       <div  class="col-12 d-flex flex-row mt-3">
                                         <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>

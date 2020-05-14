@@ -5,6 +5,7 @@
 body{
     font-family: 'roboto';
 }
+
 .card-body {
     padding-top: 0.5rem;
     -webkit-box-flex: 1;
@@ -227,6 +228,14 @@ body{
     }
 }
 
+.investmentPerf {
+    min-height: 450px;
+}
+
+.featInvestment {
+    min-height: 572.5px;
+}
+
 .latest-update-card {
 
     .card-footer{
@@ -395,3 +404,4 @@ body{
 .label-sub{
     color: '#bcbdc2'
 }
+
