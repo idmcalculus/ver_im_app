@@ -129,7 +129,7 @@ export class UserreportComponent implements OnInit {
     }
   }
 
-  clearFilter(value) {
+  clearFilter() {
       this.dateStart = '';
       this.dateEnd = '';
       this.status.setValue('');
