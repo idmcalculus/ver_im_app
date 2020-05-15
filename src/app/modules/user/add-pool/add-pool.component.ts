@@ -12,7 +12,7 @@ import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 })
 export class AddPoolComponent implements OnInit {
   isLoading: boolean;
-  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: '',estimated_percentage_profit:''};
   buttonText = 'Add';
   image:any;
   roi: string;
@@ -58,6 +58,7 @@ export class AddPoolComponent implements OnInit {
       this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
         if (resp) {
           this.pool.investment_image = resp;
+          this.pool.estimated_percentage_profit= this.roi;
           this.investmentService.addInvestment(this.pool).subscribe(resp => {
             if (resp && resp.success) {
               // alert(resp.success.Message);
