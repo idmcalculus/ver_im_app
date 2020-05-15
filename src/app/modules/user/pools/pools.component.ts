@@ -32,6 +32,8 @@ export class PoolsComponent implements OnInit {
   p2 = 1;
   res: Category;
   status = new FormControl();
+  Category = new FormControl();
+  investments: Investment[] = [];
 
   constructor(
     private router: Router,
@@ -90,7 +92,8 @@ export class PoolsComponent implements OnInit {
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
-        //console.log(this.pools);
+        this.investments = investments.success.Data;
+        // console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -137,71 +140,43 @@ export class PoolsComponent implements OnInit {
   }
 
   filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
-      return this.getPools();
-    } else {
-        const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== undefined && pool[filterType] !== null) {
-            const filterate = pool[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase());
-          }
-        });
-        this.pools = filtered;
+    const value = filterValue.target.value.toString().toLowerCase();
+    const filtered = this.investments.filter(investment => {
+      const filterate = investment[filterType].toString().toLowerCase();
+      if (filterate.indexOf(value) >= 0) {
+        return investment;
       }
+    });
+    this.pools = filtered;
   }
 
   filterCategory(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    const CatPool: any = [];
-    if (!value || value === null) {
-      return this.getPools();
-    } else {
-      const filteredCat = this.categories.filter(category => {
-        if (category[filterType] !== null) {
-          return category[filterType].toLowerCase().includes(value.toLowerCase());
-        }
-      });
-      filteredCat.forEach(cat => {
-        const filteredCatPool = this.pools.filter(eachpool => cat.id === eachpool.category_id);
-        CatPool.push(filteredCatPool);
-      });
-      this.pools = [].concat.apply([], CatPool);
+      if (filterValue === 'All') {
+        this.pools = this.investments;
+      } else {
+        const CatPool: any = [];
+        const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+        filteredCat.forEach(cat => {
+          const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
+          CatPool.push(filteredCatPool);
+        });
+        this.pools = [].concat.apply([], CatPool);
       }
   }
 
   filterStatus(filterType, filterValue): any {
-    const value = filterValue === 'Active' ? 1 :
-    filterValue === 'InActive' ? 0 : null;
-    if (value === null) {
-      return this.getPools();
+    if (filterValue === 'All') {
+      this.pools = this.investments;
     } else {
-        const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== undefined && pool[filterType] !== null) {
-            return pool[filterType] === value;
-          }
-        });
-        this.pools = filtered;
-      }
-  }
-
-  clearFilter(value) {
-    if (value !== null) {
-    return this.getPools();
+      const value = filterValue === 'Active' ? 1 :
+      filterValue === 'InActive' ? 0 : '';
+      const filtered = this.investments.filter(pool => pool[filterType] === value);
+      this.pools = filtered;
     }
   }
 
   setItemsPerPage(event) {
     this.pageValue = event;
-  }
-
-  calculateEstimate(pool) {
-    const returns = pool.expected_return_amount;
-    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
-    const inv = pool.investment_amount;
-    const estimate = (((returns * dur)/inv) * 100);
-    return Math.ceil(estimate);
-    
   }
 
   deleteUser() {}

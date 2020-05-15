@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders } from '@angular/common/http';
+import decode from 'jwt-decode';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({ providedIn: 'root' })
 export class AppAuthService {
@@ -14,7 +16,6 @@ export class AppAuthService {
     private inProfileView: BehaviorSubject<boolean>;
     private inHomePage: BehaviorSubject<boolean>;
     private managePlanOperation: BehaviorSubject<Investment>;
-
     public currentUser: Observable<User>;
     public profileViewIsActive: Observable<boolean>;
     public homeViewIsActive: Observable<boolean>;
@@ -70,22 +71,29 @@ export class AppAuthService {
         });
     }
 
+
     public get currentUserValue(): any {
         const userUrl = window.location.pathname;
         if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
-
             this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
             return false;
         } else {
-            // var actualUser = localStorage.getItem('userType').toLowerCase();
-            // if(!userUrl.includes(actualUser)){
-            //     alert('Sorry You are not authorized to view this page')//unauthorized
-            //     window.location.href = `${actualUser}`;
-            //     return false
-            // }else{
-            return true;
-            // }
+            const token = localStorage.getItem('token');
+            const tokenPayload = decode(token);
+            console.log(tokenPayload)
+            var actualUser = localStorage.getItem('userType').toLowerCase();
+            if(!userUrl.includes(actualUser)){
+                alert('Sorry You are not authorized to view this page')//unauthorized
+                window.location.href = `${actualUser}`;
+                return false
+            }else if(tokenPayload.exp < new Date().getTime()/1000){
+                alert('Sorry Your session as expired, kindly log in again')//unauthorized
+                window.location.href = `/`;
+                return false
+            }else{
+                return true;
+            }
 
         }
     }

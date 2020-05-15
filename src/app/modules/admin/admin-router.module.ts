@@ -38,11 +38,13 @@ import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-g
 import { ViewUsersComponent } from './user-group/view-users/view-users.component';
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
-
+import { AuthGuardService as AuthGuard } from '../../auth/auth-guard.service';
 
 
 
 const userRoutes: Routes = [
+  { path: '', component: AdminComponent },
+
   {
     path: 'admin',
     component: AdminComponent, canActivate: [RouterGaurdService],
@@ -114,7 +116,8 @@ const userRoutes: Routes = [
         ]
       }
     ]
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

@@ -131,7 +131,6 @@ export class UserDashboardComponent implements OnInit {
     }
 
   getUserDashBoard() {
-    this.isLoading = false;
     const userEmail = this.overiddenUser.email;
     const investmentId = this.investmentInfo.id;
 
