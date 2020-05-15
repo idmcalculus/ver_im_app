@@ -90,7 +90,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <select name="category" class="input-control" value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                    <select name="category" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " value={{getCategoryName(pool?.investment?.category_id)}}>
                                                         <option *ngFor="let category of categories;" [ngValue]="category.id">{{category.category_name}}</option>
                                                     </select>
                                                 </div>
@@ -164,7 +164,7 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 "  name="roi" id="roi" value="{{calculateEstimate(pool)}}">
+                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " name="roi" id="roi">
                                                 </div>
                                             </div>
 
