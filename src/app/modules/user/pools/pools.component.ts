@@ -179,14 +179,5 @@ export class PoolsComponent implements OnInit {
     this.pageValue = event;
   }
 
-  calculateEstimate(pool) {
-    const returns = pool.expected_return_amount;
-    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
-    const inv = pool.investment_amount;
-    const estimate = (((returns * dur) / inv) * 100);
-    return Math.ceil(estimate);
-
-  }
-
   deleteUser() {}
 }

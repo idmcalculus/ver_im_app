@@ -130,7 +130,7 @@
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i]?.number_of_pools }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information spacing">  {{calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)}}%</span>
+                                <span  class="information spacing">  {{investments?.estimated_percentage_profit}}%</span>
                                 <span class="information">Expected Returns: </span>
                                 <span  class="information">  {{ (investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) + (((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)))/100)}}</span>
                             </span>

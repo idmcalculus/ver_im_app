@@ -19,6 +19,7 @@ usrSession: UserSession;
 
         const currentUser = this.authService.currentUserValue;
         if (currentUser) {
+          console.log('hello',currentUser)
             return true;
         }
         // else{

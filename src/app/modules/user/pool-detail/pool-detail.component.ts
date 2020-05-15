@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pool-detail.component.scss']
 })
 export class PoolDetailComponent implements OnInit {
-  pool: Investment = {};
+  pool: any;
   poolId = 0;
   url: any;
   res: Category;
@@ -25,13 +25,14 @@ export class PoolDetailComponent implements OnInit {
   modaltitle = 'Update Plan';
   modalButtonTitle = '';
   modalData: Report = {};
+  buttonText = 'Update'
   callBack: any;
   isLoading = true;
   selectedUser: User;
   loggedInUser: User;
   userSubscription: Subscription;
   image: any;
-  roi: number;
+  roi: string;
   returns: string;
   pageValue = 5;
   p2 = 1;
@@ -70,6 +71,7 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
+          this.roi= this.pool.investment.estimated_percentage_profit;
           console.log(this.pool);
           this.reports = this.pool.report;
           this.reports.forEach((report: any, i) => report.index = i + 1);
@@ -155,15 +157,21 @@ export class PoolDetailComponent implements OnInit {
 
   updateInvestment() {
     this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
+      this.buttonText='Updating...'
       if (resp) {
-        this.pool.investment_image = resp;
-        this.investmentService.updateInvestment(this.pool).subscribe(resp => {
+        this.pool.investment.investment_image = resp;
+        this.pool.investment.estimated_percentage_profit= this.roi;
+        this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
           if (resp && resp.success) {
             // alert(resp.success.Message);
             window.location.href = 'admin/pools';
           }
+          this.buttonText='Update'
         });
+        this.buttonText='Update'
       }
+      this.buttonText='Update'
+
     });
   }
 
@@ -302,11 +310,29 @@ export class PoolDetailComponent implements OnInit {
   //   }
   // }
 
-  calculateEstimate(pool) {
-    const returns = pool.investment.expected_return_amount;
-    const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
-    const inv = pool.investment.investment_amount;
-    const estimate = (((returns * dur) / inv) * 100);
-    return Math.ceil(estimate);
+  
+  divisorFunc(expected_return_period) {
+    if (expected_return_period === 'Weekly') {
+      return 48;
+    } else if (expected_return_period === 'Monthly') {
+      return 12;
+    }
   }
+
+
+  calculateEstimate() {
+    if(this.pool.investment.investment_amount !=0 && this.roi !='' && this.pool.investment.expected_return_period !=''){
+      const cost = this.pool.investment.investment_amount;
+      const investment = parseInt(this.roi) /100;
+      const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
+
+      const estimate = (cost * investment) / divisor;
+      if(!estimate){
+        //do nothing
+      }else{
+      this.pool.investment.expected_return_amount = estimate.toFixed(2);
+      }
+    }
+  }
+
 }
