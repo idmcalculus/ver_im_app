@@ -23,29 +23,25 @@
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable('created_at',  $event)"
-                                    (blur)="filterTable('created_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable2('created_at',  $event)"
-                                    (blur)="filterTable2('created_at',$event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable('updated_at', $event)"
-                                    (blur)="filterTable('updated_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable2('updated_at', $event)"
-                                    (blur)="filterTable2('updated_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate2(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
