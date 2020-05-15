@@ -154,7 +154,7 @@
                                                 <img class="img img-responsive" style="width:150px;"  src="{{investment?.investment_image}}" alt="farm-image">
                                             </div>
                                             <div class="spectre my-2">N{{investment?.investment_amount}} per slot</div>
-                                            <div class="spectre my-2">Return: {{investment?.estimated_percentage_profit}} profit</div>
+                                            <div class="spectre my-2">Return: {{calculateEstimate(investment?.expected_return_amount, investment?.investment_amount, investment?.expected_return_period)}}% profit</div>
                                         </div>
                                     </div>
                                 </div>

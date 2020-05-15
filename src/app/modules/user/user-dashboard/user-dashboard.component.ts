@@ -131,14 +131,13 @@ export class UserDashboardComponent implements OnInit {
     }
 
   getUserDashBoard() {
-    this.isLoading = true;
     const userEmail = this.overiddenUser.email;
     const investmentId = this.investmentInfo.id;
 
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
         if (resp && resp.success) {
           this.dashBoardData = resp.success.Data;
-          this.dashboardInvestment.push(this.dashBoardData)
+          this.dashboardInvestment.push(this.dashBoardData);
         } else {
           this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
         }
@@ -150,8 +149,7 @@ export class UserDashboardComponent implements OnInit {
   calculateEstimate(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
-}
-
+  }
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {

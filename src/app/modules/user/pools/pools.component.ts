@@ -1,9 +1,8 @@
  import { Component, OnInit } from '@angular/core';
- import { ActivatedRoute, Router} from '@angular/router';
- import {InvestmentService} from '../../investment/investment.service';
+ import { Router} from '@angular/router';
+ import { InvestmentService } from '../../investment/investment.service';
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
- import { UserService } from '../user.service';
  import { Category } from 'src/app/shared/models/Category';
  import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
  import { FormControl } from '@angular/forms';
@@ -38,8 +37,7 @@ export class PoolsComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AppAuthService,
-    private investmentService: InvestmentService,
-    private userService: UserService) {
+    private investmentService: InvestmentService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
         this.userType = 'user';
@@ -57,7 +55,6 @@ export class PoolsComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool, ];
       this.getCheckedPooList();
-
   }
 
   ngOnInit() {
@@ -185,7 +182,6 @@ export class PoolsComponent implements OnInit {
     const inv = pool.investment_amount;
     const estimate = (((returns * dur) / inv) * 100);
     return Math.ceil(estimate);
-
   }
 
   deleteUser() {}
