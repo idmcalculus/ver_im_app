@@ -125,18 +125,18 @@
                     </div>
 
                     <div *ngIf="!isLoading" class="row mb-4">
-                        <div *ngIf="userInvestment?.length > 0" class="col-md-7 col-sm-7 col-xs-12 carousel-inner">
+                        <div *ngIf="userInvestment" class="col-md-7 col-sm-7 col-xs-12">
                             <span [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="card flex-row investment-card" *ngFor="let investments of userInvestment; let i = index">
                                 <span class="information">Principal: </span>
                                 <span  class="information spacing">  {{ investments?.investment_amount * dashboardInvestment[i]?.number_of_pools }}</span>
                                 <span class="information">ROI: </span>
-                                <span  class="information spacing">  {{calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)}}%</span>
+                                <span  class="information spacing">  {{investments?.estimated_percentage_profit}}%</span>
                                 <span class="information">Expected Returns: </span>
                                 <span  class="information">  {{ (investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) + (((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount,investments?.expected_return_period)))/100)}}</span>
                             </span>
                         </div>
-                        <div *ngIf="userInvestment?.length ==0" class="col-md-7 col-sm-7 col-xs-12">
-                            <p class='displayStatus'>"No Current Investment Found."</p>
+                        <div *ngIf="!userInvestment" class="col-md-7 col-sm-7 col-xs-12">
+                            <p class='displayStatus investment-card2 py-3'>"No Current Investment Found."</p>
                         </div>
 
                         <div class="col-sm-5 col-md-5 d-flex flex-row">
@@ -220,7 +220,7 @@
                                        </div>
 
                                     </div>
-                                    <div *ngIf="userInvestment?.length == 0" >
+                                    <div *ngIf="!userInvestment" >
                                         <p class='displayStatus'>"No Current Investment Found."</p>
                                    </div>
                                     <div *ngIf= "userInvestment?.length > 0" class="container" >
@@ -263,7 +263,7 @@
                                                 <th style="width: 10%">Date Paid</th>
                                             </tr>
                                             </thead>
-                                            <tbody class="carousel-inner" [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
+                                            <tbody [ngStyle]="{'display': (i == 0) ? 'contents' : 'none'}" *ngFor="let investments of dashboardInvestment;index as i">
                                                 <tr  *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
