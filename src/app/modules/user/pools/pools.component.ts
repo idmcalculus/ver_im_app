@@ -97,6 +97,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategories() {
+    this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
@@ -106,7 +107,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    if (id) {
+    if (this.categories && id) {
     this.res = this.categories.find(r => r.id === id);
     return this.res.category_name;
     } else {
@@ -115,11 +116,13 @@ export class PoolsComponent implements OnInit {
   }
 
   getUserPols(email) {
+    this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         this.getCategories();
       }
+      this.isLoading = false;
     });
   }
 
@@ -165,8 +168,7 @@ export class PoolsComponent implements OnInit {
     if (filterValue === 'All') {
       this.pools = this.investments;
     } else {
-      const value = filterValue === 'Active' ? 1 :
-      filterValue === 'InActive' ? 0 : '';
+      const value = filterValue === 'Active' ? 1 : 0 ;
       const filtered = this.investments.filter(pool => pool[filterType] === value);
       this.pools = filtered;
     }

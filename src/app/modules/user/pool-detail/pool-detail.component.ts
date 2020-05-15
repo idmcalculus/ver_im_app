@@ -167,14 +167,18 @@ export class PoolDetailComponent implements OnInit {
     });
   }
 
-  addMonth(date: Date, month: number) {
+  addMonth(date: Date) {
     const newDate = new Date(date);
     const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() === 11) {
-        newDate.setDate(0);
+    const m = newDate.getMonth();
+    if (this.pool) {
+      return this.pool.investment.expected_return_period === 'Monthly' ? (
+        newDate.setMonth(m + 1),
+        newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+      ) : (
+        newDate.setDate(d + 7)
+      );
     }
-    return newDate;
   }
 
   deleteReport(report) {
@@ -207,7 +211,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
   addUser(operation, modalData) {
-    if (operation == 'create') {
+    if (operation === 'create') {
       this.modalData = {investment_id: this.poolId};
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';

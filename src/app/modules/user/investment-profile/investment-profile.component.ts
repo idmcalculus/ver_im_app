@@ -118,15 +118,17 @@ export class InvestmentProfileComponent implements OnInit {
     });
   }
 
-  addMonth(date: Date, month: number) {
+  addMonth(date: Date) {
     const newDate = new Date(date);
     const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() === 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
-}
+    const m = newDate.getMonth();
+    return this.pool.investment.expected_return_period === 'Monthly' ? (
+      newDate.setMonth(m + 1),
+      newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+    ) : (
+      newDate.setDate(d + 7)
+    );
+  }
 
   goBack() {
     this.location.back();
@@ -135,6 +137,6 @@ export class InvestmentProfileComponent implements OnInit {
   private loadScripts() {
     this.dynamicScriptLoader.load('p-coded', 'v-layout',
     'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
-}
+  }
 
 }
