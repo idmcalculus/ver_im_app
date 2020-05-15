@@ -21,6 +21,8 @@ export class UseractivityComponent implements OnInit {
   filteredUserActivity = [];
   isLoading= true;
   User = false;
+  dateEnd: '';
+  dateStart: '';
 
   constructor(
     private adminService: AdminService,
@@ -87,7 +89,39 @@ export class UseractivityComponent implements OnInit {
     }
   }
 
+  filterDate(dateStart, dateEnd): any {
+    let filterStart = dateStart;
+    let filterEnd = dateEnd;
+    if( filterStart && filterEnd){
+        const selectedActivity = this.filteredAdminActivity.filter(range => {
+            if ( range.created_at > filterStart && range.created_at < filterEnd)
+              return range;
+        });
+        this.filteredAdminActivity = selectedActivity;
+    } else {
+        return this.filteredAdminActivity;
+
+    }
+  }
+
+  filterDate2(dateStart, dateEnd): any {
+    let filterStart = dateStart;
+    let filterEnd = dateEnd;
+    if( filterStart && filterEnd){
+        const selectedActivity = this.filteredUserActivity.filter(range => {
+            if ( range.created_at > filterStart && range.created_at < filterEnd)
+              return range;
+        });
+        this.filteredUserActivity = selectedActivity;
+    } else {
+        return this.filteredUserActivity;
+
+    }
+  }
+
   clearSearch() {
+    this.dateStart = '';
+    this.dateEnd = '';
     this.searchValue = null;
     return this.getDashBoardData();
   }

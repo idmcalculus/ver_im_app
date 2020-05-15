@@ -5,6 +5,7 @@ import { UserService } from '../../../user/user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
 @Component({
   selector: 'app-manage-users',
@@ -18,24 +19,29 @@ export class SearchCustomerComponent implements OnInit {
   pageValue = 5;
   users: User [];
   user: User = {email: ''};
+  data: User [];
   selectedDelUser: User;
   checkedUser = [];
   isLoading = true;
   selectedAll;
   p2 = 1;
+  order = "last_name";
+  ascending = true;
 
   constructor(
      private userService: UserService,
      private adminService: AdminService,
      private dynamicScrLoader: DynamicScriptLoaderService,
      private toastrService: ToastrService,
+     private filterby: FilterTablesPipe,
      private router: Router
      ) { }
 
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
-        this.users = resp.success.Data;
+        this.data = resp.success.Data;
+        this.users = this.filterby.transform(this.data, this.order, this.ascending);
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
