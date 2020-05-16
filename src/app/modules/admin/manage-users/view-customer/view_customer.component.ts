@@ -44,48 +44,44 @@ export class ViewCustomerComponent implements OnInit {
        }
 
     ngOnInit() {
-      this.isLoading = true;
       this.user.email = this.route.snapshot.paramMap.get('email');
       this.userService.getProfileDetails(this.user.email).subscribe(resp => {
         if (resp && resp.success) {
         this.userData = resp.success.Data.user;
         this.user = this.userData[0];
         }
-       // this.isLoading = false;
       });
 
-        this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
-            if(investments.success.Data !== 0){
+      this.investmentService.getUserInvestments(this.user.email).subscribe(investments=>{
+            if(investments.success.Data != 0){
               this.userInvestment = investments.success.Data;
-
               this.selectedInvestment = 0;
               this.showDetails();
               this.FilteredInvestment = this.userInvestment.filter((investment) => investment.is_investment_ended === 1);
-
+            } else {
+              this.isLoading = false;
             }
-            else {
-                this.isLoading = true;
-            }
-          });
+      });
 
       $('#myCarousel').on('slide.bs.carousel', function (e:any) {
-            const to = e.to;
-            $('.investment-card').hide();
-            let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-            element.style.display = 'block';
+        const to = e.to;
+        $('.investment-card').hide();
+        let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
+        element.style.display = 'block';
 
-            $('#investmentTable').find('> tbody').hide();
-            const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
-            row.style.display = 'contents';
-            });
-        }
+        $('#investmentTable').find('> tbody').hide();
+        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+        row.style.display = 'contents';
+        });
+    }
+
     getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {
             this.categories = resp.success.Data;
           }
         });
-      }
+    }
     getCategoryName(id) {
         if (id) {
         this.res = this.categories.find(r => r.id === id);
@@ -93,21 +89,20 @@ export class ViewCustomerComponent implements OnInit {
         } else {
           return this.res = {category_name: ''};
         }
-      }
+    }
 
     showDetails() {
         if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
             this.investmentInfo = this.userInvestment[this.selectedInvestment];
             this.getUserDashBoard();
             this.selectedInvestment++;
-            this.isLoading = false;
             return this.selectedInvestment;
             } else {
             this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
       }
     }
 
-      getUserDashBoard() {
+    getUserDashBoard() {
         const userEmail = this.user.email;
         const investmentId = this.investmentInfo.id;
         this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
@@ -117,7 +112,7 @@ export class ViewCustomerComponent implements OnInit {
             this.dashboardInvestment.forEach(investment => {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
             });
-
+            this.isLoading = false;
           } else {
             this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
@@ -125,7 +120,7 @@ export class ViewCustomerComponent implements OnInit {
           this.showDetails();
 
         });
-      }
+    }
 
     updateUser(operation) {
         this.isLoading = true;
@@ -148,9 +143,9 @@ export class ViewCustomerComponent implements OnInit {
             this.isLoading = false;
           });
         }}
-      }
+    }
 
-      cancelProfile() {
+    cancelProfile() {
         this.user = null;
         this.router.navigateByUrl('admin/manage-users');
     }
@@ -203,5 +198,5 @@ export class ViewCustomerComponent implements OnInit {
             newDate.setDate(0);
         }
         return newDate;
-   }
+    }
 }

@@ -12,7 +12,7 @@
                             <a class="pr-3">
                                 <button class="btn btn-secondary btn-sm font-weight-bold" (click)= "saveAsCSV()" type="submit">Export</button>
                             </a>
-                            <a (click)="clearSearch()" id="delCat">
+                            <a (click)="clearFilter()" id="delCat">
                                 <img class=""src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>
@@ -20,23 +20,29 @@
 
                     <div class="container-fluid bg_filter border border-dark rounded mb-5">
                         <div class="row p-1 py-4">
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div class="col-sm-4 col-lg-4  pt-lg-0 pt-sm-0 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div class="col-sm-4 col-lg-4  pt-lg-0 pt-sm-0 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterTable(dateStart,dateEnd)">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pr-sm-2 pr-lg-2 status">
                                 <div class="form-group">
-                                    <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+                                    <mat-label class="h7 mb-2" for="status">Status</mat-label>
+                                    <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status">
+                                        <mat-select-trigger>
+                                            {{status.value ? status.value : ''}}
+                                        </mat-select-trigger>
+                                        <mat-option value="All" (click)="filterStatus('no_of_investments', status.value)">All</mat-option>
+                                        <mat-option value="Active" (click)="filterStatus('no_of_investments', status.value)">Active</mat-option>
+                                        <mat-option value="InActive" (click)="filterStatus('no_of_investments', status.value)">InActive</mat-option>
+                                    </mat-select>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +79,7 @@
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && users?.length > 0">
                                         <div class="row1 p-2" *ngFor="let user of users| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
-                                            <p class="col-3">{{user.first_name}} {{user.last_name}}</p>
+                                            <p class="col-3">{{user.last_name}} {{user.first_name}} </p>
                                             <p class="col-2" style="white-space: nowrap;text-overflow: ellipsis;overflow: hidden;padding-right: 5px;">{{user.email}}</p>
                                             <p class="col-2">{{user.phone_number}}</p>
                                             <p class="col-2" >{{user?.no_of_slots}}</p>

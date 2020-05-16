@@ -48,6 +48,14 @@ img {
 
 }
 
+
+.investment-card2 {
+    background-color:whitesmoke;
+    padding-top: 0.50rem;
+    padding-bottom: 0.50rem;
+
+}
+
 .spacing{
     margin-right: 8rem;
 }
@@ -134,8 +142,6 @@ th {
     padding-right: 3rem;
     padding-left: 3rem;
 }
-
-
 
 
 .displayStatus {

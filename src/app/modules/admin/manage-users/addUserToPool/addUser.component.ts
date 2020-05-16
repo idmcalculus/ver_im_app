@@ -29,10 +29,9 @@ export class AddUserComponent implements OnInit {
   isLoading:boolean=true;
   validpoolError:string;
   reference:string='';
-  user_email: '';
+  user_email: any;
   amount_paid:number;
   users:User[]=[];
-  user:User = {email: '',};
   selectedUser:User = {email: '',};
 
   constructor(
@@ -62,7 +61,7 @@ export class AddUserComponent implements OnInit {
 
   onSelect(user: User): void {
     this.selectedUser = user;
-    console.log(this.selectedUser);
+    //console.log(this.selectedUser);
   }
 
   validPool(pool) {
@@ -71,7 +70,7 @@ export class AddUserComponent implements OnInit {
     const want = this.number_of_pools
 
     if(want > remain) {
-      console.log('Exceeded');
+      //console.log('Exceeded');
       this.validpoolError = 'Number of Pools Exceeded';  
     } else {
       this.validpoolError ='';
@@ -80,7 +79,6 @@ export class AddUserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedUser = this.user
     this.adminService.getUsers().subscribe(resp=>{
       if(resp && resp.success){
         this.users = resp.success.Data;
@@ -125,14 +123,13 @@ export class AddUserComponent implements OnInit {
     })
   }
   addUserToPool(){
-    console.log( this.pool);
-  
     const data = {
       user_email:this.selectedUser.email,
       number_of_pools:this.number_of_pools,
       investment_id:this.poolId,
       amount_paid: this.calculateEstimate(this.pool.investment.investment_amount,this.number_of_pools)
     }
+    console.log(data,'Hello');
 
     this.buttonText = 'Investing'
     this.adminService.addUserToPool(data).subscribe(resp=>{

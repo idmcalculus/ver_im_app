@@ -20,7 +20,8 @@ export class userPoolDetailComponent implements OnInit {
   pageValue = 5;
   userData: any [];
   user: User = {email: '',};
-  pool:Investment = {investment_amount: 0, expected_return_amount: '', is_investment_started:'number', expected_return_period: ''};
+  pool:any =[];
+  noPool:number;
   userInvestment: any = [];
   userPool: Investment;
   poolId:number=0;
@@ -29,7 +30,7 @@ export class userPoolDetailComponent implements OnInit {
   totalYieldedAmount = 0;
   categories:any [];
   selectedInvestment = -1;
-  dashboardInvestment: any =[];
+  dashboardInvestment: any = [];
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   callBack:any;
   isLoading:boolean=true;
@@ -46,13 +47,8 @@ export class userPoolDetailComponent implements OnInit {
     private userService: UserService,
     private reportService:ReportService,
     private authService:AppAuthService,
-    ) { 
-      this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
-        if(userInfo){
-          this.loggedInUser = userInfo;
-        }
-      });
-
+    ) {
+      
       this.route.params.subscribe(resp => {
         this.poolId = resp.pool_id;
         if (!this.poolId) {
@@ -60,6 +56,7 @@ export class userPoolDetailComponent implements OnInit {
         }
         this.fetchPool(String(this.poolId));
       });
+      
       this.getCategories();
   }
 
@@ -72,8 +69,8 @@ export class userPoolDetailComponent implements OnInit {
       }
     this.isLoading = false;
     });
-
   }
+
   showDetails() {
     if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
         this.investmentInfo = this.userInvestment[this.selectedInvestment];
@@ -83,21 +80,39 @@ export class userPoolDetailComponent implements OnInit {
         } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = true;
+    }
   }
-}
+
+  fetchPool(poolId: string){
+    this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+      if(userInfo){
+        this.loggedInUser = userInfo;
+        this.investmentService.getUserInvestments(this.loggedInUser.email).subscribe(investments => {
+          if (investments) {
+
+          var data = investments.success
+          this.noPool = data.Inv.find(x => x.investment_id == this.poolId);
+          this.pool =  data.Data.find(x => x.id == this.poolId);
+          this.pool.num_of_pools_taken = this.noPool;
+        }
+        //console.log(this.noPool, '======<>>>>>>');
+        });
+      }
+    });
+  }
 
   
   getUserDashBoard() {
-    console.log(this.loggedInUser.email);
     const userEmail = this.loggedInUser.email;
     const investmentId = this.poolId;
     
     this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
-        //console.log(this.dashBoardData);
         this.dashboardInvestment.push(this.dashBoardData);
-        console.log(this.dashboardInvestment);
+        this.dashboardInvestment.forEach(investment => {
+          investment.investment_report.forEach((report, i) => report.index = i + 1);
+        });
       } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         
@@ -105,33 +120,12 @@ export class userPoolDetailComponent implements OnInit {
     });
   }
 
-  fetchPool(poolId: string) {
-    this.isLoading = true;
-    this.investmentService.getInvestment(poolId).subscribe(poolDetails => {
-      if (poolDetails && poolDetails.success) {
-        if (poolDetails.success.Data) {
-          this.pool = poolDetails.success.Data;
-          // console.log("i have gat :: "+JSON.stringify(this.pool))
-          this.isLoading = false;
-        } else {
-          this.router.navigate(['./', {}]);
-        }
-      } else {
-      }
-    });
-  }
-
-  updatePool(poolId: string) {
-    this.investmentService.getInvestment(poolId).subscribe(poolDetails => {
-      if (poolDetails && poolDetails.success) {
-        if (poolDetails.success.Data) {
-          this.pool = poolDetails.success.Data;
-        } else {
-          this.router.navigate(['./', {}]);
-        }
-      } else {
-      }
-    });
+  divisorFunc(expected_return_period) {
+    if ( expected_return_period === "Weekly") {
+        return 48;
+    } else if (expected_return_period === "Monthly") {
+        return 12;
+    }
   }
 
   getCategories() {
@@ -149,7 +143,7 @@ export class userPoolDetailComponent implements OnInit {
   }
 
   getPoolstatus(pool){
-    if (pool.investment.is_investment_started == 1) {
+    if (pool.is_investment_started == 1) {
       return 'Active';
     } else{
       return 'Inactive';
@@ -165,11 +159,16 @@ export class userPoolDetailComponent implements OnInit {
     this.router.navigateByUrl('admin/userPools');
   }
 
+  calculateamount(returns, inv, expected_return_period) {
+    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
+    return estimate.toFixed(2);
+}
+
   calculateEstimate(pool) {
-    const returns = pool.investment.expected_return_amount;
-    const dur = pool.investment.expected_return_period === 'Monthly' ? 12 : 48;
-    const inv = pool.investment.investment_amount;
-    const estimate = (((returns * dur) - inv)/inv) * 100;
+    const returns = pool.expected_return_amount;
+    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
+    const inv = pool.investment_amount;
+    const estimate = (((returns * dur)/inv) * 100);
     return Math.ceil(estimate);
     
   }
