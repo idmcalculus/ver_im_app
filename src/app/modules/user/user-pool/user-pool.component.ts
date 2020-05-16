@@ -3,14 +3,13 @@
  import { InvestmentService } from '../../investment/investment.service';
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
- import { UserService } from '../user.service';
 
  @Component({
   selector: 'app-userPools',
   templateUrl: './user-pool.component.html',
   styleUrls: ['./user-pool.component.scss']
 })
-export class userPoolsComponent implements OnInit {
+export class UserPoolsComponent implements OnInit {
   isLoading = true;
   pageValue = 5;
   pools: Investment[] = [];
