@@ -10,9 +10,11 @@
   templateUrl: './user-pool.component.html',
   styleUrls: ['./user-pool.component.scss']
 })
-export class UserPoolsComponent implements OnInit {
+export class userPoolsComponent implements OnInit {
   isLoading = true;
+  pageValue = 5;
   pools: Investment[] = [];
+  peel: Investment[] = [];
   pool: any = {title: '', investment_amount: 0, };
   userType: string;
   categories: any [];
@@ -38,7 +40,6 @@ export class UserPoolsComponent implements OnInit {
         });
       } else {
         this.userType = 'admin';
-        this.getPools();
         this.getCategories();
       }
       this.getCategories();
@@ -75,16 +76,6 @@ export class UserPoolsComponent implements OnInit {
     this.checkedList = JSON.stringify(this.checkedList);
   }
 
-  getPools() {
-    this.isLoading = true;
-    this.investmentService.getInvestments(false).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
-      }
-      this.isLoading = false;
-    });
-  }
-
   getCategories() {
     this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
@@ -106,9 +97,9 @@ export class UserPoolsComponent implements OnInit {
     this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
-        this.pools = investments.success.Data;
-        console.log(this.pools);
-        this.getCategories();
+        this.peel = investments.success;
+        this.pools.push(this.peel);
+        // console.log(this.pools);
       }
       this.isLoading = false;
     });
@@ -126,19 +117,17 @@ export class UserPoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  // filterTable(filterType, filterValue: string) {
-  //   if (!filterValue || filterValue === null) {
-  //     return this.getPools();
-  //   } else {
-  //       const filtered = this.pools.filter(pool => {
-  //         if (pool[filterType] !== null) {
-  //           return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
-  //         }
-  //       });
-  //       console.log(filtered);
-  //       this.pools = filtered;
-  //     }
-  // }
+  setItemsPerPage(event){
+    this.pageValue = event;
+  }
+
+  calculateEstimate(pool) {
+    const returns = pool.expected_return_amount;
+    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
+    const inv = pool.investment_amount;
+    const estimate = (((returns * dur)/inv) * 100);
+    return Math.ceil(estimate);
+  }
 
   calculateAmount(returns, inv) {
     const estimate = returns * inv;

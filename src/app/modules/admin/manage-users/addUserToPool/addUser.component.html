@@ -98,7 +98,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Investors</h6>
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Taken Slot(s)</h6>
                                             <div class="col-sm-8">
                                                 <input type="type" class="input-control " value="{{pool?.investment.num_of_pools_taken}}" name="investor" readonly>
                                             </div>
@@ -107,9 +107,9 @@
 
                                     <div class="col-6 pr-4">
                                         <div class="form-group row">
-                                            <h6 class="col-sm-4 pr-0 col-form-label">Slot Taken</h6>
+                                            <h6 class="col-sm-4 pr-0 col-form-label">Slot Purchased</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" (keyup)="validPool()" autocomplete="off" class="input-control " [(ngModel)]="number_of_pools" name="slots"
+                                                <input type="number" min="0" (keyup)="validPool()" autocomplete="off" class="input-control " [(ngModel)]="number_of_pools" name="slots"
                                                 id="slotNum">
 
                                                 <div *ngIf="validpoolError === 'Number of Pools Exceeded' " class="font-weight-bold pt-2 text-danger">{{validpoolError}}</div>
@@ -121,7 +121,7 @@
                                         <div class="form-group row">    
                                             <h6 class="col-sm-4 pr-0 col-form-label">Amount Paid</h6>
                                             <div class="col-sm-8">
-                                                <input type="number" class="input-control" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid"
+                                                <input type="number" min="0" class="input-control" [(ngModel)]="amount_paid" value="{{calculateEstimate(pool?.investment.investment_amount,number_of_pools)}}" name="amount_paid"
                                                 id="amount_paid" #amount_paidModel="ngModel"
                                                 >
                                             </div>

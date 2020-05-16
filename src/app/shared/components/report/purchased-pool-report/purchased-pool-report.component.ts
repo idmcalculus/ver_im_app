@@ -17,6 +17,7 @@ export class PurchasedreportComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
+  result: any [];
   categories:any []
   searchValue = '';
   filteredPools = [];
@@ -36,9 +37,7 @@ export class PurchasedreportComponent implements OnInit {
       if (userpath.includes('user')) {
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
-          if (resp) {
-            this.getUserPols(resp.email);
-          }
+          
         });
       } else {
         this.userType = 'admin';
@@ -68,7 +67,10 @@ export class PurchasedreportComponent implements OnInit {
     this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
-        this.pools = investments.success.Data;
+        this.result = investments.success.Data;
+        this.pools = this.result.filter(x => x.num_of_pools_taken > 0);
+        console.log(this.pools);
+        
       }
       this.isLoading = false;
     });
@@ -86,15 +88,6 @@ export class PurchasedreportComponent implements OnInit {
   getCategoryName(id) {
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
-  }
-
-  getUserPols(email) {
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
-        this.getCategories();
-      }
-    });
   }
 
   cancelPool() {
