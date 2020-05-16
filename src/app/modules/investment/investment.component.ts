@@ -35,7 +35,7 @@ export class InvestmentComponent implements OnInit {
         this.getInvestments();
     }
 
-
+  
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
