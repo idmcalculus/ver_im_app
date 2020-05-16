@@ -13,7 +13,7 @@ export class UserPoolsComponent implements OnInit {
   isLoading = true;
   pageValue = 5;
   pools: Investment[] = [];
-  peel: Investment[] = [];
+  reports: Investment[] = [];
   pool: any = {title: '', investment_amount: 0, };
   userType: string;
   categories: any [];
@@ -27,7 +27,12 @@ export class UserPoolsComponent implements OnInit {
     private router: Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService) {
-      this.isLoading = true;
+      
+
+  }
+
+  ngOnInit() {
+    this.isLoading = true;
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
         this.userType = 'user';
@@ -45,10 +50,6 @@ export class UserPoolsComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool, ];
       this.getCheckedPooList();
-
-  }
-
-  ngOnInit() {
   }
 
   checkUncheckAll() {
@@ -96,11 +97,10 @@ export class UserPoolsComponent implements OnInit {
     this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
-        this.peel = investments.success;
-        this.pools.push(this.peel);
-        // console.log(this.pools);
+        this.pools = investments.success.Data;
+        this.reports = investments.success.Inv;
+        this.isLoading = false;
       }
-      this.isLoading = false;
     });
   }
 
