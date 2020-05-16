@@ -74,14 +74,14 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Total Return</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="return" id="return"  value={{noPool.number_of_pools*pool.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="return" id="return"  value={{noPool?.number_of_pools*pool?.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Monthly Return</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.expected_return_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.expected_return_amount}}>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,35 +90,35 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <input name="category" class="form-control form-control-sm" readonly value={{getCategoryName(pool.category_id)}}>
+                                                    <input name="category" class="form-control form-control-sm" readonly value={{getCategoryName(pool?.category_id)}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" value={{pool.duration}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" value={{pool?.duration}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Slots Purchased</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" value={{noPool.number_of_pools}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" value={{noPool?.number_of_pools}}>
                                                 </div>
                                             </div>
     
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ROI(Percentage)</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" readonly class="form-control form-control-sm" required name="roi" id="roi" placeholder="" value={{pool?.investment?.estimated_percentage_profit}}>
+                                                    <input type="number" readonly class="form-control form-control-sm" required name="roi" id="roi" placeholder="" value={{pool?.estimated_percentage_profit}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback Frequency</h6>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control form-control-sm" name="period" id="period" readonly value={{pool.expected_return_period}}>
+                                                    <input class="form-control form-control-sm" name="period" id="period" readonly value={{pool?.expected_return_period}}>
                                                 </div>
                                             </div>
 
@@ -157,7 +157,7 @@
                                                             </div>
                                                             <div class="col-7 summary-font">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{ dashboardInvestment[0].investment_report.length }} of   {{ divisorFunc(pool.expected_return_period) }}</a>
+                                                                <a class="pl-5">{{ dashboardInvestment[0]?.investment_report?.length }} of   {{ divisorFunc(pool?.expected_return_period) }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -169,7 +169,7 @@
                                                             <div class="col-7 summary-font">
                                                                 <a class="pr-2">-</a>
                                                                 <a class="pl-5">
-                                                                    {{ dashboardInvestment[0].investment_report[dashboardInvestment[0].investment_report.length -1].created_at | date :  "dd.MM.y"}}
+                                                                    {{ dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at?.split(' ')[0] | date :  "dd.MM.y"}}
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -181,8 +181,8 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">
-                                                                    {{ addMonth(dashboardInvestment[0].investment_report[dashboardInvestment[0].investment_report.length -1].created_at, 1)  | date:  "dd.MM.y" }}
+                                                                <a class="pl-5" *ngIf="dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at">
+                                                                    {{ addMonth(dashboardInvestment[0]?.investment_report[dashboardInvestment[0]?.investment_report?.length -1]?.created_at?.split(' ')[0])  | date:  "dd.MM.y" }}
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5 text-success">{{dashboardInvestment[0].investment_return[0].yielded_amount * dashboardInvestment[0].investment_report.length }}</a>
+                                                                <a class="pl-5 text-success">{{dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length | number:'1.1-2'}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,7 +206,7 @@
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
                                                                 <a class="pl-5 text-danger">
-                                                                    {{ ((((pool.investment_amount * dashboardInvestment[0].number_of_pools) * (calculateamount(pool.expected_return_amount,pool.investment_amount,pool.expected_return_period)))/100)) - (dashboardInvestment[0].investment_return[0].yielded_amount* dashboardInvestment[0].investment_report?.length) }}  
+                                                                    {{ ((((pool?.investment_amount * dashboardInvestment[0]?.number_of_pools) * (calculateamount(pool?.expected_return_amount, pool?.investment_amount, pool?.expected_return_period)))/100)) - (dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length) | number:'1.1-2'}}  
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -218,7 +218,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5">{{pool.investment_close_date}}</a>
+                                                                <a class="pl-5">{{pool?.investment_close_date}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -237,7 +237,7 @@
     
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="investmentTable" *ngFor="let investments of dashboardInvestment;index as i" class="table appTable nowrap">
+                                            <table id="investmentTable" *ngFor="let investments of dashboardInvestment; index as i" class="table appTable nowrap">
                                                 <thead>
                                                 <tr>
                                                     <th>S/N</th>  
@@ -255,11 +255,11 @@
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
                                                         <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
-                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | number:'1.2'}}</td>
-                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | number:'1.2'}}</td>
-                                                        <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | number:'1.2'}}</td>
+                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | number:'1.1-2'}}</td>
+                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | number:'1.1-2'}}</td>
+                                                        <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | number:'1.1-2'}}</td>
                                                         <td style="width: 15%"> On-going </td>
-                                                        <td style="width: 10%">{{report?.created_at | date :  "dd.MM.y"}}</td>
+                                                        <td style="width: 10%">{{report?.created_at.split(' ')[0] | date :  "dd.MM.y"}}</td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>

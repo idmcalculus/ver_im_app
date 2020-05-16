@@ -130,46 +130,46 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
-    this.isLoading = true;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
-        } else {
+    } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = false;
-        }
-    }
+      }
+  }
 
   getUserDashBoard() {
-    const userEmail = this.overiddenUser.email;
-    const investmentId = this.investmentInfo.id;
+    if (this.investmentInfo) {
+      const userEmail = this.overiddenUser.email;
+      const investmentId = this.investmentInfo.id;
+      this.isLoading = true;
+      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+          if (resp && resp.success) {
+            this.dashBoardData = resp.success.Data;
+            this.dashboardInvestment.push(this.dashBoardData);
+            let total = 0;
 
-    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-        if (resp && resp.success) {
-          this.dashBoardData = resp.success.Data;
-          this.dashboardInvestment.push(this.dashBoardData);
-          let total = 0;
-
-          this.dashBoardData.investment_report.forEach(
-                inv => total += inv.returned_amount
-              );
-          this.totalYieldedAmount = total;
-          this.amountToWithdraw = total;
-          console.log('total', this.amountToWithdraw, this.dashBoardData);
-        } else {
-          this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
-        }
-        this.showDetails();
-        this.isLoading = false;
-    });
+            this.dashBoardData.investment_report.forEach(
+                  inv => total += inv.returned_amount
+                );
+            this.totalYieldedAmount = total;
+            this.amountToWithdraw = total;
+            console.log('total', this.amountToWithdraw, this.dashBoardData);
+          } else {
+            this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+          }
+          this.showDetails();
+          this.isLoading = false;
+      });
+    }
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
-}
+  }
 
   validateWithdraw() {
     if (this.amountToWithdraw > this.totalYieldedAmount || this.amountToWithdraw <= 0) {
@@ -200,7 +200,7 @@ export class UserDashboardComponent implements OnInit {
     } else if (expected_return_period === 'Monthly') {
         return 12;
     }
-}
+  }
 
  calculateReturn(expected_return_amount, expected_return_period) {
     if ( expected_return_period === 'Monthly') {
@@ -208,25 +208,21 @@ export class UserDashboardComponent implements OnInit {
     } else   {
         return expected_return_amount * 4;
     }
-}
-
-addMonth(date: Date) {
-  const newDate = new Date(date);
-  const d = newDate.getDate();
-  const m = newDate.getMonth();
-  if (this.dashboardInvestment) {
-    return this.dashboardInvestment.forEach(pool => {
-      return pool.investment.forEach(invest => {
-        return invest.expected_return_period === 'Monthly' ? (
-          newDate.setMonth(m + 1),
-          newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
-        ) : (
-          newDate.setDate(d + 7)
-        );
-      });
-    });
   }
-}
+
+  addMonth(date: Date, inv) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    const m = newDate.getMonth();
+    if (inv) {
+      return inv.expected_return_period === 'Monthly' ? (
+        newDate.setMonth(m + 1),
+        newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+      ) : (
+        newDate.setDate(d + 7)
+      );
+    }
+  }
 
   closeModal() {
     this.submittedWithdraw = false;

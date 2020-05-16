@@ -32,7 +32,7 @@
                                                 <th class="">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngIf="!isLoading">
+                                        <tbody *ngIf="!isLoading && pools?.length > 0">
                                             <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                                 <td class="mr-3">{{i+1}}</td>
                                                 <td class="">{{pool?.title}}</td>
@@ -47,7 +47,7 @@
                                                 <ng-template #showThis>
                                                     <td class="" style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
-                                                <td class="">{{ pool?.is_investment_started === 1 ? (pool?.investment_started_date | date :  "dd.MM.y") : 'N/A' }}</td>
+                                                <td class="">{{ pool?.is_investment_started === 1 ? (pool?.investment_started_date.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
                                                 <td class="">
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>

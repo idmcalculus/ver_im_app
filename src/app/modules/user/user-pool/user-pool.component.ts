@@ -27,14 +27,12 @@ export class UserPoolsComponent implements OnInit {
     private router: Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService) {
-      
-
   }
 
   ngOnInit() {
     this.isLoading = true;
-      const userpath = window.location.pathname;
-      if (userpath.includes('user')) {
+    const userpath = window.location.pathname;
+    if (userpath.includes('user')) {
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
           if (resp) {
@@ -46,10 +44,10 @@ export class UserPoolsComponent implements OnInit {
         this.userType = 'admin';
         this.getCategories();
       }
-      this.getCategories();
-      this.masterSelected = false;
-      this.checklist = [this.pool, ];
-      this.getCheckedPooList();
+    this.getCategories();
+    this.masterSelected = false;
+    this.checklist = [this.pool, ];
+    this.getCheckedPooList();
   }
 
   checkUncheckAll() {
@@ -116,16 +114,8 @@ export class UserPoolsComponent implements OnInit {
     this.authService.setInProfileView(false);
   }
 
-  setItemsPerPage(event){
+  setItemsPerPage(event) {
     this.pageValue = event;
-  }
-
-  calculateEstimate(pool) {
-    const returns = pool.expected_return_amount;
-    const dur = pool.expected_return_period === 'Monthly' ? 12 : 48;
-    const inv = pool.investment_amount;
-    const estimate = (((returns * dur)/inv) * 100);
-    return Math.ceil(estimate);
   }
 
   calculateAmount(returns, inv) {
