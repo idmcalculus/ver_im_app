@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './userpool-detail.component.html',
   styleUrls: ['./userpool-detail.component.css']
 })
-export class userPoolDetailComponent implements OnInit {
+export class UserPoolDetailComponent implements OnInit {
   _shown = true;
   pageValue = 5;
   userData: any [];

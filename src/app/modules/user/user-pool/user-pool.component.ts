@@ -1,32 +1,32 @@
  import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
-import {InvestmentService} from '../../investment/investment.service';
-import { Investment } from 'src/app/shared/models/Investment';
-import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from '../user.service';
+ import { Router} from '@angular/router';
+ import { InvestmentService } from '../../investment/investment.service';
+ import { Investment } from 'src/app/shared/models/Investment';
+ import { AppAuthService } from 'src/app/core/auth/auth.service';
+ import { UserService } from '../user.service';
 
-@Component({
+ @Component({
   selector: 'app-userPools',
   templateUrl: './user-pool.component.html',
   styleUrls: ['./user-pool.component.scss']
 })
-export class userPoolsComponent implements OnInit {
-  isLoading:boolean=true;
-  pools:Investment[]=[];
-  pool:any = {title: '', investment_amount: 0, };
-  userType:string;
-  categories:any []
+export class UserPoolsComponent implements OnInit {
+  isLoading = true;
+  pools: Investment[] = [];
+  pool: any = {title: '', investment_amount: 0, };
+  userType: string;
+  categories: any [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
+  masterSelected: boolean;
+  checklist: any;
+  checkedList: any;
 
   constructor(
-    private router:Router,
+    private router: Router,
     private authService: AppAuthService,
-    private investmentService: InvestmentService,
-    private userService: UserService) {
+    private investmentService: InvestmentService) {
+      this.isLoading = true;
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
         this.userType = 'user';
@@ -34,6 +34,7 @@ export class userPoolsComponent implements OnInit {
           if (resp) {
             this.getUserPols(resp.email);
           }
+          this.isLoading = false;
         });
       } else {
         this.userType = 'admin';
@@ -42,33 +43,34 @@ export class userPoolsComponent implements OnInit {
       }
       this.getCategories();
       this.masterSelected = false;
-      this.checklist = [this.pool,];
+      this.checklist = [this.pool, ];
       this.getCheckedPooList();
-      
+
   }
 
   ngOnInit() {
   }
-  
+
   checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
+    for (let i = 0; i < this.checklist.length; i++) {
       this.checklist[i] = this.masterSelected;
     }
     this.getCheckedPooList();
   }
 
   isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
-        return pool == true;
-      })
+    this.masterSelected = this.checklist.every((pool: any) => {
+        return pool === true;
+      });
     this.getCheckedPooList();
   }
- 
-  getCheckedPooList(){
+
+  getCheckedPooList() {
     this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
+    for (let i = 0; i < this.checklist.length; i++) {
+      if (this.checklist[i]) {
       this.checkedList.push(this.checklist[i]);
+      }
     }
     this.checkedList = JSON.stringify(this.checkedList);
   }
@@ -84,6 +86,7 @@ export class userPoolsComponent implements OnInit {
   }
 
   getCategories() {
+    this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
@@ -93,16 +96,21 @@ export class userPoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    const res = this.categories.find( r => r.id === id);
-    return res.category_name;
+    if (this.categories && id) {
+      const res = this.categories.find( r => r.id === id);
+      return res.category_name;
+    }
   }
 
   getUserPols(email) {
+    this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
+        console.log(this.pools);
         this.getCategories();
       }
+      this.isLoading = false;
     });
   }
 
@@ -111,7 +119,6 @@ export class userPoolsComponent implements OnInit {
   }
 
   setPlanOperation(investment) {
-
     this.authService.setCurrentPlanOperation(investment);
   }
 
@@ -132,13 +139,8 @@ export class userPoolsComponent implements OnInit {
   //       this.pools = filtered;
   //     }
   // }
-  
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
-    return Math.ceil(estimate);
-  }
 
-  calculateAmount(returns,inv){
+  calculateAmount(returns, inv) {
     const estimate = returns * inv;
     return Math.ceil(estimate);
   }

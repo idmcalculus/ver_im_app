@@ -404,12 +404,12 @@
                                     </div>
                                     <div class="card-block dt-responsive" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
                                       <div class="d-flex report-body" *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
-                                        <p class="s-n">{{report?.index}}</p>
-                                        <p class="invTitle">{{report?.title}}</p>
-                                        <p class="payback">{{pool?.investment?.expected_return_period}}</p>
-                                        <p class="amtCred">{{report?.returned_amount | number:'1.2'}}</p>
-                                        <p class="yieldedAmt">{{report?.returned_amount * report?.index | number:'1.2'}}</p>
-                                        <p class="balance">{{pool?.investment?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</p>
+                                        <p class="s-n">{{ report?.index }}</p>
+                                        <p class="invTitle">{{ report?.title }}</p>
+                                        <p class="payback">{{ pool?.investment?.expected_return_period }}</p>
+                                        <p class="amtCred">{{ pool?.investment?.expected_return_amount | number:'1.2' }}</p>
+                                        <p class="yieldedAmt">{{ pool?.investment?.expected_return_amount * report?.index | number:'1.2' }}</p>
+                                        <p class="balance">{{ pool?.investment?.expected_return_amount * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | number:'1.2'}}</p>
                                         <p class="status">On-going</p>
                                         <p class="datePaid">{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</p>
                                       </div>

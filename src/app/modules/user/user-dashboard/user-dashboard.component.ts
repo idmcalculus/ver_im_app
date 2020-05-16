@@ -21,7 +21,7 @@ export class UserDashboardComponent implements OnInit {
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
   userActivity: any = [];
-  usersInvestments: [Investment];
+  usersInvestments: any;
   usersInvestment: any = [];
   pools: any = [];
   poolGroup: any = [];
@@ -118,7 +118,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
-    this.isLoading = false;
+    this.isLoading = true;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
@@ -131,19 +131,23 @@ export class UserDashboardComponent implements OnInit {
     }
 
   getUserDashBoard() {
-    const userEmail = this.overiddenUser.email;
-    const investmentId = this.investmentInfo.id;
+    if (this.investmentInfo) {
+      this.isLoading = true;
+      const userEmail = this.overiddenUser.email;
+      const investmentId = this.investmentInfo.id;
 
-    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-        if (resp && resp.success) {
-          this.dashBoardData = resp.success.Data;
-          this.dashboardInvestment.push(this.dashBoardData);
-        } else {
-          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
-        }
-        this.showDetails();
-        this.isLoading = false;
-    });
+      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+          if (resp && resp.success) {
+            this.dashBoardData = resp.success.Data;
+            this.dashboardInvestment.push(this.dashBoardData);
+            console.log(this.dashboardInvestment);
+          } else {
+            this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+          }
+          this.showDetails();
+          this.isLoading = false;
+      });
+    }
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
@@ -151,7 +155,7 @@ export class UserDashboardComponent implements OnInit {
     return Math.ceil(estimate);
   }
 
-  divisorFunc (expected_return_period) {
+  divisorFunc(expected_return_period) {
     if ( expected_return_period === "Weekly") {
         return 48;
     } else if (expected_return_period === "Monthly") {
@@ -159,25 +163,33 @@ export class UserDashboardComponent implements OnInit {
     }
 }
 
- calculateReturn (expected_return_amount, expected_return_period) {
+ calculateReturn(expected_return_amount, expected_return_period) {
     if ( expected_return_period === "Monthly") {
         return expected_return_amount;
     } else   {
-        return expected_return_amount*4;
+        return expected_return_amount * 4;
     }
 }
 
- addMonth(date: Date, month: number) {
-    const newDate = new Date(date);
-    const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() == 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
+addMonth(date: Date) {
+  const newDate = new Date(date);
+  const d = newDate.getDate();
+  const m = newDate.getMonth();
+  if (this.dashboardInvestment) {
+    return this.dashboardInvestment.forEach(pool => {
+      return pool.investment.forEach(invest => {
+        return invest.expected_return_period === 'Monthly' ? (
+          newDate.setMonth(m + 1),
+          newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+        ) : (
+          newDate.setDate(d + 7)
+        );
+      });
+    });
   }
+}
 
-  getTimeAgo(time){
+  getTimeAgo(time) {
     TimeAgo.addLocale(en);
     var date = new Date(time);
     var hours = date.getHours();
@@ -185,7 +197,4 @@ export class UserDashboardComponent implements OnInit {
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
-
-
-
 }
