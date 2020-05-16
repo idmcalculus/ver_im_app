@@ -38,7 +38,7 @@
                                             <p class="category-name">{{pool.investment_amount}}</p>
                                             <p class="category-name" >{{pool.num_of_pools_taken}}</p>
                                             <p class="category-name" style="margin-left: -13px">{{pool.duration}} Months</p>
-                                            <p class="category-name">{{calculateEstimate(pool.expected_return_amount,pool.investment_amount)}}%</p>
+                                            <p class="category-name">{{pool.estimated_percentage_profit}}%</p>
                                             <p class="category-name">{{pool.expected_return_period}}</p>
                                             <p class="category-name">{{calculateAmount(pool.investment_amount,pool.num_of_pools_taken)}}</p>
                                             <p class="category-name" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</p>

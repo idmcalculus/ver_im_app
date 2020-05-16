@@ -17,6 +17,7 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 export class UserDashboardComponent implements OnInit {
 
   @Input() public overiddenUser: User;
+  modalText = 'Withdraw';
   allDashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
@@ -40,6 +41,12 @@ export class UserDashboardComponent implements OnInit {
   ascending = false;
   investmentIds: string;
   idArray: any[];
+  UserBank= 'Wema Bank';
+  UserAccount= null;
+  UserAccountName= null;
+  Validated=false;
+  activateBtn=false;
+  amountToWithdraw= 0 ;
   groupInvestments: any[] = [];
 
   constructor(private userService: UserService,
@@ -49,8 +56,10 @@ export class UserDashboardComponent implements OnInit {
               private authService: AppAuthService) {}
 
   ngOnInit() {
+
     this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
+   
         if (resp) {
           this.overiddenUser = resp;
           this.userService.getusersInvestment(resp.email).subscribe(res => {
@@ -58,11 +67,13 @@ export class UserDashboardComponent implements OnInit {
               this.usersInvestment = res.success.Data;
               this.usersInvestments = this.usersInvestment.filter(res => res.is_investment_started === 1);
               this.selectedInvestment = 0;
-
               this.showDetails();
               }
               this.isLoading = false;
             });
+            this.UserBank = resp.bank_name;
+            this.UserAccount = resp.account_number;
+            this.UserAccountName= resp.account_number;
         }
     });
 
@@ -138,12 +149,21 @@ export class UserDashboardComponent implements OnInit {
         if (resp && resp.success) {
           this.dashBoardData = resp.success.Data;
           this.dashboardInvestment.push(this.dashBoardData)
+          let total=0;
+
+          this.dashBoardData.investment_report.forEach(
+                inv=> total+=inv.returned_amount
+              )
+          this.totalYieldedAmount=total;
+          this.amountToWithdraw=total;
+          console.log('total',this.amountToWithdraw,this.dashBoardData)
         } else {
           this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
         }
         this.showDetails();
         this.isLoading = false;
     });
+    
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
@@ -151,6 +171,18 @@ export class UserDashboardComponent implements OnInit {
     return Math.ceil(estimate);
 }
 
+  validateWithdraw(){
+    if(this.amountToWithdraw>this.totalYieldedAmount || this.amountToWithdraw<=0){
+      this.activateBtn=false;
+    }else{
+      this.activateBtn=true;
+      this.Validated = true
+    }
+  }
+
+  withdraw(){
+    this.modalText='processing';
+  }
 
   divisorFunc (expected_return_period) {
     if ( expected_return_period === "Weekly") {

@@ -58,7 +58,7 @@
                                                                 <td class="col-3 leftBorder">
                                                                     <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                  <td class="col-7  rightBorder"><span  style="color:#baeab5">N{{dashboardInvestment[i]?.investment_return[i]?.yielded_amount * dashboardInvestment[i]?.investment_report?.length }}</span> <br>
+                                                                  <td class="col-7  rightBorder"><span  style="color:#baeab5">N{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length }}</span> <br>
                                                                     <span style="font-size:12px;color:grey">Amount Paid</span>
                                                                   </td>
                                                             </tr>
@@ -122,7 +122,7 @@
                                                 <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
                                                     <i class="fa fa-lg  fa-circle"></i>
                                                 </a>
-                                                <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                <a *ngIf="this.dashboardData?.investment?.length>1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
                                                     <i class="fa fa-lg fa-circle"></i>
                                                 </a>
                                             </div>
@@ -135,8 +135,8 @@
                                         <h6 style="font-size:25px">N{{totalYieldedAmount}}</h6>
                                     </div>
                                     <div class="col-6 text-center">
-                                        <button type="button" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
-                                        <button type="button" class=" col-5 btn btn-warning px-0">Deposit</button>
+                                        <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
+                                        <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-warning px-0">Deposit</button>
                                     </div>
                                 </div>
                             </div>
@@ -149,12 +149,12 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="row featured d-flex flex-row flex-wrap justify-content-center" >
-                                        <div class="col-6 col-sm-6 input-control p-3" *ngFor="let investment of groupInvestments.slice(0,4); index as i">
-                                            <div class="col-12 px-0">
-                                                <img class="img img-responsive" style="width:150px;"  src="{{investment?.investment_image}}" alt="farm-image">
+                                        <div class="col-6 col-sm-6 input-control p-3"  *ngFor="let investment of groupInvestments.slice(0,4); index as i">
+                                            <div class="col-12 px-0" style="margin: 0px auto;text-align: center;">
+                                                <img class="img img-responsive" style="width:60%;height:auto"  src="{{investment?.investment_image}}" alt="farm-image">
                                             </div>
-                                            <div class="spectre my-2">N{{investment?.investment_amount}} per slot</div>
-                                            <div class="spectre my-2">Return: {{investment?.estimated_percentage_profit}} profit</div>
+                                            <div class="spectre my-2" style="text-align:center">N{{investment?.investment_amount}} per slot</div>
+                                            <div class="spectre my-2" style="text-align:center">Return: {{investment?.estimated_percentage_profit}}% profit</div>
                                         </div>
                                     </div>
                                 </div>
@@ -396,6 +396,45 @@
         </div>
     </div>
 </div>
+ <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+        <div *ngIf="!Validated" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="first-modal-header">
+                    Withdraw Funds
+                </div>
+                <div class="modal-body balance">
+                    Available Balance : <span>100,000</span>
+                </div>
+                <div class="modal-body input-balance">
+                    <span>Enter Amount : </span><input type="number" [(ngModel)]="amountToWithdraw" max="totalYieldedAmount"/>
+                </div>
+                <div class="modal-footer balance-input">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" [disabled]="activateBtn" [promiseBtn]="isSubmitting" (click)="validateWithdraw()" class="btn btn-primary">{{modalText}}</button>
+                </div>
+            </div>
+        </div>
+          <div *ngIf="Validated" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="first-modal-header">
+                    Confirm Payment info
+                </div>
+                <div class="modal-body withdraw-info">
+                    You have requested that the sum of be transfeered to account listed below. Kindly confirm the infromation is correct before submitting
+                </div>
+                <div class="modal-body withdraw-details">
+                    <p><span>Bank Name</span><span>{{UserBank}}</span></p>
+                    <p><span>Account Name</span><span>{{UserAccountName}}</span></p>
+                    <p><span>Account Number</span><span>{{UserAccount}}</span></p>
+                    <p><span class="amount">Amount</span><span  class="amount">{{amountToWithdraw}}</span></p>
+                </div>
+                <div class="modal-footer balance-input">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button"  [promiseBtn]="isSubmitting" (click)="withdraw()" class="btn btn-primary">{{modalText}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!--<div *ngIf="isGraphShown" class="pcoded-content">
 
     <div class="pcoded-inner-content">

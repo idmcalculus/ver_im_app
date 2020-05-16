@@ -89,7 +89,7 @@ export class AppAuthService {
                 return false
             }else if(tokenPayload.exp < new Date().getTime()/1000){
                 alert('Sorry Your session as expired, kindly log in again')//unauthorized
-                window.location.href = `/`;
+                window.location.href = `/signin`;
                 return false
             }else{
                 return true;
