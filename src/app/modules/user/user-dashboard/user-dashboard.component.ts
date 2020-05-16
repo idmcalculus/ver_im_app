@@ -47,6 +47,7 @@ export class UserDashboardComponent implements OnInit {
   Validated=false;
   activateBtn=false;
   amountToWithdraw= 0 ;
+  submittedWithdraw=false;
   groupInvestments: any[] = [];
 
   constructor(private userService: UserService,
@@ -180,8 +181,18 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  withdraw(){
+  async withdraw(){
+    const userEmail = this.overiddenUser.email;
+    const name = this.overiddenUser.first_name;
     this.modalText='processing';
+    await this.userService.withdraw(name,userEmail).subscribe(res => {
+      this.modalText='processing';
+      if(res.success.StatusCode===200){
+        this.submittedWithdraw=true;
+        this.amountToWithdraw= 0 ;
+      }
+    })
+    this.modalText='Withdraw';
   }
 
   divisorFunc (expected_return_period) {
@@ -208,6 +219,12 @@ export class UserDashboardComponent implements OnInit {
         newDate.setDate(0);
     }
     return newDate;
+  }
+
+  closeModal(){
+    this.submittedWithdraw=false;
+    this.Validated=false;
+    this.amountToWithdraw=0;
   }
 
   getTimeAgo(time){

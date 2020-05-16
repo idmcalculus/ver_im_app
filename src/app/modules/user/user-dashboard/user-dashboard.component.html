@@ -397,24 +397,24 @@
     </div>
 </div>
  <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
-        <div *ngIf="!Validated" class="modal-dialog modal-dialog-centered" role="document">
+        <div *ngIf="!submittedWithdraw && !Validated" class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="first-modal-header">
                     Withdraw Funds
                 </div>
                 <div class="modal-body balance">
-                    Available Balance : <span>100,000</span>
+                    Available Balance : <span>{{totalYieldedAmount}}</span>
                 </div>
                 <div class="modal-body input-balance">
                     <span>Enter Amount : </span><input type="number" [(ngModel)]="amountToWithdraw" max="totalYieldedAmount"/>
                 </div>
                 <div class="modal-footer balance-input">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" [disabled]="activateBtn" [promiseBtn]="isSubmitting" (click)="validateWithdraw()" class="btn btn-primary">{{modalText}}</button>
                 </div>
             </div>
         </div>
-          <div *ngIf="Validated" class="modal-dialog modal-dialog-centered" role="document">
+        <div *ngIf="!submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="first-modal-header">
                     Confirm Payment info
@@ -429,13 +429,27 @@
                     <p><span class="amount">Amount</span><span  class="amount">{{amountToWithdraw}}</span></p>
                 </div>
                 <div class="modal-footer balance-input">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button"  [promiseBtn]="isSubmitting" (click)="withdraw()" class="btn btn-primary">{{modalText}}</button>
                 </div>
             </div>
         </div>
+        <div *ngIf="submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="first-modal-header">
+                    Confirm Payment info
+                </div>
+                <div class="modal-body withdraw-info">
+                    <p> Your withdraw request as been successfully submitted and will be processed in the next 24 hours.</p> 
+                    <p> Thanks for choosing Versa!</p>
+                </div>
+                <div class="modal-footer balance-input">
+                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-<!--<div *ngIf="isGraphShown" class="pcoded-content">
+<!--<div *ngIf="isGraphShown"submittedWithdraw class="pcoded-content">
 
     <div class="pcoded-inner-content">
         <div class="main-body">
