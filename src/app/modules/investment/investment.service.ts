@@ -38,6 +38,12 @@ export class InvestmentService {
     &estimated_percentage_profit=${investment.estimated_percentage_profit}&show_publicly=${investment.show_publicly ? 1 : 0}&expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
   }
 
+  getStats(id: Number): Observable<any> {
+    return this.httpService.postRequest(`trackViews?investment_id=${id}`, {});
+  }
+
+ 
+
   getInvestments(is_frontend: boolean): Observable<any> {
     return this.httpService.postRequest(`investment/list?is_frontend=${is_frontend}`, {});
   }
@@ -96,6 +102,10 @@ export class InvestmentService {
 
   getInvestmentGroups() {
     return this.httpService.postRequest(`investment/getGroups`, {});
+  }
+
+  getDetails(): Observable<any> {
+    return this.httpService.postRequest(`getViews`, {});
   }
 
   deleteInvestmentGroup(investmentGroup: InvestmentGroup) {

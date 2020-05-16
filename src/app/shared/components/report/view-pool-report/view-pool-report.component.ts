@@ -50,7 +50,7 @@ export class ViewedreportComponent implements OnInit {
 
   getPools() {
     this.isLoading = true;
-    this.investmentService.getInvestments(false).subscribe(investments => {
+    this.investmentService.getDetails().subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
       }
@@ -120,6 +120,14 @@ export class ViewedreportComponent implements OnInit {
     }
 }
 
+  percentages(pool){
+    let total=0;
+    this.pools.forEach(element => {
+      total+=element.no_of_views
+    });
+    return ((pool/total)*100).toFixed(2);
+  }
+
   clearSearch() {
     this.searchValue = null;
     return this.getPools();
@@ -136,8 +144,8 @@ export class ViewedreportComponent implements OnInit {
           title: line.title,
           category_id: line.category_id,
           investment_amount:line.investment_amount,
-          viewed:line.viewed,
-          percentage:line.percentage,
+          viewed:line.no_of_views,
+          percentage: Number(this.percentages(line.no_of_views as any)),
         }
         items.push(csvLine);
       });

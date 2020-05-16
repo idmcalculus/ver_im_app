@@ -17,6 +17,7 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 export class UserDashboardComponent implements OnInit {
 
   @Input() public overiddenUser: User;
+  modalText = 'Withdraw';
   allDashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
@@ -36,10 +37,17 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
-  order = "num_of_pools_taken";
+  order = 'num_of_pools_taken';
   ascending = false;
   investmentIds: string;
   idArray: any[];
+  UserBank = 'Wema Bank';
+  UserAccount = null;
+  UserAccountName = null;
+  Validated = false;
+  activateBtn = false;
+  amountToWithdraw = 0 ;
+  submittedWithdraw = false;
   groupInvestments: any[] = [];
 
   constructor(private userService: UserService,
@@ -49,8 +57,10 @@ export class UserDashboardComponent implements OnInit {
               private authService: AppAuthService) {}
 
   ngOnInit() {
+
     this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
+
         if (resp) {
           this.overiddenUser = resp;
           this.userService.getusersInvestment(resp.email).subscribe(res => {
@@ -58,11 +68,13 @@ export class UserDashboardComponent implements OnInit {
               this.usersInvestment = res.success.Data;
               this.usersInvestments = this.usersInvestment.filter(res => res.is_investment_started === 1);
               this.selectedInvestment = 0;
-
               this.showDetails();
               }
               this.isLoading = false;
             });
+          this.UserBank = resp.bank_name;
+          this.UserAccount = resp.account_number;
+          this.UserAccountName = resp.account_number;
         }
     });
 
@@ -131,40 +143,67 @@ export class UserDashboardComponent implements OnInit {
     }
 
   getUserDashBoard() {
-    if (this.investmentInfo) {
-      this.isLoading = true;
-      const userEmail = this.overiddenUser.email;
-      const investmentId = this.investmentInfo.id;
+    const userEmail = this.overiddenUser.email;
+    const investmentId = this.investmentInfo.id;
 
-      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-          if (resp && resp.success) {
-            this.dashBoardData = resp.success.Data;
-            this.dashboardInvestment.push(this.dashBoardData);
-            console.log(this.dashboardInvestment);
-          } else {
-            this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
-          }
-          this.showDetails();
-          this.isLoading = false;
-      });
-    }
+    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+        if (resp && resp.success) {
+          this.dashBoardData = resp.success.Data;
+          this.dashboardInvestment.push(this.dashBoardData);
+          let total = 0;
+
+          this.dashBoardData.investment_report.forEach(
+                inv => total += inv.returned_amount
+              );
+          this.totalYieldedAmount = total;
+          this.amountToWithdraw = total;
+          console.log('total', this.amountToWithdraw, this.dashBoardData);
+        } else {
+          this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+        }
+        this.showDetails();
+        this.isLoading = false;
+    });
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
+}
+
+  validateWithdraw() {
+    if (this.amountToWithdraw > this.totalYieldedAmount || this.amountToWithdraw <= 0) {
+      this.activateBtn = false;
+    } else {
+      this.activateBtn = true;
+      this.Validated = true;
+    }
+  }
+
+  async withdraw() {
+    const userEmail = this.overiddenUser.email;
+    const name = this.overiddenUser.first_name;
+    this.modalText = 'processing';
+    await this.userService.withdraw(name, userEmail).subscribe(res => {
+      this.modalText = 'processing';
+      if (res.success.StatusCode === 200) {
+        this.submittedWithdraw = true;
+        this.amountToWithdraw = 0 ;
+      }
+    });
+    this.modalText = 'Withdraw';
   }
 
   divisorFunc(expected_return_period) {
-    if ( expected_return_period === "Weekly") {
+    if ( expected_return_period === 'Weekly') {
         return 48;
-    } else if (expected_return_period === "Monthly") {
+    } else if (expected_return_period === 'Monthly') {
         return 12;
     }
 }
 
  calculateReturn(expected_return_amount, expected_return_period) {
-    if ( expected_return_period === "Monthly") {
+    if ( expected_return_period === 'Monthly') {
         return expected_return_amount;
     } else   {
         return expected_return_amount * 4;
@@ -189,10 +228,16 @@ addMonth(date: Date) {
   }
 }
 
+  closeModal() {
+    this.submittedWithdraw = false;
+    this.Validated = false;
+    this.amountToWithdraw = 0;
+  }
+
   getTimeAgo(time) {
     TimeAgo.addLocale(en);
-    var date = new Date(time);
-    var hours = date.getHours();
+    let date = new Date(time);
+    let hours = date.getHours();
 
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
