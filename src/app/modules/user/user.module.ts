@@ -10,8 +10,8 @@ import {UserRoutingModule} from './user-routing.module';
 import { UserSettingsComponent } from './settings/settings.component';
 import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 import {FormsModule} from '@angular/forms';
-import { userPoolsComponent } from './user-pool/user-pool.component';
-import { userPoolDetailComponent } from './userpool-detail/userpool-detail.component';
+import { UserPoolsComponent } from './user-pool/user-pool.component';
+import { UserPoolDetailComponent } from './userpool-detail/userpool-detail.component';
 import {SideBarComponent} from './../../shared/components/side-bar/side-bar.component';
 import {HeaderComponent} from './../../shared/components/header/header.component';
 import {DashboardHeaderComponent} from './../../shared/components/dashboard-header/dashboard-header.component';
@@ -33,8 +33,8 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/ma
     UserProfileComponent,
     UserDashboardComponent,
     UserSettingsComponent,
-    userPoolsComponent,
-    userPoolDetailComponent,
+    UserPoolsComponent,
+    UserPoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
     DashboardHeaderComponent,
@@ -60,8 +60,8 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/ma
   exports:[
     UserSettingsComponent,
     ProfileComponent,
-    userPoolsComponent,
-    userPoolDetailComponent,
+    UserPoolsComponent,
+    UserPoolDetailComponent,
     SideBarComponent,
     HeaderComponent,
     DashboardHeaderComponent,
