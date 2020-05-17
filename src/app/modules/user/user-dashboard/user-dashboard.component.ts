@@ -143,30 +143,6 @@ export class UserDashboardComponent implements OnInit {
   }
 
   getUserDashBoard() {
-<<<<<<< HEAD
-    const userEmail = this.overiddenUser.email;
-    const investmentId = this.investmentInfo.id;
-
-    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-        if (resp && resp.success) {
-          this.dashBoardData = resp.success.Data;
-          this.dashboardInvestment.push(this.dashBoardData)
-          let total=0;
-
-          this.dashBoardData.investment_report.forEach(
-                inv=> total+=inv.returned_amount
-              )
-          this.totalYieldedAmount=total;
-          this.amountToWithdraw=total;
-          console.log('total',this.amountToWithdraw,this.dashBoardData)
-        } else {
-          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
-        }
-        this.showDetails();
-        this.isLoading = false;
-    });
-
-=======
     if (this.investmentInfo) {
       const userEmail = this.overiddenUser.email;
       const investmentId = this.investmentInfo.id;
@@ -190,7 +166,6 @@ export class UserDashboardComponent implements OnInit {
           this.isLoading = false;
       });
     }
->>>>>>> db1f90159c1be24eb577274aa3a2335d21064cac
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
@@ -265,10 +240,4 @@ export class UserDashboardComponent implements OnInit {
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> db1f90159c1be24eb577274aa3a2335d21064cac
 }
