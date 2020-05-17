@@ -73,10 +73,10 @@ export class PoolDetailComponent implements OnInit {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
           this.roi = this.pool.investment.estimated_percentage_profit;
-          console.log(this.pool);
+          //console.log(this.pool);
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
-          console.log(this.reports);
+          //console.log(this.reports);
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
@@ -159,23 +159,14 @@ export class PoolDetailComponent implements OnInit {
   }
 
   updateInvestment() {
-    this.buttonText='Updating...'
-    this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
-      if (resp) {
-        this.pool.investment.investment_image = resp;
-        this.pool.investment.estimated_percentage_profit = this.roi;
-        this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
-          if (resp && resp.success) {
-            // alert(resp.success.Message);
-            window.location.href = 'admin/pools';
-          }
-          this.buttonText = 'Update';
-        });
-        this.buttonText = 'Update';
+    this.buttonText = 'Updating...'
+    this.pool.investment.estimated_percentage_profit = this.roi;
+    this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
+      if (resp && resp.success) {
+        // alert(resp.success.Message);
+        window.location.href = 'admin/pools';
       }
-      
-      this.buttonText = 'Update';
-
+      this.buttonText = 'Updated';
     });
   }
 

@@ -182,7 +182,7 @@
                                             <div class="form-group row pt-1 pb-2">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-27px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
-                                                    <textarea class="input-control" rows="3" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " [(ngModel)]="pool.investment.description"></textarea>
+                                                    <textarea class="input-control" rows="3" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " name="description" [(ngModel)]="pool.investment.description"></textarea>
                                                 </div>
                                             </div>
 
