@@ -172,6 +172,7 @@ export class PoolDetailComponent implements OnInit {
         });
         this.buttonText = 'Update';
       }
+      
       this.buttonText = 'Update';
 
     });
