@@ -46,28 +46,28 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool.title}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool?.title}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool.max_num_of_slots}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool?.max_num_of_slots}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Pricing</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Invested Amount</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment_amount}}>
                                                 </div>
                                             </div>
 
@@ -283,7 +283,7 @@
                                                
                                                 
                                             </table>
-                                            <div *ngIf="dashboardInvestment?.length == 0" >
+                                            <div *ngIf="dashboardInvestment?.length === 0" >
                                                 <p class="displayStatus">"No records found."</p>
                                            </div>
                                             
