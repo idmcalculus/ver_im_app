@@ -4,11 +4,17 @@
  import { Investment } from 'src/app/shared/models/Investment';
 import { ReportService } from '../report.service';
 import { ExportData } from 'src/app/shared/models/ExportData';
+import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import { FormControl } from '@angular/forms';
 
  @Component({
   selector: 'app-pools',
   templateUrl: './investment-report.component.html',
-  styleUrls: ['./investment-report.component.scss']
+  styleUrls: ['./investment-report.component.scss'],
+  providers: [
+    { provide: MatFormFieldControl, useExisting: PoolreportComponent },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'} }
+  ]
 })
 export class PoolreportComponent implements OnInit {
   isLoading = true;
@@ -20,6 +26,9 @@ export class PoolreportComponent implements OnInit {
   filteredPools = [];
   p2 = 1;
   pageValue = 5;
+  dateEnd: '';
+  dateStart: '';
+  status = new FormControl();
 
   constructor(
     private router: Router,
@@ -29,7 +38,9 @@ export class PoolreportComponent implements OnInit {
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.report = resp.success.Data;
-          this.reportlog.push(this.report);
+          this.reportlog = resp.success.Data;
+          console.log(this.report);
+
         }
         this.isLoading = false;
       });
@@ -64,6 +75,37 @@ export class PoolreportComponent implements OnInit {
         this.pools = filtered;
       }
   }
+
+  filterStatus(filterType, filterValue): any {
+    if (filterValue === 'All') {
+      this.report = this.reportlog;
+    } else if (filterValue === 'InActive') {
+        let value = 0;
+        let filtered = this.reportlog.filter(pool => pool[filterType] === value);
+        this.report = filtered;
+    } else {
+      let value = 1;
+      let filtered = this.reportlog.filter(pool => pool[filterType] >= value);
+      this.report = filtered;
+    }
+  }
+
+
+  filterDate(dateStart, dateEnd): any {
+    let filterStart = dateStart;
+    let filterEnd = dateEnd;
+    if( filterStart && filterEnd){
+        const selectedLogs = this.report.filter(range => {
+            if ( range.date > filterStart && range.date < filterEnd)
+               return range;
+        });
+        this.report = selectedLogs;
+    } else {
+        return this.report;
+
+    }
+  }
+
 
   saveAsCSV() {
     if(this.report.length > 0){

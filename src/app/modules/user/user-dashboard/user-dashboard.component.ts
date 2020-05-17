@@ -30,6 +30,7 @@ export class UserDashboardComponent implements OnInit {
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = true;
+  p2: number = 1;
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -48,6 +49,7 @@ export class UserDashboardComponent implements OnInit {
   activateBtn=false;
   amountToWithdraw= 0 ;
   groupInvestments: any[] = [];
+  isSubmitting;
 
   constructor(private userService: UserService,
               private adminService: AdminService,
@@ -59,7 +61,7 @@ export class UserDashboardComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
-   
+
         if (resp) {
           this.overiddenUser = resp;
           this.userService.getusersInvestment(resp.email).subscribe(res => {
@@ -163,7 +165,7 @@ export class UserDashboardComponent implements OnInit {
         this.showDetails();
         this.isLoading = false;
     });
-    
+
   }
 
   calculateEstimate(returns, inv, expected_return_period) {

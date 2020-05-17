@@ -139,7 +139,7 @@ body{
 }
 
 .card.recentActivity, .card.bestSelling {
-    height: 500px;
+    height: 550px;
 
     .table-responsive{
         padding: 0.5rem 0rem;
@@ -461,10 +461,10 @@ body{
     font-weight: 700;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .withdraw-details{
