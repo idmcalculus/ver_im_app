@@ -149,7 +149,7 @@
                                             </div>
                                             <div class="col-6">
                                                 <p class="">
-                                                    {{ latestReport?.created_at ? (addMonth(latestReport?.created_at.split(' ')[0] , 1)  | date:  "dd.MM.y") : 'N/A' }}
+                                                    {{ latestReport?.created_at ? (addMonth(latestReport?.created_at.split(' ')[0])  | date:  "dd.MM.y") : 'N/A' }}
                                                 </p>
                                             </div>
                                         </div>

@@ -39,7 +39,7 @@
                                     <mat-label class="h7 mb-2" for="category">Category</mat-label>
                                     <mat-select id="category" class="form-control" placeholder="Category" name="category" [formControl]="Category">
                                         <mat-select-trigger>
-                                            {{Category.value ? Category.value : ''}}
+                                            {{ Category.value === 'All' ? 'Category' : Category.value }}
                                         </mat-select-trigger>
                                         <mat-option value="All" (click)="filterCategory('category_name', Category.value)">All</mat-option>
                                         <mat-option [value]="category.category_name" (click)="filterCategory('category_name', Category.value)" *ngFor="let category of categories">
@@ -67,7 +67,7 @@
                                     <mat-label class="h7 mb-2" for="status">Status</mat-label>
                                     <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status">
                                         <mat-select-trigger>
-                                            {{status.value ? status.value : ''}}
+                                            {{ status.value === 'All' ? 'Status' : status.value }}
                                         </mat-select-trigger>
                                         <mat-option value="All" (click)="filterStatus('is_investment_started', status.value)">All</mat-option>
                                         <mat-option value="Active" (click)="filterStatus('is_investment_started', status.value)">Active</mat-option>
