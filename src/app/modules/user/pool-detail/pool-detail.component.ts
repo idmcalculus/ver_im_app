@@ -39,12 +39,13 @@ export class PoolDetailComponent implements OnInit {
   reports: any[];
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private investmentService: InvestmentService,
-              private reportService: ReportService,
-              private authService: AppAuthService,
-              private cloudinaryService: CloudinaryService
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private investmentService: InvestmentService,
+    private reportService: ReportService,
+    private authService: AppAuthService,
+    private cloudinaryService: CloudinaryService
     ) {
       this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
@@ -156,8 +157,8 @@ export class PoolDetailComponent implements OnInit {
   }
 
   updateInvestment() {
+    this.buttonText='Updating...'
     this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
-      this.buttonText='Updating...'
       if (resp) {
         this.pool.investment.investment_image = resp;
         this.pool.investment.estimated_percentage_profit= this.roi;
@@ -278,6 +279,7 @@ export class PoolDetailComponent implements OnInit {
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
   }
+  
 
   changeListener($event): void {
     this.readThis($event.target);
@@ -298,18 +300,6 @@ export class PoolDetailComponent implements OnInit {
       myReader.readAsDataURL(file);
     }
   }
-
-  // calculateEstimate() {
-  //   if(this.pool.investment.investment_amount !=0 && this.pool.investment.expected_return_amount !='' && this.pool.investment.expected_return_period !=''){
-  //     const cost = this.pool.investment.investment_amount
-  //     const investment = parseInt(this.pool.investment.expected_return_amount) /100 
-  //     const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
-
-  //     const estimate = (cost * investment) / divisor;
-  //     this.returns = estimate.toFixed(2);
-  //   }
-  // }
-
   
   divisorFunc(expected_return_period) {
     if (expected_return_period === 'Weekly') {

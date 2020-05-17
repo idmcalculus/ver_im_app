@@ -170,7 +170,7 @@ export class AddUserComponent implements OnInit {
             return user[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        console.log(filtered);
+        //console.log(filtered);
         this.users = filtered;
       }
   }
