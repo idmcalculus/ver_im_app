@@ -78,6 +78,10 @@ export class UserService {
     return this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {'user_id': email});
   }
 
+  withdraw(name,email) {
+    return this.httpService.postRequest(`investment_user/withdraw`, {'first_name': name,'email':email});
+  }
+
   adminUpdateProfile(user: User): Observable<any> {
     return this.httpService.postRequest(`admin/update_user?
     email=${user.email}&authentication_type=${user.authentication_type}

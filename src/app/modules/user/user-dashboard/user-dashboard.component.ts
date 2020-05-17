@@ -22,7 +22,7 @@ export class UserDashboardComponent implements OnInit {
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
   userActivity: any = [];
-  usersInvestments: [Investment];
+  usersInvestments: any;
   usersInvestment: any = [];
   pools: any = [];
   poolGroup: any = [];
@@ -38,16 +38,17 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
-  order = "num_of_pools_taken";
+  order = 'num_of_pools_taken';
   ascending = false;
   investmentIds: string;
   idArray: any[];
-  UserBank= 'Wema Bank';
-  UserAccount= null;
-  UserAccountName= null;
-  Validated=false;
-  activateBtn=false;
-  amountToWithdraw= 0 ;
+  UserBank = 'Wema Bank';
+  UserAccount = null;
+  UserAccountName = null;
+  Validated = false;
+  activateBtn = false;
+  amountToWithdraw = 0 ;
+  submittedWithdraw = false;
   groupInvestments: any[] = [];
   isSubmitting;
 
@@ -73,9 +74,9 @@ export class UserDashboardComponent implements OnInit {
               }
               this.isLoading = false;
             });
-            this.UserBank = resp.bank_name;
-            this.UserAccount = resp.account_number;
-            this.UserAccountName= resp.account_number;
+          this.UserBank = resp.bank_name;
+          this.UserAccount = resp.account_number;
+          this.UserAccountName = resp.account_number;
         }
     });
 
@@ -131,19 +132,18 @@ export class UserDashboardComponent implements OnInit {
   }
 
   showDetails() {
-    this.isLoading = false;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
         this.selectedInvestment++;
         return this.selectedInvestment;
-        } else {
+    } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
-        this.isLoading = false;
-        }
-    }
+      }
+  }
 
   getUserDashBoard() {
+<<<<<<< HEAD
     const userEmail = this.overiddenUser.email;
     const investmentId = this.investmentInfo.id;
 
@@ -166,61 +166,109 @@ export class UserDashboardComponent implements OnInit {
         this.isLoading = false;
     });
 
+=======
+    if (this.investmentInfo) {
+      const userEmail = this.overiddenUser.email;
+      const investmentId = this.investmentInfo.id;
+      this.isLoading = true;
+      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+          if (resp && resp.success) {
+            this.dashBoardData = resp.success.Data;
+            this.dashboardInvestment.push(this.dashBoardData);
+            let total = 0;
+
+            this.dashBoardData.investment_report.forEach(
+                  inv => total += inv.returned_amount
+                );
+            this.totalYieldedAmount = total;
+            this.amountToWithdraw = total;
+            console.log('total', this.amountToWithdraw, this.dashBoardData);
+          } else {
+            this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+          }
+          this.showDetails();
+          this.isLoading = false;
+      });
+    }
+>>>>>>> db1f90159c1be24eb577274aa3a2335d21064cac
   }
 
   calculateEstimate(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return Math.ceil(estimate);
-}
+  }
 
-  validateWithdraw(){
-    if(this.amountToWithdraw>this.totalYieldedAmount || this.amountToWithdraw<=0){
-      this.activateBtn=false;
-    }else{
-      this.activateBtn=true;
-      this.Validated = true
+  validateWithdraw() {
+    if (this.amountToWithdraw > this.totalYieldedAmount || this.amountToWithdraw <= 0) {
+      this.activateBtn = false;
+    } else {
+      this.activateBtn = true;
+      this.Validated = true;
     }
   }
 
-  withdraw(){
-    this.modalText='processing';
+  async withdraw() {
+    const userEmail = this.overiddenUser.email;
+    const name = this.overiddenUser.first_name;
+    this.modalText = 'processing';
+    await this.userService.withdraw(name, userEmail).subscribe(res => {
+      this.modalText = 'processing';
+      if (res.success.StatusCode === 200) {
+        this.submittedWithdraw = true;
+        this.amountToWithdraw = 0 ;
+      }
+    });
+    this.modalText = 'Withdraw';
   }
 
-  divisorFunc (expected_return_period) {
-    if ( expected_return_period === "Weekly") {
+  divisorFunc(expected_return_period) {
+    if ( expected_return_period === 'Weekly') {
         return 48;
-    } else if (expected_return_period === "Monthly") {
+    } else if (expected_return_period === 'Monthly') {
         return 12;
     }
-}
-
- calculateReturn (expected_return_amount, expected_return_period) {
-    if ( expected_return_period === "Monthly") {
-        return expected_return_amount;
-    } else   {
-        return expected_return_amount*4;
-    }
-}
-
- addMonth(date: Date, month: number) {
-    const newDate = new Date(date);
-    const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() == 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
   }
 
-  getTimeAgo(time){
+ calculateReturn(expected_return_amount, expected_return_period) {
+    if ( expected_return_period === 'Monthly') {
+        return expected_return_amount;
+    } else   {
+        return expected_return_amount * 4;
+    }
+  }
+
+  addMonth(date: Date, inv) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    const m = newDate.getMonth();
+    if (inv) {
+      return inv.expected_return_period === 'Monthly' ? (
+        newDate.setMonth(m + 1),
+        newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+      ) : (
+        newDate.setDate(d + 7)
+      );
+    }
+  }
+
+  closeModal() {
+    this.submittedWithdraw = false;
+    this.Validated = false;
+    this.amountToWithdraw = 0;
+  }
+
+  getTimeAgo(time) {
     TimeAgo.addLocale(en);
-    var date = new Date(time);
-    var hours = date.getHours();
+    let date = new Date(time);
+    let hours = date.getHours();
 
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> db1f90159c1be24eb577274aa3a2335d21064cac
 }

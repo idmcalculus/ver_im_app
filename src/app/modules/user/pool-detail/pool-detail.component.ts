@@ -25,7 +25,7 @@ export class PoolDetailComponent implements OnInit {
   modaltitle = 'Update Plan';
   modalButtonTitle = '';
   modalData: Report = {};
-  buttonText = 'Update'
+  buttonText = 'Update';
   callBack: any;
   isLoading = true;
   selectedUser: User;
@@ -71,9 +71,11 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
-          this.roi= this.pool.investment.estimated_percentage_profit;
+          this.roi = this.pool.investment.estimated_percentage_profit;
           console.log(this.pool);
-          this.reports = this.pool.report;
+          this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
+          (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
+          console.log(this.reports);
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
@@ -157,32 +159,37 @@ export class PoolDetailComponent implements OnInit {
 
   updateInvestment() {
     this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
-      this.buttonText='Updating...'
+      this.buttonText = 'Updating...';
       if (resp) {
         this.pool.investment.investment_image = resp;
-        this.pool.investment.estimated_percentage_profit= this.roi;
+        this.pool.investment.estimated_percentage_profit = this.roi;
         this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
           if (resp && resp.success) {
             // alert(resp.success.Message);
             window.location.href = 'admin/pools';
           }
-          this.buttonText='Update'
+          this.buttonText = 'Update';
         });
-        this.buttonText='Update'
+        this.buttonText = 'Update';
       }
-      this.buttonText='Update'
+      
+      this.buttonText = 'Update';
 
     });
   }
 
-  addMonth(date: Date, month: number) {
+  addMonth(date: Date) {
     const newDate = new Date(date);
     const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() === 11) {
-        newDate.setDate(0);
+    const m = newDate.getMonth();
+    if (this.pool) {
+      return this.pool.investment.expected_return_period === 'Monthly' ? (
+        newDate.setMonth(m + 1),
+        newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+      ) : (
+        newDate.setDate(d + 7)
+      );
     }
-    return newDate;
   }
 
   deleteReport(report) {
@@ -215,7 +222,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
   addUser(operation, modalData) {
-    if (operation == 'create') {
+    if (operation === 'create') {
       this.modalData = {investment_id: this.poolId};
       this.modaltitle = 'Add User To Pool';
       this.modalButtonTitle = 'Add User';
@@ -285,16 +292,16 @@ export class PoolDetailComponent implements OnInit {
 
   readThis(inputValue: any): void {
     if (inputValue.files && inputValue.files[0]) {
-      var file: File = inputValue.files[0];
-      var myReader: FileReader = new FileReader();
+      let file: File = inputValue.files[0];
+      let myReader: FileReader = new FileReader();
 
       myReader.onloadend = (e) => {
         this.image = myReader.result;
         this.pool.investment_image = this.image;
-      }
+      };
       myReader.onload = (event) => { // called once readAsDataURL is completed
         this.url = 'event.target.result';
-      }
+      };
       myReader.readAsDataURL(file);
     }
   }
@@ -302,7 +309,7 @@ export class PoolDetailComponent implements OnInit {
   // calculateEstimate() {
   //   if(this.pool.investment.investment_amount !=0 && this.pool.investment.expected_return_amount !='' && this.pool.investment.expected_return_period !=''){
   //     const cost = this.pool.investment.investment_amount
-  //     const investment = parseInt(this.pool.investment.expected_return_amount) /100 
+  //     const investment = parseInt(this.pool.investment.expected_return_amount) /100
   //     const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
 
   //     const estimate = (cost * investment) / divisor;
@@ -310,7 +317,7 @@ export class PoolDetailComponent implements OnInit {
   //   }
   // }
 
-  
+
   divisorFunc(expected_return_period) {
     if (expected_return_period === 'Weekly') {
       return 48;
@@ -321,15 +328,15 @@ export class PoolDetailComponent implements OnInit {
 
 
   calculateEstimate() {
-    if(this.pool.investment.investment_amount !=0 && this.roi !='' && this.pool.investment.expected_return_period !=''){
+    if (this.pool.investment.investment_amount != 0 && this.roi != '' && this.pool.investment.expected_return_period != '') {
       const cost = this.pool.investment.investment_amount;
-      const investment = parseInt(this.roi) /100;
-      const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
+      const investment = parseInt(this.roi) / 100;
+      const divisor = this.divisorFunc(this.pool.investment.expected_return_period);
 
       const estimate = (cost * investment) / divisor;
-      if(!estimate){
-        //do nothing
-      }else{
+      if (!estimate) {
+        // do nothing
+      } else {
       this.pool.investment.expected_return_amount = estimate.toFixed(2);
       }
     }
