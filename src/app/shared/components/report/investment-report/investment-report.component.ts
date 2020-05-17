@@ -6,6 +6,7 @@ import { ReportService } from '../report.service';
 import { ExportData } from 'src/app/shared/models/ExportData';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
  @Component({
   selector: 'app-pools',
@@ -21,6 +22,7 @@ export class PoolreportComponent implements OnInit {
   pools: Investment[] = [];
   pool: Investment = {title: '', investment_amount: 0 };
   report = [];
+  data = [];
   reportlog = [];
   searchValue = '';
   filteredPools = [];
@@ -29,15 +31,19 @@ export class PoolreportComponent implements OnInit {
   dateEnd: '';
   dateStart: '';
   status = new FormControl();
+  order = "date";
+  ascending = false;
 
   constructor(
     private router: Router,
     private investmentService: InvestmentService,
+    private filterby: FilterTablesPipe,
     private reportService: ReportService,) {
 
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
-          this.report = resp.success.Data;
+          this.data = resp.success.Data;
+          this.report = this.filterby.transform(this.data, this.order, this.ascending);
           this.reportlog = resp.success.Data;
           console.log(this.report);
 
@@ -116,7 +122,6 @@ export class PoolreportComponent implements OnInit {
         let csvLine: ExportData = {
           date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
           date_start: line.date_start,
-          date_end: line.date_end,
           no_of_investments: line.no_of_investments,
           no_of_slots: line.no_of_slots,
           total_amount_invested: line.total_amount_invested,
