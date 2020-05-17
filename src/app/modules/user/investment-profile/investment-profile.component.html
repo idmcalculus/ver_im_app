@@ -56,7 +56,7 @@
                                               <td>{{user?.user_info[0].email}}</td>
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>{{user?.user_investment_info?.amount_paid}}</td>
+                                              <td>{{user?.user_investment_info?.amount_paid | currency:'':''}}</td>
                                               <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                       </tbody>
@@ -66,7 +66,7 @@
                                               <td>{{user?.user_info[0].email}}</td>
                                               <td>{{user?.user_info[0].phone_number}}</td>
                                               <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>{{user?.user_investment_info?.amount_paid}}</td>
+                                              <td>{{user?.user_investment_info?.amount_paid | currency:'':''}}</td>
                                               <td>{{user?.user_investment_info?.created_at}}</td>
                                           </tr>
                                       </tbody>
@@ -128,7 +128,7 @@
                                                 <span>Total Monthly Return</span>
                                             </div>
                                             <div class="col-6">
-                                                <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots}}</p>
+                                                <p class="">{{pool?.investment?.expected_return_amount * pool?.investment?.max_num_of_slots | currency:'NGN':'symbol-narrow'}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                                 <span>Return Per Slot</span>
                                             </div>
                                             <div class="col-6">
-                                                <p class="">{{pool?.investment?.expected_return_amount}}</p>
+                                                <p class="">{{pool?.investment?.expected_return_amount | currency:'NGN':'symbol-narrow'}}</p>
                                             </div>
                                         </div>
                                     </div>

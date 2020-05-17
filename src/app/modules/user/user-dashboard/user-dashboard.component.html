@@ -58,7 +58,7 @@
                                                                 <td class="col-3 leftBorder">
                                                                     <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                  <td class="col-7  rightBorder"><span  style="color:#baeab5">N{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length }}</span> <br>
+                                                                  <td class="col-7  rightBorder"><span  style="color:#baeab5">{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length | currency:'NGN':'symbol-narrow' }}</span> <br>
                                                                     <span style="font-size:12px;color:grey">Amount Paid</span>
                                                                   </td>
                                                             </tr>
@@ -88,7 +88,7 @@
                                                                 <td class="col-3 leftBorder">
                                                                     <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                                 </td>
-                                                                <td  class="col-7 rightBorder"><span style="color:#e99b89">N{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount, investments?.expected_return_period)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
+                                                                <td  class="col-7 rightBorder"><span style="color:#e99b89">{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount, investments?.expected_return_period)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) | currency:'NGN':'symbol-narrow' }}</span><br>
                                                                    <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                                 </td>
                                                             </tr>
@@ -132,7 +132,7 @@
                                 <div class="card-footer header-bg d-flex flex-row">
                                     <div class="col-6 text-center">
                                         <h6>ACCOUNT BALANCE</h6>
-                                        <h6 style="font-size:25px">N{{totalYieldedAmount}}</h6>
+                                        <h6 style="font-size:25px">{{totalYieldedAmount | currency:'NGN':'symbol'}}</h6>
                                     </div>
                                     <div class="col-6 text-center">
                                         <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
@@ -153,7 +153,7 @@
                                             <div class="col-12 px-0">
                                                 <img class="img img-responsive" style="width:150px;"  src="{{ investment?.investment_image }}" alt="farm-image">
                                             </div>
-                                            <div class="spectre my-2">N{{ investment?.investment_amount }} per slot</div>
+                                            <div class="spectre my-2">{{ investment?.investment_amount | currency:'NGN':'symbol-narrow' }} per slot</div>
                                             <div class="spectre my-2">Return: {{ investment?.estimated_percentage_profit }}% profit</div>
                                         </div>
                                     </div>

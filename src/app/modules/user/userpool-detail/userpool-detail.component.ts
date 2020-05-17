@@ -33,9 +33,9 @@ export class UserPoolDetailComponent implements OnInit {
   isLoading = true;
   selectedUser: User;
   loggedInUser: User = {email: ''};
-  userSubscription:Subscription;
-  p: number = 1;
-  p2: number =1;
+  userSubscription: Subscription;
+  p = 1;
+  p2 = 1;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
@@ -82,9 +82,9 @@ export class UserPoolDetailComponent implements OnInit {
 
   fetchPool(poolId: string) {
     this.isLoading = true;
-    this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+    this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
       if (userInfo) {
-        // this.loggedInUser = userInfo;
+        this.loggedInUser = userInfo;
         this.investmentService.getUserInvestments(this.loggedInUser.email).subscribe(investments => {
           if (investments) {
 
