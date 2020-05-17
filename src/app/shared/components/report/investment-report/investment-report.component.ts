@@ -7,6 +7,7 @@ import { ExportData } from 'src/app/shared/models/ExportData';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import { Category } from 'src/app/shared/models/Category';
 
  @Component({
   selector: 'app-pools',
@@ -24,6 +25,8 @@ export class PoolreportComponent implements OnInit {
   report = [];
   data = [];
   reportlog = [];
+  categories: any [];
+  res: Category;
   searchValue = '';
   filteredPools = [];
   p2 = 1;
@@ -31,6 +34,7 @@ export class PoolreportComponent implements OnInit {
   dateEnd: '';
   dateStart: '';
   status = new FormControl();
+  Category = new FormControl();
   order = "date";
   ascending = false;
 
@@ -38,53 +42,63 @@ export class PoolreportComponent implements OnInit {
     private router: Router,
     private investmentService: InvestmentService,
     private filterby: FilterTablesPipe,
-    private reportService: ReportService,) {
+    private reportService: ReportService)
+     {
+       this.getCategories();
+  }
 
-      this.investmentService.getpoolReport().subscribe(resp => {
+  ngOnInit() {
+    this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.data = resp.success.Data;
           this.data.shift()
           this.report = this.filterby.transform(this.data, this.order, this.ascending);
-          this.reportlog = resp.success.Data;
-          console.log(this.report);
-
-
- //         this.reportlog.push(this.report);
+          this.reportlog = this.filterby.transform(this.data, this.order, this.ascending);
 
         }
         this.isLoading = false;
       });
-
   }
 
-  ngOnInit() {}
-
-  getPools() {
+  getCategories() {
     this.isLoading = true;
-    this.investmentService.getInvestments(false).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success;
+    this.investmentService.getCategories().subscribe(resp => {
+      if (resp && resp.success) {
+        this.categories = resp.success.Data;
       }
       this.isLoading = false;
     });
+  }
+
+  getCategoryName(id) {
+    if (this.categories && id) {
+    this.res = this.categories.find(r => r.id === id);
+    return this.res.category_name;
+    } else {
+      return this.res = {category_name: ''};
+    }
   }
 
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
   }
 
-  filterTable(filterType, filterValue: string) {
-    if (!filterValue || filterValue === null) {
-      return this.getPools();
+
+
+  filterCategory(filterType, filterValue): any {
+    if (filterValue === 'All') {
+      this.report = this.reportlog;
     } else {
-        const filtered = this.pools.filter(pool => {
-          if (pool[filterType] !== null) {
-            return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
-          }
-        });
-        this.pools = filtered;
-      }
-  }
+      const CatPool: any = [];
+      const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+      filteredCat.forEach(cat => {
+        const filteredCatPool = this.reportlog.filter(investment => cat.id === investment.category_id);
+        CatPool.push(filteredCatPool);
+      });
+      this.report = [].concat.apply([], CatPool);
+
+    }
+}
 
   filterStatus(filterType, filterValue): any {
     if (filterValue === 'All') {
@@ -95,7 +109,7 @@ export class PoolreportComponent implements OnInit {
         this.report = filtered;
     } else {
       let value = 1;
-      let filtered = this.reportlog.filter(pool => pool[filterType] >= value);
+      let filtered = this.reportlog.filter(pool => pool[filterType] === value);
       this.report = filtered;
     }
   }
@@ -137,8 +151,10 @@ export class PoolreportComponent implements OnInit {
     }
 }
   clearSearch() {
+    this.dateEnd = '';
+    this.dateStart = '';
     this.searchValue = null;
-    return this.getPools();
+    return this.report = this.reportlog;
   }
 
 
