@@ -29,6 +29,7 @@ export class PoolreportComponent implements OnInit {
       this.investmentService.getpoolReport().subscribe(resp => {
         if (resp && resp.success) {
           this.report = resp.success.Data;
+          this.report.shift()
           this.reportlog.push(this.report);
         }
         this.isLoading = false;
@@ -42,7 +43,7 @@ export class PoolreportComponent implements OnInit {
     this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
-        this.pools = investments.success.Data;
+        this.pools = investments.success;
       }
       this.isLoading = false;
     });
