@@ -37,12 +37,12 @@
                                                 <td class="mr-3">{{i+1}}</td>
                                                 <td class="">{{pool?.title}}</td>
                                                 <td class="">{{getCategoryName(pool?.category_id)}}</td>
-                                                <td class="">{{pool?.investment_amount}}</td>
+                                                <td class="">{{pool?.investment_amount | currency:'':''}}</td>
                                                 <td class="">{{reports[i]?.number_of_pools}}</td>
                                                 <td class="">{{pool?.duration}} Months</td>
                                                 <td class="">{{pool?.estimated_percentage_profit}}%</td>
                                                 <td class="">{{pool?.expected_return_period}}</td>
-                                                <td class="">{{calculateAmount(pool?.investment_amount, reports[i]?.number_of_pools)}}</td>
+                                                <td class="">{{calculateAmount(pool?.investment_amount, reports[i]?.number_of_pools) | currency:'':''}}</td>
                                                 <td class="" style="color: green" *ngIf="pool?.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>
                                                     <td class="" style="color: red">{{'InActive'}}</td>

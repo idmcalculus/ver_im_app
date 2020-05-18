@@ -46,28 +46,28 @@
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool.title}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.title" value={{pool?.title}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool.max_num_of_slots}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" [(ngModel)]="pool.max_num_of_slots" value={{pool?.max_num_of_slots}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Pricing</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment_amount}}>
                                                 </div>
                                             </div>
 
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Invested Amount</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool.investment_amount}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.investment_amount}}>
                                                 </div>
                                             </div>
 
@@ -194,7 +194,7 @@
                                                             </div>
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
-                                                                <a class="pl-5 text-success">{{dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length | number:'1.1-2'}}</a>
+                                                                <a class="pl-5 text-success">{{dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length | currency:'NGN':'symbol-narrow'}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,7 +206,7 @@
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
                                                                 <a class="pl-5 text-danger">
-                                                                    {{ ((((pool?.investment_amount * dashboardInvestment[0]?.number_of_pools) * (calculateamount(pool?.expected_return_amount, pool?.investment_amount, pool?.expected_return_period)))/100)) - (dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length) | number:'1.1-2'}}  
+                                                                    {{ ((((pool?.investment_amount * dashboardInvestment[0]?.number_of_pools) * (calculateamount(pool?.expected_return_amount, pool?.investment_amount, pool?.expected_return_period)))/100)) - (dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length) | currency:'NGN':'symbol-narrow'}}  
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -243,9 +243,9 @@
                                                     <th>S/N</th>  
                                                     <th>Investment Title</th>
                                                     <th>Payback Frequency</th>
-                                                    <th>Amount Credited</th>
-                                                    <th>Yield Amount</th>
-                                                    <th>Balance</th>
+                                                    <th>Amount Credited (N)</th>
+                                                    <th>Yield Amount (N)</th>
+                                                    <th>Balance (N)</th>
                                                     <th>Status</th>
                                                     <th>Date Paid</th>
                                                 </tr>
@@ -255,9 +255,9 @@
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
                                                         <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
-                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | number:'1.1-2'}}</td>
-                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | number:'1.1-2'}}</td>
-                                                        <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | number:'1.1-2'}}</td>
+                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | currency:'':''}}</td>
+                                                        <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | currency:'':''}}</td>
+                                                        <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | currency:'':''}}</td>
                                                         <td style="width: 15%"> On-going </td>
                                                         <td style="width: 10%">{{report?.created_at.split(' ')[0] | date :  "dd.MM.y"}}</td>
                                                     </tr>
@@ -283,7 +283,7 @@
                                                
                                                 
                                             </table>
-                                            <div *ngIf="dashboardInvestment?.length == 0" >
+                                            <div *ngIf="dashboardInvestment?.length === 0" >
                                                 <p class="displayStatus">"No records found."</p>
                                            </div>
                                             
