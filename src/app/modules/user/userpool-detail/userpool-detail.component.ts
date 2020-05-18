@@ -31,11 +31,11 @@ export class UserPoolDetailComponent implements OnInit {
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   callBack: any;
   isLoading = true;
-  selectedUser:User;
-  loggedInUser:User = {email: '',};
-  userSubscription:Subscription;
-  p: number = 1;
-  p2: number =1;
+  selectedUser: User;
+  loggedInUser: User = {email: ''};
+  userSubscription: Subscription;
+  p = 1;
+  p2 = 1;
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
@@ -53,6 +53,7 @@ export class UserPoolDetailComponent implements OnInit {
         this.fetchPool(String(this.poolId));
       });
       this.getCategories();
+      this.loggedInUser.email = localStorage.getItem('email');
   }
 
   ngOnInit() {
@@ -81,7 +82,7 @@ export class UserPoolDetailComponent implements OnInit {
 
   fetchPool(poolId: string) {
     this.isLoading = true;
-    this.userSubscription = this.authService.currentUser.subscribe(userInfo =>{
+    this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
       if (userInfo) {
         this.loggedInUser = userInfo;
         this.investmentService.getUserInvestments(this.loggedInUser.email).subscribe(investments => {
@@ -118,9 +119,9 @@ export class UserPoolDetailComponent implements OnInit {
   }
 
   divisorFunc(expected_return_period) {
-    if ( expected_return_period === "Weekly") {
+    if ( expected_return_period === 'Weekly') {
         return 48;
-    } else if (expected_return_period === "Monthly") {
+    } else if (expected_return_period === 'Monthly') {
         return 12;
     }
   }
