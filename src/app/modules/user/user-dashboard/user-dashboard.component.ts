@@ -72,11 +72,12 @@ export class UserDashboardComponent implements OnInit {
               this.selectedInvestment = 0;
               this.showDetails();
               }
-              this.isLoading = false;
             });
           this.UserBank = resp.bank_name;
           this.UserAccount = resp.account_number;
           this.UserAccountName = resp.account_number;
+        } else {
+          //  this.isLoading = false;
         }
     });
 
@@ -85,7 +86,6 @@ export class UserDashboardComponent implements OnInit {
           this.allDashBoardData = resp.success.Data;
           this.userActivity = this.allDashBoardData.fetch_activities.filter(res => res.email === this.overiddenUser.email);
         }
-        this.isLoading = false;
       });
 
     this.investmentService.getInvestments(false).subscribe(investments => {
@@ -114,7 +114,6 @@ export class UserDashboardComponent implements OnInit {
       } else {
            console.log('No groups yet');
       }
-        this.isLoading = false;
     });
 
     this.investmentService.getInvestmentGroup({group_name: 'Featured Investments'}).subscribe(async resp => {
@@ -125,9 +124,9 @@ export class UserDashboardComponent implements OnInit {
         this.idArray.forEach(async id => {
           const foundInvestment = await this.pools.find(investment => investment.id === Number(id));
           this.groupInvestments.push(foundInvestment);
+          this.isLoading = false;
         });
       }
-      this.isLoading = false;
     });
   }
 
@@ -136,6 +135,7 @@ export class UserDashboardComponent implements OnInit {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
         this.selectedInvestment++;
+        this.isLoading = false;
         return this.selectedInvestment;
     } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
@@ -146,7 +146,7 @@ export class UserDashboardComponent implements OnInit {
     if (this.investmentInfo) {
       const userEmail = this.overiddenUser.email;
       const investmentId = this.investmentInfo.id;
-      this.isLoading = true;
+
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
