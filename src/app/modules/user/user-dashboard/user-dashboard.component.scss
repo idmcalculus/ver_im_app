@@ -114,7 +114,7 @@ body{
 
     .card{
 
-        .card-header {
+        .card-head {
             padding: 10px;
             letter-spacing: 0.5px;
             color: black;
@@ -139,7 +139,7 @@ body{
 }
 
 .card.recentActivity, .card.bestSelling {
-    height: 500px;
+    height: 550px;
 
     .table-responsive{
         padding: 0.5rem 0rem;
@@ -229,7 +229,7 @@ body{
 }
 
 .investmentPerf {
-    min-height: 450px;
+    height: 433px;
 }
 
 .featInvestment {
@@ -240,8 +240,7 @@ body{
 
     .card-footer{
         border-radius: 0em;
-        padding: 18px 20px !important;
-        padding-bottom: 10px !important;
+        
     }
 
      .card-header{
@@ -297,6 +296,19 @@ body{
     cursor: pointer;
     font-weight: 900;
 }
+.box-control {
+    display: block;
+    width: 100%;
+    color: #495057;
+    border-color: rgba(73, 80, 87, 0.2);
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid ;
+    border-radius: 2px;
+    padding: 12px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
 
 .latest-update-card > .input-control {
     display: block;
@@ -315,10 +327,8 @@ body{
   }
 
   .input-control .spectre{
-    margin-left: 2.5rem;
     color: #495057;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
 }
 
 .row1 p {
@@ -461,10 +471,10 @@ body{
     font-weight: 700;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .withdraw-details{

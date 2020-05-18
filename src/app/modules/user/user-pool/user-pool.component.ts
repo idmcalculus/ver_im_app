@@ -22,6 +22,7 @@ export class UserPoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
+p2:any;
 
   constructor(
     private router: Router,

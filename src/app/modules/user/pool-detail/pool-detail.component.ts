@@ -39,12 +39,13 @@ export class PoolDetailComponent implements OnInit {
   reports: any[];
   // @ViewChild('closeBtn') closeBtn: ElementRef;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private investmentService: InvestmentService,
-              private reportService: ReportService,
-              private authService: AppAuthService,
-              private cloudinaryService: CloudinaryService
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private investmentService: InvestmentService,
+    private reportService: ReportService,
+    private authService: AppAuthService,
+    private cloudinaryService: CloudinaryService
     ) {
       this.getCategories();
       this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
@@ -72,10 +73,10 @@ export class PoolDetailComponent implements OnInit {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
           this.roi = this.pool.investment.estimated_percentage_profit;
-          console.log(this.pool);
+          //console.log(this.pool);
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
-          console.log(this.reports);
+          //console.log(this.reports);
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
           // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
@@ -158,22 +159,14 @@ export class PoolDetailComponent implements OnInit {
   }
 
   updateInvestment() {
-    this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
-      this.buttonText = 'Updating...';
-      if (resp) {
-        this.pool.investment.investment_image = resp;
-        this.pool.investment.estimated_percentage_profit = this.roi;
-        this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
-          if (resp && resp.success) {
-            // alert(resp.success.Message);
-            window.location.href = 'admin/pools';
-          }
-          this.buttonText = 'Update';
-        });
-        this.buttonText = 'Update';
+    this.buttonText = 'Updating...'
+    this.pool.investment.estimated_percentage_profit = this.roi;
+    this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
+      if (resp && resp.success) {
+        // alert(resp.success.Message);
+        window.location.href = 'admin/pools';
       }
-      this.buttonText = 'Update';
-
+      this.buttonText = 'Updated';
     });
   }
 
@@ -284,6 +277,7 @@ export class PoolDetailComponent implements OnInit {
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
   }
+  
 
   changeListener($event): void {
     this.readThis($event.target);
@@ -304,19 +298,7 @@ export class PoolDetailComponent implements OnInit {
       myReader.readAsDataURL(file);
     }
   }
-
-  // calculateEstimate() {
-  //   if(this.pool.investment.investment_amount !=0 && this.pool.investment.expected_return_amount !='' && this.pool.investment.expected_return_period !=''){
-  //     const cost = this.pool.investment.investment_amount
-  //     const investment = parseInt(this.pool.investment.expected_return_amount) /100
-  //     const divisor = this.divisorFunc(this.pool.investment.expected_return_period)
-
-  //     const estimate = (cost * investment) / divisor;
-  //     this.returns = estimate.toFixed(2);
-  //   }
-  // }
-
-
+  
   divisorFunc(expected_return_period) {
     if (expected_return_period === 'Weekly') {
       return 48;
