@@ -7,6 +7,7 @@ export class Investment extends BasicModel {
   is_investment_started?: string;
   duration?: string;
   expected_return_period?: string;
+  expected_percentage_profit?:string;
   investment_amount?: number;
   opening_date?: string;
   closing_date?: string;
@@ -49,5 +50,4 @@ export class Investment extends BasicModel {
   }];
   estimated_percentage_profit?: string;
   report?: any;
-
 }

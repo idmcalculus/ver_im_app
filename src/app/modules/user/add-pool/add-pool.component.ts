@@ -12,14 +12,13 @@ import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 })
 export class AddPoolComponent implements OnInit {
   isLoading: boolean;
-  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: ''};
+  pool: Investment = {investment_amount: 0, expected_return_amount: '', expected_return_period: '',estimated_percentage_profit:''};
   buttonText = 'Add';
-  image: any;
-  id: number;
-  returns: string;
-  data: any;
-  selectedUser: any;
-  category: any;
+  image:any;
+  roi: string;
+  data:any;
+  selectedUser:any;
+  category:any;
   public imagePath;
   url = '';
   public message: string;
@@ -36,7 +35,6 @@ export class AddPoolComponent implements OnInit {
       this.isLoading = true;
       this.investmentService.getInvestments(false).subscribe(investment => {
         this.pools = investment.success.Data;
-        this.id = this.pools[0].id;
         this.isLoading = false;
       });
       this.getCategories();
@@ -50,6 +48,7 @@ export class AddPoolComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        //console.log(this.categories)
       }
     });
   }
@@ -59,6 +58,7 @@ export class AddPoolComponent implements OnInit {
       this.cloudinaryService.upload(this.pool.investment_image).subscribe(resp => {
         if (resp) {
           this.pool.investment_image = resp;
+          this.pool.estimated_percentage_profit= this.roi;
           this.investmentService.addInvestment(this.pool).subscribe(resp => {
             if (resp && resp.success) {
               // alert(resp.success.Message);
@@ -87,8 +87,9 @@ export class AddPoolComponent implements OnInit {
         this.image = myReader.result;
         this.pool.investment_image = this.image;
       };
-      myReader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = 'event.target.result';
+
+      myReader.onload = (event:any) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
       };
       myReader.readAsDataURL(file);
     }
@@ -103,13 +104,13 @@ export class AddPoolComponent implements OnInit {
   }
 
   calculateEstimate() {
-    if(this.pool.investment_amount !=0 && this.pool.expected_return_amount !='' && this.pool.expected_return_period !=''){
+    if(this.pool.investment_amount !=0 && this.roi !='' && this.pool.expected_return_period !=''){
       const cost = this.pool.investment_amount
-      const investment = parseInt(this.pool.expected_return_amount) /100 
+      const investment = parseInt(this.roi) /100
       const divisor = this.divisorFunc(this.pool.expected_return_period)
 
       const estimate = (cost * investment) / divisor;
-      this.returns = estimate.toFixed(2);
+      this.pool.expected_return_amount = estimate.toFixed(2);
     }
   }
 }

@@ -24,7 +24,9 @@ export class InvestmentService {
     &duration=${investment.duration}&expected_return_period=${investment.expected_return_period}
     &investment_amount=${investment.investment_amount}
     &show_publicly=${investment.show_publicly ? 1 : 0}
-    &expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
+    &estimated_percentage_profit=${investment.estimated_percentage_profit}
+    &expected_return_amount=${investment.expected_return_amount}`, imageBody, true,)
+    ;
   }
 
   updateInvestment(investment: Investment): Observable<any> {
@@ -33,8 +35,14 @@ export class InvestmentService {
       `investment/update?title=${investment.title}&description=${investment.description}&investment_id=${investment.id}
     &category_id=${investment.category_id}&max_num_of_slots=${investment.max_num_of_slots}&duration=${investment.duration}
     &expected_return_period=${investment.expected_return_period}&investment_amount=${investment.investment_amount}
-    &show_publicly=${investment.show_publicly ? 1 : 0}&expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
+    &estimated_percentage_profit=${investment.estimated_percentage_profit}&show_publicly=${investment.show_publicly ? 1 : 0}&expected_return_amount=${investment.expected_return_amount}`, imageBody, true);
   }
+
+  getStats(id: Number): Observable<any> {
+    return this.httpService.postRequest(`trackViews?investment_id=${id}`, {});
+  }
+
+ 
 
   getInvestments(is_frontend: boolean): Observable<any> {
     return this.httpService.postRequest(`investment/list?is_frontend=${is_frontend}`, {});
@@ -96,8 +104,8 @@ export class InvestmentService {
     return this.httpService.postRequest(`investment/getGroups`, {});
   }
 
-  getBestInvestmentGroups(groupName: string) {
-    return this.httpService.postRequest(`investment/getInvestmentGroup`, {group_name: groupName}, true);
+  getDetails(): Observable<any> {
+    return this.httpService.postRequest(`getViews`, {});
   }
 
   deleteInvestmentGroup(investmentGroup: InvestmentGroup) {

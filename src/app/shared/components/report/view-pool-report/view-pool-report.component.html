@@ -22,7 +22,7 @@
                         <div class="col-md-12">
                             <div class="card px-3">
                                 <div class="category-header pt-3 p-2">
-                                    <p class="width">Investment Title</p>
+                                    <p class="width" style="text-align:start">Investment Title</p>
                                     <p class="width">Category</p>
                                     <p class="width">Cost</p>
                                     <p class="width">Viewed</p>
@@ -47,12 +47,23 @@
                                         </div>
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let pool of pools;let i = index;">
-                                            <p class="width">{{pool.title}}</p>
+                                        <div class="row1 p-2" *ngFor="let pool of pools| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                            <p class="width" style="text-align:start">{{pool.title}}</p>
                                             <p class="width">{{getCategoryName(pool.category_id)}}</p>
                                             <p class="width">{{pool.investment_amount}}</p>
-                                            <p class="width"></p>
-                                            <p class="width"></p>
+                                            <p class="width">{{pool.no_of_views}}</p>
+                                            <p class="width">{{percentages(pool.no_of_views)}}%</p>
+                                        </div>
+                                        <div  class="col-12 mt-3 d-flex flex-row">
+                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                            <span class="col-md-1 col-xs-1 px-0">
+                                                <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
+                                                    <option value="5"> 5 rows </option>
+                                                    <option value="10"> 10 rows </option>
+                                                    <option value="20"> 20 rows </option>
+                                                    <option value="0"> view all </option>
+                                                </select>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

@@ -17,12 +17,15 @@ export class PurchasedreportComponent implements OnInit {
   pools:Investment[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
+  result: any [];
   categories:any []
   searchValue = '';
   filteredPools = [];
   masterSelected:boolean;
   checklist:any;
   checkedList:any;
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router:Router,
@@ -34,9 +37,7 @@ export class PurchasedreportComponent implements OnInit {
       if (userpath.includes('user')) {
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
-          if (resp) {
-            this.getUserPols(resp.email);
-          }
+          
         });
       } else {
         this.userType = 'admin';
@@ -52,7 +53,7 @@ export class PurchasedreportComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   getCheckedPooList(){
     this.checkedList = [];
     for (var i = 0; i < this.checklist.length; i++) {
@@ -66,7 +67,10 @@ export class PurchasedreportComponent implements OnInit {
     this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
-        this.pools = investments.success.Data;
+        this.result = investments.success.Data;
+        this.pools = this.result.filter(x => x.num_of_pools_taken > 0);
+        console.log(this.pools);
+        
       }
       this.isLoading = false;
     });
@@ -82,18 +86,8 @@ export class PurchasedreportComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    //console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
-  }
-
-  getUserPols(email) {
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
-        this.getCategories();
-      }
-    });
   }
 
   cancelPool() {
@@ -109,7 +103,6 @@ export class PurchasedreportComponent implements OnInit {
             return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        console.log(filtered);
         this.pools = filtered;
       }
   }
@@ -132,17 +125,23 @@ export class PurchasedreportComponent implements OnInit {
         let reportDate = new Date();
         let csvLine: ExportData = {
           date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
-          id: line.id,
           title: line.title,
           category_id: line.category_id,
-          expected_return_period:line.expected_return_period,
           investment_amount:line.investment_amount,
+          max_no_of_slots:line.max_num_of_slots,
+          total:line.max_num_of_slots * line.investment_amount,
         }
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('ProductsPurchasedReport.csv', items);
     }
 }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 
 }

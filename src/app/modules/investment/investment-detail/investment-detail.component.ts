@@ -57,6 +57,7 @@ export class InvestmentDetailComponent implements OnInit {
             this.isLoading = true;
             const investmentId = params.id;
             this.getInvestment(investmentId);
+            this.getStat(investmentId);
             this.getInvestments();
         });
 
@@ -72,6 +73,12 @@ export class InvestmentDetailComponent implements OnInit {
 
     triggerSecond() {
         document.getElementById('openModalButton').click();
+    }
+
+    getStat(inv){
+        this.investmentService.getStats(inv).subscribe(investments => {
+            return
+        });
     }
 
     getInvestment(id: string) {

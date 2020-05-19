@@ -1,9 +1,8 @@
  import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
+import { Router } from '@angular/router';
 import {InvestmentService} from '../../../../modules/investment/investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from '../../../../modules/user/user.service';
 import { ReportService } from '../report.service';
 import { ExportData } from 'src/app/shared/models/ExportData';
 
@@ -14,22 +13,20 @@ import { ExportData } from 'src/app/shared/models/ExportData';
 })
 export class ViewedreportComponent implements OnInit {
   isLoading:boolean=true;
-  pools:Investment[]=[];
+  pools: any[]=[];
   pool:Investment = {title: '', investment_amount: 0, };
   userType:string;
-  categories:any []
+  categories:any [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
+  p2 = 1;
+  pageValue = 5;
 
   constructor(
     private router:Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
-    private reportService: ReportService,
-    private userService: UserService) {
+    private reportService: ReportService,) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
         this.userType = 'user';
@@ -44,41 +41,16 @@ export class ViewedreportComponent implements OnInit {
         this.getCategories();
       }
       this.getCategories();
-      this.masterSelected = false;
-      this.checklist = [this.pool,];
-      this.getCheckedPooList();
 
   }
 
   ngOnInit() {
   }
 
-  checkUncheckAll() {
-    for (var i = 0; i < this.checklist.length; i++) {
-      this.checklist[i] = this.masterSelected;
-    }
-    this.getCheckedPooList();
-  }
-
-  isAllSelected() {
-    this.masterSelected = this.checklist.every(function(pool:any) {
-        return pool == true;
-      })
-    this.getCheckedPooList();
-  }
-
-  getCheckedPooList(){
-    this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
-      this.checkedList.push(this.checklist[i]);
-    }
-    this.checkedList = JSON.stringify(this.checkedList);
-  }
 
   getPools() {
     this.isLoading = true;
-    this.investmentService.getInvestments(false).subscribe(investments => {
+    this.investmentService.getDetails().subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
       }
@@ -96,7 +68,6 @@ export class ViewedreportComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    //console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
@@ -132,7 +103,6 @@ export class ViewedreportComponent implements OnInit {
             return pool[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        console.log(filtered);
         this.pools = filtered;
       }
   }
@@ -150,6 +120,14 @@ export class ViewedreportComponent implements OnInit {
     }
 }
 
+  percentages(pool){
+    let total=0;
+    this.pools.forEach(element => {
+      total+=element.no_of_views
+    });
+    return ((pool/total)*100).toFixed(2);
+  }
+
   clearSearch() {
     this.searchValue = null;
     return this.getPools();
@@ -163,16 +141,22 @@ export class ViewedreportComponent implements OnInit {
         let reportDate = new Date();
         let csvLine: ExportData = {
           date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
-          id: line.id,
           title: line.title,
           category_id: line.category_id,
-          expected_return_period:line.expected_return_period,
           investment_amount:line.investment_amount,
+          viewed:line.no_of_views,
+          percentage: Number(this.percentages(line.no_of_views as any)),
         }
         items.push(csvLine);
       });
 
-      this.reportService.exportToCsv('myCsvDocumentName.csv', items);
+      this.reportService.exportToCsv('ProductViewedReport.csv', items);
     }
 }
+
+
+setItemsPerPage(event){
+    this.pageValue = event;
+}
+
 }

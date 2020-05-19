@@ -8,8 +8,8 @@ import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
 import {UserSettingsComponent} from './../user/settings/settings.component';
 import {PoolsComponent} from './../user/pools/pools.component';
-import {userPoolDetailComponent} from './../user/userpool-detail/userpool-detail.component';
-import {userPoolsComponent} from './../user/user-pool/user-pool.component';
+import {UserPoolDetailComponent} from './../user/userpool-detail/userpool-detail.component';
+import {UserPoolsComponent} from './../user/user-pool/user-pool.component';
 import {AddPoolComponent} from './../user/add-pool/add-pool.component';
 import {PoolDetailComponent} from './../user/pool-detail/pool-detail.component';
 import {AddUserComponent} from './manage-users/addUserToPool/addUser.component';
@@ -38,11 +38,13 @@ import { EditUserGroupComponent } from './user-group/edit-user-group/edit-user-g
 import { ViewUsersComponent } from './user-group/view-users/view-users.component';
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
-
+import { AuthGuardService as AuthGuard } from '../../auth/auth-guard.service';
 
 
 
 const userRoutes: Routes = [
+  { path: '', component: AdminComponent },
+
   {
     path: 'admin',
     component: AdminComponent, canActivate: [RouterGaurdService],
@@ -106,15 +108,15 @@ const userRoutes: Routes = [
           { path: 'userReport/:email/export/:id', component: exportUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },
-          { path: 'userPools', component: userPoolsComponent },
-          { path: 'userPools/:id', component: userPoolDetailComponent },
+          { path: 'userPools', component: UserPoolsComponent },
+          { path: 'userPools/:id', component: UserPoolDetailComponent },
           { path: 'pools/:id/investment-profile', component: InvestmentProfileComponent },
           { path: 'pools/:id/adduser', component: AddUserComponent },
           { path: '', component: AdminDashboardComponent }
         ]
       }
     ]
-  }
+  },
 ];
 
 @NgModule({

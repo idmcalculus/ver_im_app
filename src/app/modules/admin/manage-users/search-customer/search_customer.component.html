@@ -38,19 +38,6 @@
                                 <label class="h7">Phone Number</label>
                                 <div class="col px-0">
                                     <a><input class="p-2" type="text" style="width: 100%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" [ngModel]="numberValue"></a>
-                                    <a>
-                                        <button class="float-right" type="submit" (click)="clearSearch()" style="
-                                        margin: 20px 0px;
-                                        margin-bottom: 0px;
-                                        border-width: 0px;
-                                        cursor: pointer;
-                                        padding: 10px 50px;
-                                        border-radius: 10px;
-                                        background-color: #9797e8;
-                                        color: white;
-                                        letter-spacing: 0.5px;
-                                        font-weight: 700;">Reset Details</button>
-                                    </a>
                                 </div>
                             </div>
 
@@ -75,7 +62,7 @@
                                             <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let user of users| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                 <td><input value="" [(ngModel)]="user.selected" type="checkbox" (click)='deleteUserDetail(i)' (change)="checkIfAllSelected()"></td>
-                                                <td>{{user.first_name}} {{user.last_name}}</td>
+                                                <td>{{user.last_name}} {{user.first_name}}</td>
                                                 <td >{{user.email}}</td>
                                                 <td >{{user.phone_number}}</td>
                                                 <td >

@@ -9,54 +9,61 @@
                             <a class=" pl-2">Home / Product Viewed Report</a>
                         </div>
                         <div class="float-right">
-                            <a class="pr-3">
+                            <a class="pr-4">
                                 <button class="btn btn-secondary btn-sm font-weight-bold" (click)= "saveAsCSV()" type="submit">Export</button>
                             </a>
                             <a (click)="clearSearch()" id="delCat">
-                                <img class=""src="../../../../assets/images/icon/icons/Refresh.png">
+                                <img class="" src="../../../../assets/images/icon/icons/Refresh.png">
                             </a>
                         </div>
                     </div>
 
                     <div class="container-fluid bg_filter border border-dark rounded mb-5">
                         <div class="row p-1 py-4">
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div class="col-sm-6 col-lg-6 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', search.value)"
-                                    (blur)="filterTable('id', search.value)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
+                            <div class="col-sm-6 col-lg-6 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1 status">
                                 <div class="form-group">
-                                    <label class="h7">Category</label>
-                                    <input type="text" class="input-control shadow" placeholder="Category" name="search" #search (keyup)="filterTable('title', search.value)"
-                                    (blur)="filterTable('title', search.value)">
+                                    <mat-label class="h7 mt-2" for="category">Category</mat-label>
+                                    <mat-select id="category" class="form-control" placeholder="Category" name="category" [formControl]="Category">
+                                        <mat-select-trigger>
+                                            {{ Category.value === 'All' ? 'Category' : Category.value }}
+                                        </mat-select-trigger>
+                                        <mat-option value="All" (click)="filterCategory('category_name', Category.value)">All</mat-option>
+                                        <mat-option [value]="category.category_name" (click)="filterCategory('category_name', Category.value)" *ngFor="let category of categories">
+                                            {{category.category_name}}
+                                        </mat-option>
+                                    </mat-select>
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
-                                <div class="form-group">
-                                    <label class="h7">Group By</label>
-                                    <input type="number" class="input-control shadow" placeholder="Group By" name="category" #search (keyup)="filterTable('phone_number',search.value)">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
+                            <div class="col-sm-6 col-lg-6 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="amount" #search (keyup)="filterTable('investment_amount',search.value)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate(dateStart,dateEnd)">
                                 </div>
                             </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
+                        <!--   <div hidden class="col-sm-6 col-lg-6 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Portfolio</label>
                                     <input type="text" class="input-control shadow" placeholder="Portfolio"
                                     (keyup)="filterTable('email', $event)">
                                 </div>
-                            </div>
-                            <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
+                            </div>-->
+                            <div class="col-sm-6 col-lg-6 pt-lg-0 pt-sm-0 pt-2  px-sm-1 px-lg-1 status">
                                 <div class="form-group">
-                                    <label class="h7">Status</label>
-                                    <input type="number" class="input-control shadow" placeholder="Status" (keyup)="filterTable('phone_number',search.value)">
+                                    <mat-label class="h7 mt-2" for="status">Status</mat-label>
+                                    <mat-select id="status" class="form-control" placeholder="Status" name="status" [formControl]="status">
+                                        <mat-select-trigger>
+                                            {{status.value ? status.value :''}}
+                                        </mat-select-trigger>
+                                        <mat-option value="All" (click)="filterStatus('is_investment_started', status.value)">All</mat-option>
+                                        <mat-option value="Active" (click)="filterStatus('is_investment_started', status.value)">Active</mat-option>
+                                        <mat-option value="InActive" (click)="filterStatus('is_investment_started', status.value)">InActive</mat-option>
+                                    </mat-select>
                                 </div>
                             </div>
                         </div>
@@ -81,23 +88,39 @@
                                     <div></div>
                                 </div>
                             </div>
+
+                            <div *ngIf="!isLoading" class="mb-3">
+                                <div class="float-left pt-2">
+                                    <a class=" pl-2">{{dateStart | date:'fullDate'}} - {{dateEnd | date: 'fullDate'}}</a>
+                                </div>
+                            </div>
+
                             <div *ngIf="!isLoading" class="card px-3">
                                 <div class="category-header pt-3 p-2">
-                                    <p class="width">Date Start</p>
-                                    <p class="width">Date End</p>
+                                    <p class="width">Date</p>
                                     <p class="width">No of Investments</p>
                                     <p class="width">No of Slots</p>
                                     <p class="width" >Total</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div class="category-body" *ngFor="let report of reportlog; let i = index;">
-                                        <div class="row1 p-2" *ngFor="let pool of report; let i = index;">
-                                            <p class="width">{{pool?.date}}</p>
+                                    <div class="category-body">
+                                        <div class="row1 p-2" *ngFor="let pool of report| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; let i = index;">
                                             <p class="width">{{pool?.date}}</p>
                                             <p class="width">{{pool?.no_of_investments}}</p>
                                             <p class="width">{{pool?.no_of_slots}}</p>
-                                            <p class="width">{{pool?.total_amount_invested}}</p>
+                                            <p class="width">{{pool?.total_amount_invested | number:'1.0-0'}} </p>
                                         </div>
+                                    </div>
+                                    <div  class="col-12 mt-3 d-flex flex-row">
+                                        <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                        <span class="col-md-1 col-xs-1 px-0">
+                                            <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
+                                                <option value="5"> 5 rows </option>
+                                                <option value="10"> 10 rows </option>
+                                                <option value="20"> 20 rows </option>
+                                                <option value="0"> view all </option>
+                                            </select>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

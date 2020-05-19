@@ -22,20 +22,17 @@ a .setting {
     display: block;
 }
 
-
 .input-control {
     display: block;
     width: 100%;
-    padding: .25rem .5rem;
-    font-size: .875rem;
-    line-height: 1.5;
     color: #495057;
+    box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
     background-color: #fff;
     background-clip: padding-box;
-    border: 0.3px solid #221F72;
+    border: 0px solid ;
     border-radius: 2px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
+  }
 
 label,th {
     color: #221F72;
@@ -88,6 +85,7 @@ td {
 
 .width {
     width: 25%;
+    text-align: center;
 }
 
 

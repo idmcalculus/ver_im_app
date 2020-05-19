@@ -52,7 +52,8 @@ import { ModalComponent } from './modal/modal.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
- import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { FilterTablesPipe } from './filter-tables.pipe';
 // import { ChatComponent } from './modules/chat/chat.component';
 // import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 
@@ -89,6 +90,7 @@ import { MatInputModule } from '@angular/material/input';
         FaqComponent,
         ContactusComponent,
         ModalComponent,
+        FilterTablesPipe,
         // ChatComponent,
         // ApplicantDetailsComponent
 
@@ -133,6 +135,7 @@ import { MatInputModule } from '@angular/material/input';
         PaginationModule.forRoot()
     ],
     providers: [
+        FilterTablesPipe,
         RouterGaurdService,
         HttpService,
         AppAuthService,
