@@ -41,25 +41,14 @@ img {
 }
 
 
-.investment-card {
-    background-color:whitesmoke;
-    padding-bottom: 1.20rem;
-    padding-top: 1.20rem;
-
-}
-
-
 .investment-card2 {
     background-color:whitesmoke;
-    padding-top: 0.50rem;
-    padding-bottom: 0.50rem;
 
 }
 
-.spacing{
-    margin-right: 8rem;
+.investment-card {
+    background-color:whitesmoke;
 }
-
 
 table .pending {
     color: red;
@@ -119,7 +108,6 @@ th {
     font-weight: 800;
     cursor: pointer;
     border: none;
-    padding: 0.50rem;
 }
 
 .btn-danger {
@@ -129,8 +117,6 @@ th {
     letter-spacing: 0.5px;
     font-weight: 600;
     color: white;
-    padding-right: 3rem;
-    padding-left: 3rem;
 }
 
 .btn-success {
@@ -139,8 +125,6 @@ th {
     letter-spacing: 0.5px;
     font-weight: 600;
     color: white;
-    padding-right: 3rem;
-    padding-left: 3rem;
 }
 
 
@@ -155,9 +139,6 @@ th {
 }
 
 @media only screen and (max-width: 935px) {
-    .spacing {
-        margin-right:0rem;
-    }
     .btn-lg {
         padding: 14px 17px;
         font-size: 16px;
