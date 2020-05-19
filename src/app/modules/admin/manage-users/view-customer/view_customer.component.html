@@ -173,8 +173,8 @@
 
                                 <div  class="carousel slide" id="myCarousel" data-interval="false">
 
-                                    <div class="container p-t-0 m-t-2 carousel-inner" style="max-width: 99%;">
-                                        <div class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of userInvestment; index as i;" >
+                                    <div id="carousel-inner" class="container p-t-0 m-t-2 carousel-inner" style="max-width: 99%;">
+                                        <div id="carousel-item" class="row row-equal carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of userInvestment; index as i;" >
                                            <div class = "flex-row d-flex">
                                                 <div class="col-4">
                                                     <div class="dt-responsive table-responsive">
@@ -240,10 +240,10 @@
                                     <div *ngIf= "userInvestment?.length > 0" class="container" >
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
-                                                <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
+                                                <a id="carousel-control" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
                                                     <i class="fa fa-lg  fa-circle"></i>
                                                 </a>
-                                                <a class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                <a id="carousel-control2" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
                                                     <i class="fa fa-lg fa-circle"></i>
                                                 </a>
                                             </div>

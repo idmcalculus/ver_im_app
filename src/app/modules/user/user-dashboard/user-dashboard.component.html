@@ -71,7 +71,7 @@
                                                             <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                         </div>
                                                         <div  class="col-8">
-                                                            <span style="color:#e99b89">₦{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount, investments?.expected_return_period)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
+                                                            <span  class="amountval{{i}}" style="color:#e99b89">₦{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount, investments?.expected_return_period)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
                                                             <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                         </div>
                                                     </div>
@@ -124,10 +124,10 @@
                                    <div class="container">
                                         <div class="row">
                                             <div class="col-sm-12 text-center mb-4">
-                                                <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
+                                                <a id="carousel-controls" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
                                                     <i class="fa fa-lg  fa-circle"></i>
                                                 </a>
-                                                <a *ngIf="this.dashBoardData?.investment?.length>1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                <a *ngIf="usersInvestments.length >1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
                                                     <i class="fa fa-lg fa-circle"></i>
                                                 </a>
                                             </div>
@@ -221,11 +221,10 @@
                                         </div>
                                    </div>
                                 </div>
-
-                                <div class="card-footer header-bg d-flex flex-row">
-                                    <div class="col-6 text-center">
+                                <div class="card-footer header-bg d-flex flex-row" >
+                                    <div  [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="col-6 text-center with" *ngFor="let investments of usersInvestments; index as i;">
                                         <h6>ACCOUNT BALANCE</h6>
-                                        <h6 style="font-size:25px">₦{{totalYieldedAmount}}</h6>
+                                        <h6 id="withdraw" style="font-size:25px">₦{{formatCurrency(dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length)}}</h6>
                                     </div>
                                     <div class="col-6 text-center">
                                         <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>

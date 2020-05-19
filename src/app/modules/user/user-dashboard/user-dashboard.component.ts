@@ -8,7 +8,7 @@ import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
@@ -51,7 +51,6 @@ export class UserDashboardComponent implements OnInit {
   submittedWithdraw = false;
   groupInvestments: any[] = [];
   isSubmitting;
-
   constructor(private userService: UserService,
               private adminService: AdminService,
               private investmentService: InvestmentService,
@@ -72,7 +71,7 @@ export class UserDashboardComponent implements OnInit {
               this.selectedInvestment = 0;
               this.showDetails();
               }
-            });
+          });
           this.UserBank = resp.bank_name;
           this.UserAccount = resp.account_number;
           this.UserAccountName = resp.account_number;
@@ -128,6 +127,22 @@ export class UserDashboardComponent implements OnInit {
         });
       }
     });
+
+   
+    // const carousel = document.getElementById('carousel-control');
+    // carousel.addEventListener('slide.bs.carousel', function(event) {
+    //   console.log(event)
+    // });
+
+    // const on = (element, event, selector, handler) => {
+    //   element.addEventListener(event, e => {
+    //     if (e.target.closest(selector)) {
+    //       handler(e);
+    //     }
+    //   });
+    // }
+    
+  
   }
 
   showDetails() {
@@ -136,6 +151,7 @@ export class UserDashboardComponent implements OnInit {
         this.getUserDashBoard();
         this.selectedInvestment++;
         this.isLoading = false;
+       
         return this.selectedInvestment;
     } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
@@ -156,15 +172,23 @@ export class UserDashboardComponent implements OnInit {
             this.dashBoardData.investment_report.forEach(
                   inv => total += inv.returned_amount
                 );
-            this.totalYieldedAmount = total;
-            this.amountToWithdraw = total;
-            console.log('total', this.amountToWithdraw, this.dashBoardData);
           } else {
             this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
           }
           this.showDetails();
-          this.isLoading = false;
+          this.isLoading = false;         
       });
+
+      const me = this;
+
+
+      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+        const to = e.to;
+        $('.with').hide();
+        console.log(to)
+        let element = document.getElementsByClassName('with')[Number(to)] as HTMLInputElement;
+        element.style.display = 'block';
+        });
     }
   }
 
@@ -190,7 +214,6 @@ export class UserDashboardComponent implements OnInit {
       this.modalText = 'processing';
       if (res.success.StatusCode === 200) {
         this.submittedWithdraw = true;
-        this.amountToWithdraw = 0 ;
       }
     });
     this.modalText = 'Withdraw';
@@ -240,4 +263,13 @@ export class UserDashboardComponent implements OnInit {
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
+
+  formatCurrency(value){
+    const val = new Intl.NumberFormat('en-us', { maximumSignificantDigits: 3 }).format(value)
+    this.amountToWithdraw = Number(val);
+    this.totalYieldedAmount = 0;
+    return val;
+  }
+
+
 }

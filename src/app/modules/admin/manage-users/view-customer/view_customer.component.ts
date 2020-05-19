@@ -6,6 +6,7 @@ import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/shared/models/Category';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-view-customers',
@@ -73,7 +74,26 @@ export class ViewCustomerComponent implements OnInit {
         const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
         row.style.display = 'contents';
         });
+
+     
+
     }
+
+    ngAfterContentInit(){
+      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
+        const to = e.to;
+        $('.investment-card').hide();
+        let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
+        element.style.display = 'block';
+
+        $('#investmentTable').find('> tbody').hide();
+        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+        row.style.display = 'contents';
+        });
+      const view = document.getElementById('carousel-item');
+      console.log('helllo',view)
+    }
+    
 
     getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
@@ -113,6 +133,36 @@ export class ViewCustomerComponent implements OnInit {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
             });
             this.isLoading = false;
+
+            //this is a quick fix for this feature, we will replace later
+            const control = document.getElementById('carousel-control');
+            control.addEventListener('click',()=>{
+              var element = document.querySelector('#carousel-inner');
+              var child = element.querySelector('.active')
+              const val = Array.from(element.children).indexOf(child)
+              $('.investment-card').hide();
+              let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
+              elements.style.display = 'block';
+
+              const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
+              row.style.display = 'contents';
+              elements.style.display = 'block';
+            })
+
+            const control2 = document.getElementById('carousel-control2');
+            control2.addEventListener('click',()=>{
+              var element = document.querySelector('#carousel-inner');
+              var child = element.querySelector('.active')
+              const val = Array.from(element.children).indexOf(child)
+              $('.investment-card').hide();
+              let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
+              elements.style.display = 'block';
+
+              const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
+              row.style.display = 'contents';
+              elements.style.display = 'block';
+            })
+            
           } else {
             this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
