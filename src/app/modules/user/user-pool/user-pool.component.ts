@@ -22,7 +22,8 @@ export class UserPoolsComponent implements OnInit {
   masterSelected: boolean;
   checklist: any;
   checkedList: any;
-p2:any;
+  p2: any;
+  email: string;
 
   constructor(
     private router: Router,
@@ -35,11 +36,13 @@ p2:any;
     const userpath = window.location.pathname;
     if (userpath.includes('user')) {
         this.userType = 'user';
-        this.authService.currentUser.subscribe(resp => {
-          if (resp) {
-            this.getUserPols(resp.email);
+        this.email = localStorage.getItem('email');
+        this.investmentService.getUserInvestments(this.email).subscribe(investments => {
+          if (investments) {
+            this.pools = investments.success.Data;
+            this.reports = investments.success.Inv;
+            this.isLoading = false;
           }
-          this.isLoading = false;
         });
       } else {
         this.userType = 'admin';
@@ -80,8 +83,8 @@ p2:any;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        this.isLoading = false;
       }
-      this.isLoading = false;
     });
   }
 
@@ -92,16 +95,16 @@ p2:any;
     }
   }
 
-  getUserPols(email) {
+  /*getUserPols(email) {
     this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         this.reports = investments.success.Inv;
-        this.isLoading = false;
       }
+      this.isLoading = false;
     });
-  }
+  }*/
 
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');

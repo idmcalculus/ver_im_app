@@ -8,6 +8,7 @@ import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -56,7 +57,8 @@ export class UserDashboardComponent implements OnInit {
               private adminService: AdminService,
               private investmentService: InvestmentService,
               private filterby: FilterTablesPipe,
-              private authService: AppAuthService) {}
+              private authService: AppAuthService,
+              private router: Router) {}
 
   ngOnInit() {
 
@@ -239,5 +241,9 @@ export class UserDashboardComponent implements OnInit {
 
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
+  }
+
+  goToPool(investment: Investment) {
+    this.router.navigateByUrl(`investments/${investment.id}`);
   }
 }

@@ -44,6 +44,10 @@ div > a {
     font-weight: bold;
 }
 
+.table {
+    max-width: 100%;
+}
+
 .table > thead > tr > th {
     border-top: none;
     border-bottom-width: 2px;
@@ -51,7 +55,8 @@ div > a {
 }
 
 td {
-    border-color: #221F72
+    border-color: #221F72;
+    font-size: 12px;
 }
 
 .col-md-12 {
