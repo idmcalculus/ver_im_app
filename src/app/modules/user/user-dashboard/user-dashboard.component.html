@@ -39,19 +39,28 @@
 
 
                     <div *ngIf="!isLoading && usersInvestments?.length > 0 && dashboardInvestment?.length > 0">
+                        <div class="card-details col-7">
+                            <div class="card latest-update-card ">
+                                <div class="card-head none-covered">
+                                    <h5>Investment Perfomance</h5>
+                                </div>
 
-                        <div class="row">
-                            <div class="card-details col-7">
-                                <div class="card latest-update-card ">
-                                    <div class="card-head none-covered">
-                                        <h5>Investment Perfomance</h5>
-                                    </div>
-                                    <div  class="carousel slide" id="myCarousel" data-interval="false">
-                                        <div class="p-t-0 m-t-2 carousel-inner">
-                                            <div class="carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of usersInvestments; index as i;">
-                                                <div class="row p-2 row justify-content-center">
-                                                    <div class="col-12">
-                                                        <p class="mb-0 pl-2" style="font-weight: 700;font-size: medium;">{{investments?.title}}</p>
+                                <div *ngIf="usersInvestments.length > 0" class="carousel slide" id="myCarousel" data-interval="false">
+                                    <div class="p-t-0 m-t-2 carousel-inner">
+                                        <div class="carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of usersInvestments; index as i;">
+                                            <div class="row p-2 row justify-content-center">
+                                                <div class="col-12">
+                                                    <p class="mb-0 px-4" style="font-weight: 700;font-size: medium;">{{investments.title}}</p>
+                                                </div>
+                                                <div class="col-5 mt-2 my-3 box-control mr-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <span  style="color: #18d004;font-weight: 700">₦{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length }}</span> <br>
+                                                            <span style="font-size:12px;color:grey">Amount Paid</span>
+                                                        </div>
                                                     </div>
                                                     <div class="col-5 mt-2 my-3 box-control mr-4">
                                                         <div class="row">
@@ -131,18 +140,107 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                    </div>
-                                    </div>
-                                    <div class="card-footer header-bg d-flex flex-row">
-                                        <div class="col-6 text-center">
-                                            <h6>ACCOUNT BALANCE</h6>
-                                            <h6 style="font-size:25px">₦{{totalYieldedAmount}}</h6>
                                         </div>
-                                        <div class="col-6 text-center">
-                                            <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
-                                            <button type="button" disabled class=" col-5 btn btn-warning px-0">Deposit</button>
+                                   </div>
+                                </div>
+                                <div *ngIf="usersInvestments.length == 0"  class="carousel">
+                                    <div class="p-t-0 m-t-2 carousel-inner">
+                                        <div class="m-t-0">
+                                            <div class="row p-2 row justify-content-center">
+                                                <div class="col-12">
+                                                    <p class="mb-0  px-4" style="font-weight: 700;font-size: medium;">No Investment Record</p>
+                                                </div>
+                                                <div class="col-5 mt-2 my-3 box-control mr-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div class="col-8">
+                                                            <span  style="color: #18d004;font-weight: 700">N/A</span> <br>
+                                                            <span style="font-size:12px;color:grey">Amount Paid</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5 mt-2 my-3 box-control ml-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div  class="col-8">
+                                                            <span style="color:#e99b89">N/A</span><br>
+                                                            <span style="font-size:12px;color:grey"> Amount Pending</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-5 my-3 box-control mr-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div  class="col-8"> N/A <br>
+                                                            <span style="font-size:12px;color:grey"> Payback</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-5 my-3 box-control ml-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div  class="col-8">N/A <br>
+                                                            <span style="font-size:12px;color:grey">Number of Slot(s)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5 my-3 box-control mr-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <td   class="col-8">N/A <br>
+                                                            <span style="font-size:12px;color:grey">Last Payment</span>
+                                                        </div>
+                                                    </div>
+                                                      <div class="col-5 my-3 box-control ml-4">
+                                                    <div class="row">
+                                                        <div class="col-3">
+                                                            <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
+                                                        </div>
+                                                        <div  class="col-8">
+                                                            N/A<br>
+                                                            <span style="font-size:12px;color:grey">Next Payment</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                   <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center mb-4">
+                                                <a class="px-1 btn-outline-info carousel-control left"   data-slide="prev" title="back">
+                                                    <i class="fa fa-lg  fa-circle"></i>
+                                                </a>
+                                                <a class="btn-outline-secondary carousel-control right" data-slide="next" title="forward">
+                                                    <i class="fa fa-lg fa-circle"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                   </div>
+                                </div>
+
+                                <div class="card-footer header-bg d-flex flex-row">
+                                    <div class="col-6 text-center">
+                                        <h6>ACCOUNT BALANCE</h6>
+                                        <h6 style="font-size:25px">₦{{totalYieldedAmount}}</h6>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
+                                        <button type="button" disabled class=" col-5 btn btn-warning px-0">Deposit</button>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
 
