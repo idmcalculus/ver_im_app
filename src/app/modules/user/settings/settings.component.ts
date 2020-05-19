@@ -51,22 +51,23 @@ this.isLoading = false;
 
 // Make additional tab buttons
 TabControl(){
-    let i;
-    const items = document.querySelectorAll('.nav-link');
-    const pane = document.querySelectorAll('.tab-pane');
-    for(i = 0; i < items.length; i++){
-        if((items[i]).classList.contains('active') ==true){
-            break;
-        }
-    }
-    if(i < items.length - 1){
-        // for tab
-        (items[i]).classList.remove('active');
-        (items[i+1]).classList.add('active');
-        // for pane
-        (pane[i]).classList.remove('show', 'active');
-        (pane[i+1]).classList.add('show', 'active');
-    }
+var i, items = $('.nav-link'), pane = $('.tab-pane');
+// next
+$('.next').on('click',function(){
+  for(i = 0; i < items.length; i++){
+      if($(items[i]).hasClass('active') ==true){
+          break;
+      }
+  }
+  if(i < items.length - 1){
+      // for tab
+      $(items[i]).removeClass('active');
+      $(items[i+1]).addClass('active');
+      // for pane
+      $(pane[i]).removeClass('show active');
+      $(pane[i+1]).addClass('show active');
+  }
+});
 }
 
 updateProfile(user: User) {

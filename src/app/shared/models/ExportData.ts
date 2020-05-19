@@ -12,7 +12,6 @@ export class ExportData extends BasicModel{
     returned_amount?:number;
     payment_type?:string;
     date?: string;
-    date_range?: string;
     date_end?: string;
     date_start?: string;
     activity?: string;
