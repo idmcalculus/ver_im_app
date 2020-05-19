@@ -190,17 +190,13 @@ export class ViewCustomerComponent implements OnInit {
         }
     }
 
-    addMonth(date: Date, inv) {
+    addMonth(date: Date, month: number) {
         const newDate = new Date(date);
         const d = newDate.getDate();
-        const m = newDate.getMonth();
-        if (inv) {
-          return inv.expected_return_period === 'Monthly' ? (
-            newDate.setMonth(m + 1),
-            newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
-          ) : (
-            newDate.setDate(d + 7)
-          );
+        newDate.setMonth(newDate.getMonth() + month);
+        if (newDate.getMonth() == 11) {
+            newDate.setDate(0);
         }
-      }
+        return newDate;
+    }
 }

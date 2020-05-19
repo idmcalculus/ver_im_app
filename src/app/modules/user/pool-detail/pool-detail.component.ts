@@ -164,7 +164,7 @@ export class PoolDetailComponent implements OnInit {
     this.investmentService.updateInvestment(this.pool.investment).subscribe(resp => {
       if (resp && resp.success) {
         // alert(resp.success.Message);
-        this.router.navigateByUrl('admin/pools');
+        window.location.href = 'admin/pools';
       }
       this.buttonText = 'Updated';
     });
