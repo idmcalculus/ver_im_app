@@ -15,7 +15,7 @@ import { EditPasswordComponent } from './settings/edit-password/edit_password.co
 const userRoutes: Routes = [
   {
     path: 'user',
-    component: UserComponent,canActivate:[RouterGaurdService],
+    component: UserComponent,canActivate: [RouterGaurdService],
     children: [
       {
         path: '',
