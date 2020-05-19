@@ -2,26 +2,24 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-
                 <div class="page-body">
-                   <div class="row mb-4">
-                    <!-- <div class="col-xl-4 col-md-6 user-invest">
-                        <label for="myInvest" class="sr-only">My Investment</label>
-                        <select [(ngModel)]="selectedInvestment" (change)="showDetails()" name="" id="myInvest" class="form-control">
-                            <option *ngIf="usersInvestments.length === 0" value="-1" >Investment Plans</option>
-                            <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
-                        </select>
-                    </div> -->
-                    <div style="margin: 1.1rem 0rem;
-                                color: #43425d;
-                                font-size: 1.3rem;
-                                font-weight: 700;
-                                letter-spacing: 0.1rem;
-                                ">
-                                    Dashboard
+                    <div class="row mb-4">
+                        <!-- <div class="col-xl-4 col-md-6 user-invest">
+                            <label for="myInvest" class="sr-only">My Investment</label>
+                            <select [(ngModel)]="selectedInvestment" (change)="showDetails()" name="" id="myInvest" class="form-control">
+                                <option *ngIf="usersInvestments.length === 0" value="-1" >Investment Plans</option>
+                                <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
+                            </select>
+                        </div> -->
+                        <div style="margin: 1.1rem 0rem;
+                                    color: #43425d;
+                                    font-size: 1.3rem;
+                                    font-weight: 700;
+                                    letter-spacing: 0.1rem;
+                                    ">
+                                        Dashboard
+                        </div>
                     </div>
-                   </div>
-
                     <div *ngIf="isLoading || usersInvestments?.length === 0 || dashboardInvestment?.length === 0" class="lds-default">
                         <div></div>
                         <div></div>
@@ -36,7 +34,6 @@
                         <div></div>
                         <div></div>
                     </div>
-
 
                     <div *ngIf="!isLoading && usersInvestments?.length > 0 && dashboardInvestment?.length > 0">
                         <div class="card-details col-7">
@@ -130,20 +127,19 @@
                                             </div>
                                         </div>
                                     <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm-12 text-center mb-4">
-                                                    <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
-                                                        <i class="fa fa-lg  fa-circle"></i>
-                                                    </a>
-                                                    <a *ngIf="this.dashBoardData?.investment?.length>1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
-                                                        <i class="fa fa-lg fa-circle"></i>
-                                                    </a>
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-sm-12 text-center mb-4">
+                                                <a class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
+                                                    <i class="fa fa-lg  fa-circle"></i>
+                                                </a>
+                                                <a *ngIf="this.dashBoardData?.investment?.length>1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                    <i class="fa fa-lg fa-circle"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                   </div>
+                                    </div>
                                 </div>
-                                <div *ngIf="usersInvestments.length == 0"  class="carousel">
+                                <div *ngIf="usersInvestments.length === 0"  class="carousel">
                                     <div class="p-t-0 m-t-2 carousel-inner">
                                         <div class="m-t-0">
                                             <div class="row p-2 row justify-content-center">
@@ -241,28 +237,28 @@
                                         <button type="button" disabled class=" col-5 btn btn-warning px-0">Deposit</button>
                                     </div>
                                 </div>
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="card-details col-5">
-                                <div class="card latest-update-card">
-                                    <div class="card-head non-covered">
-                                        <h5>Featured Investment</h5>
-                                    </div>
-                                    <div class="card-block">
-                                        <div class="row justify-content-center investmentPerf items-center">
-                                            <div class="col-6 p-2" *ngFor="let investment of groupInvestments?.slice(0,4); index as i">
-                                                <div class="col-12 px-0 mb-2" (click)="goToPool(investment)" style="cursor: pointer;">
-                                                    <img class="img mx-auto d-block" style="width:150px;"  src="{{ investment?.investment_image }}" alt="farm-image">
-                                                </div>
-                                                <div class="text-center">{{investment?.title}}</div>
-                                                <div class="font-weight-bold text-center">₦{{ investment?.investment_amount }} per slot</div>
-                                                <div class="text-center small">Return: {{ investment?.estimated_percentage_profit }}% profit</div>
+                        <div class="card-details col-5">
+                            <div class="card latest-update-card">
+                                <div class="card-head non-covered">
+                                    <h5>Featured Investment</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row justify-content-center investmentPerf items-center">
+                                        <div class="col-6 p-2" *ngFor="let investment of groupInvestments?.slice(0,4); index as i">
+                                            <div class="col-12 px-0 mb-2" (click)="goToPool(investment)" style="cursor: pointer;">
+                                                <img class="img mx-auto d-block" style="width:150px;"  src="{{ investment?.investment_image }}" alt="farm-image">
                                             </div>
+                                            <div class="text-center">{{investment?.title}}</div>
+                                            <div class="font-weight-bold text-center">₦{{ investment?.investment_amount }} per slot</div>
+                                            <div class="text-center small">Return: {{ investment?.estimated_percentage_profit }}% profit</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
                             <!-- <div class="col-xl-4 p-0">
                                 <div class="col-xl-12 col-md-12">
@@ -321,7 +317,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                        </div>
+                    
                         <div class="row">
 
                             <!-- <div class="col-xl-12 p-0">
@@ -499,10 +495,8 @@
                                 </div> -->
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
