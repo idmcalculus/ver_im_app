@@ -9,6 +9,8 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
@@ -55,7 +57,8 @@ export class UserDashboardComponent implements OnInit {
               private adminService: AdminService,
               private investmentService: InvestmentService,
               private filterby: FilterTablesPipe,
-              private authService: AppAuthService) {}
+              private authService: AppAuthService,
+              private router: Router) {}
 
   ngOnInit() {
 
@@ -71,12 +74,11 @@ export class UserDashboardComponent implements OnInit {
               this.selectedInvestment = 0;
               this.showDetails();
               }
-          });
+              this.isLoading = false;
+            });
           this.UserBank = resp.bank_name;
           this.UserAccount = resp.account_number;
           this.UserAccountName = resp.account_number;
-        } else {
-          //  this.isLoading = false;
         }
     });
 
@@ -85,6 +87,7 @@ export class UserDashboardComponent implements OnInit {
           this.allDashBoardData = resp.success.Data;
           this.userActivity = this.allDashBoardData.fetch_activities.filter(res => res.email === this.overiddenUser.email);
         }
+        this.isLoading = false;
       });
 
     this.investmentService.getInvestments(false).subscribe(investments => {
@@ -113,6 +116,7 @@ export class UserDashboardComponent implements OnInit {
       } else {
            console.log('No groups yet');
       }
+        this.isLoading = false;
     });
 
     this.investmentService.getInvestmentGroup({group_name: 'Featured Investments'}).subscribe(async resp => {
@@ -123,9 +127,9 @@ export class UserDashboardComponent implements OnInit {
         this.idArray.forEach(async id => {
           const foundInvestment = await this.pools.find(investment => investment.id === Number(id));
           this.groupInvestments.push(foundInvestment);
-          this.isLoading = false;
         });
       }
+      this.isLoading = false;
     });
 
    
@@ -162,7 +166,7 @@ export class UserDashboardComponent implements OnInit {
     if (this.investmentInfo) {
       const userEmail = this.overiddenUser.email;
       const investmentId = this.investmentInfo.id;
-
+      this.isLoading = true;
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
@@ -272,4 +276,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
+  goToPool(investment: Investment) {
+    this.router.navigateByUrl(`investments/${investment.id}`);
+  }
 }

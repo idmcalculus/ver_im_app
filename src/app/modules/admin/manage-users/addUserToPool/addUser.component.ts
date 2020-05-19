@@ -66,16 +66,16 @@ export class AddUserComponent implements OnInit {
 
   validPool(pool) {
     if (this.number_of_pools != 0){ 
-      const remain = this.pool.investment.max_num_of_slots - this.pool.investment.num_of_pools_taken
-      const want = this.number_of_pools
+    const remain = this.pool.investment.max_num_of_slots - this.pool.investment.num_of_pools_taken
+    const want = this.number_of_pools
 
-      if(want > remain) {
-        //console.log('Exceeded');
-        this.validpoolError = 'Number of Pools Exceeded';  
-      } else {
-        this.validpoolError ='';
-      }
-    } 
+    if(want > remain) {
+      //console.log('Exceeded');
+      this.validpoolError = 'Number of Pools Exceeded';  
+    } else {
+      this.validpoolError ='';
+    }
+  } 
   }
 
   ngOnInit() {
@@ -138,6 +138,7 @@ export class AddUserComponent implements OnInit {
         this.toastrService.success('User added to pool')
       }
       this.buttonText='Invested'
+      this.location.back()
     })
   }
 
