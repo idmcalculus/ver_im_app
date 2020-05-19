@@ -37,7 +37,6 @@
 
 
                     <div *ngIf="!isLoading && usersInvestments?.length > 0 && dashboardInvestment?.length > 0">
-
                         <div class="row">
                             <div class="card-details col-7">
                                 <div class="card latest-update-card ">
@@ -142,27 +141,27 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            </div>
 
-                        <div class="card-details col-5">
-                            <div class="card latest-update-card">
-                                <div class="card-head non-covered">
-                                    <h5>Featured Investment</h5>
-                                </div>
-                                <div class="card-block">
-                                    <div class="row justify-content-center investmentPerf items-center">
-                                        <div class="col-6 p-2" *ngFor="let investment of groupInvestments?.slice(0,4); index as i">
-                                            <div class="col-12 px-0 mb-2" (click)="goToPool(investment)" style="cursor: pointer;">
-                                                <img class="img mx-auto d-block" style="width:150px;"  src="{{ investment?.investment_image }}" alt="farm-image">
+                            <div class="card-details col-5">
+                                <div class="card latest-update-card">
+                                    <div class="card-head non-covered">
+                                        <h5>Featured Investment</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="row justify-content-center investmentPerf items-center">
+                                            <div class="col-6 p-2" *ngFor="let investment of groupInvestments?.slice(0,4); index as i">
+                                                <div class="col-12 px-0 mb-2" (click)="goToPool(investment)" style="cursor: pointer;">
+                                                    <img class="img mx-auto d-block" style="width:150px;"  src="{{ investment?.investment_image }}" alt="farm-image">
+                                                </div>
+                                                <div class="text-center">{{investment?.title}}</div>
+                                                <div class="font-weight-bold text-center">₦{{ investment?.investment_amount }} per slot</div>
+                                                <div class="text-center small">Return: {{ investment?.estimated_percentage_profit }}% profit</div>
                                             </div>
-                                            <div class="text-center">{{investment?.title}}</div>
-                                            <div class="font-weight-bold text-center">₦{{ investment?.investment_amount }} per slot</div>
-                                            <div class="text-center small">Return: {{ investment?.estimated_percentage_profit }}% profit</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                             <!-- <div class="col-xl-4 p-0">
                                 <div class="col-xl-12 col-md-12">
@@ -221,7 +220,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                    
+                        </div>
                         <div class="row">
 
                             <!-- <div class="col-xl-12 p-0">
