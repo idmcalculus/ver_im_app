@@ -4,6 +4,7 @@ import {AdminService} from '../admin.service';
 import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
 import { CareerService } from '../../career/career.service';
 import { ChartType, ChartOptions  } from 'chart.js';
+import { Category } from 'src/app/shared/models/Category';
 import { InvestmentService } from './../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
@@ -23,6 +24,9 @@ export class AdminDashboardComponent implements OnInit {
   allInvestments: [{'title':''}];
   careers: [];
   isLoading = true;
+  categories: any [];
+  categoryz: any [];
+  res: Category;
   categoriesCount = {"agriculture": 10,"housing":0,'transport':0,'others':0};
   lagosAmount: any = 0;
   totalAmount: any = 0;
@@ -117,7 +121,9 @@ export class AdminDashboardComponent implements OnInit {
     private investmentService: InvestmentService,
     private careerService: CareerService
 
-    ) { }
+    ) {
+      this.getCategories();
+     }
     @ViewChild('mycanvas')
     canvas: ElementRef;
   ngOnInit() {
@@ -209,15 +215,32 @@ export class AdminDashboardComponent implements OnInit {
     };
 
     getTimeAgo(time){
-        TimeAgo.addLocale(en);
-        var date = new Date(time);
-        var hours = date.getHours();
+      TimeAgo.addLocale(en);
+      var date = new Date(time);
+      var hours = date.getHours();
 
-        const timeAgo = new TimeAgo('en-US');
-        return timeAgo.format(date);
-      }
-
-
-
+      const timeAgo = new TimeAgo('en-US');
+      return timeAgo.format(date);
     }
+
+    getCategories() {
+      this.isLoading = true;
+      this.investmentService.getCategories().subscribe(resp => {
+        if (resp && resp.success) {
+          this.categories = resp.success.Data;
+        }
+        this.isLoading = false;
+      });
+    }
+
+
+    getCategoryName(id) {
+      if (this.categories && id) {
+      this.res = this.categories.find(r => r.id === id);
+      return this.res.category_name;
+      } else {
+        return this.res = {category_name: ''};
+      }
+    }
+}
 

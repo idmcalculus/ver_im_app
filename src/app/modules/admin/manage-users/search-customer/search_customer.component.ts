@@ -19,6 +19,7 @@ export class SearchCustomerComponent implements OnInit {
   pageValue = 5;
   users: User [];
   user: User = {email: ''};
+  filteredUser: User [];
   data: User [];
   selectedDelUser: User;
   checkedUser = [];
@@ -42,6 +43,7 @@ export class SearchCustomerComponent implements OnInit {
       if (resp && resp.success) {
         this.data = resp.success.Data;
         this.users = this.filterby.transform(this.data, this.order, this.ascending);
+        this.filteredUser = this.users;
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
@@ -88,7 +90,8 @@ export class SearchCustomerComponent implements OnInit {
     this.isLoading = true;
     this.userService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
-        this.users = resp.success.Data;
+        this.data = resp.success.Data;
+        this.users = this.filterby.transform(this.data, this.order, this.ascending);
       }
       this.isLoading = false;
     });
@@ -98,7 +101,7 @@ export class SearchCustomerComponent implements OnInit {
     const value = filterValue.target.value;
 
     if (!value) {
-      return this.getUsers();
+      return this.users = this.filteredUser;
     } else {
       const filtered = this.users.filter(user => {
           if (user[filterType] !== null) {
@@ -114,7 +117,7 @@ export class SearchCustomerComponent implements OnInit {
     this.searchValue = null;
     this.emailValue = null;
     this.numberValue = null;
-    return this.getUsers();
+    return this.users = this.filteredUser;
   }
 
   delete = () => {
