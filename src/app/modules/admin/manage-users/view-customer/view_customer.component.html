@@ -221,7 +221,7 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Next Payment</td>
-                                                                    <td>{{ addMonth(dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length -1]?.created_at , 1)  | date:  "dd.MM.y" }}</td>
+                                                                    <td>{{ addMonth(dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length -1]?.created_at , investments?.expected_return_period)  | date:  "dd.MM.y" }}</td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td  class="highlighted">Termination Date</td>
