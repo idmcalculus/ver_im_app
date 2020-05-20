@@ -93,6 +93,7 @@ export class UserPoolDetailComponent implements OnInit {
           const data = investments.success;
           this.noPool = data.Inv.find(x => x.investment_id === Number(this.poolId));
           this.pool =  data.Data.find(x => x.id === Number(this.poolId));
+          console.log(this.pool);
           this.pool.num_of_pools_taken = this.noPool;
           }
           this.isLoading = false;
@@ -160,7 +161,24 @@ export class UserPoolDetailComponent implements OnInit {
   calculateamount(returns, inv, expected_return_period) {
     const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
     return estimate.toFixed(2);
-}
+  }
+
+  calculateReturn(numOfPools, price, percentProfit) {
+    const roi = percentProfit / 100;
+    const profit = numOfPools * price * roi;
+    const invAmount = numOfPools * price;
+    const totalReturn = profit + invAmount;
+    return totalReturn;
+  }
+
+  periodicReturn(period, numOfPools, price, percentProfit) {
+    const periodicReturn = period === 'Monthly' ? (
+      this.calculateReturn(numOfPools, price, percentProfit) / 12
+    ) : (
+      this.calculateReturn(numOfPools, price, percentProfit) / 48
+    );
+    return periodicReturn.toFixed(2);
+  }
 
   setItemsPerPage(event) {
     this.pageValue = event;
