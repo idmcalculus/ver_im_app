@@ -126,7 +126,7 @@
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Status</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="text" class="form-control form-control-sm" readonly value={{getPoolstatus(pool)}} [(ngModel)]="returns">
+                                                    <input class="form-control form-control-sm" readonly value={{getPoolStatus(pool?.is_investment_started)}}>
                                                 </div>
                                             </div>
                                         </div>
