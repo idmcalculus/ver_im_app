@@ -81,9 +81,10 @@ export class AppAuthService {
         } else {
             const token = localStorage.getItem('token');
             const tokenPayload = decode(token);
+            const string = userUrl.split('/', 2);
             console.log(tokenPayload)
             var actualUser = localStorage.getItem('userType').toLowerCase();
-            if(!userUrl.includes(actualUser)){
+            if(!userUrl.includes(actualUser) || actualUser!=string[1]){
                 alert('Sorry You are not authorized to view this page')//unauthorized
                 window.location.href = `${actualUser}`;
                 return false

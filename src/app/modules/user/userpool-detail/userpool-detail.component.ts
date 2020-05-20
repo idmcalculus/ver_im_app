@@ -6,6 +6,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { UserService } from '../../user/user.service';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-pool-detail',
@@ -42,7 +43,8 @@ export class UserPoolDetailComponent implements OnInit {
               private router: Router,
               private investmentService: InvestmentService,
               private userService: UserService,
-              private authService: AppAuthService
+              private authService: AppAuthService,
+              private location: Location
     ) {
       this.isLoading = true;
       this.route.params.subscribe(resp => {
@@ -152,7 +154,7 @@ export class UserPoolDetailComponent implements OnInit {
   }
 
   cancelPool() {
-    this.router.navigateByUrl('admin/userPools');
+    this.location.back();
   }
 
   calculateamount(returns, inv, expected_return_period) {
