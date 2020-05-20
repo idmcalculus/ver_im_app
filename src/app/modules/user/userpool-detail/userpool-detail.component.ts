@@ -158,8 +158,8 @@ export class UserPoolDetailComponent implements OnInit {
     this.location.back();
   }
 
-  calculateamount(returns, inv, expected_return_period) {
-    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
+  calculateamount(returns, inv, period) {
+    const estimate = ((returns * this.divisorFunc(period)) / inv) * 100;
     return estimate.toFixed(2);
   }
 
