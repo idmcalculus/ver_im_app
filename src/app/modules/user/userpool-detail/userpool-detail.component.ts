@@ -142,12 +142,8 @@ export class UserPoolDetailComponent implements OnInit {
     }
   }
 
-  getPoolstatus(pool) {
-    if (pool.is_investment_started === 1) {
-      return 'Active';
-    } else {
-      return 'Inactive';
-    }
+  getPoolStatus(isInvestmentStarted) {
+    return isInvestmentStarted === 1 ? 'Active' : 'Inactive';
   }
 
   viewUserDetail(user) {
