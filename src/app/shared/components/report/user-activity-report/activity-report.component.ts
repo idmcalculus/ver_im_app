@@ -15,11 +15,13 @@ export class UseractivityComponent implements OnInit {
   searchValue = '';
   pageValue = 5;
   dashboardData = {};
-  p: number = 1;
+  p = 1;
   activityLog = [];
   filteredAdminActivity = [];
+  adminActivity = [];
+  userActivity = [];
   filteredUserActivity = [];
-  isLoading= true;
+  isLoading = true;
   User = false;
   dateEnd: '';
   dateStart: '';
@@ -35,14 +37,14 @@ export class UseractivityComponent implements OnInit {
   }
 
   Toggle() {
-      if (this.User == false){
+      if (this.User == false) {
         this.User = true;
       } else {
         this.User = false;
       }
   }
 
-  setItemsPerPage(event){
+  setItemsPerPage(event) {
     this.pageValue = event;
 }
 
@@ -53,69 +55,67 @@ export class UseractivityComponent implements OnInit {
           this.dashboardData = resp.success.Data;
           this.activityLog.push(this.dashboardData);
           this.filteredAdminActivity = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'Admin');
+          this.adminActivity = this.filteredAdminActivity;
           this.filteredUserActivity  = this.activityLog[0].fetch_activities.filter((activity) => activity.user_category === 'User');
+          this.userActivity = this.filteredUserActivity;
         }
-      this.isLoading = false;
+        this.isLoading = false;
     });
   }
 
   filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
-      return this.getDashBoardData();
-    } else {
-      const filtered = this.filteredAdminActivity.filter(activity => {
-        if (activity[filterType] !== null) {
-            const filterate = activity[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase())
-        }
-      });
-      this.filteredAdminActivity = filtered;
-    }
+    const value = filterValue.target.value.toString().toLowerCase();
+    const filtered = this.adminActivity.filter(activity => {
+      if (activity[filterType] !== null) {
+          const filterate = activity[filterType].toString().toLowerCase();
+          if (filterate.indexOf(value) >= 0) {
+            return activity;
+          }
+      }
+    });
+    this.filteredAdminActivity = filtered;
   }
 
   filterTable2(filterType, filterValue): any {
-    const value = filterValue.target.value;
-    if (!value || value === null) {
-      return this.getDashBoardData();
-    } else {
-      const filtered = this.filteredUserActivity.filter(activity => {
-        if (activity[filterType] !== null) {
-            const filterate = activity[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase())
-        }
-      });
-      this.filteredUserActivity = filtered;
-    }
+    const value = filterValue.target.value.toString().toLowerCase();
+    const filtered = this.userActivity.filter(activity => {
+      if (activity[filterType] !== null) {
+          const filterate = activity[filterType].toString().toLowerCase();
+          if (filterate.indexOf(value) >= 0) {
+            return activity;
+          }
+      }
+    });
+    this.filteredUserActivity = filtered;
   }
 
   filterDate(dateStart, dateEnd): any {
-    let filterStart = dateStart;
-    let filterEnd = dateEnd;
-    if( filterStart && filterEnd){
+    const filterStart = dateStart;
+    const filterEnd = dateEnd;
+    if (filterStart && filterEnd) {
         const selectedActivity = this.filteredAdminActivity.filter(range => {
-            if ( range.created_at > filterStart && range.created_at < filterEnd)
+            if (range.created_at > filterStart && range.created_at < filterEnd) {
               return range;
+            }
         });
         this.filteredAdminActivity = selectedActivity;
     } else {
         return this.filteredAdminActivity;
-
     }
   }
 
   filterDate2(dateStart, dateEnd): any {
-    let filterStart = dateStart;
-    let filterEnd = dateEnd;
-    if( filterStart && filterEnd){
+    const filterStart = dateStart;
+    const filterEnd = dateEnd;
+    if (filterStart && filterEnd) {
         const selectedActivity = this.filteredUserActivity.filter(range => {
-            if ( range.created_at > filterStart && range.created_at < filterEnd)
+            if (range.created_at > filterStart && range.created_at < filterEnd) {
               return range;
+            }
         });
         this.filteredUserActivity = selectedActivity;
     } else {
         return this.filteredUserActivity;
-
     }
   }
 
@@ -127,17 +127,17 @@ export class UseractivityComponent implements OnInit {
   }
 
   saveAsCSV() {
-    if(this.filteredAdminActivity.length > 0){
+    if (this.filteredAdminActivity.length > 0) {
       const items: ExportData[] = [];
 
       this.filteredAdminActivity.forEach(line => {
-        let reportDate = new Date();
-        let csvLine: ExportData = {
-          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+        const reportDate = new Date();
+        const csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth() + 1}/${reportDate.getFullYear()}`,
           activity: line.activity,
           created_at: line.created_at,
           ip_address: line.ip_address,
-        }
+        };
         items.push(csvLine);
       });
 
