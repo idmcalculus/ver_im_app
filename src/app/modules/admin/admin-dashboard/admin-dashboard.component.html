@@ -320,7 +320,7 @@
                                           <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 5),let x=index ">
                                               <td>{{req.id}}</td>
                                               <td >{{req.user_id}}</td>
-                                              <td >{{req.category_id}}</td>
+                                              <td >{{getCategoryName(req.category_id)}}</td>
                                              <td style="color: green" *ngIf="req.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>
                                                     <td  style="color: red">{{'InActive'}}</td>

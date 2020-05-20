@@ -51,14 +51,14 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-2">
                                 <div class="form-group">
                                     <label class="h7">Amount</label>
-                                    <input type="text" class="input-control shadow" placeholder="Amount" name="investment_amount" (keyup)="filterTable('investment_amount', $event)"
+                                    <input type="number" min="0" class="input-control shadow" placeholder="Amount" name="investment_amount" (keyup)="filterTable('investment_amount', $event)"
                                     (blur)="filterTable('investment_amount', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <div class="form-group">
                                     <label class="h7">No of Investors</label>
-                                    <input type="text" class="input-control shadow" placeholder="No of Investors" name="max_num_of_slots" (keyup)="filterTable('max_num_of_slots', $event)"
+                                    <input type="number" min="0" class="input-control shadow" placeholder="No of Investors" name="max_num_of_slots" (keyup)="filterTable('max_num_of_slots', $event)"
                                     (blur)="filterTable('max_num_of_slots', $event)">
                                 </div>
                             </div>
