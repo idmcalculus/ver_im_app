@@ -136,9 +136,8 @@ export class PoolreportComponent implements OnInit {
       const items: ExportData[] = [];
 
       this.report.forEach(line => {
-        let reportDate = new Date();
         let csvLine: ExportData = {
-          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+          date_range: `${this.dateStart} - ${this.dateEnd}`,
           date_start: line.date_start,
           no_of_investments: line.no_of_investments,
           no_of_slots: line.no_of_slots,
