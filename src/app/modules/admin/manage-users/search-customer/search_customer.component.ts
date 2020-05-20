@@ -4,7 +4,6 @@ import { AdminService } from '../../admin.service';
 import { UserService } from '../../../user/user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
 @Component({
@@ -13,9 +12,6 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
   styleUrls: ['./search_customer.component.scss']
 })
 export class SearchCustomerComponent implements OnInit {
-  searchValue = '';
-  emailValue = '';
-  numberValue = '';
   pageValue = 5;
   users: User [];
   user: User = {email: ''};
@@ -34,8 +30,7 @@ export class SearchCustomerComponent implements OnInit {
      private adminService: AdminService,
      private dynamicScrLoader: DynamicScriptLoaderService,
      private toastrService: ToastrService,
-     private filterby: FilterTablesPipe,
-     private router: Router
+     private filterby: FilterTablesPipe
      ) { }
 
   ngOnInit() {
@@ -85,7 +80,6 @@ export class SearchCustomerComponent implements OnInit {
     return this.selectedDelUser;
   }
 
-
   getUsers() {
     this.isLoading = true;
     this.userService.getUsers().subscribe(resp => {
@@ -98,39 +92,29 @@ export class SearchCustomerComponent implements OnInit {
   }
 
   filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-
-    if (!value) {
-      return this.users = this.filteredUser;
-    } else {
-      const filtered = this.users.filter(user => {
-          if (user[filterType] !== null) {
-            const filterate = user[filterType].toString();
-            return filterate.toLowerCase().includes(value.toLowerCase());
-          }
-        });
-      this.users = filtered;
-    }
-  }
-
-  clearSearch = () => {
-    this.searchValue = null;
-    this.emailValue = null;
-    this.numberValue = null;
-    return this.users = this.filteredUser;
+    const value = filterValue.target.value.toString().toLowerCase();
+    const filtered = this.filteredUser.filter(user => {
+      if (user[filterType] !== null) {
+        const filterate = user[filterType].toString().toLowerCase();
+        if (filterate.indexOf(value) >= 0) {
+          return user;
+        }
+      }
+    });
+    this.users = filtered;
   }
 
   delete = () => {
-    if(confirm('Are you sure you want to delete user')){
-    this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
-      if (resp && resp.success) {
-       this.toastrService.success('Details deleted succesfully');
-       this.getUsers();
-     } else {
-        this.toastrService.error('There was an issue deleting.. Try again later');
-     }
-    });
+    if (confirm('Are you sure you want to delete user')) {
+      this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
+        if (resp && resp.success) {
+        this.toastrService.success('Details deleted succesfully');
+        this.getUsers();
+        } else {
+          this.toastrService.error('There was an issue deleting.. Try again later');
+        }
+      });
+    }
   }
- }
 
 }
