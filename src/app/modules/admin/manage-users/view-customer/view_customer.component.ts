@@ -79,7 +79,7 @@ export class ViewCustomerComponent implements OnInit {
         elements.style.display = 'block';
 
         $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
+        const row = $('#investmentTable').find('> tbody')[index] as HTMLInputElement;
         row.style.display = 'contents';
     }
 
