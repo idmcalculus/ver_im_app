@@ -81,7 +81,7 @@
                                             <div class="form-group pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">{{ pool?.expected_return_period === 'Monthly' ? 'Monthly Return' : 'Weekly Return' }}</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{periodicReturn(pool?.expected_return_period,noPool?.number_of_pools,pool?.investment_amount,pool?.estimated_percentage_profit)}}>
+                                                    <input type="type" readonly class="form-control form-control-sm" name="pricing" id="pricing"  value={{pool?.expected_return_amount*noPool?.number_of_pools}}>
                                                 </div>
                                             </div>
                                         </div>

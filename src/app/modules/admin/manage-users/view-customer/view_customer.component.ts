@@ -72,12 +72,14 @@ export class ViewCustomerComponent implements OnInit {
         var element = document.querySelector('#carousel-inner');
         var child = element.querySelector('.active')
         const val = Array.from(element.children).indexOf(child)
+        let length = document.querySelectorAll('.investment-card').length;
+        let index = length - (val+1);
         $('.investment-card').hide();
-        let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
+        let elements = document.getElementsByClassName('investment-card')[index] as HTMLInputElement;
         elements.style.display = 'block';
 
         $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
+        const row = $('#investmentTable').find('> tbody')[index] as HTMLInputElement;
         row.style.display = 'contents';
     }
 

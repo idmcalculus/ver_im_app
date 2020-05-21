@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -130,6 +130,7 @@ export class UserDashboardComponent implements OnInit {
         });
       }
       this.isLoading = false;
+  
     });
 
    
@@ -149,13 +150,26 @@ export class UserDashboardComponent implements OnInit {
   
   }
 
+    //this is a quick fix for this feature, we will replace later
+    @HostListener('click', ['$event']) function(event: KeyboardEvent) {
+      var element = document.querySelector('#carousel-inner');
+      var child = element.querySelector('.active');
+      let length = document.querySelectorAll('.with').length;
+      const val = Array.from(element.children).indexOf(child)
+      let index = length - (val+1);
+      console.log(index);
+      $('.with').hide();
+      let elements = document.getElementsByClassName('with')[index] as HTMLInputElement;
+      elements.style.display = 'block';
+    }
+
   showDetails() {
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
         this.selectedInvestment++;
         this.isLoading = false;
-       
+        console.log(this.dashboardInvestment,'====<>')
         return this.selectedInvestment;
     } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
@@ -170,29 +184,21 @@ export class UserDashboardComponent implements OnInit {
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
+            console.log(this.dashBoardData)
             this.dashboardInvestment.push(this.dashBoardData);
             let total = 0;
 
-            this.dashBoardData.investment_report.forEach(
-                  inv => total += inv.returned_amount
-                );
+            
           } else {
             this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
           }
-          this.showDetails();
           this.isLoading = false;         
       });
 
       const me = this;
 
 
-      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
-        const to = e.to;
-        $('.with').hide();
-        console.log(to)
-        let element = document.getElementsByClassName('with')[Number(to)] as HTMLInputElement;
-        element.style.display = 'block';
-        });
+    
     }
   }
 
