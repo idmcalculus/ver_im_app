@@ -303,7 +303,7 @@
 
                               <div class="dt-responsive table-responsive">
                                       <table id="userTable"
-                                              class="table table-striped nowrap" style="font-size:10px">
+                                              class="table table-striped nowrap" style="font-size:12px">
                                           <thead style="text-align:center">
                                           <tr>
                                               <th>ID</th>
@@ -328,7 +328,7 @@
                                               <td >{{req.date_added}}</td>
                                               <td >{{req.amount_paid}}</td>
                                               <td >{{req.number_of_pools}}</td>
-                                              <td  (click)="viewUserDetail(i)">
+                                              <td>
                                                      <a routerLink="./pools/{{req.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </td>
                                           </tr>
@@ -371,5 +371,5 @@
 
       </div>
   </div>
- 
+
 </div>
