@@ -86,17 +86,20 @@ div > a {
 }
 
 .table > thead > tr > th {
+    padding: 15px 10px !important;
     border-top: none;
     border-bottom-width: 2px;
     border-bottom-color: #221F72
 }
 
 td {
+    vertical-align: middle !important;
+    padding: 18px 10px !important;
     border-color: #221F72
 }
 
 .card {
-	height: 600px;
+	height: 700px;
 }
 
 .col-md-12 {

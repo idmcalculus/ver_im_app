@@ -1,336 +1,352 @@
-    .card-body {
-        padding-top: 0.5rem;
-        -webkit-box-flex: 1;
-        -ms-flex: 1 1 auto;
-        flex: 1 1 auto;
-        padding: 1.25rem;
-        padding-top: 0.4rem;
-        padding-left: 0.9rem;
-        padding-right: 0.9rem;
-        padding-bottom: 0.4rem;
-        height: 7.7rem;
-        .align-items-center {
-            &.head{
-                padding: 0.2rem 0.7rem;
-                font-weight: 600;
-                color: white;
-            }
-
-            &.body{
-                padding: 0.4rem 0;
-                    h3.f-w-700.text-c-blue{
-                        margin-bottom: 0rem;
-                    }
-
-                    .col-auto{
-                        .fas{
-                            background: none !important;
-                            text-shadow: none;
-                            box-shadow: none;
-                            font-size: 35px;
-                            padding-top: 4px;
-                        }
-                    }
-
-            }
+.card-body {
+    padding-top: 0.5rem;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    padding-top: 0.4rem;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    padding-bottom: 0.4rem;
+    height: 7.7rem;
+    .align-items-center {
+        &.head{
+            padding: 0.2rem 0.7rem;
+            font-weight: 600;
+            color: white;
         }
 
-        .row.divider{
-            border-style: solid;
-            border-width: 0.6px;
-            color: #e2dddd2e;
-        }
-
-        .foot{
-            /* text-align: end; */
-            padding: 0px 15px;
-            padding-bottom: 0px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #e2dddd;
-        }
-    }
-
-        .pcoded-content{
-             &.bod{
-        margin-left: 225px;
-            .pcoded-inner-content {
-                padding: 10px;
+        &.body{
+            padding: 0.4rem 0;
+            h3.f-w-700.text-c-blue{
+                margin-bottom: 0rem;
             }
 
-
-            .main-body{
-                .page-wrapper {
-                    padding: .6rem 1.5rem;
-                    -webkit-transition: all ease-in .3s;
-                    transition: all ease-in .3s;
-                }
-
-                .col-xl-3.col-md-4 {
-                    margin: 0px !important;
-                    padding: 4px;
-                }
-
-                h3.f-w-700.text-c-white[_ngcontent-c5] {
-                    margin-bottom: 0rem;
-                    text-align: end;
-                    font-size: 35px;
-                    font-size: 35px;
+            .col-auto{
+                .fas{
+                    background: none !important;
                     text-shadow: none;
-                    transition: all .3s ease-in-out;
+                    box-shadow: none;
+                    font-size: 35px;
+                    padding-top: 4px;
                 }
             }
         }
     }
 
-    .row{
-        &.info{
-            .card{
-                background-color: #4F5FBE;
-                color: white;
-                box-shadow: none;
-                border-radius: 0rem;
-                border-color: #b5b5b5;
-                border-style: solid;
-                border-width: 0.2px;
+    .row.divider{
+        border-style: solid;
+        border-width: 0.6px;
+        color: #e2dddd2e;
+    }
+
+    .foot{
+        /* text-align: end; */
+        padding: 0px 15px;
+        padding-bottom: 0px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #e2dddd;
+    }
+}
+
+.pcoded-content{
+        &.bod{
+        margin-left: 225px;
+        .pcoded-inner-content {
+            padding: 10px;
+        }
+
+
+        .main-body{
+            .page-wrapper {
+                padding: .6rem 1.5rem;
+                -webkit-transition: all ease-in .3s;
+                transition: all ease-in .3s;
+            }
+
+            .col-xl-3.col-md-4 {
+                margin: 0px !important;
+                padding: 4px;
+            }
+
+            h3.f-w-700.text-c-white[_ngcontent-c5] {
+                margin-bottom: 0rem;
+                text-align: end;
+                font-size: 35px;
+                font-size: 35px;
+                text-shadow: none;
+                transition: all .3s ease-in-out;
             }
         }
+    }
+}
+
+.row{
+    &.info{
+        .card{
+            background-color: #4F5FBE;
+            color: white;
+            box-shadow: none;
+            border-radius: 0rem;
+            border-color: #b5b5b5;
+            border-style: solid;
+            border-width: 0.2px;
+        }
+    }
+}
+
+.latest-update-card{
+    margin-bottom: 30px;
+}
+
+.card-details{
+    &.col-xl-4.col-md-4{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .card{
+        height: 430px;
+
+        .card-header {
+            padding: 10px;
+            letter-spacing: 0.5px;
+            background-color: #4f5fbee8;
+            box-shadow: 1px 4px 8px rgba(68, 91, 204, 0.55);
+
+            h5 {
+                margin-bottom: 0;
+                color: #fdfdfd;
+                font-size: 13px;
+                font-weight: 700;
+                display: inline-block;
+                margin-right: 10px;
+                line-height: 1.1;
+                position: relative;
+
+                &::after{
+                    content: none;
+                }
+            }
+        }
+    }
+}
+
+.dashboard-table{
+    &.graphs{
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            h5 {
+                margin-bottom: 0;
+                color: #071a73fa !important;
+                font-weight: bolder;
+            }
+            h3{
+                color: #6ca4ff;
+                font-weight: bolder;
+                margin-bottom: 0;
+                font-size: 12px;
+                margin-top: 5px;
+                cursor: pointer;
+            }
+            padding: 10px;
+            letter-spacing: 0.5px;
+            background-color: transparent !important;
+            box-shadow: none !important;
+            color: black !important;
+            padding: 20px !important;
+
+            &.small-gap{
+                padding: 13px !important;
+                margin-left: 15px;
+            }
+        }
+
+        .divider{
+            margin-left: 0.6px;
+            border-style: solid;
+            border-width: 0.9px;
+            color: #4245a978;
+            width: 100%;
+        }
+    }
+
+    @media only screen and (max-width: 1088px) {
+        &.graphs{
+            display: block;
+
+            .card-details{
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+    .card-block {
+        padding: 0 0.5rem;
+        font-size: 0.78rem;
+        font-weight: bolder;
+
+        tr{
+            padding-bottom: 0px;
+            font-weight: bolder;
+
+            th{
+                padding-top: 0rem;
+                border-bottom-color: #0c439a78;
+                font-weight: bold;
+                padding: 1rem;
+                color: #07075f;
+                border-bottom: 2px solid #144dce;
+            }
+        }
+    }
+}
+
+
+.divider2{
+    height: 28.5px;
+    border-width: 1px;
+    border-right-style: solid;
+    margin: 0px 16px;
+    width: 17.5px;
+    border-right-color: #80808030;
+}
+
+.dashcam{
+    margin: 4px;
+    margin-left: 10px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.activities{
+    margin: 0px 16px;
+    display: flex;
+}
+
+
+
+progress-bar {
+    width: 40%;
+
+    .progress-outer[_ngcontent-c6] {
+        background-color: none !important;
+    }
+    .progress-inner {
+        min-width: 0.5%;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0px;
+        border-radius: 20px;
+        height: 5px;
+    }
+}
+
+.pcoded-submenu {
+    padding: 0;
+}
+
+.progress-label{
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 0.4rem;
+    font-size: 10px;
+    margin-top: 1.5rem;
+    color:#bcbdc1;
+}
+
+#legend{
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+}
+
+.label-sub{
+    color: '#bcbdc2'
+}
+
+.maps{
+    display: flex;
+    justify-content: space-between;
+}
+
+.state{
+    width: 45%
+}
+
+@media only screen and (max-widtssh: 1100px) {
+    .graphs{
+        display: block;
     }
 
     .latest-update-card{
-        margin-bottom: 30px;
-    }
-
-    .card-details{
-        &.col-xl-4.col-md-4{
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        .card{
-            height: 430px;
-
-            .card-header {
-                padding: 10px;
-                letter-spacing: 0.5px;
-                background-color: #4f5fbee8;
-                box-shadow: 1px 4px 8px rgba(68, 91, 204, 0.55);
-
-                h5 {
-                    margin-bottom: 0;
-                    color: #fdfdfd;
-                    font-size: 13px;
-                    font-weight: 700;
-                    display: inline-block;
-                    margin-right: 10px;
-                    line-height: 1.1;
-                    position: relative;
-
-                    &::after{
-                        content: none;
-                    }
-                }
-            }
-        }
-    }
-
-    .dashboard-table{
-        &.graphs{
-
-
-
-
-            .card-header {
-                display: flex;
-                justify-content: space-between;
-                h5 {
-                    margin-bottom: 0;
-                    color: #071a73fa !important;
-                    font-weight: bolder;
-                }
-                h3{
-                    color: #6ca4ff;
-                    font-weight: bolder;
-                    margin-bottom: 0;
-                    font-size: 12px;
-                    margin-top: 5px;
-                    cursor: pointer;
-                }
-                padding: 10px;
-                letter-spacing: 0.5px;
-                background-color: transparent !important;
-                box-shadow: none !important;
-                color: black !important;
-                padding: 20px !important;
-
-                &.small-gap{
-                    padding: 13px !important;
-                    margin-left: 15px;
-                }
-            }
-
-            .divider{
-                margin-left: 0.6px;
-                border-style: solid;
-                border-width: 0.9px;
-                color: #4245a978;
-                width: 100%;
-            }
-        }
-
-        @media only screen and (max-width: 1088px) {
-            &.graphs{
-                display: block;
-
-                .card-details{
-                    width: 100%;
-                    max-width: 100%;
-                }
-            }
-        }
-        .card-block {
-            padding: 0 0.5rem;
-            font-size: 0.78rem;
-            font-weight: bolder;
-
-            tr{
-                padding-bottom: 0px;
-                font-weight: bolder;
-
-                th{
-                    padding-top: 0rem;
-                    border-bottom-color: #0c439a78;
-                    font-weight: bold;
-                    padding: 1rem;
-                    color: #07075f;
-                    border-bottom: 2px solid #144dce;
-                }
-            }
-        }
-    }
-
-
-    .divider2{
-        height: 28.5px;
-        border-width: 1px;
-        border-right-style: solid;
-        margin: 0px 16px;
-        width: 17.5px;
-        border-right-color: #80808030;
-    }
-
-    .dashcam{
-        margin: 4px;
-        margin-left: 10px;
-        font-size: 13px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .activities{
-        margin: 0px 16px;
-        display: flex;
-    }
-
-
-
-    progress-bar {
-        width: 40%;
-
-        .progress-outer[_ngcontent-c6] {
-            background-color: none !important;
-        }
-        .progress-inner {
-            min-width: 0.5%;
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 0px;
-            border-radius: 20px;
-            height: 5px;
-        }
-    }
-
-    .pcoded-submenu {
-        padding: 0;
-    }
-
-    .progress-label{
-        display: flex;
-        justify-content: space-between;
-        padding: 0rem 0.4rem;
-        font-size: 10px;
-        margin-top: 1.5rem;
-        color:#bcbdc1;
-    }
-
-    #legend{
+        display: block;
         width: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        display: flex;
     }
 
-    .label-sub{
-        color: '#bcbdc2'
+    .tabl{
+        min-width:100%;
+    }
+
+    .perf{
+        width: 100%;
+        display: block;
     }
 
     .maps{
-        display: flex;
+        display: block;
         justify-content: space-between;
     }
 
+    .activity-card{
+        min-width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 1100px) {
+
     .state{
-        width: 45%
-    }
-
-    @media only screen and (max-width: 1100px) {
-        .graphs{
-            display: block;
-        }
-
-        .latest-update-card{
-            display: block;
-            width: 100%;
-        }
-
-        .tabl{
-            min-width:100%;
-        }
-
-        .perf{
-            width: 100%;
-            display: block;
-        }
-
-        .maps{
-            display: block;
-            justify-content: space-between;
-        }
-
-        .activity-card{
-            min-width: 100%;
-        }
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 5%;
 
     }
 
-    @media only screen and (max-width: 1100px) {
-
-        .state{
-            width: 90%;
-            margin: 0 auto;
-            margin-bottom: 5%;
-
-        }
-
-        .activity-card{
-            min-width: 100%;
-        }
+    .activity-card{
+        min-width: 100%;
     }
+}
 
-    .imgs{
-        margin-top: 12px;
-        width: 40px;;
-    }
+.imgs{
+    margin-top: 12px;
+    width: 40px;;
+}
+
+th {
+    color: #4b498c;
+    font-size: 13px;
+}
+td {
+    color: #4b498c;
+    font-size: 11px;
+    padding: 20px 10px !important;
+    vertical-align: middle !important;
+}
+
+.card-flex {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		display: none;  //Safari and Chrome
+	}
+}
