@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { UserService } from '../../../user/user.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
@@ -64,36 +64,24 @@ export class ViewCustomerComponent implements OnInit {
             }
       });
 
-      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
-        const to = e.to;
-        $('.investment-card').hide();
-        let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-        element.style.display = 'block';
-
-        $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
-        row.style.display = 'contents';
-        });
-
-     
 
     }
 
-    ngAfterContentInit(){
-      $('#myCarousel').on('slide.bs.carousel', function (e:any) {
-        const to = e.to;
+    //this is a quick fix for this feature, we will replace later
+    @HostListener('click', ['$event']) function(event: KeyboardEvent) {
+        var element = document.querySelector('#carousel-inner');
+        var child = element.querySelector('.active')
+        const val = Array.from(element.children).indexOf(child)
+        let length = document.querySelectorAll('.investment-card').length;
+        let index = length - (val+1);
         $('.investment-card').hide();
-        let element = document.getElementsByClassName('investment-card')[Number(to)] as HTMLInputElement;
-        element.style.display = 'block';
+        let elements = document.getElementsByClassName('investment-card')[index] as HTMLInputElement;
+        elements.style.display = 'block';
 
         $('#investmentTable').find('> tbody').hide();
-        const row = $('#investmentTable').find('> tbody')[Number(to)] as HTMLInputElement;
+        const row = $('#investmentTable').find('> tbody')[index] as HTMLInputElement;
         row.style.display = 'contents';
-        });
-      const view = document.getElementById('carousel-item');
-      console.log('helllo',view)
     }
-    
 
     getCategories() {
         this.investmentService.getCategories().subscribe(resp => {
@@ -134,7 +122,7 @@ export class ViewCustomerComponent implements OnInit {
             });
             this.isLoading = false;
 
-            //this is a quick fix for this feature, we will replace later
+       /*     //this is a quick fix for this feature, we will replace later
             const control = document.getElementById('carousel-control');
             control.addEventListener('click',()=>{
               var element = document.querySelector('#carousel-inner');
@@ -144,9 +132,9 @@ export class ViewCustomerComponent implements OnInit {
               let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
               elements.style.display = 'block';
 
+              $('#investmentTable').find('> tbody').hide();
               const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
               row.style.display = 'contents';
-              elements.style.display = 'block';
             })
 
             const control2 = document.getElementById('carousel-control2');
@@ -158,11 +146,11 @@ export class ViewCustomerComponent implements OnInit {
               let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
               elements.style.display = 'block';
 
+              $('#investmentTable').find('> tbody').hide();
               const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
               row.style.display = 'contents';
-              elements.style.display = 'block';
-            })
-            
+            }) */
+
           } else {
             this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
           }
@@ -240,13 +228,17 @@ export class ViewCustomerComponent implements OnInit {
         }
     }
 
-    addMonth(date: Date, month: number) {
+    addMonth(date: Date, inv) {
         const newDate = new Date(date);
         const d = newDate.getDate();
-        newDate.setMonth(newDate.getMonth() + month);
-        if (newDate.getMonth() == 11) {
-            newDate.setDate(0);
+        const m = newDate.getMonth();
+        if (inv) {
+          return inv === 'Monthly' ? (
+            newDate.setMonth(m + 1),
+            newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+          ) : (
+            newDate.setDate(d + 7)
+          );
         }
-        return newDate;
-    }
+      }
 }
