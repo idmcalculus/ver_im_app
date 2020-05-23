@@ -33,6 +33,8 @@ export class PoolsComponent implements OnInit {
   status = new FormControl();
   Category = new FormControl();
   investments: Investment[] = [];
+  filteredArray: Investment[] = [];
+  eventValue = '';
 
   constructor(
     private router: Router,
@@ -141,37 +143,76 @@ export class PoolsComponent implements OnInit {
 
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value.toString().toLowerCase();
-    const filtered = this.investments.filter(investment => {
-      const filterate = investment[filterType].toString().toLowerCase();
-      if (filterate.indexOf(value) >= 0) {
-        return investment;
+    if (!value) {
+      this.filteredArray = [];
+      this.pools = this.investments;
+    } else {
+        if (this.filteredArray.length === 0) {
+          const filtered = this.investments.filter(investment => {
+            const filterate = investment[filterType].toString().toLowerCase();
+            if (filterate.indexOf(value) >= 0) {
+              return investment;
+            }
+          });
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+        } else {
+            const filtered = this.filteredArray.filter(investment => {
+              const filterate = investment[filterType].toString().toLowerCase();
+              if (filterate.indexOf(value) >= 0) {
+                return investment;
+              }
+            });
+            this.pools = filtered;
+            this.filteredArray = this.pools;
+          }
       }
-    });
-    this.pools = filtered;
   }
 
   filterCategory(filterType, filterValue): any {
-      if (filterValue === 'All') {
-        this.pools = this.investments;
-      } else {
-        const CatPool: any = [];
-        const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
-        filteredCat.forEach(cat => {
-          const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
-          CatPool.push(filteredCatPool);
-        });
-        this.pools = [].concat.apply([], CatPool);
+    if (filterValue === 'All') {
+      this.filteredArray = [];
+      this.pools = this.investments;
+    } else {
+        if (this.filteredArray.length === 0) {
+          const CatPool: any = [];
+          const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+          filteredCat.forEach(cat => {
+            const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
+            CatPool.push(filteredCatPool);
+          });
+          this.pools = [].concat.apply([], CatPool);
+          this.filteredArray = this.pools;
+        } else {
+          const CatPool: any = [];
+          const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+          filteredCat.forEach(cat => {
+            const filteredCatPool = this.filteredArray.filter(investment => cat.id === investment.category_id);
+            CatPool.push(filteredCatPool);
+          });
+          this.pools = [].concat.apply([], CatPool);
+          this.filteredArray = this.pools;
+          }
       }
   }
 
   filterStatus(filterType, filterValue): any {
     if (filterValue === 'All') {
+      this.filteredArray = [];
       this.pools = this.investments;
     } else {
-      const value = filterValue === 'Active' ? 1 : 0 ;
-      const filtered = this.investments.filter(pool => pool[filterType] === value);
-      this.pools = filtered;
-    }
+        if (this.filteredArray.length === 0) {
+          const value = filterValue === 'Active' ? 1 : 0 ;
+          const filtered = this.investments.filter(pool => pool[filterType] === value);
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+        } else {
+          const value = filterValue === 'Active' ? 1 : 0 ;
+          const filtered = this.filteredArray.filter(pool => pool[filterType] === value);
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+          }
+      }
   }
 
   setItemsPerPage(event) {
