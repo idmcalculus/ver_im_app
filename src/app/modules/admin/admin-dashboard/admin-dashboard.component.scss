@@ -14,6 +14,7 @@
                 padding: 0.2rem 0.7rem;
                 font-weight: 600;
                 color: white;
+                font-family: roboto, sans-serif
             }
 
             &.body{
@@ -236,6 +237,11 @@
     .activities{
         margin: 0px 16px;
         display: flex;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 500;
+        font-family: roboto, sans-serif
     }
 
 

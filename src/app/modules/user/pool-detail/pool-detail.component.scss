@@ -63,6 +63,8 @@ border: 1px solid #221F72;
 h4,h5,p {
 color: #221F72;
 font-weight: 600;
+font-family: roboto, sans-serif;
+font-size: 14px;
 }
 
 .form-group {
@@ -89,6 +91,7 @@ h6 {
 .table > thead > tr > th {
   border-bottom-width: 2px;
   border-bottom-color: #221F72;
+  font-family: roboto, sans-serif;
   font-size: 14px;
   font-weight: bold;
 }
@@ -174,3 +177,4 @@ p.showThis {
 .card.report {
   min-height: 150px;
 }
+
