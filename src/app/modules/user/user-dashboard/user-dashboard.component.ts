@@ -202,8 +202,8 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
+  calculateEstimate(returns, inv, expected_return_period,duration) {
+    const estimate = ((returns * this.divisorFunc(expected_return_period,Number(duration))) / inv) * 100;
     return Math.ceil(estimate);
   }
 
@@ -229,11 +229,13 @@ export class UserDashboardComponent implements OnInit {
     this.modalText = 'Withdraw';
   }
 
-  divisorFunc(expected_return_period) {
+  divisorFunc(expected_return_period,duration) {
     if ( expected_return_period === 'Weekly') {
         return 48;
     } else if (expected_return_period === 'Monthly') {
         return 12;
+    }else if (expected_return_period === 'Daily') {
+      return Number(duration)*30;
     }
   }
 
