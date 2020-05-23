@@ -87,11 +87,19 @@ h6 {
 
 
 .table > thead > tr > th {
+  border-top: none;
   border-bottom-width: 2px;
   border-bottom-color: #221F72;
   color: #221F72;
   font-size: 14px;
   font-weight: bold;
+}
+
+td {
+  border-color: #221F72;
+  font-size: 12px;
+  padding: 20px 10px !important;
+  vertical-align: middle !important;
 }
 
 .upload-btn-wrapper {

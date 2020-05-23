@@ -145,6 +145,20 @@ th {
     padding: 0.5rem;
 }
 
+.table > thead > tr > th {
+    border-top: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #221F72;
+    font-size: 14px;
+}
+
+.table td {
+    font-size: 13px;
+    padding: 20px 10px !important;
+    vertical-align: middle;
+    border-top: 1px solid #221F72;
+}
+
 
 
 

@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-view-customers',
   templateUrl: './view_customer.component.html',
-  styleUrls: ['./view_customer.component.css']
+  styleUrls: ['./view_customer.component.scss']
 })
 export class ViewCustomerComponent implements OnInit {
 

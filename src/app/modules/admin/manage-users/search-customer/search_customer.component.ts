@@ -12,7 +12,7 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
   styleUrls: ['./search_customer.component.scss']
 })
 export class SearchCustomerComponent implements OnInit {
-  pageValue = 5;
+  pageValue = 10;
   users: User [];
   user: User = {email: ''};
   filteredUser: User [];
