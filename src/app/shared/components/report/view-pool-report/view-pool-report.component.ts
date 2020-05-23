@@ -117,6 +117,8 @@ export class ViewedreportComponent implements OnInit {
         return 48;
     } else if (expected_return_period === "Monthly") {
         return 12;
+    }else if (this.pool.expected_return_period === 'Daily') {
+      return Number(this.pool.duration)*30;
     }
 }
 
