@@ -126,6 +126,7 @@
                                                     <select class="input-control" name="dur" (change)="calculateEstimate()" [disabled]="pool?.investment?.is_investment_started===1" id="dur" [(ngModel)]="pool.investment.expected_return_period" (change)="calculateEstimate()">
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
+                                                        <option value="Daily">Daily</option>
                                                     </select>
                                                 </div>
                                             </div>

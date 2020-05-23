@@ -217,6 +217,8 @@ export class ViewCustomerComponent implements OnInit {
             return 48;
         } else if (expected_return_period === "Monthly") {
             return 12;
+        }else if (expected_return_period === 'Daily') {
+          return (Number(this.investments.investment[0].duration)*30);
         }
     }
 
@@ -225,6 +227,8 @@ export class ViewCustomerComponent implements OnInit {
             return 48 * expected_return ;
         } else if (expected_return_period === "Monthly") {
             return 12 * expected_return;
+        }else if (expected_return_period === 'Daily') {
+          return Number(this.investments.investment[0].duration)*30;
         }
     }
 
