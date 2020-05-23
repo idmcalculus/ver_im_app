@@ -104,6 +104,20 @@ export class SearchCustomerComponent implements OnInit {
     this.users = filtered;
   }
 
+  filterTable1(filterType1, filterType2, filterValue): any {
+    const value = filterValue.target.value.toString().toLowerCase();
+    const filtered = this.filteredUser.filter(user => {
+      if (user[filterType1] !== null && user[filterType2] !== null) {
+        const filterate1 = user[filterType1].toString().toLowerCase();
+        const filterate2 = user[filterType2].toString().toLowerCase();
+        if (filterate1.indexOf(value) >= 0 || filterate2.indexOf(value) >= 0) {
+          return user;
+        }
+      }
+    });
+    this.users = filtered;
+  }
+
   delete = () => {
     if (confirm('Are you sure you want to delete user')) {
       this.userService.deleteUser(this.selectedDelUser).subscribe(resp => {
