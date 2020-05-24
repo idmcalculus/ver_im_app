@@ -1,9 +1,8 @@
 <div class="pcoded-content">
-
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div *ngIf="isLoading" >
+                <div *ngIf="isLoading || userInvestment?.length === 0 || dashboardInvestment?.length === 0" >
                     <br><br>
                     <div  class="lds-default">
                         <div></div>
@@ -20,15 +19,14 @@
                         <div></div>
                     </div>
                 </div>
-                <div class="page-body list-vacancy" *ngIf="!isLoading">
+                <div class="page-body list-vacancy" *ngIf="!isLoading && userInvestment?.length > 0 && dashboardInvestment?.length > 0">
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
-                            <h3>Profile of {{user?.user[0]?.first_name}} {{user?.user[0]?.last_name}}
-                            </h3>
+                            <h3>Profile of {{user?.user[0]?.first_name}} {{user?.user[0]?.last_name}}</h3>
                         </div>
                         <div class="col">
                             <div class="float-right">
-                                <a >
+                                <a>
                                     <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
                                 </a>
                             </div>
@@ -37,7 +35,7 @@
 
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="card" *ngFor="let investment of userInvestment;let i = index;">
+                            <div class="card" *ngFor="let investment of userInvestment; let i = index;">
                                 <div class="card-block summary-card">
                                     <div class="row p-0">
                                         <div class="col-12">
@@ -46,72 +44,68 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mt-5">
+                                    <div class="row mt-4">
                                         <div class="col-xl-12">
-                                            <div class="row">
-                                                <div class="col-3">
+                                            <div class="row mb-3">
+                                                <div class="col-4">
                                                     <div class="row">
-                                                        <div class="col-5 summary-font">
+                                                        <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">Investment Title</a>
                                                         </div>
-                                                        <div class="col-7 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{investment?.title}}</a>
+                                                        <div class="col-6 summary-font">
+                                                            <a class="">{{investment?.title}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">Cost</a>
                                                         </div>
                                                         <div class="col-6 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                            <a class="">{{investment?.investment_amount}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">Slot(s)</a>
                                                         </div>
                                                         <div class="col-6 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                            <a class="">{{numOfPool[i]?.number_of_pools}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">Principal</a>
                                                         </div>
                                                         <div class="col-6 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                            <a class="">{{investment?.investment_amount * numOfPool[i]?.number_of_pools}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-1">
+                                                <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">ROI</a>
                                                         </div>
                                                         <div class="col-6 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                            <a class="">{{investment?.estimated_percentage_profit}}%</a>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-2">
+                                                <div class="col-4">
                                                     <div class="row">
                                                         <div class="col-6 summary-font">
                                                             <a class="font-weight-bold">Total Return</a>
                                                         </div>
                                                         <div class="col-6 summary-font">
-                                                            <a class="pr-2">-</a>
-                                                            <a class="pl-5">{{ dashboardInvestment[i].investment_report.length }} of   {{ divisorFunc(investments?.expected_return_period, i) }}</a>
+                                                            <a class="">{{calculateReturn(numOfPool[i]?.number_of_pools, investment?.investment_amount, investment?.estimated_percentage_profit)}}</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -125,54 +119,60 @@
 
                     <div class="row mb-4">
                         <div class="col-sm-12">
-                            <h5 class="">Investment Report</h5>
-                            <div class="card px-3">
-                                <div class="category-header pt-3 p-2">
-                                    <p class="mr-3">S/N</p>
-                                    <p class="col-3">Investment Title</p>
-                                    <p class="col-2">Payback Frequency</p>
-                                    <p class="col-2">Amount Credited</p>
-                                    <p class="col-2">Yield Amount</p>
-                                    <p class="col-1">Balance</p>
-                                    <p class="mr-3">Status</p>
-                                    <p class="col-2">Date Paid</p>
-                                </div>
-                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div *ngIf="isLoading" >
-                                        <br><br>
-                                        <div  class="lds-default">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
+                            <div class="card">
+                                <h5 class="card-header">Investment Report</h5>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table id="investmentTable" *ngFor="let investments of dashboardInvestment; index as i" class="table appTable nowrap">
+                                            <thead>
+                                            <tr>
+                                                <th>S/N</th>  
+                                                <th>Investment Title</th>
+                                                <th>Payback Frequency</th>
+                                                <th>Amount Credited (N)</th>
+                                                <th>Yield Amount (N)</th>
+                                                <th>Balance (N)</th>
+                                                <th>Status</th>
+                                                <th>Date Paid</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
+                                                    <td style="width: 5%">{{report?.index}}</td>
+                                                    <td style="width: 17%">{{report?.title}}</td>
+                                                    <td style="width: 16%">{{investments?.investment[0]?.expected_return_period}}</td>
+                                                    <td style="width: 16%">{{investments?.investment_return[0]?.yielded_amount  | currency:'':''}}</td>
+                                                    <td style="width: 16%">{{investments?.investment_return[0]?.yielded_amount * report?.index | currency:'':''}}</td>
+                                                    <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | currency:'':''}}</td>
+                                                    <td style="width: 10%">{{investments?.investment[0]?.is_investment_started === 1 ? 'On-going' : 'Not Yet Started'}}</td>
+                                                    <td style="width: 10%">{{report?.created_at.split(' ')[0] | date :  "dd.MM.y"}}</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                <td [colSpan]="6" class="pb-0 mr-5">
+                                                    <pagination-controls
+                                                    (pageChange)="p2=$event" id='second'>
+                                                    </pagination-controls>
+                                                </td>
+                                                <td></td>
+                                                <td [colSpan]="6" class="pb-0">
+                                                    <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                        <option value="5"> 5 rows </option>
+                                                        <option value="10"> 10 rows </option>
+                                                        <option value="20"> 20 rows </option>
+                                                        <option value="0"> view all </option>
+                                                    </select>
+                                                </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <div class="row justify-content-center pb-3" *ngIf="dashboardInvestment?.length === '0' ">
+                                            <div class="col-6 text-center">
+                                                No record found, Investment is not yet started
+                                            </div> 
                                         </div>
                                     </div>
-                                    <div class="category-body" *ngFor="let investments of dashboardInvestment ;index as i">
-                                        <div class="row1 p-2" *ngFor="let report of investments.investment_report ;index as i">
-                                            <p class="width">{{i+1}}</p>
-                                            <p class="width">{{report.title}}</p>
-                                            <p class="width"></p>
-                                            <p class="width">{{report.returned_amount}}</p>
-                                            <p class="width">{{report.returned_amount * (i+1)}}</p>
-                                            <p class="width"></p>
-                                            <p class="width">{{investments.category_id}}</p>
-                                            <p class="width">{{report.created_at | date :  "dd.MM.y"}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row justify-content-center pb-3" *ngIf="dashboardInvestment.length == '0' ">
-                                    <div class="col-6 text-center">
-                                        No record found, Investment is not yet started
-                                    </div> 
                                 </div>
                             </div>
                         </div>

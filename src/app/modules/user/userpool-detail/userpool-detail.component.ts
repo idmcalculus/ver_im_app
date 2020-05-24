@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { InvestmentService } from '../../investment/investment.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
@@ -37,10 +37,8 @@ export class UserPoolDetailComponent implements OnInit {
   userSubscription: Subscription;
   p = 1;
   p2 = 1;
-  // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private investmentService: InvestmentService,
               private userService: UserService,
               private authService: AppAuthService,
@@ -93,7 +91,7 @@ export class UserPoolDetailComponent implements OnInit {
           const data = investments.success;
           this.noPool = data.Inv.find(x => x.investment_id === Number(this.poolId));
           this.pool =  data.Data.find(x => x.id === Number(this.poolId));
-          console.log(this.pool,data);
+          console.log(this.pool, data);
           this.pool.num_of_pools_taken = this.noPool;
           }
           this.isLoading = false;
