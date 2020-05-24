@@ -66,7 +66,6 @@ export class UserreportComponent implements OnInit {
         this.data = resp.success.Data;
         this.users = this.filterby.transform(this.data, this.order, this.ascending);
         this.allUsers = this.filterby.transform(this.data, this.order, this.ascending);
-
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
         this.dynamicScrLoader.loadSingle('trigger-data-table');
@@ -134,7 +133,6 @@ export class UserreportComponent implements OnInit {
       this.dateEnd = '';
       this.status.setValue('');
       this.users = this.allUsers;
-
   }
 
   saveAsCSV() {
