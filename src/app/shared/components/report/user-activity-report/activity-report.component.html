@@ -23,29 +23,25 @@
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable('created_at',  $event)"
-                                    (blur)="filterTable('created_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date Start" name="date" #date (keyup)="filterTable2('created_at',  $event)"
-                                    (blur)="filterTable2('created_at',$event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable('updated_at', $event)"
-                                    (blur)="filterTable('updated_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="text" class="input-control shadow" placeholder="Date End" name="date-end" #dateE (keyup)="filterTable2('updated_at', $event)"
-                                    (blur)="filterTable2('updated_at', $event)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate2(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -128,8 +124,8 @@
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12 d-flex flex-row">
-                                                <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                           <div  class="col-12 px-0 d-flex flex-row">
+                                                <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
                                                 <span class="col-md-1 col-xs-1 px-0 controls">
                                                     <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
                                                         <option value="5"> 5 rows </option>
@@ -148,8 +144,8 @@
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12 d-flex flex-row">
-                                            <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                           <div  class="col-12 px-0 d-flex flex-row">
+                                            <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
                                             <span class="col-md-1 col-xs-1 px-0  controls">
                                                 <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page2.value) #page2>
                                                     <option value="5"> 5 rows </option>

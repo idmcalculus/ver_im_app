@@ -5,8 +5,8 @@ import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserDashboardComponent} from './user-dashboard/user-dashboard.component';
 import {UserSettingsComponent} from './settings/settings.component';
 import {RouterGaurdService} from './../../core/router-gaurd/router-gaurd';
-import { userPoolsComponent } from './user-pool/user-pool.component';
-import {userPoolDetailComponent} from './userpool-detail/userpool-detail.component';
+import { UserPoolsComponent } from './user-pool/user-pool.component';
+import { UserPoolDetailComponent } from './userpool-detail/userpool-detail.component';
 import { ChatComponent } from '../chat/chat.component';
 import { EditPasswordComponent } from './settings/edit-password/edit_password.component';
 
@@ -33,8 +33,8 @@ const userRoutes: Routes = [
             }
         ] },
           { path: 'chat', component: ChatComponent },
-          { path: 'userPools', component: userPoolsComponent },
-          { path: 'userPools/:pool_id', component: userPoolDetailComponent },
+          { path: 'userPools', component: UserPoolsComponent },
+          { path: 'userPools/:pool_id', component: UserPoolDetailComponent },
           { path: '', component: UserDashboardComponent }
         ]
       }

@@ -5,9 +5,9 @@
             <div class="page-body category">
                 <div class="clearfix mt-2">
                     <div class="float-left pt-2">
-                      <a class="h4 pr-4" style="font-size: 24px; font-weight: bold;">Investment Category</a>
+                      <a class="h4 pr-4" style="font-size: 24px; font-weight: bolder;">Investments</a>
                       &nbsp; &nbsp;
-                      <a class="pl-4">Home/Investment Category</a>
+                      <a class="pl-3">Home/Investment</a>
                     </div>
                     <div class="float-right">
                       <a  (click)="goBack()"><img class="settings" src="../../../../assets/images/icon/icons/Back-icon.png"></a>
@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                           <div class="card">
-                              <div class="card-header">
+                              <div class="card-header underline">
                                   <h5 class="constant">Add New Category</h5>
                               </div>
                               <div class="card-block">
@@ -44,8 +44,8 @@
                         <div class="card">
                             <div class="card-header">
                               <h5>Investment Profile</h5>
-                              <div id="category_filter" class="categories_filter">
-                                <input type="text" placeholder="&nbsp; Search.." name="search" #search (keyup)="filterTable('category_name', search.value)"
+                              <div id="category_filter" class="float-right">
+                                <input type="text" placeholder="&nbsp; Search.." class="categories_filter" name="search" #search (keyup)="filterTable('category_name', search.value)"
                                 (blur)="filterTable('category_name', search.value)">
                               </div>
                             </div>
@@ -83,7 +83,7 @@
                                             <a *ngIf="category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal"><i class="fa fa-check"></i></a>&nbsp;
                                             <a *ngIf="!category.inEditMode" (click)="category.inEditMode=!category.inEditMode" href="#" data-toggle="modal" data-target="#nullModal">
                                                 <img src="../../../../assets/images/icon/icons/Edit-icon.png"></a>&nbsp;
-                                            <a (click)="deleteCategory(category)" id="delCat"><i style="font-size: larger;" class="fa fa-trash"></i></a>
+                                            <a class="pl-3" (click)="deleteCategory(category)" id="delCat"><i style="font-size: larger; color: black;" class="fa fa-trash"></i></a>
                                         </p>
                                     </div>
                                 </div>

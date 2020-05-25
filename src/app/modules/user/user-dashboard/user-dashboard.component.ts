@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { UserService } from '../user.service';
 import { Investment } from 'src/app/shared/models/Investment';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
@@ -8,6 +8,8 @@ import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -17,11 +19,12 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 export class UserDashboardComponent implements OnInit {
 
   @Input() public overiddenUser: User;
+  modalText = 'Withdraw';
   allDashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
   userActivity: any = [];
-  usersInvestments: [Investment];
+  usersInvestments: any;
   usersInvestment: any = [];
   pools: any = [];
   poolGroup: any = [];
@@ -29,6 +32,7 @@ export class UserDashboardComponent implements OnInit {
   filteredDayData: Investment[] = [];
   filteredMonthData: Investment[] = [];
   isLoading = true;
+  p2: number = 1;
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
   isGraphShown = false;
@@ -36,21 +40,31 @@ export class UserDashboardComponent implements OnInit {
   lineChartLabels: any;
   latest_return = 0;
   totalYieldedAmount = 0;
-  order = "num_of_pools_taken";
+  order = 'num_of_pools_taken';
   ascending = false;
   investmentIds: string;
   idArray: any[];
+  UserBank = 'Wema Bank';
+  UserAccount = null;
+  UserAccountName = null;
+  Validated = false;
+  activateBtn = false;
+  amountToWithdraw = 0 ;
+  submittedWithdraw = false;
   groupInvestments: any[] = [];
-
+  isSubmitting;
   constructor(private userService: UserService,
               private adminService: AdminService,
               private investmentService: InvestmentService,
               private filterby: FilterTablesPipe,
-              private authService: AppAuthService) {}
+              private authService: AppAuthService,
+              private router: Router) {}
 
   ngOnInit() {
+
     this.isLoading = true;
     this.authService.currentUser.subscribe(resp => {
+
         if (resp) {
           this.overiddenUser = resp;
           this.userService.getusersInvestment(resp.email).subscribe(res => {
@@ -58,11 +72,13 @@ export class UserDashboardComponent implements OnInit {
               this.usersInvestment = res.success.Data;
               this.usersInvestments = this.usersInvestment.filter(res => res.is_investment_started === 1);
               this.selectedInvestment = 0;
-
               this.showDetails();
               }
               this.isLoading = false;
             });
+          this.UserBank = resp.bank_name;
+          this.UserAccount = resp.account_number;
+          this.UserAccountName = resp.account_number;
         }
     });
 
@@ -114,79 +130,161 @@ export class UserDashboardComponent implements OnInit {
         });
       }
       this.isLoading = false;
+  
     });
+
+   
+    // const carousel = document.getElementById('carousel-control');
+    // carousel.addEventListener('slide.bs.carousel', function(event) {
+    //   console.log(event)
+    // });
+
+    // const on = (element, event, selector, handler) => {
+    //   element.addEventListener(event, e => {
+    //     if (e.target.closest(selector)) {
+    //       handler(e);
+    //     }
+    //   });
+    // }
+    
+  
   }
 
+    //this is a quick fix for this feature, we will replace later
+    @HostListener('click', ['$event']) function(event: KeyboardEvent) {
+      var element = document.querySelector('#carousel-inner');
+      var child = element.querySelector('.active');
+      let length = document.querySelectorAll('.with').length;
+      const val = Array.from(element.children).indexOf(child)
+      let index = length - (val+1);
+      console.log(index);
+      $('.with').hide();
+      let elements = document.getElementsByClassName('with')[index] as HTMLInputElement;
+      elements.style.display = 'block';
+    }
+
   showDetails() {
-    this.isLoading = false;
     if ( this.selectedInvestment <= this.usersInvestments.length ) {
         this.investmentInfo = this.usersInvestments[this.selectedInvestment];
         this.getUserDashBoard();
         this.selectedInvestment++;
-        return this.selectedInvestment;
-        } else {
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         this.isLoading = false;
-        }
-    }
+        console.log(this.dashboardInvestment,'====<>')
+        return this.selectedInvestment;
+    } else {
+        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+      }
+  }
 
   getUserDashBoard() {
-    const userEmail = this.overiddenUser.email;
-    const investmentId = this.investmentInfo.id;
+    if (this.investmentInfo) {
+      const userEmail = this.overiddenUser.email;
+      const investmentId = this.investmentInfo.id;
+      this.isLoading = true;
+      this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
+          if (resp && resp.success) {
+            this.dashBoardData = resp.success.Data;
+            console.log(this.dashBoardData)
+            this.dashboardInvestment.push(this.dashBoardData);
+            let total = 0;
 
-    this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
-        if (resp && resp.success) {
-          this.dashBoardData = resp.success.Data;
-          this.dashboardInvestment.push(this.dashBoardData)
-        } else {
-          this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
-        }
-        this.showDetails();
-        this.isLoading = false;
-    });
+            
+          } else {
+            this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
+          }
+          this.isLoading = false;         
+      });
+
+      const me = this;
+
+
+    
+    }
   }
 
-  calculateEstimate(returns, inv, expected_return_period) {
-    const estimate = ((returns * this.divisorFunc(expected_return_period)) / inv) * 100;
+  calculateEstimate(returns, inv, expected_return_period,duration) {
+    const estimate = ((returns * this.divisorFunc(expected_return_period,Number(duration))) / inv) * 100;
     return Math.ceil(estimate);
-}
+  }
 
-
-  divisorFunc (expected_return_period) {
-    if ( expected_return_period === "Weekly") {
-        return 48;
-    } else if (expected_return_period === "Monthly") {
-        return 12;
+  validateWithdraw() {
+    if (this.amountToWithdraw > this.totalYieldedAmount || this.amountToWithdraw <= 0) {
+      this.activateBtn = false;
+    } else {
+      this.activateBtn = true;
+      this.Validated = true;
     }
-}
+  }
 
- calculateReturn (expected_return_amount, expected_return_period) {
-    if ( expected_return_period === "Monthly") {
+  async withdraw() {
+    const userEmail = this.overiddenUser.email;
+    const name = this.overiddenUser.first_name;
+    this.modalText = 'processing';
+    await this.userService.withdraw(name, userEmail).subscribe(res => {
+      this.modalText = 'processing';
+      if (res.success.StatusCode === 200) {
+        this.submittedWithdraw = true;
+      }
+    });
+    this.modalText = 'Withdraw';
+  }
+
+  divisorFunc(expected_return_period,duration) {
+    if ( expected_return_period === 'Weekly') {
+        return 48;
+    } else if (expected_return_period === 'Monthly') {
+        return 12;
+    }else if (expected_return_period === 'Daily') {
+      return Number(duration)*30;
+    }
+  }
+
+ calculateReturn(expected_return_amount, expected_return_period) {
+    if ( expected_return_period === 'Monthly') {
         return expected_return_amount;
     } else   {
-        return expected_return_amount*4;
+        return expected_return_amount * 4;
     }
-}
-
- addMonth(date: Date, month: number) {
-    const newDate = new Date(date);
-    const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() == 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
   }
 
-  getTimeAgo(time){
+  addMonth(date: Date, inv) {
+    const newDate = new Date(date);
+    const d = newDate.getDate();
+    const m = newDate.getMonth();
+    if (inv) {
+      return inv.expected_return_period === 'Monthly' ? (
+        newDate.setMonth(m + 1),
+        newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+      ) : (
+        newDate.setDate(d + 7)
+      );
+    }
+  }
+
+  closeModal() {
+    this.submittedWithdraw = false;
+    this.Validated = false;
+    this.amountToWithdraw = 0;
+  }
+
+  getTimeAgo(time) {
     TimeAgo.addLocale(en);
-    var date = new Date(time);
-    var hours = date.getHours();
+    let date = new Date(time);
+    let hours = date.getHours();
 
     const timeAgo = new TimeAgo('en-US');
     return timeAgo.format(date);
   }
 
+  formatCurrency(value){
+    const val = new Intl.NumberFormat('en-us', { maximumSignificantDigits: 3 }).format(value)
+    this.amountToWithdraw = Number(val);
+    this.totalYieldedAmount = 0;
+    return val;
+  }
 
 
+  goToPool(investment: Investment) {
+    this.router.navigateByUrl(`investments/${investment.id}`);
+  }
 }

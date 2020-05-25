@@ -1,45 +1,60 @@
  import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-import { ExportData } from 'src/app/shared/models/ExportData';
-import { ReportService } from '../report.service';
-import { User } from 'src/app/shared/models/user';
-import { Investment } from 'src/app/shared/models/Investment';
-import { AdminService } from '../../../../modules/admin/admin.service';
-import { UserService } from '../../../../modules/user/user.service';
-import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+ import { Router } from '@angular/router';
+ import { ExportData } from 'src/app/shared/models/ExportData';
+ import { ReportService } from '../report.service';
+ import { User } from 'src/app/shared/models/user';
+ import { Investment } from 'src/app/shared/models/Investment';
+ import { AdminService } from '../../../../modules/admin/admin.service';
+ import { UserService } from '../../../../modules/user/user.service';
+ import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+ import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+ import { FormControl } from '@angular/forms';
+ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
 
-@Component({
+ @Component({
   selector: 'app-pools',
   templateUrl: './customer-report.component.html',
-  styleUrls: ['./customer-report.component.scss']
+  styleUrls: ['./customer-report.component.scss'],
+  providers: [
+    { provide: MatFormFieldControl, useExisting: UserreportComponent },
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'} }
+  ]
 })
 export class UserreportComponent implements OnInit {
   user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
   users: any [];
+  data: any [];
+  allUsers: any [];
   p2 = 1;
   pageValue = 5;
   selectedUser: User;
   checkedUser = [];
-  isLoading= true;
+  isLoading = true;
   selectedAll;
-  alluserInvestment: any =[];
+  alluserInvestment: any = [];
   selectedInvestment = -1;
-  dashboardInvestment: any =[];
+  dashboardInvestment: any = [];
   userInvestment: any;
   userPool: any;
-  investmentInfo: Investment = {title: '', investment_amount: 0,};
+  investmentInfo: Investment = {title: '', investment_amount: 0, };
   report = {};
   reportlog = [];
   latest_return = 0;
   currentlog = {no_of_pools_invested: 0};
-  email:any;
+  email: any;
+  status = new FormControl();
+  dateEnd: '';
+  dateStart: '';
+  order = 'last_name';
+  ascending = true;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private adminService: AdminService,
     private dynamicScrLoader: DynamicScriptLoaderService,
+    private filterby: FilterTablesPipe,
     private reportService: ReportService
     ) {
       this.getpool(this.email);
@@ -48,7 +63,9 @@ export class UserreportComponent implements OnInit {
   ngOnInit() {
     this.adminService.getUsers().subscribe(resp => {
       if (resp && resp.success) {
-        this.users = resp.success.Data;
+        this.data = resp.success.Data;
+        this.users = this.filterby.transform(this.data, this.order, this.ascending);
+        this.allUsers = this.filterby.transform(this.data, this.order, this.ascending);
 
         this.isLoading =  false;
         this.dynamicScrLoader.loadSingle('data-table');
@@ -58,7 +75,7 @@ export class UserreportComponent implements OnInit {
   }
 
 
-  getUsers(){
+  getUsers() {
     this.adminService.getUsers().subscribe(resp => {
         if (resp && resp.success) {
           this.users = resp.success.Data;
@@ -71,7 +88,7 @@ export class UserreportComponent implements OnInit {
       if (resp && resp.success) {
         this.report = resp.success.Data;
         this.reportlog.push(this.report);
-        this.currentlog=this.reportlog[0].total_users_with_investment.filter((i)=> i.email==email)
+        this.currentlog = this.reportlog[0].total_users_with_investment.filter((i) => i.email == email);
       }
     });
   }
@@ -82,41 +99,59 @@ export class UserreportComponent implements OnInit {
   }
 
 
-  filterTable(filterType, filterValue): any {
-    const value = filterValue.target.value;
-
-    if (!value) {
-      return this.getUsers();
+  filterTable(dateStart, dateEnd): any {
+    const filterStart = dateStart;
+    const filterEnd = dateEnd;
+    if ( filterStart && filterEnd) {
+        const selectedUsers = this.users.filter(range => {
+            if ( range.created_at > filterStart && range.created_at < filterEnd) {
+              return range;
+            }
+        });
+        this.users = selectedUsers;
     } else {
-      const filtered = this.users.filter(user => {
-        if (user[filterType] !== null) {
-        return user[filterType].toLowerCase().includes(value.toLowerCase())
-        }
-      });
+        return this.users;
+
+    }
+  }
+
+  filterStatus(filterType, filterValue): any {
+    if (filterValue === 'All') {
+      this.users = this.allUsers;
+    } else if (filterValue === 'InActive') {
+        const value = 0;
+        const filtered = this.allUsers.filter(user => user[filterType] === value);
+        this.users = filtered;
+    } else {
+      const value = 1;
+      const filtered = this.allUsers.filter(user => user[filterType] >= value);
       this.users = filtered;
     }
   }
 
-  clearSearch() {
-    this.searchValue = null;
-    return this.getUsers();
+  clearFilter() {
+      this.dateStart = '';
+      this.dateEnd = '';
+      this.status.setValue('');
+      this.users = this.allUsers;
+
   }
 
   saveAsCSV() {
-    if(this.users.length > 0){
+    if (this.users.length > 0) {
       const items: ExportData[] = [];
 
       this.users.forEach(line => {
-        let reportDate = new Date();
-        let csvLine: ExportData = {
-          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+        const reportDate = new Date();
+        const csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth() + 1}/${reportDate.getFullYear()}`,
           first_name: line.first_name,
           last_name: line.last_name,
           email: line.email,
           phone_number: line.phone_number,
           no_of_investments: line.no_of_investments,
           total_amount_invested: line.total_amount_invested
-        }
+        };
         items.push(csvLine);
       });
 
@@ -124,17 +159,16 @@ export class UserreportComponent implements OnInit {
     }
 }
 
-setItemsPerPage(event){
+setItemsPerPage(event) {
     this.pageValue = event;
 }
 
-  getTotalInv(email){
-    this.userService.getProfileDetails(email).subscribe(investments=>{
-      if(investments.success.Data !== 0){
+  getTotalInv(email) {
+    this.userService.getProfileDetails(email).subscribe(investments => {
+      if (investments.success.Data !== 0) {
         this.userInvestment = investments.success.Data;
-        return this.userInvestment.total
-      }
-      else {
+        return this.userInvestment.total;
+      } else {
       }
     });
   }

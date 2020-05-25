@@ -913,9 +913,6 @@ a.bg-danger:focus, a.bg-danger:hover {
     margin-bottom: 0
 }
 
-.table > thead > tr > th {
-    border-bottom-color: #ccc
-}
 
 .table-borderless tbody tr td, .table-borderless tbody tr th {
     border: 0
@@ -10819,9 +10816,6 @@ div.DTS div.dataTables_length, div.DTS div.dataTables_paginate {
     display: none
 }
 
-.table td, .table th {
-    padding: 1.25rem .75rem
-}
 
 .table thead th {
     border-bottom: 1px solid #d6dde1
@@ -10852,7 +10846,7 @@ table.dataTable.display tbody tr.odd > .sorting_1, table.dataTable.order-column.
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(64, 153, 255, .1)
+    background-color: rgba(225,248,255)
 }
 
 .dataTables_filter .form-control {

@@ -11,6 +11,17 @@
 	}
 }
 
+.usergroup-header {
+    font-weight: bold;
+    font-size: 14px;
+    color: #07075f;
+}
+
+.usergroup-body {
+    font-weight: 500;
+    font-size: 12px;
+}
+
 .s-n, .checkbox {
 	flex: 1;
 }
@@ -70,7 +81,7 @@ div > a {
 	.s-n, .checkbox {
 		flex: 0.5;
 	}
-	
+
 	.username, .role, .status {
 		flex: 1;
 	}
@@ -78,13 +89,23 @@ div > a {
 	.date-added {
 		flex: 2
 	}
-	
+
 	.email {
 		flex: 4;
 	}
-	
+
 	.action {
 		border-left: 1px solid black;
 		flex: 1;
 	}
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="checkbox"]:checked {
+    width: 20px;
+    height: 20px;
 }

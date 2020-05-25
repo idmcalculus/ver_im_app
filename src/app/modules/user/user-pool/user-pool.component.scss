@@ -44,14 +44,23 @@ div > a {
     font-weight: bold;
 }
 
+.table {
+    max-width: 100%;
+}
+
 .table > thead > tr > th {
+    color: #221F72;
+    font-size: 14px;
     border-top: none;
     border-bottom-width: 2px;
     border-bottom-color: #221F72
 }
 
 td {
-    border-color: #221F72
+    border-color: #221F72;
+    font-size: 12px;
+    padding: 20px 10px !important;
+    vertical-align: middle !important;
 }
 
 .col-md-12 {

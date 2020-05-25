@@ -58,11 +58,11 @@
                                                 <p class="count">{{pool?.investment?.max_num_of_slots}} ({{pool?.investment?.max_num_of_slots - pool?.investment?.num_of_pools_taken}} left)</p>
 
                                                 <div class="text-center pt-2">
-                                                    <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started=='1'" *ngIf="loggedInUser && loggedInUser?.user_category!='Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
-                                                    <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_ended=='1' " class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
+                                                    <button  (click)="pullOut()" [disabled]="pool?.investment?.is_investment_started===1" *ngIf="loggedInUser && loggedInUser?.user_category !== 'Admin' " class="btn btn-block btn-primary btn-sm mt-2">Pull out</button>
+                                                    <button  [disabled]=true *ngIf="loggedInUser && loggedInUser?.user_category==='Admin' && pool?.investment?.is_investment_ended===1" class="btn btn-block btn-primary btn-sm mt-2">Ended</button>
                                                     <!--<button  (click)="endInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">End Investment</button>-->
-                                                    <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started!='1' " class="btn btn-block btn-primary btn-sm mt-2">Start Investment</button>
-                                                    <button  routerLink="./{{pool?.id}}/investment-profile" *ngIf="loggedInUser && loggedInUser?.user_category=='Admin' && pool?.investment?.is_investment_started=='1' && pool?.investment?.is_investment_ended!='1'" class="btn btn-block btn-primary btn-sm mt-2">Update Investment</button>
+                                                    <button  (click)="startInvestment()" *ngIf="loggedInUser && loggedInUser?.user_category==='Admin' && pool?.investment?.is_investment_started!==1" class="btn btn-block btn-primary btn-sm mt-2">Start Investment</button>
+                                                    <button  routerLink="./{{pool?.id}}/investment-profile" *ngIf="loggedInUser && loggedInUser?.user_category==='Admin' && pool?.investment?.is_investment_started===1 && pool?.investment?.is_investment_ended!==1" class="btn btn-block btn-primary btn-sm mt-2">Update Investment</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,14 +83,14 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Title</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="type" autocomplete="off" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " class="input-control" value={{pool?.investment?.title}}>
+                                                    <input type="text" autocomplete="off" [disabled]="pool?.investment?.is_investment_started===1" name="title" id="title" class="input-control" [(ngModel)]="pool.investment.title">
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Category</h6>
                                                 <div class="col-sm-9">
-                                                    <select name="category" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " value={{getCategoryName(pool?.investment?.category_id)}}>
+                                                    <select name="category" class="input-control" [disabled]="pool?.investment?.is_investment_started===1"  [(ngModel)]="pool.investment.category_id">
                                                         <option *ngFor="let category of categories;" [ngValue]="category.id">{{category.category_name}}</option>
                                                     </select>
                                                 </div>
@@ -109,23 +109,24 @@
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Investors</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " class="input-control"  value={{pool?.investment?.max_num_of_slots}}>
+                                                    <input type="number" min="0" autocomplete="off" [disabled]="pool?.investment?.is_investment_started===1" class="input-control" name="max_num_of_slots" id="max_num_of_slots" class="input-control" [(ngModel)]="pool.investment.max_num_of_slots">
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Tenure</h6>
                                                 <div class="col-sm-9">
-                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " value={{pool?.investment?.duration}}>
+                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="pool?.investment?.is_investment_started===1" name="duration" id="duration" [(ngModel)]="pool.investment.duration">
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Payback</h6>
                                                 <div class="col-sm-9">
-                                                    <select class="input-control" name="dur" (change)="calculateEstimate()" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " id="dur" value={{pool?.investment?.expected_return_period}}>
+                                                    <select class="input-control" name="dur" (change)="calculateEstimate()" [disabled]="pool?.investment?.is_investment_started===1" id="dur" [(ngModel)]="pool.investment.expected_return_period" (change)="calculateEstimate()">
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
+                                                        <option value="Daily">Daily</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -134,7 +135,7 @@
                                                 <h6 class="col-sm-3 pr-0 col-form-label">Cost</h6>
                                                 <div class="col-sm-9">
                                                     <input type="number" min="0" autocomplete="off"
-                                                     (keyup)="calculateEstimate()" class="input-control" name="inv" id="inv" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " value={{pool?.investment?.investment_amount}}>
+                                                     (keyup)="calculateEstimate()" class="input-control" name="inv" id="inv" [disabled]="pool?.investment?.is_investment_started===1" [(ngModel)]="pool.investment.investment_amount">
                                                 </div>
                                             </div>
                                         </div>
@@ -144,27 +145,27 @@
                                                 <h6 class="col-sm-4  pr-0 col-form-label">Upload Image</h6>
                                                 <div class="col-sm-8">
                                                     <div class="image_preview">
-                                                        <img *ngIf="pool?.investment?.investment_image != ''" class="pb-0" src="{{pool?.investment?.investment_image}}" alt="image">
-                                                        <img [src]="url" hidden  width="100%" height="200">
+                                                        <img class="pb-0" src="{{pool?.investment?.investment_image}}" alt="image">
+                                                        <img *ngIf="pool?.investment?.investment_image !== ''" [src]="url" hidden  width="100%" height="200">
                                                     </div>
                                                     <div class="upload-btn-wrapper">
                                                         <button class="btn btn-block btn-primary">Click to Upload image</button>
-                                                        <input type="file" id="upload-image" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " accept="image/*" (change)="changeListener($event)"/>
+                                                        <input type="file" id="upload-image" [disabled]="pool?.investment?.is_investment_started===1" accept="image/*" (change)="changeListener($event)"/>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group pt-4 pb-2 row">
+                                            <div class="form-group pt-3 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">Show to Public</h6>
                                                 <div class="col-sm-8">
-                                                    <input class="mt-2" type="checkbox" disabled="pool?.investment?.is_investment_started == '1' " name="public" [(ngModel)]="pool.investment.show_publicly">
+                                                    <input class="mt-2" type="checkbox" disabled="pool?.investment?.is_investment_started===1" ng-true-value="'1'" ng-false-value="'0'" name="public" [(ngModel)]="pool.investment.show_publicly">
                                                 </div>
                                             </div>
 
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-4 pr-0 col-form-label">ROI</h6>
                                                 <div class="col-sm-8">
-                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " name="roi" id="roi">
+                                                    <input type="number" min="0" autocomplete="off" class="input-control" [disabled]="pool?.investment?.is_investment_started===1" (keyup)="calculateEstimate()" name="roi" id="roi" [(ngModel)]="roi">
                                                 </div>
                                             </div>
 
@@ -182,12 +183,12 @@
                                             <div class="form-group row pt-1 pb-2">
                                                 <h6 class="col-sm-2 col-form-label" style="margin-right:-27px;">Description</h6>
                                                 <div class="col-sm-10 px-0">
-                                                    <textarea class="input-control" rows="3" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " value={{pool?.investment?.description}}></textarea>
+                                                    <textarea class="input-control" rows="3" [disabled]="pool?.investment?.is_investment_started===1" name="description" [(ngModel)]="pool.investment.description"></textarea>
                                                 </div>
                                             </div>
 
                                             <div class="col py-2">
-                                                <button type="button" [disabled]="!pool?.investment?.num_of_pools_taken == 0 " (click)="updateInvestment()" class="btn btn-primary btn-sm px-5 float-right">Update</button>
+                                                <button type="button" [disabled]="pool?.investment?.is_investment_started===1" (click)="updateInvestment()" class="btn btn-primary btn-sm px-5 float-right">{{buttonText}}</button>
                                             </div>
                                         </div>
 
@@ -231,8 +232,9 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card ">
-                                    <div class="card-block">
-                                        <div class="row p-0">
+                                    
+                                    <div class="card-block px-0">
+                                        <div class="row px-3">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
                                                 <a *ngIf="loggedInUser?.user_category == 'Admin'  && (pool?.investment?.max_num_of_slots !== pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
@@ -241,7 +243,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="dt-responsive table-responsive">
+                                        <div class="card-flex">
                                             <table id="order-table" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
@@ -260,7 +262,7 @@
                                                         <td>{{user?.user_info[0]?.email}}</td>
                                                         <td>{{user?.user_info[0]?.phone_number}}</td>
                                                         <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                                        <td>{{user?.user_investment_info?.amount_paid}}</td>
+                                                        <td>{{user?.user_investment_info?.amount_paid | currency:'':''}}</td>
                                                         <td>{{user?.user_investment_info?.created_at}}</td>
                                                     </tr>
                                                 </tbody>
@@ -271,20 +273,20 @@
                                                         <td>{{user?.user_info[0]?.email}}</td>
                                                         <td>{{user?.user_info[0]?.phone_number}}</td>
                                                         <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                                        <td>{{user?.user_investment_info?.amount_paid}}</td>
+                                                        <td>{{user?.user_investment_info?.amount_paid | currency:'':''}}</td>
                                                         <td>{{user?.user_investment_info?.created_at}}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-
-                                            <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
-                                                <div class="col-6 text-center">
-                                                    No User has been Added
-                                                </div>
-                                            </div>
                                         </div>
 
+                                        <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
+                                            <div class="col-6 text-center">
+                                                No User has been Added
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -339,7 +341,7 @@
                                                                 <a>Next Payment</a>
                                                             </div>
                                                             <div class="col-6">
-                                                                <a>{{ pool?.report[0]?.created_at ? (addMonth(pool?.report[0]?.created_at.split(' ')[0] , 1)  | date:  "dd.MM.y") : 'N/A' }}</a>
+                                                                <a>{{ pool?.report[0]?.created_at ? (addMonth(pool?.report[0]?.created_at.split(' ')[0])  | date:  "dd.MM.y") : 'N/A' }}</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -372,12 +374,12 @@
                                     </div>
                                     <div class="card-block dt-responsive" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
                                       <div class="d-flex report-body" *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
-                                        <p class="s-n">{{report?.index}}</p>
-                                        <p class="invTitle">{{report?.title}}</p>
-                                        <p class="payback">{{pool?.investment?.expected_return_period}}</p>
-                                        <p class="amtCred">{{report?.returned_amount | number:'1.2'}}</p>
-                                        <p class="yieldedAmt">{{report?.returned_amount * report?.index | number:'1.2'}}</p>
-                                        <p class="balance">{{pool?.investment?.investment_amount - (report?.returned_amount * report?.index) | number:'1.2'}}</p>
+                                        <p class="s-n">{{ report?.index }}</p>
+                                        <p class="invTitle">{{ report?.title }}</p>
+                                        <p class="payback">{{ pool?.investment?.expected_return_period }}</p>
+                                        <p class="amtCred">{{ pool?.investment?.expected_return_amount | currency:'':'' }}</p>
+                                        <p class="yieldedAmt">{{ pool?.investment?.expected_return_amount * report?.index | currency:'':'' }}</p>
+                                        <p class="balance">{{ pool?.investment?.expected_return_amount * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | currency:'':''}}</p>
                                         <p class="status">On-going</p>
                                         <p class="datePaid">{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</p>
                                       </div>

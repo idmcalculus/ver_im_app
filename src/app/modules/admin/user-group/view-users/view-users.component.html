@@ -42,7 +42,7 @@
                         </div>
                         <div class="card" *ngIf="!isLoading">
                             <div class="card-block dt-responsive usergroup-header d-flex">
-                              <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
+                              <p class=""><input type="checkbox" class="mt-3 mr-3" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
                               <p class="s-n">S/N</p>
                               <p class="username">Username</p>
                               <p class="email">Email</p>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="card-block dt-responsive usergroup-body">
                               <div *ngFor="let user of adminUsers | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i;" class="d-flex">
-                                <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="user.selected" (change)="checkIfAllSelected()"></p>
+                                <p class=""><input class=" mt-3 mr-3" type="checkbox" value="" [(ngModel)]="user.selected" (change)="checkIfAllSelected()"></p>
                                 <p class="s-n">{{user?.index}}</p>
                                 <p class="username">{{user?.first_name}}</p>
                                 <p class="email">{{user?.email}}</p>
@@ -64,7 +64,7 @@
                                     <img src="../../../../assets/images/icon/icons/Edit-icon.png">
                                 </p>
                               </div>
-                              <div  class="col-12 d-flex flex-row mt-3">
+                              <div  class="col-12 d-flex flex-row mt-1 mb-2">
                                 <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
                                 <span class="col-md-2 col-xs-2 controls">
                                     <select class="py-2 input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>

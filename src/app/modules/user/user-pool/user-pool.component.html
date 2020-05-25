@@ -8,12 +8,27 @@
                             <a class="h4 pr-2">Investments</a>
                             <a class=" pl-2">Home / Investments</a>
                         </div>
-
                     </div>
-
-                    <div class="row">
+                    <div *ngIf="isLoading || pools?.length === 0" >
+                        <br><br>
+                        <div  class="lds-default">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="!isLoading && pools?.length > 0">
                         <div class="col-md-12">
-                            <div class="card">
+                            <div class="card px-0">
                                 <div class="card-block pt-2 p-0 px-2">
                                     <table class="table appTable nowrap">
                                         <thead>
@@ -32,28 +47,27 @@
                                                 <th class="">Action</th>
                                             </tr>
                                         </thead>
-                                        <tbody *ngFor="let report of pools">
-
-                                            <tr *ngFor="let pool of report.Data | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                        <tbody>
+                                            <tr *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                                 <td class="mr-3">{{i+1}}</td>
-                                                <td class="">{{pool.title}}</td>
-                                                <td class="">{{getCategoryName(pool.category_id)}}</td>
-                                                <td class="">{{pool.investment_amount}}</td>
-                                                <td class="">{{report?.Inv[i].number_of_pools}}</td>
-                                                <td class="">{{pool.duration}} Months</td>
-                                                <td class="">{{calculateEstimate(pool)}}%</td>
-                                                <td class="">{{pool.expected_return_period}}</td>
-                                                <td class="">{{calculateAmount(pool.investment_amount,report?.Inv[i].number_of_pools)}}</td>
-                                                <td class="" style="color: green" *ngIf="pool.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                                                <td class="">{{pool?.title}}</td>
+                                                <td class="">{{getCategoryName(pool?.category_id)}}</td>
+                                                <td class="">{{pool?.investment_amount | currency:'':''}}</td>
+                                                <td class="">{{reports[i]?.number_of_pools}}</td>
+                                                <td class="">{{pool?.duration}} Months</td>
+                                                <td class="">{{pool?.estimated_percentage_profit}}%</td>
+                                                <td class="">{{pool?.expected_return_period}}</td>
+                                                <td class="">{{calculateAmount(pool?.investment_amount, reports[i]?.number_of_pools) | currency:'':''}}</td>
+                                                <td class="" style="color: green" *ngIf="pool?.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>
                                                     <td class="" style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
-                                                <td class="">{{pool.investment_started_date | date :  "dd.MM.y"}}</td>
+                                                <td class="">{{ pool?.is_investment_started === 1 ? (pool?.investment_started_date.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
                                                 <td class="">
-                                                    <a routerLink="./{{pool.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>
                                             </tr>
-                                            <tr *ngIf="!isLoading && pools?.length == 0" >
+                                            <tr *ngIf="pools?.length === 0">
                                                 <td class="displayStatus">"No Investment  records found."</td>
                                             </tr>
                                         </tbody>
@@ -79,23 +93,6 @@
                                             </tr>
                                         </tfoot>
                                     </table>
-                                    <div *ngIf="isLoading" >
-                                        <br><br>
-                                        <div  class="lds-default">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

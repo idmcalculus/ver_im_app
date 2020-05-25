@@ -1,9 +1,8 @@
  import { Component, OnInit } from '@angular/core';
- import { ActivatedRoute, Router} from '@angular/router';
- import {InvestmentService} from '../../investment/investment.service';
+ import { Router} from '@angular/router';
+ import { InvestmentService } from '../../investment/investment.service';
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
- import { UserService } from '../user.service';
  import { Category } from 'src/app/shared/models/Category';
  import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
  import { FormControl } from '@angular/forms';
@@ -34,12 +33,13 @@ export class PoolsComponent implements OnInit {
   status = new FormControl();
   Category = new FormControl();
   investments: Investment[] = [];
+  filteredArray: Investment[] = [];
+  eventValue = '';
 
   constructor(
     private router: Router,
     private authService: AppAuthService,
-    private investmentService: InvestmentService,
-    private userService: UserService) {
+    private investmentService: InvestmentService) {
       const userpath = window.location.pathname;
       if (userpath.includes('user')) {
         this.userType = 'user';
@@ -57,7 +57,6 @@ export class PoolsComponent implements OnInit {
       this.masterSelected = false;
       this.checklist = [this.pool, ];
       this.getCheckedPooList();
-
   }
 
   ngOnInit() {
@@ -100,6 +99,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategories() {
+    this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
@@ -109,7 +109,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    if (id) {
+    if (this.categories && id) {
     this.res = this.categories.find(r => r.id === id);
     return this.res.category_name;
     } else {
@@ -118,11 +118,13 @@ export class PoolsComponent implements OnInit {
   }
 
   getUserPols(email) {
+    this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         this.getCategories();
       }
+      this.isLoading = false;
     });
   }
 
@@ -141,38 +143,76 @@ export class PoolsComponent implements OnInit {
 
   filterTable(filterType, filterValue): any {
     const value = filterValue.target.value.toString().toLowerCase();
-    const filtered = this.investments.filter(investment => {
-      const filterate = investment[filterType].toString().toLowerCase();
-      if (filterate.indexOf(value) >= 0) {
-        return investment;
+    if (!value) {
+      this.filteredArray = [];
+      this.pools = this.investments;
+    } else {
+        if (this.filteredArray.length === 0) {
+          const filtered = this.investments.filter(investment => {
+            const filterate = investment[filterType].toString().toLowerCase();
+            if (filterate.indexOf(value) >= 0) {
+              return investment;
+            }
+          });
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+        } else {
+            const filtered = this.filteredArray.filter(investment => {
+              const filterate = investment[filterType].toString().toLowerCase();
+              if (filterate.indexOf(value) >= 0) {
+                return investment;
+              }
+            });
+            this.pools = filtered;
+            this.filteredArray = this.pools;
+          }
       }
-    });
-    this.pools = filtered;
   }
 
   filterCategory(filterType, filterValue): any {
-      if (filterValue === 'All') {
-        this.pools = this.investments;
-      } else {
-        const CatPool: any = [];
-        const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
-        filteredCat.forEach(cat => {
-          const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
-          CatPool.push(filteredCatPool);
-        });
-        this.pools = [].concat.apply([], CatPool);
+    if (filterValue === 'All') {
+      this.filteredArray = [];
+      this.pools = this.investments;
+    } else {
+        if (this.filteredArray.length === 0) {
+          const CatPool: any = [];
+          const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+          filteredCat.forEach(cat => {
+            const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
+            CatPool.push(filteredCatPool);
+          });
+          this.pools = [].concat.apply([], CatPool);
+          this.filteredArray = this.pools;
+        } else {
+          const CatPool: any = [];
+          const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+          filteredCat.forEach(cat => {
+            const filteredCatPool = this.filteredArray.filter(investment => cat.id === investment.category_id);
+            CatPool.push(filteredCatPool);
+          });
+          this.pools = [].concat.apply([], CatPool);
+          this.filteredArray = this.pools;
+          }
       }
   }
 
   filterStatus(filterType, filterValue): any {
     if (filterValue === 'All') {
+      this.filteredArray = [];
       this.pools = this.investments;
     } else {
-      const value = filterValue === 'Active' ? 1 :
-      filterValue === 'InActive' ? 0 : '';
-      const filtered = this.investments.filter(pool => pool[filterType] === value);
-      this.pools = filtered;
-    }
+        if (this.filteredArray.length === 0) {
+          const value = filterValue === 'Active' ? 1 : 0 ;
+          const filtered = this.investments.filter(pool => pool[filterType] === value);
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+        } else {
+          const value = filterValue === 'Active' ? 1 : 0 ;
+          const filtered = this.filteredArray.filter(pool => pool[filterType] === value);
+          this.pools = filtered;
+          this.filteredArray = this.pools;
+          }
+      }
   }
 
   setItemsPerPage(event) {

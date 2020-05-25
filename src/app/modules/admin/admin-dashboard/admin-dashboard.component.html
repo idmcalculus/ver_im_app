@@ -107,6 +107,11 @@
                                             <i class="fas fa-eye text-c-white f-18"></i>
                                         </div>
                                         <div class="col">
+                                                <div class="statcounter" style="text-align:end"><a title="Web Analytics"
+                                                    href="3" target="_blank"><img class="statcounter imgs"
+                                                    src="https://c.statcounter.com/12324401/0/9118895f/0/" alt="Web
+                                                    Analytics"></a>
+                                                </div>
                                             <!--<h3 class="f-w-700 text-c-white" style="float: right;">{{dashBoardData?.all_request}}</h3>-->
                                         </div>
                                     </div>
@@ -288,49 +293,44 @@
                           </div>
                       </div>
 
-                      <div class="card-details col-xl-8 col-md-12 tabl" style="padding-right: 0;padding-left: 0;max-width: 100%;min-width: 70%;">
+                      <div class="card-details col-xl-8 col-md-12  tabl" style="padding-right: 0;padding-left: 0;max-width: 100%;min-width: 70%;">
                         <div class="card latest-update-card">
                             <div class="card-header" style="background-color:#4F5FBE !important; height: 3rem !important;">
                                 <h5 style="color:white !important">Latest Investment</h5>
                             </div>
-                            <div class="card-block">
-
-
-                              <div class="dt-responsive table-responsive">
-                                      <table id="userTable"
-                                              class="table table-striped nowrap" style="font-size:10px">
-                                          <thead style="text-align:center">
-                                          <tr>
-                                              <th>ID</th>
-                                              <th>Customer</th>
-                                              <th>Category</th>
-                                              <th>Status</th>
-                                              <th>Date Added</th>
-                                              <th>Amount</th>
-                                              <th>No of Pool</th>
-                                              <th>Action</th>
-                                          </tr>
-                                          </thead>
-                                          <tbody style="text-align:center">
-                                          <tr *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 5),let x=index ">
-                                              <td>{{req.id}}</td>
-                                              <td >{{req.user_id}}</td>
-                                              <td >{{req.category_id}}</td>
-                                             <td style="color: green" *ngIf="req.is_investment_started === 1; else showThis">{{'Active'}}</td>
+                            <div class="card-block card-flex">
+                                <table id="userTable" class="table nowrap">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>ID</th>
+                                            <th>Customer</th>
+                                            <th>Category</th>
+                                            <th>Status</th>
+                                            <th>Date Added</th>
+                                            <th>Amount</th>
+                                            <th>No of Pool</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center" *ngFor="let req of dashBoardData?.fetch_user_investments.slice(0, 5),let x=index ">
+                                            <td>{{req.id}}</td>
+                                            <td >{{req.user_id}}</td>
+                                            <td >{{getCategoryName(req.category_id)}}</td>
+                                            <td style="color: green" *ngIf="req.is_investment_started === 1; else showThis">{{'Active'}}</td>
                                                 <ng-template #showThis>
                                                     <td  style="color: red">{{'InActive'}}</td>
                                                 </ng-template>
-                                              <td >{{req.date_added}}</td>
-                                              <td >{{req.amount_paid}}</td>
-                                              <td >{{req.number_of_pools}}</td>
-                                              <td  (click)="viewUserDetail(i)">
-                                                     <a routerLink="./pools/{{req.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                            <td >{{req.date_added}}</td>
+                                            <td >{{req.amount_paid}}</td>
+                                            <td >{{req.number_of_pools}}</td>
+                                            <td  (click)="viewUserDetail(i)">
+                                                <a routerLink="./pools/{{req.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                             </td>
-                                          </tr>
-                                          </tbody>
-                                      </table>
-                              </div>
-                             </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                       </div>
 
@@ -366,4 +366,5 @@
 
       </div>
   </div>
+
 </div>

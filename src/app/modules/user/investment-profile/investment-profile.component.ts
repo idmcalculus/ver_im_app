@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Investment } from 'src/app/shared/models/Investment';
-import { ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './../../investment/investment.service';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
-import { UserService } from '../user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { Report } from 'src/app/shared/models/Report';
@@ -22,6 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 export class InvestmentProfileComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
+
   userEmail: string;
   pool: Investment;
   poolId = 0;
@@ -38,7 +38,6 @@ export class InvestmentProfileComponent implements OnInit {
   categories = [];
   selectedInvestment = -1;
   investmentInfo: Investment = {duration: '0', investment_amount: 0};
-
   expected_return: number;
   investment_amount: number;
   period: string;
@@ -55,10 +54,8 @@ export class InvestmentProfileComponent implements OnInit {
 
   constructor(private location: Location,
               private route: ActivatedRoute,
-              private router: Router,
               private investmentService: InvestmentService,
               private authService: AppAuthService,
-              private userService: UserService,
               private dynamicScriptLoader: DynamicScriptLoaderService,
               private reportService: ReportService,
               private toastrService: ToastrService) {
@@ -121,15 +118,17 @@ export class InvestmentProfileComponent implements OnInit {
     });
   }
 
-  addMonth(date: Date, month: number) {
+  addMonth(date: Date) {
     const newDate = new Date(date);
     const d = newDate.getDate();
-    newDate.setMonth(newDate.getMonth() + month);
-    if (newDate.getMonth() === 11) {
-        newDate.setDate(0);
-    }
-    return newDate;
-}
+    const m = newDate.getMonth();
+    return this.pool.investment.expected_return_period === 'Monthly' ? (
+      newDate.setMonth(m + 1),
+      newDate.getMonth() === 11 ? newDate.setDate(0) : newDate
+    ) : (
+      newDate.setDate(d + 7)
+    );
+  }
 
   goBack() {
     this.location.back();
@@ -138,6 +137,6 @@ export class InvestmentProfileComponent implements OnInit {
   private loadScripts() {
     this.dynamicScriptLoader.load('p-coded', 'v-layout',
     'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
-}
+  }
 
 }

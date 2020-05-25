@@ -25,7 +25,7 @@
 
 th {
     color: #221F72;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     padding: 10px;
 }
@@ -46,6 +46,7 @@ th {
 td {
     font-size: 12px;
     padding: 13px;
+    font-weight: 600;
 }
 
 label {
@@ -63,10 +64,10 @@ label {
         color: #221F72;
         line-height: 22px;
     }
-    
+
     mat-select {
         display: block;
-        font-size: 12px;
+        font-size: 14px;
         width: 100%;
         height: 38px;
         padding: .5rem .5rem;
@@ -86,17 +87,20 @@ div > a {
 }
 
 .table > thead > tr > th {
+    padding: 15px 10px !important;
     border-top: none;
     border-bottom-width: 2px;
     border-bottom-color: #221F72
 }
 
 td {
+    vertical-align: middle !important;
+    padding: 18px 10px !important;
     border-color: #221F72
 }
 
 .card {
-	height: 600px;
+	height: 700px;
 }
 
 .col-md-12 {
@@ -147,8 +151,8 @@ p{
 		max-height: 150px !important;
 		background-color: white;
 		color: grey;
-      } 
-      
+      }
+
     .mat-select-placeholder {
         color: grey !important;
 		-webkit-text-fill-color: inherit !important;
@@ -160,13 +164,13 @@ p{
 	span.mat-option-text {
 		color: grey;
     }
-    
+
     .mat-select-trigger {
         color: grey;
     }
 
 	.mat-select-value {
-        color: #495057;
+        color: grey;
 	}
 
 	.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
