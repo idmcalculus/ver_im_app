@@ -38,6 +38,7 @@ a .setting {
 
 label,th {
     color: #221F72;
+    font-family: roboto, sans-serif;
     font-size: 14px;
     font-weight: bold;
 }
@@ -116,7 +117,9 @@ td {
 }
 
 .category-header p {
+    font-size: 14px;
     color: #221f72;
+    font-family: roboto, sans-serif;
     padding: 0;
     margin: 0;
     padding-right: 4px;
@@ -138,6 +141,7 @@ td {
 }
 
 .category-body .row1 p{
+    font-size: 12px;
     padding: 0;
 }
 

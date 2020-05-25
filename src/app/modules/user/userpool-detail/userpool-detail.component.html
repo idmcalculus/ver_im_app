@@ -17,16 +17,16 @@
                         <div></div>
                         <div></div>
                     </div>
-                        
+
                     <div *ngIf="!isLoading && dashboardInvestment?.length > 0" class="">
                         <div class="clearfix mb-3">
                             <div class="float-left pt-2">
                                 <a class="h4 pr-2">Investment</a>
                                 <a class=" pl-2">Home / Investments</a>
-                            </div>  
+                            </div>
                             <div class="float-right">
                                 <a (click)="cancelPool()">
-                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px;">
+                                    <img class="" src="../assets/images/icon/icons/Back-icon.png" style="height: 50px; cursor: pointer;">
                                 </a>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                                                     <input type="type" readonly class="form-control form-control-sm" value={{noPool?.number_of_pools}}>
                                                 </div>
                                             </div>
-    
+
                                             <div class="form-group pb-5 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ROI(Percentage)</h6>
                                                 <div class="col-sm-9">
@@ -147,7 +147,7 @@
                                         </div>
 
                                         <div class="row mt-5">
-                                            
+
                                             <div class="col-xl-12">
                                                 <div class="row">
                                                     <div class="col-4">
@@ -206,7 +206,7 @@
                                                             <div class="col-7">
                                                                 <a class="pr-2">-</a>
                                                                 <a class="pl-5 text-danger">
-                                                                    {{ ((((pool?.investment_amount * dashboardInvestment[0]?.number_of_pools) * (calculateamount(pool?.expected_return_amount, pool?.investment_amount, pool?.expected_return_period)))/100)) - (dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length) | currency:'NGN':'symbol-narrow'}}  
+                                                                    {{ ((((pool?.investment_amount * dashboardInvestment[0]?.number_of_pools) * (calculateamount(pool?.expected_return_amount, pool?.investment_amount, pool?.expected_return_period)))/100)) - (dashboardInvestment[0]?.investment_return[0]?.yielded_amount * dashboardInvestment[0]?.investment_report?.length) | currency:'NGN':'symbol-narrow'}}
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -234,13 +234,13 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <h5 class="card-header">Investment Report</h5>
-    
+
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
                                             <table id="investmentTable" *ngFor="let investments of dashboardInvestment; index as i" class="table appTable nowrap">
                                                 <thead>
                                                 <tr>
-                                                    <th>S/N</th>  
+                                                    <th>S/N</th>
                                                     <th>Investment Title</th>
                                                     <th>Payback Frequency</th>
                                                     <th>Amount Credited (N)</th>
@@ -280,20 +280,20 @@
                                                       </td>
                                                     </tr>
                                                 </tfoot>
-                                               
-                                                
+
+
                                             </table>
                                             <div *ngIf="dashboardInvestment?.length === 0" >
                                                 <p class="displayStatus">"No records found."</p>
                                            </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-    
+
                             </div>
                         </div>
-                    </div>              
+                    </div>
                 </div>
 
             </div>

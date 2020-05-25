@@ -25,7 +25,7 @@
 
 th {
     color: #221F72;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     padding: 10px;
 }
@@ -46,12 +46,15 @@ th {
 td {
     font-size: 12px;
     padding: 13px;
+    font-weight: 600;
 }
 
 label {
     color: #221F72;
     font-size: 14px;
     font-weight: bold;
+    font-family: roboto, sans-serif
+
 }
 
 .status {
@@ -59,11 +62,12 @@ label {
     mat-label {
         display: block;
         font-size: 14px;
+        font-family: roboto, sans-serif;
         font-weight: bold;
         color: #221F72;
         line-height: 22px;
     }
-    
+
     mat-select {
         display: block;
         font-size: 14px;
@@ -88,7 +92,8 @@ div > a {
 .table > thead > tr > th {
     border-top: none;
     border-bottom-width: 2px;
-    border-bottom-color: #221F72
+    border-bottom-color: #221F72;
+    font-family: roboto, sans-serif
 }
 
 td {
@@ -147,8 +152,8 @@ p{
 		max-height: 150px !important;
 		background-color: white;
 		color: grey;
-      } 
-      
+      }
+
     .mat-select-placeholder {
         color: grey !important;
 		-webkit-text-fill-color: inherit !important;
@@ -160,7 +165,7 @@ p{
 	span.mat-option-text {
 		color: grey;
     }
-    
+
     .mat-select-trigger {
         color: grey;
     }
@@ -173,3 +178,5 @@ p{
 		background: #00000024;
 	}
 }
+
+
