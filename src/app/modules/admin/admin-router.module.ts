@@ -18,7 +18,7 @@ import {ViewedreportComponent} from '../../shared/components/report/view-pool-re
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
 import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
-import {viewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
+import {ViewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
 
 import {CreateComponent} from './manage-career/create/create.component';
 import {ListComponent} from './manage-career/list/list.component';
@@ -104,7 +104,7 @@ const userRoutes: Routes = [
           { path: 'purchasedReport', component: PurchasedreportComponent },
           { path: 'viewedReport', component: ViewedreportComponent },
           { path: 'userReport', component: UserreportComponent },
-          { path: 'userReport/:email', component: viewUserPoolComponent },
+          { path: 'userReport/:email', component: ViewUserPoolComponent },
           { path: 'userReport/:email/export/:id', component: exportUserPoolComponent },
           { path: 'pools', component: PoolsComponent },
           { path: 'pools/:id', component: PoolDetailComponent },

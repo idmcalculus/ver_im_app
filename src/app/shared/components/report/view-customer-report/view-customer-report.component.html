@@ -3,7 +3,7 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div *ngIf="isLoading" >
+                <div *ngIf="isLoading || userInvestment?.length === 0" >
                     <br><br>
                     <div  class="lds-default">
                         <div></div>
@@ -65,24 +65,22 @@
                                             </tr>
                                             </thead>
                                             <tbody >
-                                                <tr *ngFor="let investment of userInvestment;let i = index;">
+                                                <tr *ngFor="let investment of userInvestment; let i = index;">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td class="pointer" style="width: 15%" (click)="goto(email,investment.id)">{{investment?.title}}</td>
-                                                    <td style="width: 10%" >{{investment?.category_id}}</td>
+                                                    <td style="width: 10%" >{{getCategoryName(investment?.category_id)}}</td>
                                                     <td style="width: 10%" >{{investment?.investment_amount}}</td>
-                                                    <td style="width: 10%">{{investment?.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{numOfPool[i]?.number_of_pools}}</td>
                                                     <td style="width: 10%">{{investment?.duration}}</td>
-                                                    <td style="width: 10%">{{investment?.estimated_percentage_profit}}</td>
+                                                    <td style="width: 10%">{{investment?.estimated_percentage_profit}}%</td>
                                                     <td style="width: 10%">{{investment?.expected_return_period}}</td>
-                                                    <td style="width: 10%">{{investment?.investment_amount*investment?.num_of_pools_taken}}</td>
-                                                    <td style="width: 10%">Completed</td>
+                                                    <td style="width: 10%">{{investment?.investment_amount * numOfPool[i]?.number_of_pools}}</td>
+                                                    <td style="width: 10%">{{investment?.is_investment_started === 1 ? 'On-going' : 'Not Yet Started'}}</td>
                                                     <td style="width: 10%">{{investment?.investment_started_date}}</td>
                                                 </tr>
-
                                             </tbody>
-
                                         </table>
-                                        <div *ngIf="userInvestment.length == 0" >
+                                        <div *ngIf="userInvestment?.length === 0" >
                                                <p class='displayStatus'>"No record found, Investment(s) is not yet completed."</p>
                                         </div>
                                     </div>

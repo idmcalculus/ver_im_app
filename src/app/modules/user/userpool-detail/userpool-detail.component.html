@@ -250,14 +250,14 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
+                                                    <tr *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
                                                         <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
                                                         <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | currency:'':''}}</td>
                                                         <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | currency:'':''}}</td>
                                                         <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | currency:'':''}}</td>
-                                                        <td style="width: 15%"> On-going </td>
+                                                        <td style="width: 15%">{{investments?.investment[0]?.is_investment_started === 1 ? 'On-going' : 'Not Yet Started'}}</td>
                                                         <td style="width: 10%">{{report?.created_at.split(' ')[0] | date :  "dd.MM.y"}}</td>
                                                     </tr>
                                                 </tbody>
@@ -289,12 +289,10 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
