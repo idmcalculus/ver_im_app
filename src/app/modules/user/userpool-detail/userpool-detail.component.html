@@ -232,10 +232,9 @@
 
                         <div class="row mb-4">
                             <div class="col-sm-12">
+                                <h5 class="">Investment Report</h5>
                                 <div class="card">
-                                    <h5 class="card-header">Investment Report</h5>
-
-                                    <div class="card-block">
+                                    <div class="card-block px-2">
                                         <div class="dt-responsive table-responsive">
                                             <table id="investmentTable" *ngFor="let investments of dashboardInvestment; index as i" class="table appTable nowrap">
                                                 <thead>
@@ -243,22 +242,22 @@
                                                     <th>S/N</th>
                                                     <th>Investment Title</th>
                                                     <th>Payback Frequency</th>
-                                                    <th>Amount Credited (N)</th>
-                                                    <th>Yield Amount (N)</th>
-                                                    <th>Balance (N)</th>
+                                                    <th>Amount Credited (₦)</th>
+                                                    <th>Yield Amount (₦)</th>
+                                                    <th>Balance (₦)</th>
                                                     <th>Status</th>
                                                     <th>Date Paid</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr  *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
+                                                    <tr *ngFor="let report of investments?.investment_report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                         <td style="width: 5%">{{report?.index}}</td>
                                                         <td style="width: 15%">{{report?.title}}</td>
                                                         <td style="width: 15%">{{investments?.investment[0]?.expected_return_period}}</td>
                                                         <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount  | currency:'':''}}</td>
                                                         <td style="width: 15%">{{investments?.investment_return[0]?.yielded_amount * report?.index | currency:'':''}}</td>
                                                         <td style="width: 10%">{{ (divisorFunc(investments?.investment[0]?.expected_return_period) * investments?.investment_return[0]?.yielded_amount) - (investments?.investment_return[0]?.yielded_amount * report?.index) | currency:'':''}}</td>
-                                                        <td style="width: 15%"> On-going </td>
+                                                        <td style="width: 15%">{{investments?.investment[0]?.is_investment_started === 1 ? 'On-going' : 'Not Yet Started'}}</td>
                                                         <td style="width: 10%">{{report?.created_at.split(' ')[0] | date :  "dd.MM.y"}}</td>
                                                     </tr>
                                                 </tbody>
@@ -290,12 +289,10 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -1,0 +1,179 @@
+start of Api Endpoint in user service ts
+
+    this.httpService.postRequest(`fetch_profile?email=${email}`, null) //for getting Profile
+    GET /user/profile
+
+        this.httpService.postRequest(`fetch_profile?email=${email}`, null) //for getting ProfileDetails
+    **************
+
+    this.httpService.postRequest(`update_user? ); //for getting updateProfile
+    PUT /user/profile
+
+        this.httpService.postRequest(`update_preference? , null); //for getting update_preference
+
+        this.httpService.postRequest(`update_account_detail? , null); //for getting updateBankDetails
+
+        this.httpService.postRequest(`change_password?password=${password}`, null); //for getting changePassword
+        
+        this.httpService.postRequest(`activate_user?, null); //for getting activateUser
+
+        this.httpService.postRequest(`deactivate_user? , null); //for getting deactivateUser
+    *********************************
+    
+    this.httpService.postRequest(`user/delete? email=${user.email}`, true); //for getting deleteUser
+    DELETE /user
+    
+    this.httpService.postRequest(`user/list`, {}); //for getting User
+    GET /user
+
+    this.httpService.postRequest(`report/userDashboard? investment_id=${investmentId}&user_id=${email}`, null); //for getting UserDashBoard
+    GET /report/user
+
+    this.httpService.postRequest(`bank/list`, null); //for getting BankList
+    GET /bank
+
+    this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {'user_id': email}); //for getting usersInvestment
+    GET /investment/:user_id
+
+    this.httpService.postRequest(`investment_user/withdraw`, {'first_name': name,'email':email}); //for withdraw user
+    PUT /investment/:user_id
+
+    this.httpService.postRequest(`admin/update_user?  null); //for adminUpdateProfile
+    PUT /admin
+
+        this.httpService.postRequest(`admin/update_preference? null); //for adminUpdatePreference
+
+        this.httpService.postRequest(`admin/update_account_detail? , null); //for adminUpdateBankDetails
+        *******************
+
+End of Api Endpoint in user service ts
+
+
+start of Api Endpoint in admin service ts
+    this.httpService.postRequest(`report/adminDashboard`, null); //for getting DashBoardData
+    GET /report/admin
+
+    * this.httpService.postRequest(`user/list`, null); //for getting users
+
+    this.httpService.postRequest(`list_admin`, null); //for getting Admin users
+    GET /admin
+
+    this.httpService.postRequest(`register_admin`, admin, true); //for creating Admin User
+    POST /admin
+
+    this.httpService.postRequest(`update_admin`, reqBody, true); //for Updating Admin User
+    PUT /admin
+
+    this.httpService.postRequest(`investment_user/create?investment_id=${Details.investment_id}, null); //for adding User to pool
+    POST /investment/:investment_id
+
+    this.httpService.postRequest(`admin/getUserCategories`, null); //for getting Categories
+    GET /admin/categories
+
+    this.httpService.postRequest(`admin/updateUserCategory?id=${id}&user_category=${userType}`, {}, null); //for update user by category
+    PUT /admin/categories
+
+End of Api Endpoint in admin service ts
+
+
+start of Api Endpoint in Investment service ts
+    this.httpService.postRequest(`investment/create? //for creating a new investment
+    POST /investment
+
+    this.httpService.postRequest(`investment/update? //for updating a new investment
+    PUT /investment
+
+    this.httpService.postRequest(`trackViews?investment_id=${id}`, {}); //for getting stats
+    GET /views/:investment_id
+
+    this.httpService.postRequest(`investment/list?is_frontend=${is_frontend}`, {}); //for getting investment_user
+    //GET /investment
+
+    this.httpService.postRequest(`investment_user/listInvestmentOfUser?`, {'user_id': email}); //for getting usersInvestment
+    GET /investment/:user_id
+    
+    this.httpService.postRequest('investment_user/getInvestmentPerDay?', null); //for getting investment Report
+    GET /investment/period
+
+    this.httpService.postRequest(`investment/show?investment_id=${investmentId}`, {}); //for getting investment_user
+    GET /investment/:investment_id
+    
+    this.httpService.postRequest(`category/list`, {}); //for getting Categories
+    GET /investment/category
+
+    this.httpService.postRequest(`category/create?category_name=${category.category_name}`, {}, true, null); //for adding Categories
+    POST /investment/category
+
+    this.httpService.postRequest(`category/update?category_name=${category.category_name}`, {}, true, null); //for updating Categories
+    PUT /investment/category
+
+    this.httpService.postRequest(`category/delete`, { category_id: category.id }, true); //for deleting Categories
+    DELETE /investment/category
+
+    this.httpService.postRequest(`investment_user/create?investment_id=${transaction.investment_id}  true); //for joining Investment
+    POST /investment/:investment_id
+
+    this.httpService.postRequest(`investment/endInvestment`, { investment_id: investmentId }, true); //for ending Investment
+    PUT /investment/:investment_id
+
+    this.httpService.postRequest(`investment/startInvestment`, { investment_id: investmentId }, true); //for starting Investment
+    PUT /investment/:investment_id
+
+    this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`, {}, true); //for pulling Out From Investment
+    PUT /investment/:investment_id
+
+    this.httpService.postRequest(`investment/addGroup?group_name=${investmentGroup.group_name}`, {}, true); //for creating Investment Group
+    POST /investment/group
+    
+    this.httpService.postRequest(`investment/getGroups`, {}); //for getting Investment Group
+    GET /investment/group
+
+    this.httpService.postRequest(`getViews`, {}); //for getDetails
+    GET /views
+
+    this.httpService.postRequest(`investment/deleteGroup?group_name=${investmentGroup.group_name}`, true); //for deleting Investment Group
+    DELETE /investment/group
+
+    this.httpService.postRequest(`investment/addToGroup?group_name=${investmentGroup.group_name}&investment_id=${investmentId}`, {}, true); //for adding Investment to Group
+    PUT /investment/group
+
+    this.httpService.postRequest(`investment/getInvestmentGroup?group_name=${group.group_name}`, {}, true); //for getting Investment Group
+    GET /investment/group/:group_name
+
+end of Api Endpoint in Investment service ts
+
+start of Api Endpoint in report.service.ts
+    this.httpService.postRequest(`report/create?title=${report.title}
+    &description=${report.description}&returned_amount=${report.returned_amount}
+    &investment_id=${report.investment_id}&payment_type=${report.payment_type}`, {}, true);
+    POST /report
+
+    this.httpService.postRequest(`report/update?title=${report.title}
+    &description=${report.description}&returned_amount=${report.returned_amount}&report_id=${report.id}
+    &investment_id=${report.investment_id}&payment_type=${report.payment_type}`, {}, true);
+    PUT /report
+
+    this.httpService.postRequest(`report/delete?report_id=${report.id}`, {}, true);
+    DELETE /report
+
+end of Api Endpoint in report.service.ts   
+
+start of API Endpoint in auth.service.ts
+    this.httpService.postRequest(`user/validate_otp?otp=${userOTP}`, {})
+    POST /user/validate
+
+    this.httpService.postRequest(`login?email=${userCreds.email}&password=${userCreds.password}`, {}, null)
+    //POST user/login
+end of API Endpoint in auth.servcie.ts
+
+start of API Endpoint in forgotpassword.service.ts and resetpassword.ts
+    this.httpService.postRequest(`reset_password_request?email=${userEmail}`,{})
+    //POST /user/forgotPassword
+
+    this.httpService.postRequest(`change_password?password=${password}`,{})
+    POST /user/changePassword
+
+
+this.httpService.postRequest(`register`)
+//POST /user/register
+

@@ -48,19 +48,20 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div *ngIf="!isLoading" class="card-block">
-                                    <div class="table-wrapper-scroll-y custom-scrollbar">
-                                        <table datatable class="table appTable nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 5%;"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></th>
-                                                    <th style="width: 30%;">Fullname</th>
-                                                    <th style="width: 30%;">Email</th>
-                                                    <th style="width: 20%;">Phone Number</th>
-                                                    <th style="width: 15%;">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                <div *ngIf="!isLoading" class="card-block card-flex p-1 px-2">
+                                    <table datatable class="table appTable nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 5%;">
+                                                    <input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()">
+                                                </th>
+                                                <th style="width: 30%;">Fullname</th>
+                                                <th style="width: 30%;">Email</th>
+                                                <th style="width: 20%;">Phone Number</th>
+                                                <th style="width: 15%;">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <tr data-href="#viewUserProfile" *ngFor="let user of users| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};index as i">
                                                 <td><input value="" [(ngModel)]="user.selected" type="checkbox" (click)='deleteUserDetail(i)' (change)="checkIfAllSelected()"></td>
                                                 <td>{{user.last_name}} {{user.first_name}}</td>
@@ -71,20 +72,27 @@
                                                     <a routerLink="./{{user?.email}}/edit"><img class="pl-2" src="../../../../assets/images/icon/icons/Edit-icon.png"></a>
                                                 </td>
                                             </tr>
-                                            </tbody>
-                                        </table>
-                                        <div  class="col-12 d-flex flex-row">
-                                            <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
-                                            <span class="col-md-2 col-xs-2 controls">
-                                                <select class="py-2 input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
-                                                    <option value="5"> 5 rows </option>
-                                                    <option value="10"> 10 rows </option>
-                                                    <option value="20"> 20 rows </option>
-                                                    <option value="0"> view all </option>
-                                                </select>
-                                            </span>
-                                        </div>
-                                    </div>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr class="pb-0">
+                                                <td [colSpan]="2" class="pb-0 mr-5">
+                                                    <pagination-controls
+                                                        (pageChange)="p2=$event" id='second'>
+                                                    </pagination-controls>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="pb-0">
+                                                    <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                        <option value="10"> 10 rows </option>
+                                                        <option value="20"> 20 rows </option>
+                                                        <option value="30"> 30 rows </option>
+                                                        <option value="0"> view all </option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
 
                                 <div *ngIf="isLoading" class="lds-default">

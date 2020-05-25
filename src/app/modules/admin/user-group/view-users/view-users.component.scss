@@ -100,3 +100,13 @@ div > a {
 		flex: 1;
 	}
 }
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="checkbox"]:checked {
+    width: 20px;
+    height: 20px;
+}

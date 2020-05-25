@@ -23,7 +23,7 @@ import {PoolreportComponent} from '../../shared/components/report/investment-rep
 import {ViewedreportComponent} from '../../shared/components/report/view-pool-report/view-pool-report.component';
 import {PurchasedreportComponent} from '../../shared/components/report/purchased-pool-report/purchased-pool-report.component';
 import {UserreportComponent} from '../../shared/components/report/customer-report/customer-report.component';
-import {viewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
+import {ViewUserPoolComponent} from '../../shared/components/report/view-customer-report/view-customer-report.component';
 import {ManageCategoryComponent} from './manage-category//manage-category.component';
 import {ManageAdminComponent} from './manage-admin/manage-admin.component';
 import {ProgressBarModule} from 'angular-progress-bar';
@@ -58,7 +58,7 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
     PoolreportComponent,
     UserreportComponent,
     UseractivityComponent,
-    viewUserPoolComponent,
+    ViewUserPoolComponent,
     AddUserComponent,
     AddPoolComponent,
     ManageCategoryComponent,

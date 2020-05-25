@@ -3,7 +3,7 @@
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
-                <div *ngIf="isLoading" >
+                <div *ngIf="isLoading || userInvestment?.length === 0" >
                     <br><br>
                     <div  class="lds-default">
                         <div></div>
@@ -21,26 +21,32 @@
                     </div>
                 </div>
                 <div class="page-body list-vacancy" *ngIf="!isLoading">
+                    <div class="clearfix mb-3">
+                        <div class="float-left pt-3">
+                            <a class="h4 pr-2">Reports</a>
+                            <a class=" pl-2">Home / Customer Report</a>
+                        </div>
+                        <div class="float-right">
+                            <a class="pr-3">
+                                <button class="btn btn-secondary btn-sm font-weight-bold" (click)= "saveAsCSV()" type="submit">Export</button>
+                            </a>
+                            <a (click)="clearFilter()" id="delCat">
+                                <img class=""src="../../../../assets/images/icon/icons/Refresh.png">
+                            </a>
+                        </div>
+                    </div>
                     <div class="row mb-4">
                         <div class="col-xl-9 col-md-6 title-list">
                             <h3>Profile of {{user?.user[0]?.first_name}} {{user?.user[0]?.last_name}}
                             </h3>
                         </div>
-                        <div class="col">
-                            <div class="float-right">
-                                <a >
-                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
-                                </a>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-sm-12">
+                            <h5 class="">Investment History</h5>
                             <div class="card">
-                                <h5 class="card-header">Investment History</h5>
-
-                                <div class="card-block">
+                                <div class="card-block px-2">
                                     <div class="dt-responsive table-responsive table-wrapper-scroll-y custom-scrollbar">
                                         <table class="table appTable nowrap">
                                             <thead>
@@ -59,24 +65,22 @@
                                             </tr>
                                             </thead>
                                             <tbody >
-                                                <tr *ngFor="let investment of userInvestment;let i = index;">
+                                                <tr *ngFor="let investment of userInvestment; let i = index;">
                                                     <td style="width: 5%"> {{i+1}}</td>
                                                     <td class="pointer" style="width: 15%" (click)="goto(email,investment.id)">{{investment?.title}}</td>
-                                                    <td style="width: 10%" >{{investment?.category_id}}</td>
+                                                    <td style="width: 10%" >{{getCategoryName(investment?.category_id)}}</td>
                                                     <td style="width: 10%" >{{investment?.investment_amount}}</td>
-                                                    <td style="width: 10%">{{investment?.num_of_pools_taken}}</td>
+                                                    <td style="width: 10%">{{numOfPool[i]?.number_of_pools}}</td>
                                                     <td style="width: 10%">{{investment?.duration}}</td>
-                                                    <td style="width: 10%">{{investment?.estimated_percentage_profit}}</td>
+                                                    <td style="width: 10%">{{investment?.estimated_percentage_profit}}%</td>
                                                     <td style="width: 10%">{{investment?.expected_return_period}}</td>
-                                                    <td style="width: 10%">{{investment?.investment_amount*investment?.num_of_pools_taken}}</td>
-                                                    <td style="width: 10%">Completed</td>
+                                                    <td style="width: 10%">{{investment?.investment_amount * numOfPool[i]?.number_of_pools}}</td>
+                                                    <td style="width: 10%">{{investment?.is_investment_started === 1 ? 'On-going' : 'Not Yet Started'}}</td>
                                                     <td style="width: 10%">{{investment?.investment_started_date}}</td>
                                                 </tr>
-
                                             </tbody>
-
                                         </table>
-                                        <div *ngIf="userInvestment.length == 0" >
+                                        <div *ngIf="userInvestment?.length === 0" >
                                                <p class='displayStatus'>"No record found, Investment(s) is not yet completed."</p>
                                         </div>
                                     </div>

@@ -41,14 +41,14 @@
           </div>
         <div *ngIf="!isLoading" class="card">
           <div class="card-block dt-responsive usergroup-header d-flex">
-            <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
+            <p class=""><input type="checkbox" class="mt-3 mr-3" value="" [(ngModel)]="selectedAll" (change)="selectAll()"></p>
             <p class="s-n" scope="col">S/N</p>
             <p class="usergroup-name" scope="col">User Group Name</p>
             <p class="action" scope="col">Action</p>
           </div>
           <div class="card-block dt-responsive usergroup-body">
             <div *ngFor="let usergroup of usergroups; index as i" class="d-flex">
-              <p class="checkbox"><input type="checkbox" value="" [(ngModel)]="usergroup.selected" (change)="checkIfAllSelected()"></p>
+              <p class=""><input type="checkbox" class="mt-3 mr-3" value="" [(ngModel)]="usergroup.selected" (change)="checkIfAllSelected()"></p>
               <p class="s-n">{{i+1}}</p>
               <p class="usergroup-name">{{usergroup.value}}</p>
               <p class="action" routerLink="../edit"><img style="cursor: pointer;" src="../../../../assets/images/icon/icons/Edit-icon.png"></p>

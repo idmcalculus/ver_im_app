@@ -23,7 +23,7 @@
 }
 
 .s-n {
-    flex: 1 0 2em;
+    flex: 1 0 1em;
 }
 
 .action {
@@ -61,4 +61,14 @@
 div > a {
     color: #221F72;
     font-weight: bold;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="checkbox"]:checked {
+    width: 20px;
+    height: 20px;
 }
