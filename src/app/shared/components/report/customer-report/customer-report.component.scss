@@ -37,6 +37,7 @@ label,th {
     color: #221F72;
     font-size: 14px;
     font-weight: bold;
+    font-family: roboto, sans-serif;
 }
 
 div > a > img {
@@ -119,6 +120,7 @@ td {
 }
 
 .category-header p {
+    font-family: roboto, sans-serif;
     font-size: 14px;
     color: #221f72;
     padding: 0;
@@ -177,6 +179,7 @@ td {
     mat-label {
         display: block;
         font-size: 14px;
+        font-family: roboto, sans-serif;
         font-weight: bold;
         color: #221F72;
         line-height: 22px;

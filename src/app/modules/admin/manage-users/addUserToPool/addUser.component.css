@@ -6,13 +6,13 @@ div > a {
     color: #221F72;
     font-weight: bold;
 }
-  
+
 .head {
     padding: 0;
     font-weight: bolder;
     color: #221F72;
 }
-  
+
 .shadow {
     -moz-box-shadow:    .3px .3px .3px .8px #495057;
     -webkit-box-shadow: .3px .3px .3px .8px #495057;
@@ -37,15 +37,15 @@ div > a {
     background-color: #5b58bd;
     border-color: #5b58bd;
 }
-  
+
 button {
     font-size: 13px;
 }
-  
+
 hr.new {
     border: 1px solid #221F72;
 }
-  
+
 h6 {
     color: #221F72;
     font-size: 12px;
@@ -82,4 +82,9 @@ h6 {
 p {
     color: #221f72;
     font-weight: 600;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-family: roboto, sans-serif
 }

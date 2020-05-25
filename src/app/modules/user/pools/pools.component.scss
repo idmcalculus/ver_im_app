@@ -53,6 +53,8 @@ label {
     color: #221F72;
     font-size: 14px;
     font-weight: bold;
+    font-family: roboto, sans-serif
+
 }
 
 .status {
@@ -60,6 +62,7 @@ label {
     mat-label {
         display: block;
         font-size: 14px;
+        font-family: roboto, sans-serif;
         font-weight: bold;
         color: #221F72;
         line-height: 22px;
@@ -90,7 +93,8 @@ div > a {
     padding: 15px 10px !important;
     border-top: none;
     border-bottom-width: 2px;
-    border-bottom-color: #221F72
+    border-bottom-color: #221F72;
+    font-family: roboto, sans-serif
 }
 
 td {
@@ -177,3 +181,5 @@ p{
 		background: #00000024;
 	}
 }
+
+
