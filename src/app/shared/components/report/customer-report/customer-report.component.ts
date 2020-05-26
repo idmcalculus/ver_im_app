@@ -9,7 +9,7 @@
  import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
  import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
  import { FormControl } from '@angular/forms';
- import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+ import { FilterTablesPipe } from 'src/app/shared/services/filter-table/filter-tables.pipe';
 
  @Component({
   selector: 'app-pools',

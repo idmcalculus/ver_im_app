@@ -91,11 +91,9 @@ export class UserPoolDetailComponent implements OnInit {
           const data = investments.success;
           this.noPool = data.Inv.find(x => x.investment_id === Number(this.poolId));
           this.pool =  data.Data.find(x => x.id === Number(this.poolId));
-          console.log(this.pool, data);
           this.pool.num_of_pools_taken = this.noPool;
           }
           this.isLoading = false;
-        // console.log(this.noPool, '======<>>>>>>');
         });
       }
     });
@@ -150,7 +148,6 @@ export class UserPoolDetailComponent implements OnInit {
   }
 
   viewUserDetail(user) {
-    // console.log("gat it :: "+JSON.stringify(user))
     this.selectedUser = user;
   }
 

@@ -85,7 +85,6 @@ export class InvestmentDetailComponent implements OnInit {
         this.investmentService.getInvestment(id).subscribe(investments => {
             if (investments && investments.success) {
                 this.investment = investments.success.Data.investment;
-                console.log(this.investment);
                 const tday = new Date().getTime;
                 this.investment.reference = `${tday}`;
                 this.amountPerPool = this.investment.investment_amount;
@@ -111,7 +110,6 @@ export class InvestmentDetailComponent implements OnInit {
 
                         }
                     } else if (message) {
-                        console.log(message);
                     }
                 });
             }
@@ -179,7 +177,6 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
     paymentCancel() {
-        console.log('payment modal closed');
     }
 
     refereshPaymentRef() {

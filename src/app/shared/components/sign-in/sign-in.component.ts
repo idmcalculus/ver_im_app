@@ -39,7 +39,6 @@ export class SignInComponent implements OnInit {
                 this.isLoading = true;
                 if (authCode.length > 10) {
                     this.socialAuth.socialAuth('linkedin', authCode, 'login').then(userProfile => {
-                        console.log(JSON.stringify(userProfile));
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
                             this.isLoading = false;
@@ -50,7 +49,6 @@ export class SignInComponent implements OnInit {
                     });
                 } else {
                     this.socialAuth.socialAuth('yahoo', authCode, 'login').then(userProfile => {
-                        console.log(JSON.stringify(userProfile));
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
                             this.isLoading = false;
@@ -135,7 +133,6 @@ export class SignInComponent implements OnInit {
     googleSignIn() {
         this.signInService.sininWithGoogle()
             .then((authData) => {
-                console.log('i gat :: ' + authData);
                 this.showOTPForm = true;
             })
             .catch((error) => {
@@ -145,7 +142,6 @@ export class SignInComponent implements OnInit {
 
     toggle(span: HTMLElement) {
         this._shown = !this._shown;
-        console.log(this._shown);
         if (this._shown) {
             this.input.nativeElement.setAttribute('type', 'text');
         } else {

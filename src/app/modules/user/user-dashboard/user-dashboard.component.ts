@@ -7,7 +7,7 @@ import { AdminService } from '../../admin/admin.service';
 import { InvestmentService } from '../../investment/investment.service';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
-import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import { FilterTablesPipe } from 'src/app/shared/services/filter-table/filter-tables.pipe';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
 
@@ -114,7 +114,6 @@ export class UserDashboardComponent implements OnInit {
             });
 
       } else {
-           console.log('No groups yet');
       }
         this.isLoading = false;
     });
@@ -130,24 +129,9 @@ export class UserDashboardComponent implements OnInit {
         });
       }
       this.isLoading = false;
-  
+
     });
 
-   
-    // const carousel = document.getElementById('carousel-control');
-    // carousel.addEventListener('slide.bs.carousel', function(event) {
-    //   console.log(event)
-    // });
-
-    // const on = (element, event, selector, handler) => {
-    //   element.addEventListener(event, e => {
-    //     if (e.target.closest(selector)) {
-    //       handler(e);
-    //     }
-    //   });
-    // }
-    
-  
   }
 
     //this is a quick fix for this feature, we will replace later
@@ -157,7 +141,6 @@ export class UserDashboardComponent implements OnInit {
       let length = document.querySelectorAll('.with').length;
       const val = Array.from(element.children).indexOf(child)
       let index = length - (val+1);
-      console.log(index);
       $('.with').hide();
       let elements = document.getElementsByClassName('with')[index] as HTMLInputElement;
       elements.style.display = 'block';
@@ -169,7 +152,6 @@ export class UserDashboardComponent implements OnInit {
         this.getUserDashBoard();
         this.selectedInvestment++;
         this.isLoading = false;
-        console.log(this.dashboardInvestment,'====<>')
         return this.selectedInvestment;
     } else {
         this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
@@ -184,21 +166,20 @@ export class UserDashboardComponent implements OnInit {
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
             this.dashBoardData = resp.success.Data;
-            console.log(this.dashBoardData)
             this.dashboardInvestment.push(this.dashBoardData);
             let total = 0;
 
-            
+
           } else {
             this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
           }
-          this.isLoading = false;         
+          this.isLoading = false;
       });
 
       const me = this;
 
 
-    
+
     }
   }
 

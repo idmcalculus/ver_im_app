@@ -6,7 +6,7 @@ import { ReportService } from '../report.service';
 import { ExportData } from 'src/app/shared/models/ExportData';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import { FormControl } from '@angular/forms';
-import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import { FilterTablesPipe } from 'src/app/shared/services/filter-table/filter-tables.pipe';
 import { Category } from 'src/app/shared/models/Category';
 
  @Component({

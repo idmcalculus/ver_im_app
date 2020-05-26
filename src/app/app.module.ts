@@ -53,7 +53,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { FilterTablesPipe } from './filter-tables.pipe';
+import { FilterTablesPipe } from './shared/services/filter-table/filter-tables.pipe';
 // import { ChatComponent } from './modules/chat/chat.component';
 // import { ApplicantDetailsComponent } from './modules/career/applicant-details/applicant-details.component';
 

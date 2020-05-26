@@ -40,14 +40,12 @@ export class SignUpComponent implements OnInit {
             if (authCode) {
                 if (authCode.length > 10) {
                     this.socialLoginService.socialAuth('linkedin', authCode, 'login').then(userProfile => {
-                        console.log(JSON.stringify(userProfile));
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
                         }
                     });
                 } else {
                     this.socialLoginService.socialAuth('yahoo', authCode, 'login').then(userProfile => {
-                        console.log(JSON.stringify(userProfile));
                         if (userProfile && userProfile.email) {
                             this.showOTPForm = true;
                         }
@@ -136,7 +134,6 @@ export class SignUpComponent implements OnInit {
             this.authService.validateOTP(this.otp, this.user)
                 .subscribe(UserDetails => {
                     if (UserDetails) {
-                        // console.log("got here")
                         this.showOTPForm = true;
                         this.user = UserDetails;
                         this.toastrService.success(`Welcome ${this.user.first_name}`);
