@@ -152,7 +152,8 @@ export class PoolreportComponent implements OnInit {
   clearSearch() {
     this.dateEnd = '';
     this.dateStart = '';
-    this.searchValue = null;
+    this.status = new FormControl();
+    this.Category = new FormControl();
     return this.report = this.reportlog;
   }
 

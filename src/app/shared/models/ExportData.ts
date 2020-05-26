@@ -7,6 +7,7 @@ export class ExportData extends BasicModel{
     investment_id?:number;
     title?:string;
     category_id?:number;
+    category_name?:string;
     expected_return_period?:string;
     investment_amount?:number;
     returned_amount?:number;
