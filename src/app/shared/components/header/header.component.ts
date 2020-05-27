@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
     private authService: AppAuthService,
     private router: Router) {
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-      // console.log("change occured "+JSON.stringify(user))
       this.userinfo = user;
     });
   }
@@ -47,7 +46,6 @@ export class HeaderComponent implements OnInit {
   }
 
   // router.events.subscribe((event: Event) => {
-  //   console.log(event);
   //   if (event instanceof NavigationEnd ) {
   //     this.currentUrl = event.url;
   //   }

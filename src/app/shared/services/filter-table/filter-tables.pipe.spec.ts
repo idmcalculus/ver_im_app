@@ -1,4 +1,4 @@
-import { FilterTablesPipe } from './filter-tables.pipe';
+import { FilterTablesPipe } from '../filter-table/filter-tables.pipe';
 
 describe('FilterTablesPipe', () => {
   it('create an instance', () => {

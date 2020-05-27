@@ -60,13 +60,6 @@ hr.new {
   border: 1px solid #221F72;
 }
 
-h4,h5,p {
-color: #221F72;
-font-weight: 600;
-font-family: roboto, sans-serif;
-font-size: 14px;
-}
-
 .form-group {
 margin-bottom: 0;
 }
@@ -75,7 +68,7 @@ margin-bottom: 0;
   margin-bottom: 0;
 }
 
-h6 {
+h4,h5,h6 {
   color: #221F72;
   font-size: 14px;
   font-weight: 600;
@@ -160,8 +153,8 @@ p.showThis {
 
 .d-flex.report-body {
   p {
-		align-self: flex-end;
-		text-align: start;
+	align-self: flex-end;
+	text-align: start;
     margin: 10px 0px;
     padding-bottom: 10px;
     font-size: 12px;
@@ -177,7 +170,7 @@ p.showThis {
 
   p {
     align-self: center;
-		text-align: justify;
+	text-align: justify;
     margin-bottom: 0px;
     color: #221F72;
     font-size: 14px;

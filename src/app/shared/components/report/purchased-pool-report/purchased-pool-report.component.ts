@@ -37,7 +37,7 @@ export class PurchasedreportComponent implements OnInit {
       if (userpath.includes('user')) {
         this.userType = 'user';
         this.authService.currentUser.subscribe(resp => {
-          
+
         });
       } else {
         this.userType = 'admin';
@@ -69,8 +69,7 @@ export class PurchasedreportComponent implements OnInit {
       if (investments) {
         this.result = investments.success.Data;
         this.pools = this.result.filter(x => x.num_of_pools_taken > 0);
-        console.log(this.pools);
-        
+
       }
       this.isLoading = false;
     });

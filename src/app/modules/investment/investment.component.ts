@@ -35,7 +35,7 @@ export class InvestmentComponent implements OnInit {
         this.getInvestments();
     }
 
-  
+
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
@@ -53,7 +53,6 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-            console.log(investments, investmentArray, this.investments, allInvestments);
             let categoryName = this.activatedRoute.snapshot.params.category;
             if (categoryName) {
                 let category = this.categories.filter(a1 => {

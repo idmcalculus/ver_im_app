@@ -61,21 +61,19 @@ export class AddUserComponent implements OnInit {
 
   onSelect(user: User): void {
     this.selectedUser = user;
-    //console.log(this.selectedUser);
   }
 
   validPool(pool) {
-    if (this.number_of_pools != 0){ 
+    if (this.number_of_pools != 0){
     const remain = this.pool.investment.max_num_of_slots - this.pool.investment.num_of_pools_taken
     const want = this.number_of_pools
 
     if(want > remain) {
-      //console.log('Exceeded');
-      this.validpoolError = 'Number of Pools Exceeded';  
+      this.validpoolError = 'Number of Pools Exceeded';
     } else {
       this.validpoolError ='';
     }
-  } 
+  }
   }
 
   ngOnInit() {
@@ -99,7 +97,6 @@ export class AddUserComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    // console.log(this.categories,'=====>')
     const res = this.categories.find( r => r.id === id);
     return res.category_name;
   }
@@ -110,7 +107,6 @@ export class AddUserComponent implements OnInit {
       if(poolDetails && poolDetails.success){
         if(poolDetails.success.Data){
           this.pool = poolDetails.success.Data;
-          // console.log("i have gat :: "+JSON.stringify(this.pool))
          this.validPool(this.pool);
 
           this.isLoading = false;
@@ -129,12 +125,10 @@ export class AddUserComponent implements OnInit {
       investment_id:this.poolId,
       amount_paid: this.calculateEstimate(this.pool.investment.investment_amount,this.number_of_pools)
     }
-    console.log(data,'Hello');
 
     this.buttonText = 'Investing'
     this.adminService.addUserToPool(data).subscribe(resp=>{
       if(resp && resp.success){
-        //this.modalButtonTitle='add User';
         this.toastrService.success('User added to pool')
       }
       this.buttonText='Invested'
@@ -153,8 +147,6 @@ export class AddUserComponent implements OnInit {
   }
 
   calculateEstimate(returns,inv){
-    //console.log(returns , inv);
-
     const estimate = returns * inv;
     return estimate;
 
@@ -170,7 +162,6 @@ export class AddUserComponent implements OnInit {
             return user[filterType].toLowerCase().includes(filterValue.toLowerCase());
           }
         });
-        //console.log(filtered);
         this.users = filtered;
       }
   }

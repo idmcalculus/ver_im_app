@@ -51,7 +51,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
-      // console.log(JSON.stringify(this.user))
       if (this.user.profile_picture && this.user.profile_picture !== '') {
         this.cloudinaryService.upload(this.user.profile_picture).subscribe(resp => {
           if (resp) {
@@ -76,7 +75,6 @@ export class ProfileComponent implements OnInit {
   }
 
   updateAccountPreference() {
-    console.log(JSON.stringify(this.user));
     this.isSubmitting = this.userService.updatePreference(this.user).subscribe(resp => {
       if (resp && resp.success) {
         alert(resp.success.Message);
@@ -118,7 +116,6 @@ export class ProfileComponent implements OnInit {
             localStorage.setItem('token', resp.success.Token);
           }
         });
-        console.log(this.passText);
       } else {
         // alert('Passwords do not match');
         this.toastrService.error('Passwords do not match');

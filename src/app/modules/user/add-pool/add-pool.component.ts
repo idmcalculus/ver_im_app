@@ -48,7 +48,6 @@ export class AddPoolComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        //console.log(this.categories)
       }
     });
   }
@@ -101,7 +100,6 @@ export class AddPoolComponent implements OnInit {
     } else if (this.pool.expected_return_period === 'Monthly') {
       return 12;
     }else if (this.pool.expected_return_period === 'Daily') {
-      console.log(Number(this.pool.duration))
       return Number(this.pool.duration)*30;
     }
   }
