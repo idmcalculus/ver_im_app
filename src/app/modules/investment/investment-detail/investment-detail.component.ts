@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './../investment.service';
 import { Investment } from 'src/app/shared/models/Investment';
@@ -9,8 +9,6 @@ import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
 
 declare var xpressPay: any;
-let category = '0';
-const allInvestments = [];
 @Component({
     selector: 'app-investment-detail',
     templateUrl: './investment-detail.component.html',
@@ -18,8 +16,11 @@ const allInvestments = [];
 })
 
 export class InvestmentDetailComponent implements OnInit {
-
+    @ViewChild('closebutton') closebutton;
+    @ViewChild('closemodal') closemodal;
     isLoading = true;
+    category = '0';
+    allInvestments = [];
     investment: Investment;
     transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
     payment_id: null;
@@ -43,7 +44,6 @@ export class InvestmentDetailComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private investmentService: InvestmentService,
         private authService: AppAuthService,
-        private acivatedRoute: ActivatedRoute,
         private toastrService: ToastrService
     ) {
 
@@ -72,7 +72,7 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
     triggerSecond() {
-        document.getElementById('openModalButton').click();
+        this.closebutton.nativeElement.click();
     }
 
     getStat(inv){
@@ -152,11 +152,11 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
     filterInvestments() {
-        category = this.selectedCategory;
-        if (category === '0') {
-            this.investments = allInvestments;
+        this.category = this.selectedCategory;
+        if (this.category === '0') {
+            this.investments = this.allInvestments;
         } else {
-            this.investments = allInvestments;
+            this.investments = this.allInvestments;
         }
     }
 
@@ -168,9 +168,9 @@ export class InvestmentDetailComponent implements OnInit {
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
             if (resp && resp.success) {
-                // alert(resp.success.Message)
                 this.toastrService.success(resp.success.Message);
-                window.location.href = 'investments';
+                this.closemodal.nativeElement.click();
+
             }
             this.isLoading = false;
         });
@@ -179,16 +179,14 @@ export class InvestmentDetailComponent implements OnInit {
     paymentCancel() {
     }
 
+    redirectBack(){
+        this.router.navigateByUrl('/investments');
+    }
+
     refereshPaymentRef() {
         const randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0, 4)}`;
         this.transactionRef = randomString;
     }
-
-    calculateEstimate(returns, inv) {
-        const estimate = (((returns * 12) - inv) / inv) * 100;
-        return Math.ceil(estimate);
-    }
-
 
     xpressPay(email, amnt, firstName, lastName, mobile, tranRef) {
         this.isLoading = true;

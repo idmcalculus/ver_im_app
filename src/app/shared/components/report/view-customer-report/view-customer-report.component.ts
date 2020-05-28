@@ -96,23 +96,22 @@ export class ViewUserPoolComponent implements OnInit {
     saveAsCSV() {
         if (this.userInvestment.length > 0) {
           const items: ExportData[] = [];
-
+          let i = 0;
           this.userInvestment.forEach(line => {
-            const reportDate = new Date();
             const csvLine = {
-              date: `${reportDate.getDate()}/${reportDate.getMonth() + 1}/${reportDate.getFullYear()}`,
               title: line.title,
               category_name: `${this.getCategoryName(line.category_id)}`,
               investment_amount: line.investment_amount,
               duration: line.duration,
               percentage: line.estimated_percentage_profit,
               expected_return_period: line.expected_return_period,
-              number_of_pools: line.numOfPool[1].number_of_pools,
-              total_amount_invested: line.investment_amount * line.numOfPool[1].number_of_pools,
+              number_of_pools: this.numOfPool[i].number_of_pools,
+              total_amount_invested: line.investment_amount * this.numOfPool[i].number_of_pools,
               is_investment_started: line.is_investment_started ,
               investment_started_date: line.investment_started_date
             };
             items.push(csvLine);
+            i++;
           });
 
           this.reportService.exportToCsv('viewCustomerReport.csv', items);
