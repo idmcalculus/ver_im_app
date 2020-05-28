@@ -1,34 +1,34 @@
  import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router} from '@angular/router';
-import {InvestmentService} from '../../../../modules/investment/investment.service';
-import { Investment } from 'src/app/shared/models/Investment';
-import { AppAuthService } from 'src/app/core/auth/auth.service';
-import { UserService } from '../../../../modules/user/user.service';
-import { ReportService } from '../report.service';
-import { ExportData } from 'src/app/shared/models/ExportData';
+ import { ActivatedRoute, Router} from '@angular/router';
+ import {InvestmentService} from '../../../../modules/investment/investment.service';
+ import { Investment } from 'src/app/shared/models/Investment';
+ import { AppAuthService } from 'src/app/core/auth/auth.service';
+ import { UserService } from '../../../../modules/user/user.service';
+ import { ReportService } from '../report.service';
+ import { ExportData } from 'src/app/shared/models/ExportData';
 
-@Component({
+ @Component({
   selector: 'app-pools',
   templateUrl: './purchased-pool-report.component.html',
   styleUrls: ['./purchased-pool-report.component.scss']
 })
 export class PurchasedreportComponent implements OnInit {
-  isLoading:boolean=true;
-  pools:Investment[]=[];
-  pool:Investment = {title: '', investment_amount: 0, };
-  userType:string;
+  isLoading= true;
+  pools: Investment[] = [];
+  pool: Investment = {title: '', investment_amount: 0, };
+  userType: string;
   result: any [];
-  categories:any []
+  categories: any [];
   searchValue = '';
   filteredPools = [];
-  masterSelected:boolean;
-  checklist:any;
-  checkedList:any;
+  masterSelected: boolean;
+  checklist: any;
+  checkedList: any;
   p2 = 1;
   pageValue = 5;
 
   constructor(
-    private router:Router,
+    private router: Router,
     private authService: AppAuthService,
     private investmentService: InvestmentService,
     private reportService: ReportService,
@@ -46,7 +46,7 @@ export class PurchasedreportComponent implements OnInit {
       }
       this.getCategories();
       this.masterSelected = false;
-      this.checklist = [this.pool,];
+      this.checklist = [this.pool, ];
       this.getCheckedPooList();
 
   }
@@ -54,11 +54,12 @@ export class PurchasedreportComponent implements OnInit {
   ngOnInit() {
   }
 
-  getCheckedPooList(){
+  getCheckedPooList() {
     this.checkedList = [];
-    for (var i = 0; i < this.checklist.length; i++) {
-      if(this.checklist[i])
+    for (let i = 0; i < this.checklist.length; i++) {
+      if (this.checklist[i]) {
       this.checkedList.push(this.checklist[i]);
+      }
     }
     this.checkedList = JSON.stringify(this.checkedList);
   }
@@ -69,7 +70,6 @@ export class PurchasedreportComponent implements OnInit {
       if (investments) {
         this.result = investments.success.Data;
         this.pools = this.result.filter(x => x.num_of_pools_taken > 0);
-
       }
       this.isLoading = false;
     });
@@ -106,8 +106,8 @@ export class PurchasedreportComponent implements OnInit {
       }
   }
 
-  calculateEstimate(returns,inv){
-    const estimate = (((returns*12) - inv)/inv) * 100;
+  calculateEstimate(returns, inv) {
+    const estimate = (((returns * 12) - inv) / inv) * 100;
     return Math.ceil(estimate);
   }
 
@@ -117,19 +117,19 @@ export class PurchasedreportComponent implements OnInit {
     }
 
   saveAsCSV() {
-    if(this.pools.length > 0){
+    if (this.pools.length > 0) {
       const items: ExportData[] = [];
 
       this.pools.forEach(line => {
-        let reportDate = new Date();
-        let csvLine: ExportData = {
-          date: `${reportDate.getDate()}/${reportDate.getMonth()+1}/${reportDate.getFullYear()}`,
+        const reportDate = new Date();
+        const csvLine: ExportData = {
+          date: `${reportDate.getDate()}/${reportDate.getMonth() + 1}/${reportDate.getFullYear()}`,
           title: line.title,
           category_id: line.category_id,
-          investment_amount:line.investment_amount,
-          max_no_of_slots:line.max_num_of_slots,
-          total:line.max_num_of_slots * line.investment_amount,
-        }
+          investment_amount: line.investment_amount,
+          max_no_of_slots: line.max_num_of_slots,
+          total: line.max_num_of_slots * line.investment_amount,
+        };
         items.push(csvLine);
       });
 
@@ -138,9 +138,8 @@ export class PurchasedreportComponent implements OnInit {
 }
 
 
-setItemsPerPage(event){
-    this.pageValue = event;
-}
-
+  setItemsPerPage(event) {
+      this.pageValue = event;
+  }
 
 }

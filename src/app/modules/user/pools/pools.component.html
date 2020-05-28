@@ -142,7 +142,7 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                <div *ngIf="isLoading" >
+                                <div *ngIf="isLoading || pools?.length === 0" >
                                     <br><br>
                                     <div  class="lds-default">
                                         <div></div>

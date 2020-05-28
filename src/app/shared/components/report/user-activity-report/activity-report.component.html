@@ -115,13 +115,12 @@
                                             <div></div>
                                         </div>
                                     </div>
-                                    <div *ngIf="!isLoading">
-                                        <div *ngIf="!User && filteredAdminActivity?.length > 0">
+                                        <div *ngIf="!isLoading && !User && filteredAdminActivity?.length > 0">
                                             <div class="category-body" *ngFor="let report of filteredAdminActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
                                                 <div class="row1 p-2">
-                                                    <p class="col-7 col-md-7 col-sm-7">{{report.activity}}</p>
-                                                    <p class="col-3 col-md-3 col-sm-3">{{report.ip_address}}</p>
-                                                    <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
+                                                    <p class="col-7 col-md-7 col-sm-7">{{report?.activity}}</p>
+                                                    <p class="col-3 col-md-3 col-sm-3">{{report?.ip_address}}</p>
+                                                    <p class="col-2 col-md-2 col-sm-2">{{report?.created_at}}</p>
                                                 </div>
                                            </div>
                                            <div  class="col-12 px-0 d-flex flex-row">
@@ -136,12 +135,12 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div *ngIf="User && filteredUserActivity?.length > 0">
+                                        <div *ngIf="!isLoading && User && filteredUserActivity?.length > 0">
                                             <div class="category-body" *ngFor="let report of filteredUserActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
                                                 <div class="row1 p-2">
-                                                    <p class="col-7 col-md-7 col-sm-7">{{report.activity}}</p>
-                                                    <p class="col-3 col-md-3 col-sm-3">{{report.ip_address}}</p>
-                                                    <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
+                                                    <p class="col-7 col-md-7 col-sm-7">{{report?.activity}}</p>
+                                                    <p class="col-3 col-md-3 col-sm-3">{{report?.ip_address}}</p>
+                                                    <p class="col-2 col-md-2 col-sm-2">{{report?.created_at}}</p>
                                                 </div>
                                            </div>
                                            <div  class="col-12 px-0 d-flex flex-row">
@@ -156,7 +155,6 @@
                                             </span>
                                         </div>
                                         </div>
-                                   </div>
                                 </div>
                             </div>
                         </div>

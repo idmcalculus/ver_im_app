@@ -24,6 +24,7 @@ import { ChartComponent } from './../../shared/components/chart/chart.component'
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
 import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/ma
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    NgxSkeletonLoaderModule
   ],
   exports:[
     UserSettingsComponent,

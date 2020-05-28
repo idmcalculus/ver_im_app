@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="column2">
                     <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
-                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
+                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category?.id)">|<span>{{category?.category_name}}</span></h5>
                 </div>
             </div>
 
@@ -63,17 +63,17 @@
                 </div>
             </div>
 
-            <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
+            <div *ngIf="!isLoading && investments?.length > 0 " class="row mb-5">
                 <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                    <a [routerLink]="['/investments', x?.id]" routerLinkActive="active">
                         <div class="superb-container m-b20">
                             <div class="img-holder">
-                                <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                                <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
+                                <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                                <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <h2><a href="investment-details.html">{{x.title}}</a></h2>
-                                <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                <h3>{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                 <span *ngIf="x?.estimated_percentage_profit"
                                     class="span-profit">{{x?.estimated_percentage_profit}}% Profit
                                     (Estimated)</span>
@@ -134,7 +134,7 @@
                 </div>
 
             </div>
-            <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
+            <section *ngIf="!isLoading && investments?.length == 0" style="border-radius: 30px;" class="workingSection">
                 <div class="inner-workingSection">
                     <div class="row">
                         <div class="col-md-12">

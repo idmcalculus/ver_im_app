@@ -39,6 +39,7 @@ import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEF
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
 import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 // import {CareerDetailsComponent} from './../career/career-details/career-details.component';
 
@@ -97,6 +98,7 @@ import { SearchCustomerComponent } from './manage-users/search-customer/search_c
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    NgxSkeletonLoaderModule
   ], providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'}}
   ], exports: [
