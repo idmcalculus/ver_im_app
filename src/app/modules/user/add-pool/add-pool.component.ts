@@ -48,7 +48,6 @@ export class AddPoolComponent implements OnInit {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        //console.log(this.categories)
       }
     });
   }
@@ -100,11 +99,13 @@ export class AddPoolComponent implements OnInit {
       return 48;
     } else if (this.pool.expected_return_period === 'Monthly') {
       return 12;
+    }else if (this.pool.expected_return_period === 'Daily') {
+      return Number(this.pool.duration)*30;
     }
   }
 
   calculateEstimate() {
-    if(this.pool.investment_amount !=0 && this.roi !='' && this.pool.expected_return_period !=''){
+    if(this.pool.investment_amount !=0 && this.roi !='' && this.pool.expected_return_period !='' && this.pool.duration!=''){
       const cost = this.pool.investment_amount
       const investment = parseInt(this.roi) /100
       const divisor = this.divisorFunc(this.pool.expected_return_period)

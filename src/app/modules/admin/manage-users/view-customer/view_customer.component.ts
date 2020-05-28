@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-view-customers',
   templateUrl: './view_customer.component.html',
-  styleUrls: ['./view_customer.component.css']
+  styleUrls: ['./view_customer.component.scss']
 })
 export class ViewCustomerComponent implements OnInit {
 
@@ -100,13 +100,13 @@ export class ViewCustomerComponent implements OnInit {
     }
 
     showDetails() {
-        if ( this.selectedInvestment <= (this.userInvestment.length - 1) ) {
+        if ( this.selectedInvestment <= (this.userInvestment.length - 1) && this.userInvestment[this.selectedInvestment].is_investment_ended === 0 ) {
             this.investmentInfo = this.userInvestment[this.selectedInvestment];
             this.getUserDashBoard();
             this.selectedInvestment++;
             return this.selectedInvestment;
             } else {
-            this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+                this.showDetails();
       }
     }
 
@@ -121,35 +121,6 @@ export class ViewCustomerComponent implements OnInit {
               investment.investment_report.forEach((report, i) => report.index = i + 1);
             });
             this.isLoading = false;
-
-       /*     //this is a quick fix for this feature, we will replace later
-            const control = document.getElementById('carousel-control');
-            control.addEventListener('click',()=>{
-              var element = document.querySelector('#carousel-inner');
-              var child = element.querySelector('.active')
-              const val = Array.from(element.children).indexOf(child)
-              $('.investment-card').hide();
-              let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
-              elements.style.display = 'block';
-
-              $('#investmentTable').find('> tbody').hide();
-              const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
-              row.style.display = 'contents';
-            })
-
-            const control2 = document.getElementById('carousel-control2');
-            control2.addEventListener('click',()=>{
-              var element = document.querySelector('#carousel-inner');
-              var child = element.querySelector('.active')
-              const val = Array.from(element.children).indexOf(child)
-              $('.investment-card').hide();
-              let elements = document.getElementsByClassName('investment-card')[val] as HTMLInputElement;
-              elements.style.display = 'block';
-
-              $('#investmentTable').find('> tbody').hide();
-              const row = $('#investmentTable').find('> tbody')[val] as HTMLInputElement;
-              row.style.display = 'contents';
-            }) */
 
           } else {
             this.dashBoardData = {number_of_pools: 0,investment: [], investment_return: [], investment_report: []};
@@ -217,6 +188,8 @@ export class ViewCustomerComponent implements OnInit {
             return 48;
         } else if (expected_return_period === "Monthly") {
             return 12;
+        }else if (expected_return_period === 'Daily') {
+          return (Number(this.investments.investment[0].duration)*30);
         }
     }
 
@@ -225,6 +198,8 @@ export class ViewCustomerComponent implements OnInit {
             return 48 * expected_return ;
         } else if (expected_return_period === "Monthly") {
             return 12 * expected_return;
+        }else if (expected_return_period === 'Daily') {
+          return Number(this.investments.investment[0].duration)*30;
         }
     }
 

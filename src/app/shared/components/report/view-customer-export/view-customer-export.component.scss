@@ -28,6 +28,7 @@ hr.new {
 .card-header h5 {
     color: #221F72;
     font-size: 0.80rem;
+    font-family: roboto, sans-serif;
     letter-spacing: .04rem;
 }
 
@@ -39,21 +40,12 @@ hr.new {
 
 }
 
-.spacing{
-    margin-right: 3rem;
-}
-
-
-table .pending {
-    color: red;
-}
-
-table .success {
-    color:  green;
+.font-weight-bold{
+    font-family: roboto;
 }
 
 h5 {
-    font-size: 0.80rem;
+    font-size: 14px;
     letter-spacing: .04rem;
     font-family: roboto;
     font-weight: 900;
@@ -63,7 +55,7 @@ h5 {
 }
 
 th {
-    font-size: 0.80rem;
+    font-size: 13px;
     letter-spacing: .04rem;
     font-family: roboto;
     font-weight: 900;
@@ -84,48 +76,6 @@ th {
 }
 
 
-.highlighted {
-    font-size: 0.80rem;
-    color: #221F72;
-    font-family: roboto;
-    letter-spacing: .04rem;
-    font-weight: 800;
-    cursor: pointer;
-    border: none;
-    padding: 4px;
-}
-
-
-.card .information {
-    font-size: 0.75rem;
-    font-family: roboto;
-    letter-spacing: .04rem;
-    font-weight: 800;
-    cursor: pointer;
-    border: none;
-    padding: 1rem;
-}
-
-.btn-danger {
-    width: 100%;
-    background-color: #F2533A;
-    border-radius: 10px;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    color: white;
-    padding-right: 3rem;
-    padding-left: 3rem;
-}
-
-.btn-success {
-    width: 100%;
-    border-radius: 10px;
-    letter-spacing: 0.5px;
-    font-weight: 600;
-    color: white;
-    padding-right: 3rem;
-    padding-left: 3rem;
-}
 .col-5 span .buttons {
     margin-left: 1.5rem;
     padding-right: 3rem;
@@ -155,7 +105,7 @@ th {
 		background-color: transparent;
 	}
 }
- 
+
 .input-control {
     display: block;
     width: 100%;

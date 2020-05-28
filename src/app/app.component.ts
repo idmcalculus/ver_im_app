@@ -41,7 +41,6 @@ export class AppComponent {
         //   }else{
         //     this.homeViewIsActive = homeViewIsActive;
         //   }
-        //   console.log("now :: "+this.homeViewIsActive)
         // })
     }
 
@@ -72,7 +71,6 @@ export class AppComponent {
             this.showHeader = false;
             this.showFooter = false;
         }
-        // console.log(this.router);
         if ((this.router.url !== '/signin')
         && (this.router.url !== '/signup')
         ) {

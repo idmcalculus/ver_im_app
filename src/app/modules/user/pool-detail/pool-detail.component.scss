@@ -2,21 +2,21 @@
   cursor: pointer;
 }
 
-.image-holder { 
+.image-holder {
   width:auto;
-  height: 230px; 
-  text-align:center; 
-  padding:20px; 
+  height: 230px;
+  text-align:center;
+  padding:20px;
 }
 
 div > a {
-color: #221F72;
-font-weight: bold;
+  color: #221F72;
+  font-weight: bold;
 }
 
 .btn-primary {
-background-color: #5b58bd;
-border-color: #5b58bd;
+  background-color: #5b58bd;
+  border-color: #5b58bd;
 }
 
 .latest-update-card {
@@ -39,30 +39,25 @@ border-color: #5b58bd;
 }
 
 .summary-card {
-height: 200px;
+  height: 200px;
 }
 
 textarea {
-overflow:hidden;
+  overflow:hidden;
 }
 
-img { 
-width: 100%; 
-height: 100%; 
-object-fit: contain; 
+img {
+width: 100%;
+height: 100%;
+object-fit: contain;
 }
 
 button {
-font-size: 14px;
+  font-size: 14px;
 }
 
 hr.new {
-border: 1px solid #221F72;
-}
-
-h4,h5,p {
-color: #221F72;
-font-weight: 600;
+  border: 1px solid #221F72;
 }
 
 .form-group {
@@ -73,7 +68,7 @@ margin-bottom: 0;
   margin-bottom: 0;
 }
 
-h6 {
+h4,h5,h6 {
   color: #221F72;
   font-size: 14px;
   font-weight: 600;
@@ -86,14 +81,28 @@ h6 {
 
 }
 
+.card-flex {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		display: none;  //Safari and Chrome
+	}
+}
+
 .table > thead > tr > th {
+  padding: 16px 10px !important;
   border-bottom-width: 2px;
   border-bottom-color: #221F72;
+  font-family: roboto, sans-serif;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .table > tbody > tr > td {
   font-size: 12px;
+  font-weight: 600;
 }
 
 .upload-btn-wrapper {
@@ -144,8 +153,8 @@ p.showThis {
 
 .d-flex.report-body {
   p {
-		align-self: flex-end;
-		text-align: start;
+	align-self: flex-end;
+	text-align: start;
     margin: 10px 0px;
     padding-bottom: 10px;
     font-size: 12px;
@@ -161,10 +170,10 @@ p.showThis {
 
   p {
     align-self: center;
-		text-align: justify;
+	text-align: justify;
     margin-bottom: 0px;
     color: #221F72;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
   }
 }
@@ -172,3 +181,4 @@ p.showThis {
 .card.report {
   min-height: 150px;
 }
+

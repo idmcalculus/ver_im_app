@@ -10,8 +10,20 @@
 	}
 }
 
+.usergroup-header {
+    font-weight: bold;
+    font-size: 14px;
+    color: #07075f;
+    font-family: roboto, sans-serif
+}
+
+.usergroup-body {
+    font-weight: 500;
+    font-size: 12px;
+}
+
 .s-n {
-	flex: 1 0 2em;
+    flex: 1 0 1em;
 }
 
 .action {
@@ -25,7 +37,7 @@
 
 .checkbox {
 	flex: 1 0 2em;
-	
+
 	input {
 		font-size: 20px;
 	}
@@ -49,4 +61,14 @@
 div > a {
     color: #221F72;
     font-weight: bold;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+input[type="checkbox"]:checked {
+    width: 20px;
+    height: 20px;
 }

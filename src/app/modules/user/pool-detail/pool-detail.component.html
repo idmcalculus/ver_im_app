@@ -126,6 +126,7 @@
                                                     <select class="input-control" name="dur" (change)="calculateEstimate()" [disabled]="pool?.investment?.is_investment_started===1" id="dur" [(ngModel)]="pool.investment.expected_return_period" (change)="calculateEstimate()">
                                                         <option value="Weekly">Weekly</option>
                                                         <option value="Monthly">Monthly</option>
+                                                        <option value="Daily">Daily</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -231,8 +232,9 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card ">
-                                    <div class="card-block">
-                                        <div class="row p-0">
+
+                                    <div class="card-block px-0">
+                                        <div class="row px-3">
                                             <div class="col-12">
                                                 <h5 class="float-left pt-2">Investment Profile</h5>
                                                 <a *ngIf="loggedInUser?.user_category == 'Admin'  && (pool?.investment?.max_num_of_slots !== pool?.investment?.num_of_pools_taken)" routerLink="./{{pool?.id}}/adduser" [state]=pool class="float-right">
@@ -241,7 +243,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="dt-responsive table-responsive">
+                                        <div class="card-flex">
                                             <table id="order-table" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
@@ -276,15 +278,15 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
-
-                                            <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
-                                                <div class="col-6 text-center">
-                                                    No User has been Added
-                                                </div>
-                                            </div>
                                         </div>
 
+                                        <div class="row justify-content-center" *ngIf="pool?.investment_user?.length == '0' ">
+                                            <div class="col-6 text-center">
+                                                No User has been Added
+                                            </div>
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

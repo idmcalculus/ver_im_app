@@ -53,7 +53,6 @@ export class PoolDetailComponent implements OnInit {
           this.loggedInUser = userInfo;
         }
       });
-      // console.log(this.userSubscription, "hello");
 
       this.route.params.subscribe(resp => {
         this.poolId = resp.pool_id;
@@ -73,13 +72,10 @@ export class PoolDetailComponent implements OnInit {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
           this.roi = this.pool.investment.estimated_percentage_profit;
-          //console.log(this.pool);
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
-          //console.log(this.reports);
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
-          // console.log(this.pool.max_num_of_slots === this.pool.num_of_pools_taken);
 
         } else {
           this.router.navigate(['./', {}]);
@@ -223,7 +219,6 @@ export class PoolDetailComponent implements OnInit {
   }
 
   setPlanOperation(investment) {
-    // console.log("setting with :: "+JSON.stringify(investment))
     if (investment && investment.investment) {
       if (!investment.investment.show_publicly || investment.investment.show_publicly == '0') {
         investment.investment.show_publicly = false;
@@ -234,7 +229,6 @@ export class PoolDetailComponent implements OnInit {
 
 
   viewUserDetail(user) {
-    // console.log("gat it :: "+JSON.stringify(user))
     this.selectedUser = user;
   }
 
@@ -277,7 +271,7 @@ export class PoolDetailComponent implements OnInit {
   cancelPool() {
     this.router.navigateByUrl('admin/pools');
   }
-  
+
 
   changeListener($event): void {
     this.readThis($event.target);
@@ -298,12 +292,14 @@ export class PoolDetailComponent implements OnInit {
       myReader.readAsDataURL(file);
     }
   }
-  
+
   divisorFunc(expected_return_period) {
     if (expected_return_period === 'Weekly') {
       return 48;
     } else if (expected_return_period === 'Monthly') {
       return 12;
+    }else if (this.pool.expected_return_period === 'Daily') {
+      return Number(this.pool.duration)*30;
     }
   }
 

@@ -4,7 +4,7 @@ import { AdminService } from '../../admin.service';
 import { UserService } from '../../../user/user.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ToastrService } from 'ngx-toastr';
-import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
+import { FilterTablesPipe } from 'src/app/shared/services/filter-table/filter-tables.pipe';
 
 @Component({
   selector: 'app-manage-users',
@@ -12,7 +12,7 @@ import { FilterTablesPipe } from 'src/app/filter-tables.pipe';
   styleUrls: ['./search_customer.component.scss']
 })
 export class SearchCustomerComponent implements OnInit {
-  pageValue = 5;
+  pageValue = 10;
   users: User [];
   user: User = {email: ''};
   filteredUser: User [];

@@ -37,7 +37,7 @@
 		line-height: 3px;
 		width: 250px;
 	}
-	
+
 	mat-select, input {
 		display: block;
 		font-size: 12px;
@@ -52,7 +52,7 @@
 .selected-permissions {
 	opacity: 0.75;
 	font-size: 0.75em;
-} 
+}
 
 mat-form-field {
 	display: flex;
@@ -126,6 +126,10 @@ div > a {
 		background: #00000024;
 	}
 }
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-family: roboto, sans-serif
+}
 
 @media screen and (max-width: 690px) {
 
@@ -140,7 +144,7 @@ div > a {
 			padding-left: 0;
 		}
 	}
-	
+
 	.form-group.d-flex {
 		display: flex;
 		flex-flow: column;

@@ -92,7 +92,6 @@ export class PoolsComponent implements OnInit {
       if (investments) {
         this.pools = investments.success.Data;
         this.investments = investments.success.Data;
-        // console.log(this.pools);
       }
       this.isLoading = false;
     });

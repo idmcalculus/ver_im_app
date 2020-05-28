@@ -63,7 +63,6 @@ export class ManageCategoryComponent {
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
-        console.log(this.categories);
       }
       this.isLoading = false;
     });

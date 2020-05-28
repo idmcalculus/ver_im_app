@@ -36,7 +36,7 @@ img {
 
 .card-header h5 {
     color: #221F72;
-    font-size: 0.80rem;
+    font-size: 14px;
     letter-spacing: .04rem;
 }
 
@@ -47,6 +47,17 @@ img {
     padding-top: 0.85rem;
     border-radius: 10px;
 
+}
+
+.card-inform {
+    height: 640px;
+}
+
+.border-bottom .card-header {
+    background-color: transparent;
+    border-bottom: none;
+    padding: 20px 17px;
+    position: relative;
 }
 
 
@@ -71,7 +82,7 @@ table .success {
 }
 
 h5 {
-    font-size: 0.80rem;
+    font-size: 14px;
     letter-spacing: .04rem;
     font-family: roboto;
     font-weight: 900;
@@ -81,7 +92,7 @@ h5 {
 }
 
 th {
-    font-size: 0.80rem;
+    font-size: 14px;
     letter-spacing: .04rem;
     font-family: roboto;
     font-weight: 900;
@@ -144,6 +155,10 @@ th {
     padding-left: 1rem;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    font-family: roboto, sans-serif
+}
 
 .displayStatus {
     color: red;
@@ -164,4 +179,48 @@ th {
         font-size: 16px;
         line-height: 28px;
     }
+}
+
+th {
+    color: #221f72;
+}
+
+.border-bottom{
+    border-width: 2px;
+    border-color: #221F72;
+}
+
+.card-flex {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		display: none;  //Safari and Chrome
+	}
+}
+
+.table > thead > tr > th {
+    border-top: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #221F72;
+    font-size: 14px;
+}
+
+table .clear td {
+    font-size: 13px;
+    padding: 18px 10px !important;
+    vertical-align: middle;
+    border-top: 1px solid #221F72;
+}
+
+.table td {
+    font-size: 13px;
+    padding: 20px 10px !important;
+    vertical-align: middle;
+    border-top: 1px solid #221F72;
+}
+
+hr.new {
+    border: 1px solid #221F72;
 }

@@ -67,7 +67,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     // this.userService.getBankList().subscribe(resp=>{
-    //   console.log("resil is :: "+JSON.stringify(resp.success.Data))
     //   this.bankList = resp.success.Data;
     // })
   }

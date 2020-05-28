@@ -13,6 +13,7 @@ import { ReportService } from '../report.service';
 export class UseractivityComponent implements OnInit {
   @Input() public user: User = {email: '', password: '', country: '', first_name: '', last_name: '', bank_name: ''};
   searchValue = '';
+  ip = '';
   pageValue = 5;
   dashboardData = {};
   p = 1;
@@ -122,7 +123,8 @@ export class UseractivityComponent implements OnInit {
   clearSearch() {
     this.dateStart = '';
     this.dateEnd = '';
-    this.searchValue = null;
+    this.searchValue = '';
+    this.ip = '';
     return this.getDashBoardData();
   }
 

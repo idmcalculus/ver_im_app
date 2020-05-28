@@ -27,7 +27,7 @@
                         <div class="col">
                             <div class="float-right">
                                 <a>
-                                    <img class="" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
+                                    <img class="" style="height: 50px;" src="../../../../assets/images/icon/icons/Back-icon.png" (click)='Back()'>
                                 </a>
                             </div>
                         </div>
@@ -126,7 +126,7 @@
                                         <table id="investmentTable" *ngFor="let investments of dashboardInvestment; index as i" class="table appTable nowrap">
                                             <thead>
                                             <tr>
-                                                <th>S/N</th>  
+                                                <th>S/N</th>
                                                 <th>Investment Title</th>
                                                 <th>Payback Frequency</th>
                                                 <th>Amount Credited (N)</th>
@@ -170,7 +170,7 @@
                                         <div class="row justify-content-center pb-3" *ngIf="dashboardInvestment?.length === '0' ">
                                             <div class="col-6 text-center">
                                                 No record found, Investment is not yet started
-                                            </div> 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

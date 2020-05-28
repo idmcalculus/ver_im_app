@@ -28,7 +28,7 @@ export class exportUserPoolComponent implements OnInit {
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
     poolId: any;
-    numOfPool: Investment[];
+    numOfPool: any=[];
     p = 1;
     p2 = 1;
     pageValue = 5;

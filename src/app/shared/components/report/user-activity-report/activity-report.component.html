@@ -23,25 +23,25 @@
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search"  [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date Start</label>
-                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" #search [(ngModel)]="dateStart">
+                                    <input type="date" class="input-control shadow" placeholder="Date Start" name="search" [(ngModel)]="dateStart">
                                 </div>
                             </div>
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate(dateStart,dateEnd)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" (change)="filterDate(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">Date End</label>
-                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" #search2 (change)="filterDate2(dateStart,dateEnd)">
+                                    <input type="date" class="input-control shadow" placeholder="Date End" name="amount" [(ngModel)]="dateEnd" (change)="filterDate2(dateStart,dateEnd)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
@@ -55,33 +55,33 @@
                             <div class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label hidden class="h7">Date Start</label>
-                                    <input hidden type="text" class="input-control shadow" placeholder="Date Start" name="id" #search (keyup)="filterTable('id', $event)"
+                                    <input hidden type="text" class="input-control shadow" placeholder="Date Start" name="id"  (keyup)="filterTable('id', $event)"
                                     (blur)="filterTable('id', $event)">
                                 </div>
                             </div>
                             <div *ngIf="!User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">IP</label>
-                                    <input type="text" class="input-control shadow" placeholder="IP" name="ip" #ip (keyup)="filterTable('ip_address', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="IP" name="ip" [(ngModel)]="ip" (keyup)="filterTable('ip_address', $event)"
                                     (blur)="filterTable('ip_address', $event)">
                                 </div>
                             </div>
                             <div *ngIf="User" class="col-sm-4 col-lg-4 pl-sm-2 pl-lg-1">
                                 <div class="form-group">
                                     <label class="h7">IP</label>
-                                    <input type="text" class="input-control shadow" placeholder="IP" name="ip" #ip (keyup)="filterTable2('ip_address', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="IP" name="ip"  [(ngModel)]="ip" (keyup)="filterTable2('ip_address', $event)"
                                     (blur)="filterTable2('ip_address', $event)">
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <div  *ngIf="!User" class="form-group">
                                     <label class="h7">Admin</label>
-                                    <input type="text" class="input-control shadow" placeholder="All" name="id" #search (keyup)="filterTable('first_name', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="All" name="id" [(ngModel)]="searchValue" (keyup)="filterTable('first_name', $event)"
                                     (blur)="filterTable('first_name', $event)">
                                 </div>
                                 <div  *ngIf="User" class="form-group">
                                     <label class="h7">Customer Name</label>
-                                    <input type="text" class="input-control shadow" placeholder="Customer's Name" name="id" #search (keyup)="filterTable2('first_name', $event)"
+                                    <input type="text" class="input-control shadow" placeholder="Customer's Name" name="id" [(ngModel)]="searchValue" (keyup)="filterTable2('first_name', $event)"
                                     (blur)="filterTable2('first_name', $event)">
                                 </div>
                             </div>
@@ -124,8 +124,8 @@
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12 d-flex flex-row">
-                                                <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                           <div  class="col-12 px-0 d-flex flex-row">
+                                                <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
                                                 <span class="col-md-1 col-xs-1 px-0 controls">
                                                     <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
                                                         <option value="5"> 5 rows </option>
@@ -144,8 +144,8 @@
                                                     <p class="col-2 col-md-2 col-sm-2">{{report.created_at}}</p>
                                                 </div>
                                            </div>
-                                           <div  class="col-12 d-flex flex-row">
-                                            <pagination-controls class="my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
+                                           <div  class="col-12 px-0 d-flex flex-row">
+                                            <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
                                             <span class="col-md-1 col-xs-1 px-0  controls">
                                                 <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page2.value) #page2>
                                                     <option value="5"> 5 rows </option>
