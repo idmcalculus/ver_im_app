@@ -43,8 +43,9 @@ import { AuthGuardService as AuthGuard } from '../../auth/auth-guard.service';
 
 
 const userRoutes: Routes = [
-  { path: '', component: AdminComponent },
-
+  { path: '', 
+    loadChildren: () => import('./admin.component').then(m=>m.AdminComponent ),
+  },
   {
     path: 'admin',
     component: AdminComponent, canActivate: [RouterGaurdService],
