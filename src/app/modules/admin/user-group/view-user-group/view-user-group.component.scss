@@ -27,12 +27,12 @@
 }
 
 .action {
-	flex: 1.5 0 5em;
+	flex: 1 0 5em;
 	border-left: 1px solid black;
 }
 
 .usergroup-name{
-	flex: 8 1 20em;
+	flex: 4 1 20em;
 }
 
 .checkbox {
@@ -49,7 +49,7 @@
 
 	p {
 		align-self: center;
-		text-align: justify;
+		text-align: center;
 		height: 60px;
 		line-height: 4;
 		margin-bottom: 0px;
