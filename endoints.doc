@@ -6,8 +6,8 @@ start of Api Endpoint in user service ts
         this.httpService.postRequest(`fetch_profile?email=${email}`, null) //for getting ProfileDetails
     **************
 
-    this.httpService.postRequest(`update_user? ); //for getting updateProfile
     PUT /user/profile
+        this.httpService.postRequest(`update_user? ); //for getting updateProfile
 
         this.httpService.postRequest(`update_preference? , null); //for getting update_preference
 
@@ -52,8 +52,6 @@ End of Api Endpoint in user service ts
 start of Api Endpoint in admin service ts
     this.httpService.postRequest(`report/adminDashboard`, null); //for getting DashBoardData
     GET /report/admin
-
-    * this.httpService.postRequest(`user/list`, null); //for getting users
 
     this.httpService.postRequest(`list_admin`, null); //for getting Admin users
     GET /admin
@@ -121,6 +119,7 @@ start of Api Endpoint in Investment service ts
 
     this.httpService.postRequest(`investment_user/pullOutOfInvestment?investment_id=${investmentId}`, {}, true); //for pulling Out From Investment
     PUT /investment/:investment_id
+
 
     this.httpService.postRequest(`investment/addGroup?group_name=${investmentGroup.group_name}`, {}, true); //for creating Investment Group
     POST /investment/group

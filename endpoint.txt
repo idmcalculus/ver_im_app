@@ -1,0 +1,143 @@
+//auth
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
+**************
+
+// Category
+Route::get('category/list', 'CategoryController@list');
+**************
+
+// Career
+Route::get('career/list', 'CareerController@list');
+Route::get('career/show', 'CareerController@show');
+**************
+
+// Career Application
+Route::post('career_application/create', 'CareerApplicationController@create');
+Route::get('career_application/show', 'CareerApplicationController@show');
+**************
+
+//user
+Route::get('user/verify/{data}', 'UserController@verifyUser');
+Route::post('user/password/reset', 'UserController@resetPassword');
+Route::post('user/password/resetRequest', 'UserController@resetPasswordRequest');
+**************
+
+//users views
+Route::get('users/views/track', 'UserController@deactivateUsers');
+Route::get('users/views', 'UserController@getViewStats');
+**************
+
+// Investment
+Route::get('investment/list', 'InvestmentController@list');
+Route::get('investment/list/byCategory', 'InvestmentController@listByCategory');
+Route::get('investment/list/byCategoryName', 'InvestmentController@listByCategoryName');
+Route::get('investment/show', 'InvestmentController@show');
+**************
+
+// Bank
+Route::get('bank/list', 'BankController@list'); 
+**************
+
+Route::group(['middleware' => 'auth:api'], function() {
+    // User
+    Route::put('user/update', 'UserController@updateUser');
+    Route::put('user/activate', 'UserController@activateUser');
+    Route::put('user/deactivate', 'UserController@deactivateUser');
+    Route::put('user/change/password', 'UserController@changePassword');
+    Route::put('user/update/preference', 'UserController@updatePreference');
+    Route::put('user/update/accountDetail', 'UserController@updateAccountDetail');
+    Route::get('user/list', 'UserController@list');
+    Route::delete('user/delete', 'UserController@adminUserdelete');
+    Route::post('user/validate/otp', 'UserController@validateOTP');
+    Route::get('user/fetch/profile', 'UserController@fetchProfile');
+    **************
+    
+    //admin
+    Route::put('admin/update/user', 'UserController@adminUpdateUser');
+    Route::put('admin/update/accountDetail', 'UserController@adminUpdateAccountDetail');
+    Route::put('admin/update/Preference', 'UserController@adminUpdatePreference');
+    Route::put('admin/user/Category', 'UserController@updateUserCategory');
+    Route::get('admin/users/categories', 'UserController@adminGetUserCategories');
+    Route::get('admin/users/activities', 'UserController@trackUserActivity');
+    **************
+
+    // Category
+    Route::post('category/create', 'CategoryController@create');
+    Route::put('category/update', 'CategoryController@update');
+    Route::delete('category/delete', 'CategoryController@delete');
+    **************
+
+    // Career
+    Route::post('career/create', 'CareerController@create');
+    Route::put('career/update', 'CareerController@update');
+    Route::delete('career/delete', 'CareerController@delete');
+    **************
+
+    // Career Application
+    Route::get('career/application/list', 'CareerApplicationController@list');
+    Route::get('career/application/careerApplications', 'CareerApplicationController@list_career_applications');
+    Route::delete('career/application/delete', 'CareerApplicationController@delete');
+    **************
+
+    // Investment
+    Route::post('investment/create', 'InvestmentController@create');
+    Route::put('investment/update', 'InvestmentController@update');
+    Route::put('investment/end', 'InvestmentController@endInvestment');
+    Route::put('investment/start', 'InvestmentController@startInvestment');
+    Route::post('investment/users/payout', 'InvestmentController@investmentPayoutUsers');
+    Route::post('investment/group/create', 'InvestmentController@addGroup');
+    Route::post('investment/group/add','InvestmentController@addInvestmentToGroup');
+    Route::delete('investment/group/delete','InvestmentController@deleteFromGroup');
+    Route::post('investment/group/investment','InvestmentController@getInvestmentGroup');
+    Route::post('investment/groups','InvestmentController@getPoolGroups');
+    Route::delete('investment/group/delete','InvestmentController@deletePoolGroup');
+    Route::put('investment/group/update','InvestmentController@editPoolGroup');
+    **************
+
+    // Investment User
+    Route::get('investment/user/list', 'UserInvestmentController@listInvestmentUser');
+    Route::post('investment/user/create', 'UserInvestmentController@create');
+    Route::get('investment/user/InvestmentOfUser', 'UserInvestmentController@listInvestmentOfUser');
+    Route::get('investment/user/InvestmentPerDay', 'UserInvestmentController@getInvestmentPerDay');
+    Route::post('investment/user/pullOut', 'UserInvestmentController@pullOutOfInvestment');
+    Route::post('investment/user/withdraw', 'UserInvestmentController@withdraw');
+    **************
+
+    // Investment Report
+    Route::post('report/create', 'ReportController@create');
+    Route::get('report/list', 'ReportController@list');
+    Route::put('report/update', 'ReportController@update');
+    Route::delete('report/delete', 'ReportController@delete');
+    **************
+
+    //dashboard
+    Route::get('report/admin/Dashboard', 'ReportController@adminDashboard');
+    Route::get('report/user/Dashboard', 'ReportController@userDashboard');
+    **************
+
+    // Investment Request
+    Route::post('request/create', 'InvestmentRequestController@create');
+    Route::post('request/approve', 'InvestmentRequestController@approve');
+    Route::delete('request/delete', 'InvestmentRequestController@delete');
+    Route::get('request/all', 'InvestmentRequestController@listAll');
+    Route::get('request/byInvestment', 'InvestmentRequestController@listByInvestment');
+    **************
+
+    // Message Request
+    Route::post('message/send', 'MessageController@send');
+    Route::get('message/list_admin', 'MessageController@list_admin');
+    Route::get('message/list_users', 'MessageController@list_users');
+    Route::get('message/list_all_messages', 'MessageController@list_all_messages');
+    Route::get('message/fetch_last_message', 'MessageController@fetch_last_message');
+    Route::get('message/read_message', 'MessageController@read_message');
+});
+
+
+******* ACCESS CONTROL *********
+    User Module (Settings) --- admin and The real user can only edit.
+    Admin Module (Investment) --- only admin can edit or perform anything related to Investment
+    Admin Module (Investment Group) --- only admin can edit or perform anything related to Investment Group
+    Admin Module (Customer) --- only admin can edit or perform anything related to Customer
+    Admin Module (User Group) --- only admin can edit or perform anything related to User Group
+    Admin Module (Report) --- only admin can edit or perform anything related to Report
