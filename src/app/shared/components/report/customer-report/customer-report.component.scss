@@ -172,7 +172,7 @@ td {
   .status {
 
     mat-select-trigger{
-        color: black;
+		color: grey;
     }
 
 
@@ -189,7 +189,7 @@ td {
         display: block;
         font-size: 12px;
         width: 100%;
-        height: 30px;
+        height: 27px;
         padding: .5rem .5rem;
         color:black;
         box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
@@ -198,4 +198,41 @@ td {
         border-radius: 2px;
         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
+}
+
+::ng-deep{
+
+	.mat-option {
+		width: 75%;
+	}
+
+	.mat-select-panel {
+		max-height: 150px !important;
+		background-color: white;
+		color: grey;
+      }
+
+    .mat-select-placeholder {
+        color: grey !important;
+		-webkit-text-fill-color: inherit !important;
+		transition: none;
+		display: block;
+		font-size: 14px;
+	}
+
+	span.mat-option-text {
+		color: grey;
+    }
+
+    .mat-select-trigger {
+        color: grey;
+    }
+
+	.mat-select-value {
+        color: grey;
+	}
+
+	.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+		background: #00000024;
+	}
 }

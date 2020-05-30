@@ -21,6 +21,7 @@ let allInvestments = [{'title':''}];
 })
 export class AdminDashboardComponent implements OnInit {
   dashBoardData: AdminDashboard;
+  dashboardInv: any[] = [];
   allInvestments: [{'title':''}];
   careers: [];
   isLoading = true;
@@ -31,7 +32,7 @@ export class AdminDashboardComponent implements OnInit {
   lagosAmount: any = 0;
   totalAmount: any = 0;
   lagosFraction: any = 0.5;
-  data=5;
+  data = 5;
 
 
   public doughnutChartLabels: Label[] = ['Agriculture', 'Real Estate', 'Transprtation', 'Others'];
@@ -150,10 +151,11 @@ export class AdminDashboardComponent implements OnInit {
     this.adminService.getDashBoardData().subscribe(resp => {
       if (resp && resp.success) {
         this.dashBoardData = resp.success.Data;
+        this.dashboardInv.push(this.dashBoardData);
         this.isLoading = false;
         this.getLagos(this.dashBoardData);
         this.categoriesCount = {'transport': 10,"agriculture": 5,"housing":5,'others':0};
-        this.data=100;
+        this.data = 100;
         let category = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===12)
         let housing = 0
         let agriculture = this.dashBoardData.fetch_investment_categories_count.filter((res)=>res.category_id===20)

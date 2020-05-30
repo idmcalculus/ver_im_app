@@ -17,6 +17,7 @@ import { ExportData } from 'src/app/shared/models/ExportData';
 export class ViewUserPoolComponent implements OnInit {
     _shown = true;
     user: any;
+    userArray: any[] = [];
     email: any;
     investments: Investment;
     users: User[];
@@ -28,7 +29,7 @@ export class ViewUserPoolComponent implements OnInit {
     userInvestment: any[];
     dashboardInvestment: any = [];
     alluserInvestment: any = [];
-    isLoading: boolean;
+    isLoading = true;
     selectedInvestment = -1;
     investmentInfo: Investment = {duration: '0', investment_amount: 0};
     poolId: any;
@@ -50,15 +51,17 @@ export class ViewUserPoolComponent implements OnInit {
         this.userService.getProfileDetails(this.email).subscribe(userx => {
           if (userx && userx.success) {
             this.user = userx.success.Data;
-            this.isLoading = false;
+            this.userArray.push(userx.success.Data);
+            console.log(this.userArray);
           }
+          this.isLoading = false;
         });
         this.investmentService.getUserInvestments(this.email).subscribe(investments => {
           if (investments && investments.success) {
             this.userInvestment = investments.success.Data;
             this.numOfPool = investments.success.Inv;
-            this.isLoading = false;
           }
+          this.isLoading = false;
         });
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {

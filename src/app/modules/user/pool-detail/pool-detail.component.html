@@ -3,7 +3,7 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-                    <div *ngIf="isLoading" class="pool-details lds-default">
+                    <div *ngIf="isLoading || poolArray?.length === 0" class="pool-details lds-default">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -18,7 +18,7 @@
                         <div></div>
                     </div>
 
-                    <div *ngIf="!isLoading" class="">
+                    <div *ngIf="!isLoading && poolArray?.length > 0" class="">
                         <div class="clearfix mb-3">
                             <div class="float-left pt-2">
                                 <a class="h4 pr-2">Investment</a>

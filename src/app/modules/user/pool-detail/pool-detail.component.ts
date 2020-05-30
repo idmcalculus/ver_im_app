@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs';
 })
 export class PoolDetailComponent implements OnInit {
   pool: any;
+  poolArray: any[] = [];
   poolId = 0;
   url: any;
   res: Category;
@@ -52,6 +53,7 @@ export class PoolDetailComponent implements OnInit {
         if (userInfo) {
           this.loggedInUser = userInfo;
         }
+        this.isLoading = false;
       });
 
       this.route.params.subscribe(resp => {
@@ -71,6 +73,9 @@ export class PoolDetailComponent implements OnInit {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
+          this.poolArray.push(poolDetails.success.Data);
+          console.log(this.poolArray.length);
+          
           this.roi = this.pool.investment.estimated_percentage_profit;
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
@@ -85,14 +90,15 @@ export class PoolDetailComponent implements OnInit {
   }
 
   updatePool(poolId: string) {
+    this.isLoading = true;
     this.investmentService.getInvestment(poolId).subscribe(poolDetails => {
       if (poolDetails && poolDetails.success) {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
+          this.isLoading = false;
         } else {
           this.router.navigate(['./', {}]);
         }
-      } else {
       }
     });
   }
@@ -117,6 +123,7 @@ export class PoolDetailComponent implements OnInit {
   }
 
   addReport(filledReport: Report) {
+    this.isLoading = true;
     this.reportData = filledReport;
     if (this.reportData.title) {
       if (!this.reportData.returned_amount) {
@@ -124,11 +131,12 @@ export class PoolDetailComponent implements OnInit {
         this.reportData.payment_type = 'Debit';
       }
       this.reportService.createReport(this.reportData).subscribe(resp => {
-          if (resp && resp.success) {
-            // alert(resp.success.Message)
-            window.location.href = 'admin/pools/' + this.poolId;
-            // this.closeBtn.nativeElement.click();
-          }
+        if (resp && resp.success) {
+          // alert(resp.success.Message)
+          window.location.href = 'admin/pools/' + this.poolId;
+          // this.closeBtn.nativeElement.click();
+        }
+        this.isLoading = false;
       });
     }
   }
@@ -138,20 +146,22 @@ export class PoolDetailComponent implements OnInit {
   }
 
   updateReport(filledReport: Report) {
-      this.reportData = filledReport;
-      if (this.reportData.title) {
-        if (!this.reportData.returned_amount) {
-          this.reportData.returned_amount = 0;
-          this.reportData.payment_type = 'Debit';
-        }
-        this.reportService.updateReport(this.reportData).subscribe(resp => {
-            if (resp && resp.success) {
-              // alert(resp.success.Message)
-              window.location.href = 'admin/pools/' + this.poolId;
-              // this.closeBtn.nativeElement.click();
-            }
-        });
+    this.isLoading = true;
+    this.reportData = filledReport;
+    if (this.reportData.title) {
+      if (!this.reportData.returned_amount) {
+        this.reportData.returned_amount = 0;
+        this.reportData.payment_type = 'Debit';
       }
+      this.reportService.updateReport(this.reportData).subscribe(resp => {
+          if (resp && resp.success) {
+            // alert(resp.success.Message)
+            window.location.href = 'admin/pools/' + this.poolId;
+            // this.closeBtn.nativeElement.click();
+          }
+          this.isLoading = false;
+      });
+    }
   }
 
   updateInvestment() {
@@ -183,6 +193,7 @@ export class PoolDetailComponent implements OnInit {
   deleteReport(report) {
     const proceed = confirm('Confirm Deletion?');
     if (proceed) {
+      this.isLoading = true;
       // alert('deleting record :: '+report.id)
       this.reportService.deleteReport(report).subscribe(resp => {
           if (resp && resp.success) {
@@ -190,6 +201,7 @@ export class PoolDetailComponent implements OnInit {
             window.location.href = 'admin/pools/' + this.poolId;
             // this.closeBtn.nativeElement.click();
           }
+          this.isLoading = false;
       });
     }
   }
@@ -235,11 +247,13 @@ export class PoolDetailComponent implements OnInit {
   pullOut() {
     const proceed = confirm('Do you really want to pull out from investment?');
     if (proceed) {
+      this.isLoading = true;
       this.investmentService.pullOutFromInvestment(String(this.poolId)).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message)
           this.fetchPool(String(this.poolId));
         }
+        this.isLoading = false;
       });
     }
   }
@@ -247,11 +261,13 @@ export class PoolDetailComponent implements OnInit {
   endInvestment() {
     const proceed = confirm('Do you really want to end this investment?');
     if (proceed) {
+      this.isLoading = true;
       this.investmentService.endInvestment(String(this.poolId)).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message)
           this.fetchPool(String(this.poolId));
         }
+        this.isLoading = false;
       });
     }
   }
@@ -259,11 +275,13 @@ export class PoolDetailComponent implements OnInit {
   startInvestment() {
     const proceed = confirm('Do you really want to start this investment?');
     if (proceed) {
+      this.isLoading = true;
       this.investmentService.startInvestment(String(this.poolId)).subscribe(resp => {
         if (resp && resp.success) {
           // alert(resp.success.Message)
           this.fetchPool(String(this.poolId));
         }
+        this.isLoading = false;
       });
     }
   }
@@ -298,14 +316,14 @@ export class PoolDetailComponent implements OnInit {
       return 48;
     } else if (expected_return_period === 'Monthly') {
       return 12;
-    }else if (this.pool.expected_return_period === 'Daily') {
-      return Number(this.pool.duration)*30;
+    } else if (this.pool.expected_return_period === 'Daily') {
+      return Number(this.pool.duration) * 30;
     }
   }
 
 
   calculateEstimate() {
-    if (this.pool.investment.investment_amount != 0 && this.roi != '' && this.pool.investment.expected_return_period != '') {
+    if (this.pool.investment.investment_amount !== 0 && this.roi !== '' && this.pool.investment.expected_return_period !== '') {
       const cost = this.pool.investment.investment_amount;
       const investment = parseInt(this.roi) / 100;
       const divisor = this.divisorFunc(this.pool.investment.expected_return_period);

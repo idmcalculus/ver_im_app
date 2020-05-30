@@ -29,7 +29,7 @@
                                     <p class="width">Total</p>
                                 </div>
                                 <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div *ngIf="isLoading" >
+                                    <div *ngIf="isLoading || pools?.length === 0">
                                         <br><br>
                                         <div  class="lds-default">
                                             <div></div>
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                     <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let pool of pools| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                        <div class="row1 p-2" *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
                                             <p class="width">{{pool.title}}</p>
                                             <p class="width">{{getCategoryName(pool.category_id)}}</p>
                                             <p class="width">{{pool.investment_amount}}</p>
