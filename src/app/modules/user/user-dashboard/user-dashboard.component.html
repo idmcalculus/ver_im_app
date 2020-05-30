@@ -41,10 +41,10 @@
                             <div class="card-details row">
                                 <div class="card latest-update-card col-7" style="padding:0px">
                                     <div class="card-head none-covered">
-                                        <h5 class="px-1">Investment Perfomance</h5>
+                                        <h5 class="px-4">Investment Perfomance</h5>
                                     </div>
                                     <div  class="carousel slide" id="myCarousel" data-interval="false">
-                                        <div id="carousel-inner" class="p-t-0 m-t-2 carousel-inner">
+                                        <div *ngIf="usersInvestments" id="carousel-inner" class="p-t-0 m-t-2 carousel-inner">
                                             <div class="carousel-item {{ i == 0 ? 'active' : '' }} m-t-0" *ngFor="let investments of usersInvestments; index as i;">
                                                 <div class="row p-2 row justify-content-center">
                                                     <div class="col-12">
@@ -67,7 +67,7 @@
                                                                 <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                             </div>
                                                             <div  class="col-8">
-                                                                <span style="color:#e99b89">₦{{ ((((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (calculateEstimate(investments?.expected_return_amount,investments?.investment_amount, investments?.duration)))/100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
+                                                                <span style="color:#e99b89">₦{{ ((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (investments?.estimated_percentage_profit / 100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
                                                                 <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                             </div>
                                                         </div>
@@ -117,13 +117,86 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="container">
+                                        <div *ngIf="!usersInvestments" class="p-t-0 m-t-2 carousel-inner">
+                                            <div class="m-t-0">
+                                                <div class="row p-2 row justify-content-center">
+                                                    <div class="col-12">
+                                                        <p class="mb-0 px-4" style="font-weight: 700;font-size: medium;"></p>
+                                                    </div>
+                                                    <div class="col-5 mt-2 my-3 box-control mr-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <div class="col-8">
+                                                                <span  style="color: #18d004;font-weight: 700">N/A</span> <br>
+                                                                <span style="font-size:12px;color:grey">Amount Paid</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5 mt-2 my-3 box-control ml-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <div  class="col-8">
+                                                                <span style="color:#e99b89">N/A</span><br>
+                                                                <span style="font-size:12px;color:grey"> Amount Pending</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-5 my-3 box-control mr-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <div  class="col-8"> N/A <br>
+                                                                <span style="font-size:12px;color:grey"> Payback</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-5 my-3 box-control ml-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <div  class="col-8">N/A <br>
+                                                                <span style="font-size:12px;color:grey">Number of Slot(s)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-5 my-3 box-control mr-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <td   class="col-8">N/A <br>
+                                                                <span style="font-size:12px;color:grey">Last Payment</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-5 my-3 box-control ml-4">
+                                                        <div class="row">
+                                                            <div class="col-3">
+                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
+                                                            </div>
+                                                            <div  class="col-8">
+                                                                N/A<br>
+                                                                <span style="font-size:12px;color:grey">Next Payment</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="usersInvestments.length > 0" class="container">
                                             <div class="row">
                                                 <div class="col-sm-12 text-center mb-4">
                                                     <a id="carousel-controls" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
                                                         <i class="fa fa-lg  fa-circle"></i>
                                                     </a>
-                                                    <a *ngIf="usersInvestments.length >1" class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                    <a  class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
                                                         <i class="fa fa-lg fa-circle"></i>
                                                     </a>
                                                 </div>
@@ -258,13 +331,13 @@
                                                         <a class="nav-item nav-link active col-4" id="nav-day-tab"
                                                         data-toggle="tab" href="#nav-day" role="tab"
                                                         aria-controls="nav-day"
-                                                        aria-selected="true">Past 24 Hours</a>
+                                                        aria-selected="true">Past 365 Days</a>
                                                         <a class="nav-item nav-link col-4" id="nav-month-tab"
                                                         data-toggle="tab" href="#nav-month" role="tab"
                                                         aria-controls="nav-month" aria-selected="false">Past 30 Days</a>
                                                         <a class="nav-item nav-link col-4" id="nav-year-tab"
                                                         data-toggle="tab"  href="#nav-year" role="tab"
-                                                        aria-controls="nav-year" aria-selected="false">Past 365 Days</a>
+                                                        aria-controls="nav-year" aria-selected="false">Past 24 Hours</a>
 
                                                     </div>
                                                 </nav>
@@ -272,11 +345,14 @@
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-day" role="tabpanel" aria-labelledby="nav-day-tab">
                                                         <div class="row1 d-flex flex-row p-2 mt-3" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
-                                                        *ngFor="let pool of filteredDayData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'first'}; let i = index;">
+                                                        *ngFor="let pool of filteredYearData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'first'}; let i = index;">
                                                             <p class=" special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-0">- Return:{{calculateEstimate(pool?.expected_return_amount,pool?.investment_amount,pool?.expected_return_period,pool?.expected_return_period)}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-0">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
                                                             <p class="normal col-3 px-0">- Monthly return: ₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</p>
+                                                        </div>
+                                                        <div  class="col-12 mt-3 d-flex flex-row">
+                                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='first'></pagination-controls>
                                                         </div>
                                                 </div>
 
@@ -285,20 +361,20 @@
                                                         *ngFor="let pool of filteredMonthData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'second'}; let i = index;">
                                                             <p class="special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{calculateEstimate(pool?.expected_return_amount,pool?.investment_amount,pool?.expected_return_period)}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
                                                             <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
-                                                    </div>
+                                                       </div>
                                                 </div>
 
                                                 <div class="tab-pane fade" id="nav-year" role="tabpanel" aria-labelledby="nav-year-tab">
                                                         <div class="row1 d-flex flex-row p-2 mt-3" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
-                                                        *ngFor="let pool of filteredYearData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'third'}; let i = index;">
+                                                        *ngFor="let pool of filteredDayData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'third'}; let i = index;">
                                                             <p class="special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{calculateEstimate(pool?.expected_return_amount,pool?.investment_amount,pool?.expected_return_period)}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
                                                             <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
