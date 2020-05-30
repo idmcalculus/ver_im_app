@@ -21,9 +21,16 @@ img {
     font-weight: bold;
 }
 
-.title-list h3 {
+.list-title h3 {
     color: #221F72;
     font-weight: 600;
+    font-family: roboto;
+    font-size: 19px;
+}
+
+.list-title h3 {
+    display: block;
+
 }
 
 .card-header h5 {
@@ -62,6 +69,11 @@ th {
 .table-striped th {
     font-size: bold;
     text-align: center;
+}
+
+div > a {
+    color: #221F72;
+    font-weight: bold;
 }
 
 .col-5 span .buttons {

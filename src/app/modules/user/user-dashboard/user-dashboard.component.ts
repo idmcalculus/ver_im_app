@@ -73,6 +73,7 @@ export class UserDashboardComponent implements OnInit {
               this.usersInvestments = this.usersInvestment.filter(res => res.is_investment_started === 1);
               this.selectedInvestment = 0;
               this.showDetails();
+              console.log(this.usersInvestments);
               }
               this.isLoading = false;
             });
@@ -112,6 +113,7 @@ export class UserDashboardComponent implements OnInit {
             this.filteredYearData = this.poolGroup.filter((d) => {
             return new Date(d.created_at.split(' ')[0]).getTime() >= Year.getTime();
             });
+
 
       } else {
       }
@@ -165,20 +167,16 @@ export class UserDashboardComponent implements OnInit {
       this.isLoading = true;
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
-            this.dashBoardData = resp.success.Data;
-            this.dashboardInvestment.push(this.dashBoardData);
+         //   this.dashBoardData = resp.success.Data;
+            this.dashboardInvestment.push( resp.success.Data);
             let total = 0;
-
-
+            console.log(this.dashboardInvestment);
+            this.showDetails();
           } else {
             this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
           }
           this.isLoading = false;
       });
-
-      const me = this;
-
-
 
     }
   }
