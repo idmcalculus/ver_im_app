@@ -6,7 +6,6 @@
            border-radius: 0;
            opacity: 0.9;
         }
-
 }
  .main-invest-card{
     text-align: left;
@@ -70,6 +69,15 @@
                &::after{
                   content: none;
                }
+            }
+
+            h5{
+                text-align: center;
+                font-size: 14px;
+                font-weight: 600;
+                letter-spacing: 0.2px;
+                line-height: 20px;
+                letter-spacing: 0.05rem;
             }
 
             h4{

@@ -113,6 +113,7 @@ export class UserDashboardComponent implements OnInit {
             return new Date(d.created_at.split(' ')[0]).getTime() >= Year.getTime();
             });
 
+
       } else {
       }
         this.isLoading = false;
@@ -147,39 +148,30 @@ export class UserDashboardComponent implements OnInit {
     }
 
   showDetails() {
-    if ( this.selectedInvestment <= this.usersInvestments.length ) {
-        this.investmentInfo = this.usersInvestments[this.selectedInvestment];
-        this.getUserDashBoard();
-        this.selectedInvestment++;
-        this.isLoading = false;
-        return this.selectedInvestment;
-    } else {
-        this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+    if ( this.usersInvestments) {
+      for(let i=0;i<=this.usersInvestments.length;i++){        
+        this.getUserDashBoard(this.usersInvestments[i]);
       }
+      this.isLoading = false;
+      return this.selectedInvestment;
+    }else {
+      this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
+    }
   }
 
-  getUserDashBoard() {
-    if (this.investmentInfo) {
+  getUserDashBoard(investmentInfo) {
+    if(investmentInfo){
       const userEmail = this.overiddenUser.email;
-      const investmentId = this.investmentInfo.id;
-      this.isLoading = true;
+      const investmentId = investmentInfo.id;
       this.userService.getUserDashBoard(investmentId, userEmail).subscribe(resp => {
           if (resp && resp.success) {
-            this.dashBoardData = resp.success.Data;
-            this.dashboardInvestment.push(this.dashBoardData);
+         //   this.dashBoardData = resp.success.Data;
+            this.dashboardInvestment.push( resp.success.Data);
             let total = 0;
-
-
           } else {
             this.dashBoardData = {number_of_pools: 0, investment: [], investment_return: [], investment_report: []};
           }
-          this.isLoading = false;
       });
-
-      const me = this;
-
-
-
     }
   }
 

@@ -6,6 +6,7 @@
     "built": "ng build --prod --aot",
     "update": "ng update @angular/cli --next --force",
     "build": "ng build",
+    "testOuterGzip": "ng build && gzipper --verbose ./dist",
     "build-prod": "ng build --prod",
     "stats": "webpack-bundle-analyzer dist/versaim-app/stats.json",
     "lint": "ng lint",
@@ -70,10 +71,11 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/language-service": "~7.2.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "gzipper": "^3.7.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
@@ -84,7 +86,8 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.2.2"
+    "typescript": "~3.2.2",
+    "webpack-bundle-analyzer": "^3.8.0"
   },
   "engines": {
     "node": "8.12.0"

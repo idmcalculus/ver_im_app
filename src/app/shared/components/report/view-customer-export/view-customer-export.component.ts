@@ -5,6 +5,7 @@ import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from 'src/app/modules/investment/investment.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ReportService } from '../report.service';
 
 @Component({
   selector: 'app-view-customers-export',
@@ -37,6 +38,7 @@ export class exportUserPoolComponent implements OnInit {
       private route: ActivatedRoute,
       private investmentService: InvestmentService,
       private userService: UserService,
+      private reportService: ReportService,
       private location: Location
       ) {
         this.email = this.route.snapshot.paramMap.get('email'); // Snapshot param
@@ -96,6 +98,8 @@ export class exportUserPoolComponent implements OnInit {
           this.dashboardInvestment.forEach(investment => {
             investment.investment_report.forEach((report, i) => report.index = i + 1);
           });
+          console.log(this.dashboardInvestment);
+
         } else {
           this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         }
@@ -125,6 +129,30 @@ export class exportUserPoolComponent implements OnInit {
 
     Back() {
         this.location.back();
+    }
+
+    saveAsCSV() {
+        if (this.dashboardInvestment.length > 0) {
+          const items = [];
+          let i = 1;
+          let y = 0;
+          this.dashboardInvestment[0].investment_return.forEach(line => {
+            const csvLine = {
+              title: this.dashboardInvestment[0].investment[0].title,
+              expected_return_period: this.dashboardInvestment[0].investment[0].expected_return_period,
+              investment_amount: line.yielded_amount,
+              yeild_amount: line.yielded_amount * i,
+              balance: (this.divisorFunc(this.dashboardInvestment[0].investment[0].expected_return_period) * line.yielded_amount) - (line.yielded_amount * i),
+              status: this.dashboardInvestment[0].investment[0].is_investment_started === 1 ? 'On-going' : 'Not Yet Started' ,
+              yield_date: this.dashboardInvestment[0].investment_report[y].created_at
+            };
+            items.push(csvLine);
+            i++;
+            y++;
+          });
+
+          this.reportService.exportToCsv('viewCustomerExport.csv', items);
+        }
     }
 
   }

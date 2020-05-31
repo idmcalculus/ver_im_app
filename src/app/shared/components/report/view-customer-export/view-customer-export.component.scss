@@ -15,9 +15,16 @@ img {
     font-weight: bold;
 }
 
-.title-list h3 {
+.list-title h3 {
     color: #221F72;
     font-weight: 600;
+    font-family: roboto;
+    font-size: 19px;
+}
+
+.list-title h3 {
+    display: block;
+
 }
 
 hr.new {
