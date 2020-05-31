@@ -9,7 +9,6 @@ export class AuthGuardService implements CanActivate {
       this.router.navigateByUrl('/users/');
       return false;
     }
-    console.log('helloooo');
     return true;
   }
 }
