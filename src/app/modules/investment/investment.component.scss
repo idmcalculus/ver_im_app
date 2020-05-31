@@ -2,13 +2,13 @@
   padding-right: 0
 }
 
-.section-container{
-  background: url("../../../assets/images/partner-row2-3.png") no-repeat right top,
-  url("../../../assets/images/partner-row1-2.png") no-repeat left top,
-  url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+// .section-container{
+//   background: url("../../../assets/images/partner-row2-3.png") no-repeat right top,
+//   url("../../../assets/images/partner-row1-2.png") no-repeat left top,
+//   url("../../../assets/images/partner-rw.png") no-repeat left bottom;
 
 
-}
+// }
 
 .inner-investment{
   :nth-child(3){
@@ -16,33 +16,48 @@
   }
 }
 
-.invest-header{
-  .col-md-9{
-    display: flex;
-    justify-content: flex-end;
+.invest-header {
+  height: 300px;
+  padding: 4px;
+  margin-top: 5em;
+  background: url('../../../assets/image/slide3.png') no-repeat center;
+  background-size: cover;
+}
 
-    .invest-header-text {
-      padding: 1px 20px;
-      width: 15rem;
-    }
-  }
+.header {
+  color: white;
+  font-size: 50px;
+  padding-top: 130px;
+  text-align: center;
+}
 
+.text {
+  color: #858585;
+  font-size: 18px;
+}
+
+.text-footer {
+  color: #444;
+  font-size: 18px;
+}
+
+.text-header {
+  font-size: 27px !important;
 }
 
 .superb-container {
   margin: 0px !important;
+  background-color: #f9f9fa !important;
 
   .content-holder {
     a {
       color: #444;
       font-weight: 400;
-      font-size: 1.1rem;
       font-weight: 600;
       text-decoration: none;
       line-height: 25px;
       font-family: roboto;
       padding-top: 0;
-      font-size: 1.2rem;
       letter-spacing: 1.5px;
     }
 

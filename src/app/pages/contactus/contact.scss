@@ -2,7 +2,7 @@
     height: 300px;
     padding: 4px;
     margin-top: 5em;
-    background: url('../../../assets/images/contact-us-banner.png') no-repeat center;
+    background: url('../../../assets/image/contact-us.png') no-repeat center;
 		background-size: cover;
 
 
@@ -160,7 +160,75 @@
 			font-weight: 600;
 		}
 }
+@media (min-width: 1200px){
+    .container {
+        max-width: 1240px;
+    }
+}
 
+.text-header {
+    color: #43425d;
+    font-size: 25px;
+}
+
+.text-text {
+    color: #919191;
+}
+
+.text-footer {
+    color: #43425d;
+    font-size: 25px;
+}
+
+.input-control {
+	height: 300px;
+    color: #495057;
+    -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 4px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+.form-control {
+    font-size: 16px;
+    border-radius: 2px;
+	border: 1px solid #ccc;
+	height: 50px;
+}
+
+.btn {
+    border-radius: 15px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 10px 19px;
+    cursor: pointer;
+}
+
+.btn-color {
+    background-color: #4f5fbe;
+}
+
+.form-control1 {
+	height: 100px;
+}
+
+.header {
+    color: white;
+    font-size: 50px;
+    padding-top: 100px;
+    text-align: center;
+}
+
+.text-sub {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
 
 .inner-faq {
     padding: 5rem;
