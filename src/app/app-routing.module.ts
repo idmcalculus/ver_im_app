@@ -17,6 +17,15 @@ import {InvestmentComponent} from './modules/investment/investment.component';
 // import {ChatComponent} from './modules/chat/chat.component';
 
 const appRoutes: Routes = [
+    { path: 'admin',
+    loadChildren: () => import('./modules/admin/admin-router.module').then(m=>m.AdminRoutingModule ),
+    },
+    { path: 'user',
+    loadChildren: () => import('./modules/user/user-routing.module').then(m=>m.UserRoutingModule ),
+    },
+    { path: 'investments',
+    loadChildren: () => import('./modules/investment/investment-router-module').then(m=>m.InvestmentRoutingModule ),
+    },
     {path: 'signin', component: SignInComponent},
     {path: 'admin/signin', component: SignInComponent},
     {path: 'signup', component: SignUpComponent},

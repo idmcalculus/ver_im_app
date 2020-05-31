@@ -36,23 +36,23 @@ Route::get('investment/show', 'InvestmentController@show');
 **************
 
 // Bank
-Route::get('bank/list', 'BankController@list'); 
+Route::get('bank/list', 'BankController@list');
 **************
 
 Route::group(['middleware' => 'auth:api'], function() {
     // User
-    Route::put('user/update', 'UserController@updateUser');
-    Route::put('user/activate', 'UserController@activateUser');
-    Route::put('user/deactivate', 'UserController@deactivateUser');
-    Route::put('user/change/password', 'UserController@changePassword');
-    Route::put('user/update/preference', 'UserController@updatePreference');
-    Route::put('user/update/accountDetail', 'UserController@updateAccountDetail');
-    Route::get('user/list', 'UserController@list');
-    Route::delete('user/delete', 'UserController@adminUserdelete');
-    Route::post('user/validate/otp', 'UserController@validateOTP');
-    Route::get('user/fetch/profile', 'UserController@fetchProfile');
+    Route::put('user/update', 'UserController@updateUser');  //should be authenticated
+    Route::put('user/activate', 'UserController@activateUser');  //should be authenticated for admin only
+    Route::put('user/deactivate', 'UserController@deactivateUser'); //should be authenticated for admin only
+    Route::put('user/change/password', 'UserController@changePassword');           //should be authenticated
+    Route::put('user/update/preference', 'UserController@updatePreference');       //should be authenticated
+    Route::put('user/update/accountDetail', 'UserController@updateAccountDetail'); //should be authenticated
+    Route::get('user/list', 'UserController@list');                                //should be authenticated for admin only
+    Route::delete('user/delete', 'UserController@adminUserdelete');                 //should be authenticated for admin only
+    Route::post('user/validate/otp', 'UserController@validateOTP');                 //should be authenticated
+    Route::get('user/fetch/profile', 'UserController@fetchProfile');               //should be authenticated
     **************
-    
+
     //admin
     Route::put('admin/update/user', 'UserController@adminUpdateUser');
     Route::put('admin/update/accountDetail', 'UserController@adminUpdateAccountDetail');
@@ -81,34 +81,34 @@ Route::group(['middleware' => 'auth:api'], function() {
     **************
 
     // Investment
-    Route::post('investment/create', 'InvestmentController@create');
-    Route::put('investment/update', 'InvestmentController@update');
-    Route::put('investment/end', 'InvestmentController@endInvestment');
-    Route::put('investment/start', 'InvestmentController@startInvestment');
-    Route::post('investment/users/payout', 'InvestmentController@investmentPayoutUsers');
-    Route::post('investment/group/create', 'InvestmentController@addGroup');
-    Route::post('investment/group/add','InvestmentController@addInvestmentToGroup');
-    Route::delete('investment/group/delete','InvestmentController@deleteFromGroup');
-    Route::post('investment/group/investment','InvestmentController@getInvestmentGroup');
-    Route::post('investment/groups','InvestmentController@getPoolGroups');
-    Route::delete('investment/group/delete','InvestmentController@deletePoolGroup');
-    Route::put('investment/group/update','InvestmentController@editPoolGroup');
+    Route::post('investment/create', 'InvestmentController@create');  //should be authenticated for admin only
+    Route::put('investment/update', 'InvestmentController@update');   //should be authenticated for admin only
+    Route::put('investment/end', 'InvestmentController@endInvestment'); //should be authenticated for admin only
+    Route::put('investment/start', 'InvestmentController@startInvestment');  //should be authenticated for admin only
+    Route::post('investment/users/payout', 'InvestmentController@investmentPayoutUsers'); //should be authenticated for admin only
+    Route::post('investment/group/create', 'InvestmentController@addGroup');   //should be authenticated for admin only
+    Route::post('investment/group/add','InvestmentController@addInvestmentToGroup'); //should be authenticated for admin only
+    Route::delete('investment/group/delete','InvestmentController@deleteFromGroup');  //should be authenticated for admin only
+    Route::post('investment/group/investment','InvestmentController@getInvestmentGroup');  //should be authenticated for admin only
+    Route::post('investment/groups','InvestmentController@getPoolGroups');  //should be authenticated for admin only
+    Route::delete('investment/group/delete','InvestmentController@deletePoolGroup');  //should be authenticated for admin only
+    Route::put('investment/group/update','InvestmentController@editPoolGroup');  //should be authenticated for admin only
     **************
 
     // Investment User
-    Route::get('investment/user/list', 'UserInvestmentController@listInvestmentUser');
-    Route::post('investment/user/create', 'UserInvestmentController@create');
-    Route::get('investment/user/InvestmentOfUser', 'UserInvestmentController@listInvestmentOfUser');
+    Route::get('investment/user/list', 'UserInvestmentController@listInvestmentUser');  //should be authenticated
+    Route::post('investment/user/create', 'UserInvestmentController@create');   //should be authenticated
+    Route::get('investment/user/InvestmentOfUser', 'UserInvestmentController@listInvestmentOfUser');  //should be authenticated
     Route::get('investment/user/InvestmentPerDay', 'UserInvestmentController@getInvestmentPerDay');
-    Route::post('investment/user/pullOut', 'UserInvestmentController@pullOutOfInvestment');
-    Route::post('investment/user/withdraw', 'UserInvestmentController@withdraw');
+    Route::post('investment/user/pullOut', 'UserInvestmentController@pullOutOfInvestment');  //should be authenticated
+    Route::post('investment/user/withdraw', 'UserInvestmentController@withdraw');    //should be authenticated
     **************
 
     // Investment Report
-    Route::post('report/create', 'ReportController@create');
-    Route::get('report/list', 'ReportController@list');
-    Route::put('report/update', 'ReportController@update');
-    Route::delete('report/delete', 'ReportController@delete');
+    Route::post('report/create', 'ReportController@create');  //should be authenticated for admin only
+    Route::get('report/list', 'ReportController@list');       //should be authenticated for admin only
+    Route::put('report/update', 'ReportController@update');   //should be authenticated for admin only
+    Route::delete('report/delete', 'ReportController@delete'); //should be authenticated for admin only
     **************
 
     //dashboard
@@ -117,11 +117,11 @@ Route::group(['middleware' => 'auth:api'], function() {
     **************
 
     // Investment Request
-    Route::post('request/create', 'InvestmentRequestController@create');
-    Route::post('request/approve', 'InvestmentRequestController@approve');
-    Route::delete('request/delete', 'InvestmentRequestController@delete');
-    Route::get('request/all', 'InvestmentRequestController@listAll');
-    Route::get('request/byInvestment', 'InvestmentRequestController@listByInvestment');
+    Route::post('request/create', 'InvestmentRequestController@create');     //should be authenticated for admin only
+    Route::post('request/approve', 'InvestmentRequestController@approve');   //should be authenticated for admin only
+    Route::delete('request/delete', 'InvestmentRequestController@delete');   //should be authenticated for admin only
+    Route::get('request/all', 'InvestmentRequestController@listAll');        //should be authenticated for admin only
+    Route::get('request/byInvestment', 'InvestmentRequestController@listByInvestment');  //should be authenticated for admin only
     **************
 
     // Message Request

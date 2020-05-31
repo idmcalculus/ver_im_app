@@ -24,20 +24,20 @@
 }
 
 .s-n, .checkbox {
-	flex: 1;
+	flex: 0.5;
 }
 
 .username, .role, .status, .date-added {
-	flex: 2;
+	flex: 1;
 }
 
 .email {
-	flex: 4;
+	flex: 2;
 }
 
 .action {
 	border-left: 1px solid black;
-	flex: 2;
+	flex: 1;
 }
 
 .d-flex {
@@ -47,7 +47,6 @@
 	p {
 		align-self: center;
 		text-align: center;
-		text-align: justify;
 		height: 60px;
 		line-height: 4;
 		margin-bottom: 0px;
