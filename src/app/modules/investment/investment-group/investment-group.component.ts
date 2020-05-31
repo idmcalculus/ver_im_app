@@ -55,12 +55,14 @@ export class InvestmentGroupComponent implements OnInit {
       if (resp && resp.success) {
         const groups = resp.success.Data;
         const numOfGroup = groups.length;
-        this.investmentIds = groups[numOfGroup - 1].investment_id;
-        this.idArray = this.investmentIds.split(',');
-        this.idArray.forEach(id => {
-          const foundInvestment = this.investments.find(investment => investment.id === Number(id));
-          this.selectedPortfolios.push(foundInvestment);
-        });
+        if (numOfGroup > 0) {
+          this.investmentIds = groups[numOfGroup - 1].investment_id;
+          this.idArray = this.investmentIds.split(',');
+          this.idArray.forEach(id => {
+            const foundInvestment = this.investments.find(investment => investment.id === Number(id));
+            this.selectedPortfolios.push(foundInvestment);
+          });
+        }
       }
       this.isLoading = false;
     });
