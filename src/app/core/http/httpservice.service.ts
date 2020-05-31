@@ -8,7 +8,8 @@ import {environment as appConfig} from '../../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({
-        Accept: 'application/json'
+        Accept: 'application/json',
+        'Accept-Encoding': 'gzip'
     })
 };
 
