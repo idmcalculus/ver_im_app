@@ -9,7 +9,7 @@
                             <a class=" pl-2">Home / Investments</a>
                         </div>
                     </div>
-                    <div *ngIf="isLoading || pools?.length === 0" >
+                    <div *ngIf="isLoading" >
                         <br><br>
                         <div  class="lds-default">
                             <div></div>
@@ -26,7 +26,7 @@
                             <div></div>
                         </div>
                     </div>
-                    <div class="row" *ngIf="!isLoading && pools?.length > 0">
+                    <div class="row" *ngIf="!isLoading && pools?.length >= 0">
                         <div class="col-md-12">
                             <div class="card px-0">
                                 <div class="card-block pt-2 p-0 px-2">
@@ -68,7 +68,7 @@
                                                 </td>
                                             </tr>
                                             <tr *ngIf="pools?.length === 0">
-                                                <td class="displayStatus">"No Investment  records found."</td>
+                                                <td class="displayStatus">"You Currently Have No Investment Record."</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -97,6 +97,7 @@
                             </div>
                         </div>
                     </div>
+                  
                 </div>
             </div>
 
