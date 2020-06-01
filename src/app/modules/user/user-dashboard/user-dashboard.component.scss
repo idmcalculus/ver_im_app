@@ -237,7 +237,7 @@ body{
 }
 
 .investmentPerf {
-    height: 433px;
+    min-height: 433px;
 }
 
 .featInvestment {
@@ -507,4 +507,81 @@ input[type=number]::-webkit-outer-spin-button {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     font-family: roboto, sans-serif
+}
+
+@media only screen and (max-width: 600px) {
+    .row {
+        flex-flow: column;
+        min-width: 100%;
+        margin-right: 10px;
+    
+        .card-details.row{
+            flex-flow: column;
+            max-width: 100%;
+            margin: 0;
+
+            .latest-update-card.col-7 {
+                flex-flow: column;
+                max-width: 100%;
+
+                .box-control {
+                    margin-left: 1.5rem;
+                    max-width: 100%;
+                    padding-right: 1rem;
+                    border: none;
+
+                    .row .col-8 {
+                        min-width: 100%;
+                    }
+                }
+
+                .card-footer .col-6 {
+                    min-width: 100%;
+                }
+            }
+
+            .card-details.col-5 {
+                flex-flow: column;
+                max-width: 100%;
+                padding: 0;
+
+                .card .card-block {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .card-details{
+        &.row{
+            display: flex;
+            margin-left: 1rem !important;
+            justify-content: center;
+        }
+    }
+
+    .investmentPerf {
+        min-height: 600px;
+        margin: 0;
+
+        .col-6.p-2 {
+            min-width: 100%;
+        }
+    }
+
+    .card.recentActivity {
+        height: 500px;
+    }
+
+    .card.bestSelling {
+        min-height: 800px;
+    }
+
+    .row.dashboard-table {
+        margin-left: 1rem !important;
+
+        .card-details.col-md-4 {
+            padding: 0;
+        }
+    }
 }
