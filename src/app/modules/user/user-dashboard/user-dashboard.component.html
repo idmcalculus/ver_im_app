@@ -190,7 +190,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div *ngIf="usersInvestments.length > 0" class="container">
+                                        <div *ngIf="usersInvestments?.length > 0" class="container">
                                             <div class="row">
                                                 <div class="col-sm-12 text-center mb-4">
                                                     <a id="carousel-controls" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
@@ -281,7 +281,12 @@
 
 
                                         <div class="dt-responsive table-responsive">
-                                            <div *ngFor="let req of userActivity.slice(0, 5),let x=index">
+                                            <div *ngIf='userActivity?.length === 0'>
+                                                <div class="activities d-flex flex-row">
+                                                    <p style="color: red; font-size: large;">No recent activity</p>
+                                                </div>
+                                            </div>
+                                            <div *ngFor="let req of userActivity?.slice(0, 5),let x=index">
                                                 <div class="activities d-flex flex-row">
                                                         <div class="image pr-2">
                                                         <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
