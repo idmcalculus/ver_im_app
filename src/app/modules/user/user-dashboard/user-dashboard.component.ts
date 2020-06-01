@@ -24,7 +24,7 @@ export class UserDashboardComponent implements OnInit {
   dashBoardData: any = {number_of_pools: 0, investment_return: [], investment_report: []};
   dashboardInvestment: any = [];
   userActivity: any = [];
-  usersInvestments: any;
+  usersInvestments: any = [];
   usersInvestment: any = [];
   pools: any = [];
   poolGroup: any = [];
@@ -129,8 +129,6 @@ export class UserDashboardComponent implements OnInit {
           this.groupInvestments.push(foundInvestment);
         });
       }
-      this.isLoading = false;
-
     });
 
   }
@@ -148,7 +146,7 @@ export class UserDashboardComponent implements OnInit {
     }
 
   showDetails() {
-    if ( this.usersInvestments) {
+    if (this.usersInvestments.length > 0) {
       for(let i=0;i<=this.usersInvestments.length;i++){        
         this.getUserDashBoard(this.usersInvestments[i]);
       }
