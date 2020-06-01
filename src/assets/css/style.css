@@ -11171,10 +11171,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
         margin-left: 0
     }
 
-    .header-navbar .navbar-wrapper .navbar-logo {
-        width: 100%
-    }
-
     .header-navbar .navbar-wrapper .navbar-logo a img {
         display: block
     }

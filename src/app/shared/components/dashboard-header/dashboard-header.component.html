@@ -5,8 +5,24 @@
                 <i class="feather icon-menu icon-align-justify"></i>
             </a>
             <a href="" class="mobile-menu-image">
-                <img class="img-fluid" src="../assets/images/logblack-edit.png" style="width: 125px !important;" alt="Theme-Logo"/>
+                <img class="img-fluid" id="miniLogo" src="../assets/images/logblack-edit.png" style="width: 125px !important;" alt="Theme-Logo"/>
             </a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <!-- <ul class="nav-left createPlan">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success">
+                        <i class="feather icon-plus"></i> Create Plan
+                    </a>
+                </li>
+            </ul> -->
+            <!-- <ul [hidden]="isUser" class="nav-left createPlan">
+                <li>
+                    <a (click) = "setPlanOperation(null)" href="#" data-toggle="modal" data-target="#managePlanModal" class="btn btn-success">
+                        <i class="feather icon-plus"></i> Create Plan
+                    </a>
+                </li>
+            </ul> -->
         </div>
         <div class="navbar-container container-fluid">
             <!-- <ul class="nav-left createPlan">
@@ -83,7 +99,7 @@
                             <a href="https://www.versa.ng">
                                 <img class="img-fluid" src="../assets/images/soccer.png"  style="width: 18px !important;" alt="Theme-Logo"/>
                             </a>
-                            <a routerLink="./chat" routerLinkActive="active">
+                            <a routerLink="./chat" routerLinkActive="active" class="chatBell">
                                     <i [hidden]='!isUser' class="fas fa-comments" style="font-size: 1.1rem; vertical-align: middle;"></i>
                                     <img [hidden]='isUser' class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
                                     <span [hidden]='isUser' class="badge bg-c-green"> </span>
