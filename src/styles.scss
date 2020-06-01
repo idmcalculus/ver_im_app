@@ -1576,11 +1576,10 @@ mat-dialog-container#modal-component {
                 }
             }
             h3 {
-                text-align: center;
                 &:after {
                     width: 30% !important;
                     content: '';
-                    margin-left: 34%;
+                    
                 }
             }
 

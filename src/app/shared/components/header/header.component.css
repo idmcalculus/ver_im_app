@@ -1,0 +1,5 @@
+.bg-img{
+   background: url("/src/assets/image/banner_bg.png");
+   background-attachment: fixed;
+  background-position: top right;
+}
