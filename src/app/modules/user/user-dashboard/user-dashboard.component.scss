@@ -6,6 +6,14 @@ body{
     font-family: 'roboto';
 }
 
+.dash-header2{
+    margin: 1.1rem 0rem;
+    color: #43425d;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+}
+
 .card-details{
     &.row{
         display: flex;
@@ -510,6 +518,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media only screen and (max-width: 600px) {
+    .dash-header2{
+        margin: 1.1rem 0rem;
+        color: #43425d;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        display: none;
+    }
+
     .row {
         flex-flow: column;
         min-width: 100%;

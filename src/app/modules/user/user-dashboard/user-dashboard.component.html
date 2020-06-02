@@ -11,13 +11,8 @@
                                 <option *ngFor="let investments of usersInvestments;let i = index" [ngValue]="i">{{investments.title}}</option>
                             </select>
                         </div> -->
-                        <div style="margin: 1.1rem 0rem;
-                                    color: #43425d;
-                                    font-size: 1.3rem;
-                                    font-weight: 700;
-                                    letter-spacing: 0.1rem;
-                                    ">
-                                        Dashboard
+                        <div class="dash-header2">
+                            Dashboard
                         </div>
                     </div>
                     <div *ngIf="isLoading" class="lds-default">
