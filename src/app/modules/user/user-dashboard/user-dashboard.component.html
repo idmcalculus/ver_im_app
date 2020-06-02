@@ -46,7 +46,7 @@
                                                         <p class="mb-0 px-4" style="font-weight: 700;font-size: medium;">{{investments?.title}}</p>
                                                     </div>
                                                     <div class="col-5 mt-2 my-3 box-control mr-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
                                                             </div>
@@ -57,7 +57,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-5 mt-2 my-3 box-control ml-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                             </div>
@@ -69,7 +69,7 @@
                                                     </div>
 
                                                     <div class="col-5 my-3 box-control mr-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
                                                             </div>
@@ -80,7 +80,7 @@
                                                     </div>
 
                                                     <div class="col-5 my-3 box-control ml-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
                                                             </div>
@@ -90,7 +90,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-5 my-3 box-control mr-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
                                                             </div>
@@ -99,7 +99,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-5 my-3 box-control ml-4">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
                                                             </div>
@@ -119,7 +119,7 @@
                                                         <p class="mb-0 px-4" style="font-weight: 700;font-size: medium;"></p>
                                                     </div>
                                                     <div class="col-5 mt-2 my-3 box-control mr-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
                                                             </div>
@@ -130,7 +130,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-5 mt-2 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
                                                             </div>
@@ -142,7 +142,7 @@
                                                     </div>
 
                                                     <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
                                                             </div>
@@ -153,7 +153,7 @@
                                                     </div>
 
                                                     <div class="col-5 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
                                                             </div>
@@ -163,7 +163,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
                                                             </div>
@@ -172,7 +172,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-5 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
+                                                        <div class="row d-flex flex-row">
                                                             <div class="col-3">
                                                                 <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
                                                             </div>
@@ -348,8 +348,8 @@
                                                         *ngFor="let pool of filteredYearData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'first'}; let i = index;">
                                                             <p class=" special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-0">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</p>
+                                                            <p class="normal col-3 px-0">Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-0">Monthly return: ₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</p>
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='first'></pagination-controls>
@@ -361,8 +361,8 @@
                                                         *ngFor="let pool of filteredMonthData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'second'}; let i = index;">
                                                             <p class="special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
+                                                            <p class="normal col-3 px-1">Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-0">Monthly return: ₦{{pool?.expected_return_amount}}</p>
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
@@ -374,8 +374,8 @@
                                                         *ngFor="let pool of filteredDayData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'third'}; let i = index;">
                                                             <p class="special col-3 px-0">{{pool?.title}}</p>
                                                             <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
+                                                            <p class="normal col-3 px-1">Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
+                                                            <p class="normal col-3 px-0">Monthly return: ₦{{pool?.expected_return_amount}}</p>
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='third'></pagination-controls>
