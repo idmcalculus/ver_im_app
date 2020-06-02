@@ -281,7 +281,7 @@
                                                     <p style="color: red; font-size: large;">No recent activity</p>
                                                 </div>
                                             </div>
-                                            <div *ngFor="let req of userActivity?.slice(0, 5),let x=index">
+                                            <div *ngFor="let req of userActivity?.slice(0, 5),let x=index" class="items-center">
                                                 <div class="activities d-flex flex-row">
                                                         <div class="image pr-2">
                                                         <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
