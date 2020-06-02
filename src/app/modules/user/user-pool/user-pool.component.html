@@ -64,7 +64,9 @@
                                                 </ng-template>
                                                 <td class="">{{ pool?.is_investment_started === 1 ? (pool?.investment_started_date.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
                                                 <td class="">
-                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                    <a [ngClass]="{ 'disabled': pool?.is_investment_started === 0 }" routerLink="./{{pool?.id}}">
+                                                        <img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png">
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
