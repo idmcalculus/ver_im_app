@@ -64,15 +64,14 @@
                                                 </ng-template>
                                                 <td class="">{{ pool?.is_investment_started === 1 ? (pool?.investment_started_date.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
                                                 <td class="">
-                                                    <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                    <a [ngClass]="{ 'disabled': pool?.is_investment_started === 0 }" routerLink="./{{pool?.id}}">
+                                                        <img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png">
+                                                    </a>
                                                 </td>
-                                            </tr>
-                                            <tr *ngIf="pools?.length === 0">
-                                                <td class="displayStatus">"You Currently Have No Investment Record."</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
-                                            <tr>
+                                            <tr *ngIf="pools?.length > 0">
                                               <td [colSpan]="6" class="pb-0 mr-5">
                                                 <pagination-controls
                                                   (pageChange)="p2=$event" id='second'>
@@ -93,6 +92,7 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <div style="text-align: center; font-size: large; font-weight: bold; color: red;" *ngIf="pools?.length === 0">You Currently Have No Investment Record.</div>
                                 </div>
                             </div>
                         </div>
