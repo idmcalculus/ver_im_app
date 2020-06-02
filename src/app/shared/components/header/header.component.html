@@ -33,7 +33,7 @@
           <div class="col-md-3  mx-auto">
 
           </div>
-          <div class="col-md-7 bg-img ml-auto hide-sm" style="padding: 0;">
+          <div *ngIf="show == true" class="col-md-7 ml-auto hide-sm" style="padding: 0;">
             <ul class="ml-auto">
               <li>
                 <a routerLink="/investments" routerLinkActive="active">Invest</a>
