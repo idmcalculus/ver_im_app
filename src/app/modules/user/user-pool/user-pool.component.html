@@ -67,37 +67,27 @@
                                                     <a routerLink="./{{pool?.id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
                                                 </td>
                                             </tr>
-                                            <tr *ngIf="pools?.length === 0">
-                                                <td class="displayStatus">"You Currently Have No Investment Record."</td>
-                                            </tr>
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                              <td [colSpan]="6" class="pb-0 mr-5">
-                                                <pagination-controls
-                                                  (pageChange)="p2=$event" id='second'>
-                                                </pagination-controls>
-                                              </td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td></td>
-                                              <td [colSpan]="6" class="pb-0">
-                                                <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
-                                                    <option value="5"> 5 rows </option>
-                                                    <option value="10"> 10 rows </option>
-                                                    <option value="20"> 20 rows </option>
-                                                    <option value="0"> view all </option>
-                                                </select>
-                                              </td>
-                                            </tr>
-                                        </tfoot>
                                     </table>
+                                    <div *ngIf="pools?.length === 0">
+                                        <p class="displayStatus">"You Currently Have No Investment Record."</p>
+                                    </div>
+                                    <div  class="col-12  d-flex flex-row">
+                                        <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
+                                        <span class="col-md-1 col-xs-1 px-0">
+                                            <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
+                                                <option value="5"> 5 rows </option>
+                                                <option value="10"> 10 rows </option>
+                                                <option value="20"> 20 rows </option>
+                                                <option value="0"> view all </option>
+                                            </select>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
             </div>
 
