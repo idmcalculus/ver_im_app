@@ -708,4 +708,9 @@ h1, h2, h3, h4, h5, h6 {
             }
         }
     }
+
+    .card.recentActivity, .card.bestSelling {
+        min-height: 580px;
+        margin-top: 1rem;
+    }
 }
