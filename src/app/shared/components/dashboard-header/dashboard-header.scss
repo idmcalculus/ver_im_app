@@ -88,19 +88,14 @@
 
 
 @media only screen and (max-width: 575px) {
-.img-radius {
-    display: none;
-}
+    .img-radius, .vl {
+        display: none;
+    }
+    .displayChatbox {
+        display: none;
+    }
 
-.chatBell {
-    display: none;
-}
-
-.displayChatbox {
-    display: none;
-}
-
-.navbar-logo .bgWhite .logoBrand {
-    padding: 0;
-}
+    .header-navbar[_ngcontent-c3] .navbar-wrapper[_ngcontent-c3] .navbar-logo[logo-theme=theme6][_ngcontent-c3] {
+        max-width: 50%;
+    }
 }
