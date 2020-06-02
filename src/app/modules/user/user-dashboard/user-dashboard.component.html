@@ -344,12 +344,16 @@
 
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-day" role="tabpanel" aria-labelledby="nav-day-tab">
-                                                        <div class="row1 d-flex flex-row p-2 mt-3" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
+                                                        <div class="row1 d-flex flex-row p-2 mt-3 bestSellingContainer" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
                                                         *ngFor="let pool of filteredYearData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'first'}; let i = index;">
-                                                            <p class=" special col-3 px-0">{{pool?.title}}</p>
-                                                            <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-0">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</p>
+                                                            <div class="BsHeader" style="min-width:25.3%">
+                                                                <p class=" special col-3 px-0">{{pool?.title}}</p>
+                                                            </div>
+                                                            <div style="display:flex;min-width:75.3%">
+                                                                <p class="normal col-3 px-0" style="text-align:start">₦{{pool?.investment_amount}} per slot</p>
+                                                                <p class="normal col-3 px-0">- Return : {{pool?.estimated_percentage_profit}}%<span> profit (Estimated)</span></p>
+                                                                <p class="normal col-3 px-0">- Monthly return: <span>₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</span></p>
+                                                            </div>                                                      
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='first'></pagination-controls>
@@ -357,12 +361,16 @@
                                                 </div>
 
                                                 <div class="tab-pane fade" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
-                                                        <div class="row1 d-flex flex-row p-2 mt-3" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
+                                                        <div class="row1 d-flex flex-row p-2 mt-3 bestSellingContainer" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
                                                         *ngFor="let pool of filteredMonthData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'second'}; let i = index;">
-                                                            <p class="special col-3 px-0">{{pool?.title}}</p>
-                                                            <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
+                                                            <div class="BsHeader" style="min-width:25.3%">
+                                                                <p class=" special col-3 px-0">{{pool?.title}}</p>
+                                                            </div>
+                                                            <div style="display:flex;min-width:75.3%">
+                                                                <p class="normal col-3 px-0" style="text-align:start">₦{{pool?.investment_amount}} per slot</p>
+                                                                <p class="normal col-3 px-0">- Return : {{pool?.estimated_percentage_profit}}%<span> profit (Estimated)</span></p>
+                                                                <p class="normal col-3 px-0">- Monthly return: <span>₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</span></p>
+                                                            </div>      
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
@@ -370,12 +378,16 @@
                                                 </div>
 
                                                 <div class="tab-pane fade" id="nav-year" role="tabpanel" aria-labelledby="nav-year-tab">
-                                                        <div class="row1 d-flex flex-row p-2 mt-3" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
+                                                        <div class="row1 d-flex flex-row p-2 mt-3 bestSellingContainer" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
                                                         *ngFor="let pool of filteredDayData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'third'}; let i = index;">
-                                                            <p class="special col-3 px-0">{{pool?.title}}</p>
-                                                            <p class="normal col-3 px-0">₦{{pool?.investment_amount}} per slot</p>
-                                                            <p class="normal col-3 px-1">- Return:{{pool?.estimated_percentage_profit}}% profit (Estimated)</p>
-                                                            <p class="normal col-3 px-0">- Monthly return: ₦{{pool?.expected_return_amount}}</p>
+                                                              <div class="BsHeader" style="min-width:25.3%">
+                                                                <p class=" special col-3 px-0">{{pool?.title}}</p>
+                                                            </div>
+                                                            <div style="display:flex;min-width:75.3%">
+                                                                <p class="normal col-3 px-0" style="text-align:start">₦{{pool?.investment_amount}} per slot</p>
+                                                                <p class="normal col-3 px-0">- Return : {{pool?.estimated_percentage_profit}}%<span> profit (Estimated)</span></p>
+                                                                <p class="normal col-3 px-0">- Monthly return: <span>₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</span></p>
+                                                            </div>      
                                                         </div>
                                                         <div  class="col-12 mt-3 d-flex flex-row">
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='third'></pagination-controls>
