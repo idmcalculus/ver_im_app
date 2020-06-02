@@ -359,12 +359,15 @@ body{
     font-weight: 700;
     color: #4F5FBE;
     font-size: 12px;
+    min-width: 33.33%;
 }
 
 .row1 .special {
     font-weight: 900;
     color: #4F5FBE;
     font-size: 13px;
+    min-width: 100%;
+    border-bottom: none;
 }
 
 .divider2{
@@ -403,6 +406,10 @@ body{
         border-radius: 20px;
         height: 5px;
     }
+}
+
+.BsHeader{
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .pcoded-submenu {
@@ -517,7 +524,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: roboto, sans-serif
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width:1100px) {
     .card.recentActivity[_ngcontent-c5] .table-responsive[_ngcontent-c5], .card.bestSelling[_ngcontent-c5] .table-responsive[_ngcontent-c5]{
         padding: 0.5rem 1rem;
     }
@@ -531,27 +538,54 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .row {
-        flex-flow: column;
-        min-width: 100%;
-        margin-right: 10px;
+
+        .dashboard-table{
+            margin-left: 0rem !important;
+        }
 
         .card-details.row{
-            flex-flow: column;
             max-width: 100%;
             margin: 0;
+            display: block;
+            padding: 0px !important;
+            justify-content: center;
+            margin: 0px 5px !important;
 
             .latest-update-card.col-7 {
                 flex-flow: column;
                 max-width: 100%;
 
                 .box-control {
-                    margin-left: 1.5rem;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
                     max-width: 100%;
+                    width: 100%;
+                    min-width: 80%;
+                    padding-left: 2% !important;
                     padding-right: 1rem;
                     border: none;
+                    box-shadow: 2px 2px 2px 2px rgba(73, 80, 87, 0.25);
 
-                    .row .col-8 {
-                        min-width: 100%;
+                    .row 
+                    {
+                        display: flex !important;
+
+                        .col-3{
+                            flex: 1 0 25%;  
+                            img{
+                                height: 50px;
+                                width: 50px;
+                                margin: 0px 10px;
+                            }
+                        }
+
+                        .col-6{
+                            padding-top: 4px;
+                        }
+
+                        &.col-8 {
+                            min-width: 100%;
+                        }
                     }
                 }
 
@@ -591,10 +625,15 @@ h1, h2, h3, h4, h5, h6 {
 
     .card.recentActivity {
         height: 500px;
+        width: 96%;
+        margin: 10px 5px;
     }
 
     .card.bestSelling {
         min-height: 800px;
+        width: 96%;
+        margin: 0 auto;
+        margin-top:5%;
     }
 
     .row.dashboard-table {
@@ -603,6 +642,28 @@ h1, h2, h3, h4, h5, h6 {
         .card-details.col-md-4 {
             padding: 0;
         }
+    }
+
+    .bestSellingContainer{
+        display: block !important;
+        .normal{
+            display: grid;
+        }
+        p{
+            text-align: center;
+            padding-left: 0rem !important;
+        }
+
+        .BsHeader{
+            border-bottom: none;
+        }
+
+        .special{
+            text-align: inherit;
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+        }
+
     }
 
 
