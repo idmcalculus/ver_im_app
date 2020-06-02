@@ -518,6 +518,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media only screen and (max-width: 600px) {
+    .card.recentActivity[_ngcontent-c5] .table-responsive[_ngcontent-c5], .card.bestSelling[_ngcontent-c5] .table-responsive[_ngcontent-c5]{
+        padding: 0.5rem 1rem;
+    }
     .dash-header2{
         margin: 1.1rem 0rem;
         color: #43425d;
@@ -531,7 +534,7 @@ h1, h2, h3, h4, h5, h6 {
         flex-flow: column;
         min-width: 100%;
         margin-right: 10px;
-    
+
         .card-details.row{
             flex-flow: column;
             max-width: 100%;
@@ -601,6 +604,8 @@ h1, h2, h3, h4, h5, h6 {
             padding: 0;
         }
     }
+
+
 }
 
 @media only screen and (min-device-width : 600px) and (max-device-width : 1024px) {

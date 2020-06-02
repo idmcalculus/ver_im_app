@@ -5,7 +5,7 @@
             <div class="page-wrapper">
                 <div class="list-vacancy page-body">
                     <div class="clearfix mb-3">
-                        <div class="float-left pt-3">
+                        <div class="float-left pt-lg-3 pt-md-3 pt-sm-5">
                             <a class="h4 pr-4">Settings</a>
                             <a class="pl-4">Home/Settings</a>
                         </div>
@@ -54,7 +54,7 @@
                                             <div class="create-profile-form">
                                                 <div class="form-group">
                                                     <div class="row">
-                                                        <div class="col-2 col-6 col-md-2">
+                                                        <div class="col-2 col-6 col-md-2 col-sm-12">
                                                             <input style="display:none;" type="file" id="upload-image" accept="image/*" (change)="changeListener($event)">
                                                             <div class="profile-image">
                                                                 <img  *ngIf="user.profile_picture && user.profile_picture!='' " onclick="document.getElementById('upload-image').click()" src="{{user.profile_picture}}"
@@ -64,7 +64,7 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="col-2 col-6 col-md-4">
+                                                        <div class="col-2 col-6 col-md-4 col-sm-12">
                                                             <div class="basic">
                                                                 <h3>{{user?.first_name}}    {{user?.last_name}}</h3>
                                                                 <label>Edit picture
