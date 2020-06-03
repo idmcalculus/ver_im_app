@@ -10,6 +10,57 @@
 
 }
 
+.navigation-values{
+  background-color: #8390DB;
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  padding: 10px 25px 10px 15px;
+  /* box-shadow: 0.1px 1.5px #050333; */
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0,0.45);
+
+  span{
+     padding-right: 6%;
+     padding-left: 1%;
+  }
+}
+
+.row1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-padding{
+  padding-top: 170px !important;
+}
+
+@media screen and (max-width: 992px) {
+  .invest-header {
+     height: auto;
+     padding: 2em 24px;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .invest-header {
+     height: auto;
+     padding: 2em 24px;
+  }
+  
+  .header-padding{
+     padding-top: 50px !important;
+  }
+}
+
 .inner-investment{
   :nth-child(3){
     justify-content: flex-start;

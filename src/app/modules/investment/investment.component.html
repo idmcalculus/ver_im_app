@@ -1,12 +1,10 @@
 <section class="invest-header">
-    <div class="row">
+    <div class="row1">
         <div class="col-md-3">
-            <div class="invest-header-thumb">
-                <img src="../../../../assets/images/volkswagen_volks.png">
-            </div>
+            <img class="img-fluid" src="../../../../assets/images/volkswagen_volks.png">
         </div>
         <div class="col-md-9">
-            <div class="invest-header-text">
+            <div class="invest-header-text header-padding">
                 <div class="navigation-values">Homepage<span> ></span>Invest</div>
             </div>
         </div>
@@ -24,7 +22,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="column2">
+                <div class="column2 pb-lg-0 pb-4">
                     <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
                     <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
                 </div>
