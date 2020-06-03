@@ -147,6 +147,10 @@ span {
     max-width: 940px;
 }
 
+.nav-pad {
+    margin-top:150px;
+}
+
 @media (min-width: 1200px){
     .container {
         max-width: 1440px;
