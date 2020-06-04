@@ -160,33 +160,41 @@
 			font-weight: 600;
 		}
 }
-@media (min-width: 1200px){
-    .container {
-        max-width: 1240px;
-    }
-}
-
-.text-header {
-    color: #43425d;
-    font-size: 25px;
-}
 
 .text-text {
     color: #919191;
+    font-family: roboto;
+    font-weight: 400;
 }
 
 .text-footer {
     color: #43425d;
-    font-size: 25px;
+    font-size: 20px;
+    font-family: roboto;
+    font-weight: bold;
+}
+
+.text-header {
+    color: #43425d;
+    font-size: 23px;
+    font-family: roboto;
+    font-weight: bold;
+}
+
+.textGuard{
+    color: #43425d;
+    font-size: 27px;
+    font-family: roboto;
+    font-weight: bold;
 }
 
 .input-control {
-	height: 300px;
+	height: 310px;
     color: #495057;
     -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
     -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
     box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    background-color: #fff;
+    background-color: #f5f2f5;
     background-clip: padding-box;
     border: 0px solid ;
     border-radius: 4px;
@@ -207,6 +215,12 @@
     font-size: 15px;
     padding: 10px 19px;
     cursor: pointer;
+    font-family: roboto;
+    font-weight: 550;
+    -webkit-box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
+    -moz-box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
+    box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
+
 }
 
 .btn-color {
@@ -219,15 +233,18 @@
 
 .header {
     color: white;
-    font-size: 50px;
-    padding-top: 100px;
+    font-size: 45px;
+    padding-top: 150px;
     text-align: center;
+    font-family: roboto;
+    font-weight: bold;
 }
 
 .text-sub {
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
+    font-weight: 600;
 }
 
 .inner-faq {
@@ -266,6 +283,23 @@
 	url("../../../assets/images/partner-row1-2.png") no-repeat left top,
 	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+}
+
+@media (max-width: 760px){
+.standard-mini{
+    margin-left: 0.05rem;
+    margin-right: 0.05rem;
+}
+.standard{
+    margin-left: 0.125rem;
+    margin-right: 0.125rem;
+}
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1240px;
+    }
 }
 
 @media (max-width: 1000px) {
