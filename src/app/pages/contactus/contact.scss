@@ -226,6 +226,9 @@
 .btn-color {
     background-color: #4f5fbe;
 }
+.standard-mini .submitBtn {
+    justify-self:flex-end;
+}
 
 .form-control1 {
 	height: 100px;
@@ -293,6 +296,9 @@
 .standard{
     margin-left: 0.125rem;
     margin-right: 0.125rem;
+}
+.container .special {
+    padding-top: 40px;
 }
 }
 
