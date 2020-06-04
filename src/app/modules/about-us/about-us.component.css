@@ -126,7 +126,7 @@ p {
     }
 
     .row {
-        max-height: 300px;
+        max-height: auto;
         background-color: #f9f9fa;
     }
     .row1 {
