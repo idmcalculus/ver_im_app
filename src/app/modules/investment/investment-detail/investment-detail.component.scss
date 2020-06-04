@@ -397,6 +397,10 @@
       height: auto;
       padding: 2em 24px;
    }
+
+   .hidden {
+      display: none;
+    }
  }
  
  /* On screens that are 600px or less, set the background color to olive */
@@ -405,8 +409,7 @@
       height: auto;
       padding: 2em 24px;
    }
-   
    .header-padding{
-      padding-top: 50px !important;
+      padding-top: 40px !important;
    }
  }
