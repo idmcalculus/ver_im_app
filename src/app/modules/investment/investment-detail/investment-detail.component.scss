@@ -401,6 +401,12 @@
    .hidden {
       display: none;
     }
+
+   .header-center {
+      -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+      justify-content: center !important;
+   }
  }
  
  /* On screens that are 600px or less, set the background color to olive */
@@ -410,6 +416,6 @@
       padding: 2em 24px;
    }
    .header-padding{
-      padding-top: 40px !important;
+      padding-top: 30px !important;
    }
  }
