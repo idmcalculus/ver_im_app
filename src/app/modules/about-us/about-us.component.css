@@ -143,8 +143,26 @@ p {
     }
 }
 @media (max-width: 600px) {
+    .text-header {
+        padding-top: 100px !important;
+    }
     .input-control {
        margin-left: 0.5rem;
        margin-right: 0.5rem;
+       justify-content: center;
+    }
+    .input-control img {
+        margin-left: 0.125rem;
+        margin-right: 0.125rem;
+        width: 100%;
+     }
+     .input-control p{
+         font-size: 15px;
+     }
+     .input-control .header{
+        text-align: center;
+    }
+    .about-header {
+        height: 250px !important;
     }
 }
