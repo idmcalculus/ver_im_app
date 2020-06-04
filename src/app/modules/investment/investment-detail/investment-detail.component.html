@@ -1,12 +1,10 @@
 <section class="invest-header">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="invest-header-thumb">
-                <img src="../../../../assets/images/transportation.jpg">
-            </div>
+    <div class="row1">
+        <div class="col-md-3 hidden">
+            <img class="img-fluid" src="../../../../assets/images/transportation.jpg">
         </div>
-        <div class="col-md-9">
-            <div class="invest-header-text">
+        <div class="col-md-9 header-center">
+            <div class="invest-header-text header-padding">
                 <div class="navigation-values">Homepage<span> ></span>Invest</div>
             </div>
         </div>
@@ -83,25 +81,23 @@
         <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType">
             <h3>Related Investments</h3>
             <div class="row">
-                <div *ngFor="let x of allinv" class="col-md-4">
-                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                        <div class="card">
-                            <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
-                                alt="Card image cap">
-                            <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
-                                alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title"><a style="font-size: 20px;"
-                                        href="investment-details.html">{{x.title}}</a></h5>
-                                <div class="card-text" style="text-align: center">
-                                    <h3 style="text-align: center">
-                                        {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                    <span *ngIf="x?.estimated_percentage_profit"
-                                        class="span-profit">{{investment?.estimated_percentage_profit}}%
-                                        Profit (Estimated)</span>
-                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                    <p>{{x.duration}} Month(s)</p>
-                                </div>
+                <div *ngFor="let x of allinv" class="col-sm-4">
+                    <a class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                        <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                            alt="Card image cap">
+                        <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><a style="font-size: 20px;"
+                                    href="investment-details.html">{{x.title}}</a></h5>
+                            <div class="card-text" style="text-align: center">
+                                <h3 style="text-align: center">
+                                    {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                <span *ngIf="x?.estimated_percentage_profit"
+                                    class="span-profit">{{investment?.estimated_percentage_profit}}%
+                                    Profit (Estimated)</span>
+                                <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                                <p>{{x.duration}} Month(s)</p>
                             </div>
                         </div>
                     </a>
