@@ -82,7 +82,27 @@
             <h3>Related Investments</h3>
             <div class="row">
                 <div *ngFor="let x of allinv" class="col-sm-4">
-                    <a class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                    <a  *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
+                        <a  *ngIf="x.status===-1" [ngClass]="(x.status===-1)?'inactive':''" class="card" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
+                            <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                                alt="Card image cap">
+                            <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="font-size: 20px;"
+                                        href="investment-details.html">{{x.title}}</a></h5>
+                                <div class="card-text" style="text-align: center">
+                                    <h3 style="text-align: center">
+                                        {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                    <span *ngIf="x?.estimated_percentage_profit"
+                                        class="span-profit">{{investment?.estimated_percentage_profit}}%
+                                        Profit (Estimated)</span>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                                    <p>{{x.duration}} Month(s)</p>
+                                </div>
+                            </div>
+                        </a>
+                    <a *ngIf="x.status!==-1" class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
                         <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
                             alt="Card image cap">
                         <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
