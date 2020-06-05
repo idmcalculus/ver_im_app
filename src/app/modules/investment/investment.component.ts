@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
+import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import { FormControl } from '@angular/forms';
 
 
 let category = '0';
@@ -10,7 +12,11 @@ let allInvestments = [];
 @Component({
     selector: 'app-investment',
     templateUrl: './investment.component.html',
-    styleUrls: ['./investment.component.scss']
+    styleUrls: ['./investment.component.scss'],
+    providers: [
+        { provide: MatFormFieldControl, useExisting: InvestmentComponent },
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'} }
+    ]
 })
 
 
@@ -23,6 +29,7 @@ export class InvestmentComponent implements OnInit {
     selectedCategory: string = '0';
 
     transaction: Transaction;
+    Category = new FormControl();
 
     constructor(
         private routes: Router,
@@ -40,7 +47,6 @@ export class InvestmentComponent implements OnInit {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
             var investmentArray = [];
-            
             if (investments) {
                 investmentArray = investments.success.Data;
                 var cnt = 0;
@@ -93,20 +99,18 @@ export class InvestmentComponent implements OnInit {
         });
     }
 
-    filterInvestmentsById(categoryId) {
-        if (categoryId === 0) {
+    filterInvestmentsById(category) {
+        if (category === 0) {
             this.investments = allInvestments;
         } else {
-            const sel = String(categoryId);
-            const se = allInvestments.filter(a1 => {
-                return a1.category_id === parseInt(sel,10);
+            this.investments = allInvestments.filter(a1 => {
+                return a1.category_id === category.id;
             });
-            this.investments = se;
         }
     }
 
-    calculateEstimate(returns,inv){
-        const estimate = (((returns*12) - inv)/inv) * 100;
+    calculateEstimate(returns, inv) {
+        const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
 

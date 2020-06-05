@@ -591,6 +591,15 @@ mat-dialog-container#modal-component {
         height: 85px;
     }
 }
+
+@media (max-width: 600px) {
+    .section-container .investment-plans .inner-investment .col-sm-12.col-md-6.col-lg-3.pb-2 {
+        min-width: 33.333333333333333333%;
+        margin-bottom: 1rem;
+        margin: 1rem;
+    }
+}
+
 .header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img {
     object-fit: cover;
     object-position: top center;
