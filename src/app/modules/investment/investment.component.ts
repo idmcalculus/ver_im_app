@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
-import { Investment } from 'src/app/shared/models/Investment';
 import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
@@ -22,12 +21,13 @@ let allInvestments = [];
 
 
 export class InvestmentComponent implements OnInit {
-    allInvestments: Investment [];
-    investmentArray: Investment [];
-    isLoading = true;
+
+
+    isLoading: boolean = true;
     investments: any = [];
     categories: any = [];
-    selectedCategory = '0';
+    selectedCategory: string = '0';
+
     transaction: Transaction;
     Category = new FormControl();
 
@@ -46,11 +46,10 @@ export class InvestmentComponent implements OnInit {
     getInvestments() {
 
         this.investmentService.getInvestments(true).subscribe(investments => {
-            let investmentArray = [];
-
+            var investmentArray = [];
             if (investments) {
                 investmentArray = investments.success.Data;
-                let cnt = 0;
+                var cnt = 0;
                 investmentArray.forEach(element => {
                     if (element.is_investment_started === 0 && element.is_investment_ended === 0) {
                         this.investments[cnt] = element;
@@ -60,9 +59,9 @@ export class InvestmentComponent implements OnInit {
             }
             allInvestments = this.investments;
             this.isLoading = false;
-            let categoryName = this.activatedRoute.snapshot.params.category;
+            var categoryName = this.activatedRoute.snapshot.params['category'];
             if (categoryName) {
-                let category = this.categories.filter(a1 => {
+                var category = this.categories.filter(a1 => {
                     return a1.category_name.trim() == categoryName.trim();
                 });
                 if (category && category.length > 0) {
@@ -70,15 +69,14 @@ export class InvestmentComponent implements OnInit {
                     this.filterInvestments();
                 }
             }
-       });
-        }
-
+        });
+    }
 
 
     getCategories() {
         this.investmentService.getCategories().subscribe(categories => {
             if (categories && categories.success) {
-                this.categories = categories.success.Data;
+                this.categories = categories.success.Data;                
             }
         });
     }
@@ -115,5 +113,6 @@ export class InvestmentComponent implements OnInit {
         const estimate = (((returns * 12) - inv) / inv) * 100;
         return Math.ceil(estimate);
     }
+
 
 }
