@@ -70,20 +70,16 @@
 }
 
 @media (max-width: 600px) {
-    .text-right {
-        text-align: center!important;
-    }
-
     .footer {
-
         padding: 0 1rem;
-    
+
         .inner-footer {
             h3 {
                 text-align: center;
                 font-size: 1em;
                 font-weight: bold;
                 position: relative;
+                margin-bottom: 0;
             }
             h6 {
                 text-align: center;
@@ -96,6 +92,31 @@
                 font-size: 1em;
                 font-weight: bold;
                 position: relative;
+            }
+            .img-fluid {
+                height: 150px;
+                width: 200px;
+            }
+            .versareg {
+                font-size: 10px;
+                text-align: justify;
+            }
+            .bottom a, .bottom span {
+                font-size: 8px;
+            }
+        }
+        .text-right {
+            text-align: center!important;
+        }
+    
+        .col-md-4.col-sm-6 {
+            ul{
+                margin-top: 0;
+                li{
+                    justify-content: center;
+                    display: flex;
+                    text-align: center;
+                }
             }
         }
     }
