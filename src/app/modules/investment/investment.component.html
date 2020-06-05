@@ -1,28 +1,13 @@
-<section class="invest-header">
-    <div class="row1">
-        <div class="col-md-3 hidden">
-            <img class="img-fluid" src="../../../../assets/images/volkswagen_volks.png">
-        </div>
-        <div class="col-md-9 header-center">
-            <div class="invest-header-text header-padding">
-                <div class="navigation-values">Homepage<span> ></span>Invest</div>
-            </div>
-        </div>
-    </div>
-    <div class="row cover">
+<section class="invest-header mt-0">
+    <div class="row justify-content-center">
+        <div class="header font-weight-bold">INVESTMENTS</div>
     </div>
 </section>
-<section class="section-container">
-    <section class="investment-plans">
+<section class="section-container pb-0">
+    <section class="investment-plans pb-0">
         <div class="inner-investment">
-            <div class="row">
-                <div class="column">
-                    <h3 class="title-head-inv">INVESTMENTS</h3>
-                    <hr style="margin-top: 0.5px; width: 80%;"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column2 pb-lg-0 pb-4">
+            <div class="row py-5">
+                <div class="column2">
                     <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
                     <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
                 </div>
@@ -62,43 +47,26 @@
             </div>
 
             <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
-                <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                    <a *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
-                    <div *ngIf="x.status===-1" class="superb-container m-b20 " [ngClass]="(x.status===-1)?'inactive':''">
-                        <div class="img-holder">
-                            <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                            <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
-                        </div>
-                        <div class="content-holder">
-                            <h2><a href="investment-details.html">{{x.title}}</a></h2>
-                            <h3 style="filter: blur(15px);">{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                            <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
-                                class="span-profit">{{calculateEstimate(x?.expected_return_amount,x?.investment_amount)}}% Profit
-                                (Estimated)</span>
-                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                            <p>{{x.duration}} Month(s)</p>
-                        </div>
-                    </div>
-                    <a *ngIf="x.status!==-1" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
-                        <div class="superb-container m-b20 " [ngClass]="(x.status===-1)?'inactive':''">
+                <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-4 p-4">
+                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                        <div class="superb-container m-b20">
                             <div class="img-holder">
                                 <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
                                 <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <h2><a href="investment-details.html">{{x.title}}</a></h2>
+                                <a class="text-header" href="investment-details.html">{{x.title}}</a>
                                 <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                <span *ngIf="x?.estimated_percentage_profit"
-                                    class="span-profit">{{calculateEstimate(x?.expected_return_amount,x?.investment_amount)}}% Profit
-                                    (Estimated)</span>
+                                <h4 class="text" *ngIf="x?.estimated_percentage_profit" >{{x?.estimated_percentage_profit}}% Profit
+                                    (Estimated)</h4>
                                 <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                <p>{{x.duration}} Month(s)</p>
+                                <p class="text-footer font-weight-bold">{{x.duration}} Month(s)</p>
                             </div>
                         </div>
                     </a>
                 </div>
 
-                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
                     <a class="sold_out" href="https://abc.com/">Sold out</a>
                     <div class="superb-container m-b20" style="background-color: #33333324;">
                         <div class="img-holder">
@@ -114,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
                     <a class="sold_out" href="https://abc.com/">Sold out</a>
                     <div class="superb-container m-b20" style="background-color: #33333324;">
                         <div class="img-holder">
@@ -130,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-3 pb-2" >
+                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
                     <a class="sold_out" href="https://abc.com/">Sold out</a>
                     <div class="superb-container m-b20" style="background-color: #33333324;">
                         <div class="img-holder">
