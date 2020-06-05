@@ -182,3 +182,12 @@ p.showThis {
   min-height: 150px;
 }
 
+element.style {
+  height: 1270px;
+}
+
+@media screen and (max-width: 992px) {
+  .latest-update-card{
+    height: auto !important;
+  }
+}
