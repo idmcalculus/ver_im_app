@@ -6,7 +6,7 @@
     "built": "ng build --prod --aot",
     "update": "ng update @angular/cli --next --force",
     "build": "ng build",
-    "testOuterGzip": "ng build && gzipper --verbose ./dist",
+    "testOuterGzip": "ng build --prod --aot && gzipper --verbose ./dist",
     "build-prod": "ng build --prod",
     "stats": "webpack-bundle-analyzer dist/versaim-app/stats.json",
     "lint": "ng lint",

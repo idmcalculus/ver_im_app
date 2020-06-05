@@ -1,12 +1,10 @@
 <section class="invest-header">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="invest-header-thumb">
-                <img src="../../../../assets/images/transportation.jpg">
-            </div>
+    <div class="row1">
+        <div class="col-md-3 hidden">
+            <img class="img-fluid" src="../../../../assets/images/transportation.jpg">
         </div>
-        <div class="col-md-9">
-            <div class="invest-header-text">
+        <div class="col-md-9 header-center">
+            <div class="invest-header-text header-padding">
                 <div class="navigation-values">Homepage<span> ></span>Invest</div>
             </div>
         </div>
@@ -61,7 +59,7 @@
                             <a routerLink="/signin" routerLinkActive="active"
                                 *ngIf="!userinfo && investment?.is_investment_started=='0' " class="btn2 btn-join">Sign
                                 in to join</a>
-                            <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' "
+                            <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' && investment?.status===0"
                                 (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
                                 class="btn2 btn-join">Invest now</a>
                             <a *ngIf="investment?.is_investment_started=='1' " class="btn2 btn-join">Closed</a>
@@ -83,9 +81,9 @@
         <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType">
             <h3>Related Investments</h3>
             <div class="row">
-                <div *ngFor="let x of allinv" class="col-md-4">
-                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                        <div class="card">
+                <div *ngFor="let x of allinv" class="col-sm-4">
+                    <a  *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
+                        <a  *ngIf="x.status===-1" [ngClass]="(x.status===-1)?'inactive':''" class="card" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
                             <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
                                 alt="Card image cap">
                             <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
@@ -102,6 +100,24 @@
                                     <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
                                     <p>{{x.duration}} Month(s)</p>
                                 </div>
+                            </div>
+                        </a>
+                    <a *ngIf="x.status!==-1" class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
+                        <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                            alt="Card image cap">
+                        <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><a style="font-size: 20px;"
+                                    href="investment-details.html">{{x.title}}</a></h5>
+                            <div class="card-text" style="text-align: center">
+                                <h3 style="text-align: center">
+                                    {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                <span *ngIf="x?.estimated_percentage_profit"
+                                    class="span-profit">{{investment?.estimated_percentage_profit}}%
+                                    Profit (Estimated)</span>
+                                <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                                <p>{{x.duration}} Month(s)</p>
                             </div>
                         </div>
                     </a>
@@ -350,7 +366,7 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn-join-add"  [hidden]="true">Join</button>
-                        <button type="button"  data-dismiss="modal" [disabled]="(!payment_id)" (click)="joinInvestment()" class="btn btn-join-add">Submit</button>
+                        <button type="button"  data-dismiss="modal" [disabled]="(!payment_id)" (click)="joinsInvestment()" class="btn btn-join-add">Submit</button>
                         <!-- <button
                             data-dismiss="modal"
                             [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
@@ -383,8 +399,7 @@
                     <div class="modal-body">
                          <div class="join-modal">
                             <h3>Transaction Successful</h3>
-                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{payment_id}} was successfully processed.</h5>
-                             <h5 class="mb-4">Kindly check your email for receipt of this transaction</h5>
+                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{payment_id}} will be confirmed and processed in the next 24 hours processed.</h5>
                              <h5>Best regards</h5>
                              <h5>Versa Team</h5>
                         </div>
