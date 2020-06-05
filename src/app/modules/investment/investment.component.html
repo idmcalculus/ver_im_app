@@ -18,16 +18,16 @@
             <div class="row">
                 <div class="column">
                     <h3 class="title-head-inv">INVESTMENTS</h3>
-                    <hr style="margin-top: 0.5px; width: 80%;"/>
+                    <hr class="p-0" style="margin-top: 0.5px; width: 80%;"/>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pt-0 categoryNav">
                 <div *ngIf="!isLoading" class="column2">
-                    <mat-select class="form-control d-lg-none d-xl-none d-md-none" placeholder="Select Category" name="category" [formControl]="Category">
+                    <mat-select class="form-control d-lg-none d-xl-none d-md-none" placeholder="All Categories" name="category" [formControl]="Category">
                         <mat-select-trigger>
                             {{ Category.value === 'All' ? 'All Categories' : Category.value }}
                         </mat-select-trigger>
-                        <mat-option (click)="filterInvestmentsById(0)" value="All">All</mat-option>
+                        <mat-option (click)="filterInvestmentsById(0)" value="All">All Categories</mat-option>
                         <mat-option *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)" [value]="category.category_name">{{category.category_name}}</mat-option>
                     </mat-select>
                     <h5 class="title-head-inv d-none d-md-flex pt-0" (click)="filterInvestmentsById(0)"><span>All</span></h5>
@@ -70,36 +70,36 @@
 
             <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
                 <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                    <a *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
-                    <div *ngIf="x.status===-1" class="superb-container m-b20 " [ngClass]="(x.status===-1)?'inactive':''">
+                    <a *ngIf="x?.status===-1" class="coming" href="#">Coming Soon</a>
+                    <div *ngIf="x?.status===-1" class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
                         <div class="img-holder">
-                            <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                            <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
+                            <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                            <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                         </div>
                         <div class="content-holder">
-                            <h2><a href="investment-details.html">{{x.title}}</a></h2>
-                            <h3 style="filter: blur(15px);">{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                            <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                            <h3 style="filter: blur(15px);">{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                             <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
-                                class="span-profit">{{calculateEstimate(x?.expected_return_amount,x?.investment_amount)}}% Profit
+                                class="span-profit">{{x?.estimated_percentage_profit}}% Profit
                                 (Estimated)</span>
                             <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                            <p>{{x.duration}} Month(s)</p>
+                            <p>{{x?.duration}} Month(s)</p>
                         </div>
                     </div>
-                    <a *ngIf="x.status!==-1" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
-                        <div class="superb-container m-b20 " [ngClass]="(x.status===-1)?'inactive':''">
+                    <a *ngIf="x?.status!==-1" [routerLink]="(x?.status!==-1) ? ['/investments', x?.id] : ''" routerLinkActive="active">
+                        <div class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
                             <div class="img-holder">
-                                <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                                <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
+                                <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                                <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <h2><a href="investment-details.html">{{x.title}}</a></h2>
-                                <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                <h3>{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                 <span *ngIf="x?.estimated_percentage_profit"
-                                    class="span-profit">{{calculateEstimate(x?.expected_return_amount,x?.investment_amount)}}% Profit
+                                    class="span-profit">{{x?.estimated_percentage_profit}}% Profit
                                     (Estimated)</span>
                                 <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                <p>{{x.duration}} Month(s)</p>
+                                <p>{{x?.duration}} Month(s)</p>
                             </div>
                         </div>
                     </a>
@@ -155,7 +155,7 @@
                 </div>
                    
             </div>
-            <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
+            <section *ngIf="!isLoading && investments?.length == 0" style="border-radius: 30px;" class="workingSection">
                 <div class="inner-workingSection">
                     <div class="row">
                         <div class="col-md-12">

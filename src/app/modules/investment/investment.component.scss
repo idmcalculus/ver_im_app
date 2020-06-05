@@ -383,7 +383,7 @@ body {
 
 .column2 mat-select {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   width: 40%;
   height: 38px;
@@ -413,7 +413,7 @@ body {
       -webkit-text-fill-color: inherit !important;
       transition: none;
       display: block;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
 	  }
 
@@ -435,9 +435,39 @@ body {
 }
 
 @media (max-width: 600px) {
+
+  .section-container .investment-plans .inner-investment .superb-container {
+    margin: 0 auto !important;
+  }
   .column2 mat-select {
     font-size: 14px;
     width: 50%;
     height: 35px;
+  }
+
+  .investment-plans .inner-investment .superb-container {
+    max-height: 300px;
+    width: 90%;
+  }
+
+  .superb-container .img-holder {
+    height: 150px;
+    width: 90%;
+  }
+
+  .section-container .investment-plans .inner-investment .superb-container .content-holder {
+    padding-top: 5px;
+  }
+
+  .superb-container .content-holder h3 {
+    padding: .5rem 0 5px;
+  }
+
+  .investment-plans .inner-investment {
+    padding: 0 2px;
+  }
+
+  .coming, .sold_out {
+    font: bold 12px/1em Arial, Sans-Serif;
   }
 }
