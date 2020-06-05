@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InvestmentService } from './investment.service';
 import { Transaction } from 'src/app/shared/models/Transaction';
-import { Investment } from 'src/app/shared/models/Investment'
+import { Investment } from 'src/app/shared/models/Investment';
+import { MatFormFieldControl, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import { FormControl } from '@angular/forms';
 
 
 let category = '0';
@@ -11,7 +13,11 @@ let allInvestments = [];
 @Component({
     selector: 'app-investment',
     templateUrl: './investment.component.html',
-    styleUrls: ['./investment.component.scss']
+    styleUrls: ['./investment.component.scss'],
+    providers: [
+        { provide: MatFormFieldControl, useExisting: InvestmentComponent },
+        { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'} }
+    ]
 })
 
 
@@ -23,6 +29,7 @@ export class InvestmentComponent implements OnInit {
     categories: any = [];
     selectedCategory = '0';
     transaction: Transaction;
+    Category = new FormControl();
 
     constructor(
         private routes: Router,
@@ -94,13 +101,12 @@ export class InvestmentComponent implements OnInit {
         });
     }
 
-    filterInvestmentsById(categoryId) {
-        if (categoryId === 0) {
+    filterInvestmentsById(category) {
+        if (category === 0) {
             this.investments = allInvestments;
         } else {
-            const sel = String(categoryId.id);
             this.investments = allInvestments.filter(a1 => {
-                return a1.category_id === sel;
+                return a1.category_id === category.id;
             });
         }
     }

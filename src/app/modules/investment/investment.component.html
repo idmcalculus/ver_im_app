@@ -25,8 +25,15 @@
             </div>
             <div class="row">
                 <div class="column2">
-                    <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
-                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
+                    <mat-select class="form-control" placeholder="Select Category" name="category" [formControl]="Category">
+                        <mat-select-trigger>
+                            {{ Category.value === 'All' ? 'Select Category' : Category.value }}
+                        </mat-select-trigger>
+                        <mat-option *ngIf="!isLoading" (click)="filterInvestmentsById(0)" value="All">All</mat-option>
+                        <mat-option *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)" [value]="category.category_name">{{category.category_name}}</mat-option>
+                    </mat-select>
+                    <!--<h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
+                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>-->
                 </div>
             </div>
 

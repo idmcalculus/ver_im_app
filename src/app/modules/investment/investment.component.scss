@@ -320,3 +320,64 @@ body {
   bottom: 30px;
   transform: rotate(-225deg);
 }
+
+.column2 mat-select {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  width: 40%;
+  height: 38px;
+  padding: .5rem .5rem;
+  color: white;
+  background-color: rgb(107, 141, 235);
+  background-clip: padding-box;
+  box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+  border: 0px solid ;
+  border-radius: 2px;
+}
+
+::ng-deep{
+
+	.mat-option {
+		width: 75%;
+	}
+
+	.mat-select-panel {
+		max-height: 150px !important;
+		background-color: white;
+		color: white;
+  }
+
+    .mat-select-placeholder {
+      color:white !important;
+      -webkit-text-fill-color: inherit !important;
+      transition: none;
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+	  }
+
+    span.mat-option-text {
+      color: grey;
+    }
+
+    .mat-select-trigger {
+        color: white;
+    }
+
+	.mat-select-value {
+        color: white;
+	}
+
+	.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+		background: #00000024;
+	}
+}
+
+@media (max-width: 600px) {
+  .column2 mat-select {
+    font-size: 14px;
+    width: 50%;
+    height: 35px;
+  }
+}
