@@ -31,7 +31,7 @@
                             <div class="card px-0">
                                 <div class="card-block pt-2 p-0 px-2">
                                     <table class="table appTable nowrap">
-                                        <thead>
+                                        <thead [hidden]="pool?.length ==1">
                                             <tr class="pb-1">
                                                 <th class="mr-3">SN</th>
                                                 <th class="">Investment Title</th>

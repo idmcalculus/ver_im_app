@@ -154,7 +154,7 @@ body{
     }
 }
 
-.card.recentActivity, .card.bestSelling {
+.card.recentActivity {
     height: 550px;
 
     .table-responsive{
@@ -310,7 +310,6 @@ body{
 }
 .box-control {
     display: block;
-    width: 100%;
     color: #495057;
     border-color: rgba(73, 80, 87, 0.2);
     box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
@@ -320,10 +319,6 @@ body{
     border-radius: 2px;
     padding: 12px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-
-    .row .col-3 {
-        min-width: 100%;
-    }
   }
 
 .latest-update-card > .input-control {
@@ -348,26 +343,24 @@ body{
 }
 
 .row1 p {
-    border-bottom: 1px #4F5FBE solid ;
     padding: 1.225rem;
     margin-bottom: 0px;
     margin-bottom: 0px;
-    padding-left: 1rem !important;
+
 }
 
 .row1 .normal {
     font-weight: 700;
     color: #4F5FBE;
     font-size: 12px;
-    min-width: 33.33%;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .row1 .special {
     font-weight: 900;
     color: #4F5FBE;
     font-size: 13px;
-    min-width: 100%;
-    border-bottom: none;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .divider2{
@@ -589,9 +582,7 @@ h1, h2, h3, h4, h5, h6 {
                     }
                 }
 
-                .card-footer .col-6 {
-                    min-width: 100%;
-                }
+            
             }
 
             .card-details.col-5 {
@@ -644,72 +635,46 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .bestSellingContainer{
-        display: block !important;
-        .normal{
-            display: grid;
-        }
-        p{
-            text-align: center;
-            padding-left: 0rem !important;
-        }
-
-        .BsHeader{
-            border-bottom: none;
-        }
-        .special{
-            text-align: inherit;
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-        }
-
-    }
-
 
 }
 
-@media only screen and (min-device-width : 600px) and (max-device-width : 1024px) {
-    .investmentPerf {
-        min-height: 370px;
+@media screen and (max-width: 992px) {
+    // .row1 .col-3 {
+    //     min-width: 30%;
+    // }
+    // .row1 .col-4 {
+    //     min-width: 40%;
+    // }
+    .row1 p {
+        padding: .5rem;
     }
 
-    .card-details.row {
-        flex-flow: column;
-        max-width: 100%;
-        margin: 0;
-
-        .latest-update-card.col-7 {
-            flex-flow: column;
-            max-width: 100%;
-
-            .box-control {
-                margin-left: 1.5rem;
-                max-width: 100%;
-                padding-right: 1rem;
-
-                .row .col-3 {
-                    min-width: 100%;
-                }
-            }
-
-            .card-footer .col-6 {
-                min-width: 100%;
-            }
-        }
-
-        .card-details.col-5 {
-            flex-flow: column;
-            max-width: 100%;
-            padding: 0;
-
-            .card .card-block {
-                padding: 0;
-            }
-        }
+    .row1 .special {
+        font-size: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-bottom: none;
     }
 
-    .card.recentActivity, .card.bestSelling {
-        min-height: 580px;
-        margin-top: 1rem;
+    .nav-item{
+        font-size: 10.9px;
+        padding: none;
     }
-}
+
+    .card.bestSelling {
+        min-height: auto;
+    }
+    
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .row1 .normal {
+        font-size: 9px;
+    }
+
+    .card.bestSelling{
+        min-height: auto;
+    }
+  }
+

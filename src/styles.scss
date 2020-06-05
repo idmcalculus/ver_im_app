@@ -245,15 +245,6 @@ mat-dialog-container#modal-component {
             .content-holder {
                 padding-top: 25px;
 
-                a {
-                    color: #444;
-                    font-weight: 400;
-                    font-size: 1.1rem;
-                    font-weight: 600;
-                    text-decoration: none;
-                    line-height: 25px;
-                }
-
                 h3{
                     &:after{
                         width: 35% !important;
@@ -297,7 +288,7 @@ mat-dialog-container#modal-component {
                     margin: 0rem 0rem 3rem 0rem;
 
                     h5{
-                    font-size: 1.1rem;
+                    font-size: 25px;
                     letter-spacing: .19rem;
                     font-family: roboto;
                     font-weight: 900;
@@ -408,27 +399,20 @@ mat-dialog-container#modal-component {
     }
 
     .inner-footer {
-        padding: 0px 110px;
+        padding: 0;
         li{
             a{
                 font-weight: 900
             }
         }
         h3 {
-            &:after {
-                width: 20%;
+            text-decoration: underline;
             }
-        }
         h6 {
-            &:after {
-                width: 24%;
+            text-decoration: underline;
             }
-        }
         h5 {
-            &:after {
-                width: 39.5%;
-
-            }
+            text-decoration: underline;
         }
     }
 }
@@ -1594,11 +1578,10 @@ mat-dialog-container#modal-component {
                 }
             }
             h3 {
-                text-align: center;
                 &:after {
                     width: 30% !important;
                     content: '';
-                    margin-left: 34%;
+                    
                 }
             }
 
