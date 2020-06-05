@@ -245,11 +245,7 @@ body{
 }
 
 .investmentPerf {
-    min-height: 433px;
-}
-
-.featInvestment {
-    min-height: 572.5px;
+    min-height: 472px;
 }
 
 .latest-update-card {
@@ -314,7 +310,6 @@ body{
 }
 .box-control {
     display: block;
-    width: 100%;
     color: #495057;
     border-color: rgba(73, 80, 87, 0.2);
     box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
@@ -348,25 +343,24 @@ body{
 }
 
 .row1 p {
-    border-bottom: 1px #4F5FBE solid ;
     padding: 1.225rem;
     margin-bottom: 0px;
     margin-bottom: 0px;
+
 }
 
 .row1 .normal {
     font-weight: 700;
     color: #4F5FBE;
     font-size: 12px;
-    min-width: 33.33%;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .row1 .special {
     font-weight: 900;
     color: #4F5FBE;
     font-size: 13px;
-    min-width: 100%;
-    border-bottom: none;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .divider2{
@@ -641,42 +635,29 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .bestSellingContainer{
-        display: block !important;
-        .normal{
-            display: grid;
-        }
-        p{
-            text-align: center;
-            padding-left: 0rem !important;
-        }
-
-        .BsHeader{
-            border-bottom: none;
-        }
-
-        .special{
-            text-align: inherit;
-            margin-bottom: 0px;
-            padding-bottom: 0px;
-        }
-
-    }
-
 
 }
 
 @media screen and (max-width: 992px) {
+    .row1 p {
+        padding: .5rem;
+    }
+
     .row1 .special {
         font-size: 11px;
+        border-bottom: none;
     }
 
     .row1 .normal {
-        font-size: 11px;
+        font-size: 10.5px;
     }
 
     .nav-item{
         font-size: 12px;
+    }
+
+    .card.bestSelling[_ngcontent-c5] {
+        min-height: 0px;
     }
   }
   
