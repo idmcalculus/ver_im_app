@@ -29,8 +29,6 @@
                         <div></div>
                         <div></div>
                     </div>
-
-
                     <div *ngIf="!isLoading">
                         <div class="row">
                             <div class="card-details row">
@@ -48,10 +46,10 @@
                                                     <div class="col-5 mt-2 my-3 box-control mr-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div class="col-8">
-                                                                <span  style="color: #18d004;font-weight: 700">₦{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length }}</span> <br>
+                                                                <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span  style="color: #18d004;font-weight: 700">
+                                                                    ₦{{dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length }}
+                                                                </span> <br>
                                                                 <span style="font-size:12px;color:grey">Amount Paid</span>
                                                             </div>
                                                         </div>
@@ -59,32 +57,30 @@
                                                     <div class="col-5 mt-2 my-3 box-control ml-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8">
-                                                                <span style="color:#e99b89">₦{{ ((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (investments?.estimated_percentage_profit / 100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}</span><br>
+                                                                <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span style="color:#e99b89">
+                                                                    ₦{{ ((investments?.investment_amount * dashboardInvestment[i]?.number_of_pools) * (investments?.estimated_percentage_profit / 100)) - (dashboardInvestment[i]?.investment_return[i]?.yielded_amount* dashboardInvestment[i]?.investment_report?.length) }}
+                                                                </span> <br>
                                                                 <span style="font-size:12px;color:grey"> Amount Pending</span>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="col-5 my-3 box-control mr-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8"> {{ dashboardInvestment[i]?.investment_report?.length }} of   {{ divisorFunc(investments?.expected_return_period,investments?.duration) }} <br>
+                                                                <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span> 
+                                                                    {{ dashboardInvestment[i]?.investment_report?.length }} of   {{ divisorFunc(investments?.expected_return_period,investments?.duration) }}
+                                                                </span> <br>
                                                                 <span style="font-size:12px;color:grey"> Payback</span>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <div class="col-5 my-3 box-control ml-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8">{{dashboardInvestment[i]?.number_of_pools}} <br>
+                                                                <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span>{{dashboardInvestment[i]?.number_of_pools}} </span> <br>
                                                                 <span style="font-size:12px;color:grey">Number of Slot(s)</span>
                                                             </div>
                                                         </div>
@@ -92,19 +88,19 @@
                                                     <div class="col-5 my-3 box-control mr-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <td   class="col-8">{{ dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length - 1].created_at.split(' ')[0] | date :  "dd.MM.y"}} <br>
+                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span   class="col-8">{{ dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length - 1].created_at.split(' ')[0] | date :  "dd.MM.y"}} </span> <br>
                                                                 <span style="font-size:12px;color:grey">Last Payment</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-5 my-3 box-control ml-4">
+                                                    </div>
+                                                    <div class="col-5 my-3 box-control ml-4">
                                                         <div class="row">
                                                             <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8" *ngIf="dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length - 1].created_at">
-                                                                {{ addMonth(dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report.length -1].created_at.split(' ')[0], dashboardInvestment[i])  | date:  "dd.MM.y" }}<br>
+                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px"> &nbsp;
+                                                                <span *ngIf="dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report?.length - 1].created_at">
+                                                                    {{ addMonth(dashboardInvestment[i]?.investment_report[dashboardInvestment[i]?.investment_report.length -1].created_at.split(' ')[0], dashboardInvestment[i])  | date:  "dd.MM.y" }}
+                                                                </span> <br>
                                                                 <span style="font-size:12px;color:grey">Next Payment</span>
                                                             </div>
                                                         </div>
@@ -129,86 +125,86 @@
                                                                 <span style="font-size:12px;color:grey">Amount Paid</span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-5 mt-2 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8">
-                                                                <span style="color:#e99b89">N/A</span><br>
-                                                                <span style="font-size:12px;color:grey"> Amount Pending</span>
+                                                        <div class="col-5 mt-2 my-3 box-control mr-4" style="padding: 25px;">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Icon.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span  style="color: #18d004;font-weight: 700">N/A</span> <br>
+                                                                    <span style="font-size:12px;color:grey">Amount Paid</span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8"> N/A <br>
-                                                                <span style="font-size:12px;color:grey"> Payback</span>
+                                                        <div class="col-5 mt-2 my-3 box-control ml-4" style="padding: 25px;">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Icon-1.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span style="color:#e99b89">N/A</span> <br>
+                                                                    <span style="font-size:12px;color:grey"> Amount Pending</span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="col-5 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <div  class="col-8">N/A <br>
-                                                                <span style="font-size:12px;color:grey">Number of Slot(s)</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
-                                                            </div>
-                                                            <td   class="col-8">N/A <br>
-                                                                <span style="font-size:12px;color:grey">Last Payment</span>
+                                                        <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Icon-2.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span> N/A </span> <br>
+                                                                    <span style="font-size:12px;color:grey"> Payback</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-5 my-3 box-control ml-4" style="padding: 25px;">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Group 16726.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span>N/A </span> <br>
+                                                                    <span style="font-size:12px;color:grey">Number of Slot(s)</span>
+                                                                </div>
                                                             </div>
-                                                            <div  class="col-8">
-                                                                N/A<br>
-                                                                <span style="font-size:12px;color:grey">Next Payment</span>
+                                                        </div>
+                                                        <div class="col-5 my-3 box-control mr-4" style="padding: 25px;">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span>N/A </span> <br>
+                                                                    <span style="font-size:12px;color:grey">Last Payment</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-5 my-3 box-control ml-4" style="padding: 25px;">
+                                                            <div class="row">
+                                                                <div class="col-3">
+                                                                    <img class="" src="../../../../assets/images/Group 16710.png" style="height: 40px;width:40px"> &nbsp;
+                                                                    <span> N/A</span> <br>
+                                                                    <span style="font-size:12px;color:grey">Next Payment</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div *ngIf="usersInvestments?.length > 0" class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 text-center mb-4">
+                                                            <a id="carousel-controls" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
+                                                                <i class="fa fa-lg  fa-circle"></i>
+                                                            </a>
+                                                            <a  class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
+                                                                <i class="fa fa-lg fa-circle"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div *ngIf="usersInvestments?.length > 0" class="container">
-                                            <div class="row">
-                                                <div class="col-sm-12 text-center mb-4">
-                                                    <a id="carousel-controls" class="px-1 btn-outline-info carousel-control left"  href="#myCarousel" data-slide="prev" title="back">
-                                                        <i class="fa fa-lg  fa-circle"></i>
-                                                    </a>
-                                                    <a  class="btn-outline-secondary carousel-control right" href="#myCarousel" data-slide="next" title="forward">
-                                                        <i class="fa fa-lg fa-circle"></i>
-                                                    </a>
+                                            <div class="card-footer header-bg d-flex flex-row">
+                                                <div  [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="col-6 text-center with" *ngFor="let investments of usersInvestments; index as i;">
+                                                    <h6>INVESTMENT BALANCE</h6>
+                                                    <h6 id="withdraw" style="font-size:25px">₦{{formatCurrency(dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length)}}</h6>
+                                                </div>
+                                                <div class="col-6 text-center">
+                                                    <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
+                                                    <button type="button" disabled class=" col-5 btn btn-warning px-0">Deposit</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer header-bg d-flex flex-row">
-                                        <div  [ngStyle]="{'display': (i == 0) ? 'block' : 'none'}" class="col-6 text-center with" *ngFor="let investments of usersInvestments; index as i;">
-                                            <h6>INVESTMENT BALANCE</h6>
-                                            <h6 id="withdraw" style="font-size:25px">₦{{formatCurrency(dashboardInvestment[i]?.investment_return[i]?.returned_amount * dashboardInvestment[i]?.investment_report?.length)}}</h6>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <button type="button" data-toggle="modal" data-target="#confirmPreference" class=" col-5 btn btn-success  px-0 mr-2">Withdraw</button>
-                                            <button type="button" disabled class=" col-5 btn btn-warning px-0">Deposit</button>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="card-details col-5">
                                     <div class="card latest-update-card">
@@ -232,7 +228,6 @@
                             </div>
                         </div>
                         <div class="row more">
-
                             <!-- <div class="col-xl-12 p-0">
                                 <div class="col-xl-12 col-md-12">
                                     <div class="card">
@@ -274,58 +269,56 @@
                                             <h6>Recent Activity</h6>
                                         </div>
                                         <div class="card-block">
-
-
-                                        <div class="dt-responsive table-responsive">
-                                            <div *ngIf='userActivity?.length === 0'>
-                                                <div class="activities d-flex flex-row">
-                                                    <p style="color: red; font-size: large;">No recent activity</p>
+                                            <div class="dt-responsive table-responsive">
+                                                <div *ngIf='userActivity?.length === 0'>
+                                                    <div class="activities d-flex flex-row">
+                                                        <p style="color: red; font-size: large;">No recent activity</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div *ngFor="let req of userActivity?.slice(0, 5),let x=index" class="items-center">
-                                                <div class="activities d-flex flex-row">
-                                                        <div class="image pr-3">
-                                                        <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
-                                                        </div>
-                                                        <div class="post pr-1 pt-2" style="display:inline-grid;padding-top:.2rem !important">
-                                                        <span>{{req?.activity}}</span>
-                                                        <span style="color: lightgrey;font-size: 12px;">{{getTimeAgo(req?.created_at.split(' ')[0])}}</span>
-                                                        </div>
+                                                <div *ngFor="let req of userActivity?.slice(0, 5),let x=index" class="items-center">
+                                                    <div class="activities d-flex flex-row">
+                                                            <div class="image pr-3">
+                                                                <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
+                                                            </div>
+                                                            <div class="post pr-1 pt-2" style="display:inline-grid;padding-top:.2rem !important">
+                                                                <span>{{req?.activity}}</span>
+                                                                <span style="color: lightgrey;font-size: 12px;">{{getTimeAgo(req?.created_at.split(' ')[0])}}</span>
+                                                            </div>
+                                                    </div>
+                                                    <div *ngIf="x!=4" class="divider2">
+                                                    </div>
                                                 </div>
-                                                <div *ngIf="x!=4" class="divider2"></div>
+                                                    <!-- <table id="userTable"
+                                                            class="table table-striped nowrap">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>first name</th>
+                                                            <th>last name</th>
+                                                            <th>email</th>
+                                                            <th>Phone number</th>
+                                                            <th>curriculum_vitae</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
+                                                            <td>{{req.first_name}}</td>
+                                                            <td >{{req.first_name}}</td>
+                                                            <td >{{req.first_name}}</td>
+                                                            <td >{{req.first_name}}</td>
+                                                            <td >{{req.first_name}}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table> -->
                                             </div>
-                                                <!-- <table id="userTable"
-                                                        class="table table-striped nowrap">
-                                                    <thead>
-                                                    <tr>
-                                                        <th>first name</th>
-                                                        <th>last name</th>
-                                                        <th>email</th>
-                                                        <th>Phone number</th>
-                                                        <th>curriculum_vitae</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
-                                                        <td>{{req.first_name}}</td>
-                                                        <td >{{req.first_name}}</td>
-                                                        <td >{{req.first_name}}</td>
-                                                        <td >{{req.first_name}}</td>
-                                                        <td >{{req.first_name}}</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table> -->
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="card-details col-xl-8 col-md-8" style="padding-right: 0;padding-left: 0;">
-                                <div class="card latest-update-card bestSelling">
-                                    <div class="card-header header-bg">
-                                        <h6>Best Selling</h6>
-                                    </div>
-                                    <div class="card-block">
+                                    <div class="card latest-update-card bestSelling">
+                                        <div class="card-header header-bg">
+                                            <h6>Best Selling</h6>
+                                        </div>
+                                        <div class="card-block">
                                             <div class="category-body">
                                                 <nav>
                                                     <div class="nav nav-tabs text-center mb-0" id="nav-tab" role="tablist">
@@ -342,7 +335,6 @@
 
                                                     </div>
                                                 </nav>
-
                                             <div class="tab-content" id="nav-tabContent">
                                                 <div class="tab-pane fade show active" id="nav-day" role="tabpanel" aria-labelledby="nav-day-tab">
                                                         <div class="row1 d-flex flex-row p-2 mt-3 bestSellingContainer" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
@@ -394,12 +386,27 @@
                                                             <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='third'></pagination-controls>
                                                         </div>
                                                     </div>
+                                                    <div class="tab-pane fade" id="nav-year" role="tabpanel" aria-labelledby="nav-year-tab">
+                                                            <div class="row1 d-flex flex-row p-2 mt-3 bestSellingContainer" style="margin-top: 0rem !important;padding-bottom: 0rem !important;"
+                                                            *ngFor="let pool of filteredDayData | paginate: { itemsPerPage: 4, currentPage:p2, id: 'third'}; let i = index;">
+                                                                <div class="BsHeader" style="min-width:25.3%">
+                                                                    <p class=" special col-3 px-0">{{pool?.title}}</p>
+                                                                </div>
+                                                                <div style="display:flex;min-width:75.3%">
+                                                                    <p class="normal col-3 px-0" style="text-align:start">₦{{pool?.investment_amount}} per slot</p>
+                                                                    <p class="normal col-3 px-0">- Return : {{pool?.estimated_percentage_profit}}%<span> profit (Estimated)</span></p>
+                                                                    <p class="normal col-3 px-0">- Monthly return: <span>₦{{calculateReturn(pool?.expected_return_amount,pool?.expected_return_period)}}</span></p>
+                                                                </div>      
+                                                            </div>
+                                                            <div  class="col-12 mt-3 d-flex flex-row">
+                                                                <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='third'></pagination-controls>
+                                                            </div>
+                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-
                                 <!-- <div class="col-xl-4 col-md-12">
                                     <div class="card latest-update-card">
                                         <div class="card-header">
@@ -432,61 +439,61 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
+            <div *ngIf="!submittedWithdraw && !Validated" class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="first-modal-header">
+                        Withdraw Funds
+                    </div>
+                    <div class="modal-body balance">
+                        Available Balance : <span>{{totalYieldedAmount}}</span>
+                    </div>
+                    <div class="modal-body input-balance">
+                        <span>Enter Amount : </span><input type="number" [(ngModel)]="amountToWithdraw" max="totalYieldedAmount"/>
+                    </div>
+                    <div class="modal-footer balance-input">
+                        <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" [disabled]="activateBtn" [promiseBtn]="isSubmitting" (click)="validateWithdraw()" class="btn btn-primary">{{modalText}}</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="first-modal-header">
+                        Confirm Payment info
+                    </div>
+                    <div class="modal-body withdraw-info">
+                        You have requested that the sum of be transfeered to account listed below. Kindly confirm the infromation is correct before submitting
+                    </div>
+                    <div class="modal-body withdraw-details">
+                        <p><span>Bank Name</span><span>{{UserBank}}</span></p>
+                        <p><span>Account Name</span><span>{{UserAccountName}}</span></p>
+                        <p><span>Account Number</span><span>{{UserAccount}}</span></p>
+                        <p><span class="amount">Amount</span><span  class="amount">{{amountToWithdraw}}</span></p>
+                    </div>
+                    <div class="modal-footer balance-input">
+                        <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button"  [promiseBtn]="isSubmitting" (click)="withdraw()" class="btn btn-primary">{{modalText}}</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="first-modal-header">
+                        Confirm Payment info
+                    </div>
+                    <div class="modal-body withdraw-info">
+                        <p> Your withdraw request as been successfully submitted and will be processed in the next 24 hours.</p>
+                        <p> Thanks for choosing Versa!</p>
+                    </div>
+                    <div class="modal-footer balance-input">
+                        <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
- <div class="modal fade" id="confirmPreference" tabindex="-1" role="dialog" aria-labelledby="confirmActionTitle" aria-hidden="true">
-        <div *ngIf="!submittedWithdraw && !Validated" class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="first-modal-header">
-                    Withdraw Funds
-                </div>
-                <div class="modal-body balance">
-                    Available Balance : <span>{{totalYieldedAmount}}</span>
-                </div>
-                <div class="modal-body input-balance">
-                    <span>Enter Amount : </span><input type="number" [(ngModel)]="amountToWithdraw" max="totalYieldedAmount"/>
-                </div>
-                <div class="modal-footer balance-input">
-                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" [disabled]="activateBtn" [promiseBtn]="isSubmitting" (click)="validateWithdraw()" class="btn btn-primary">{{modalText}}</button>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="!submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="first-modal-header">
-                    Confirm Payment info
-                </div>
-                <div class="modal-body withdraw-info">
-                    You have requested that the sum of be transfeered to account listed below. Kindly confirm the infromation is correct before submitting
-                </div>
-                <div class="modal-body withdraw-details">
-                    <p><span>Bank Name</span><span>{{UserBank}}</span></p>
-                    <p><span>Account Name</span><span>{{UserAccountName}}</span></p>
-                    <p><span>Account Number</span><span>{{UserAccount}}</span></p>
-                    <p><span class="amount">Amount</span><span  class="amount">{{amountToWithdraw}}</span></p>
-                </div>
-                <div class="modal-footer balance-input">
-                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button"  [promiseBtn]="isSubmitting" (click)="withdraw()" class="btn btn-primary">{{modalText}}</button>
-                </div>
-            </div>
-        </div>
-        <div *ngIf="submittedWithdraw && Validated" class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="first-modal-header">
-                    Confirm Payment info
-                </div>
-                <div class="modal-body withdraw-info">
-                    <p> Your withdraw request as been successfully submitted and will be processed in the next 24 hours.</p>
-                    <p> Thanks for choosing Versa!</p>
-                </div>
-                <div class="modal-footer balance-input">
-                    <button (click)="closeModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
- </div>
 <!--<div *ngIf="isGraphShown"submittedWithdraw class="pcoded-content">
 
     <div class="pcoded-inner-content">
