@@ -352,7 +352,6 @@ body{
     padding: 1.225rem;
     margin-bottom: 0px;
     margin-bottom: 0px;
-    padding-left: 1rem !important;
 }
 
 .row1 .normal {
@@ -666,3 +665,23 @@ h1, h2, h3, h4, h5, h6 {
 
 
 }
+
+@media screen and (max-width: 992px) {
+    .row1 .special {
+        font-size: 11px;
+    }
+
+    .row1 .normal {
+        font-size: 11px;
+    }
+
+    .nav-item{
+        font-size: 12px;
+    }
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    
+  }
+
