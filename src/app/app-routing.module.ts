@@ -11,7 +11,7 @@ import {cookieDetailsComponent} from './modules/cookie-details/cookie-details.co
 import {ResetPasswordComponent} from './shared/components/reset-password/reset-password.component';
 import {HowitworksComponent} from './pages/howitworks/howitworks.component';
 import {FaqComponent} from './pages/faq/faq.component';
-import { ContactusComponent } from './pages/contactus/faq.component';
+import { ContactusComponent } from './pages/contactus/contact.component';
 import {CareerComponent} from './modules/career/career.component';
 import {InvestmentComponent} from './modules/investment/investment.component';
 // import {ChatComponent} from './modules/chat/chat.component';

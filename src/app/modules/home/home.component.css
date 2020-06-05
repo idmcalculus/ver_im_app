@@ -1,0 +1,201 @@
+
+.subtitle {
+    font-size: 30px;
+}
+
+h2 {
+    color: #4f5fbe;
+    font-size: 50px;
+    position: relative;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.wall {
+    background-color: #f4f4fe;
+}
+
+.wall2 {
+    background-color: #4f5fbe;
+}
+
+.btn {
+    border-radius: 15px;
+    color: white;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 9px 50px;
+    cursor: pointer;
+}
+
+.lower-content{
+    font-size: 1.1rem !important;
+    line-height: 42px !important;
+    letter-spacing: 1px;
+    text-align: justify;
+}
+
+.text-title {
+    color: #4f5fbe;
+    font-size: 35px;
+}
+
+.font-one {
+    color: #4f5fbe;
+    font-size: 3.5rem !important;
+    line-height: 42px !important;
+}
+
+.text-sub {
+    font-size: 30px;
+    color: #4f5fbe;
+    line-height: 42px !important;
+    letter-spacing: 1px;
+}
+
+.text-header {
+    color: #4f5fbe;
+    font-size: 25px;
+}
+
+.text-footer {
+    color: #4f5fbe;
+    font-size: 15px;
+}
+
+.big-text {
+    color: #fff;
+    font-size: 4rem !important;
+    border-bottom: 3px solid;
+}
+
+.med-text {
+    color: #fff;
+    font-size: 2rem !important;
+}
+
+.text-text {
+    color: #919191;
+    font-size: 1rem !important;
+    line-height: 42px !important;
+}
+
+.text {
+    color: #919191;
+    font-size: 1rem !important;
+    line-height: 42px !important;
+    letter-spacing: 1px;
+    text-align: justify;
+}
+
+.input-control {
+	height: 400px;
+    color: #495057;
+    -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 4px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.invest-control {
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-top: 0px;
+    border-left: 1px solid ;
+    border-right: 1px solid ;
+    border-bottom: 1px solid ;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.slide-control {
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid ;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.small-control {
+    -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid ;
+    border-radius: 11px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+span {
+    color: #707070;
+}
+
+.btn-color {
+    background-color: #4f5fbe;
+}
+
+.padding{
+    height:517px;
+}
+
+.container1 {
+    max-width: 940px;
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 1440px;
+    }
+
+}
+
+
+@media screen and (max-width: 992px) {
+    .font-one {
+        font-size: 2.5rem !important;
+        line-height: 42px !important;
+    }
+
+    .text {
+        line-height: 30px !important;
+    }
+
+    .padding{
+        height:370px;
+    }
+    
+    .hide{
+        display: none;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: 150px;
+    }
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .font-one {
+        color: #4f5fbe;
+        font-size: 2rem !important;
+        line-height: 42px !important;
+    }
+
+    .text {
+        line-height: 30px !important;
+    }
+
+    .padding{
+        height:430px;
+    }
+
+    .hide{
+        display: none;
+    }
+  }
