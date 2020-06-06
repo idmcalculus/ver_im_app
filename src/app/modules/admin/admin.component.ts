@@ -5,8 +5,6 @@ import { User } from 'src/app/shared/models/user';
 import {Router} from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../investment/investment.service';
-import { AdminService } from './admin.service';
-import { Category } from 'src/app/shared/models/Category';
 import { Subscription } from 'rxjs';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
