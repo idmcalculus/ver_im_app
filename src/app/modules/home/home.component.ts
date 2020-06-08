@@ -29,6 +29,25 @@ export class HomeComponent {
 
     ngOnInit() {
         this.authService.setInHomeView(true);
+
+        const options = {
+            root: null,
+            threshold: 0.25, // 0 - 1 this work as a trigger.
+            rootMargin: '150px'
+        };
+
+        const target = document.querySelector('#countDown');
+        const observer = new IntersectionObserver(
+           entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
+            entries.forEach(() => {
+                alert('you have scrolled to the h1!')
+            });
+        }, options);
+        observer.observe(target);
+    }
+
+    onCountoEnd(): void {
+        console.log('counto end');
     }
 
     ngOnDestroy() {
