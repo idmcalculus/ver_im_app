@@ -52,7 +52,6 @@ export class ViewUserPoolComponent implements OnInit {
           if (userx && userx.success) {
             this.user = userx.success.Data;
             this.userArray.push(userx.success.Data);
-            console.log(this.userArray);
           }
           this.isLoading = false;
         });
@@ -61,7 +60,7 @@ export class ViewUserPoolComponent implements OnInit {
             this.userInvestment = investments.success.Data;
             this.numOfPool = investments.success.Inv;
           }
-          this.isLoading = false;
+            this.isLoading = false;
         });
         this.investmentService.getCategories().subscribe(resp => {
           if (resp && resp.success) {
