@@ -3,3 +3,7 @@
    background-attachment: fixed;
   background-position: top right;
 }
+
+.container {
+  max-width: 1340px;
+}
