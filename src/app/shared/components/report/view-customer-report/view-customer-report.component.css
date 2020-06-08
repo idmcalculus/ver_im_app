@@ -88,6 +88,7 @@ div > a {
 }
 
 .displayStatus {
+    color: red;
     justify-content: center;
     text-align: center;
     font-family: roboto;
