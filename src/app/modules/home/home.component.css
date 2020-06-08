@@ -180,15 +180,7 @@ span {
 
 @media (min-width: 1200px){
     .container {
-        max-width: 1280px;
-    }
-
-    .container-fluid {
-        width: 95%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
+        max-width: 80.000em;
     }
 
 }
@@ -207,6 +199,13 @@ span {
   }
 
 
+
+@media screen and (min-width: 768px) {
+
+    .card-pad {
+        height: 780px;
+    }
+  }
 
 @media screen and (max-width: 992px) {
     .font-one {
