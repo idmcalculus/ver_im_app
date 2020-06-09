@@ -30,7 +30,7 @@ h2 {
 }
 
 hr {
-    height:5px !important;
+    height:4px !important;
     border:none;
     color:#4f5fbe;
     background-color:#4f5fbe;
@@ -88,7 +88,6 @@ hr {
 .big-text {
     color: #fff;
     font-size: 4rem !important;
-    border-bottom: 3px solid;
 }
 
 .med-text {
@@ -200,7 +199,7 @@ span {
 
 
 
-@media screen and (min-width: 768px) {
+@media screen and (width: 768px) {
 
     .card-pad {
         height: 780px;
