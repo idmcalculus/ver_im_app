@@ -27,9 +27,16 @@
     box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
 }
 
-.section-container{
+.section-containers{
 	background:
 	url("../../../assets/images/partner-row1-2.png") no-repeat left top,
 	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+}
+
+@media (max-width: 760px){
+    .work-header {
+        height: 250px;
+        padding: 0px;
+    }
 }

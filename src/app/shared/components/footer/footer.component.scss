@@ -1,3 +1,43 @@
+.footer .inner-footer {
+    padding: 0px;
+}
+
+.footer .inner-footer h3 {
+    text-decoration: underline;
+}
+
+.footer .inner-footer h3:after {
+    display: none !important;
+}
+
+.footer .inner-footer .social-actions {
+    padding: 0 !important;
+}
+
+.text-md-justify {
+    word-spacing: 3px;
+    font-size: 12px !important;
+}
+
+.input-group {
+    input{
+        height: 50px;
+        width: 100%;
+        padding-left: 10px;
+        border: none;
+        outline: none;
+      }
+      button{
+        position: absolute;
+        right: 0px;
+        border:none;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        padding: 1px;
+      }
+}
+
 @media (max-width: 1068px) {
     .col-md-3{
         ul{
@@ -28,4 +68,57 @@
 .footer-text {
     font-size: 12px;
     color: #fff;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        padding: 0 1rem;
+
+        .inner-footer {
+            h3 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+                margin-bottom: 0;
+            }
+            h6 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+            }
+            h5 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+            }
+            .img-fluid {
+                height: 150px;
+                width: 200px;
+            }
+            .versareg {
+                font-size: 10px;
+                text-align: justify;
+            }
+            .bottom a, .bottom span {
+                font-size: 8px;
+            }
+        }
+        .text-right {
+            text-align: center!important;
+        }
+    
+        .col-md-4.col-sm-6 {
+            ul{
+                margin-top: 0;
+                li{
+                    justify-content: center;
+                    display: flex;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }

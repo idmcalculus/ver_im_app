@@ -6,6 +6,14 @@ body{
     font-family: 'roboto';
 }
 
+.dash-header2{
+    margin: 1.1rem 0rem;
+    color: #43425d;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+}
+
 .card-details{
     &.row{
         display: flex;
@@ -146,8 +154,8 @@ body{
     }
 }
 
-.card.recentActivity, .card.bestSelling {
-    height: 550px;
+.card.recentActivity {
+    height: 500px;
 
     .table-responsive{
         padding: 0.5rem 0rem;
@@ -237,11 +245,7 @@ body{
 }
 
 .investmentPerf {
-    height: 433px;
-}
-
-.featInvestment {
-    min-height: 572.5px;
+    min-height: 472px;
 }
 
 .latest-update-card {
@@ -306,7 +310,6 @@ body{
 }
 .box-control {
     display: block;
-    width: 100%;
     color: #495057;
     border-color: rgba(73, 80, 87, 0.2);
     box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
@@ -340,23 +343,24 @@ body{
 }
 
 .row1 p {
-    border-bottom: 1px #4F5FBE solid ;
     padding: 1.225rem;
     margin-bottom: 0px;
     margin-bottom: 0px;
-    padding-left: 1rem !important;
+
 }
 
 .row1 .normal {
     font-weight: 700;
     color: #4F5FBE;
     font-size: 12px;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .row1 .special {
     font-weight: 900;
     color: #4F5FBE;
     font-size: 13px;
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .divider2{
@@ -395,6 +399,10 @@ body{
         border-radius: 20px;
         height: 5px;
     }
+}
+
+.BsHeader{
+    border-bottom: 1px #4F5FBE solid ;
 }
 
 .pcoded-submenu {
@@ -508,3 +516,165 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     font-family: roboto, sans-serif
 }
+
+@media only screen and (max-width:1100px) {
+    .card.recentActivity[_ngcontent-c5] .table-responsive[_ngcontent-c5], .card.bestSelling[_ngcontent-c5] .table-responsive[_ngcontent-c5]{
+        padding: 0.5rem 1rem;
+    }
+    .dash-header2{
+        margin: 1.1rem 0rem;
+        color: #43425d;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        display: none;
+    }
+
+    .row {
+
+        .dashboard-table{
+            margin-left: 0rem !important;
+        }
+
+        .card-details.row{
+            max-width: 100%;
+            margin: 0;
+            display: block;
+            padding: 0px !important;
+            justify-content: center;
+            margin: 0px 5px !important;
+
+            .latest-update-card.col-7 {
+                flex-flow: column;
+                max-width: 100%;
+
+                .box-control {
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                    max-width: 100%;
+                    width: 100%;
+                    min-width: 80%;
+                    padding-left: 2% !important;
+                    padding-right: 1rem;
+                    border: none;
+                    box-shadow: 2px 2px 2px 2px rgba(73, 80, 87, 0.25);
+
+                    .row 
+                    {
+                        display: flex !important;
+
+                        .col-3{
+                            flex: 1 0 25%;  
+                            img{
+                                height: 50px;
+                                width: 50px;
+                                margin: 0px 10px;
+                            }
+                        }
+
+                        .col-6{
+                            padding-top: 4px;
+                        }
+
+                        &.col-8 {
+                            min-width: 100%;
+                        }
+                    }
+                }
+
+            
+            }
+
+            .card-details.col-5 {
+                flex-flow: column;
+                max-width: 100%;
+                padding: 0;
+
+                .card .card-block {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .card-details{
+        &.row{
+            display: flex;
+            margin-left: 1rem !important;
+            justify-content: center;
+        }
+    }
+
+    .investmentPerf {
+        min-height: 600px;
+        margin: 0;
+
+        .col-6.p-2 {
+            min-width: 100%;
+        }
+    }
+
+    .card.recentActivity {
+        height: 500px;
+        width: 96%;
+        margin: 10px 5px;
+    }
+
+    .card.bestSelling {
+        min-height: 800px;
+        width: 96%;
+        margin: 0 auto;
+        margin-top:5%;
+    }
+
+    .row.dashboard-table {
+        margin-left: 1rem !important;
+
+        .card-details.col-md-4 {
+            padding: 0;
+        }
+    }
+
+
+}
+
+@media screen and (max-width: 992px) {
+    // .row1 .col-3 {
+    //     min-width: 30%;
+    // }
+    // .row1 .col-4 {
+    //     min-width: 40%;
+    // }
+    .row1 p {
+        padding: .5rem;
+    }
+
+    .row1 .special {
+        font-size: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        border-bottom: none;
+    }
+
+    .nav-item{
+        font-size: 10.9px;
+        padding: none;
+    }
+
+    .card.bestSelling {
+        min-height: auto;
+    }
+    
+  }
+  
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .row1 .normal {
+        font-size: 7.5px;
+    }
+
+    .card.bestSelling{
+        min-height: auto;
+    }
+  }
+

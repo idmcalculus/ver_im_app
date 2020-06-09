@@ -13,6 +13,7 @@ export class HeaderComponent implements OnInit {
 
   currentUserSubscription: Subscription;
   userinfo: User = { user_category: 'none', email: '' };
+  show = false;
 
   constructor(
     private authService: AppAuthService,
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-
+       this.delayOutput();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -44,6 +45,12 @@ export class HeaderComponent implements OnInit {
       let element = document.getElementById('header');
       element.classList.remove('scrolled');
     }
+  }
+
+  delayOutput(){
+    setTimeout (() => {
+        this.show = true;
+     }, 5000);
   }
 
   // router.events.subscribe((event: Event) => {
