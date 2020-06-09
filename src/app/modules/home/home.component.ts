@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppAuthService} from './../../core/auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import { CountoDirective } from 'angular2-counto';
 
 @Component({
     selector: 'app-home',
@@ -14,14 +13,13 @@ export class HomeComponent implements OnInit {
     counto_3:number;
     counto_4:number;
 
-    counto1:number =800;
-    counto2:number =3;
-    counto3:number =240;
-    counto4:number =140;
+    counto1: number;
+    counto2: number;
+    counto3: number;
+    counto4: number;
 
     constructor(
         private activatedRoute: ActivatedRoute,
-        private countoMethod: CountoDirective,
         private authService: AppAuthService,
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
@@ -50,17 +48,21 @@ export class HomeComponent implements OnInit {
         const target = document.querySelector('#countDown');
         const observer = new IntersectionObserver(
            entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
-            entries.forEach(() => {
-                console.log('Animate the Div!');
-                this.countoMethod.run();
+            const rect = target.getBoundingClientRect();
 
-            });
+            if( rect.bottom > 0 &&
+                rect.right > 0 &&
+                rect.left < (window.innerWidth || document.documentElement.clientWidth) /* or $(window).width() */ &&
+                rect.top < (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */) {
+
+                    entries.forEach(() => {
+                        this.counto1 = 800;
+                        this.counto2 = 3;
+                        this.counto3 = 240;
+                        this.counto4 = 140;
+                    });  }
         }, options);
         observer.observe(target);
-    }
-
-    onCountoEnd(): void {
-        console.log('counto end');
     }
 
     ngOnDestroy() {
