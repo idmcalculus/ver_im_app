@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppAuthService} from './../../core/auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { CountoDirective } from 'angular2-counto';
 
 @Component({
     selector: 'app-home',
@@ -8,9 +9,14 @@ import {ActivatedRoute, Router} from '@angular/router';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+    counto_1:number;
+    counto_2:number;
+    counto_3:number;
+    counto_4:number;
 
     constructor(
         private activatedRoute: ActivatedRoute,
+        private countoMethod: CountoDirective,
         private authService: AppAuthService,
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
@@ -40,7 +46,7 @@ export class HomeComponent {
         const observer = new IntersectionObserver(
            entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
             entries.forEach(() => {
-                alert('you have scrolled to the h1!')
+                console.log('you have scrolled to the Animation!');
             });
         }, options);
         observer.observe(target);
