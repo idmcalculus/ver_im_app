@@ -8,7 +8,7 @@ import { CountoDirective } from 'angular2-counto';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     counto_1:number;
     counto_2:number;
     counto_3:number;
@@ -51,7 +51,8 @@ export class HomeComponent {
         const observer = new IntersectionObserver(
            entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
             entries.forEach(() => {
-                this.countoMethod.step = '40';
+                console.log('Animate the Div!');
+
             });
         }, options);
         observer.observe(target);
