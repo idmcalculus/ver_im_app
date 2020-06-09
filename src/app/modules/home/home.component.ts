@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit {
            entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
             entries.forEach(() => {
                 console.log('Animate the Div!');
+                this.countoMethod.run();
 
             });
         }, options);
