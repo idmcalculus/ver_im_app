@@ -14,6 +14,11 @@ export class HomeComponent {
     counto_3:number;
     counto_4:number;
 
+    counto1:number =800;
+    counto2:number =3;
+    counto3:number =240;
+    counto4:number =140;
+
     constructor(
         private activatedRoute: ActivatedRoute,
         private countoMethod: CountoDirective,
@@ -46,7 +51,7 @@ export class HomeComponent {
         const observer = new IntersectionObserver(
            entries => { // each entry checks if the element is the view or not and if yes trigger the function accordingly
             entries.forEach(() => {
-                console.log('you have scrolled to the Animation!');
+                this.countoMethod.step = '40';
             });
         }, options);
         observer.observe(target);

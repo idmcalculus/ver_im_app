@@ -74,13 +74,13 @@ export class PoolDetailComponent implements OnInit {
         if (poolDetails.success.Data) {
           this.pool = poolDetails.success.Data;
           this.poolArray.push(poolDetails.success.Data);
-          console.log(this.poolArray.length);
-          
+
           this.roi = this.pool.investment.estimated_percentage_profit;
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
+
 
         } else {
           this.router.navigate(['./', {}]);

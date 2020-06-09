@@ -239,7 +239,7 @@
     <div class="container" id ="countDown">
         <div class="row py-5">
             <a class="col-lg-3 col-md-6 col-12 text-center">
-                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="800" [countFrom]="0" [duration]="4" (countoChange)="counto_1 = $event">
+                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="counto1" [countFrom]="0" [duration]="4" (countoChange)="counto_1 = $event">
                     {{ counto_1 | number:'1.0'}}
                </div>
                 <hr style="width: 30%; background-color: white !important;"/>
@@ -249,7 +249,7 @@
             </a>
 
             <a class="col-lg-3 col-md-6 col-12 text-center">
-                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="3" [countFrom]="0" [duration]="4" (countoChange)="counto_2 = $event">
+                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="counto2" [countFrom]="0" [duration]="4" (countoChange)="counto_2 = $event">
                     {{ counto_2 | number:'1.0'}}
                </div>
                 <hr style="width: 30%; background-color: white !important;"/>
@@ -260,7 +260,7 @@
             </a>
 
             <a class="col-lg-3 col-md-6 col-12 text-center">
-                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="240" [countFrom]="0" [duration]="4" (countoChange)="counto_3 = $event">
+                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="counto3" [countFrom]="0" [duration]="4" (countoChange)="counto_3 = $event">
                     {{ counto_3 | number:'1.0'}}
                </div>
                 <hr style="width: 30%; background-color: white !important;"/>
@@ -271,7 +271,7 @@
             </a>
 
             <a class="col-lg-3 col-md-6 col-12 text-center">
-                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="140" [countFrom]="0" [duration]="4" (countoChange)="counto_4 = $event">
+                <div class="big-text font-weight-bold" counto [step]="30" [countTo]="counto4" [countFrom]="0" [duration]="4" (countoChange)="counto_4 = $event">
                     {{ counto_4 | number:'1.0'}}
                </div>
                 <hr style="width: 30%; background-color: white !important;"/>
