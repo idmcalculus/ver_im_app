@@ -382,9 +382,9 @@
                                                 <td>{{ report?.index }}</td>
                                                 <td>{{ report?.title }}</td>
                                                 <td>{{ pool?.investment?.expected_return_period }}</td>
-                                                <td>{{ pool?.investment?.expected_return_amount | currency:'':'' }}</td>
-                                                <td>{{ pool?.investment?.expected_return_amount * report?.index | currency:'':'' }}</td>
-                                                <td>{{ pool?.investment?.expected_return_amount * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | currency:'':''}}</td>
+                                                <td>{{ (pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) | currency:'':'' }}</td>
+                                                <td>{{ (pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) * report?.index | currency:'':'' }}</td>
+                                                <td>{{(pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | currency:'':''}}</td>
                                                 <td>On-going</td>
                                                 <td>{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
                                             </tr>
