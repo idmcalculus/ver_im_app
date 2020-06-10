@@ -251,19 +251,21 @@ span {
     }
   }
 
-.carousel-indicators li {
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
     width: 20px;
     height: 20px;
     color: #4f5fbe;
     border: 1px solid ;
     border-radius: 100% !important;
-    background-color: white;
+    background: transparent;
 }
 
-.carousel-indicators .active{
-    background-color: #4f5fbe;
+ol.carousel-indicators li.active {
+  background: #4f5fbe;
 }
 
-.carousel-indicators:hover{
-    color: #4f5fbe;
+ol.carousel-indicators li:active {
+  background: #4f5fbe;
 }
+
