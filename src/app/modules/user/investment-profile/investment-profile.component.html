@@ -61,7 +61,7 @@
                                           </tr>
                                       </tbody>
                                       <tbody *ngIf="loggedInUser?.user_category!=='Admin'">
-                                          <tr [ngStyle]="{'display': (i === 0) ? 'inline-block' : 'none'}" *ngFor="let user of pool?.investment_user; let i = index;">
+                                          <tr [ngStyle]="{'display': (i === 0) ? 'contents' : 'none'}" *ngFor="let user of pool?.investment_user; let i = index;">
                                               <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
                                               <td>{{user?.user_info[0].email}}</td>
                                               <td>{{user?.user_info[0].phone_number}}</td>
