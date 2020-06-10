@@ -204,9 +204,10 @@ span {
     .card-pad {
         height: 780px;
     }
-  }
+}
 
 @media screen and (max-width: 992px) {
+
     .font-one {
         font-size: 2.5rem !important;
         line-height: 42px !important;
@@ -228,10 +229,10 @@ span {
     .text-header {
         font-size: 15px;
     }
-  }
+}
   
   /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .font-one {
         color: #4f5fbe;
         font-size: 2rem !important;
@@ -249,12 +250,19 @@ span {
     .hide{
         display: none;
     }
-  }
+}
+
+@media (min-width: 1000px) {
+    .invest-control {
+        height: 43rem;
+    }
+}
 
 .carousel-indicators li {
     width: 20px;
     height: 20px;
-    border: 1px solid ;
+    border: 1.5px solid;
+    color: #4f5fbe;
     border-radius: 100% !important;
 }
 
