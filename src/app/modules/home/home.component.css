@@ -1,12 +1,12 @@
 
 .subtitle {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 
 h2 {
     color: #4f5fbe;
-    font-size: 50px;
+    font-size: 30px;
     position: relative;
     letter-spacing: 2px;
     font-weight: bold;
@@ -30,7 +30,7 @@ h2 {
 }
 
 hr {
-    height:5px !important;
+    height:4px !important;
     border:none;
     color:#4f5fbe;
     background-color:#4f5fbe;
@@ -65,14 +65,14 @@ hr {
 }
 
 .text-sub {
-    font-size: 30px;
+    font-size: 24px;
     color: #4f5fbe;
     line-height: 42px !important;
     letter-spacing: 1px;
 }
 
 .sub-text {
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .text-header {
@@ -87,13 +87,12 @@ hr {
 
 .big-text {
     color: #fff;
-    font-size: 4rem !important;
-    border-bottom: 3px solid;
+    font-size: 2.5rem !important;
 }
 
 .med-text {
     color: #fff;
-    font-size: 2rem !important;
+    font-size: 1.3rem !important;
 }
 
 .test {
@@ -116,12 +115,23 @@ hr {
     text-align: justify;
 }
 
+.input-control[_ngcontent-c4] {
+    height: 300px;
+    color: #495057;
+    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 0px solid;
+    border-radius: 4px;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
 .input-control {
 	height: 300px;
     color: #495057;
-    -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     background-color: #fff;
     background-clip: padding-box;
     border: 0px solid ;
@@ -137,18 +147,21 @@ div .invest-control:hover {
 }
 
 .invest-control {
-    color: #e0e3e9;
+    color: #f1efef;
     background-color: #fff;
     background-clip: padding-box;
     border-top: 0px;
-    border-left: 1px solid ;
-    border-right: 1px solid ;
-    border-bottom: 1px solid ;
+    border-left: 1.5px solid ;
+    border-right: 1.5px solid ;
+    border-bottom: 1.5px solid ;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .slide-control {
-    color: #495057;
+    -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    color: #545658;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid ;
@@ -156,13 +169,14 @@ div .invest-control:hover {
 }
 
 .small-control {
-    -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
+    color: #f1efef;
+    -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
+    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     background-color: #fff;
     background-clip: padding-box;
     border: 0px solid ;
-    border-radius: 11px;
+    border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
@@ -180,33 +194,17 @@ span {
 
 @media (min-width: 1200px){
     .container {
-        max-width: 1280px;
-    }
-
-    .container-fluid {
-        width: 95%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;
+        max-width: 80.000em;
     }
 
 }
 
-.bg-img {
-    /* The image used */
-    background-image: url("/src/assets/image/banner_bg.png");
-  
-    /* Full height */
-    height: 100%;
-  
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+@media screen and (width: 768px) {
+
+    .card-pad {
+        height: 780px;
+    }
   }
-
-
 
 @media screen and (max-width: 992px) {
     .font-one {
@@ -252,3 +250,17 @@ span {
         display: none;
     }
   }
+
+.carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    border: 1px solid ;
+    border-radius: 100% !important;
+}
+
+.carousel-indicators {
+    position: relative;
+}
+.carousel-indicators .active{
+    background-color: #4f5fbe;
+}
