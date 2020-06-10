@@ -1649,4 +1649,9 @@ td{
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
+    background: url("./assets/image/banner_bg.png") no-repeat local top right;
+    background-size: 900px;
+}
