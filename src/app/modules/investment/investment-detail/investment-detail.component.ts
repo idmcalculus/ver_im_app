@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
+import * as CryptoJS from 'crypto-js';
+
 
 declare var xpressPay: any;
 @Component({
@@ -161,6 +163,7 @@ export class InvestmentDetailComponent implements OnInit {
         }
     }
 
+
     joinsInvestment() {
         this.closemodal.nativeElement.click();
     }
@@ -193,10 +196,11 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    xpressPay(email, amnt, firstName, lastName, mobile, tranRef) {
+    xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto) {
+
         this.isLoading = true;
         localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
-        xpressPay(email, amnt, firstName, lastName, mobile, tranRef);
+        xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto);
     }
 
     change() {

@@ -1,4 +1,4 @@
-function xpressPay(email,amnt,firstName,lastName,mobile,tranRef) {
+function xpressPay(email,amnt,firstName,lastName,mobile,tranRef,Crypt) {
     
     var currentUrl = window.location.href
     if (email === "") {
@@ -28,10 +28,10 @@ function xpressPay(email,amnt,firstName,lastName,mobile,tranRef) {
     // const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X" + hashedPayload; // LIVE
     const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X" + hashedPayload; // TEST
     // 
-    const hash = sha256.create();
+    const hash = Crypt.algo.SHA256.create();
     // 
     hash.update(hashString);
-    const finanlHash = hash.hex();
+    const finanlHash = Crypt.enc.Hex.parse(hash);
     // 
     const body = {
         // "publicKey": "XPPUBK-01445c39c4095df9b08f566a82586d7c-X", // LIVE
