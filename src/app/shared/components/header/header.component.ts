@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
        this.delayOutput();
   }
 
-  @HostListener('window:scroll', ['$event'])
+  @HostListener('window: scroll', ['$event'])
   onWindowScroll() {
     let c = pageXOffset;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  delayOutput(){
+  delayOutput() {
     setTimeout (() => {
         this.show = true;
      }, 5000);
