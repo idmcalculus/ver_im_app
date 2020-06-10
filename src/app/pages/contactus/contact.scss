@@ -318,3 +318,15 @@
 		margin-left: 2rem;
 	}
 }
+
+@media (width: 1280px) {
+	.container {
+		max-width: 90%;
+	}
+}
+
+@media (width: 1440px) {
+	.container {
+		max-width: 80%;
+	}
+}
