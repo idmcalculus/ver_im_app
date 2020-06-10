@@ -7,9 +7,9 @@
 }
 
 @media (min-width: 1048px) {
-  .header nav ul {
+  /* .header nav ul {
     margin-right: 2rem;
     padding-right: 2rem;
     justify-content: space-evenly;
-  }
+  } */
 }
