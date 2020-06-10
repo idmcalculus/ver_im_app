@@ -155,7 +155,7 @@ body{
 }
 
 .card.recentActivity {
-    height: 550px;
+    height: 500px;
 
     .table-responsive{
         padding: 0.5rem 0rem;
@@ -670,7 +670,7 @@ h1, h2, h3, h4, h5, h6 {
   /* On screens that are 600px or less, set the background color to olive */
   @media screen and (max-width: 600px) {
     .row1 .normal {
-        font-size: 9px;
+        font-size: 7.5px;
     }
 
     .card.bestSelling{

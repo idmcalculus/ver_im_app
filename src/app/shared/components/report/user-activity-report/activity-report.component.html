@@ -91,71 +91,84 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card px-3">
-                                <div class="category-header pt-3 p-2 pb-3">
-                                    <p class=" header col-7">Comment</p>
-                                    <p class="header col-3">IP</p>
-                                    <p class="header col-2">Date</p>
-                                </div>
-                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div *ngIf="isLoading" >
-                                        <br><br>
-                                        <div  class="lds-default">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                        </div>
-                                    </div>
-                                        <div *ngIf="!isLoading && !User && filteredAdminActivity?.length > 0">
-                                            <div class="category-body" *ngFor="let report of filteredAdminActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
-                                                <div class="row1 p-2">
-                                                    <p class="col-7 col-md-7 col-sm-7">{{report?.activity}}</p>
-                                                    <p class="col-3 col-md-3 col-sm-3">{{report?.ip_address}}</p>
-                                                    <p class="col-2 col-md-2 col-sm-2">{{report?.created_at}}</p>
-                                                </div>
-                                           </div>
-                                           <div  class="col-12 px-0 d-flex flex-row">
-                                                <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
-                                                <span class="col-md-1 col-xs-1 px-0 controls">
-                                                    <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
-                                                        <option value="5"> 5 rows </option>
-                                                        <option value="10"> 10 rows </option>
-                                                        <option value="20"> 20 rows </option>
-                                                        <option value="0"> view all </option>
-                                                    </select>
-                                                </span>
+                            <div class="card card-flex px-3">
+                                <table id="order-table" class="table nowrap">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Comment</th>
+                                            <th>IP</th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <td colspan="99" class="text-center" *ngIf="isLoading || filteredAdminActivity?.length && filteredUserActivity?.length === 0" >
+                                        <div class="row text-center">
+                                            <br><br>
+                                            <div  class="lds-default">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
                                             </div>
                                         </div>
-                                        <div *ngIf="!isLoading && User && filteredUserActivity?.length > 0">
-                                            <div class="category-body" *ngFor="let report of filteredUserActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
-                                                <div class="row1 p-2">
-                                                    <p class="col-7 col-md-7 col-sm-7">{{report?.activity}}</p>
-                                                    <p class="col-3 col-md-3 col-sm-3">{{report?.ip_address}}</p>
-                                                    <p class="col-2 col-md-2 col-sm-2">{{report?.created_at}}</p>
-                                                </div>
-                                           </div>
-                                           <div  class="col-12 px-0 d-flex flex-row">
-                                            <pagination-controls class="pl-0 my_pagination col-md-10 col-xs-10" (pageChange)="p = $event" id='second'></pagination-controls>
-                                            <span class="col-md-1 col-xs-1 px-0  controls">
-                                                <select class="ml-lg-5 ml-md-3 py-2 px-2  input-control" data-type="items-per-page" (change) = setItemsPerPage(page2.value) #page2>
-                                                    <option value="5"> 5 rows </option>
-                                                    <option value="10"> 10 rows </option>
-                                                    <option value="20"> 20 rows </option>
-                                                    <option value="0"> view all </option>
-                                                </select>
-                                            </span>
-                                        </div>
-                                        </div>
-                                </div>
+                                    </td>
+                                    
+                                    <tbody *ngIf="!isLoading && !User && filteredAdminActivity?.length > 0">
+                                        <tr class="" *ngFor="let report of filteredAdminActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
+                                            <td>{{report?.activity}}</td>
+                                            <td>{{report?.ip_address}}</td>
+                                            <td>{{report?.created_at}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="pb-0 mr-5">
+                                              <pagination-controls
+                                                (pageChange)="p =$event" id='second'>
+                                              </pagination-controls>
+                                            </td>
+                                            <td></td>
+                                            <td class="pb-0">
+                                              <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                  <option value="5"> 5 rows </option>
+                                                  <option value="10"> 10 rows </option>
+                                                  <option value="20"> 20 rows </option>
+                                                  <option value="0"> view all </option>
+                                              </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tbody *ngIf="!isLoading && User && filteredUserActivity?.length > 0">
+                                        <tr class="" *ngFor="let report of filteredUserActivity | paginate: { itemsPerPage: pageValue, currentPage:p, id: 'second'};let i = index;">
+                                            <td>{{report?.activity}}</td>
+                                            <td>{{report?.ip_address}}</td>
+                                            <td>{{report?.created_at}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="pb-0 mr-5">
+                                              <pagination-controls
+                                                (pageChange)="p =$event" id='second'>
+                                              </pagination-controls>
+                                            </td>
+                                            <td></td>
+                                            <td class="pb-0">
+                                              <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page2.value) #page2>
+                                                  <option value="5"> 5 rows </option>
+                                                  <option value="10"> 10 rows </option>
+                                                  <option value="20"> 20 rows </option>
+                                                  <option value="0"> view all </option>
+                                              </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

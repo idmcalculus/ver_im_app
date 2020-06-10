@@ -25,6 +25,7 @@ a .setting {
 }
 
 .input-control {
+    padding: 9px;
     display: block;
     width: 100%;
     color: #495057;
@@ -41,6 +42,11 @@ label,th {
     font-family: roboto, sans-serif;
     font-size: 14px;
     font-weight: bold;
+}
+
+label,td {
+    font-family: roboto, sans-serif;
+    font-size: 12px;
 }
 
 div > a > img {
@@ -140,16 +146,24 @@ td {
     padding: 0px;
 }
 
-.category-body .row1 p{
-    font-size: 12px;
-    padding: 0;
+.row {
+    align-items: center;
+    justify-items: center;
+    margin: 0px;
+    padding: 0px;
 }
 
-.s-n, .category-name {
-    flex: 1 1 30em;
-    margin-left: 10px;
+.table td, .table th {
+    padding: 20px;
 }
 
-.category-body .row1 p{
-    padding: 0;
+.card-flex {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		display: none;  //Safari and Chrome
+	}
 }
+
