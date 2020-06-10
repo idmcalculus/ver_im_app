@@ -20,53 +20,64 @@
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card px-3">
-                                <div class="category-header py-3 p-2">
-                                    <p class="width" style="text-align:start">Investment Title</p>
-                                    <p class="width">Category</p>
-                                    <p class="width">Cost</p>
-                                    <p class="width">Viewed</p>
-                                    <p class="width">Percentage</p>
-                                </div>
-                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div *ngIf="isLoading" >
-                                        <br><br>
-                                        <div  class="lds-default">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
+                            <div class="card card-flex px-3">
+                                <table id="order-table" class="table nowrap">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Investment Title</th>
+                                            <th>Category</th>
+                                            <th>Cost</th>
+                                            <th>Viewed</th>
+                                            <th>Percentage</th>
+                                        </tr>
+                                    </thead>
+
+                                    <td colspan="99" class="text-center" *ngIf="isLoading || pools?.length === 0" >
+                                        <div class="row text-center">
+                                            <br><br>
+                                            <div  class="lds-default">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="category-body" *ngIf="!isLoading && pools?.length > 0">
-                                        <div class="row1 p-2" *ngFor="let pool of pools| paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
-                                            <p class="width" style="text-align:start">{{pool.title}}</p>
-                                            <p class="width">{{getCategoryName(pool.category_id)}}</p>
-                                            <p class="width">{{pool.investment_amount}}</p>
-                                            <p class="width">{{pool.no_of_views}}</p>
-                                            <p class="width">{{percentages(pool.no_of_views)}}%</p>
-                                        </div>
-                                        <div  class="col-12 pl-0 mt-3 d-flex flex-row">
-                                            <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
-                                            <span class="col-md-1 col-xs-1 px-0">
-                                                <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
-                                                    <option value="5"> 5 rows </option>
-                                                    <option value="10"> 10 rows </option>
-                                                    <option value="20"> 20 rows </option>
-                                                    <option value="0"> view all </option>
-                                                </select>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </td>
+                                    
+                                    <tbody *ngIf="!isLoading && pools?.length > 0">
+                                        <tr class="" *ngFor="let pool of pools | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                            <td>{{ pool.title }}</td>
+                                            <td>{{ getCategoryName(pool.category_id) }}</td>
+                                            <td>{{ pool.investment_amount }}</td>
+                                            <td>{{ pool.no_of_views }}</td>
+                                            <td>{{percentages(pool.no_of_views)}}%</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td [colSpan]="4" class="pb-0 mr-5">
+                                              <pagination-controls
+                                                (pageChange)="p2=$event" id='second'>
+                                              </pagination-controls>
+                                            </td>
+                                            <td class="pb-0">
+                                              <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                  <option value="5"> 5 rows </option>
+                                                  <option value="10"> 10 rows </option>
+                                                  <option value="20"> 20 rows </option>
+                                                  <option value="0"> view all </option>
+                                              </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

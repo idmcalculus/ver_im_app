@@ -1,8 +1,7 @@
 // @ts-nocheck
-import { NgModule, Component, OnInit, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {AdminService} from '../admin.service';
 import { AdminDashboard } from 'src/app/shared/models/AdminDashboard';
-import { CareerService } from '../../career/career.service';
 import { ChartType, ChartOptions  } from 'chart.js';
 import { Category } from 'src/app/shared/models/Category';
 import { InvestmentService } from './../../investment/investment.service';
@@ -10,9 +9,8 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
 
 import { Label, PluginServiceGlobalRegistrationAndOptions } from 'ng2-charts';
-import { count } from 'rxjs/operators';
+
 declare var google: any;
-let allInvestments = [{'title':''}];
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -120,7 +118,6 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private adminService: AdminService,
     private investmentService: InvestmentService,
-    private careerService: CareerService
 
     ) {
       this.getCategories();

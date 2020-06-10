@@ -81,6 +81,7 @@ export class PoolDetailComponent implements OnInit {
           this.reports.forEach((report: any, i) => report.index = i + 1);
           this.isLoading = false;
 
+
         } else {
           this.router.navigate(['./', {}]);
         }
