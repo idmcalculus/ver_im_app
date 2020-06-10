@@ -21,10 +21,10 @@ h2 {
 }
 
 .btn {
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
     text-transform: capitalize;
-    font-size: 15px;
+    font-size: 14px;
     padding: 9px 50px;
     cursor: pointer;
 }
@@ -48,14 +48,14 @@ hr {
 
 .lower-content{
     color: #979797;
-    font-size: 15px !important;
-    line-height: 35px !important;
+    font-size: 16px !important;
+    line-height: 29px !important;
     text-align: justify;
 }
 
 .text-title {
     color: #4f5fbe;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .font-one {
@@ -113,17 +113,6 @@ hr {
     line-height: 35px !important;
     letter-spacing: 1px;
     text-align: justify;
-}
-
-.input-control[_ngcontent-c4] {
-    height: 300px;
-    color: #495057;
-    box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 0px solid;
-    border-radius: 4px;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .input-control {
@@ -194,7 +183,7 @@ span {
 
 @media (min-width: 1200px){
     .container {
-        max-width: 80.000em;
+        max-width: 84.064052749892em;
     }
 
 }
@@ -204,9 +193,10 @@ span {
     .card-pad {
         height: 780px;
     }
-  }
+}
 
 @media screen and (max-width: 992px) {
+
     .font-one {
         font-size: 2.5rem !important;
         line-height: 42px !important;
@@ -228,10 +218,10 @@ span {
     .text-header {
         font-size: 15px;
     }
-  }
+}
   
   /* On screens that are 600px or less, set the background color to olive */
-  @media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .font-one {
         color: #4f5fbe;
         font-size: 2rem !important;
@@ -249,18 +239,28 @@ span {
     .hide{
         display: none;
     }
-  }
+}
 
-.carousel-indicators li {
+@media (min-width: 1000px) {
+    .invest-control {
+        height: auto;
+    }
+}
+
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
     width: 20px;
     height: 20px;
-    border: 1px solid ;
+    border: 1.5px solid;
+    color: #4f5fbe;
     border-radius: 100% !important;
+    background: transparent;
 }
 
-.carousel-indicators {
+ol.carousel-indicators{
     position: relative;
 }
-.carousel-indicators .active{
-    background-color: #4f5fbe;
+
+ol.carousel-indicators li.active {
+  background: #4f5fbe;
 }
