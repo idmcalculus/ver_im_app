@@ -50,16 +50,7 @@
                                               <th>Date Invested</th>
                                           </tr>
                                       </thead>
-                                      <tbody *ngIf="loggedInUser?.user_category==='Admin'">
-                                          <tr data-href="#viewUserProfile"  (click)="viewUserDetail(user?.user_info[0])" *ngFor="let user of pool?.investment_user">
-                                              <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
-                                              <td>{{user?.user_info[0].email}}</td>
-                                              <td>{{user?.user_info[0].phone_number}}</td>
-                                              <td>{{user?.user_investment_info?.number_of_pools}}</td>
-                                              <td>{{user?.user_investment_info?.amount_paid | currency:'':''}}</td>
-                                              <td>{{user?.user_investment_info?.created_at}}</td>
-                                          </tr>
-                                      </tbody>
+
                                       <tbody *ngIf="loggedInUser?.user_category!=='Admin'">
                                           <tr [ngStyle]="{'display': (i === 0) ? 'contents' : 'none'}" *ngFor="let user of pool?.investment_user; let i = index;">
                                               <td>{{user?.user_info[0]?.first_name}} {{user?.user_info[0].last_name}}</td>
