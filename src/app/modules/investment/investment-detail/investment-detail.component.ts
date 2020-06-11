@@ -98,6 +98,7 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
+                
 
                 this.activatedRoute.queryParams.subscribe(resp => {
                     const statusCode = resp['status-code'];
@@ -207,6 +208,5 @@ export class InvestmentDetailComponent implements OnInit {
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
-
 
 }
