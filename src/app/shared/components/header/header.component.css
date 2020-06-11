@@ -1,5 +1,7 @@
 .container {
-  max-width: 1340px;
+  max-width: 100%;
+  position: absolute;
+  margin: 0px auto;
 }
 
 .header nav li a {
