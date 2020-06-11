@@ -191,10 +191,7 @@
                                     </div>
                                     <div class="row text-left">
                                         <div class="col-md-7">
-                                            <label class="pt-1 font-weight-bold" for="slotNum">Cost Per Slot:</label>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <label class="pt-1 font-weight-bold" for="slotNum">{{investment?.investment_amount}}</label>
+                                            <input type="number" [(ngModel)]="transaction.number_of_pools" min="0"  id="slotNum" class="form-control">
                                             <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
                                                 <option value="" hidden>Select</option>
                                                 <option value="1">1</option>
@@ -248,29 +245,12 @@
                                 (callback)="joinInvestment()"
                                 >Paystack pay</button> -->
 
-                            <button
-                                (click) = "triggerSecond()"
-                                data-dismiss="modal"
-                                [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                                type="button" class="btn btn-color">Make Payment
-                            </button>
-                            <!-- <button
-                                data-dismiss="modal"
-                                type="button"
-                                [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                                class="btn btn-join-add"
-                                angular-rave
-                                [PBFPubKey] = "'FLWPUBK-af2c323a9692b4f6a8b599f68d8564a'"
-                                [customer_email] = "userinfo?.email"
-                                [customer_phone] = "userinfo?.phone_number"
-                                [amount]="amountPerPool  * transaction.number_of_pools"
-                                [currency]="'NGN'"
-                                [custom_title]="'Investment Payment'"
-                                [txref]="transactionRef"
-                                (callback)="joinInvestment()"
-                                (close)="paymentCancel()"
-                            >Flutterwave</button> -->
-                        </div>
+                        <button
+                            (click) = "triggerSecond()"
+                            data-dismiss="modal"
+                            [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                            type="button" class="btn btn-join-add">Make Payment
+                        </button>
                     </div>
                 </div>
             </div>
@@ -390,39 +370,79 @@
                                         <label class="pt-1" for="slotNum">Phone No</label>
                                     </div>
                                     <div class="col-md-7">
-                                        <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="mobile" name="mobile"  value= {{userinfo.phone_number}} style="border-radius: 4px;border-width: 1px;"></label>
+                                        <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="transactionRef2" style="border-radius: 4px;border-width: 1px;"></label>
                                     </div>
                                 </div>
-                                </form>
+                            </div>
+                            <div *ngIf="ViaXpress" class="form-group" style="width:70%;margin:0px auto">
+                                <div class="row" style="justify-content:center;text-align: left;">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">First Name</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="text"  name="firstName"  value= {{userinfo?.first_name}} style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center; text-align: left;">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Last Name</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="text" name="lastName"  value= {{userinfo?.last_name}} style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center;text-align: left;">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Email</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="text"  name="email"  value= {{userinfo?.email}} style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center; text-align: left;">
+                                    <div class="col-md-5">
+                                        <label class="pt-1" for="slotNum">Amount</label>
+                                    </div>
+                                  <div class="col-md-7">
+                                        <label class="pt-1" for="slotNum"> <input type="number"  [(ngModel)]="transAmount" name="transAmount"  value= {{investment?.investment_amount*transaction.number_of_pools}} style="border-radius: 4px;border-width: 1px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row" style="justify-content:center; text-align: left;">
+                                   <div class="col-md-5">
+                                       <label class="pt-1" for="slotNum">Phone No</label>
+                                   </div>
+                                   <div class="col-md-7">
+                                       <label class="pt-1" for="slotNum"> <input type="text" name="mobile"  value= {{userinfo?.phone_number}} style="border-radius: 4px;border-width: 1px;"></label>
+                                   </div>
+                               </div>
                             </div>
                         </div>
-                        <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
-                            <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn-color"  [hidden]="true">Join</button>
-                            <button *ngIf='!ViaXpress' type="button"  data-dismiss="modal" [disabled]="(!payment_id)" (click)="joinsInvestment()" class="btn btn-color">Submit</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn-join-add"  [hidden]="true">Join</button>
+                        <button *ngIf='!ViaXpress' type="button"  data-dismiss="modal" [disabled]="(!transactionRef)" (click)="joinsInvestment()" class="btn btn-join-add">Submit</button>
 
-                            <button *ngIf='ViaXpress' id="submit" type="button" class="btn btn-color" (click)="xpressPay()">
-                                Submit
-                            </button>
-                        </div>
+                        <button *ngIf='ViaXpress' id="submit"
+                            data-dismiss="modal"
+                            type="button"
+                            class="btn btn-join-add"
+                            (click)="initiatePay(userinfo?.email,transAmount,userinfo?.first_name, userinfo?.last_name, userinfo?.phone_number,  investment?.investment_amount,transaction.number_of_pools)"
+                        >Submit</button>
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter3" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="join-modal">
-                                <h3>Transaction Successful</h3>
-                                <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{payment_id}} will be confirmed and processed in the next 24 hours processed.</h5>
-                                <h5>Best regards</h5>
-                                <h5>Versa Team</h5>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) = "redirectBack()">Close</button>
+        </div>
+         <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter3" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                         <div class="join-modal">
+                            <h3>Transaction Successful</h3>
+                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{transactionRef}} will be confirmed and processed in the next 24 hours processed.</h5>
+                             <h5>Best regards</h5>
+                             <h5>Versa Team</h5>
                         </div>
                     </div>
                 </div>
