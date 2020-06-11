@@ -1,14 +1,12 @@
-.container {
-  max-width: 100%;
-  position: absolute;
-  margin: 0px auto;
-}
 
 .header nav li a {
   font-weight: bolder;
 }
 
-@media (min-width: 1048px) {
+@media (min-width: 1200px){
+  .container {
+      max-width: 1240px;
+  }
   /* .header nav ul {
     margin-right: 2rem;
     padding-right: 2rem;
