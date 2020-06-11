@@ -25,12 +25,17 @@ export class InvestmentDetailComponent implements OnInit {
     allInvestments = [];
     investment: Investment;
     transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
+    payment_id: null;
     userinfo: User;
     amountPerPool = 0;
     userEmail = '';
-    transAmount:number;;
     transactionRef = '';
-    transactionRef2 = '';
+    amnt = '';
+    lastName = '';
+    firstName = '';
+    mobile = '';
+    tranRef = '';
+    email = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -76,7 +81,6 @@ export class InvestmentDetailComponent implements OnInit {
 
     triggerSecond() {
         this.closebutton.nativeElement.click();
-        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
     }
 
     getStat(inv){
@@ -198,15 +202,17 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
-        transAmount = investment_amount*number_of_pools;
+    xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto) {
+
         this.isLoading = true;
-        localStorage.setItem(String(this.transactionRef), String(this.transaction.number_of_pools));
-        xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
+        localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
+        xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto);
     }
 
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
+
+    
 
 }
