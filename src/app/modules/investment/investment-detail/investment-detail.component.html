@@ -1,16 +1,9 @@
-<section class="invest-header">
-    <div class="row1">
-        <div class="col-md-3 hidden">
-            <img class="img-fluid" src="../../../../assets/images/transportation.jpg">
-        </div>
-        <div class="col-md-9 header-center">
-            <div class="invest-header-text header-padding">
-                <div class="navigation-values">Homepage<span> ></span>Invest</div>
-            </div>
-        </div>
+<section class="invest-header mt-0">
+    <div class="row justify-content-center">
+        <div class="header font-weight-bold">Investments</div>
     </div>
 </section>
-<section class="section-container">
+<section class="section-container container px-2">
     <section class="investment-plans">
 
         <div *ngIf=" investment==null || isLoading" class="display: flex">
@@ -26,15 +19,15 @@
             </div>
         </div>
 
-        <div *ngIf=" investment!=null && !isLoading" class="inner-investment">
+        <div *ngIf=" investment!=null && !isLoading" class="inner-investment px-0">
             <div class="invest-banner">
                 <div class="over-content">
                     <h3>{{investment?.title}}</h3>
                 </div>
             </div>
             <div class="main-invest-card">
-                <div class="row">
-                    <div class="col-md-5 side-details">
+                <div class="row p-lg-5">
+                    <div class="col-md-4 side-details">
                         <div class="invest-thumbnail">
                             <div *ngIf="investment.investment_image==''" class="plan-image"></div>
                             <img *ngIf="investment.investment_image!=''" src="{{investment?.investment_image}}"
@@ -42,13 +35,23 @@
                         </div>
                         <div class="content-detail">
                             <h3>{{amountPerPool | currency:'NGN':'symbol-narrow'}} per slot</h3>
-                            <div><span><img src="" alt="">
+                            <div>
+                                <span>
                                     {{investment?.max_num_of_slots - investment?.num_of_pools_taken}}
-                                    out of {{investment?.max_num_of_slots}} slots left</span></div>
-                            <div><span><img src="" alt=""> Investment period: </span> {{investment?.duration}}
+                                    out of {{investment?.max_num_of_slots}} slots left
+                                </span>
+                            </div>
+
+                            <div>
+                                <span>
+                                    Investment period: 
+                                </span> {{investment?.duration}}
                                 Month(s)
                             </div>
-                            <div *ngIf="investment?.estimated_percentage_profit"><span><img src="" alt=""> Return:
+
+                            <div *ngIf="investment?.estimated_percentage_profit">
+                                <span>
+                                    Return:
                                 </span>{{investment?.estimated_percentage_profit}}%
                                 profit (Estimated)
                             </div>
@@ -57,16 +60,16 @@
                         </div>
                         <div class="actionBtn">
                             <a routerLink="/signin" routerLinkActive="active"
-                                *ngIf="!userinfo && investment?.is_investment_started=='0' " class="btn2 btn-join">Sign
+                                *ngIf="!userinfo && investment?.is_investment_started=='0' " class="btn btn-color font-weight-bold">Sign
                                 in to join</a>
                             <a href="#" *ngIf="userinfo?.email && investment?.is_investment_started=='0' && investment?.status===0"
                                 (click)="refereshPaymentRef()" data-toggle="modal" data-target="#exampleModalCenter"
-                                class="btn2 btn-join">Invest now</a>
-                            <a *ngIf="investment?.is_investment_started=='1' " class="btn2 btn-join">Closed</a>
+                                class="btn btn-color font-weight-bold">Invest now</a>
+                            <a *ngIf="investment?.is_investment_started=='1' " class="btn btn-color font-weight-bold">Closed</a>
                             <button #closebutton id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter2">Open Modal</button>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <div class="card-body other-info">
                             <h5 class="card-title">Investment Description</h5>
                             <article>
@@ -78,46 +81,46 @@
             </div>
         </div>
 
-        <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType">
-            <h3>Related Investments</h3>
+        <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType px-0">
+            <h3 class="m-0">Related Investments</h3>
             <div class="row">
                 <div *ngFor="let x of allinv" class="col-sm-4">
                     <a  *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
                         <a  *ngIf="x.status===-1" [ngClass]="(x.status===-1)?'inactive':''" class="card" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
-                            <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                            <img class="card-img-top pt-3" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
                                 alt="Card image cap">
-                            <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                            <img class="card-img-top pt-3" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
                                 alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title"><a style="font-size: 20px;"
+                                <h5 class="card-title"><a style="font-size: 16px;"
                                         href="investment-details.html">{{x.title}}</a></h5>
-                                <div class="card-text" style="text-align: center">
+                                <div class="" style="text-align: center">
                                     <h3 style="text-align: center">
                                         {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                     <span *ngIf="x?.estimated_percentage_profit"
-                                        class="span-profit">{{investment?.estimated_percentage_profit}}%
+                                        class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
                                         Profit (Estimated)</span>
-                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                    <p>{{x.duration}} Month(s)</p>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
+                                    <p class="font-weight-bold">{{x.duration}} Month(s)</p>
                                 </div>
                             </div>
                         </a>
                     <a *ngIf="x.status!==-1" class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                        <img class="card-img-top" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                        <img class="card-img-top pt-3" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
                             alt="Card image cap">
-                        <img class="card-img-top" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                        <img class="card-img-top pt-3" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
                             alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"><a style="font-size: 20px;"
+                            <h5 class="card-title"><a style="font-size: 16px;"
                                     href="investment-details.html">{{x.title}}</a></h5>
-                            <div class="card-text" style="text-align: center">
+                            <div class="" style="text-align: center">
                                 <h3 style="text-align: center">
                                     {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                 <span *ngIf="x?.estimated_percentage_profit"
-                                    class="span-profit">{{investment?.estimated_percentage_profit}}%
+                                    class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
                                     Profit (Estimated)</span>
-                                <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                <p>{{x.duration}} Month(s)</p>
+                                <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
+                                <p class="font-weight-bold">{{x.duration}} Month(s)</p>
                             </div>
                         </div>
                     </a>
