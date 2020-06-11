@@ -5,11 +5,17 @@
 
 @media (min-width: 1200px){
   .container {
-      max-width: 1240px;
+      max-width: 75%;
   }
   /* .header nav ul {
     margin-right: 2rem;
     padding-right: 2rem;
     justify-content: space-evenly;
   } */
+}
+
+@media (width: 1280px){
+  .container {
+      max-width: 82%;
+  }
 }
