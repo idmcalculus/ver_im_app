@@ -26,13 +26,13 @@
         .input-group {
             input{
                 height: 50px;
-                width: 100%;
+                width: 70%;
                 padding-left: 10px;
                 border: none;
                 outline: none;
               }
               button{
-                position: absolute;
+                position: relative;
                 right: 0px;
                 border:none;
                 height: 50px;
@@ -44,7 +44,7 @@
     }
 }
 
-@media (width: 1280px) {
+@media (min-width: 1280px) {
     .inner-footer {
         max-width: 90%;
     }
@@ -52,8 +52,8 @@
 
 @media (min-width: 1400px) {
     .inner-footer {
-        min-width: 87% !important;
-        max-width: 87% !important;
+        min-width: 80% !important;
+        max-width: 80% !important;
     }
 }
 
@@ -66,7 +66,6 @@
     .col-md-3{
         ul{
             li{
-                justify-content: center;
                 display: flex;
             }
         }
@@ -134,7 +133,7 @@
             text-align: center!important;
         }
     
-        .col-md-4.col-sm-6 {
+        .col-md-4.col-sm-6, .col-md-3 {
             ul{
                 margin-top: 0;
                 li{

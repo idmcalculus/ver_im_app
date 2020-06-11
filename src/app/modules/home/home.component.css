@@ -111,7 +111,7 @@ hr {
     color: #919191;
     font-size: 14px !important;
     line-height: 35px !important;
-    letter-spacing: 1px;
+    letter-spacing: 0.1px;
     text-align: justify;
 }
 
@@ -191,7 +191,7 @@ span {
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: 790px;
+        height: auto;
     }
 }
 
@@ -203,7 +203,7 @@ span {
     }
 
     .text {
-        line-height: 30px !important;
+        line-height: 2rem !important;
     }
     
     .hide{
@@ -243,12 +243,12 @@ span {
 
 @media (min-width: 1000px) {
     .invest-control {
-        height: 500px;
+        height: auto;
     }
 }
 @media (width: 1024px) {
     .invest-control {
-        height: 630px;
+        height: 70%;
     }
 }
 
