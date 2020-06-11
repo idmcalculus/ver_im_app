@@ -1,9 +1,17 @@
-.bg-img{
-   background: url("/src/assets/image/banner_bg.png");
-   background-attachment: fixed;
-  background-position: top right;
+.container {
+  max-width: 100%;
+  position: absolute;
+  margin: 0px auto;
 }
 
-.container {
-  max-width: 1340px;
+.header nav li a {
+  font-weight: bolder;
+}
+
+@media (min-width: 1048px) {
+  /* .header nav ul {
+    margin-right: 2rem;
+    padding-right: 2rem;
+    justify-content: space-evenly;
+  } */
 }

@@ -1,14 +1,13 @@
 <section class="invest-header mt-0">
     <div class="row justify-content-center">
-        <div class="header font-weight-bold">INVESTMENTS</div>
+        <div class="header font-weight-bold">Investments</div>
     </div>
 </section>
-<section class="section-container pb-0">
+<section class="section-container container pb-0">
     <section class="investment-plans pb-0">
-        <div class="inner-investment">
+        <div class="inner-investment px-0">
             <div class="row">
                 <div class="column">
-                    <h3 class="title-head-inv">INVESTMENTS</h3>
                     <hr class="p-0" style="margin-top: 0.5px; width: 80%;"/>
                 </div>
             </div>
@@ -29,12 +28,12 @@
             <div *ngIf="isLoading" class="display: flex">
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                            <div class="superb-container m-b20">
-                                <div class="img-holder">
+                        <div class="superb-container m-b20">
+                            <div class="img-holder">
 
-                                </div>
-                               <div> <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader></div>
                             </div>
+                            <div> <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader></div>
+                        </div>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
                         <div class="superb-container m-b20">
@@ -63,7 +62,7 @@
                 <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
                     <a *ngIf="x?.status===-1" class="coming" href="#">Coming Soon</a>
                     <div *ngIf="x?.status===-1" class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
-                        <div class="img-holder">
+                        <div class="img-holder pt-3">
                             <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
                             <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                         </div>
@@ -79,7 +78,7 @@
                     </div>
                     <a *ngIf="x?.status!==-1" [routerLink]="(x?.status!==-1) ? ['/investments', x?.id] : ''" routerLinkActive="active">
                         <div class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
-                            <div class="img-holder">
+                            <div class="img-holder pt-3">
                                 <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
                                 <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>

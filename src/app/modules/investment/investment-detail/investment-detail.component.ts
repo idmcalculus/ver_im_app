@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
+import * as CryptoJS from 'crypto-js';
+
 
 declare var xpressPay: any;
 @Component({
@@ -161,6 +163,7 @@ export class InvestmentDetailComponent implements OnInit {
             this.investments = this.allInvestments;
         }
     }
+
 
     joinsInvestment() {
         this.closemodal.nativeElement.click();

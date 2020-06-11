@@ -73,7 +73,7 @@
 
 .text-header {
     color: white;
-    font-size: 50px;
+    font-size: 40px;
     padding-top: 150px;
     text-align: center;
     font-family: roboto;
@@ -106,18 +106,12 @@ p {
 }
 
 .btn {
-    border-radius: 8px;
+    border-radius: 10px;
     color: white;
     text-transform: capitalize;
-    font-size: 15px;
-    padding: 10px 19px;
+    font-size: 14px;
+    padding: 9px 50px;
     cursor: pointer;
-    font-family: roboto;
-    font-weight: 550;
-    -webkit-box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
-    -moz-box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
-    box-shadow: 0px 0px 8px 1px rgba(125,122,214,1);
-
 }
 
 @media (min-width: 1200px){
