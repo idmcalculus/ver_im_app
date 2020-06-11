@@ -10676,6 +10676,11 @@ div.dt-buttons {
     clear: both
 }
 
+nav{
+    margin: 0px auto !important;
+    width: 82.564052749892em !important
+}
+
 .card .table-card-header b {
     display: block;
     color: #4099ff;
