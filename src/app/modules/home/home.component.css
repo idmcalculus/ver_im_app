@@ -243,6 +243,11 @@ span {
 
 @media (min-width: 1000px) {
     .invest-control {
+        height: 500px;
+    }
+}
+@media (width: 1024px) {
+    .invest-control {
         height: auto;
     }
 }

@@ -1,5 +1,5 @@
 <section class="container px-0" style="max-width:100%">
-    <section class="invest-header">
+    <section class="invest-header mt-0">
         <div class="row justify-content-center">
             <div class="header font-weight-bold">Investments</div>
         </div>
@@ -168,12 +168,7 @@
                                                 <label class="pt-1" for="slotNum">Number of Slots?</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="number" [(ngModel)]="transaction.number_of_pools" min="0"  id="slotNum" style="position: relative !important; opacity: 10 !important;" class="form-control">
-                                                <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                                    <option value="" hidden>Select</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                </select> -->
+                                                <input type="number" [(ngModel)]="transaction.number_of_pools" min="0" max=""  id="slotNum" style="position: relative !important; opacity: 10 !important;" class="form-control">
                                             </div>
                                         </div>
                                     </div>
@@ -279,6 +274,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter2" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -412,6 +408,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="modal fade" style="margin-top: 7em !important;" id="exampleModalCenter3" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">

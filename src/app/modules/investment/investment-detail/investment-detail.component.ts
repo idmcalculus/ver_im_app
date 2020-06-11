@@ -213,4 +213,6 @@ export class InvestmentDetailComponent implements OnInit {
         this.ViaXpress = !this.ViaXpress;
     }
 
+    
+
 }
