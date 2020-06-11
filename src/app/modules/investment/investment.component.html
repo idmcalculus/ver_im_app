@@ -1,132 +1,113 @@
-<section class="invest-header mt-0">
-    <div class="row justify-content-center">
-        <div class="header font-weight-bold">INVESTMENTS</div>
-    </div>
-</section>
-<section class="section-container pb-0">
-    <section class="investment-plans pb-0">
-        <div class="inner-investment">
-            <div class="row py-5">
-                <div class="column2">
-                    <h5 *ngIf="!isLoading" class="title-head-inv" (click)="filterInvestmentsById(0)"><span>All</span></h5>
-                    <h5  *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category.id)">|<span>{{category.category_name}}</span></h5>
-                </div>
-            </div>
-
-            <div *ngIf="isLoading" class="display: flex">
+<section class="container px-0" style="max-width:100%">
+    <section class="invest-header mt-0">
+        <div class="row justify-content-center">
+            <div class="header font-weight-bold">Investments</div>
+        </div>
+    </section>
+    <section class="section-container container pb-0">
+        <section class="investment-plans pb-0">
+            <div class="inner-investment px-0">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                    <div class="column">
+                        <hr class="p-0" style="margin-top: 0.5px; width: 80%;"/>
+                    </div>
+                </div>
+                <div class="row pt-0 categoryNav">
+                    <div *ngIf="!isLoading" class="column2">
+                        <mat-select class="form-control d-lg-none d-xl-none d-md-none" placeholder="All Categories" name="category" [formControl]="Category">
+                            <mat-select-trigger>
+                                {{ Category.value === 'All' ? 'All Categories' : Category.value }}
+                            </mat-select-trigger>
+                            <mat-option (click)="filterInvestmentsById(0)" value="All">All Categories</mat-option>
+                            <mat-option *ngFor="let category of categories" class="title-head-inv" (click)="filterInvestmentsById(category)" [value]="category.category_name">{{category.category_name}}</mat-option>
+                        </mat-select>
+                        <h5 class="title-head-inv d-none d-md-flex pt-0" (click)="filterInvestmentsById(0)"><span>All</span></h5>
+                        <h5 *ngFor="let category of categories" class="title-head-inv d-none d-md-flex" (click)="filterInvestmentsById(category)">|<span>{{category.category_name}}</span></h5>
+                    </div>
+                </div>
+
+                <div *ngIf="isLoading" class="display: flex">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
                             <div class="superb-container m-b20">
                                 <div class="img-holder">
             
                                 </div>
-                               <div> <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader></div>
-                            </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                        <div class="superb-container m-b20">
-                            <div class="img-holder">
-                    
-                            </div>
-                            <div>
-                                <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                                <div> <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
-                        <div class="superb-container m-b20">
-                            <div class="img-holder">
-                    
+                        <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                            <div class="superb-container m-b20">
+                                <div class="img-holder">
+
+                                </div>
+                                <div>
+                                    <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                                </div>
                             </div>
-                            <div>
-                                <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                            <div class="superb-container m-b20">
+                                <div class="img-holder">
+
+                                </div>
+                                <div>
+                                    <ngx-skeleton-loader count="5" appearance="line"></ngx-skeleton-loader>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
-                <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-4 p-4">
-                    <a [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                        <div class="superb-container m-b20">
-                            <div class="img-holder">
-                                <img *ngIf="x.investment_image=='' " src="../assets/images/notcard.png" alt="image">
-                                <img *ngIf="x.investment_image!=''" src="{{x.investment_image}}" alt="image">
+                <div *ngIf="!isLoading && investments.length > 0 " class="row mb-5">
+                    <div *ngFor="let x of investments" class="col-sm-12 col-md-6 col-lg-3 pb-2">
+                        <a *ngIf="x?.status===-1" class="coming" href="#">Coming Soon</a>
+                        <div *ngIf="x?.status===-1" class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
+                            <div class="img-holder pt-3">
+                                <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                                <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <a class="text-header" href="investment-details.html">{{x.title}}</a>
-                                <h3>{{x.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                <h4 class="text" *ngIf="x?.estimated_percentage_profit" >{{x?.estimated_percentage_profit}}% Profit
-                                    (Estimated)</h4>
+                                <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                <h3 style="filter: blur(15px);">{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
+                                    class="span-profit">{{x?.estimated_percentage_profit}}% Profit
+                                    (Estimated)</span>
                                 <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                                <p class="text-footer font-weight-bold">{{x.duration}} Month(s)</p>
+                                <p>{{x?.duration}} Month(s)</p>
                             </div>
                         </div>
-                    </a>
-                </div>
-
-                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
-                    <a class="sold_out" href="https://abc.com/">Sold out</a>
-                    <div class="superb-container m-b20" style="background-color: #33333324;">
-                        <div class="img-holder">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                        </div>
-                        <div class="content-holder">
-                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
-                            <h3>{{100000 | currency:'NGN':'symbol-narrow'}}</h3>
-                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
-                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                            <p>12 Month(s)</p>
-                        </div>
+                        <a *ngIf="x?.status!==-1" [routerLink]="(x?.status!==-1) ? ['/investments', x?.id] : ''" routerLinkActive="active">
+                            <div class="superb-container m-b20 " [ngClass]="(x?.status===-1) ? 'inactive' : ''">
+                                <div class="img-holder pt-3">
+                                    <img *ngIf="x?.investment_image=='' " src="../assets/images/notcard.png" alt="image">
+                                    <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
+                                </div>
+                                <div class="content-holder">
+                                    <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                    <h3>{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                    <span *ngIf="x?.estimated_percentage_profit"
+                                        class="span-profit">{{x?.estimated_percentage_profit}}% Profit
+                                        (Estimated)</span>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
+                                    <p>{{x?.duration}} Month(s)</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
-                    <a class="sold_out" href="https://abc.com/">Sold out</a>
-                    <div class="superb-container m-b20" style="background-color: #33333324;">
-                        <div class="img-holder">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                        </div>
-                        <div class="content-holder">
-                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
-                            <h3>{{500000 | currency:'NGN':'symbol-narrow'}}</h3>
-                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
-                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                            <p>12 Month(s)</p>
+                <section *ngIf="!isLoading && investments?.length == 0" style="border-radius: 30px;" class="workingSection">
+                    <div class="inner-workingSection">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="working-content" style="text-align: center; width: 100%">
+                                    <h3>Sorry there are no investments available now in this category</h3>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 p-4" >
-                    <a class="sold_out" href="https://abc.com/">Sold out</a>
-                    <div class="superb-container m-b20" style="background-color: #33333324;">
-                        <div class="img-holder">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                            <img src="https://res.cloudinary.com/crystalbit-technology/image/upload/v1580923583/fi9eesx4cwst3cpuzafo.jpg" alt="image" style="opacity: 0.3;">
-                        </div>
-                        <div class="content-holder">
-                            <h2><a href="investment-details.html" style="opacity: 0.2;">Mass Transport portfolio</a></h2>
-                            <h3>{{750000 | currency:'NGN':'symbol-narrow'}}</h3>
-                            <span class="span-profit" style="opacity: 0.2;">30% Profit(Estimated)</span>
-                            <!--<span *ngIf="x?.estimated_percentage_profit" class="span-profit">25% Profit <br> (Estimated)</span>-->
-                            <p>12 Month(s)</p>
-                        </div>
-                    </div>
-                </div>
-                   
+                </section>
             </div>
-            <section *ngIf="!isLoading && investments.length == 0" style="border-radius: 30px;" class="workingSection">
-                <div class="inner-workingSection">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="working-content" style="text-align: center; width: 100%">
-                                <h3>Sorry there are no investments available now in this category</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+        </section>
     </section>
 </section>

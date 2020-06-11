@@ -1,43 +1,68 @@
-.footer .inner-footer {
-    padding: 0px;
+.footer {
+    .inner-footer {
+        padding: 0px;
+        min-width: 90%;
+        margin: 0 auto;
+
+        h3 {
+            text-decoration: underline;
+        }
+        
+        h3:after {
+            display: none !important;
+        }
+        
+        .social-actions {
+            padding: 0 !important;
+        }
+
+        .text-md-justify.versareg {
+            word-spacing: 3px;
+            font-size: 11px !important;
+            flex: 0 0 100%;
+            min-width: 100%;
+        }
+        
+        .input-group {
+            input{
+                height: 50px;
+                width: 100%;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+              }
+              button{
+                position: absolute;
+                right: 0px;
+                border:none;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                padding: 1px;
+              }
+        }
+    }
 }
 
-.footer .inner-footer h3 {
-    text-decoration: underline;
+@media (width: 1280px) {
+    .inner-footer {
+        max-width: 90%;
+    }
 }
 
-.footer .inner-footer h3:after {
-    display: none !important;
-}
-
-.footer .inner-footer .social-actions {
-    padding: 0 !important;
-}
-
-.text-md-justify {
-    word-spacing: 5px;
-}
-
-.input-group {
-    input{
-        height: 50px;
-        width: 100%;
-        padding-left: 10px;
-        border: none;
-        outline: none;
-      }
-      button{
-        position: absolute;
-        right: 0px;
-        border:none;
-        height: 50px;
-        width: 50px;
-        text-align: center;
-        padding: 1px;
-      }
+@media (min-width: 1400px) {
+    .inner-footer {
+        min-width: 87% !important;
+        max-width: 87% !important;
+    }
 }
 
 @media (max-width: 1068px) {
+    
+    .footer {
+        padding: 0 3em;
+    }
+
     .col-md-3{
         ul{
             li{
@@ -65,13 +90,13 @@
 }
 
 .footer-text {
-    font-size: 12px;
+    font-size: 11px;
     color: #fff;
 }
 
 @media (max-width: 600px) {
     .footer {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
 
         .inner-footer {
             h3 {

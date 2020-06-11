@@ -34,6 +34,18 @@ mat-dialog-container#modal-component {
     background-color: #e4e4e4 !important;
 }
 
+
+.banner-lnd{
+    margin-top: 0rem!important;
+    padding-top: 7%;
+    background: url("./assets/image/banner_bg.png") no-repeat local top right;
+    .row{
+        max-width: 81.964052749892em;
+        margin: 0px auto;
+    }
+}
+
+
 .cookie-law-wrapper {
     background: #333333d1 !important;
 }
@@ -283,7 +295,7 @@ mat-dialog-container#modal-component {
                     justify-content: center;
                     display: flex;
                     /* justify-content: space-between; */
-                    width: 50%;
+                    width: 100%;
                     color: #4F5FBE;
                     margin: 0rem 0rem 3rem 0rem;
 
@@ -360,6 +372,7 @@ mat-dialog-container#modal-component {
     z-index: 3;
 
     &.scrolled{
+        display: none;
         @include boxShadow($shadowBlack, 0, 0, 5px);
     }
 
@@ -437,6 +450,7 @@ mat-dialog-container#modal-component {
     .row{
         width: 100%;
         height: 100%;
+        margin: 0px;
         .col-md-3{
             display: flex;
             align-items: center;
@@ -591,6 +605,15 @@ mat-dialog-container#modal-component {
         height: 85px;
     }
 }
+
+@media (max-width: 600px) {
+    .section-container .investment-plans .inner-investment .col-sm-12.col-md-6.col-lg-3.pb-2 {
+        min-width: 33.333333333333333333%;
+        margin-bottom: 1rem;
+        margin: 1rem;
+    }
+}
+
 .header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img {
     object-fit: cover;
     object-position: top center;
@@ -1639,4 +1662,8 @@ td{
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
+    background-size: 60%;
+}

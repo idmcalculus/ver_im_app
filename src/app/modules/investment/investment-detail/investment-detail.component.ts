@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
+import * as CryptoJS from 'crypto-js';
+
 
 declare var xpressPay: any;
 @Component({
@@ -28,6 +30,12 @@ export class InvestmentDetailComponent implements OnInit {
     amountPerPool = 0;
     userEmail = '';
     transactionRef = '';
+    amnt = '';
+    lastName = '';
+    firstName = '';
+    mobile = '';
+    tranRef = '';
+    email = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -85,7 +93,6 @@ export class InvestmentDetailComponent implements OnInit {
         this.investmentService.getInvestment(id).subscribe(investments => {
             if (investments && investments.success) {
                 this.investment = investments.success.Data.investment;
-                console.log(this.investment);
                 const tday = new Date().getTime;
                 this.investment.reference = `${tday}`;
                 this.amountPerPool = this.investment.investment_amount;
@@ -95,6 +102,7 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
+                
 
                 this.activatedRoute.queryParams.subscribe(resp => {
                     const statusCode = resp['status-code'];
@@ -107,7 +115,7 @@ export class InvestmentDetailComponent implements OnInit {
                             this.investment.reference = resp['transaction-id'];
                             localStorage.removeItem(resp['transaction-id']);
                             this.isLoading = true;
-                            this.joinInvestment();
+                           // this.joinInvestment();
 
                         }
                     } else if (message) {
@@ -161,6 +169,7 @@ export class InvestmentDetailComponent implements OnInit {
         }
     }
 
+
     joinsInvestment() {
         this.closemodal.nativeElement.click();
     }
@@ -193,14 +202,17 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    xpressPay(email, amnt, firstName, lastName, mobile, tranRef) {
+    xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto) {
+
         this.isLoading = true;
         localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
-        xpressPay(email, amnt, firstName, lastName, mobile, tranRef);
+        xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto);
     }
 
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
+
+    
 
 }

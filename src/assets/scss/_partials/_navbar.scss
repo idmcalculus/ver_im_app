@@ -11,7 +11,8 @@
     nav {
         clear: both;
         position: relative;
-        margin: 0 30px;
+        margin: 0 auto;
+        width: 84.064052749892em;
 
         .underline {
             position: relative;
@@ -85,7 +86,7 @@
             letter-spacing: 1px;
             position: relative;
             color: $theme-blue;
-            font-weight: lighter;
+            font-weight: bolder;
         }
 
         .login {
@@ -184,6 +185,7 @@
             clear: both;
             position: relative;
             margin: 0 30px;
+            width: 84.064052749892em;
 
             .underline {
                 position: relative;

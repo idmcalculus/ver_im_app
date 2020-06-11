@@ -96,7 +96,8 @@
         display: none;
     }
 
-    .header-navbar[_ngcontent-c3] .navbar-wrapper[_ngcontent-c3] .navbar-logo[logo-theme=theme6][_ngcontent-c3] {
-        max-width: 50%;
+    .header-navbar .navbar-wrapper .navbar-container .nav-right li{
+        padding: 0;
     }
+
 }

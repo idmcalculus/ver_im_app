@@ -33,21 +33,31 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
        this.delayOutput();
+
+
+      this.getScrollHeight()
   }
 
-  @HostListener('window:scroll', ['$event'])
+  
+  @HostListener('document:mousewheel', ['$event'])
+  getScrollHeight() {
+    console.log(window.pageYOffset, event);
+  }
+
+  @HostListener('document:mousewheel', ['$event'])
   onWindowScroll() {
+    console.log('hello');
     let c = pageXOffset;
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      let element = document.getElementById('header');
+      let element = document.getElementById('headers');
       element.classList.add('scrolled');
     } else {
-      let element = document.getElementById('header');
+      let element = document.getElementById('headers');
       element.classList.remove('scrolled');
     }
   }
 
-  delayOutput(){
+  delayOutput() {
     setTimeout (() => {
         this.show = true;
      }, 5000);

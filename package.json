@@ -39,6 +39,7 @@
     "angular-progress-bar": "^1.0.9",
     "angular-rave": "^1.2.1",
     "angular2-cookie-law": "^6.2.0",
+    "angular2-counto": "^1.2.5",
     "angular2-promise-buttons": "^3.0.1",
     "angular4-paystack": "^2.3.3",
     "bootstrap": "4.1.1",
@@ -47,6 +48,7 @@
     "cookieconsent": "^3.1.1",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "express": "^4.16.4",
     "firebase": "^6.1.1",
     "hammerjs": "^2.0.8",
@@ -71,6 +73,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
     "@angular/language-service": "~7.2.0",
+    "@types/crypto-js": "^3.1.47",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

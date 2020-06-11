@@ -69,60 +69,65 @@
                         </div>
                     </div>
 
+
                     <div class="row">
                         <div class="col-md-12">
-                            <div *ngIf="isLoading || report?.length === 0" >
-                                <br><br>
-                                <div  class="lds-default">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
+                            <div class="card card-flex px-3">
+                                <table id="order-table" class="table nowrap">
+                                    <thead>
+                                        <tr class="">
+                                            <th>Date</th>
+                                            <th>No of Investments</th>
+                                            <th>No of Slots</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
 
-                            <div *ngIf="dateStart || dateEnd" class="mb-3">
-                                <div class="float-left pt-2">
-                                    <a class=" pl-2">{{dateStart | date:'fullDate'}} - {{dateEnd | date: 'fullDate'}}</a>
-                                </div>
-                            </div>
-
-                            <div *ngIf="!isLoading && report?.length > 0" class="card px-3">
-                                <div class="category-header pt-3 p-2">
-                                    <p class="width">Date</p>
-                                    <p class="width">No of Investments</p>
-                                    <p class="width">No of Slots</p>
-                                    <p class="width" >Total</p>
-                                </div>
-                                <div class="card-block" id="categoryTable" style="margin-top: 0px;padding-top: 6px; padding-left: 0px; padding-right: 0px;">
-                                    <div class="category-body">
-                                        <div class="row1 p-2" *ngFor="let pool of report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; let i = index;">
-                                            <p class="width">{{pool?.date}}</p>
-                                            <p class="width">{{pool?.no_of_investments}}</p>
-                                            <p class="width">{{pool?.no_of_slots}}</p>
-                                            <p class="width">{{pool?.total_amount_invested | number:'1.0-0'}} </p>
+                                    <td colspan="99" class="text-center" *ngIf="isLoading || report?.length === 0" >
+                                        <div class="row text-center">
+                                            <br><br>
+                                            <div  class="lds-default">
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                                <div></div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div  class="col-12 mt-3 d-flex flex-row">
-                                        <pagination-controls class="col-md-11 col-xs-11 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
-                                        <span class="col-md-1 col-xs-1 px-0">
-                                            <select class="ml-lg-2 ml-md-2 py-2 px-2 input-control" data-type="itemsPerPage" (change) = setItemsPerPage(page.value) #page>
-                                                <option value="5"> 5 rows </option>
-                                                <option value="10"> 10 rows </option>
-                                                <option value="20"> 20 rows </option>
-                                                <option value="0"> view all </option>
-                                            </select>
-                                        </span>
-                                    </div>
-                                </div>
+                                    </td>
+                                    
+                                    <tbody *ngIf="!isLoading && report?.length > 0">
+                                        <tr class="" *ngFor="let pool of report | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'};let i = index;">
+                                            <td>{{pool?.date}}</td>
+                                            <td>{{pool?.no_of_investments}}</td>
+                                            <td>{{pool?.no_of_slots}}</td>
+                                            <td>{{pool?.total_amount_invested | number:'1.0-0'}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td [colSpan]="3" class="pb-0 mr-5">
+                                              <pagination-controls
+                                                (pageChange)="p2=$event" id='second'>
+                                              </pagination-controls>
+                                            </td>
+                                            <td class="pb-0">
+                                              <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                  <option value="5"> 5 rows </option>
+                                                  <option value="10"> 10 rows </option>
+                                                  <option value="20"> 20 rows </option>
+                                                  <option value="0"> view all </option>
+                                              </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

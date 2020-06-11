@@ -23,7 +23,7 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
 import { SignInComponent } from './shared/components/sign-in/sign-in.component';
 import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
 import { ServicesComponent } from './modules/services/services.component';
-import { AboutUsComponent } from './modules/about-us/about-us.component';
+import { AboutUsComponent } from './shared/components/about-us/about-us.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import { VerifyUserComponent } from './shared/components/verify-user/verify-user.component';
 import { CookieLawModule } from 'angular2-cookie-law';
