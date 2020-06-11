@@ -34,6 +34,18 @@ mat-dialog-container#modal-component {
     background-color: #e4e4e4 !important;
 }
 
+
+.banner-lnd{
+    margin-top: 0rem!important;
+    padding-top: 7%;
+    background: url("./assets/image/banner_bg.png") no-repeat local top right;
+    .row{
+        max-width: 81.964052749892em;
+        margin: 0px auto;
+    }
+}
+
+
 .cookie-law-wrapper {
     background: #333333d1 !important;
 }
@@ -360,6 +372,7 @@ mat-dialog-container#modal-component {
     z-index: 3;
 
     &.scrolled{
+        display: none;
         @include boxShadow($shadowBlack, 0, 0, 5px);
     }
 
@@ -1652,6 +1665,5 @@ html, body { height: 100%; }
 body {
     margin: 0;
     font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
-    background: url("./assets/image/banner_bg.png") no-repeat local top right;
     background-size: 60%;
 }
