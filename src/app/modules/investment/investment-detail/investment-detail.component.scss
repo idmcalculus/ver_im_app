@@ -53,9 +53,27 @@
    background-size: cover;
 }
 
+.modal-dialog .modal-content {
+   border-radius: 10px !important;
+}
+
 .btn {
    border-radius: 10px;
    color: white !important;
+   text-transform: capitalize;
+   font-size: 14px;
+   padding: 9px 50px;
+   cursor: pointer;
+}
+
+.btn-outline-primary {
+   border-color: #4f5fbe !important;
+}
+
+.btn1 {
+   border-radius: 10px;
+   background-color: white;
+   color: #4f5fbe !important;
    text-transform: capitalize;
    font-size: 14px;
    padding: 9px 50px;
@@ -346,11 +364,27 @@ a:hover {
    font-weight: 600;
 }
 
+.join-modal .container {
+   display: block;
+   position: relative;
+   padding-left: 30px;
+   margin-bottom: 12px;
+   cursor: pointer;
+   font-size: 15px;
+   font-weight: 600;
+   min-width: 20px;
+   max-width: fit-content;
+   margin: auto 0px;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+
  h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     font-family: roboto, sans-serif
 }
-
 
  /* Hide the browser's default radio button */
  .container input {
