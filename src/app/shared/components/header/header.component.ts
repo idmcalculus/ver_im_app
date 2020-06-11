@@ -32,13 +32,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-       this.delayOutput();
-
-
-      this.getScrollHeight()
+      this.delayOutput();
+      this.getScrollHeight();
   }
 
-  
   @HostListener('document:mousewheel', ['$event'])
   getScrollHeight() {
     console.log(window.pageYOffset, event);
