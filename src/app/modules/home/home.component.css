@@ -191,7 +191,7 @@ span {
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: 780px;
+        height: 790px;
     }
 }
 
@@ -248,7 +248,7 @@ span {
 }
 @media (width: 1024px) {
     .invest-control {
-        height: auto;
+        height: 630px;
     }
 }
 
