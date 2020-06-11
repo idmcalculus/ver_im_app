@@ -372,6 +372,7 @@ mat-dialog-container#modal-component {
     z-index: 3;
 
     &.scrolled{
+        display: none;
         @include boxShadow($shadowBlack, 0, 0, 5px);
     }
 
