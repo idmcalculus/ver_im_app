@@ -294,8 +294,6 @@
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
                             <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn btn-color"  [hidden]="true">Join</button>
-                            <button *ngIf='!ViaXpress' type="button"  data-dismiss="modal" [disabled]="(!transactionRef)" (click)="joinsInvestment()" class="btn btn btn-color">Submit</button>
-
                             <button *ngIf='ViaXpress' id="submit"
                                 data-dismiss="modal"
                                 type="button"

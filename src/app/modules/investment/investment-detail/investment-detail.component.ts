@@ -70,19 +70,13 @@ export class InvestmentDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             this.investments = [];
             this.isLoading = true;
-            const investmentId = params.id;
+            const investmentId = params['id'];
             this.getInvestment(investmentId);
             this.getStat(investmentId);
             this.getInvestments();
         });
 
-        this.activatedRoute.params.subscribe((params) => {
-            this.investments = [];
-            this.isLoading = true;
-            var investmentId = params['id'];
-            this.getInvestment(investmentId);
-            this.getInvestments();
-        });
+        this.confirmPayment();
 
     }
 
@@ -100,6 +94,8 @@ export class InvestmentDetailComponent implements OnInit {
         this.investmentService.getInvestment(id).subscribe(investments => {
             if (investments && investments.success) {
                 this.investment = investments.success.Data.investment;
+                const tday = new Date().getTime;
+                this.investment.reference = `${tday}`;
                 this.amountPerPool = this.investment.investment_amount;
                 const randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0, 4)}`;
                 this.transactionRef = randomString;
@@ -107,23 +103,6 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
-                
-
-                this.activatedRoute.queryParams.subscribe(resp => {
-                    this.investment.reference = resp['payment-ref'];
-                    const statusCode = resp['status-code'];
-                    const message = resp['status-message'];
-                    if (statusCode === '08' || statusCode === '00') {
-                         this.transactionRef = resp['transaction-id'];
-                            this.investment.id = Number(id);
-                        //    localStorage.removeItem('transaction-id');
-                        //    localStorage.removeItem('transAmount');
-                            this.isLoading = true;
-                            // this.confirmPayment();
-                            console.log(this.investment.reference,this.transactionRef,this.investment.id);
-                            
-                    }
-                });
             }
             this.isLoading = false;
         });
@@ -172,32 +151,44 @@ export class InvestmentDetailComponent implements OnInit {
         }
     }
 
-    confirmPayment() {
-            //   curl --request POST \
-        //url https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query \
-        //header 'content-type: application/json' \
-        //data '{"publicKey": "<YOUR PUBLIC KEY>", "transactionId": "<YOUR TRANSACTION ID>"}'
-        
-        // if (paymentResponseCode = 000 || amount = localStorage.getItem('transAmount')) {
-            // this.joinsInvestment();
-    //   }
-        
-    }
 
-
-    async joinsInvestment() {
-        const res = await this.investmentService.checkTransaction(this.transaction);
-        console.log(res);
-        if (res.status === 'FAILED'){
-            this.isLoading = true;
-            this.toastrService.error(res.message);
-        }else{
-            //get transaction id from url
-            let transactionId = ''//
-            const resp = this.investmentService.verifyTransaction(transactionId,userId,investmentId)
-            //this.joinInvestment()
+    async confirmPayment() {
+        this.isLoading = true;
+        this.activatedRoute.queryParams.subscribe(async resp => {
+          if (resp['status-code']) {  
+            const statusCode = resp['status-code'];
+            const transactionId = resp['transaction-id'];
+            const statMessage = resp['status-message'];
+            const investmentId = resp['id'];
+            if(transactionId) {
+                    //get transaction id from url
+                    if(statusCode === '000'){
+                        const res = await this.investmentService.checkTransaction(this.transaction);
+                        if (res.status === 'FAILED'){
+                            this.toastrService.error(res.message);
+                            this.isLoading = false;
+                        }else{  
+                            const resp:any = this.investmentService.verifyTransaction(transactionId)
+                            if(resp.investment.length > 0){
+                                this.toastrService.error('investment has already been processed');
+                            }else{
+                                //some logic before join investment
+                                this.joinInvestment()
+                                this.isLoading = false;
+                                this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
+                            }
+                        }
+                    }else if(statusCode === '08'){
+                        this.isLoading = false;
+                        this.toastrService.error('transaction is pending');
+                    }else{
+                        this.isLoading = false;
+                        this.toastrService.error(statMessage);
+                    }
+                
+            }
         }
-        
+    });  
     }
 
     joinInvestment() {
