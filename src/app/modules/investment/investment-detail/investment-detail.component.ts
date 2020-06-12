@@ -122,6 +122,8 @@ export class InvestmentDetailComponent implements OnInit {
                             localStorage.removeItem(resp['transaction-id']);
                             this.isLoading = true;
                             // this.confirmPayment();
+                            console.log(this.investment.reference, this.transaction.number_of_pools,this.transactionRef );
+                            
                     } else {
                     //    this.toastrService.error('Payment process failed');
                     }
