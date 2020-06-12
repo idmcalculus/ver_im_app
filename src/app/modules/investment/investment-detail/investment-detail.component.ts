@@ -109,7 +109,7 @@ export class InvestmentDetailComponent implements OnInit {
                             this.isLoading = true;
                             // this.confirmPayment();
                     } else {
-                        this.toastrService.error('Payment process failed');
+                    //    this.toastrService.error('Payment process failed');
                     }
                 });
             }
