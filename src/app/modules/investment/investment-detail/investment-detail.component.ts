@@ -164,8 +164,19 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
 
-    joinsInvestment() {
-        this.closemodal.nativeElement.click();
+    async joinsInvestment() {
+        const res = await this.investmentService.checkTransaction(this.transaction);
+        console.log(res);
+        if (res.status === 'FAILED'){
+            this.isLoading = true;
+            this.toastrService.error(res.message);
+        }else{
+            //get transaction id from url
+            let transactionId = ''//
+            const resp = this.investmentService.verifyTransaction(transactionId,userId,investmentId)
+            //this.joinInvestment()
+        }
+        
     }
 
     joinInvestment() {
