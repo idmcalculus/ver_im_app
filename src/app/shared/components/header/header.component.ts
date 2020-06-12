@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   currentUserSubscription: Subscription;
   userinfo: User = { user_category: 'none', email: '' };
   show = false;
+  isSticky = false;
 
   constructor(
     private authService: AppAuthService,
@@ -33,25 +34,13 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
       this.delayOutput();
-      this.getScrollHeight();
+      this.onWindowScroll();
+      document.addEventListener('mousewheel', () => {}, {passive: false});
   }
 
-  @HostListener('document:mousewheel', ['$event'])
-  getScrollHeight() {
-    console.log(window.pageYOffset, event);
-  }
-
-  @HostListener('document:mousewheel', ['$event'])
+  @HostListener('document:mousewheel')
   onWindowScroll() {
-    console.log('hello');
-    let c = pageXOffset;
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      let element = document.getElementById('headers');
-      element.classList.add('scrolled');
-    } else {
-      let element = document.getElementById('headers');
-      element.classList.remove('scrolled');
-    }
+    this.isSticky = document.body.scrollTop > 0 || document.documentElement.scrollTop > 0;
   }
 
   delayOutput() {
