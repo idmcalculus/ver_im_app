@@ -63,6 +63,8 @@ export class InvestmentDetailComponent implements OnInit {
             this.getInvestments();
         });
 
+        this.joinsInvestment();
+
         this.activatedRoute.params.subscribe((params) => {
             this.investments = [];
             this.isLoading = true;
@@ -165,18 +167,40 @@ export class InvestmentDetailComponent implements OnInit {
 
 
     async joinsInvestment() {
-        const res = await this.investmentService.checkTransaction(this.transaction);
-        console.log(res);
-        if (res.status === 'FAILED'){
-            this.isLoading = true;
-            this.toastrService.error(res.message);
-        }else{
-            //get transaction id from url
-            let transactionId = ''//
-            const resp = this.investmentService.verifyTransaction(transactionId,userId,investmentId)
-            //this.joinInvestment()
-        }
-        
+        this.isLoading = true;
+        this.activatedRoute.queryParams.subscribe(async resp => {
+            const statusCode = resp['status-code'];
+            const transactionId = resp['transaction-id'];
+            const statMessage = resp['status-message'];
+            const investmentId = resp['id'];
+            if(transactionId) {
+                    //get transaction id from url
+                    if(statusCode === '000'){
+                        const res = await this.investmentService.checkTransaction(this.transaction);
+                        if (res.status === 'FAILED'){
+                            this.toastrService.error(res.message);
+                            this.isLoading = false;
+                        }else{  
+                            const resp:any = this.investmentService.verifyTransaction(transactionId)
+                            if(resp.investment.length > 0){
+                                this.toastrService.error('investment as already been processed');
+                            }else{
+                                //some logic before join investment
+                                //this.joinInvestment()
+                                this.isLoading = false;
+                                this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
+                            }
+                        }
+                    }else if(statusCode === '08'){
+                        this.isLoading = false;
+                        this.toastrService.error('transaction is pending');
+                    }else{
+                        this.isLoading = false;
+                        this.toastrService.error(statMessage);
+                    }
+                
+            }
+        });  
     }
 
     joinInvestment() {
