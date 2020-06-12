@@ -48,6 +48,26 @@ export class HttpService {
         );
     }
 
+
+    async postExpressRequest(api: string, data: any, showMessages?: boolean, httpHeaderOptions?: {headers: HttpHeaders}): Promise<any> {
+        const response = await fetch(`https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query`,{ 
+            method: 'POST', 
+            body: JSON.stringify({"publicKey":"XPPUBK-224eabd16dc205bf1495c1af73ada337-X","transactionId":"1232129877"}),
+            headers: {'Content-Type':'application/json'}
+        }) // Call the fetch function passing the url of the API as a parameter
+        .then(function(res) {
+            return res.json().then(json => {
+                // the status was ok and there is a json body
+                return json
+        }).catch(function(e) {
+            console.log(e)
+            // This is where you run code if the server returns any errors
+            });     
+        });
+
+        return response;
+    }
+
     putRequest(api: string, data: any) {
         return this.http.put<any>(`${this.baseURL}/${api}`, data, httpOptions)
         .pipe(
