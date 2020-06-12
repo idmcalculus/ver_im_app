@@ -101,17 +101,15 @@ export class InvestmentDetailComponent implements OnInit {
                     const statusCode = resp['status-code'];
                     const message = resp['status-message'];
                     if (statusCode === '08' || statusCode === '00') {
-                        const qty = localStorage.getItem(resp['transaction-id']);
-                        if (qty) {
+                         this.transactionRef = (resp['transaction-id']);
                             this.investment.id = Number(id);
-                            this.transaction.number_of_pools = Number(qty);
-                            this.investment.reference = resp['transaction-id'];
+                            this.transaction.number_of_pools = Number(localStorage.getItem(String(this.transaction.number_of_pools)));
+                            this.investment.reference = resp['payment-ref'];
                             localStorage.removeItem(resp['transaction-id']);
                             this.isLoading = true;
-                           // this.joinInvestment();
-
-                        }
-                    } else if (message) {
+                            // this.confirmPayment();
+                    } else {
+                        this.toastrService.error('Payment process failed');
                     }
                 });
             }
@@ -183,7 +181,16 @@ export class InvestmentDetailComponent implements OnInit {
         });
     }
 
-    paymentCancel() {
+    confirmPayment() {
+           //   curl --request POST \
+          //url https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query \
+         //header 'content-type: application/json' \
+        //data '{"publicKey": "<YOUR PUBLIC KEY>", "transactionId": "<YOUR TRANSACTION ID>"}'
+       
+        // if (paymentResponseCode = 000 || amount = localStorage.getItem(String(transAmount))) {
+            // this.joinInvestment();
+     //   }
+       
     }
 
     redirectBack(){
@@ -198,7 +205,8 @@ export class InvestmentDetailComponent implements OnInit {
     initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
-        localStorage.setItem(String(this.transactionRef), String(this.transaction.number_of_pools));
+        localStorage.setItem(this.transactionRef, String(this.transactionRef));
+        localStorage.setItem(transAmount, String(transAmount));
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
