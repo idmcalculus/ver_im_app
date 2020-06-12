@@ -52,19 +52,6 @@ export class InvestmentDetailComponent implements OnInit {
 
     }
 
-    validPool(investment) {
-        if (this.transaction.number_of_pools != 0){
-        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
-        const want = this.transaction.number_of_pools
-    
-        if(want > remain) {
-          this.validpoolError = 'Number of Available Slot Exceeded';
-        } else {
-          this.validpoolError ='';
-        }
-      }
-    }
-
     ngOnInit() {
 
         this.activatedRoute.params.subscribe((params) => {
@@ -78,6 +65,19 @@ export class InvestmentDetailComponent implements OnInit {
 
         this.confirmPayment();
 
+    }
+
+    validPool() {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     triggerSecond() {
@@ -201,6 +201,8 @@ export class InvestmentDetailComponent implements OnInit {
             if (resp && resp.success) {
                 this.toastrService.success(resp.success.Message);
                 this.closemodal.nativeElement.click();
+                localStorage.removeItem('poolsTaken');
+                localStorage.removeItem('transAmount');
             }
             this.isLoading = false;
         });
@@ -226,9 +228,4 @@ export class InvestmentDetailComponent implements OnInit {
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
-
-    ngOnDestroy() {
-        console.log ('this.sayHiya');
-     }
-
 }
