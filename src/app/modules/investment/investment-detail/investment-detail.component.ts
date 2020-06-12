@@ -25,17 +25,13 @@ export class InvestmentDetailComponent implements OnInit {
     allInvestments = [];
     investment: Investment;
     transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
-    payment_id: null;
     userinfo: User;
     amountPerPool = 0;
     userEmail = '';
+    validpoolError:string;
+    transAmount:number;
     transactionRef = '';
-    amnt = '';
-    lastName = '';
-    firstName = '';
-    mobile = '';
-    tranRef = '';
-    email = '';
+    transactionRef2 = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -56,6 +52,19 @@ export class InvestmentDetailComponent implements OnInit {
     ) {
 
 
+    }
+
+    validPool(investment) {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     ngOnInit() {
@@ -83,6 +92,7 @@ export class InvestmentDetailComponent implements OnInit {
 
     triggerSecond() {
         this.closebutton.nativeElement.click();
+        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
     }
 
     getStat(inv){
@@ -237,11 +247,11 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto) {
-
+    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
+        transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
-        localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
-        xpressPay(email, amnt, firstName, lastName, mobile, tranRef,crypto);
+        localStorage.setItem(String(this.transactionRef), String(this.transaction.number_of_pools));
+        xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
     change() {
