@@ -27,7 +27,8 @@ export class InvestmentDetailComponent implements OnInit {
     userinfo: User;
     amountPerPool = 0;
     userEmail = '';
-    transAmount:number;;
+    validpoolError:string;
+    transAmount:number;
     transactionRef = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
@@ -49,6 +50,19 @@ export class InvestmentDetailComponent implements OnInit {
     ) {
 
 
+    }
+
+    validPool(investment) {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     ngOnInit() {
