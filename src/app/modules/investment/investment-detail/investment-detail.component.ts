@@ -100,8 +100,6 @@ export class InvestmentDetailComponent implements OnInit {
         this.investmentService.getInvestment(id).subscribe(investments => {
             if (investments && investments.success) {
                 this.investment = investments.success.Data.investment;
-                const tday = new Date().getTime;
-                this.investment.reference = `${tday}`;
                 this.amountPerPool = this.investment.investment_amount;
                 const randomString = `${String(Math.random()).substring(10)}${String(new Date().getTime()).substring(0, 4)}`;
                 this.transactionRef = randomString;
@@ -112,20 +110,18 @@ export class InvestmentDetailComponent implements OnInit {
                 
 
                 this.activatedRoute.queryParams.subscribe(resp => {
+                    this.investment.reference = resp['payment-ref'];
                     const statusCode = resp['status-code'];
                     const message = resp['status-message'];
                     if (statusCode === '08' || statusCode === '00') {
-                         this.transactionRef = (resp['transaction-id']);
+                         this.transactionRef = resp['transaction-id'];
                             this.investment.id = Number(id);
-                            this.transaction.number_of_pools = Number(localStorage.getItem(String(this.transaction.number_of_pools)));
-                            this.investment.reference = resp['payment-ref'];
-                            localStorage.removeItem(resp['transaction-id']);
+                        //    localStorage.removeItem('transaction-id');
+                        //    localStorage.removeItem('transAmount');
                             this.isLoading = true;
                             // this.confirmPayment();
-                            console.log(this.investment.reference, this.transaction.number_of_pools,this.transactionRef );
+                            console.log(this.investment.reference,this.transactionRef,this.investment.id);
                             
-                    } else {
-                    //    this.toastrService.error('Payment process failed');
                     }
                 });
             }
@@ -176,6 +172,18 @@ export class InvestmentDetailComponent implements OnInit {
         }
     }
 
+    confirmPayment() {
+            //   curl --request POST \
+        //url https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query \
+        //header 'content-type: application/json' \
+        //data '{"publicKey": "<YOUR PUBLIC KEY>", "transactionId": "<YOUR TRANSACTION ID>"}'
+        
+        // if (paymentResponseCode = 000 || amount = localStorage.getItem('transAmount')) {
+            // this.joinsInvestment();
+    //   }
+        
+    }
+
 
     joinsInvestment() {
         this.closemodal.nativeElement.click();
@@ -184,29 +192,16 @@ export class InvestmentDetailComponent implements OnInit {
     joinInvestment() {
         this.isLoading = true;
         this.transaction.investment_id = this.investment.id;
-        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
-        this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2));
+        this.transaction.amount_paid =  Number(localStorage.getItem('transAmount'));
+        this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
             if (resp && resp.success) {
                 this.toastrService.success(resp.success.Message);
                 this.closemodal.nativeElement.click();
-
             }
             this.isLoading = false;
         });
-    }
-
-    confirmPayment() {
-           //   curl --request POST \
-          //url https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query \
-         //header 'content-type: application/json' \
-        //data '{"publicKey": "<YOUR PUBLIC KEY>", "transactionId": "<YOUR TRANSACTION ID>"}'
-       
-        // if (paymentResponseCode = 000 || amount = localStorage.getItem(String(transAmount))) {
-            // this.joinInvestment();
-     //   }
-       
     }
 
     redirectBack(){
@@ -221,8 +216,8 @@ export class InvestmentDetailComponent implements OnInit {
     initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
-        localStorage.setItem(this.transactionRef, String(this.transactionRef));
-        localStorage.setItem(transAmount, String(transAmount));
+        localStorage.setItem('transAmount', String(transAmount));
+        localStorage.setItem('poolsTaken', String(number_of_pools));
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
@@ -230,6 +225,8 @@ export class InvestmentDetailComponent implements OnInit {
         this.ViaXpress = !this.ViaXpress;
     }
 
-    
+    ngOnDestroy() {
+        console.log ('this.sayHiya');
+     }
 
 }
