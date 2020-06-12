@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
-import * as CryptoJS from 'crypto-js';
 
 
 declare var xpressPay: any;
@@ -30,7 +29,6 @@ export class InvestmentDetailComponent implements OnInit {
     userEmail = '';
     transAmount:number;;
     transactionRef = '';
-    transactionRef2 = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -76,7 +74,6 @@ export class InvestmentDetailComponent implements OnInit {
 
     triggerSecond() {
         this.closebutton.nativeElement.click();
-        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
     }
 
     getStat(inv){
