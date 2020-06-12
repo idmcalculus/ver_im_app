@@ -1,7 +1,7 @@
 .footer {
     .inner-footer {
         padding: 0px;
-        min-width: 90%;
+        width: 80%;
         margin: 0 auto;
 
         h3 {
@@ -15,24 +15,17 @@
         .social-actions {
             padding: 0 !important;
         }
-
-        .text-md-justify.versareg {
-            word-spacing: 3px;
-            font-size: 11px !important;
-            flex: 0 0 100%;
-            min-width: 100%;
-        }
         
         .input-group {
             input{
                 height: 50px;
-                width: 100%;
+                width: 70%;
                 padding-left: 10px;
                 border: none;
                 outline: none;
               }
               button{
-                position: absolute;
+                position: relative;
                 right: 0px;
                 border:none;
                 height: 50px;
@@ -41,19 +34,6 @@
                 padding: 1px;
               }
         }
-    }
-}
-
-@media (width: 1280px) {
-    .inner-footer {
-        max-width: 90%;
-    }
-}
-
-@media (min-width: 1400px) {
-    .inner-footer {
-        min-width: 80% !important;
-        max-width: 80% !important;
     }
 }
 
@@ -66,7 +46,6 @@
     .col-md-3{
         ul{
             li{
-                justify-content: center;
                 display: flex;
             }
         }
@@ -94,7 +73,7 @@
     color: #fff;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
     .footer {
         padding: 0 1.5rem;
 
@@ -130,11 +109,8 @@
                 font-size: 8px;
             }
         }
-        .text-right {
-            text-align: center!important;
-        }
     
-        .col-md-4.col-sm-6 {
+        .col-md-4.col-sm-6, .col-md-12 {
             ul{
                 margin-top: 0;
                 li{

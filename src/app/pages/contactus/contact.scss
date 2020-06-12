@@ -280,26 +280,46 @@
 }
 
 @media (max-width: 760px){
-.standard-mini{
-    margin-left: 0.05rem;
-    margin-right: 0.05rem;
-}
-.standard{
-    margin-left: 0.125rem;
-    margin-right: 0.125rem;
-}
-.container .special {
-    padding-top: 40px;
-}
+	.contact-us {
+		padding-top: 20%;
+	}
+
+	.standard-mini{
+		margin-left: 0.05rem;
+		margin-right: 0.05rem;
+	}
+	.standard{
+		margin-left: 0.125rem;
+		margin-right: 0.125rem;
+	}
+	.container .special {
+		padding-top: 40px;
+	}
 }
 
 @media (min-width: 1200px){
     .container {
         max-width: 1240px;
-    }
+	}
+
+	.contact-us {
+		padding-top: 5%;
+	}
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+	.contact-us {
+		padding-top: 8%;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+	.contact-us {
+		padding-top: 10%;
+	}
+	
+
 	.howItWork{
 		display: block !important;
 		margin-top: 1rem;

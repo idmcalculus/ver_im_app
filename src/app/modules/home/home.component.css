@@ -1,3 +1,10 @@
+.container {
+    max-width: 80%;
+}
+
+.landingMedia {
+    max-width: 100%;
+}
 
 .subtitle {
     font-size: 20px;
@@ -25,7 +32,7 @@ h2 {
     color: white;
     text-transform: capitalize;
     font-size: 14px;
-    padding: 9px 50px;
+    padding: 9px 40px;
     cursor: pointer;
 }
 
@@ -111,7 +118,7 @@ hr {
     color: #919191;
     font-size: 14px !important;
     line-height: 35px !important;
-    letter-spacing: 1px;
+    letter-spacing: 0.1px;
     text-align: justify;
 }
 
@@ -177,21 +184,10 @@ span {
     background-color: #4f5fbe;
 }
 
-.container1 {
-    max-width: 940px;
-}
-
-@media (min-width: 1200px){
-    .container {
-        max-width: 84.064052749892em;
-    }
-
-}
-
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: 780px;
+        height: 75%;
     }
 }
 
@@ -203,7 +199,7 @@ span {
     }
 
     .text {
-        line-height: 30px !important;
+        line-height: 2rem !important;
     }
     
     .hide{
@@ -221,7 +217,11 @@ span {
 }
   
   /* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 760px) {
+    .banner-lnd {
+        padding-top: 25%;
+    }
+
     .font-one {
         color: #4f5fbe;
         font-size: 2rem !important;
@@ -244,6 +244,12 @@ span {
 @media (min-width: 1000px) {
     .invest-control {
         height: auto;
+    }
+}
+
+@media (width: 1024px) {
+    .invest-control {
+        height: 75%;
     }
 }
 
