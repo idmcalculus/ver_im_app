@@ -1,3 +1,11 @@
+.container {
+    max-width: 80%;
+}
+
+.landingMedia {
+    max-width: 100%;
+}
+
 .subtitle {
     font-size: 20px;
 }
@@ -24,7 +32,7 @@ h2 {
     color: white;
     text-transform: capitalize;
     font-size: 14px;
-    padding: 9px 50px;
+    padding: 9px 40px;
     cursor: pointer;
 }
 
@@ -176,21 +184,10 @@ span {
     background-color: #4f5fbe;
 }
 
-.container1 {
-    max-width: 940px;
-}
-
-@media (min-width: 1200px){
-    .container {
-        max-width: 84.064052749892em;
-    }
-
-}
-
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: auto;
+        height: 75%;
     }
 }
 
@@ -249,9 +246,10 @@ span {
         height: auto;
     }
 }
+
 @media (width: 1024px) {
     .invest-control {
-        height: 70%;
+        height: 75%;
     }
 }
 
