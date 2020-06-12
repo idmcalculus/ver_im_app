@@ -43,6 +43,7 @@
 }
 
 @media screen and (max-width: 992px) {
+
   .invest-header {
      height: auto;
      padding: 2em 24px;
@@ -397,6 +398,10 @@ body {
 }
 
 @media (min-width: 1200px){
+  .investment {
+    padding-top: 5%;
+  }
+
   .container {
       max-width: 84.064052749892em;
   }
@@ -477,6 +482,10 @@ body {
 
 @media (max-width: 600px) {
 
+  .investment {
+    padding-top: 20%
+  }
+
   .section-container .investment-plans .inner-investment .superb-container {
     margin: 0 auto !important;
   }
@@ -515,5 +524,18 @@ body {
 
   .coming, .sold_out {
     font: bold 12px/1em Arial, Sans-Serif;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+	.investment {
+		padding-top: 8%;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+	.investment {
+		padding-top: 10%;
   }
 }
