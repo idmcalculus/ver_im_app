@@ -1,7 +1,7 @@
 .footer {
     .inner-footer {
         padding: 0px;
-        min-width: 90%;
+        width: 80%;
         margin: 0 auto;
 
         h3 {
@@ -37,18 +37,6 @@
     }
 }
 
-@media (min-width: 1280px) {
-    .inner-footer {
-        max-width: 90%;
-    }
-}
-
-@media (min-width: 1400px) {
-    .inner-footer {
-        min-width: 80% !important;
-        max-width: 80% !important;
-    }
-}
 
 @media (max-width: 1068px) {
     
