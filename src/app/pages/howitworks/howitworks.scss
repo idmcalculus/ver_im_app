@@ -2,8 +2,8 @@
     height: 300px;
     padding: 4px;
     margin-top: 5em;
-    background: url('../../../assets/images/how-it-works-banner.jpg') no-repeat center;
-	background-size: contain;
+    background: url('../../../assets/image/how-it-works.jpg') no-repeat center;
+	background-size: cover;
 
 		.inner-work h3 {
 			display: flex;
@@ -48,9 +48,120 @@
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
 }
 
-@media (max-width: 760px){
+.text {
+    color: #919191;
+    font-size: 13px !important;
+    line-height: 35px !important;
+    letter-spacing: 0.1px;
+    text-align: justify;
+}
+
+.img-fluid {
+    height: 150px !important;
+}
+
+.invest-control {
+    color: #f1efef;
+	background-color: #fff;
+	height: auto;
+    background-clip: padding-box;
+    border: 1px solid ;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.card-height {
+	height: 500px;
+}
+
+.text-header {
+	color: #4f5fbe;
+	font-size: 16px !important;
+}
+
+.sub-text {
+    color: #4f5fbe;
+    font-size: 15px;
+}
+
+.sub-text1 {
+    color: #4f5fbe;
+	font-size: 18px;
+}
+
+hr {
+    height:2px !important;
+    border:none;
+    color:#4f5fbe;
+    background-color:#4f5fbe;
+    width:70%;
+    text-align:center;
+    margin: auto;
+}
+
+.header {
+	color: white;
+	font-size: 40px;
+	padding-top: 130px;
+	text-align: center;
+}
+
+@media (min-width: 1200px){
+	.investment {
+	  padding-top: 5%;
+	}
+  
+	.container {
+		max-width: 84.064052749892em;
+	}
+}
+
+@media (max-width: 600px) {
+	.investment {
+	  padding-top: 20%
+	}
+
+	.header{
+		font-size: 35px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+	.investment {
+		padding-top: 8%;
+	}
+	
+	.invest-control {
+		height: 560px;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+	.investment {
+		padding-top: 10%;
+  	}
+
+	.text {
+		line-height: 2rem !important;
+	}
+}
+
+
+@media (max-width: 768px){
     .work-header {
         height: 250px;
         padding: 0px;
-    }
+	}
+	
+	.text {
+        line-height: 30px !important;
+	}
+	
+	.card-height {
+		height: auto;
+	}
+
+	hr {
+		width: 20%
+	}
 }

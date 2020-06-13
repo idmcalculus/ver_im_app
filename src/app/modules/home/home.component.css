@@ -1,3 +1,4 @@
+
 .container {
     max-width: 80%;
 }
@@ -189,10 +190,6 @@ span {
     .card-pad {
         height: 75%;
     }
-
-    .input-control {
-        height: auto !important;
-    }
 }
 
 @media screen and (max-width: 992px) {
@@ -248,6 +245,11 @@ span {
 @media (min-width: 1000px) {
     .invest-control {
         height: auto;
+    }
+}
+@media (width: 1024px) {
+    .invest-control {
+        height: 70%;
     }
 }
 
