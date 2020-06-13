@@ -11319,10 +11319,11 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
 
 @media only screen and (max-width: 576px) {
     .pcoded .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification, .pcoded .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification {
-        min-width: 280px;
+        min-width: 220px;
         left: -30px;
         right: auto;
-        width: auto
+        width: auto;
+        padding: .25rem;
     }
 
     .pcoded .header-navbar .navbar-wrapper .navbar-container .header-notification .show-notification:before, .pcoded .header-navbar .navbar-wrapper .navbar-container .header-notification .profile-notification:before {
