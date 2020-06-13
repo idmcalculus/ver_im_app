@@ -1,3 +1,4 @@
+
 .container {
     max-width: 80%;
 }
@@ -244,6 +245,11 @@ span {
 @media (min-width: 1000px) {
     .invest-control {
         height: auto;
+    }
+}
+@media (width: 1024px) {
+    .invest-control {
+        height: 70%;
     }
 }
 

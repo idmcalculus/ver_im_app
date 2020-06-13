@@ -30,6 +30,7 @@ export class InvestmentDetailComponent implements OnInit {
     validpoolError:string;
     transAmount:number;
     transactionRef = '';
+    transactionRef2 = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -50,6 +51,19 @@ export class InvestmentDetailComponent implements OnInit {
     ) {
 
 
+    }
+
+    validPool(investment) {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     ngOnInit() {
@@ -82,6 +96,7 @@ export class InvestmentDetailComponent implements OnInit {
 
     triggerSecond() {
         this.closebutton.nativeElement.click();
+        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
     }
 
     getStat(inv){
@@ -103,6 +118,24 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
+                
+                this.activatedRoute.queryParams.subscribe(resp => {
+                    const statusCode = resp['status-code'];
+                    const message = resp['status-message'];
+                    if (statusCode === '08' || statusCode === '00') {
+                        const qty = localStorage.getItem(resp['transaction-id']);
+                        if (qty) {
+                            this.investment.id = Number(id);
+                            this.transaction.number_of_pools = Number(qty);
+                            this.investment.reference = resp['transaction-id'];
+                            localStorage.removeItem(resp['transaction-id']);
+                            this.isLoading = true;
+                           // this.joinInvestment();
+
+                        }
+                    } else if (message) {
+                    }
+                });
             }
             this.isLoading = false;
         });
@@ -222,10 +255,12 @@ export class InvestmentDetailComponent implements OnInit {
         this.isLoading = true;
         localStorage.setItem('transAmount', String(transAmount));
         localStorage.setItem('poolsTaken', String(number_of_pools));
+        localStorage.setItem(String(this.transactionRef), String(this.transaction.number_of_pools));
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
+
 }
