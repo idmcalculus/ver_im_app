@@ -7,7 +7,6 @@ import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
-import * as CryptoJS from 'crypto-js';
 
 
 declare var xpressPay: any;
@@ -72,22 +71,27 @@ export class InvestmentDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             this.investments = [];
             this.isLoading = true;
-            const investmentId = params.id;
+            const investmentId = params['id'];
             this.getInvestment(investmentId);
             this.getStat(investmentId);
             this.getInvestments();
         });
 
-        this.joinsInvestment();
+        this.confirmPayment();
 
-        this.activatedRoute.params.subscribe((params) => {
-            this.investments = [];
-            this.isLoading = true;
-            var investmentId = params['id'];
-            this.getInvestment(investmentId);
-            this.getInvestments();
-        });
+    }
 
+    validPool() {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     triggerSecond() {
@@ -115,7 +119,6 @@ export class InvestmentDetailComponent implements OnInit {
                     this.subOptions.push(i);
                 }
                 
-
                 this.activatedRoute.queryParams.subscribe(resp => {
                     const statusCode = resp['status-code'];
                     const message = resp['status-message'];
@@ -182,9 +185,10 @@ export class InvestmentDetailComponent implements OnInit {
     }
 
 
-    async joinsInvestment() {
+    async confirmPayment() {
         this.isLoading = true;
         this.activatedRoute.queryParams.subscribe(async resp => {
+          if (resp['status-code']) {  
             const statusCode = resp['status-code'];
             const transactionId = resp['transaction-id'];
             const statMessage = resp['status-message'];
@@ -199,10 +203,10 @@ export class InvestmentDetailComponent implements OnInit {
                         }else{  
                             const resp:any = this.investmentService.verifyTransaction(transactionId)
                             if(resp.investment.length > 0){
-                                this.toastrService.error('investment as already been processed');
+                                this.toastrService.error('investment has already been processed');
                             }else{
                                 //some logic before join investment
-                                //this.joinInvestment()
+                                this.joinInvestment()
                                 this.isLoading = false;
                                 this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
                             }
@@ -216,26 +220,25 @@ export class InvestmentDetailComponent implements OnInit {
                     }
                 
             }
-        });  
+        }
+    });  
     }
 
     joinInvestment() {
         this.isLoading = true;
         this.transaction.investment_id = this.investment.id;
-        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
-        this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2));
+        this.transaction.amount_paid =  Number(localStorage.getItem('transAmount'));
+        this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
             if (resp && resp.success) {
                 this.toastrService.success(resp.success.Message);
                 this.closemodal.nativeElement.click();
-
+                localStorage.removeItem('poolsTaken');
+                localStorage.removeItem('transAmount');
             }
             this.isLoading = false;
         });
-    }
-
-    paymentCancel() {
     }
 
     redirectBack(){
@@ -250,6 +253,8 @@ export class InvestmentDetailComponent implements OnInit {
     initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
+        localStorage.setItem('transAmount', String(transAmount));
+        localStorage.setItem('poolsTaken', String(number_of_pools));
         localStorage.setItem(String(this.transactionRef), String(this.transaction.number_of_pools));
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
@@ -257,7 +262,5 @@ export class InvestmentDetailComponent implements OnInit {
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
-
-    
 
 }
