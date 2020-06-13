@@ -1,3 +1,9 @@
+.container {
+	max-width: 80%;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
 .about-us .inner-about .our-team .team-card-holder .team-card .card-details {
     padding: 3em 0 10px;
 }
@@ -32,12 +38,6 @@
 
 .about-us .inner-about .our-team .team-card-holder .team-card .card-details .team-image img {
     filter: grayscale(100%);
-}
-
-@media (min-width: 500px) {
-    .modal-dialog {
-        min-width: 800px !important;
-    }
 }
 
 .modal-about .team-image {
@@ -114,11 +114,13 @@ p {
     cursor: pointer;
 }
 
-@media (min-width: 1200px){
-    .container {
-        max-width: 1240px;
+@media (min-width: 500px) {
+    .modal-dialog {
+        min-width: 800px !important;
     }
+}
 
+@media (min-width: 1200px){
     .row {
         max-height: auto;
         background-color: #f9f9fa;
@@ -158,5 +160,18 @@ p {
     }
     .about-header {
         height: 250px !important;
+    }
+}
+
+@media (max-width: 1300px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        max-width: 100%;
+        padding: 0;
     }
 }
