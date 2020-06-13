@@ -40,6 +40,7 @@ export class InvestmentDetailComponent implements OnInit {
     allinv: any = [];
     ViaXpress = true;
     subOptions = [];
+    payment_id = "";
 
 
     constructor(
@@ -216,12 +217,27 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
+    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools,paymentId,investmentId ) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
         localStorage.setItem('transAmount', String(transAmount));
         localStorage.setItem('poolsTaken', String(number_of_pools));
-        xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
+        this.investment.reference = paymentId;
+        console.log(this.investment.reference);
+        this.closemodal.nativeElement.click();
+        if (this.investment.reference){
+            this.investmentService.createTransactionRecord(paymentId,this.userinfo.id, investmentId).subscribe(resp => {
+                if (resp && resp.success) {
+                    this.toastrService.success("Transaction Details Recieved");
+                    localStorage.removeItem('poolsTaken');
+                    localStorage.removeItem('transAmount');
+                }
+                this.isLoading = false;
+            });
+        }
+        
+      //  xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
+      //  this.joinInvestment();
     }
 
     change() {
