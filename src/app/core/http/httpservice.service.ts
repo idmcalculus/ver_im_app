@@ -50,10 +50,12 @@ export class HttpService {
 
 
     async postExpressRequest(api: string, data: any, showMessages?: boolean, httpHeaderOptions?: {headers: HttpHeaders}): Promise<any> {
+        //const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X"; // LIVE
+        const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X";// TEST
         const response = await fetch(`https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query`,{
         //const response = await fetch(`https://api.xpresspayonline.com/v1/payments/query`,{
             method: 'POST', 
-            body: JSON.stringify({"publicKey":"XPPUBK-224eabd16dc205bf1495c1af73ada337-X","transactionId":data.transactionId}),
+            body: JSON.stringify({"publicKey":hashString,"transactionId":data.transactionId}),
             headers: {'Content-Type':'application/json'}
         }) // Call the fetch function passing the url of the API as a parameter
         .then(function(res) {

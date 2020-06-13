@@ -25,8 +25,8 @@
          hashedPayload += hashbody2[key];
      }
      //my key below
-     const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X" + hashedPayload; // LIVE
-     //const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X" + hashedPayload; // TEST
+     //const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X" + hashedPayload; // LIVE
+     const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X" + hashedPayload; // TEST
      //
      const hash = sha256.create();
      //
@@ -34,9 +34,9 @@
      const finanlHash = hash.hex();
      //
      const body = {
-         // "publicKey": "XPPUBK-01445c39c4095df9b08f566a82586d7c-X", // LIVE
-         "publicKey": "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X", // TEST
-       "transactionId": tranRef,
+        //"publicKey": "XPPUBK-01445c39c4095df9b08f566a82586d7c-X", // LIVE
+        "publicKey": "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X", // TEST
+        "transactionId": tranRef,
         "amount": amnt,
         "currency": "NGN",
         "country": "NG",
