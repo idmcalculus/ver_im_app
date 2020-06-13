@@ -84,6 +84,18 @@ export class InvestmentService {
     &payment_reference=${transaction.payment_reference}`, {}, true);
   }
 
+  checkTransaction(transaction: Transaction) {
+    return this.httpService.postExpressRequest(``, true);
+  }
+
+  verifyTransaction(transactionId) {
+    return this.httpService.postRequest(`investment_user/transaction/verify`, {secret: 'ourversasecretkey',transaction_id: transactionId}, true);
+  }
+
+  createTransactionRecord(transactionId,userId,investmentId) {
+    return this.httpService.postRequest(`investment_user/transaction/create`, {investment_id: investmentId,transaction_id: transactionId,user_id:userId}, true);
+  }
+
   endInvestment(investmentId: string) {
     return this.httpService.postRequest(`investment/endInvestment`, { investment_id: investmentId }, true);
   }
