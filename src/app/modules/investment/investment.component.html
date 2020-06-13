@@ -68,7 +68,7 @@
                                 <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                <h2><a>{{x?.title}}</a></h2>
                                 <h3 style="filter: blur(15px);">{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                 <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
                                     class="span-profit">{{x?.estimated_percentage_profit}}% Profit

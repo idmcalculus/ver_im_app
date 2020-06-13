@@ -252,7 +252,7 @@
                                             <label class="pt-1" for="slotNum">First Name</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="pt-1" for="slotNum"> <input type="text" name="firstName" readonly value= {{userinfo.first_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                            <label class="pt-1" for="slotNum"> <input type="text" name="firstName" readonly value= {{userinfo?.first_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center; text-align: left;">
@@ -260,7 +260,7 @@
                                             <label class="pt-1" for="slotNum">Last Name</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="pt-1" for="slotNum"> <input type="text" name="lastName" readonly value= {{userinfo.last_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                            <label class="pt-1" for="slotNum"> <input type="text" name="lastName" readonly value= {{userinfo?.last_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center;text-align: left;">
@@ -268,7 +268,7 @@
                                             <label class="pt-1" for="slotNum">Email</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="pt-1" for="slotNum"> <input type="text" name="email" readonly value= {{userinfo.email}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                            <label class="pt-1" for="slotNum"> <input type="text" name="email" readonly value= {{userinfo?.email}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center; text-align: left;">
@@ -276,7 +276,7 @@
                                             <label class="pt-1" for="slotNum">Amount</label>
                                         </div>
                                         <div class="col-md-7">
-                                            <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="transAmount" name="amnt" readonly value= {{investment?.investment_amount*transaction.number_of_pools}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                            <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="transAmount" name="transAmount" readonly value= {{investment?.investment_amount*transaction.number_of_pools}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>       
                                     <div class="row" style="justify-content:center; text-align: left;">
@@ -294,7 +294,6 @@
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
                             <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn btn-color"  [hidden]="true">Join</button>
-                            <button *ngIf='!ViaXpress' type="button"  data-dismiss="modal" [disabled]="(!transactionRef)" (click)="joinsInvestment()" class="btn btn btn-color">Submit</button>
                             <button *ngIf='ViaXpress' id="submit"
                                 data-dismiss="modal"
                                 type="button"
