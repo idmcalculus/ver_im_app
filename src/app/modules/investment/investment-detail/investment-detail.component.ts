@@ -38,7 +38,7 @@ export class InvestmentDetailComponent implements OnInit {
     categories: any = [];
     selectedCategory = '0';
     allinv: any = [];
-    ViaXpress = true;
+    ViaXpress = false;
     subOptions = [];
     payment_id = "";
 
