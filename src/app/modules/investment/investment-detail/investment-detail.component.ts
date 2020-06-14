@@ -227,15 +227,19 @@ export class InvestmentDetailComponent implements OnInit {
         this.investment.reference = paymentId;
         this.closemodal.nativeElement.click();
         if (this.investment.reference){
-            const resp:any = this.investmentService.verifyBankTransaction(this.investment.reference)
-                    if(resp.investment.length > 0){
+            const publicKey = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X";
+            this.investmentService.verifyBankTransaction(publicKey,this.investment.reference).subscribe(resp=>{ 
+                console.log(resp);
+                 
+                    if(resp.length > 0){
                         this.toastrService.error('investment has already been processed');
                     }else{
                         //some logic before join investment
                         this.joinInvestment()
                         this.isLoading = false;
                         this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);
-                    }               
+                    } 
+                });              
                 this.isLoading = false;
             }
     }
