@@ -87,10 +87,7 @@ export class InvestmentService {
   checkTransaction(transaction: Transaction) {
     return this.httpService.postExpressRequest(``, true);
   }
-  verifyBankTransaction(publicKey,transactionId) {
-    return this.httpService.postRequest(`investment_user/transaction/verify`, {secret: publicKey,transaction_id: transactionId}, true);
-  }
-
+  
   verifyTransaction(transactionId) {
     return this.httpService.postRequest(`investment_user/transaction/verify`, {secret: 'ourversasecretkey',transaction_id: transactionId}, true);
   }

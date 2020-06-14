@@ -365,7 +365,7 @@
                                 data-dismiss="modal"
                                 type="button"
                                 class="btn btn btn-color"
-                                (click)="initiatePay(transAmount,investment?.investment_amount,transaction.number_of_pools, payment_id,investment?.id )"
+                                (click)="initiatePay(payment_id,investment?.id )"
                             >Submit</button>
 
                             <button *ngIf='ViaXpress' id="submit"
@@ -387,7 +387,7 @@
                     <div class="modal-body">
                         <div class="join-modal">
                             <h3>Transaction Initiated</h3>
-                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{investment?.reference}} will be processed within the next 24 hours.</h5>
+                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{payment_id}} will be processed within the next 24 hours.</h5>
                              <h5>Best regards</h5>
                              <h5>Versa Team</h5>
                         </div>

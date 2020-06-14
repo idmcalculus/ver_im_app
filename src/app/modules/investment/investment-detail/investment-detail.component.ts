@@ -175,7 +175,6 @@ export class InvestmentDetailComponent implements OnInit {
                             if(resp.investment.length > 0){
                                 this.toastrService.error('investment has already been processed');
                             }else{
-                                //some logic before join investment
                                 this.joinInvestment()
                                 this.isLoading = false;
                                 this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
@@ -197,16 +196,15 @@ export class InvestmentDetailComponent implements OnInit {
         this.transaction.amount_paid =  Number(localStorage.getItem('transAmount'));
         this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
-     //   this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
-      //      if (resp && resp.success) {
-      //          this.toastrService.success(resp.success.Message);
-      //          this.closemodal.nativeElement.click();
-        //        localStorage.removeItem('poolsTaken');
-          //      localStorage.removeItem('transAmount');
-            //}
-          //  this.isLoading = false;
-      //  });
-      console.log('HELLO WORLD');
+        this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
+          if (resp && resp.success) {
+              this.toastrService.success(resp.success.Message);
+              this.closemodal.nativeElement.click();
+               localStorage.removeItem('poolsTaken');
+               localStorage.removeItem('transAmount');
+           }
+           this.isLoading = false;
+        });
       
     }
 
@@ -219,29 +217,11 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    initiatePay(transAmount, investment_amount, number_of_pools,paymentId,investmentId ) {
-        transAmount = investment_amount*number_of_pools;
+    initiatePay(paymentId,investmentId ) {
         this.isLoading = true;
-        localStorage.setItem('transAmount', String(transAmount));
-        localStorage.setItem('poolsTaken', String(number_of_pools));
-        this.investment.reference = paymentId;
         this.closemodal.nativeElement.click();
-        if (this.investment.reference){
-            const publicKey = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X";
-            this.investmentService.verifyBankTransaction(publicKey,this.investment.reference).subscribe(resp=>{ 
-                console.log(resp);
-                 
-                    if(resp.length > 0){
-                        this.toastrService.error('investment has already been processed');
-                    }else{
-                        //some logic before join investment
-                        this.joinInvestment()
-                        this.isLoading = false;
-                        this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);
-                    } 
-                });              
-                this.isLoading = false;
-            }
+        this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);           
+        this.isLoading = false;
     }
 
     payXpress(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
