@@ -11,7 +11,6 @@
     font-size: 20px;
 }
 
-
 h2 {
     color: #4f5fbe;
     font-size: 30px;
@@ -175,6 +174,7 @@ div .invest-control:hover {
     border: 0px solid ;
     border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height: 200px;
   }
 
 span {
