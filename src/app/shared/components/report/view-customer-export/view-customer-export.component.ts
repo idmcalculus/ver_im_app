@@ -98,7 +98,7 @@ export class exportUserPoolComponent implements OnInit {
           this.dashboardInvestment.forEach(investment => {
             investment.investment_report.forEach((report, i) => report.index = i + 1);
           });
-          console.log(this.dashboardInvestment);
+          // console.log(this.dashboardInvestment);
 
         } else {
           this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};

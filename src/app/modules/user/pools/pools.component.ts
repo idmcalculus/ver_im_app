@@ -108,7 +108,7 @@ export class PoolsComponent implements OnInit {
   }
 
   getCategoryName(id) {
-    console.log(id);
+    // console.log(id);
     
     if (this.categories && id) {
     this.res = this.categories.find(r => r.id === id);
