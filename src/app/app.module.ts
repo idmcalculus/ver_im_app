@@ -22,7 +22,6 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { SignInComponent } from './shared/components/sign-in/sign-in.component';
 import { SignUpComponent } from './shared/components/sign-up/sign-up.component';
-import { ServicesComponent } from './modules/services/services.component';
 import { AboutUsComponent } from './shared/components/about-us/about-us.component';
 import { ForgotPasswordComponent } from './shared/components/forgot-password/forgot-password.component';
 import { VerifyUserComponent } from './shared/components/verify-user/verify-user.component';
@@ -79,7 +78,6 @@ import { FilterTablesPipe } from './shared/services/filter-table/filter-tables.p
         SignInComponent,
         SignUpComponent,
         VerifyUserComponent,
-        ServicesComponent,
         AboutUsComponent,
         cookieDetailsComponent,
         ForgotPasswordComponent,

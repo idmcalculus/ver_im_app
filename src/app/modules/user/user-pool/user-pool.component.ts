@@ -3,6 +3,7 @@
  import { InvestmentService } from '../../investment/investment.service';
  import { Investment } from 'src/app/shared/models/Investment';
  import { AppAuthService } from 'src/app/core/auth/auth.service';
+import { EncryptService } from 'src/app/shared/services/encrypt.service';
 
  @Component({
   selector: 'app-userPools',
@@ -28,6 +29,7 @@ export class UserPoolsComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AppAuthService,
+    private cryptData: EncryptService,
     private investmentService: InvestmentService) {
   }
 
@@ -36,7 +38,8 @@ export class UserPoolsComponent implements OnInit {
     const userpath = window.location.pathname;
     if (userpath.includes('user')) {
         this.userType = 'user';
-        this.email = localStorage.getItem('email');
+        const temp_email = localStorage.getItem('email');
+        this.email = this.cryptData.encrypt(temp_email);
         this.investmentService.getUserInvestments(this.email).subscribe(investments => {
           if (investments) {
             this.pools = investments.success.Data;
@@ -94,17 +97,6 @@ export class UserPoolsComponent implements OnInit {
       return res.category_name;
     }
   }
-
-  /*getUserPols(email) {
-    this.isLoading = true;
-    this.investmentService.getUserInvestments(email).subscribe(investments => {
-      if (investments) {
-        this.pools = investments.success.Data;
-        this.reports = investments.success.Inv;
-      }
-      this.isLoading = false;
-    });
-  }*/
 
   cancelPool() {
     this.router.navigateByUrl('admin/addpools');
