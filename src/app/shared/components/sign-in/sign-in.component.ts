@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DynamicScriptLoaderService } from '../../services/dynamic-script-loader.service';
 import { SocialLogin } from '../../services/social-login-services';
 import { ToastrService } from 'ngx-toastr';
+import { EncryptService } from '../../services/encrypt.service';
 
 @Component({
     selector: 'app-sign-in',
@@ -31,6 +32,7 @@ export class SignInComponent implements OnInit {
         private toastrService: ToastrService,
         private socialAuth: SocialLogin,
         private router: Router,
+        private cryptData: EncryptService,
         private el: ElementRef
     ) {
         this.activatedRoute.queryParams.subscribe(resp => {
@@ -106,8 +108,11 @@ export class SignInComponent implements OnInit {
                         this.showOTPForm = true;
                         this.user = UserDetails;
 
-                        localStorage.setItem('email', UserDetails.email);
-                        localStorage.setItem('userType', UserDetails.user_category);
+                        // encrpyt user details
+                        let encryptedEmail = this.cryptData.encrypt(UserDetails.email);
+                        let encryptedCategory = this.cryptData.encrypt(UserDetails.user_category);
+                        localStorage.setItem('email', encryptedEmail);
+                        localStorage.setItem('userType', encryptedCategory);
 
 
                         this.toastrService.success(`Welcome ${this.user.first_name}`);
