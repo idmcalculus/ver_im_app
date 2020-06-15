@@ -1,8 +1,4 @@
 
-.container {
-    max-width: 80%;
-}
-
 .landingMedia {
     max-width: 100%;
 }
@@ -117,7 +113,7 @@ hr {
 .text {
     color: #919191;
     font-size: 14px !important;
-    line-height: 30px !important;
+    line-height: 35px !important;
     letter-spacing: 0.1px;
     text-align: justify;
 }
@@ -188,7 +184,7 @@ span {
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: auto;
+        height: 75%;
     }
 }
 
@@ -248,49 +244,21 @@ span {
     }
 }
 
-@media (max-width: 1200px) {
-    section.container, .container-fluid .container {
-        max-width: 90%;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
+@media (width: 1024px) {
     .banner-lnd .row {
         max-width: 90%;
-        margin: 0px auto;
-    }
-}
-
-@media (min-width: 770px) and (max-width: 812px) and (min-width: 833) and (max-width: 850) {
-    .transbtn {
-        padding-top: 1rem !important;
-    }
-    .agricbtn {
-        padding-top: 3rem !important;
-    }
-}
-
-@media (min-width: 813px) and (max-width: 832px) {
-    .realbtn {
-        padding-top: 5rem !important;
     }
 
-    .transbtn {
-        padding-top: 1rem !important;
+    .invest-control {
+        height: 69%;
     }
 
-    .agricbtn {
-        padding-top: 5rem !important;
-    }
-}
-
-@media (min-width: 851px) and (max-width: 1000px) {
-    .transbtn {
-        padding-top: 1rem !important;
+    .small-control {
+        height: 200px;
     }
 
-    .realbtn {
-        padding-top: 1rem !important;
+    .pl-2 {
+        padding-left: none !important;
     }
 }
 
