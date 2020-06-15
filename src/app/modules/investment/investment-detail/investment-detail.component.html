@@ -136,22 +136,17 @@
                     <div class="modal-content">
                         
                         <div class="modal-body pb-0">
-                            <div class="join-modal px-4">
+                            <div class="join-modal pb-0 px-lg-4">
                                 <h3>Select Payment Mode</h3>
-                                <div class="row" style="
-                                    display: flex;
-                                    margin: 0 5px;
-                                    width: 100%;
-                                    padding-bottom: 25px;
-                                "> 
-                                  <div class="col-6">
+                                <div class="fit-row"> 
+                                  <div class="col-6 pr-lg-3 pr-0">
                                        <label class="px-2">Debit/Credit Card
                                             <input type="radio"  disabled="true"  name="radio" ng-change="change()" (click)="change()">
                                             <span class="checkmark"></span>
                                         </label>
                                   </div>
                                   <div class="col-6">
-                                        <label>   Bank transfer
+                                        <label class="px-2">Bank transfer
                                             <input class="ml-2" type="radio" checked="checked" name="radio" ng-change="change()" (click)="change()">
                                             <span class="checkmark"></span>
                                         </label>
@@ -176,40 +171,40 @@
                                 <div *ngIf="!ViaXpress" class="form-group" style="width:100%;">
 
 
-                                    <div class="row mt-5" style="margin-top: 1rem !important;">
-                                        <div class="col-7">
+                                    <div class="row mt-3 text-left">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Investment ID:</label>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-6 text-center">
                                             <label class="pt-1 font-weight-bold" for="slotNum">{{investment?.id}}</label>
                                             
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-7">
+                                    <div class="row text-left">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Cost Per Slot:</label>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-6 text-center">
                                             <label class="pt-1 font-weight-bold" for="slotNum">{{investment?.investment_amount}}</label>
                                             
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-7">
+                                    <div class="row text-left">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Number of Slots:</label>
                                         </div>
-                                        <div class="col-5">
-                                            <select ng-init="1" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum"  (keyup)="validPool()" min="0" class="form-control font-weight-bold" style="border-bottom-style: none;width: fit-content;margin: 0 auto; cursor: pointer;">
+                                        <div class="col-6">
+                                            <select ng-init="1" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum"  (keyup)="validPool()" min="0" class="form-control text-center font-weight-bold" style="width: fit-content;margin: 0 auto; cursor: pointer;">
                                                 <option *ngFor="let slot of subOptions" [value]="slot">{{slot}}</option>
                                             </select>
                                             <div class="col-12 font-weight-bold text-center pt-2 text-danger">{{validpoolError}}</div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-7">
+                                    <div class="row text-left">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label style="color:#71e378" class="pt-1 font-weight-bold" for="slotNum">Amount Due:</label>
                                         </div>
-                                        <div class="col-5">
+                                        <div class="col-6 text-center">
                                             <label style="color:#71e378" class="pt-1 font-weight-bold" for="slotNum">{{investment?.investment_amount*transaction.number_of_pools}}</label>
                                             
                                         </div>
@@ -217,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer justify-content-center">
+                        <div class="modal-footer pt-0 fit-row justify-content-center">
                             <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
 
                             <button
