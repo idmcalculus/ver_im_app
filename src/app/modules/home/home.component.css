@@ -11,7 +11,6 @@
     font-size: 20px;
 }
 
-
 h2 {
     color: #4f5fbe;
     font-size: 30px;
@@ -118,7 +117,7 @@ hr {
 .text {
     color: #919191;
     font-size: 14px !important;
-    line-height: 35px !important;
+    line-height: 30px !important;
     letter-spacing: 0.1px;
     text-align: justify;
 }
@@ -175,6 +174,7 @@ div .invest-control:hover {
     border: 0px solid ;
     border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height: 200px;
   }
 
 span {
@@ -188,7 +188,7 @@ span {
 @media screen and (width: 768px) {
 
     .card-pad {
-        height: 75%;
+        height: auto;
     }
 }
 
@@ -247,15 +247,50 @@ span {
         height: auto;
     }
 }
-@media (width: 1024px) {
-    .invest-control {
-        height: 70%;
+
+@media (max-width: 1200px) {
+    section.container, .container-fluid .container {
+        max-width: 90%;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .banner-lnd .row {
+        max-width: 90%;
+        margin: 0px auto;
     }
 }
 
-@media (width: 1024px) {
-    .invest-control {
-        height: 75%;
+@media (min-width: 770px) and (max-width: 812px) and (min-width: 833) and (max-width: 850) {
+    .transbtn {
+        padding-top: 1rem !important;
+    }
+    .agricbtn {
+        padding-top: 3rem !important;
+    }
+}
+
+@media (min-width: 813px) and (max-width: 832px) {
+    .realbtn {
+        padding-top: 5rem !important;
+    }
+
+    .transbtn {
+        padding-top: 1rem !important;
+    }
+
+    .agricbtn {
+        padding-top: 5rem !important;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1000px) {
+    .transbtn {
+        padding-top: 1rem !important;
+    }
+
+    .realbtn {
+        padding-top: 1rem !important;
     }
 }
 

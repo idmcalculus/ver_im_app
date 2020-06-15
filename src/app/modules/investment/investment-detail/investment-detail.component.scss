@@ -1,3 +1,8 @@
+.container {
+	max-width: 80%;
+	padding-right: 30px;
+   padding-left: 30px;
+}
 
 .invest-header-thumb {
         opacity: 0.9;
@@ -508,17 +513,6 @@ a:hover {
    text-align: center;
 }
 
-@media (min-width: 1200px){
-   .investment {
-      padding-top: 5%;
-    }
-    
-   .container {
-       max-width: 84.064052749892em;
-   }
-
-}
-
 @media screen and (max-width: 992px) {
    .invest-header {
       height: auto;
@@ -538,9 +532,6 @@ a:hover {
  
  /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 600px) {
-   .investment {
-      padding-top: 20%
-   }
 
    .invest-header {
       height: auto;
@@ -556,15 +547,14 @@ a:hover {
    }
 }
 
-@media (min-width: 1000px) and (max-width: 1200px) {
-
-	.investment {
-		padding-top: 8%;
-	}
+@media (max-width: 1300px) {
+   .container {
+     max-width: 90% !important;
+  }
 }
 
-@media (min-width: 500px) and (max-width: 1000px) {
-	.investment {
-		padding-top: 10%;
+@media (max-width: 500px) {
+   .container {
+     max-width: 100% !important;
   }
 }
