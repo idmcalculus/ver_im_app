@@ -80,6 +80,10 @@ select.form-control, select.form-control:focus, select.form-control:hover {
    cursor: pointer;
 }
 
+.investment-plans .modal-footer .btn {
+   padding: 9px 3px !important;
+}
+
 .btn-outline-primary {
    border-color: #4f5fbe !important;
 }
@@ -556,6 +560,10 @@ a:hover {
       -ms-flex-pack: center !important;
       justify-content: center !important;
    }
+
+   .fit-row {
+      width: 90%;
+   }
 }
  
  /* On screens that are 600px or less, set the background color to olive */
@@ -604,11 +612,11 @@ a:hover {
 
    .btn1 {
       font-size: 12px;
-      padding: 9px 45px;
+      padding: 9px 5px;
   }
 
   .investment-plans .modal-footer .btn {
       font-size: 12px;
-      padding: 9px 29px !important;
+      padding: 9px 3px !important;
   }
 }

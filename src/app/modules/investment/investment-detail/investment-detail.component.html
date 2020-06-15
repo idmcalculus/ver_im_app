@@ -212,15 +212,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer pt-0 fit-row justify-content-center">
-                            <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
-
-                            <button
-                                (click) = "triggerSecond()"
-                                data-dismiss="modal"
-                                [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                                type="button" class="btn btn btn-color">Make Payment
-                            </button>
+                        <div class="modal-footer pt-0">
+                            <div class="fit-row">
+                                <div class="col-6 pl-lg-4 pl-md-2">
+                                    <button type="button" class="btn1 btn-block btn-outline-primary" data-dismiss="modal">Close</button>
+                                </div>
+                                <div class="col-6">
+                                    <button
+                                        (click) = "triggerSecond()"
+                                        data-dismiss="modal"
+                                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                                        type="button" class="btn btn-block btn-color">Make Payment
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
