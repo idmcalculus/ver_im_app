@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div *ngIf="investment !== null && !isLoading" class="inner-investment px-lg-0 px-3">
+            <div *ngIf="investment !== null && !isLoading" class="inner-investment px-lg-0 px-md-3">
                 <div class="invest-banner">
                     <div class="over-content">
                         <h3>{{investment?.title}}</h3>
@@ -70,7 +70,7 @@
                                 <button #closebutton id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter2">Open Modal</button>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-lg-8 col-md-6">
                             <div class="card-body other-info">
                                 <h5 class="card-title">Investment Description</h5>
                                 <article>
@@ -82,30 +82,32 @@
                 </div>
             </div>
 
-            <div *ngIf=" investment !== null && !isLoading" class="relatedInvestType px-lg-0 px-3">
+            <div *ngIf=" investment !== null && !isLoading" class="relatedInvestType px-lg-0 px-md-3">
                 <h3 class="m-0 pt-4">Related Investments</h3>
                 <div class="row">
                     <div *ngFor="let x of allinv" class="col-sm-4">
                         <a  *ngIf="x?.status === -1" class="coming" href="#">Coming Soon</a>
-                            <a  *ngIf="x?.status === -1" [ngClass]="(x?.status === -1)?'inactive':''" class="card" [routerLink]="(x?.status !== -1)?['/investments', x?.id]:''" routerLinkActive="active">
-                                <img class="card-img-top pt-3" *ngIf="x?.investment_image === ''" src="../assets/images/notcard.png"
-                                    alt="Card image cap">
-                                <img class="card-img-top pt-3" *ngIf="x?.investment_image!='' " src="{{x?.investment_image}}"
-                                    alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a style="font-size: 16px;"
-                                            href="investment-details.html">{{x?.title}}</a></h5>
-                                    <div class="" style="text-align: center">
-                                        <h3 style="text-align: center">
-                                            {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                        <span *ngIf="x?.estimated_percentage_profit"
-                                            class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
-                                            Profit (Estimated)</span>
-                                        <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
-                                        <p class="font-weight-bold">{{x?.duration}} Month(s)</p>
-                                    </div>
+
+                        <a  *ngIf="x?.status === -1" [ngClass]="(x?.status === -1)?'inactive':''" class="card" [routerLink]="(x?.status !== -1)?['/investments', x?.id]:''" routerLinkActive="active">
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image === ''" src="../assets/images/notcard.png"
+                                alt="Card image cap">
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image!='' " src="{{x?.investment_image}}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="font-size: 16px;"
+                                        href="investment-details.html">{{x?.title}}</a></h5>
+                                <div class="" style="text-align: center">
+                                    <h3 style="text-align: center">
+                                        {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                    <span *ngIf="x?.estimated_percentage_profit"
+                                        class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
+                                        Profit (Estimated)</span>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
+                                    <p class="font-weight-bold">{{x?.duration}} Month(s)</p>
                                 </div>
-                            </a>
+                            </div>
+                        </a>
+
                         <a *ngIf="x?.status !== -1" class="card" [routerLink]="['/investments', x?.id]" routerLinkActive="active">
                             <img class="card-img-top pt-3" *ngIf="x?.investment_image === '' " src="../assets/images/notcard.png"
                                 alt="Card image cap">
@@ -212,15 +214,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer pt-0 fit-row justify-content-center">
-                            <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
-
-                            <button
-                                (click) = "triggerSecond()"
-                                data-dismiss="modal"
-                                [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                                type="button" class="btn btn btn-color">Make Payment
-                            </button>
+                        <div class="modal-footer pt-0">
+                            <div class="fit-row">
+                                <div class="col-6 pl-lg-4 pl-md-2">
+                                    <button type="button" class="btn1 btn-block btn-outline-primary" data-dismiss="modal">Close</button>
+                                </div>
+                                <div class="col-6">
+                                    <button
+                                        (click) = "triggerSecond()"
+                                        data-dismiss="modal"
+                                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                                        type="button" class="btn btn-block btn-color">Make Payment
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

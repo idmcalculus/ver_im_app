@@ -22,7 +22,9 @@ export class InvestmentProfileComponent implements OnInit {
   @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
 
   userEmail: string;
-  pool;
+  buttonDisable = false;
+  serverdate : Date;
+  pool: Investment;
   poolId = 0;
   isLoading = false;
   selectedUser: User;
@@ -137,6 +139,33 @@ export class InvestmentProfileComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  private loadScripts() {
+    this.dynamicScriptLoader.load('p-coded', 'v-layout',
+    'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
+  }
+
+  disablePay (date: Date) {
+    this.serverdate = new Date();
+    const dd= this.serverdate.getDate();
+    const mm= this.serverdate.getMonth()+1;
+    const year = this.serverdate.getFullYear();
+    const day= this.serverdate.getDay();
+    const hours = this.serverdate.getHours();
+    const proposed = this.latestReport.created_at;
+    const read = this.addMonth(this.latestReport.created_at);
+
+    console.log(read);
+
+
+
+
+    // if(mm==1 && dd==18)
+    // {
+    //   this.buttonDisable = true;
+    //   console.log('Achieve you want')
+    // }
   }
 
 }
