@@ -150,13 +150,15 @@ div .invest-control:hover {
 }
 
 .slide-control {
+    height: 200px;
+    color: #545658;
     -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
-    color: #545658;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid ;
+    border: 0px solid ;
+    border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -170,7 +172,6 @@ div .invest-control:hover {
     border: 0px solid ;
     border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    height: 200px;
   }
 
 span {
@@ -240,7 +241,7 @@ span {
 
 @media (min-width: 1000px) {
     .invest-control {
-        height: auto;
+        height: 66%;
     }
 }
 
@@ -259,6 +260,20 @@ span {
 
     .pl-2 {
         padding-left: none !important;
+    }
+
+    .pt-lg-5 {
+        padding-top: 1rem !important;
+    }
+}
+
+@media (width: 1112px) {
+    .pt-lg-5 {
+        padding-top: .8rem !important;
+    }
+
+    .small-control {
+        height: 200px;
     }
 }
 
