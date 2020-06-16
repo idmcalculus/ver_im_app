@@ -6,7 +6,6 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
-import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
 import { ReportService } from 'src/app/shared/components/report/report.service';
 import { Report } from 'src/app/shared/models/Report';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +22,7 @@ export class InvestmentProfileComponent implements OnInit {
   @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
 
   userEmail: string;
-  pool: Investment;
+  pool;
   poolId = 0;
   isLoading = false;
   selectedUser: User;
@@ -56,45 +55,48 @@ export class InvestmentProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private investmentService: InvestmentService,
               private authService: AppAuthService,
-              private dynamicScriptLoader: DynamicScriptLoaderService,
               private reportService: ReportService,
               private toastrService: ToastrService) {
-                this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
-                  if (userInfo) {
-                    this.loggedInUser = userInfo;
-                  }
-                });
+              }
+  ngOnInit() {
+    this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
+        if (userInfo) {
+          this.loggedInUser = userInfo;
+        }
+      });
 
-                this.route.params.subscribe(resp => {
-                  this.poolId = resp.pool_id;
-                  if (!this.poolId) {
-                    this.poolId = Number(this.route.snapshot.paramMap.get('id'));
-                  }
-                });
-                this.isLoading = true;
-                this.investmentService.getInvestment(String(this.poolId)).subscribe(async poolDetails => {
-                  if (poolDetails && poolDetails.success) {
-                      this.pool = await poolDetails.success.Data;
-                      this.numOfReports = this.pool.report.length;
-                      this.numOfReports === 0 ?
-                      (this.latestReport = {
-                        title: '',
-                        returned_amount: 0,
-                        investment_id: 0,
-                        payment_type: '',
-                        description: ''
-                      })
-                      : this.latestReport = this.pool.report[0];
-                      this.isLoading = false;
-                  }
-                });
-                this.loadScripts();
-               }
+      this.route.params.subscribe(resp => {
+        this.poolId = resp.pool_id;
+        if (!this.poolId) {
+          this.poolId = Number(this.route.snapshot.paramMap.get('id'));
+        }
+      });
+      this.isLoading = true;
+      this.investmentService.getInvestment(String(this.poolId)).subscribe(async poolDetails => {
+        if (poolDetails && poolDetails.success) {
+            this.pool = await poolDetails.success.Data;
+            this.numOfReports = this.pool.report.length;
+            this.numOfReports === 0 ?
+            (this.latestReport = {
+              title: '',
+              returned_amount: 0,
+              investment_id: 0,
+              payment_type: '',
+              description: ''
+            })
+            : this.latestReport = this.pool.report[0];
+            console.log(this.latestReport);
+            console.log(this.pool);
 
-  ngOnInit() {}
+            this.isLoading = false;
+        }
+      });
+     }
+
+
 
   payInvestors(report: Report) {
-    this.isLoading = true;
+   /*  this.isLoading = true;
     report.title = this.pool.investment.title;
     report.returned_amount = Number(this.pool.investment.expected_return_amount);
     report.investment_id = this.pool.investment.id;
@@ -107,16 +109,19 @@ export class InvestmentProfileComponent implements OnInit {
       returned_amount: report.returned_amount,
       investment_id: report.investment_id,
       payment_type: report.payment_type,
-    };
-
+    }; */
+/*
     this.reportService.createReport(data).subscribe(resp => {
       if (resp && resp.success) {
         this.toastrService.success('Investors were paid successfully');
         this.isLoading = false;
       }
       this.location.back();
-    });
+    }); */
+    console.log('WEED');
+
   }
+
 
   addMonth(date: Date) {
     const newDate = new Date(date);
@@ -132,11 +137,6 @@ export class InvestmentProfileComponent implements OnInit {
 
   goBack() {
     this.location.back();
-  }
-
-  private loadScripts() {
-    this.dynamicScriptLoader.load('p-coded', 'v-layout',
-    'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
   }
 
 }
