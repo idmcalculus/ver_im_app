@@ -1,8 +1,52 @@
+.footer {
+    .inner-footer {
+        padding: 0px;
+        max-width: 80%;
+        margin: 0 auto;
+
+        h3 {
+            text-decoration: underline;
+        }
+        
+        h3:after {
+            display: none !important;
+        }
+        
+        .social-actions {
+            padding: 0 !important;
+        }
+        
+        .input-group {
+            input{
+                height: 50px;
+                width: 70%;
+                padding-left: 10px;
+                border: none;
+                outline: none;
+              }
+              button{
+                position: relative;
+                right: 0px;
+                border:none;
+                height: 50px;
+                width: 50px;
+                text-align: center;
+                padding: 1px;
+              }
+        }
+    }
+}
+
+
 @media (max-width: 1068px) {
+    
+    .footer {
+        padding: 0 3em;
+    }
+
     .col-md-3{
         ul{
             li{
-                justify-content: center;
                 display: flex;
             }
         }
@@ -26,6 +70,62 @@
 }
 
 .footer-text {
-    font-size: 12px;
+    font-size: 11px;
     color: #fff;
+}
+
+@media (max-width: 760px) {
+    .footer {
+        padding: 0 1.5rem;
+
+        .inner-footer {
+            h3 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+                margin-bottom: 0;
+            }
+            h6 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+            }
+            h5 {
+                text-align: center;
+                font-size: 1em;
+                font-weight: bold;
+                position: relative;
+            }
+            .img-fluid {
+                height: 150px;
+                width: 200px;
+            }
+            .versareg {
+                font-size: 10px;
+                text-align: justify;
+            }
+            .bottom a, .bottom span {
+                font-size: 8px;
+            }
+        }
+    
+        .col-md-4.col-sm-6, .col-md-12 {
+            ul{
+                margin-top: 0;
+                li{
+                    justify-content: center;
+                    display: flex;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1300px) {
+    .inner-footer {
+        max-width: 90% !important;
+    }
 }

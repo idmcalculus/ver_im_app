@@ -1,14 +1,44 @@
+.container {
+  max-width: 80%;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
 .side-details{
   padding-right: 0
 }
 
-// .section-container{
-//   background: url("../../../assets/images/partner-row2-3.png") no-repeat right top,
-//   url("../../../assets/images/partner-row1-2.png") no-repeat left top,
-//   url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+.navigation-values{
+  background-color: #8390DB;
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  padding: 10px 25px 10px 15px;
+  /* box-shadow: 0.1px 1.5px #050333; */
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0,0.45);
 
+  span{
+     padding-right: 6%;
+     padding-left: 1%;
+  }
+}
 
-// }
+.row1 {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.header-padding{
+  padding-top: 170px !important;
+}
 
 .inner-investment{
   :nth-child(3){
@@ -22,6 +52,13 @@
   margin-top: 5em;
   background: url('../../../assets/image/slide3.png') no-repeat center;
   background-size: cover;
+}
+
+.header {
+  color: white;
+  font-size: 40px;
+  padding-top: 130px;
+  text-align: center;
 }
 
 .text {
@@ -102,7 +139,7 @@
   .coming{
    
     top: 2.5em;
-    left: -2em;
+    left: -3.5em;
     color: #fff;
     display: block;
     position: absolute;
@@ -331,4 +368,154 @@ body {
   left: -25px;
   bottom: 30px;
   transform: rotate(-225deg);
+}
+
+.section-container .investment-plans .inner-investment .col-sm-12.col-md-6.col-lg-3.pb-2 {
+  margin-bottom: 1.5rem !important;
+}
+
+.section-container .investment-plans .inner-investment .row .column2 h5 {
+  font-size: 18px !important;
+}
+
+.superb-container .content-holder h3{
+  padding: 5px;
+}
+
+.investment-plans .inner-investment .superb-container .content-holder h3, .investment-plans .inner-investment .superb-container .content-holder a {
+  font-size: 18px !important;
+}
+
+.column2 mat-select {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  width: 40%;
+  height: 38px;
+  padding: .5rem .5rem;
+  color: white;
+  background-color: rgb(107, 141, 235);
+  background-clip: padding-box;
+  box-shadow: 2px 3px 2px 0px rgba(73, 80, 87, 0.25);
+  border: 0px solid ;
+  border-radius: 2px;
+}
+
+::ng-deep{
+
+	.mat-option {
+		width: 75%;
+	}
+
+	.mat-select-panel {
+		max-height: 150px !important;
+		background-color: white;
+		color: white;
+  }
+
+    .mat-select-placeholder {
+      color:white !important;
+      -webkit-text-fill-color: inherit !important;
+      transition: none;
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+	  }
+
+    span.mat-option-text {
+      color: grey;
+    }
+
+    .mat-select-trigger {
+        color: white;
+    }
+
+	.mat-select-value {
+        color: white;
+	}
+
+	.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+		background: #00000024;
+	}
+}
+
+@media (max-width: 760px) {
+
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .invest-header {
+    height: auto;
+    padding: 2em 24px;
+  }
+
+ .header-padding{
+    padding-top: 30px !important;
+  }
+
+  .section-container .investment-plans .inner-investment .superb-container {
+    margin: 0 auto !important;
+  }
+
+  .header{
+    font-size: 35px;
+  }
+
+  .column2 mat-select {
+    font-size: 14px;
+    width: 90%;
+    height: 35px;
+  }
+
+  .investment-plans .inner-investment .superb-container {
+    max-height: 300px;
+    width: 100%;
+  }
+
+  .superb-container .img-holder {
+    height: 150px;
+    width: 100%;
+  }
+
+  .section-container .investment-plans .inner-investment .superb-container .content-holder {
+    padding: 0 5px 0 0;
+  }
+
+  .superb-container .content-holder h3 {
+    padding: .5rem 0;
+  }
+
+  .investment-plans .inner-investment {
+    padding: 0;
+  }
+
+  .coming, .sold_out {
+    font: bold 12px/1em Arial, Sans-Serif;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .invest-header {
+     height: auto;
+     padding: 2em 24px;
+  }
+
+  .hidden {
+     display: none;
+   }
+
+  .header-center {
+     -webkit-box-pack: center !important;
+     -ms-flex-pack: center !important;
+     justify-content: center !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .container {
+  max-width: 90% !important;
+  }
 }

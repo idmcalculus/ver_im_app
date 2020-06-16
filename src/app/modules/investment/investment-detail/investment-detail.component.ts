@@ -8,6 +8,7 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
 
+
 declare var xpressPay: any;
 @Component({
     selector: 'app-investment-detail',
@@ -23,11 +24,13 @@ export class InvestmentDetailComponent implements OnInit {
     allInvestments = [];
     investment: Investment;
     transaction: Transaction = { investment_id: 0, number_of_pools: 0 };
-    payment_id: null;
     userinfo: User;
     amountPerPool = 0;
     userEmail = '';
+    validpoolError:string;
+    transAmount:number;
     transactionRef = '';
+    transactionRef2 = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -35,8 +38,9 @@ export class InvestmentDetailComponent implements OnInit {
     categories: any = [];
     selectedCategory = '0';
     allinv: any = [];
-    ViaXpress = true;
+    ViaXpress = false;
     subOptions = [];
+    payment_id = "";
 
 
     constructor(
@@ -55,20 +59,26 @@ export class InvestmentDetailComponent implements OnInit {
         this.activatedRoute.params.subscribe((params) => {
             this.investments = [];
             this.isLoading = true;
-            const investmentId = params.id;
+            const investmentId = params['id'];
             this.getInvestment(investmentId);
             this.getStat(investmentId);
             this.getInvestments();
-        });
+            this.confirmPayment();
 
-        this.activatedRoute.params.subscribe((params) => {
-            this.investments = [];
-            this.isLoading = true;
-            var investmentId = params['id'];
-            this.getInvestment(investmentId);
-            this.getInvestments();
         });
+    }
 
+    validPool() {
+        if (this.transaction.number_of_pools != 0){
+        const remain = this.investment.max_num_of_slots - this.investment.num_of_pools_taken
+        const want = this.transaction.number_of_pools
+    
+        if(want > remain) {
+          this.validpoolError = 'Number of Available Slot Exceeded';
+        } else {
+          this.validpoolError ='';
+        }
+      }
     }
 
     triggerSecond() {
@@ -94,24 +104,7 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
-
-                this.activatedRoute.queryParams.subscribe(resp => {
-                    const statusCode = resp['status-code'];
-                    const message = resp['status-message'];
-                    if (statusCode === '08' || statusCode === '00') {
-                        const qty = localStorage.getItem(resp['transaction-id']);
-                        if (qty) {
-                            this.investment.id = Number(id);
-                            this.transaction.number_of_pools = Number(qty);
-                            this.investment.reference = resp['transaction-id'];
-                            localStorage.removeItem(resp['transaction-id']);
-                            this.isLoading = true;
-                            this.joinInvestment();
-
-                        }
-                    } else if (message) {
-                    }
-                });
+                
             }
             this.isLoading = false;
         });
@@ -160,23 +153,59 @@ export class InvestmentDetailComponent implements OnInit {
         }
     }
 
+
+    async confirmPayment() {
+        this.isLoading = true;      
+        this.activatedRoute.queryParams.subscribe(async resp => {
+          if (resp['status-code']) {  
+            const statusCode = resp['status-code'];
+            const transactionId = resp['transaction-id'];
+            const statMessage = resp['status-message'];
+            const investmentId = resp['id'];
+            if(transactionId) {
+                    //get transaction id from url
+                    if(statusCode === '000' || statusCode === '08'){
+                        const res = await this.investmentService.checkTransaction(this.transaction);
+                        if (res.status === 'FAILED'){
+                            this.toastrService.error(res.message);
+                            this.isLoading = false;
+                            
+                        }else{  
+                            const resp:any = this.investmentService.verifyTransaction(transactionId)
+                            if(resp.investment.length > 0){
+                                this.toastrService.error('investment has already been processed');
+                            }else{
+                                this.joinInvestment()
+                                this.isLoading = false;
+                                this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
+                            }
+                        }
+                    }else{
+                        this.isLoading = false;
+                        this.toastrService.error(statMessage);
+                    }
+                
+            }
+        }
+    });  
+    }
+
     joinInvestment() {
         this.isLoading = true;
         this.transaction.investment_id = this.investment.id;
-        this.transaction.amount_paid = this.investment.investment_amount * this.transaction.number_of_pools;
-        this.transaction.amount_paid = Number(this.transaction.amount_paid.toFixed(2));
+        this.transaction.amount_paid =  Number(localStorage.getItem('transAmount'));
+        this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
-            if (resp && resp.success) {
-                this.toastrService.success(resp.success.Message);
-                this.closemodal.nativeElement.click();
-
-            }
-            this.isLoading = false;
+          if (resp && resp.success) {
+              this.toastrService.success(resp.success.Message);
+              this.closemodal.nativeElement.click();
+               localStorage.removeItem('poolsTaken');
+               localStorage.removeItem('transAmount');
+           }
+           this.isLoading = false;
         });
-    }
-
-    paymentCancel() {
+      
     }
 
     redirectBack(){
@@ -188,10 +217,19 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    xpressPay(email, amnt, firstName, lastName, mobile, tranRef) {
+    initiatePay(paymentId,investmentId ) {
         this.isLoading = true;
-        localStorage.setItem(tranRef, String(this.transaction.number_of_pools));
-        xpressPay(email, amnt, firstName, lastName, mobile, tranRef);
+        this.closemodal.nativeElement.click();
+        this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);           
+        this.isLoading = false;
+    }
+
+    payXpress(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
+        transAmount = investment_amount*number_of_pools;
+        this.isLoading = true;
+        localStorage.setItem('transAmount', String(transAmount));
+        localStorage.setItem('poolsTaken', String(number_of_pools));        
+        xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
     change() {

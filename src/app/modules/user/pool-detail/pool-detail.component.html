@@ -72,7 +72,7 @@
                             <div class="col-xl-8">
                                 <form #addInvestmentForm="ngForm" class="card latest-update-card">
                                     <div class="row p-4">
-                                        <div class="col-6 pr-4">
+                                        <div class="col-md-6 col-12 pr-4">
                                             <div class="form-group pt-1 pb-2 row">
                                                 <h6 class="col-sm-3 pr-0 col-form-label">ID</h6>
                                                 <div class="col-sm-9">
@@ -140,8 +140,8 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-6 pr-4">
-                                            <div class="form-group pt-3 pb-3 row">
+                                        <div class="col-md-6 col-12 pr-4 ">
+                                            <div class="form-group pt-lg-0 pt-3 row">
                                                 <h6 class="col-sm-4  pr-0 col-form-label">Upload Image</h6>
                                                 <div class="col-sm-8">
                                                     <div class="image_preview">
@@ -361,42 +361,61 @@
                                 <div class="mb-3 pb-1">
                                     <h5>Investment Report</h5>
                                 </div>
-                                <div class="card report">
-                                    <div class="card-block dt-responsive report-header d-flex">
-                                      <p class="s-n">S/N</p>
-                                      <p class="invTitle">Investment Title</p>
-                                      <p class="payback">Payback Frequency</p>
-                                      <p class="amtCred">Amount Credited</p>
-                                      <p class="yieldedAmt">Yielded Amount</p>
-                                      <p class="balance">Balance</p>
-                                      <p class="status">Status</p>
-                                      <p class="datePaid">Date Paid</p>
-                                    </div>
-                                    <div class="card-block dt-responsive" *ngIf="pool?.investment?.is_investment_started === 1; else showThis">
-                                      <div class="d-flex report-body" *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
-                                        <p class="s-n">{{ report?.index }}</p>
-                                        <p class="invTitle">{{ report?.title }}</p>
-                                        <p class="payback">{{ pool?.investment?.expected_return_period }}</p>
-                                        <p class="amtCred">{{ pool?.investment?.expected_return_amount | currency:'':'' }}</p>
-                                        <p class="yieldedAmt">{{ pool?.investment?.expected_return_amount * report?.index | currency:'':'' }}</p>
-                                        <p class="balance">{{ pool?.investment?.expected_return_amount * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | currency:'':''}}</p>
-                                        <p class="status">On-going</p>
-                                        <p class="datePaid">{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</p>
-                                      </div>
-                                      <div  class="col-12 d-flex flex-row mt-3">
-                                        <pagination-controls class="col-md-10 col-xs-10 px-0" (pageChange)="p2 = $event" id='second'></pagination-controls>
-                                        <span class="col-md-2 col-xs-2 controls">
-                                            <select class="py-2 input-control" data-type="items-per-page" (change)=setItemsPerPage(page.value) #page>
-                                                <option value="5"> 5 rows </option>
+
+                                <div class="card card-flex p-3">
+                                    <table id="order-table" class="table nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th>S/N</th>
+                                                <th>Investment Title</th>
+                                                <th>Payback Frequency</th>
+                                                <th>Amount Credited</th>
+                                                <th>Yielded Amount</th>
+                                                <th>Balance</th>
+                                                <th>Status</th>
+                                                <th>Date Paid</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody *ngIf="pool?.investment?.is_investment_started === 1; else showThat">
+                                            <tr *ngFor="let report of reports | paginate: { itemsPerPage: pageValue, currentPage:p2, id: 'second'}; index as i">
+                                                <td>{{ report?.index }}</td>
+                                                <td>{{ report?.title }}</td>
+                                                <td>{{ pool?.investment?.expected_return_period }}</td>
+                                                <td>{{ (pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) | currency:'':'' }}</td>
+                                                <td>{{ (pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) * report?.index | currency:'':'' }}</td>
+                                                <td>{{(pool?.investment?.expected_return_amount *  pool?.investment?.num_of_pools_taken) * (divisorFunc(pool?.investment?.expected_return_period) - report?.index) | currency:'':''}}</td>
+                                                <td>On-going</td>
+                                                <td>{{ report?.created_at ? (report?.created_at.split(' ')[0] | date :  "dd.MM.y") : 'N/A' }}</td>
+                                            </tr>
+                                        </tbody>
+                                        <ng-template #showThat>
+                                            <tbody>
+                                                <tr>
+                                                    <td [colSpan]="99" class="showThat text-center" style="color: red; font-size: 16px; font-weight: bold;">Investment Not Yet Started</td>
+                                                </tr>
+                                            </tbody>
+                                        </ng-template>
+                                        <tfoot>
+                                            <tr>
+                                              <td [colSpan]="6" class="pb-0 mr-5">
+                                                <pagination-controls
+                                                  (pageChange)="p2=$event" id='second'>
+                                                </pagination-controls>
+                                              </td>
+                                              <td [colSpan]="6" class="pb-0">
+                                                <select class="input-control" data-type="items-per-page" (change) = setItemsPerPage(page.value) #page>
+                                                    <option value="5"> 5 rows </option>
                                                 <option value="10"> 10 rows </option>
                                                 <option value="20"> 20 rows </option>
                                                 <option value="40"> 40 rows </option>
                                                 <option value="50"> 50 rows </option>
                                                 <option value="0"> view all </option>
-                                            </select>
-                                        </span>
-                                       </div>
-                                    </div>
+                                                </select>
+                                              </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
                             </div>
                         </div>

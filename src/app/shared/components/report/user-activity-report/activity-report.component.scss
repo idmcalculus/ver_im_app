@@ -112,7 +112,7 @@ div > a {
     padding: 0px;
 }
 
-.category-header p {
+.header {
     color: #221f72;
     padding: 0;
     margin: 0;
@@ -121,9 +121,7 @@ div > a {
     font-family: roboto, sans-serif;
 }
 
-.category-body .row1 {
-    display: flex;
-    justify-content: space-between;
+.row1 {
     align-items: center;
     justify-items: center;
     border-style: solid;
@@ -159,8 +157,47 @@ div > a {
     display: inline-flex;
     flex: content;
 }
+
 .controls{
-    padding-top: 0.95rem;
+    margin: auto;
+    width: 100%;
+}
+
+.table > thead > tr > th {
+    border-top: none;
+    border-bottom-width: 2px;
+    border-bottom-color: #221F72
+}
+
+td {
+    border-color: #221F72
+}
+
+label,th {
+    color: #221F72;
+    font-family: roboto, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+label,td {
+    font-family: roboto, sans-serif;
+    font-size: 12px;
+}
+
+.table td, .table th {
+    padding: 20px;
+}
+
+
+.card-flex {
+	display: flex;
+	flex-flow: column nowrap;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		display: none;  //Safari and Chrome
+	}
 }
 
 

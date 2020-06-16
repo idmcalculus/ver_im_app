@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {  HttpHeaders, HttpClient  } from '@angular/common/http';
-import { Observable, of, observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import {environment as appConfig} from '../../../environments/environment';
 
@@ -48,6 +48,29 @@ export class HttpService {
         );
     }
 
+
+    async postExpressRequest(api: string, data: any, showMessages?: boolean, httpHeaderOptions?: {headers: HttpHeaders}): Promise<any> {
+        //const hashString = "XPPUBK-01445c39c4095df9b08f566a82586d7c-X"; // LIVE
+        const hashString = "XPPUBK-57f22bfb5ef594e90278be1abffb5ed2-X";// TEST
+        const response = await fetch(`https://xpresspayonlineapisandbox.xpresspayments.com/v1/payments/query`, {
+        // const response = await fetch(`https://api.xpresspayonline.com/v1/payments/query`, {
+            method: 'POST',
+            body: JSON.stringify({"publicKey": hashString, "transactionId": data.transactionId}),
+            headers: {'Content-Type': 'application/json'}
+        }) // Call the fetch function passing the url of the API as a parameter
+        .then(function(res) {
+            return res.json().then(json => {
+                // the status was ok and there is a json body
+                return json;
+        }).catch(function(e) {
+            // console.log(e);
+            // This is where you run code if the server returns any errors
+            });
+        });
+
+        return response;
+    }
+
     putRequest(api: string, data: any) {
         return this.http.put<any>(`${this.baseURL}/${api}`, data, httpOptions)
         .pipe(
@@ -65,8 +88,7 @@ export class HttpService {
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             JSON.stringify(error);
-            if (error.status == 0) {
-                console.log('Error occurred is:: '+ JSON.stringify(error));
+            if (error.status === 0) {
                 this.toastrService.error(`Error occurred connecting to services`);
             } else {
                 if (error.error && error.error.errors) {

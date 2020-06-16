@@ -1,0 +1,153 @@
+.container {
+	max-width: 80%;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.work-header {
+    height: 300px;
+    padding: 4px;
+    margin-top: 5em;
+    background: url('../../../assets/image/how-it-works.jpg') no-repeat center;
+	background-size: cover;
+
+		.inner-work h3 {
+			display: flex;
+			align-items: center;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			font-size: 4em;
+			font-weight: bold;
+			color: #ffffff;
+			margin: 0;
+			text-shadow: 0 1px 0 rgba(0,0,0,.9);
+		}
+
+}
+
+.inner-faq {
+    padding: 5rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
+}
+
+.section-containers{
+	background:
+	url("../../../assets/images/partner-row1-2.png") no-repeat left top,
+	url("../../../assets/images/partner-row2-3.png") no-repeat right top,
+	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
+}
+
+.text {
+    color: #919191;
+    font-size: 13px !important;
+    line-height: 35px !important;
+    letter-spacing: 0.1px;
+    text-align: justify;
+}
+
+.img-fluid {
+    height: 150px !important;
+}
+
+.invest-control {
+    color: #f1efef;
+	background-color: #fff;
+	height: auto;
+    background-clip: padding-box;
+    border: 1px solid ;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.card-height {
+	height: 500px;
+}
+
+.text-header {
+	color: #4f5fbe;
+	font-size: 16px !important;
+}
+
+.sub-text {
+    color: #4f5fbe;
+    font-size: 15px;
+}
+
+.sub-text1 {
+    color: #4f5fbe;
+	font-size: 18px;
+}
+
+hr {
+    height:2px !important;
+    border:none;
+    color:#4f5fbe;
+    background-color:#4f5fbe;
+    width:70%;
+    text-align:center;
+    margin: auto;
+}
+
+.header {
+	color: white;
+	font-size: 40px;
+	padding-top: 130px;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+
+	.header{
+		font-size: 35px;
+	}
+
+	.container {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
+}
+
+@media (min-width: 1000px) and (max-width: 1300px) {
+
+	.text {
+		line-height: 25px !important;
+	}
+
+	.invest-control {
+		height: 100%;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+
+	.text {
+		line-height: 2rem !important;
+	}
+}
+
+@media (max-width: 1300px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px){
+    .work-header {
+        height: 250px;
+        padding: 0px;
+	}
+	
+	.text {
+        line-height: 30px !important;
+	}
+	
+	.card-height {
+		height: auto;
+	}
+
+	hr {
+		width: 20%
+	}
+}

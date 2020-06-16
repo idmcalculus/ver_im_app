@@ -34,6 +34,19 @@ mat-dialog-container#modal-component {
     background-color: #e4e4e4 !important;
 }
 
+
+.banner-lnd{
+    margin-top: 0rem!important;
+    padding-top: 10%;
+    background: url("./assets/image/banner_bg.png") no-repeat local top right;
+    background-size: 55%;
+    .row{
+        max-width: 80%;
+        margin: 0px auto;
+    }
+}
+
+
 .cookie-law-wrapper {
     background: #333333d1 !important;
 }
@@ -175,9 +188,6 @@ mat-dialog-container#modal-component {
 
 
 .section-container {
-    padding: 0 2rem 5rem;
-    background: rgba(5,3,51,0.03);
-    box-shadow: rgba(5,3,51,.3);
     background: white;
 
     .superbOffers {
@@ -283,7 +293,7 @@ mat-dialog-container#modal-component {
                     justify-content: center;
                     display: flex;
                     /* justify-content: space-between; */
-                    width: 50%;
+                    width: 100%;
                     color: #4F5FBE;
                     margin: 0rem 0rem 3rem 0rem;
 
@@ -359,10 +369,6 @@ mat-dialog-container#modal-component {
     box-shadow: none;
     z-index: 3;
 
-    &.scrolled{
-        @include boxShadow($shadowBlack, 0, 0, 5px);
-    }
-
     nav {
         .login{
             box-shadow: none;
@@ -399,27 +405,20 @@ mat-dialog-container#modal-component {
     }
 
     .inner-footer {
-        padding: 0px 72px;
+        padding: 0;
         li{
             a{
                 font-weight: 900
             }
         }
         h3 {
-            &:after {
-                width: 20%;
+            text-decoration: underline;
             }
-        }
         h6 {
-            &:after {
-                width: 24%;
+            text-decoration: underline;
             }
-        }
         h5 {
-            &:after {
-                width: 39.5%;
-
-            }
+            text-decoration: underline;
         }
     }
 }
@@ -444,6 +443,7 @@ mat-dialog-container#modal-component {
     .row{
         width: 100%;
         height: 100%;
+        margin: 0px;
         .col-md-3{
             display: flex;
             align-items: center;
@@ -598,6 +598,15 @@ mat-dialog-container#modal-component {
         height: 85px;
     }
 }
+
+@media (max-width: 600px) {
+    .section-container .investment-plans .inner-investment .col-sm-12.col-md-6.col-lg-3.pb-2 {
+        min-width: 33.333333333333333333%;
+        margin-bottom: 1rem;
+        margin: 1rem;
+    }
+}
+
 .header-navbar .navbar-wrapper .navbar-container .nav-right .user-profile img {
     object-fit: cover;
     object-position: top center;
@@ -821,7 +830,6 @@ mat-dialog-container#modal-component {
     }
 
     .section-container {
-        padding: 0 !important;
 
         .versa-plan {
             .inner-plan {
@@ -1561,7 +1569,7 @@ mat-dialog-container#modal-component {
             @media (max-width: 500px) {
                 ul{
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: space-evenly;
                     list-style: none;
                     margin: 0;
                     margin-top: 1rem;
@@ -1646,4 +1654,7 @@ td{
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: "Trebuchet MS", Roboto, "Helvetica Neue", sans-serif;
+}

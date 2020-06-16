@@ -1,24 +1,62 @@
-.bg-img{
-   background: url("/src/assets/image/banner_bg.png");
-   background-attachment: fixed;
-  background-position: top right;
-}
-
 .header {
-    position: fixed;
+  position: fixed;
+  z-index:999;
+  height: 70px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 12%;
+  padding-right: 12%;
 }
 
-@media (min-width: 1200px){
-    .row {
-        max-width: 1480px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+.container {
+  max-width: 100%;
+}
+
+.header nav li a {
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
+.sticky {
+  position: fixed;
+  background: white;
+}
+
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+  .header {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
 
 }
 
-@media (min-width: 992px){
-    .pr-lg-5, .px-lg-5 {
-        padding-right: 2.6rem!important;
-    }
+@media (max-width: 992px) {
+
+  .header {
+    padding-left: 9%;
+    padding-right: 7%;
+  }
+
+  .mobile-nav .menu-icon .navicon {
+      right: 2rem;
+  }
+}
+
+@media (max-width: 900px){
+  .header {
+    padding-left: 7%;
+  }
+}
+
+@media (max-width: 500px){
+  .header {
+    padding-left: 8%;
+  }
+}
+
+@media (min-width: 1450px){
+  .header {
+    padding-left: 10%;
+  }
 }

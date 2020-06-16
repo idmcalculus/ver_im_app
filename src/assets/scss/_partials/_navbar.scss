@@ -11,7 +11,8 @@
     nav {
         clear: both;
         position: relative;
-        margin: 0 30px;
+        margin: 0 auto;
+        width: 84.064052749892em;
 
         .underline {
             position: relative;
@@ -85,7 +86,7 @@
             letter-spacing: 1px;
             position: relative;
             color: $theme-blue;
-            font-weight: lighter;
+            font-weight: bolder;
         }
 
         .login {
@@ -184,6 +185,7 @@
             clear: both;
             position: relative;
             margin: 0 30px;
+            width: 84.064052749892em;
 
             .underline {
                 position: relative;
@@ -359,10 +361,9 @@
 
 .footer {
     height: auto;
-    clear: both;
     width: 100%;
     background: $theme-blue;
-    padding: 3em 3em 0;
+    padding: 1em 1em 0;
     @media (min-width: 768px) {
         .col-md-1 {
             -ms-flex: 0 0 12.333333% !important;
@@ -372,7 +373,7 @@
     }
 
     .inner-footer {
-        padding: 25px 50px;
+        padding: 0;
         margin: 0;
         color: $theme-white;
         //text-align: center;
@@ -382,15 +383,6 @@
             color: $theme-white;
             font-weight: bold;
             position: relative;
-            &:after {
-                width: 20%;
-                content: '';
-                position: absolute;
-                background: $theme-white;
-                height: 1px;
-                left: 0;
-                bottom: -1px;
-            }
         }
         h6 {
             text-align: left;
@@ -398,15 +390,6 @@
             color: $theme-white;
             font-weight: bold;
             position: relative;
-            &:after {
-                width: 32%;
-                content: '';
-                position: absolute;
-                background: $theme-white;
-                height: 1px;
-                left: 0;
-                bottom: -1px;
-            }
         }
         h5 {
             text-align: left;
@@ -414,15 +397,6 @@
             color: $theme-white;
             font-weight: bold;
             position: relative;
-            &:after {
-                width: 47%;
-                content: '';
-                position: absolute;
-                background: $theme-white;
-                height: 1px;
-                left: 0;
-                bottom: -1px;
-            }
         }
 
         ul {

@@ -1,3 +1,8 @@
+.container {
+	max-width: 80%;
+	padding-right: 30px;
+   padding-left: 30px;
+}
 
 .invest-header-thumb {
         opacity: 0.9;
@@ -7,15 +12,105 @@
            opacity: 0.9;
         }
 }
+
+select.form-control, select.form-control:focus, select.form-control:hover {
+   border: 1px solid !important;
+}
+
+.form-group .row {
+   width: 90%;
+   margin: auto;
+}
+
+.investment-plans .over-content h3 {
+   font-size: 16px !important;
+}
+
+.investment-plans .inner-investment .main-invest-card .row .other-info h5 {
+   font-size: 16px !important;
+}
+
+.investment-plans .inner-investment .main-invest-card .row .other-info article {
+   font-size: 13px !important;
+   line-height: 26px !important;
+   letter-spacing: 0px !important;
+}
+
+.investment-plans .inner-investment .main-invest-card .side-details .invest-thumbnail {
+   height: 150px !important;
+}
+
+.investment-plans .inner-investment .main-invest-card .side-details .content-detail h3 {
+   font-size: 16px !important;
+   letter-spacing: none !important;
+}
+
+.investment-plans .inner-investment .main-invest-card .side-details .content-detail > div span {
+   font-size: 14px !important;
+   color: black !important;
+}
+
+.investment-plans .content-detail > div {
+   font-size: 14px !important;
+   color: black !important;
+}
+
+.investment-plans .relatedInvestType h3 {
+   font-size: 15px !important;
+}
+
+.invest-header {
+   height: 300px;
+   padding: 4px;
+   margin-top: 5em;
+   background: url('../../../../assets/image/slide3.png') no-repeat center;
+   background-size: cover;
+}
+
+.modal-dialog .modal-content {
+   border-radius: 10px !important;
+}
+
+.btn {
+   border-radius: 10px;
+   color: white !important;
+   text-transform: capitalize;
+   font-size: 14px;
+   padding: 9px 50px;
+   cursor: pointer;
+}
+
+.btn-outline-primary {
+   border-color: #4f5fbe !important;
+}
+
+.btn1 {
+   border-radius: 10px;
+   background-color: white;
+   color: #4f5fbe !important;
+   text-transform: capitalize;
+   font-size: 14px;
+   padding: 9px 50px;
+   cursor: pointer;
+}
+
+.btn-color {
+   background-color: #4f5fbe;
+}
+
+a:hover {
+   color: inherit !important;
+   background-color: #f9f9fa;
+}
+
+.card-body p {
+   color: black;
+}
+
  .main-invest-card{
     text-align: left;
  }
 
- .section-container{
-   background: url("../../../../assets/images/partner-row2-3.png") no-repeat right top,
-   url("../../../../assets/images/partner-row1-2.png") no-repeat left top,
-   url("../../../../assets/images/partner-rw.png") no-repeat left bottom;
- }
 
 .invest-header{
  padding-top: 2rem;
@@ -30,8 +125,10 @@
 }
 }
 
+
+
 .modal-dialog{
-   text-align: center;
+   text-align: left;
 
    .modal-content{
       border-radius:2rem;
@@ -215,11 +312,6 @@
           .col-md-4{
           max-width: 33.333%;
 
-            .card{
-               width: auto;
-               height: auto
-            }
-
             a {
               color: #444;
               font-weight: 400;
@@ -286,7 +378,7 @@
    font-weight: 600;
 }
 
-.container {
+.join-modal .container {
    display: block;
    position: relative;
    padding-left: 30px;
@@ -359,3 +451,164 @@
     border-radius: 50%;
     background: white;
  }
+
+ .card{
+   width: 100% !important;
+}
+
+
+.navigation-values{
+   background-color: #8390DB;
+   text-align: center;
+   color: white;
+   font-weight: 800;
+   letter-spacing: 0.3px;
+   padding: 10px 25px 10px 15px;
+   /* box-shadow: 0.1px 1.5px #050333; */
+   border-radius: 45px;
+   box-shadow: 0px 8px 15px rgba(0, 0, 0,0.45);
+
+   span{
+      padding-right: 6%;
+      padding-left: 1%;
+   }
+}
+
+.fit-row {
+   width: 80%;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   margin-right: auto;
+   margin-left: auto;
+}
+
+.row1 {
+   width: 100%;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   margin-right: auto;
+   margin-left: auto;
+}
+
+.header-padding{
+   padding-top: 170px !important;
+}
+
+.coming{
+   
+   top: 2.5em;
+   left: -2em;
+   color: #fff;
+   display: block;
+   position: absolute;
+   text-align: center;
+   text-decoration: none;
+   letter-spacing: .06em;
+   background-color:  #4f5fbe;
+   padding: 0.5em 4em 0.4em 4em;
+   text-shadow: 0 0 0.75em #444;
+   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+   font: bold 16px/1.2em Arial, Sans-Serif;
+   -webkit-text-shadow: 0 0 0.75em #444;
+   -webkit-box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
+   -webkit-transform: rotate(-45deg) scale(0.75, 1);
+   z-index: 10;
+ }
+
+ 
+.inactive{
+   background-color: #33333324 !important;
+ }
+
+.header {
+   color: white;
+   font-size: 40px;
+   padding-top: 130px;
+   text-align: center;
+}
+
+.modal-footer > :not(:last-child) {
+   margin-right: 1rem;
+}
+
+.modal-footer > :not(:first-child) {
+   margin-left: 1.5rem;
+}
+
+@media screen and (max-width: 992px) {
+   .invest-header {
+      height: auto;
+      padding: 2em 24px;
+   }
+
+   .hidden {
+      display: none;
+    }
+
+   .header-center {
+      -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+      justify-content: center !important;
+   }
+}
+ 
+ /* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+
+   .invest-header {
+      height: auto;
+      padding: 2em 24px;
+   }
+
+   .header-padding{
+      padding-top: 30px !important;
+   }
+   
+   .header{
+      font-size: 35px;
+   }
+}
+
+@media (max-width: 1300px) {
+   .container {
+     max-width: 90% !important;
+  }
+}
+
+@media (max-width: 500px) {
+   .container {
+     max-width: 100% !important;
+  }
+
+  .form-group .row {
+      width: 100%;
+   }
+
+  .fit-row {
+      width: 100%;
+   }
+
+   .modal-footer > :not(:last-child) {
+      margin-right: .25rem;
+   }
+   
+   .modal-footer > :not(:first-child) {
+      margin-left: .25rem;
+   }
+
+   .btn1 {
+      font-size: 12px;
+      padding: 9px 45px;
+  }
+
+  .investment-plans .modal-footer .btn {
+      font-size: 12px;
+      padding: 9px 29px !important;
+  }
+}

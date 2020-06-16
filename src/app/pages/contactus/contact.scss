@@ -1,3 +1,9 @@
+.container {
+	max-width: 80%;
+	padding-right: 30px;
+    padding-left: 30px;
+}
+
 .work-header {
     height: 300px;
     padding: 4px;
@@ -160,33 +166,41 @@
 			font-weight: 600;
 		}
 }
-@media (min-width: 1200px){
-    .container {
-        max-width: 1240px;
-    }
-}
-
-.text-header {
-    color: #43425d;
-    font-size: 25px;
-}
 
 .text-text {
     color: #919191;
+    font-family: roboto;
+    font-weight: 400;
 }
 
 .text-footer {
     color: #43425d;
-    font-size: 25px;
+    font-size: 16px;
+    font-family: roboto;
+    font-weight: bold;
+}
+
+.text-header {
+    color: #43425d;
+    font-size: 18px;
+    font-family: roboto;
+    font-weight: bold;
+}
+
+.textGuard{
+    color: #43425d;
+    font-size: 24px;
+    font-family: roboto;
+    font-weight: bold;
 }
 
 .input-control {
-	height: 300px;
+	height: 310px;
     color: #495057;
     -moz-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
     -webkit-box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
     box-shadow: 0 0 10px rgba(73, 80, 87, 0.5);
-    background-color: #fff;
+    background-color: #f5f2f5;
     background-clip: padding-box;
     border: 0px solid ;
     border-radius: 4px;
@@ -201,16 +215,20 @@
 }
 
 .btn {
-    border-radius: 15px;
+    border-radius: 10px;
     color: white;
     text-transform: capitalize;
-    font-size: 15px;
-    padding: 10px 19px;
+    font-size: 14px;
+    padding: 9px 50px;
     cursor: pointer;
 }
 
+
 .btn-color {
     background-color: #4f5fbe;
+}
+.standard-mini .submitBtn {
+    justify-self:flex-end;
 }
 
 .form-control1 {
@@ -219,15 +237,18 @@
 
 .header {
     color: white;
-    font-size: 50px;
-    padding-top: 100px;
+    font-size: 30px;
+    padding-top: 150px;
     text-align: center;
+    font-family: roboto;
+    font-weight: bold;
 }
 
 .text-sub {
     color: white;
-    font-size: 20px;
+    font-size: 14px;
     text-align: center;
+    font-weight: 600;
 }
 
 .inner-faq {
@@ -235,10 +256,6 @@
     border-radius: 8px;
     background: #fff;
     box-shadow: 0 2px 3px 1px rgba(0,0,0,.4);
-}
-
-.inner-holder-map{
-	padding: 0rem 4rem;
 }
 
 .faq-section{
@@ -268,7 +285,23 @@
 	url("../../../assets/images/partner-rw.png") no-repeat left bottom;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 760px){
+
+	.standard-mini{
+		margin-left: 0.05rem;
+		margin-right: 0.05rem;
+	}
+	.standard{
+		margin-left: 0.125rem;
+		margin-right: 0.125rem;
+	}
+	.container .special {
+		padding-top: 40px;
+	}
+}
+
+@media (min-width: 500px) and (max-width: 1000px) {
+	
 	.howItWork{
 		display: block !important;
 		margin-top: 1rem;
@@ -285,5 +318,17 @@
 	.second-section{
 		width: 90% !important;
 		margin-left: 2rem;
+	}
+}
+
+@media (max-width: 1300px) {
+    .container {
+		max-width: 90% !important;
+	}
+}
+
+@media (max-width: 500px) {
+    .container {
+		max-width: 100% !important;
 	}
 }
