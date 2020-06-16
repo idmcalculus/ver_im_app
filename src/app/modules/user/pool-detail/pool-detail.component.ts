@@ -1,5 +1,4 @@
-import { ViewChild, ElementRef, Component, OnInit } from '@angular/core';
-import { Investment } from 'src/app/shared/models/Investment';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import {InvestmentService} from './../../investment/investment.service';
 import { Report } from 'src/app/shared/models/Report';
@@ -38,7 +37,6 @@ export class PoolDetailComponent implements OnInit {
   pageValue = 5;
   p2 = 1;
   reports: any[];
-  // @ViewChild('closeBtn') closeBtn: ElementRef;
 
   constructor(
     private route: ActivatedRoute,
@@ -133,9 +131,7 @@ export class PoolDetailComponent implements OnInit {
       }
       this.reportService.createReport(this.reportData).subscribe(resp => {
         if (resp && resp.success) {
-          // alert(resp.success.Message)
           window.location.href = 'admin/pools/' + this.poolId;
-          // this.closeBtn.nativeElement.click();
         }
         this.isLoading = false;
       });
@@ -156,9 +152,7 @@ export class PoolDetailComponent implements OnInit {
       }
       this.reportService.updateReport(this.reportData).subscribe(resp => {
           if (resp && resp.success) {
-            // alert(resp.success.Message)
             window.location.href = 'admin/pools/' + this.poolId;
-            // this.closeBtn.nativeElement.click();
           }
           this.isLoading = false;
       });

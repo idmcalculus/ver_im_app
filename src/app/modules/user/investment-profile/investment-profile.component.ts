@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 import { Report } from 'src/app/shared/models/Report';
 import { ToastrService } from 'ngx-toastr';
+import { ReportService } from 'src/app/shared/components/report/report.service';
 
 
 
@@ -23,7 +24,7 @@ export class InvestmentProfileComponent implements OnInit {
   userEmail: string;
   pool;
   poolId = 0;
-  isLoading = false;
+  isLoading = true;
   selectedUser: User;
   loggedInUser: User;
   userSubscription: Subscription;
@@ -54,10 +55,10 @@ export class InvestmentProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private investmentService: InvestmentService,
               private authService: AppAuthService,
+              private reportService: ReportService,
               private toastrService: ToastrService) {
               }
   ngOnInit() {
-    this.isLoading = false;
     this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
         if (userInfo) {
           this.loggedInUser = userInfo;
@@ -70,10 +71,10 @@ export class InvestmentProfileComponent implements OnInit {
           this.poolId = Number(this.route.snapshot.paramMap.get('id'));
         }
       });
-      this.isLoading = true;
-      this.investmentService.getInvestment(String(this.poolId)).subscribe(async poolDetails => {
+     this.isLoading = true;
+      this.investmentService.getInvestment(String(this.poolId)).subscribe(poolDetails => {
         if (poolDetails && poolDetails.success) {
-            this.pool = await poolDetails.success.Data;
+            this.pool = poolDetails.success.Data;
             this.numOfReports = this.pool.report.length;
             this.numOfReports === 0 ?
             (this.latestReport = {
@@ -84,8 +85,6 @@ export class InvestmentProfileComponent implements OnInit {
               description: ''
             })
             : this.latestReport = this.pool.report[0];
-            console.log(this.latestReport);
-            console.log(this.pool);
 
             this.isLoading = false;
         }
@@ -94,18 +93,15 @@ export class InvestmentProfileComponent implements OnInit {
 
 
 
-  payInvestors(report: Report) {
-    let str = String(this.latestReport.created_at);
-    let res = str.slice(0, 10);
+  payInvestors(report: Report, payDate) {
+   // const oldDate = Date.parse(String(this.latestReport.created_at));
     const reportDate = new Date();
-    const currentDate =  `${reportDate.getFullYear()}-${reportDate.getMonth() + 1}-${reportDate.getDate()}`;
-    const formatDate = Date.parse(currentDate);
-    const systemDate = Date.parse(res);
-    console.log(currentDate);
-    console.log(res);
+    const checkDate = Date.parse(String(reportDate));
+    console.log(checkDate);
+    console.log(payDate);
 
-    if (formatDate == systemDate){
-   /*  this.isLoading = true;
+    if (checkDate >= payDate){
+    this.isLoading = true;
     report.title = this.pool.investment.title;
     report.returned_amount = Number(this.pool.investment.expected_return_amount);
     report.investment_id = this.pool.investment.id;
@@ -118,16 +114,15 @@ export class InvestmentProfileComponent implements OnInit {
       returned_amount: report.returned_amount,
       investment_id: report.investment_id,
       payment_type: report.payment_type,
-    }; */
-/*
+    }; 
+
     this.reportService.createReport(data).subscribe(resp => {
       if (resp && resp.success) {
         this.toastrService.success('Investors were paid successfully');
         this.isLoading = false;
       }
       this.location.back();
-    }); */
-    console.log('WEED');
+    }); 
   }
   }
 
