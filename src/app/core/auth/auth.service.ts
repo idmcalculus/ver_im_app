@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { HttpHeaders } from '@angular/common/http';
 import decode from 'jwt-decode';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { EncryptService } from 'src/app/shared/services/encrypt.service';
 
 @Injectable({ providedIn: 'root' })
 export class AppAuthService {
@@ -25,6 +26,7 @@ export class AppAuthService {
     constructor(
         private httpService: HttpService,
         private router: Router,
+        private cryptData: EncryptService,
         private toastrService: ToastrService
     ) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -48,7 +50,8 @@ export class AppAuthService {
             if (userDetails) {
                 resolve(userDetails);
             } else {
-                const email = localStorage.getItem('email');
+                let temp_email = localStorage.getItem('email');
+                const email = this.cryptData.decrypt(temp_email);
                 if (!email) {
                     resolve(null);
                 } else {
@@ -74,7 +77,11 @@ export class AppAuthService {
 
     public get currentUserValue(): any {
         const userUrl = window.location.pathname;
-        if (!localStorage.getItem('email') || !localStorage.getItem('token') || !localStorage.getItem('userType')) {
+        let temp_email = localStorage.getItem('email');
+        const email = this.cryptData.decrypt(temp_email);
+        let temp_userType =localStorage.getItem('userType');
+        const userType = this.cryptData.decrypt(temp_userType);
+        if (!email || !localStorage.getItem('token') || !userType) {
             this.toastrService.error(`Kindly Login First`)
             this.router.navigate(['/signin'], {});
             return false;
@@ -82,7 +89,7 @@ export class AppAuthService {
             const token = localStorage.getItem('token');
             const tokenPayload = decode(token);
             const string = userUrl.split('/', 2);
-            var actualUser = localStorage.getItem('userType').toLowerCase();
+            var actualUser = userType.toLowerCase();
             if(!userUrl.includes(actualUser) || actualUser!=string[1]){
                 alert('Sorry You are not authorized to view this page')//unauthorized
                 window.location.href = `${actualUser}`;

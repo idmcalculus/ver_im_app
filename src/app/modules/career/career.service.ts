@@ -26,13 +26,13 @@ export class CareerService {
   //Admin
   deleteCareerById(id:string){
     var reqBody = {"career_application_id": Number(id)};
-    console.log("value is :: "+JSON.stringify(reqBody))
+    // console.log("value is :: "+JSON.stringify(reqBody))
     return this.httpService.postRequest(`career_application/delete`,reqBody,true);
   }
 
   deleteCareer(id:string){
     var reqBody = {"career_id": Number(id)};
-    console.log("value is :: "+JSON.stringify(reqBody))
+    // console.log("value is :: "+JSON.stringify(reqBody))
     return this.httpService.postRequest(`career/delete?career_id=${Number(id)}`,reqBody,true);
   }
 

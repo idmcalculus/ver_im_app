@@ -30,6 +30,7 @@ export class InvestmentDetailComponent implements OnInit {
     validpoolError:string;
     transAmount:number;
     transactionRef = '';
+    transactionRef2 = '';
     numOfPoolsLeft = 0;
     currentUserSubscription: Subscription;
     reportData: any;
@@ -37,8 +38,9 @@ export class InvestmentDetailComponent implements OnInit {
     categories: any = [];
     selectedCategory = '0';
     allinv: any = [];
-    ViaXpress = true;
+    ViaXpress = false;
     subOptions = [];
+    payment_id = "";
 
 
     constructor(
@@ -61,10 +63,9 @@ export class InvestmentDetailComponent implements OnInit {
             this.getInvestment(investmentId);
             this.getStat(investmentId);
             this.getInvestments();
+            this.confirmPayment();
+
         });
-
-        this.confirmPayment();
-
     }
 
     validPool() {
@@ -103,6 +104,7 @@ export class InvestmentDetailComponent implements OnInit {
                 for (let i = 1 ; i <= slotsLeft; i++) {
                     this.subOptions.push(i);
                 }
+                
             }
             this.isLoading = false;
         });
@@ -153,7 +155,7 @@ export class InvestmentDetailComponent implements OnInit {
 
 
     async confirmPayment() {
-        this.isLoading = true;
+        this.isLoading = true;      
         this.activatedRoute.queryParams.subscribe(async resp => {
           if (resp['status-code']) {  
             const statusCode = resp['status-code'];
@@ -162,25 +164,22 @@ export class InvestmentDetailComponent implements OnInit {
             const investmentId = resp['id'];
             if(transactionId) {
                     //get transaction id from url
-                    if(statusCode === '000'){
+                    if(statusCode === '000' || statusCode === '08'){
                         const res = await this.investmentService.checkTransaction(this.transaction);
                         if (res.status === 'FAILED'){
                             this.toastrService.error(res.message);
                             this.isLoading = false;
+                            
                         }else{  
                             const resp:any = this.investmentService.verifyTransaction(transactionId)
                             if(resp.investment.length > 0){
                                 this.toastrService.error('investment has already been processed');
                             }else{
-                                //some logic before join investment
                                 this.joinInvestment()
                                 this.isLoading = false;
                                 this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
                             }
                         }
-                    }else if(statusCode === '08'){
-                        this.isLoading = false;
-                        this.toastrService.error('transaction is pending');
                     }else{
                         this.isLoading = false;
                         this.toastrService.error(statMessage);
@@ -198,14 +197,15 @@ export class InvestmentDetailComponent implements OnInit {
         this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
-            if (resp && resp.success) {
-                this.toastrService.success(resp.success.Message);
-                this.closemodal.nativeElement.click();
-                localStorage.removeItem('poolsTaken');
-                localStorage.removeItem('transAmount');
-            }
-            this.isLoading = false;
+          if (resp && resp.success) {
+              this.toastrService.success(resp.success.Message);
+              this.closemodal.nativeElement.click();
+               localStorage.removeItem('poolsTaken');
+               localStorage.removeItem('transAmount');
+           }
+           this.isLoading = false;
         });
+      
     }
 
     redirectBack(){
@@ -217,15 +217,23 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
+    initiatePay(paymentId,investmentId ) {
+        this.isLoading = true;
+        this.closemodal.nativeElement.click();
+        this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);           
+        this.isLoading = false;
+    }
+
+    payXpress(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
         localStorage.setItem('transAmount', String(transAmount));
-        localStorage.setItem('poolsTaken', String(number_of_pools));
+        localStorage.setItem('poolsTaken', String(number_of_pools));        
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 
     change() {
         this.ViaXpress = !this.ViaXpress;
     }
+
 }

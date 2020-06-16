@@ -7,6 +7,7 @@ import { User } from 'src/app/shared/models/user';
 import { UserService } from '../../user/user.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
+import { EncryptService } from 'src/app/shared/services/encrypt.service';
 
 @Component({
   selector: 'app-pool-detail',
@@ -42,6 +43,7 @@ export class UserPoolDetailComponent implements OnInit {
               private investmentService: InvestmentService,
               private userService: UserService,
               private authService: AppAuthService,
+              private cryptData: EncryptService,
               private location: Location
     ) {
       this.isLoading = true;
@@ -53,7 +55,8 @@ export class UserPoolDetailComponent implements OnInit {
         this.fetchPool(String(this.poolId));
       });
       this.getCategories();
-      this.loggedInUser.email = localStorage.getItem('email');
+      const temp_email = localStorage.getItem('email');
+      this.loggedInUser.email = this.cryptData.encrypt(temp_email);
   }
 
   ngOnInit() {

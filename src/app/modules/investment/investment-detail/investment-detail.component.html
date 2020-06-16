@@ -1,13 +1,13 @@
-<section class="container investment px-0" style="max-width:100%">
-    <section class="invest-header mt-0">
+<section class="px-0" style="max-width:100%">
+    <section class="invest-header">
         <div class="row justify-content-center">
             <div class="header font-weight-bold">Investments</div>
         </div>
     </section>
-    <section class="section-container container px-2">
+    <section class="section-container container">
         <section class="investment-plans">
 
-            <div *ngIf=" investment==null || isLoading" class="display: flex">
+            <div *ngIf=" investment === null || isLoading" class="display: flex">
                 <div class="row">
                     <div style='width:100%'>
                         <div class="superb-container m-b20">
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div *ngIf=" investment!=null && !isLoading" class="inner-investment px-lg-0 px-3">
+            <div *ngIf="investment !== null && !isLoading" class="inner-investment px-lg-0 px-md-3">
                 <div class="invest-banner">
                     <div class="over-content">
                         <h3>{{investment?.title}}</h3>
@@ -30,8 +30,8 @@
                     <div class="row p-lg-5">
                         <div class="col-md-4 side-details">
                             <div class="invest-thumbnail">
-                                <div *ngIf="investment.investment_image==''" class="plan-image"></div>
-                                <img *ngIf="investment.investment_image!=''" src="{{investment?.investment_image}}"
+                                <div *ngIf="investment?.investment_image==''" class="plan-image"></div>
+                                <img *ngIf="investment?.investment_image!=''" src="{{investment?.investment_image}}"
                                     alt="image">
                             </div>
                             <div class="content-detail">
@@ -70,7 +70,7 @@
                                 <button #closebutton id="openModalButton" [hidden]="true" data-toggle="modal" data-target="#exampleModalCenter2">Open Modal</button>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-lg-8 col-md-6">
                             <div class="card-body other-info">
                                 <h5 class="card-title">Investment Description</h5>
                                 <article>
@@ -82,38 +82,20 @@
                 </div>
             </div>
 
-            <div *ngIf=" investment!=null && !isLoading" class="relatedInvestType px-lg-0 px-3">
+            <div *ngIf=" investment !== null && !isLoading" class="relatedInvestType px-lg-0 px-md-3">
                 <h3 class="m-0 pt-4">Related Investments</h3>
                 <div class="row">
                     <div *ngFor="let x of allinv" class="col-sm-4">
-                        <a  *ngIf="x.status===-1" class="coming" href="#">Coming Soon</a>
-                            <a  *ngIf="x.status===-1" [ngClass]="(x.status===-1)?'inactive':''" class="card" [routerLink]="(x.status!==-1)?['/investments', x.id]:''" routerLinkActive="active">
-                                <img class="card-img-top pt-3" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
-                                    alt="Card image cap">
-                                <img class="card-img-top pt-3" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
-                                    alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a style="font-size: 16px;"
-                                            href="investment-details.html">{{x.title}}</a></h5>
-                                    <div class="" style="text-align: center">
-                                        <h3 style="text-align: center">
-                                            {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
-                                        <span *ngIf="x?.estimated_percentage_profit"
-                                            class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
-                                            Profit (Estimated)</span>
-                                        <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
-                                        <p class="font-weight-bold">{{x.duration}} Month(s)</p>
-                                    </div>
-                                </div>
-                            </a>
-                        <a *ngIf="x.status!==-1" class="card" [routerLink]="['/investments', x.id]" routerLinkActive="active">
-                            <img class="card-img-top pt-3" *ngIf="x.investment_image=='' " src="../assets/images/notcard.png"
+                        <a  *ngIf="x?.status === -1" class="coming" href="#">Coming Soon</a>
+
+                        <a  *ngIf="x?.status === -1" [ngClass]="(x?.status === -1)?'inactive':''" class="card" [routerLink]="(x?.status !== -1)?['/investments', x?.id]:''" routerLinkActive="active">
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image === ''" src="../assets/images/notcard.png"
                                 alt="Card image cap">
-                            <img class="card-img-top pt-3" *ngIf="x.investment_image!='' " src="{{x.investment_image}}"
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image!='' " src="{{x?.investment_image}}"
                                 alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><a style="font-size: 16px;"
-                                        href="investment-details.html">{{x.title}}</a></h5>
+                                        href="investment-details.html">{{x?.title}}</a></h5>
                                 <div class="" style="text-align: center">
                                     <h3 style="text-align: center">
                                         {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
@@ -121,7 +103,27 @@
                                         class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
                                         Profit (Estimated)</span>
                                     <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
-                                    <p class="font-weight-bold">{{x.duration}} Month(s)</p>
+                                    <p class="font-weight-bold">{{x?.duration}} Month(s)</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a *ngIf="x?.status !== -1" class="card" [routerLink]="['/investments', x?.id]" routerLinkActive="active">
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image === '' " src="../assets/images/notcard.png"
+                                alt="Card image cap">
+                            <img class="card-img-top pt-3" *ngIf="x?.investment_image !== '' " src="{{x?.investment_image}}"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a style="font-size: 16px;"
+                                        href="investment-details.html">{{x?.title}}</a></h5>
+                                <div class="" style="text-align: center">
+                                    <h3 style="text-align: center">
+                                        {{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
+                                    <span *ngIf="x?.estimated_percentage_profit"
+                                        class="font-weight-bold">{{investment?.estimated_percentage_profit}}%
+                                        Profit (Estimated)</span>
+                                    <!--<span *ngIf="x?.estimated_percentage_profit" class="font-weight-bold">25% Profit <br> (Estimated)</span>-->
+                                    <p class="font-weight-bold">{{x?.duration}} Month(s)</p>
                                 </div>
                             </div>
                         </a>
@@ -134,15 +136,24 @@
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <!--<div class="modal-header">
-                            &lt;!&ndash;<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>&ndash;&gt;
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>-->
+                        
                         <div class="modal-body pb-0">
-                            <div class="join-modal px-4">
-                                <h3>Select Number of Slot(s)</h3>
+                            <div class="join-modal pb-0 px-lg-4">
+                                <h3>Select Payment Mode</h3>
+                                <div class="fit-row"> 
+                                  <div class="col-6 pr-lg-3 pr-0">
+                                       <label class="px-2">Debit/Credit Card
+                                            <input type="radio"  disabled="true"  name="radio" ng-change="change()" (click)="change()">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                  </div>
+                                  <div class="col-6">
+                                        <label class="px-2">Bank transfer
+                                            <input class="ml-2" type="radio" checked="checked" name="radio" ng-change="change()" (click)="change()">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                  </div> 
+                                </div>
                                
                                 <h4 *ngIf="ViaXpress">{{investment?.title}}</h4>
 
@@ -162,69 +173,61 @@
                                 <div *ngIf="!ViaXpress" class="form-group" style="width:100%;">
 
 
-                                    <div class="row text-left mt-5">
-                                        <div class="col-md-7">
+                                    <div class="row mt-3 text-left">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Investment ID:</label>
                                         </div>
-                                        <div class="col-md-5">
-                                            <label class="pt-1 font-weight-bold" for="slotNum">{{investment.id}}</label>
-                                            <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                                <option value="" hidden>Select</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select> -->
+                                        <div class="col-6 text-center">
+                                            <label class="pt-1 font-weight-bold" for="slotNum">{{investment?.id}}</label>
+                                            
                                         </div>
                                     </div>
                                     <div class="row text-left">
-                                        <div class="col-md-7">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Cost Per Slot:</label>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-6 text-center">
                                             <label class="pt-1 font-weight-bold" for="slotNum">{{investment?.investment_amount}}</label>
-                                            <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                                <option value="" hidden>Select</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select> -->
+                                            
                                         </div>
                                     </div>
                                     <div class="row text-left">
-                                        <div class="col-md-7">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label class="pt-1 font-weight-bold" for="slotNum">Number of Slots:</label>
                                         </div>
-                                        <div class="col-md-5">
-                                            <!--   <input edit style="text-align:center;border-style:none;padding-left: 32px;" type="number" [(ngModel)]="transaction.number_of_pools" name=""
-                                                    id="slotNum" class="form-control" max="{{investment.max_num_of_slots - investment.num_of_pools_taken}}"> -->
-                                            <select ng-init="1" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control font-weight-bold" style="border-bottom-style: none;width: fit-content;margin: 0 auto;">
+                                        <div class="col-6">
+                                            <select ng-init="1" [(ngModel)]="transaction.number_of_pools" name="" id="slotNum"  (keyup)="validPool()" min="0" class="form-control text-center font-weight-bold" style="width: fit-content;margin: 0 auto; cursor: pointer;">
                                                 <option *ngFor="let slot of subOptions" [value]="slot">{{slot}}</option>
                                             </select>
+                                            <div class="col-12 font-weight-bold text-center pt-2 text-danger">{{validpoolError}}</div>
                                         </div>
                                     </div>
                                     <div class="row text-left">
-                                        <div class="col-md-7">
+                                        <div class="col-6 pl-md-4 pl-2">
                                             <label style="color:#71e378" class="pt-1 font-weight-bold" for="slotNum">Amount Due:</label>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-6 text-center">
                                             <label style="color:#71e378" class="pt-1 font-weight-bold" for="slotNum">{{investment?.investment_amount*transaction.number_of_pools}}</label>
-                                            <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
-                                                <option value="" hidden>Select</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select> -->
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer justify-content-center">
-                            <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
-
-                            <button
-                                (click) = "triggerSecond()"
-                                data-dismiss="modal"
-                                [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
-                                type="button" class="btn btn btn-color">Make Payment
-                            </button>
+                        <div class="modal-footer pt-0">
+                            <div class="fit-row">
+                                <div class="col-6 pl-lg-4 pl-md-2">
+                                    <button type="button" class="btn1 btn-block btn-outline-primary" data-dismiss="modal">Close</button>
+                                </div>
+                                <div class="col-6">
+                                    <button
+                                        (click) = "triggerSecond()"
+                                        data-dismiss="modal"
+                                        [disabled]="1 > transaction.number_of_pools || transaction.number_of_pools > investment?.max_num_of_slots - investment?.num_of_pools_taken"
+                                        type="button" class="btn btn-block btn-color">Make Payment
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,66 +243,140 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>-->
-                        <div class="modal-body pb-0">
+                       <div *ngIf="ViaXpress" class="modal-body pb-0">
                             <div class="join-modal px-4">
                                 <h3>Confirm Personal Details</h3>
-                                <h5 class="text-left" style="font-size: 14px; font-weight: 600; letter-spacing: 0.2px; line-height: 20px;">
-                                    To complete this payment kindly confirm your personal details before initiating transaction for the sum of {{investment?.investment_amount*transaction.number_of_pools  | currency:"NGN":"symbol"}} to our payment portal.
+                                <h5 class="text-left" style="font-size: 12px; font-weight: 600; letter-spacing: 0.2px; line-height: 15px;">
+                                    Kindly confirm your personal details before initiating transaction for the sum of {{investment?.investment_amount*transaction.number_of_pools  | currency:"NGN":"symbol"}} to our payment portal.
                                 </h5>
                                 <div class="form-group">
                                     <div class="row" style="justify-content:center;text-align: left;">
-                                        <div class="col-md-5">
+                                        <div class="col-5">
                                             <label class="pt-1" for="slotNum">First Name</label>
                                         </div>
-                                        <div class="col-md-7">
+                                        <div class="col-7">
                                             <label class="pt-1" for="slotNum"> <input type="text" name="firstName" readonly value= {{userinfo?.first_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center; text-align: left;">
-                                        <div class="col-md-5">
+                                        <div class="col-5">
                                             <label class="pt-1" for="slotNum">Last Name</label>
                                         </div>
-                                        <div class="col-md-7">
+                                        <div class="col-7">
                                             <label class="pt-1" for="slotNum"> <input type="text" name="lastName" readonly value= {{userinfo?.last_name}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center;text-align: left;">
-                                        <div class="col-md-5">
+                                        <div class="col-5">
                                             <label class="pt-1" for="slotNum">Email</label>
                                         </div>
-                                        <div class="col-md-7">
+                                        <div class="col-7">
                                             <label class="pt-1" for="slotNum"> <input type="text" name="email" readonly value= {{userinfo?.email}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>
                                     <div class="row" style="justify-content:center; text-align: left;">
-                                        <div class="col-md-5">
+                                        <div class="col-5">
                                             <label class="pt-1" for="slotNum">Amount</label>
                                         </div>
-                                        <div class="col-md-7">
-                                            <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="transAmount" name="amnt" readonly value= {{investment?.investment_amount*transaction.number_of_pools}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                        <div class="col-7">
+                                            <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="transAmount" name="transAmount" readonly value= {{investment?.investment_amount*transaction.number_of_pools}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                         </div>
                                     </div>       
                                     <div class="row" style="justify-content:center; text-align: left;">
-                                    <div class="col-md-5">
+                                    <div class="col-5">
                                         <label class="pt-1" for="slotNum">Phone No</label>
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-7">
                                         <label class="pt-1" for="slotNum"> <input type="text" name="mobile" readonly value= {{userinfo?.phone_number}} style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
                                     </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                   
+
+                        <div *ngIf="!ViaXpress" class="modal-body">
+                            <div class="join-modal">
+                               <h3>Select Payment Mode</h3>
+                                <h5 style="
+                                    font-size: 12px;
+                                   font-weight: 600;
+                                   letter-spacing: 0.2px;
+                                   line-height: 15px;
+                                ">Kindly transfer the sum of {{investment?.investment_amount*transaction.number_of_pools  | currency:"NGN":"symbol"}} to any of the accounts below and submit your transaction's ID</h5>
+                               <div class="form-group" style="width:80%;margin:0px auto; font-size: 13px;">
+                                    <div class="row" style="justify-content:center;">
+                                        <div class="col-6">
+                                            <label class="pt-1" style="font-weight:bold" for="slotNum">Account Name</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="pt-1" style="font-weight:bold" for="slotNum">Versa Haven</label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="justify-content:center">
+                                       <div class="col-md-7">
+                                           <label style="font-weight:bold" class="pt-1" for="slotNum">Zenith Bank</label>
+                                       </div>
+                                       <div class="col-md-7">
+                                           <!-- <select [(ngModel)]="transaction.number_of_pools" name="" id="slotNum" class="form-control">
+                                               <option value="" hidden>Select</option>
+                                               <option value="1">1</option>
+                                               <option value="2">2</option>
+                                           </select> -->
+                                       </div>
+                                   </div>
+                                    <div class="row" style="justify-content:center;">
+                                       <div class="col-7">
+                                           <label class="pt-1" for="slotNum">Account Number</label>
+                                       </div>
+                                       <div class="col-5">
+                                           <label class="pt-1" for="slotNum">0123456789</label>
+   
+                                       </div>
+                                   </div>
+                                    <div class="row" style="justify-content:center;">
+                                       <div class="col-md-7">
+                                           <label style="font-weight:bold" class="pt-1" for="slotNum">Providus Bank</label>
+                                       </div>
+                                       <div class="col-md-5">
+                                       </div>
+                                   </div>
+                                    <div class="row" style="justify-content:center;">
+                                       <div class="col-7">
+                                           <label class="pt-1" for="slotNum">Account Number</label>
+                                       </div>
+                                       <div class="col-5">
+                                           <label class="pt-1" for="slotNum">1300313014</label>
+                                       </div>
+                                   </div>
+                                    <div class="row" style="justify-content:center; padding: 30px 0px">
+                                       <div class="col-6">
+                                           <label class="pt-1" for="slotNum">Transaction Id</label>
+                                       </div>
+                                       <div class="col-6">
+                                           <label class="pt-1" for="slotNum"> <input type="text" [(ngModel)]="payment_id" style="border-radius: 4px;border-width: 1px;" style="position: relative !important; opacity: 10 !important;" class="form-control"></label>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
                         <div class="modal-footer justify-content-center">
                             <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal">Close</button>
                             <button type="button" #closemodal data-toggle="modal" data-target="#exampleModalCenter3" class="btn btn btn-color"  [hidden]="true">Join</button>
-                            <button *ngIf='ViaXpress' id="submit"
+                           
+                            <button *ngIf='!ViaXpress' id="submit"
                                 data-dismiss="modal"
                                 type="button"
                                 class="btn btn btn-color"
-                                (click)="initiatePay(userinfo?.email,transAmount,userinfo?.first_name, userinfo?.last_name, userinfo?.phone_number,  investment?.investment_amount,transaction.number_of_pools)"
+                                (click)="initiatePay(payment_id,investment?.id )"
                             >Submit</button>
+
+                            <button *ngIf='ViaXpress' id="submit"
+                            data-dismiss="modal"
+                            type="button"
+                            disabled="true"
+                            class="btn btn btn-color"
+                            (click)="payXpress(userinfo?.email,transAmount,userinfo?.first_name, userinfo?.last_name, userinfo?.phone_number,  investment?.investment_amount,transaction.number_of_pools)"
+                        >Submit</button>
                         </div>
                     </div>
                 </div>
@@ -310,11 +387,14 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
-                         <div class="join-modal">
-                            <h3>Transaction Successful</h3>
-                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{transactionRef}} is confirmed.</h5>
+                        <div class="join-modal">
+                            <h3>Transaction Initiated</h3>
+                             <h5>Thank you for investing in {{investment?.title}} , your payment with transaction id {{payment_id}} will be processed within the next 24 hours.</h5>
                              <h5>Best regards</h5>
                              <h5>Versa Team</h5>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn1 btn-outline-primary" data-dismiss="modal" (click)=" redirectBack()">Close</button>
                         </div>
                     </div>
                 </div>

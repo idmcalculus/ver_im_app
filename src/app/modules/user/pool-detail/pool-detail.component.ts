@@ -79,6 +79,7 @@ export class PoolDetailComponent implements OnInit {
           this.reports = this.pool.report.sort((a, b) => (a.created_at > b.created_at) ? 1 :
           (a.created_at === b.created_at) ? ((a.id > b.id) ? 1 : -1) : -1);
           this.reports.forEach((report: any, i) => report.index = i + 1);
+
           this.isLoading = false;
 
 

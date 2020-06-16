@@ -1,5 +1,5 @@
-<section class="container investment px-0" style="max-width:100%">
-    <section class="invest-header mt-0">
+<section class="px-0" style="max-width:100%">
+    <section class="invest-header">
         <div class="row justify-content-center">
             <div class="header font-weight-bold">Investments</div>
         </div>
@@ -12,7 +12,7 @@
                         <hr class="p-0" style="margin-top: 0.5px; width: 80%;"/>
                     </div>
                 </div>
-                <div class="row pt-0 categoryNav">
+                <div class="row pt-0 px-0 categoryNav">
                     <div *ngIf="!isLoading" class="column2">
                         <mat-select class="form-control d-lg-none d-xl-none d-md-none" placeholder="All Categories" name="category" [formControl]="Category">
                             <mat-select-trigger>
@@ -68,7 +68,7 @@
                                 <img *ngIf="x?.investment_image!=''" src="{{x?.investment_image}}" alt="image">
                             </div>
                             <div class="content-holder">
-                                <h2><a href="investment-details.html">{{x?.title}}</a></h2>
+                                <h2><a>{{x?.title}}</a></h2>
                                 <h3 style="filter: blur(15px);">{{x?.investment_amount | currency:'NGN':'symbol-narrow'}}</h3>
                                 <span style="filter: blur(15px);" *ngIf="x?.estimated_percentage_profit"
                                     class="span-profit">{{x?.estimated_percentage_profit}}% Profit
