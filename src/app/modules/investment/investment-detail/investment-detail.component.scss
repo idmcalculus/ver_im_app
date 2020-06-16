@@ -546,6 +546,10 @@ a:hover {
 }
 
 @media screen and (max-width: 992px) {
+   .investment-plans .inner-investment .main-invest-card .row .other-info {
+      padding-left: inherit;
+   }
+
    .invest-header {
       height: auto;
       padding: 2em 24px;
