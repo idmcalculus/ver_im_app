@@ -63,7 +63,7 @@ export class SocialLogin {
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.getAuthInstance();
       this.auth2.signOut().then(function() {
-        console.log("User signed out");
+        // console.log("User signed out");
       });
       //this.attachSignout(document.getElementById('googleBtn2'));
     });
