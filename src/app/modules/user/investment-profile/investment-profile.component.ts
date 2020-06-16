@@ -6,7 +6,6 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
-import { ReportService } from 'src/app/shared/components/report/report.service';
 import { Report } from 'src/app/shared/models/Report';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,9 +21,7 @@ export class InvestmentProfileComponent implements OnInit {
   @Input() public report: Report = {user_id: '', investment_id: 0, title: '', description: '', returned_amount: 0, payment_type: '', id: 0};
 
   userEmail: string;
-  buttonDisable = false;
-  serverdate : Date;
-  pool: Investment;
+  pool;
   poolId = 0;
   isLoading = false;
   selectedUser: User;
@@ -57,10 +54,10 @@ export class InvestmentProfileComponent implements OnInit {
               private route: ActivatedRoute,
               private investmentService: InvestmentService,
               private authService: AppAuthService,
-              private reportService: ReportService,
               private toastrService: ToastrService) {
               }
   ngOnInit() {
+    this.isLoading = false;
     this.userSubscription = this.authService.currentUser.subscribe(userInfo => {
         if (userInfo) {
           this.loggedInUser = userInfo;
@@ -98,6 +95,16 @@ export class InvestmentProfileComponent implements OnInit {
 
 
   payInvestors(report: Report) {
+    let str = String(this.latestReport.created_at);
+    let res = str.slice(0, 10);
+    const reportDate = new Date();
+    const currentDate =  `${reportDate.getFullYear()}-${reportDate.getMonth() + 1}-${reportDate.getDate()}`;
+    const formatDate = Date.parse(currentDate);
+    const systemDate = Date.parse(res);
+    console.log(currentDate);
+    console.log(res);
+
+    if (formatDate == systemDate){
    /*  this.isLoading = true;
     report.title = this.pool.investment.title;
     report.returned_amount = Number(this.pool.investment.expected_return_amount);
@@ -121,7 +128,7 @@ export class InvestmentProfileComponent implements OnInit {
       this.location.back();
     }); */
     console.log('WEED');
-
+  }
   }
 
 
@@ -139,33 +146,6 @@ export class InvestmentProfileComponent implements OnInit {
 
   goBack() {
     this.location.back();
-  }
-
-  private loadScripts() {
-    this.dynamicScriptLoader.load('p-coded', 'v-layout',
-    'slimscroll', 'dash', 'platform', 'data-table', 'flat-pickr');
-  }
-
-  disablePay (date: Date) {
-    this.serverdate = new Date();
-    const dd= this.serverdate.getDate();
-    const mm= this.serverdate.getMonth()+1;
-    const year = this.serverdate.getFullYear();
-    const day= this.serverdate.getDay();
-    const hours = this.serverdate.getHours();
-    const proposed = this.latestReport.created_at;
-    const read = this.addMonth(this.latestReport.created_at);
-
-    console.log(read);
-
-
-
-
-    // if(mm==1 && dd==18)
-    // {
-    //   this.buttonDisable = true;
-    //   console.log('Achieve you want')
-    // }
   }
 
 }
