@@ -13,6 +13,15 @@
         }
 }
 
+select.form-control, select.form-control:focus, select.form-control:hover {
+   border: 1px solid !important;
+}
+
+.form-group .row {
+   width: 90%;
+   margin: auto;
+}
+
 .investment-plans .over-content h3 {
    font-size: 16px !important;
 }
@@ -119,7 +128,7 @@ a:hover {
 
 
 .modal-dialog{
-   text-align: center;
+   text-align: left;
 
    .modal-content{
       border-radius:2rem;
@@ -465,6 +474,17 @@ a:hover {
    }
 }
 
+.fit-row {
+   width: 80%;
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-wrap: wrap;
+   flex-wrap: wrap;
+   margin-right: auto;
+   margin-left: auto;
+}
+
 .row1 {
    width: 100%;
    display: -webkit-box;
@@ -513,6 +533,14 @@ a:hover {
    text-align: center;
 }
 
+.modal-footer > :not(:last-child) {
+   margin-right: 1rem;
+}
+
+.modal-footer > :not(:first-child) {
+   margin-left: 1.5rem;
+}
+
 @media screen and (max-width: 992px) {
    .invest-header {
       height: auto;
@@ -556,5 +584,31 @@ a:hover {
 @media (max-width: 500px) {
    .container {
      max-width: 100% !important;
+  }
+
+  .form-group .row {
+      width: 100%;
+   }
+
+  .fit-row {
+      width: 100%;
+   }
+
+   .modal-footer > :not(:last-child) {
+      margin-right: .25rem;
+   }
+   
+   .modal-footer > :not(:first-child) {
+      margin-left: .25rem;
+   }
+
+   .btn1 {
+      font-size: 12px;
+      padding: 9px 45px;
+  }
+
+  .investment-plans .modal-footer .btn {
+      font-size: 12px;
+      padding: 9px 29px !important;
   }
 }

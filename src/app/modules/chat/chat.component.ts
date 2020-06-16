@@ -29,7 +29,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('  i gat :: '+JSON.stringify(this.activeRecipient))
+    // console.log('  i gat :: '+JSON.stringify(this.activeRecipient))
       this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
           this.loggedInUser = user;
       });
@@ -44,7 +44,7 @@ export class ChatComponent implements OnInit {
       this.chatService.sendMessage(this.selectedRecipient,this.message).subscribe(resp=>{
         
         if(resp.success){
-          console.log(JSON.stringify(resp.success))
+          // console.log(JSON.stringify(resp.success))
           this.messages.push({message_body:this.message,sender_id:this.loggedInUser.email,receiver_id:this.selectedRecipient,created_at:new Date()});
           this.chats[0].message_body = this.message;
           this.message = '';
@@ -57,7 +57,7 @@ export class ChatComponent implements OnInit {
     this.chatService.fetchChats().subscribe(resp=>{
       if(resp.success.Data){
         this.chats.push(resp.success.Data);
-        console.log(JSON.stringify(this.chats))
+        // console.log(JSON.stringify(this.chats))
       }
     })
   }

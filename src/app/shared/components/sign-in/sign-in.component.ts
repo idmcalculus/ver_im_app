@@ -46,7 +46,7 @@ export class SignInComponent implements OnInit {
                             this.isLoading = false;
                         }
                     }).catch(err => {
-                        console.log('isshs :: ' + err);
+                        // console.log('isshs :: ' + err);
                         this.isLoading = false;
                     });
                 } else {
@@ -56,7 +56,7 @@ export class SignInComponent implements OnInit {
                             this.isLoading = false;
                         }
                     }).catch(err => {
-                        console.log('isshs :: ' + err);
+                        // console.log('isshs :: ' + err);
                         this.isLoading = false;
                     });
                 }
@@ -141,7 +141,7 @@ export class SignInComponent implements OnInit {
                 this.showOTPForm = true;
             })
             .catch((error) => {
-                console.log(error);
+                // console.log(error);
             });
     }
 

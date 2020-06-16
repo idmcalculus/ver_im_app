@@ -41,7 +41,7 @@ export class ApplicantDetailsComponent implements OnInit {
 
   shortList(isEnabled:boolean){
     this.careerAppService.shortListCareerById(this.applicant.id,isEnabled).subscribe(resp=>{
-      console.log(JSON.stringify(resp))
+      // console.log(JSON.stringify(resp))
       if(resp && resp.success){
         this.applicant.shortlist = !this.applicant.shortlist;
       }
