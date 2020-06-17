@@ -24,20 +24,20 @@
                                 <label class="h7">Fullname</label>
                                 <div class="col px-0">
                                     <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Fullname" (keyup)="filterTable1('first_name', 'last_name', $event)"
-                                        (blur)="filterTable('first_name', $event)"></a>
+                                        (blur)="filterTable1('first_name','last_name', $event)"></a>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 px-sm-1 px-lg-1">
                                 <label class="h7">Email</label>
                                 <div class="col px-0">
-                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Email" (keyup)="filterTable('email', $event)" 
+                                    <a><input class=" p-2" type="text" style="width: 100%;" placeholder="Email" (keyup)="filterTable('email', $event)"
                                         (blur)="filterTable('first_name', $event)"></a>
                                </div>
                             </div>
                             <div class="col-sm-4 col-lg-4 pt-lg-0 pt-sm-0 pt-2 pr-sm-2 pr-lg-2">
                                 <label class="h7">Phone Number</label>
                                 <div class="col px-0">
-                                    <a><input class="p-2" type="text" style="width: 100%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)" 
+                                    <a><input class="p-2" type="text" style="width: 100%;" placeholder="Phone Number" (keyup)="filterTable('phone_number', $event)"
                                         (blur)="filterTable('first_name', $event)"></a>
                                 </div>
                             </div>
