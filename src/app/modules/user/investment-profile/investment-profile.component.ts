@@ -97,8 +97,6 @@ export class InvestmentProfileComponent implements OnInit {
    // const oldDate = Date.parse(String(this.latestReport.created_at));
     const reportDate = new Date();
     const checkDate = Date.parse(String(reportDate));
-    console.log(checkDate);
-    console.log(payDate);
 
     if (checkDate >= payDate){
     this.isLoading = true;
@@ -123,6 +121,8 @@ export class InvestmentProfileComponent implements OnInit {
       }
       this.location.back();
     }); 
+  } else { 
+      this.toastrService.error('Payment date is not due!')
   }
   }
 
