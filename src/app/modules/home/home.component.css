@@ -149,8 +149,12 @@ div .invest-control:hover {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.p-2 {
+    height: 150px;
+}
+
 .slide-control {
-    height: 200px;
+    height: 210px;
     color: #545658;
     -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
@@ -212,6 +216,10 @@ span {
     .text-header {
         font-size: 15px;
     }
+
+    .banner-lnd .row {
+        max-width: 100%;
+    }
 }
   
   /* On screens that are 600px or less, set the background color to olive */
@@ -237,6 +245,11 @@ span {
     .hide{
         display: none;
     }
+
+    .p-2 {
+        height: auto;
+    }
+    
 }
 
 @media (min-width: 1000px) {
@@ -254,16 +267,24 @@ span {
         height: 69%;
     }
 
-    .small-control {
-        height: 200px;
-    }
-
     .pl-2 {
         padding-left: none !important;
     }
 
-    .pt-lg-5 {
-        padding-top: 1rem !important;
+    .slide-control {
+        height: auto !important;
+    }
+
+    .small-control {
+        height: 200px !important;
+    }
+
+    .p-2 {
+        height: 190px;
+    }
+
+    .container {
+        max-width: 920px;
     }
 }
 
@@ -274,6 +295,12 @@ span {
 
     .small-control {
         height: 200px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 80%;
     }
 }
 
