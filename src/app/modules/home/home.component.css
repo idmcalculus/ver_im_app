@@ -139,6 +139,7 @@ div .invest-control:hover {
 }
 
 .invest-control {
+    height: auto !important;
     color: #f1efef;
     background-color: #fff;
     background-clip: padding-box;
@@ -188,8 +189,9 @@ span {
 
 @media screen and (width: 768px) {
 
-    .card-pad {
-        height: 75%;
+    .invest-text {
+        position: relative;
+        height: 700px;
     }
 }
 
@@ -253,8 +255,20 @@ span {
 }
 
 @media (min-width: 1000px) {
-    .invest-control {
-        height: 66%;
+    .invest-text {
+        position: relative;
+        height: 320px;
+    }
+
+    .small-control {
+        height: 200px !important;
+    }
+}
+
+@media (min-width: 1366px) {
+    .invest-text {
+        position: relative;
+        height: 400px;
     }
 }
 
@@ -263,8 +277,9 @@ span {
         max-width: 90%;
     }
 
-    .invest-control {
-        height: 69%;
+    .invest-text {
+        position: relative;
+        height: 500px;
     }
 
     .pl-2 {
