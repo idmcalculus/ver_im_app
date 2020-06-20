@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-// import {DatasharerService} from '../../core/datasharer/datasharer.service';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from 'src/app/shared/models/user';
-import {Router} from '@angular/router';
 import { Investment } from 'src/app/shared/models/Investment';
 import { InvestmentService } from '../investment/investment.service';
 import { Subscription } from 'rxjs';
 import { CloudinaryService } from 'src/app/shared/services/cloudinary.service';
 import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-script-loader.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
   user: User = {email: '', password: '', user_category: 'Admin'};
   investment: Investment;
   investments: [Investment];
@@ -24,29 +23,38 @@ export class AdminComponent implements OnInit {
   modalData: Investment = {};
   callBack: any;
   currentPlanOperation: Subscription;
+  mobileQuery: MediaQueryList;
+
+  private _mobileQueryListener: () => void;
 
   constructor(
     private authService: AppAuthService,
-    private router: Router,
     private investmentService: InvestmentService,
     private cloudinaryService: CloudinaryService,
-    private dynamicScriptLoader: DynamicScriptLoaderService
+    private dynamicScriptLoader: DynamicScriptLoaderService,
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher
     ) {
       this.authService.setInProfileView(true);
       this.currentPlanOperation = this.authService.currentManagePlanOperation.subscribe(modal => {
         this.setPlanModal(modal);
-    });
-
+      });
+      this.mobileQuery = media.matchMedia('(max-width: 992px)');
+      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+      this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit() {
-    // this.loadScripts();
     this.authService.validateSession().then(resp => {
       if (resp && resp.email) {
         this.user = resp;
         this.getCategories();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
   addInvestmnet(filledInvestment: Investment) {
@@ -108,9 +116,7 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  sidebarToggle(event) {
-    console.log(event);
-  }
+  sidebarToggle(event) {}
 
   private loadScripts() {
       this.dynamicScriptLoader.load('p-coded', 'v-layout',

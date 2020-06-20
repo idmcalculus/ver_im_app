@@ -30,15 +30,17 @@
     }
     .header{
         background-color: #4F5FBE;
+        padding: 10px !important;
+
         a {
             background-color: #4F5FBE;
-            padding-left: 0 !important;
+            padding-left: 10px !important;
             .pcoded-micon {
                 padding-top: 17px;
             }
         }
         .pcoded-mtext {
-            top: 23px !important;
+            top: 10px !important;
             padding-left: 7px;
             line-height: 18px;
             position: absolute;

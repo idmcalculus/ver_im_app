@@ -10,7 +10,9 @@ mat-drawer {
 
 ::ng-deep {
 	.mat-drawer-container {
+		flex: 1;
 		background-color: #303030;
 		color: black;
+		position: initial !important;
 	}
 }
