@@ -11,7 +11,8 @@ import { DynamicScriptLoaderService } from 'src/app/shared/services/dynamic-scri
 
 @Component({
   selector: 'app-admin',
-  templateUrl: './admin.component.html'
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
   user: User = {email: '', password: '', user_category: 'Admin'};
@@ -85,14 +86,6 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  getInvestments() {
-
-  }
-
-  getInvestment(id: number) {
-
-  }
-
   getCategories() {
     this.investmentService.getCategories().subscribe(categories => {
       if (categories && categories.success) {
@@ -113,6 +106,10 @@ export class AdminComponent implements OnInit {
       this.modalData = {};
       this.callBack = this.addInvestmnet;
     }
+  }
+
+  sidebarToggle(event) {
+    console.log(event);
   }
 
   private loadScripts() {

@@ -1,4 +1,4 @@
-<div id="pcoded" class="pcoded">
+<!--<div id="pcoded" class="pcoded">
     <div class="pcoded-container navbar-wrapper">
         <app-dashboard-header [isUser]=false [userDetails]="user" ></app-dashboard-header>
         <div class="pcoded-main-container">
@@ -9,4 +9,22 @@
         </div>
     </div>
 </div>
-<app-manage-investment [modalData]="modalData" [categories]="categories" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle"  (submit)="callBack($event)"></app-manage-investment>
+<app-manage-investment [modalData]="modalData" [categories]="categories" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle"  (submit)="callBack($event)"></app-manage-investment>-->
+<mat-drawer-container [hasBackdrop]="false">
+    <mat-drawer #drawer opened mode="push">
+        <app-side-bar [isUser]=false ></app-side-bar>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div id="pcoded" class="pcoded">
+            <div class="pcoded-container navbar-wrapper">
+                <app-dashboard-header [isUser]=false [userDetails]="user" (sidebar)="sidebarToggle(drawer.toggle())"></app-dashboard-header>
+                <div class="pcoded-main-container">
+                    <div class="pcoded-wrapper">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <app-manage-investment [modalData]="modalData" [categories]="categories" [modalButtonTitle]="modalButtonTitle" [modaltitle]="modaltitle"  (submit)="callBack($event)"></app-manage-investment>
+    </mat-drawer-content>
+</mat-drawer-container>

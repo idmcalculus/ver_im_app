@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
@@ -7,7 +7,8 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
@@ -36,6 +37,14 @@ export class HeaderComponent implements OnInit {
       this.delayOutput();
       this.onWindowScroll();
       document.addEventListener('mousewheel', () => {}, {passive: false});
+  }
+
+  @HostListener('window:scroll') onscroll(e: Event): void {
+    console.log(this.getYPosition(e));
+  }
+
+  getYPosition(e: Event): number {
+    return (e.target as Element).scrollTop;
   }
 
   @HostListener('document:mousewheel')

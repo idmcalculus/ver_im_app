@@ -4,21 +4,25 @@
     li > a {
         background-color: #221F72;
         font-size: 11px !important;
-        padding: 11px 10px 11px 20px !important;
+        padding: 15px 10px 15px 20px !important;
+        margin: 5px 0 0;
+    }
 
-        &:after {
-            float: right;
-            font-style: normal;
-            margin-left: 3px;
-            font-size: 13px;
-            position: absolute;
-            right: 15px;
-            top: 10px;
-            font-family: feather;
-            padding-top: 5px;
-            -webkit-transition: opacity .3s linear;
-            transition: opacity .3s linear;
-        }
+    li.pcoded-hasmenu > a:after {
+        content: "\e844";
+        opacity: 1;
+        visibility: visible;
+        color: #b7c0cd;
+        font-family: feather;
+        font-style: normal;
+        -webkit-transition: opacity .3s linear;
+        transition: opacity .3s linear;
+        margin-left: 3px;
+        font-size: 13px;
+        float: right;
+        position: relative;
+        right: 15px;
+        top: 5px;
     }
 
     .user-info{
@@ -28,6 +32,7 @@
         background-color: #4F5FBE;
         a {
             background-color: #4F5FBE;
+            padding-left: 0 !important;
             .pcoded-micon {
                 padding-top: 17px;
             }
@@ -36,6 +41,7 @@
             top: 23px !important;
             padding-left: 7px;
             line-height: 18px;
+            position: absolute;
         }
 
         .users {
@@ -59,7 +65,7 @@
             }
         }
         .header-icon{
-            top: 20px;
+            top: 23px;
             height: auto;
             padding: 15px;
             padding-right: 20px;
@@ -81,6 +87,18 @@
 
 .pcoded-item > li > a > .pcoded-micon {
     padding-top: 2px;
+    font-size: 14px;
+    margin-right: 0;
+    border-radius: 4px;
+    width: 30px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    height: 30px;
+    text-align: center;
 }
 
 .pcoded-navbar {

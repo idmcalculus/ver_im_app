@@ -1,7 +1,7 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { User } from '../../models/user';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
-import {Router} from '@angular/router'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -11,15 +11,14 @@ import {Router} from '@angular/router'
 })
 export class DashboardHeaderComponent implements OnInit {
 
-  @Input()
-  public isUser: boolean;
-
-  @Input()
-  public userDetails: User;
+  @Input() public isUser: boolean;
+  @Input() public userDetails: User;
+  @Input() public sideDrawer: any;
+  @Output() sidebar = new EventEmitter();
 
   constructor(
-    private authService:AppAuthService,
-    private router:Router
+    private authService: AppAuthService,
+    private router: Router
 
     ) {
   }
@@ -27,10 +26,22 @@ export class DashboardHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    if(confirm('Are you sure you want to logout')){
+  toggleSidebar() {
+    this.sidebar.emit();
+  }
+
+  settings() {
+    this.router.navigateByUrl('user/settings');
+  }
+
+  password() {
+    this.router.navigateByUrl('user/settings/password');
+  }
+
+  logout() {
+    if (confirm('Are you sure you want to logout')) {
       this.authService.logout();
-      this.router.navigate(['signin',{}]);
+      this.router.navigate(['signin', {}]);
     }
   }
 

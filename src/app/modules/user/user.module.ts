@@ -23,7 +23,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './../../shared/components/chart/chart.component';
 import { ChatComponent } from '../chat/chat.component';
 import { InvestmentProfileComponent } from './investment-profile/investment-profile.component';
-import { MatFormFieldModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MatMenuModule } from '@angular/material';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
@@ -57,6 +57,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatMenuModule,
     NgxSkeletonLoaderModule
   ],
   exports:[
