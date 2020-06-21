@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AppAuthService } from 'src/app/core/auth/auth.service';
 import { User } from '../../models/user';
@@ -11,9 +11,12 @@ import { Router } from '@angular/router';
 })
 export class SideBarComponent implements OnInit {
   userSubscription: Subscription;
+  dropdownClose: any[];
   userInfo: User;
-  @Input()
-  public isUser: boolean;
+  @Input() public isUser: boolean;
+  @Output() sidebarToggle = new EventEmitter();
+  style: any;
+
   constructor(
     private router: Router,
     private authService: AppAuthService
@@ -25,8 +28,11 @@ export class SideBarComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    this.dropdown();
+  ngOnInit() {}
+
+  sidebar(close = true) {
+    this.sidebarToggle.emit();
+    return close === false ? this.dropdown() : null;
   }
 
   logout() {
@@ -36,19 +42,27 @@ export class SideBarComponent implements OnInit {
     }
   }
 
-  dropdown() {
-    const dropdown = document.getElementsByClassName('dropdown-btn');
-    for (let i = 0; i < dropdown.length; i++) {
-      dropdown[i].addEventListener('click', function() {
-        this.classList.toggle('active');
-        let dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === 'block') {
-          dropdownContent.style.display = 'none';
-        } else {
-          dropdownContent.style.display = 'block';
+  dropdown(...events) {
+    if (events.length === 0) {
+      this.dropdownClose = [];
+      const dropdown = document.getElementsByClassName('dropdown-btn');
+      for (let i = 0; i < dropdown.length; i++) {
+        dropdown[i].classList.remove('active');
+        const dropdownContent = dropdown[i].nextElementSibling;
+        this.dropdownClose.push(dropdownContent);
+      }
+      this.dropdownClose.forEach(elem => elem.style.display = 'none');
+    } else {
+        events[0].classList.toggle('active');
+        events[1].style.display === 'block' ? events[1].style.display = 'none' : events[1].style.display = 'block';
+        this.dropdownClose = [];
+        const dropdown = document.getElementsByClassName('dropdown-btn');
+        for (let i = 0; i < dropdown.length; i++) {
+          const dropdownContent = dropdown[i].nextElementSibling;
+          this.dropdownClose.push(dropdownContent);
+          events[0] !== dropdown[i] ? dropdown[i].classList.remove('active') : null;
         }
-      });
+        this.dropdownClose.forEach(elem => elem !== events[1] ? elem.style.display = 'none' : null);
     }
-
   }
 }

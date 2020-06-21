@@ -1,4 +1,4 @@
-<div class="pcoded-content body" id="boid">
+<div class="pcoded-content body mx-2 mx-sm-0" id="boid">
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
@@ -25,7 +25,7 @@
                             <div></div>
                     </div>
                     <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row info">
-                        <div class="col-xl-3 col-md-4 pl-0 pr-0 pr-md-3">
+                        <div class="col-xl-3 col-md-4 px-0 pr-md-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 pl-0 pr-0 pr-md-3">
+                        <div class="col-xl-3 col-md-4 px-0 pr-md-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 pl-0 pr-0 pr-xl-3">
+                        <div class="col-xl-3 col-md-4 px-0 pr-xl-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4 pl-0 pr-0">
+                        <div class="col-xl-3 col-md-4 px-0">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -129,78 +129,51 @@
                                     <h3>View Full report</h3>
                                 </div>
                                 <div class="card-block">
-                                <div class="dt-responsive table-responsive maps">
-                                    <div id="regions_div" class="" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
-                                    <div class="state">
-                                        <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
-                                        <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
-                                        </progress-bar>
-                                        <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
-                                        <progress-bar [progress]="0" [color]="'#488aff'">
-                                        </progress-bar>
-                                        <div class='progress-label'><span>Port-harcourt</span><span>0M of {{totalAmount}}</span></div>
-                                        <progress-bar [progress]="0" [color]="'#488aff'">
-                                        </progress-bar>
-                                        <div class='progress-label'><span>Kwara</span><span>0M of {{totalAmount}}</span></div>
-                                        <progress-bar [progress]="0" [color]="'#488aff'">
-                                        </progress-bar>
+                                    <div class="dt-responsive table-responsive maps">
+                                        <div id="regions_div" class="" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
+                                        <div class="state">
+                                            <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Port-harcourt</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Kwara</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                         </div>
                         <div  *ngIf="!isLoading && dashboardInv?.length > 0" class="card-details col-xl-5 col-md-5 perf" style="padding-right: 0;padding-left: 0;">
-                        <div class="card latest-update-card">
-                            <div class="card-header small-gap">
-                                <h5>Investment Perfomance</h5>
-                            </div>
-                            <div class="row divider"></div>
-                            <div class="card-block" >
-                                    <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
-                                        <div style="width: 48%">
-                                            <canvas  id="myChart" #mycanvas  baseChart width="600" height="890" padding="20"
-                                                [data]="doughnutChartData"
-                                                [labels]="doughnutChartLabels"
-                                                [chartType]="doughnutChartType"
-                                                [options]="doughnutChartOptions"
-                                                [plugins]="doughnutChartPlugins"
-                                                [legend]="false">
-                                            </canvas>
-                                        </div>
-                                        <div id="legend"></div>
-                                    </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="col-xl-4 col-md-12">
                             <div class="card latest-update-card">
-                                <div class="card-header">
-                                    <h5>Career</h5>
+                                <div class="card-header small-gap">
+                                    <h5>Investment Perfomance</h5>
                                 </div>
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                            <table id="userTable"
-                                                    class="table table-striped nowrap">
-                                                <thead>
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>No. of Applicants</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr *ngFor="let career of dashBoardData?.career_application,let x=index ">
-                                                    <td>{{career.career_title}}</td>
-                                                    <td >{{career.no_of_applications}}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                    </div>
+                                <div class="row divider"></div>
+                                <div class="card-block" >
+                                        <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
+                                            <div style="width: 48%">
+                                                <canvas  id="myChart" #mycanvas  baseChart width="600" height="890" padding="20"
+                                                    [data]="doughnutChartData"
+                                                    [labels]="doughnutChartLabels"
+                                                    [chartType]="doughnutChartType"
+                                                    [options]="doughnutChartOptions"
+                                                    [plugins]="doughnutChartPlugins"
+                                                    [legend]="false">
+                                                </canvas>
+                                            </div>
+                                            <div id="legend"></div>
+                                        </div>
                                 </div>
                             </div>
-                        </div> -->
                         </div>
                         <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
-                            <div class="card-details activity-card col-xl-3.5 col-md-4" style="padding-left: 0;max-width:30%">
+                            <div class="card-details activity-card col-xl-4 col-md-4 pl-0 pr-0 pr-xl-3" style="max-width:30%">
                                 <div class="card latest-update-card" style="padding-bottom:15px">
                                     <div class="card-header"
                                     style="margin-bottom: 15px;
@@ -234,8 +207,7 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card-details col-xl-8 col-md-12  tabl" style="padding-right: 0;padding-left: 0;max-width: 100%;min-width: 70%;">
+                            <div class="card-details col-xl-8 col-md-12 tabl px-0" style="max-width: 100%;min-width: 70%;">
                                 <div class="card latest-update-card">
                                     <div class="card-header" style="background-color:#4F5FBE !important; height: 3rem !important;">
                                         <h5 style="color:white !important">Latest Investment</h5>

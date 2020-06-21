@@ -116,7 +116,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     }
   }
 
-  sidebarToggle(event) {}
+  sidebarToggle(event, hamburger = false) {
+    return this.mobileQuery.matches ? event.toggle() :
+    (hamburger === true ? event.toggle() : null);
+  }
 
   private loadScripts() {
       this.dynamicScriptLoader.load('p-coded', 'v-layout',

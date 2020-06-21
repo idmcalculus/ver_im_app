@@ -3024,7 +3024,7 @@ table tbody .border-bottom-info td, table tbody .border-bottom-info th, table th
     top: 0;
     font-size: 16px;
     line-height: 4.4;
-    width: 40px
+    width: 0px
 }
 
 .header-navbar .navbar-wrapper .navbar-logo .mobile-options, .header-navbar .navbar-wrapper .navbar-logo .mobile-search {
@@ -11184,7 +11184,7 @@ table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before, table
         right: auto;
         left: 0;
         top: 0;
-        width: 60px
+        width: 0px
     }
 
     .header-navbar .navbar-wrapper .navbar-logo .mobile-search {

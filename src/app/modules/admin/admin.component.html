@@ -1,9 +1,9 @@
 <div id="pcoded" class="pcoded">
     <div class="pcoded-container navbar-wrapper">
-        <app-dashboard-header [isUser]=false [userDetails]="user" (sidebar)="sidebarToggle(drawer.toggle())"></app-dashboard-header>
+        <app-dashboard-header [isUser]=false [userDetails]="user" (sidebar)="sidebarToggle(drawer, true)"></app-dashboard-header>
         <mat-drawer-container>
             <mat-drawer #drawer [opened]="mobileQuery?.matches ? false : true" [mode]="mobileQuery?.matches ? 'over' : 'side'">
-                <app-side-bar [isUser]=false></app-side-bar>
+                <app-side-bar [isUser]=false (sidebarToggle)="sidebarToggle(drawer)"></app-side-bar>
             </mat-drawer>
             <mat-drawer-content>
                 <div class="pcoded-main-container">

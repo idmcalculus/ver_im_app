@@ -9,25 +9,34 @@
     }
 
     li.pcoded-hasmenu > a:after {
-        content: "\e844";
-        opacity: 1;
-        visibility: visible;
-        color: #b7c0cd;
-        font-family: feather;
-        font-style: normal;
-        -webkit-transition: opacity .3s linear;
-        transition: opacity .3s linear;
-        margin-left: 3px;
-        font-size: 13px;
+        display: none;
+    }
+
+    .pcoded-mtext {
+        top: 20px !important;
+    }
+
+    .pcoded-item > li > a > span > .icon-chevron-down {
         float: right;
-        position: relative;
-        right: 15px;
-        top: 5px;
+        padding-top: 2px;
+        font-size: 20px;
+        margin-right: 0;
+        border-radius: 4px;
+        width: 30px;
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        height: 30px;
+        text-align: center;
     }
 
     .user-info{
         margin-top: 0px !important;
     }
+
     .header{
         background-color: #4F5FBE;
         padding: 10px !important;
@@ -39,6 +48,7 @@
                 padding-top: 17px;
             }
         }
+
         .pcoded-mtext {
             top: 10px !important;
             padding-left: 7px;

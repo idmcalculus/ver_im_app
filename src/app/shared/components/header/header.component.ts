@@ -39,14 +39,6 @@ export class HeaderComponent implements OnInit {
       document.addEventListener('mousewheel', () => {}, {passive: false});
   }
 
-  @HostListener('window:scroll') onscroll(e: Event): void {
-    console.log(this.getYPosition(e));
-  }
-
-  getYPosition(e: Event): number {
-    return (e.target as Element).scrollTop;
-  }
-
   @HostListener('document:mousewheel')
   onWindowScroll() {
     this.isSticky = document.body.scrollTop > 0 || document.documentElement.scrollTop > 0;
@@ -57,12 +49,6 @@ export class HeaderComponent implements OnInit {
         this.show = true;
      }, 5000);
   }
-
-  // router.events.subscribe((event: Event) => {
-  //   if (event instanceof NavigationEnd ) {
-  //     this.currentUrl = event.url;
-  //   }
-  // });
 
   ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();
