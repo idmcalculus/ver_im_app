@@ -265,7 +265,21 @@ span {
     }
 }
 
-@media (min-width: 1366px) {
+@media (width: 1280px) {
+    .invest-text {
+        position: relative;
+        height: 430px;
+    }
+}
+
+@media (width: 1440px) {
+    .invest-text {
+        position: relative;
+        height: 400px;
+    }
+}
+
+@media (width: 1366px) {
     .invest-text {
         position: relative;
         height: 400px;
