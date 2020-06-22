@@ -11,11 +11,10 @@ import { Router } from '@angular/router';
 })
 export class SideBarComponent implements OnInit {
   userSubscription: Subscription;
-  dropdownClose: any[];
+  dropdownTabs: any[];
   userInfo: User;
   @Input() public isUser: boolean;
   @Output() sidebarToggle = new EventEmitter();
-  style: any;
 
   constructor(
     private router: Router,
@@ -44,25 +43,25 @@ export class SideBarComponent implements OnInit {
 
   dropdown(...events) {
     if (events.length === 0) {
-      this.dropdownClose = [];
-      const dropdown = document.getElementsByClassName('dropdown-btn');
-      for (let i = 0; i < dropdown.length; i++) {
-        dropdown[i].classList.remove('active');
-        const dropdownContent = dropdown[i].nextElementSibling;
-        this.dropdownClose.push(dropdownContent);
-      }
-      this.dropdownClose.forEach(elem => elem.style.display = 'none');
+      this.dropdownTabs = [];
+      const dropdown = document.querySelectorAll('a.dropdown-btn');
+      [].forEach.call(dropdown, (elem) => {
+        elem.classList.remove('active');
+        const dropdownContent = elem.nextElementSibling;
+        this.dropdownTabs.push(dropdownContent);
+      });
+      [].forEach.call(this.dropdownTabs, elem => elem.style.display = 'none');
     } else {
         events[0].classList.toggle('active');
         events[1].style.display === 'block' ? events[1].style.display = 'none' : events[1].style.display = 'block';
-        this.dropdownClose = [];
-        const dropdown = document.getElementsByClassName('dropdown-btn');
-        for (let i = 0; i < dropdown.length; i++) {
-          const dropdownContent = dropdown[i].nextElementSibling;
-          this.dropdownClose.push(dropdownContent);
-          events[0] !== dropdown[i] ? dropdown[i].classList.remove('active') : null;
-        }
-        this.dropdownClose.forEach(elem => elem !== events[1] ? elem.style.display = 'none' : null);
-    }
+        this.dropdownTabs = [];
+        const dropdown = document.querySelectorAll('a.dropdown-btn');
+        [].forEach.call(dropdown, (elem) => {
+          elem !== events[0] ? elem.classList.remove('active') : null;
+          const dropdownContent = elem.nextElementSibling;
+          this.dropdownTabs.push(dropdownContent);
+        });
+        [].forEach.call(this.dropdownTabs, elem => elem !== events[1] ? elem.style.display = 'none' : null);
+      }
   }
 }

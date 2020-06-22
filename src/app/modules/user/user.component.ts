@@ -48,7 +48,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   getCategories() {
-    this.investmentService.getCategories().subscribe(categories=>{
+    this.investmentService.getCategories().subscribe(categories => {
       if (categories && categories.success) {
         this.categories = categories.success.Data;
       }
