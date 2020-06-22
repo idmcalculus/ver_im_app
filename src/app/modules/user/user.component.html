@@ -1,11 +1,17 @@
 <div id="pcoded" class="pcoded">
-<div class="pcoded-container navbar-wrapper">
-    <app-dashboard-header [isUser]=true [userDetails]="userProfile"></app-dashboard-header>
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
-            <app-side-bar [isUser]=true ></app-side-bar>
-            <router-outlet></router-outlet>
-        </div>
+    <div class="pcoded-container navbar-wrapper">
+        <app-dashboard-header [isUser]=true [userDetails]="userProfile" (sidebar)="sidebarToggle(drawer, true)"></app-dashboard-header>
+        <mat-drawer-container>
+            <mat-drawer #drawer [opened]="mobileQuery?.matches ? false : true" [mode]="mobileQuery?.matches ? 'over' : 'side'">
+                <app-side-bar [isUser]=true (sidebarToggle)="sidebarToggle(drawer)"></app-side-bar>
+            </mat-drawer>
+            <mat-drawer-content>
+                <div class="pcoded-main-container">
+                    <div class="pcoded-wrapper">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
+            </mat-drawer-content>
+        </mat-drawer-container>
     </div>
-</div>
 </div>
