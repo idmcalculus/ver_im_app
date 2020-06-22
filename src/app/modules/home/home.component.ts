@@ -56,10 +56,10 @@ export class HomeComponent implements OnInit {
                 rect.top < (window.innerHeight || document.documentElement.clientHeight) /* or $(window).height() */) {
 
                     entries.forEach(() => {
-                        this.counto1 = 800;
+                        this.counto1 = 158;
                         this.counto2 = 3;
-                        this.counto3 = 240;
-                        this.counto4 = 140;
+                        this.counto3 = 50;
+                        this.counto4 = 36;
                     });  }
         }, options);
         observer.observe(target);

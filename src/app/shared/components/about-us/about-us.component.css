@@ -89,6 +89,7 @@
 }
 
 .header {
+    background: none;
     color: #43425d;
     font-size: 20px;
     font-family: roboto;

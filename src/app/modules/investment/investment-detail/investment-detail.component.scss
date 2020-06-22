@@ -531,6 +531,7 @@ a:hover {
  }
 
 .header {
+   background: none;
    color: white;
    font-size: 40px;
    padding-top: 130px;
@@ -595,7 +596,13 @@ a:hover {
 
 @media (max-width: 500px) {
    .container {
-     max-width: 100% !important;
+      max-width: 100% !important;
+      padding-right: 15px !important;
+      padding-left: 15px !important;
+  }
+
+  label {
+     font-size: 12px;
   }
 
   .form-group .row {
