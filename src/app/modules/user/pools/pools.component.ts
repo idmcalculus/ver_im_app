@@ -71,7 +71,7 @@ export class PoolsComponent implements OnInit {
 
   isAllSelected() {
     this.masterSelected = this.checklist.every(function(pool: any) {
-        return pool == true;
+        return pool === true;
       });
     this.getCheckedPooList();
   }
@@ -87,47 +87,44 @@ export class PoolsComponent implements OnInit {
   }
 
   getPools() {
-    this.isLoading = true;
     this.investmentService.getInvestments(false).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         this.investments = investments.success.Data;
+        this.isLoading = false;
       }
-      this.isLoading = false;
     });
   }
 
   getCategories() {
-    this.isLoading = true;
     this.investmentService.getCategories().subscribe(resp => {
       if (resp && resp.success) {
         this.categories = resp.success.Data;
+        this.isLoading = false;
       }
-      this.isLoading = false;
     });
   }
 
   getCategoryName(id) {
-    // console.log(id);
-    
     if (this.categories && id) {
-    this.res = this.categories.find(r => r.id === id);
-      if(this.res){
+      this.res = this.categories.find(r => r.id === id);
+      if (this.res) {
         return this.res.category_name;
-      }else{ return this.res = {category_name: ''} }
+      } else {
+        return this.res = {category_name: ''};
+      }
     } else {
       return this.res = {category_name: ''};
     }
   }
 
   getUserPols(email) {
-    this.isLoading = true;
     this.investmentService.getUserInvestments(email).subscribe(investments => {
       if (investments) {
         this.pools = investments.success.Data;
         this.getCategories();
+        this.isLoading = false;
       }
-      this.isLoading = false;
     });
   }
 
@@ -180,21 +177,29 @@ export class PoolsComponent implements OnInit {
         if (this.filteredArray.length === 0) {
           const CatPool: any = [];
           const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
-          filteredCat.forEach(cat => {
-            const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
-            CatPool.push(filteredCatPool);
-          });
-          this.pools = [].concat.apply([], CatPool);
-          this.filteredArray = this.pools;
+          if (filteredCat.length === 0) {
+            this.pools = filteredCat;
+          } else {
+            filteredCat.forEach(cat => {
+              const filteredCatPool = this.investments.filter(investment => cat.id === investment.category_id);
+              CatPool.push(filteredCatPool);
+            });
+            this.pools = [].concat.apply([], CatPool);
+            this.filteredArray = this.pools;
+          }
         } else {
-          const CatPool: any = [];
-          const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
-          filteredCat.forEach(cat => {
-            const filteredCatPool = this.filteredArray.filter(investment => cat.id === investment.category_id);
-            CatPool.push(filteredCatPool);
-          });
-          this.pools = [].concat.apply([], CatPool);
-          this.filteredArray = this.pools;
+            const CatPool: any = [];
+            const filteredCat = this.categories.filter(category => category[filterType].toLowerCase() === filterValue.toLowerCase());
+            if (filteredCat.length === 0) {
+              this.pools = filteredCat;
+            } else {
+              filteredCat.forEach(cat => {
+                const filteredCatPool = this.filteredArray.filter(investment => cat.id === investment.category_id);
+                CatPool.push(filteredCatPool);
+              });
+              this.pools = [].concat.apply([], CatPool);
+              this.filteredArray = this.pools;
+            }
           }
       }
   }
