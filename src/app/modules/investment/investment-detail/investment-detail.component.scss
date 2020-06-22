@@ -80,6 +80,10 @@ select.form-control, select.form-control:focus, select.form-control:hover {
    cursor: pointer;
 }
 
+.investment-plans .modal-footer .btn {
+   padding: 9px 3px !important;
+}
+
 .btn-outline-primary {
    border-color: #4f5fbe !important;
 }
@@ -542,6 +546,10 @@ a:hover {
 }
 
 @media screen and (max-width: 992px) {
+   .investment-plans .inner-investment .main-invest-card .row .other-info {
+      padding-left: inherit;
+   }
+
    .invest-header {
       height: auto;
       padding: 2em 24px;
@@ -555,6 +563,10 @@ a:hover {
       -webkit-box-pack: center !important;
       -ms-flex-pack: center !important;
       justify-content: center !important;
+   }
+
+   .fit-row {
+      width: 90%;
    }
 }
  
@@ -604,11 +616,11 @@ a:hover {
 
    .btn1 {
       font-size: 12px;
-      padding: 9px 45px;
+      padding: 9px 5px;
   }
 
   .investment-plans .modal-footer .btn {
       font-size: 12px;
-      padding: 9px 29px !important;
+      padding: 9px 3px !important;
   }
 }
