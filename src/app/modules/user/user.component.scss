@@ -1,0 +1,18 @@
+mat-drawer {
+	height: 100vh;
+	top: 61px;
+	width: 220px;
+	background-color: #4F5FBE;
+	.pcoded-item > li > a > .pcoded-micon {
+		padding-top: 2px;
+	}
+}
+
+::ng-deep {
+	.mat-drawer-container {
+		flex: 1;
+		background-color: #303030;
+		color: black;
+		position: initial !important;
+	}
+}

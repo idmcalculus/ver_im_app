@@ -107,7 +107,7 @@
     }
 
     .card{
-        height: 430px;
+        min-height: 440px;
 
         .card-header {
             padding: 10px;
@@ -344,6 +344,12 @@ progress-bar {
 
     .activity-card{
         min-width: 100%;
+    }
+}
+
+@media (width: 1024px) {
+    .card-details .card {
+        height: auto;
     }
 }
 

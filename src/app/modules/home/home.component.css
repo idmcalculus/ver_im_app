@@ -1,8 +1,4 @@
 
-.container {
-    max-width: 80%;
-}
-
 .landingMedia {
     max-width: 100%;
 }
@@ -10,7 +6,6 @@
 .subtitle {
     font-size: 20px;
 }
-
 
 h2 {
     color: #4f5fbe;
@@ -144,6 +139,7 @@ div .invest-control:hover {
 }
 
 .invest-control {
+    height: auto !important;
     color: #f1efef;
     background-color: #fff;
     background-clip: padding-box;
@@ -154,14 +150,20 @@ div .invest-control:hover {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.p-2 {
+    height: 150px;
+}
+
 .slide-control {
+    height: 210px;
+    color: #545658;
     -moz-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     -webkit-box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
     box-shadow: 0 0 5px rgba(73, 80, 87, 0.25);
-    color: #545658;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid ;
+    border: 0px solid ;
+    border-radius: 7px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -187,8 +189,9 @@ span {
 
 @media screen and (width: 768px) {
 
-    .card-pad {
-        height: 75%;
+    .invest-text {
+        position: relative;
+        height: 700px;
     }
 }
 
@@ -215,6 +218,10 @@ span {
     .text-header {
         font-size: 15px;
     }
+
+    .banner-lnd .row {
+        max-width: 100%;
+    }
 }
   
   /* On screens that are 600px or less, set the background color to olive */
@@ -240,22 +247,89 @@ span {
     .hide{
         display: none;
     }
+
+    .p-2 {
+        height: auto;
+    }
+    
 }
 
 @media (min-width: 1000px) {
-    .invest-control {
-        height: auto;
+    .invest-text {
+        position: relative;
+        height: 320px;
+    }
+
+    .small-control {
+        height: 200px !important;
     }
 }
-@media (width: 1024px) {
-    .invest-control {
-        height: 70%;
+
+@media (width: 1280px) {
+    .invest-text {
+        position: relative;
+        height: 430px;
+    }
+}
+
+@media (width: 1440px) {
+    .invest-text {
+        position: relative;
+        height: 400px;
+    }
+}
+
+@media (width: 1366px) {
+    .invest-text {
+        position: relative;
+        height: 400px;
     }
 }
 
 @media (width: 1024px) {
-    .invest-control {
-        height: 75%;
+    .banner-lnd .row {
+        max-width: 90%;
+    }
+
+    .invest-text {
+        position: relative;
+        height: 500px;
+    }
+
+    .pl-2 {
+        padding-left: none !important;
+    }
+
+    .slide-control {
+        height: auto !important;
+    }
+
+    .small-control {
+        height: 200px !important;
+    }
+
+    .p-2 {
+        height: 190px;
+    }
+
+    .container {
+        max-width: 920px;
+    }
+}
+
+@media (width: 1112px) {
+    .pt-lg-5 {
+        padding-top: .8rem !important;
+    }
+
+    .small-control {
+        height: 200px;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        max-width: 80%;
     }
 }
 

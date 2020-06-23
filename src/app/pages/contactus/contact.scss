@@ -1,3 +1,9 @@
+.container {
+	max-width: 80%;
+	padding-right: 30px;
+    padding-left: 30px;
+}
+
 .work-header {
     height: 300px;
     padding: 4px;
@@ -230,6 +236,7 @@
 }
 
 .header {
+	background: none;
     color: white;
     font-size: 30px;
     padding-top: 150px;
@@ -280,9 +287,6 @@
 }
 
 @media (max-width: 760px){
-	.contact-us {
-		padding-top: 20%;
-	}
 
 	.standard-mini{
 		margin-left: 0.05rem;
@@ -297,29 +301,8 @@
 	}
 }
 
-@media (min-width: 1200px){
-    .container {
-        max-width: 1240px;
-	}
-
-	.contact-us {
-		padding-top: 5%;
-	}
-}
-
-@media (min-width: 1000px) and (max-width: 1200px) {
-
-	.contact-us {
-		padding-top: 8%;
-	}
-}
-
 @media (min-width: 500px) and (max-width: 1000px) {
-	.contact-us {
-		padding-top: 10%;
-	}
 	
-
 	.howItWork{
 		display: block !important;
 		margin-top: 1rem;
@@ -339,14 +322,14 @@
 	}
 }
 
-@media (width: 1280px) {
-	.container {
-		max-width: 90%;
+@media (max-width: 1300px) {
+    .container {
+		max-width: 90% !important;
 	}
 }
 
-@media (width: 1440px) {
-	.container {
-		max-width: 80%;
+@media (max-width: 500px) {
+    .container {
+		max-width: 100% !important;
 	}
 }

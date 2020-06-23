@@ -1,7 +1,7 @@
 <nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo bgWhite logoBrand">
-            <a class="mobile-menu" id="mobile-collapse" href="#!">
+            <a class="mobile-menu" id="mobile-collapse" (click)="toggleSidebar()">
                 <i class="feather icon-menu icon-align-justify"></i>
             </a>
             <a href="" class="mobile-menu-image">
@@ -84,42 +84,48 @@
                             <a href="https://www.versa.ng">
                                 <img class="img-fluid" src="../assets/images/soccer.png"  style="width: 18px !important;" alt="Theme-Logo"/>
                             </a>
-                            <a routerLink="./chat" routerLinkActive="active" class="chatBell">
+                            <a  class="chatBell">
                                     <i [hidden]='!isUser' class="fas fa-comments" style="font-size: 1.1rem; vertical-align: middle;"></i>
                                     <img [hidden]='isUser' class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
                                     <span [hidden]='isUser' class="badge bg-c-green"> </span>
                                 </a>
+                            <!--    <a  routerLink="./chat" routerLinkActive="active" class="chatBell">
+                                    <i [hidden]='!isUser' class="fas fa-comments" style="font-size: 1.1rem; vertical-align: middle;"></i>
+                                    <img [hidden]='isUser' class="img-fluid" src="../assets/images/icons8-bell-48.png" style="width: 20px !important;" alt="Theme-Logo"/>
+                                    <span [hidden]='isUser' class="badge bg-c-green"> </span>
+                                </a> -->
                         </div>
                     </div>
                 </li>
                 <li class="line"><div class="vl"></div></li>
                 <li class="user-profile header-notification">
-                    <div class="dropdown-primary dropdown">
-                        <div *ngIf="userDetails.first_name" class="dropdown-toggle" data-toggle="dropdown">
+                    <div>
+                        <div *ngIf="userDetails.first_name" [matMenuTriggerFor]="menu">
                             <span>{{userDetails?.first_name}}</span>
                             <i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i>
                             <img  style="width: 2.5rem;" *ngIf="!userDetails.profile_picture || userDetails.profile_picture=='' " src="../assets/images/avatar-4.png" class="img-radius"
                             alt="User-Profile-Image">
                         </div>
 
-                        <ul class="show-notification profile-notification dropdown-menu"
-                                   data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            <li>
-                                <a [hidden]='!isUser' routerLink="./settings" routerLinkActive="active">
-                                    <i class="feather icon-settings"></i>Account Settings
-                                </a>
-                            </li>
-                            <li>
-                                <a [hidden]='!isUser' routerLink="./settings/password" routerLinkActive="active">
-                                    <i class="feather icon-user"></i> Manage Password
-                                </a>
-                            </li>
-                            <li (click)="logout()">
-                                <a>
-                                    <i class="feather icon-log-out"></i> Logout
-                                </a>
-                            </li>
-                        </ul>
+                        <mat-menu #menu="matMenu">
+                            <ul class="show-notification profile-notification">
+                                <li mat-menu-item (click)='settings()' [hidden]='!isUser'>
+                                    <a>
+                                        <i class="feather icon-settings"></i> Account Settings
+                                    </a>
+                                </li>
+                                <li mat-menu-item (click)='password()' [hidden]='!isUser'>
+                                    <a>
+                                        <i class="feather icon-user"></i> Manage Password
+                                    </a>
+                                </li>
+                                <li mat-menu-item (click)="logout()">
+                                    <a>
+                                        <i class="feather icon-log-out"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </mat-menu>
 
                     </div>
                 </li>

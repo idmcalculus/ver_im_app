@@ -38,8 +38,9 @@ export class InvestmentDetailComponent implements OnInit {
     categories: any = [];
     selectedCategory = '0';
     allinv: any = [];
-    ViaXpress = true;
+    ViaXpress = false;
     subOptions = [];
+    payment_id = "";
 
 
     constructor(
@@ -174,7 +175,6 @@ export class InvestmentDetailComponent implements OnInit {
                             if(resp.investment.length > 0){
                                 this.toastrService.error('investment has already been processed');
                             }else{
-                                //some logic before join investment
                                 this.joinInvestment()
                                 this.isLoading = false;
                                 this.investmentService.createTransactionRecord(transactionId,this.userinfo.id,investmentId);
@@ -197,14 +197,15 @@ export class InvestmentDetailComponent implements OnInit {
         this.transaction.number_of_pools = Number(localStorage.getItem('poolsTaken'));
         this.transaction.payment_reference = this.investment.reference;
         this.investmentService.joinInvestment(this.transaction).subscribe(resp => {
-            if (resp && resp.success) {
-                this.toastrService.success(resp.success.Message);
-                this.closemodal.nativeElement.click();
-                localStorage.removeItem('poolsTaken');
-                localStorage.removeItem('transAmount');
-            }
-            this.isLoading = false;
+          if (resp && resp.success) {
+              this.toastrService.success(resp.success.Message);
+              this.closemodal.nativeElement.click();
+               localStorage.removeItem('poolsTaken');
+               localStorage.removeItem('transAmount');
+           }
+           this.isLoading = false;
         });
+      
     }
 
     redirectBack(){
@@ -216,11 +217,18 @@ export class InvestmentDetailComponent implements OnInit {
         this.transactionRef = randomString;
     }
 
-    initiatePay(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
+    initiatePay(paymentId,investmentId ) {
+        this.isLoading = true;
+        this.closemodal.nativeElement.click();
+        this.investmentService.createTransactionRecord(paymentId,this.userinfo.id,investmentId);           
+        this.isLoading = false;
+    }
+
+    payXpress(email, transAmount, firstName, lastName, mobile, investment_amount, number_of_pools) {
         transAmount = investment_amount*number_of_pools;
         this.isLoading = true;
         localStorage.setItem('transAmount', String(transAmount));
-        localStorage.setItem('poolsTaken', String(number_of_pools));
+        localStorage.setItem('poolsTaken', String(number_of_pools));        
         xpressPay(email, transAmount, firstName, lastName, mobile, this.transactionRef);
     }
 

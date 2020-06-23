@@ -35,7 +35,7 @@ import { ViewUsersComponent } from './user-group/view-users/view-users.component
 import { AddUsersComponent } from './user-group/add-users/add-users.component';
 import { EditUsersComponent } from './user-group/edit-users/edit-users.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material';
+import { MatFormFieldModule, MatSelectModule, MatInputModule, MAT_FORM_FIELD_DEFAULT_OPTIONS, MatSidenavModule } from '@angular/material';
 import {exportUserPoolComponent} from '../../shared/components/report/view-customer-export/view-customer-export.component';
 import { UseractivityComponent } from 'src/app/shared/components/report/user-activity-report/activity-report.component';
 import { SearchCustomerComponent } from './manage-users/search-customer/search_customer.component';
@@ -98,6 +98,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatSidenavModule,
     NgxSkeletonLoaderModule
   ], providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {floatLabel: 'never'}}

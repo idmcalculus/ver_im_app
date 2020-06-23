@@ -1,14 +1,12 @@
+.container {
+  max-width: 80%;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
 .side-details{
   padding-right: 0
 }
-
-// .section-container{
-//   background: url("../../../assets/images/partner-row2-3.png") no-repeat right top,
-//   url("../../../assets/images/partner-row1-2.png") no-repeat left top,
-//   url("../../../assets/images/partner-rw.png") no-repeat left bottom;
-
-
-// }
 
 .navigation-values{
   background-color: #8390DB;
@@ -42,35 +40,6 @@
   padding-top: 170px !important;
 }
 
-@media screen and (max-width: 992px) {
-
-  .invest-header {
-     height: auto;
-     padding: 2em 24px;
-  }
-
-  .hidden {
-     display: none;
-   }
-
-  .header-center {
-     -webkit-box-pack: center !important;
-     -ms-flex-pack: center !important;
-     justify-content: center !important;
-  }
-}
-
-/* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 600px) {
-  .invest-header {
-     height: auto;
-     padding: 2em 24px;
-  }
-  .header-padding{
-     padding-top: 30px !important;
-  }
-}
-
 .inner-investment{
   :nth-child(3){
     justify-content: flex-start;
@@ -86,6 +55,7 @@
 }
 
 .header {
+  background: none;
   color: white;
   font-size: 40px;
   padding-top: 130px;
@@ -104,6 +74,10 @@
 
 .text-header {
   font-size: 27px !important;
+  color: white;
+  font-size: 50px;
+  padding-top: 130px;
+  text-align: center;
 }
 
 .superb-container {
@@ -166,7 +140,7 @@
   .coming{
    
     top: 2.5em;
-    left: -2em;
+    left: -3.5em;
     color: #fff;
     display: block;
     position: absolute;
@@ -397,20 +371,6 @@ body {
   transform: rotate(-225deg);
 }
 
-@media (min-width: 1200px){
-  .investment {
-    padding-top: 5%;
-  }
-
-  .container {
-      max-width: 84.064052749892em;
-  }
-}
-
-.section-container {
-  padding: 10px !important;
-}
-
 .section-container .investment-plans .inner-investment .col-sm-12.col-md-6.col-lg-3.pb-2 {
   margin-bottom: 1.5rem !important;
 }
@@ -420,7 +380,7 @@ body {
 }
 
 .superb-container .content-holder h3{
-  padding: 5px !important;
+  padding: 5px;
 }
 
 .investment-plans .inner-investment .superb-container .content-holder h3, .investment-plans .inner-investment .superb-container .content-holder a {
@@ -480,10 +440,20 @@ body {
 	}
 }
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
 
-  .investment {
-    padding-top: 20%
+  .container {
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+
+  .invest-header {
+    height: auto;
+    padding: 2em 24px;
+  }
+
+ .header-padding{
+    padding-top: 30px !important;
   }
 
   .section-container .investment-plans .inner-investment .superb-container {
@@ -496,30 +466,30 @@ body {
 
   .column2 mat-select {
     font-size: 14px;
-    width: 50%;
+    width: 90%;
     height: 35px;
   }
 
   .investment-plans .inner-investment .superb-container {
     max-height: 300px;
-    width: 90%;
+    width: 100%;
   }
 
   .superb-container .img-holder {
     height: 150px;
-    width: 90%;
+    width: 100%;
   }
 
   .section-container .investment-plans .inner-investment .superb-container .content-holder {
-    padding-top: 5px;
+    padding: 0 5px 0 0;
   }
 
   .superb-container .content-holder h3 {
-    padding: .5rem 0 5px;
+    padding: .5rem 0;
   }
 
   .investment-plans .inner-investment {
-    padding: 0 2px;
+    padding: 0;
   }
 
   .coming, .sold_out {
@@ -527,15 +497,26 @@ body {
   }
 }
 
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media screen and (max-width: 992px) {
 
-	.investment {
-		padding-top: 8%;
-	}
+  .invest-header {
+     height: auto;
+     padding: 2em 24px;
+  }
+
+  .hidden {
+     display: none;
+   }
+
+  .header-center {
+     -webkit-box-pack: center !important;
+     -ms-flex-pack: center !important;
+     justify-content: center !important;
+  }
 }
 
-@media (min-width: 500px) and (max-width: 1000px) {
-	.investment {
-		padding-top: 10%;
+@media (max-width: 1300px) {
+  .container {
+  max-width: 90% !important;
   }
 }

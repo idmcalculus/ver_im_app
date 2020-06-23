@@ -99,7 +99,6 @@ export class exportUserPoolComponent implements OnInit {
             investment.investment_report.forEach((report, i) => report.index = i + 1);
           });
           console.log(this.dashboardInvestment);
-
         } else {
           this.dashBoardData = {number_of_pools: 0, investment_return: [], investment_report: []};
         }
@@ -140,9 +139,11 @@ export class exportUserPoolComponent implements OnInit {
             const csvLine = {
               title: this.dashboardInvestment[0].investment[0].title,
               expected_return_period: this.dashboardInvestment[0].investment[0].expected_return_period,
-              investment_amount: line.yielded_amount,
-              yeild_amount: line.yielded_amount * i,
-              balance: (this.divisorFunc(this.dashboardInvestment[0].investment[0].expected_return_period) * line.yielded_amount) - (line.yielded_amount * i),
+              investment_amount: line.yielded_amount * this.dashboardInvestment[0].number_of_pools,
+              yeild_amount: line.yielded_amount * this.dashboardInvestment[0].number_of_pools * i,
+              balance: (this.divisorFunc(this.dashboardInvestment[0].investment[0].expected_return_period) *
+              line.yielded_amount * this.dashboardInvestment[0].number_of_pools) -
+              (line.yielded_amount * i * this.dashboardInvestment[0].number_of_pools),
               status: this.dashboardInvestment[0].investment[0].is_investment_started === 1 ? 'On-going' : 'Not Yet Started' ,
               yield_date: this.dashboardInvestment[0].investment_report[y].created_at
             };

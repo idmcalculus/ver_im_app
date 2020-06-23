@@ -1,3 +1,9 @@
+.container {
+	max-width: 80%;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
 .work-header {
     height: 300px;
     padding: 4px;
@@ -18,20 +24,6 @@
 			text-shadow: 0 1px 0 rgba(0,0,0,.9);
 		}
 
-}
-
-@media (width: 1280px) {
-	.howItWorks .first-section, .howItWorks .second-section, .howItWorks .third-section {
-		width: 90%;
-		margin: 0 auto;
-	}
-}
-
-@media (width: 1440px) {
-	.howItWorks .first-section, .howItWorks .second-section, .howItWorks .third-section {
-		width: 80%;
-		margin: 0 auto;
-	}
 }
 
 .inner-faq {
@@ -99,53 +91,48 @@ hr {
 }
 
 .header {
+	background: none;
 	color: white;
 	font-size: 40px;
 	padding-top: 130px;
 	text-align: center;
 }
 
-@media (min-width: 1200px){
-	.investment {
-	  padding-top: 5%;
-	}
-  
-	.container {
-		max-width: 84.064052749892em;
-	}
-}
-
 @media (max-width: 600px) {
-	.investment {
-	  padding-top: 20%
-	}
 
 	.header{
 		font-size: 35px;
 	}
+
+	.container {
+		padding-right: 0px;
+		padding-left: 0px;
+	}
 }
 
-@media (min-width: 1000px) and (max-width: 1200px) {
+@media (min-width: 1000px) and (max-width: 1300px) {
 
-	.investment {
-		padding-top: 8%;
+	.text {
+		line-height: 25px !important;
 	}
-	
+
 	.invest-control {
-		height: 560px;
+		height: 100%;
 	}
 }
 
 @media (min-width: 500px) and (max-width: 1000px) {
-	.investment {
-		padding-top: 10%;
-  	}
 
 	.text {
 		line-height: 2rem !important;
 	}
 }
 
+@media (max-width: 1300px) {
+    .container {
+        max-width: 90%;
+    }
+}
 
 @media (max-width: 768px){
     .work-header {

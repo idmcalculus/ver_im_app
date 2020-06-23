@@ -6,6 +6,7 @@ import {VerifyUserService} from './verify-user.service';
   templateUrl: './verify-user.component.html'
 })
 export class VerifyUserComponent implements OnInit {
+  name = "";
 
   constructor(private router:Router,
     private activatedRoute:ActivatedRoute,private verifyUserService:VerifyUserService) { }
@@ -15,7 +16,7 @@ export class VerifyUserComponent implements OnInit {
         this.verifyUserService.verify(token)
         .subscribe(verifyRespons => {
           if(verifyRespons.success.Data){
-            alert(`Welcome ${verifyRespons.success.Data.first_name}`);
+            this.name = verifyRespons.success.Data.first_name;
             this.router.navigateByUrl("signin");
           }else{
             alert('Invalid Token')

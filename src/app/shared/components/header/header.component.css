@@ -5,32 +5,59 @@
   width: 100%;
   margin: 0 auto;
   padding-left: 12%;
-  padding-right: 11%;
+  padding-right: 12%;
+  background: transparent;
 }
 
 .container {
   max-width: 100%;
 }
 
+.header nav li a {
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
 .sticky {
   position: fixed;
-  background-color: white;
+  background: white;
 }
 
-.header nav li a {
-  font-weight: bolder;
+@media (min-width: 1000px) and (max-width: 1200px) {
+
+  .header {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 992px) {
+
+  .header {
+    padding-left: 9%;
+    padding-right: 7%;
+  }
 
   .mobile-nav .menu-icon .navicon {
       right: 2rem;
   }
 }
 
-
-@media (max-width: 800px){
+@media (max-width: 900px){
   .header {
-    padding-left: 12%;
+    padding-left: 7%;
+  }
+}
+
+@media (max-width: 500px){
+  .header {
+    padding-left: 8%;
+  }
+}
+
+@media (min-width: 1450px){
+  .header {
+    padding-left: 10%;
   }
 }
