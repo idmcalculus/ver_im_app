@@ -559,12 +559,12 @@ h1, h2, h3, h4, h5, h6 {
                     border: none;
                     box-shadow: 2px 2px 2px 2px rgba(73, 80, 87, 0.25);
 
-                    .row 
+                    .row
                     {
                         display: flex !important;
 
                         .col-3{
-                            flex: 1 0 25%;  
+                            flex: 1 0 25%;
                             img{
                                 height: 50px;
                                 width: 50px;
@@ -582,7 +582,7 @@ h1, h2, h3, h4, h5, h6 {
                     }
                 }
 
-            
+
             }
 
             .card-details.col-5 {
@@ -664,9 +664,9 @@ h1, h2, h3, h4, h5, h6 {
     .card.bestSelling {
         min-height: auto;
     }
-    
+
   }
-  
+
   /* On screens that are 600px or less, set the background color to olive */
   @media screen and (max-width: 600px) {
     .row1 .normal {

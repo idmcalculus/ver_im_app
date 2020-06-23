@@ -347,6 +347,12 @@ progress-bar {
     }
 }
 
+@media (width: 1024px) {
+    .card-details .card {
+        height: auto;
+    }
+}
+
 .imgs{
     margin-top: 12px;
     width: 40px;;
