@@ -17,55 +17,49 @@
                     </a>
                 </li>
                 <li [ngClass]="{'user-header': isUser}">
-                    <a routerLink="./" class="waves-effect waves-dark">
+                    <a routerLink="./" class="waves-effect waves-dark" (click)="sidebar(false)">
                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                         <span class="pcoded-mtext">Dashboard</span>
                     </a>
                 </li>
                 <li [hidden]="!isUser" class="pcoded">
-                    <a routerLink="./userPools" routerLinkActive="active" class="waves-effect waves-dark">
+                    <a routerLink="./userPools" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar(false)">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Investment</span>
                     </a>
                 </li>
                 <li [hidden]="!isUser" class="pcoded">
-                    <a routerLink="./settings" routerLinkActive="active" class="waves-effect waves-dark">
+                    <a routerLink="./settings" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar(false)">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Settings</span>
                     </a>
                 </li>
-            <!--    <li [hidden] class="pcoded">
-                    <a routerLink="#" routerLinkActive="active" class="waves-effect waves-dark">
-                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Help Center</span>
-                    </a>
-                </li> -->
                 <li [hidden]="isUser" class="pcoded-hasmenu">
-                    <a routerLink="./pools" class="dropdown-btn waves-effect waves-dark">
+                    <a routerLink="./pools" class="dropdown-btn waves-effect waves-dark" #investments1 (click)="dropdown(investments1, investments2)">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                          <span class="pcoded-mtext">Investments</span>
-                     </a>
-                     <ul class="dropdown-container">
-                         <li>
-                             <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Manage Investments</span>
-                             </a>
-                         </li>
-                         <li>
-                            <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
+                        <span class="pcoded-mtext">Investments</span>
+                        <span><i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i></span>
+                    </a>
+                    <ul class="dropdown-container" #investments2>
+                        <li>
+                            <a routerLink="./pools" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
+                                <span class="pcoded-mtext">Manage Investments</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Investment Category</span>
                             </a>
                         </li>
-                         <li>
-                             <a routerLink="./investment-group" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Investment Group</span>
-                             </a>
-                         </li>
-                     </ul>
-              </li>
-
+                        <li>
+                            <a routerLink="./investment-group" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
+                                <span class="pcoded-mtext">Investment Group</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li  [hidden]="isUser" class="">
-                    <a routerLink="./manage-users"  class="waves-effect waves-dark">
+                    <a routerLink="./manage-users"  class="waves-effect waves-dark" (click)="sidebar(false)">
                       <span class="pcoded-micon">
                       <i class="feather icon-user"></i>
                       </span>
@@ -73,117 +67,78 @@
                     </a>
                 </li>
                 <li [hidden]="isUser" class="pcoded-hasmenu">
-                    <a routerLink="./user-group" class="dropdown-btn waves-effect waves-dark">
+                    <a routerLink="./user-group" class="dropdown-btn waves-effect waves-dark" #usergroup1 (click)="dropdown(usergroup1, usergroup2)">
                         <span class="pcoded-micon"><i class="feather icon-user"></i></span>
-                          <span class="pcoded-mtext">UserGroup</span>
-                     </a>
-                     <ul class="dropdown-container">
-                         <li>
-                             <a routerLink="./user-group/view-users" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">Users</span>
-                             </a>
-                         </li>
-                         <li>
-                             <a routerLink="./user-group" routerLinkActive="active" class="waves-effect waves-dark">
-                                 <span class="pcoded-mtext">User Group</span>
-                             </a>
-                         </li>
-                     </ul>
-                 </li>
-                <!--<li>
-                    <a routerLink="./manage-users" routerLinkActive="active" class="dropdown dropbtn">
-                         <span class="pcoded-micon">
-                        <i class="feather icon-user"></i>
-                        </span>
-                            <span class="pcoded-mtext">Customers</span>
-                        <ul class="dropdown-content">
-                            <li>
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
-                            </li>
-                        </ul>
+                        <span class="pcoded-mtext">UserGroup</span>
+                        <span><i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i></span>
                     </a>
-
-                </li> -->
-                <!-- <li  [hidden]="isUser" class="">
-                    <a routerLink="./manage-category" routerLinkActive="active" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                        <i class="feather icon-user"></i>
-                        </span>
-                        <span class="pcoded-mtext">Categories</span>
-                    </a>
-                </li> -->
-                <li [hidden]="isUser" class="pcoded-hasmenu">
-                   <a routerLink="./manage-career" class="dropdown-btn waves-effect waves-dark">
-                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
-                        <span class="pcoded-mtext">Careers</span>
-                    </a>
-                    <ul class="dropdown-container">
+                    <ul class="dropdown-container" #usergroup2>
                         <li>
-                            <a routerLink="./manage-career/" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./user-group/view-users" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
+                                <span class="pcoded-mtext">Users</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="./user-group" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
+                                <span class="pcoded-mtext">User Group</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li [hidden]="isUser" class="pcoded-hasmenu">
+                    <a routerLink="./manage-career" class="dropdown-btn waves-effect waves-dark" #career1 (click)="dropdown(career1, career2)">
+                        <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+                        <span class="pcoded-mtext">Careers</span>
+                        <span><i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i></span>
+                    </a>
+                    <ul class="dropdown-container" #career2>
+                        <li>
+                            <a routerLink="./manage-career/" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Job Placements</span>
                             </a>
 
                         </li>
-                         <li>
-                            <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark">
+                        <li>
+                            <a routerLink="./manage-career/applicants" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Applicants</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
                 <li [hidden]="isUser" class="pcoded-hasmenu">
-                   <a class="dropdown-btn waves-effect waves-dark">
+                    <a class="dropdown-btn waves-effect waves-dark" #reports1 (click)="dropdown(reports1, reports2)">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Reports</span>
+                        <span><i class="feather icon-chevron-down" style="padding: 0rem 0.7rem;"></i></span>
                     </a>
-                    <ul class="dropdown-container">
+                    <ul class="dropdown-container" #reports2>
                         <li>
-                            <a routerLink="./userReport" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./userReport" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Customer Report</span>
                             </a>
                         </li>
                         <li>
-                            <a routerLink="./poolReport" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./poolReport" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Investment Report</span>
                             </a>
                         </li>
                         <li>
-                            <a routerLink="./activityReport" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./activityReport" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">User Activity Report</span>
                             </a>
                         </li>
                         <li>
-                            <a routerLink="./purchasedReport" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./purchasedReport" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Investments Purchased</span>
                             </a>
                         </li>
                         <li>
-                            <a routerLink="./viewedReport" routerLinkActive="active" class="waves-effect waves-dark">
+                            <a routerLink="./viewedReport" routerLinkActive="active" class="waves-effect waves-dark" (click)="sidebar()">
                                 <span class="pcoded-mtext">Investments Viewed</span>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <!-- <li class="">
-                    <a routerLink="./profile" routerLinkActive="active"  class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                        <i class="feather icon-user"></i>
-                        </span>
-                        <span class="pcoded-mtext">Profile</span>
-                    </a>
-                </li> -->
-                <!-- <li class="">
-                    <a (click)="logout()" class="waves-effect waves-dark">
-                        <span class="pcoded-micon">
-                        <i class="feather icon-log-out"></i>
-                        </span>
-                        <span class="pcoded-mtext">Logout</span>
-                    </a>
-                </li> -->
             </ul>
         </div>
     </div>

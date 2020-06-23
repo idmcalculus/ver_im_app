@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
@@ -7,7 +7,8 @@ import { AppAuthService } from 'src/app/core/auth/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
@@ -48,12 +49,6 @@ export class HeaderComponent implements OnInit {
         this.show = true;
      }, 5000);
   }
-
-  // router.events.subscribe((event: Event) => {
-  //   if (event instanceof NavigationEnd ) {
-  //     this.currentUrl = event.url;
-  //   }
-  // });
 
   ngOnDestroy() {
     this.currentUserSubscription.unsubscribe();

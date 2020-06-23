@@ -1,9 +1,8 @@
-<div class="pcoded-content body" id="boid">
-
-  <div class="pcoded-inner-content">
-      <div class="main-body">
-          <div class="page-wrapper">
-              <div class="page-body">
+<div class="pcoded-content body mx-2 mx-sm-0" id="boid">
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <div class="page-body">
                     <div style="margin: 1rem 0rem;
                     color: #43425d;
                     font-size: 1.2rem;
@@ -25,8 +24,8 @@
                             <div></div>
                             <div></div>
                     </div>
-                  <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row info">
-                        <div class="col-xl-3 col-md-4">
+                    <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row info">
+                        <div class="col-xl-3 col-md-4 px-0 pr-md-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -49,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4">
+                        <div class="col-xl-3 col-md-4 px-0 pr-md-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -65,13 +64,13 @@
                                             <h3 class="f-w-700 text-c-white" style="float: right;">{{totalAmount}}</h3>
                                         </div>
                                     </div>
-                                      <div class="row" style="display:flex;justify-content:space-between">
+                                    <div class="row" style="display:flex;justify-content:space-between">
                                         <p class="m-b-0 foot" ><a routerLink="./purchasedReport" style="color:white;font-size: 11px; font-weight:700;color: #e2dddd;">View more...</a></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4">
+                        <div class="col-xl-3 col-md-4 px-0 pr-xl-3">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -94,7 +93,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-4">
+                        <div class="col-xl-3 col-md-4 px-0">
                             <div class="card comp-card prod-p-card card-yellow">
                                 <div class="card-body">
                                     <div class="row align-items-center head">
@@ -121,249 +120,136 @@
                                 </div>
                             </div>
                         </div>
-                      <!-- <div class="col-xl-4 col-md-6">
-                        <div class="card comp-card prod-p-card card-blue">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h6 class="m-b-25 text-white">Total Plan Created</h6>
-                                        <h3 class="f-w-700 text-white">{{dashBoardData?.all_investment}}</h3>
-                                        <p class="m-b-0"></p>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-sort-numeric-up text-c-blue f-18"></i>
+                    </div>
+                    <div class="row dashboard-table graphs">
+                        <div class="card-details col-xl-7 col-md-7 pr-xl-3 pr-0 pl-0">
+                            <div class="card latest-update-card mapss">
+                                <div class="card-header">
+                                    <h5>Investment by State</h5>
+                                    <h3>View Full report</h3>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive maps">
+                                        <div id="regions_div" class="" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
+                                        <div class="state">
+                                            <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Port-harcourt</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                            <div class='progress-label'><span>Kwara</span><span>0M of {{totalAmount}}</span></div>
+                                            <progress-bar [progress]="0" [color]="'#488aff'">
+                                            </progress-bar>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
-                  </div>
-                  <div class="row dashboard-table graphs">
-                    <div class="card-details col-xl-7 col-md-7" style="padding-left: 0;">
-                        <div class="card latest-update-card mapss">
-                            <div class="card-header">
-                                <h5>Investment by State</h5>
-                                <h3>View Full report</h3>
-                            </div>
-                            <div class="card-block">
-                              <div class="dt-responsive table-responsive maps">
-                                <div id="regions_div" class="" style="width: 370px; height: 310px;margin: 0 auto;margin-bottom:15px"></div>
-                                <div class="state">
-                                    <div class='progress-label' style="margin-top:40px"><span>Lagos</span><span>{{lagosAmount}} of {{totalAmount}}</span></div>
-                                    <progress-bar [progress]=[lagosFraction] [color]="'#a3a1fb'">
-                                    </progress-bar>
-                                    <div class='progress-label'><span>Abuja</span><span>0M of {{totalAmount}}</span></div>
-                                    <progress-bar [progress]="0" [color]="'#488aff'">
-                                    </progress-bar>
-                                    <div class='progress-label'><span>Port-harcourt</span><span>0M of {{totalAmount}}</span></div>
-                                    <progress-bar [progress]="0" [color]="'#488aff'">
-                                    </progress-bar>
-                                    <div class='progress-label'><span>Kwara</span><span>0M of {{totalAmount}}</span></div>
-                                    <progress-bar [progress]="0" [color]="'#488aff'">
-                                    </progress-bar>
+                        <div  *ngIf="!isLoading && dashboardInv?.length > 0" class="card-details col-xl-5 col-md-5 perf" style="padding-right: 0;padding-left: 0;">
+                            <div class="card latest-update-card">
+                                <div class="card-header small-gap">
+                                    <h5>Investment Perfomance</h5>
                                 </div>
-                                   <!--<div *ngIf="isLoading" class="row lds-default" style="width:auto;height:auto;position:absolute">
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                            <div></div>
-                                    </div>-->
-                              </div>
-                             </div>
-                        </div>
-                    </div>
-
-                    <div  *ngIf="!isLoading && dashboardInv?.length > 0" class="card-details col-xl-5 col-md-5 perf" style="padding-right: 0;padding-left: 0;">
-                      <div class="card latest-update-card">
-                          <div class="card-header small-gap">
-                              <h5>Investment Perfomance</h5>
-
-
-                          </div>
-                          <div class="row divider"></div>
-                          <div class="card-block" >
-                                <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
-                                    <div style="width: 48%">
-                                        <canvas  id="myChart" #mycanvas  baseChart width="600" height="890" padding="20"
-                                        [data]="doughnutChartData"
-                                        [labels]="doughnutChartLabels"
-                                        [chartType]="doughnutChartType"
-                                        [options]="doughnutChartOptions"
-                                        [plugins]="doughnutChartPlugins"
-                                        [legend]="false">
-                                        >
-                                    </canvas>
-                                    </div>
-                                <div id="legend"></div>
-                           </div>
-                      </div>
-                    </div>
-
-                    <!-- <div class="col-xl-4 col-md-12">
-                        <div class="card latest-update-card">
-                            <div class="card-header">
-                                <h5>Career</h5>
-                            </div>
-                            <div class="card-block">
-                                  <div class="dt-responsive table-responsive">
-                                          <table id="userTable"
-                                                  class="table table-striped nowrap">
-                                              <thead>
-                                              <tr>
-                                                  <th>Title</th>
-                                                  <th>No. of Applicants</th>
-                                              </tr>
-                                              </thead>
-                                              <tbody>
-                                              <tr *ngFor="let career of dashBoardData?.career_application,let x=index ">
-                                                  <td>{{career.career_title}}</td>
-                                                  <td >{{career.no_of_applications}}</td>
-                                              </tr>
-                                              </tbody>
-                                          </table>
-                                  </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-                  <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
-                      <div class="card-details activity-card col-xl-3.5 col-md-4" style="padding-left: 0;max-width:30%">
-                          <div class="card latest-update-card" style="padding-bottom:15px">
-                              <div class="card-header"
-                              style="margin-bottom: 15px;
-                                    padding: 15px 25px !important;
-                                    padding-bottom: 18px !important;
-                                    background-color:#4F5FBE !important;
-                                    height: 3rem !important;"
-                              >
-                                  <h5 style="color:white !important">Recent Activity</h5>
-                              </div>
-                              <div class="card-block">
-
-
-                                <div class="dt-responsive table-responsive">
-                                    <div *ngFor="let req of dashBoardData?.fetch_activities?.slice(0, 5),let x = index">
-                                        <div class="activities">
-                                          <div
-                                            style="
-                                            padding: auto;
-                                            border-radius: 50%;
-                                            border-color:#e8e8fe
-                                            ">
-                                            <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
+                                <div class="row divider"></div>
+                                <div class="card-block" >
+                                        <div class="dt-responsive table-responsive" style="display: flex;justify-content: space-between;">
+                                            <div style="width: 48%">
+                                                <canvas  id="myChart" #mycanvas  baseChart width="600" height="890" padding="20"
+                                                    [data]="doughnutChartData"
+                                                    [labels]="doughnutChartLabels"
+                                                    [chartType]="doughnutChartType"
+                                                    [options]="doughnutChartOptions"
+                                                    [plugins]="doughnutChartPlugins"
+                                                    [legend]="false">
+                                                </canvas>
                                             </div>
-                                            <div>
-                                                <div class="dashcam">{{req?.activity}}</div>
-                                                <div  class="dashcam" style="color: lightgrey;font-size: 12px;">{{getTimeAgo(req?.created_at)}}</div>
+                                            <div id="legend"></div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!isLoading && dashboardInv?.length > 0" class="row dashboard-table" style="width: 100%;margin-left: 2px;">
+                            <div class="card-details activity-card col-xl-4 col-md-4 pl-0 pr-0 pr-xl-3" style="max-width:30%">
+                                <div class="card latest-update-card" style="padding-bottom:15px">
+                                    <div class="card-header"
+                                    style="margin-bottom: 15px;
+                                            padding: 15px 25px !important;
+                                            padding-bottom: 18px !important;
+                                            background-color:#4F5FBE !important;
+                                            height: 3rem !important;"
+                                    >
+                                        <h5 style="color:white !important">Recent Activity</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="dt-responsive table-responsive">
+                                            <div *ngFor="let req of dashBoardData?.fetch_activities?.slice(0, 5),let x = index">
+                                                <div class="activities">
+                                                    <div
+                                                        style="
+                                                        padding: auto;
+                                                        border-radius: 50%;
+                                                        border-color:#e8e8fe
+                                                        ">
+                                                        <img class="" src="../../../../assets/images/activities/Icon-{{req.type}}.png" style="height: 35px;width:35px">
+                                                    </div>
+                                                    <div>
+                                                        <div class="dashcam">{{req?.activity}}</div>
+                                                        <div  class="dashcam" style="color: lightgrey;font-size: 12px;">{{getTimeAgo(req?.created_at)}}</div>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="x !== 4" class="divider2"></div>
                                             </div>
                                         </div>
-                                        <div *ngIf="x !== 4" class="divider2"></div>
                                     </div>
-                                        <!-- <table id="userTable"
-                                                class="table table-striped nowrap">
+                                </div>
+                            </div>
+                            <div class="card-details col-xl-8 col-md-12 tabl px-0" style="max-width: 100%;min-width: 70%;">
+                                <div class="card latest-update-card">
+                                    <div class="card-header" style="background-color:#4F5FBE !important; height: 3rem !important;">
+                                        <h5 style="color:white !important">Latest Investment</h5>
+                                    </div>
+                                    <div class="card-block card-flex">
+                                        <table id="userTable" class="table nowrap">
                                             <thead>
-                                            <tr>
-                                                <th>first name</th>
-                                                <th>last name</th>
-                                                <th>email</th>
-                                                <th>Phone number</th>
-                                                <th>curriculum_vitae</th>
-                                            </tr>
+                                                <tr class="text-center">
+                                                    <th>ID</th>
+                                                    <th>Customer</th>
+                                                    <th>Category</th>
+                                                    <th>Status</th>
+                                                    <th>Date Added</th>
+                                                    <th>Amount</th>
+                                                    <th>No of Pool</th>
+                                                    <th>Action</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            <tr *ngFor="let req of dashBoardData?.request_application,let x=index ">
-                                                <td>{{req.first_name}}</td>
-                                                <td >{{req.first_name}}</td>
-                                                <td >{{req.first_name}}</td>
-                                                <td >{{req.first_name}}</td>
-                                                <td >{{req.first_name}}</td>
-                                            </tr>
+                                                <tr class="text-center" *ngFor="let req of dashBoardData?.fetch_user_investments?.slice(0, 5),let x = index">
+                                                    <td>{{req?.id}}</td>
+                                                    <td >{{req?.user_id}}</td>
+                                                    <td >{{getCategoryName(req?.category_id)}}</td>
+                                                    <td class="" [style.color]="req?.is_investment_started === 1 ? 'green' : 'red'">
+                                                        {{ req?.is_investment_started === 1 ? 'Active' : 'InActive' }}
+                                                    </td>
+                                                    <td >{{req?.date_added}}</td>
+                                                    <td >{{req?.amount_paid}}</td>
+                                                    <td >{{req?.number_of_pools}}</td>
+                                                    <td  (click)="viewUserDetail(i)">
+                                                        <a routerLink="./pools/{{req?.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
+                                                    </td>
+                                                </tr>
                                             </tbody>
-                                        </table> -->
+                                        </table>
+                                    </div>
                                 </div>
-                               </div>
-                          </div>
-                      </div>
-
-                      <div class="card-details col-xl-8 col-md-12  tabl" style="padding-right: 0;padding-left: 0;max-width: 100%;min-width: 70%;">
-                        <div class="card latest-update-card">
-                            <div class="card-header" style="background-color:#4F5FBE !important; height: 3rem !important;">
-                                <h5 style="color:white !important">Latest Investment</h5>
-                            </div>
-                            <div class="card-block card-flex">
-                                <table id="userTable" class="table nowrap">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th>ID</th>
-                                            <th>Customer</th>
-                                            <th>Category</th>
-                                            <th>Status</th>
-                                            <th>Date Added</th>
-                                            <th>Amount</th>
-                                            <th>No of Pool</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="text-center" *ngFor="let req of dashBoardData?.fetch_user_investments?.slice(0, 5),let x = index">
-                                            <td>{{req?.id}}</td>
-                                            <td >{{req?.user_id}}</td>
-                                            <td >{{getCategoryName(req?.category_id)}}</td>
-                                            <td class="" [style.color]="req?.is_investment_started === 1 ? 'green' : 'red'">
-                                                {{ req?.is_investment_started === 1 ? 'Active' : 'InActive' }}
-                                            </td>
-                                            <td >{{req?.date_added}}</td>
-                                            <td >{{req?.amount_paid}}</td>
-                                            <td >{{req?.number_of_pools}}</td>
-                                            <td  (click)="viewUserDetail(i)">
-                                                <a routerLink="./pools/{{req?.investment_id}}"><img class="pr-2" src="../../../../assets/images/icon/icons/view-icon.png"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
-                      </div>
-
-                      <!-- <div class="col-xl-4 col-md-12">
-                          <div class="card latest-update-card">
-                              <div class="card-header">
-                                  <h5>Career</h5>
-                              </div>
-                              <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                            <table id="userTable"
-                                                    class="table table-striped nowrap">
-                                                <thead>
-                                                <tr>
-                                                    <th>Title</th>
-                                                    <th>No. of Applicants</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr *ngFor="let career of dashBoardData?.career_application,let x=index ">
-                                                    <td>{{career.career_title}}</td>
-                                                    <td >{{career.no_of_applications}}</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                    </div>
-                              </div>
-                          </div>
-                      </div> -->
-                  </div>
-              </div>
-          </div>
-
-      </div>
-  </div>
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
